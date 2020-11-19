@@ -1,0 +1,76 @@
+<!-- Breadcrumb-->
+<div class="breadcrumb-holder">
+    <div class="container-fluid">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="/"><span jhiTranslate="global.menu.home">Home</span></a></li>
+            <li class="breadcrumb-item"><a routerLink="/policy"><span
+                        jhiTranslate="auxiliumApp.policy.home.title">Policies</span></a></li>
+        </ul>
+    </div>
+</div>
+<section class="forms">
+    <div class="container-fluid">
+        <!-- Page Header-->
+        <header style="padding-top: 1rem; padding-bottom: 1rem;">
+            <h1 class="h3 display">
+                <jhi-alert-error></jhi-alert-error>
+            </h1>
+        </header>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header d-flex align-items-center no-padding">
+                        <div class="notice notice-info">
+                            <strong jhiTranslate="auxiliumApp.policy.home.title"> Create new Policy</strong>
+                            <button class="btn btn-sm btn-primary float-right"
+                                [routerLink]="['../policy-new']">
+                                <span class="fa fa-sm fa-plus"></span>
+                                <span class="hidden-sm-down" jhiTranslate="auxiliumApp.policy.home.createLabel">Create new Policy</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-sm table-hover table-bordered" style="width: 100%">
+                                <thead style="color:white;background-color:#11859b">
+                                    <tr>
+                                        <th><span jhiTranslate="auxiliumApp.policy.reference">Reference</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.policy.partner">Partner</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.policy.agency">Agency</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.policy.vehicle">Vehicle</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.policy.policyHolder">Policy Holder</span>
+                                        </th>
+                                        <th><span jhiTranslate="auxiliumApp.policy.startDate">Start Date</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.policy.endDate">End Date</span></th>
+                                        <th class="no-sort"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let policy of policies">
+                                        <td>{{policy.reference}}</td>
+                                        <td>{{policy.partnerCompanyName}}</td>
+                                        <td>{{policy.agencyName}}</td>
+                                        <td>{{'_________________________'}}</td>
+                                        <td>{{policy.policyHolderCompanyName}}</td>
+                                        <td>{{policy.startDate | date:'dd/MM/yyyy'}}</td>
+                                        <td>{{policy.endDate | date:'dd/MM/yyyy'}}</td>
+                                        <td class="text-right">
+                                            <div class="btn-group flex-btn-group-container">
+                                                <button *ngIf="editContrat == true" type="submit"
+                                                    [routerLink]="['/policy/vhl/'+ policy.immatriculation + '/edit']"
+                                                    [hidden]="principal.selectedValue=='ROLE_RESPONSABLE' "
+                                                    replaceUrl="true" class="btn btn-primary btn-sm">
+                                                    <span class="fa fa-sm fa-pencil"></span>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

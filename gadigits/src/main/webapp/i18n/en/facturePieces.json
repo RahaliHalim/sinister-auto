@@ -1,0 +1,24 @@
+{
+    "auxiliumApp": {
+        "facturePieces" : {
+            "home": {
+                "title": "Facture Pieces",
+                "createLabel": "Create a new Facture Pieces",
+                "createOrEditLabel": "Create or edit a Facture Pieces",
+                "search": "Search for Facture Pieces"
+            },
+            "created": "A new Facture Pieces is created with identifier {{ param }}",
+            "updated": "A Facture Pieces is updated with identifier {{ param }}",
+            "deleted": "A Facture Pieces is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Facture Pieces {{ id }}?"
+            },
+            "detail": {
+                "title": "Facture Pieces"
+            },
+            "dateGeneration": "Date Generation",
+            "detailsPieces": "Details Pieces",
+            "facture": "Facture"
+        }
+    }
+}

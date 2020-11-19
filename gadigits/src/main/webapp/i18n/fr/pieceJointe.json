@@ -1,0 +1,37 @@
+{
+    "auxiliumApp": {
+        "pieceJointe" : {
+            "home": {
+                "title": "Pièces jointes",
+                "createLabel": "Créer",
+                "createOrEditLabel": "Créer ou modifier ",
+                "signatureAccord": "Attachement accord",
+                "search": "Recherche pour pièce jointe"
+            },
+            "created": "Une nouvelle pièce jointe a été créée avec l'identifiant {{ param }}",
+            "updated": "La pièce jointe avec l'identifiant {{ param }} a été mise à jour",
+            "deleted": "La pièce jointe avec l'identifiant {{ param }} a été supprimée",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer la pièce jointe {{ id }} ?"
+            },
+            "detail": {
+                "title": "Pièce jointe"
+            },
+            "libelle": "Libellé",
+            "chemin": "Chemin",
+            "isOriginale": "Est originale?",
+            "dateImport": "Date Import",
+            "dateImportSignature": "Date d'attachement",
+            "type": "Type",
+            "user": "Utilisateur",
+            "prestation": "Prestation",
+            "note": "Note éxplicative",
+            "file": "Fichier",
+            "constat":"Constat",
+            "carteGrise":"Carte grise",
+            "acteDeCession":"Acte de cession",
+            "ordreMission":"ordre de mission",
+            "dateCreation":"Date de création"
+        }
+    }
+}

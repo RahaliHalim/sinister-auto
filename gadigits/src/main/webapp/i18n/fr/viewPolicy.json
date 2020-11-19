@@ -1,0 +1,32 @@
+{
+    "auxiliumApp": {
+        "viewPolicy" : {
+            "home": {
+                "title": "ViewPolicies",
+                "createLabel": "Créer un nouveau View Policy",
+                "createOrEditLabel": "Créer ou éditer un View Policy",
+                "search": "Recherche pour View Policy"
+            },
+            "created": "Un nouveau View Policy a été créé avec l'identifiant {{ param }}",
+            "updated": "Le View Policy avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le View Policy avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Êtes-vous sûrs de vouloir supprimer le View Policy {{ id }} ?"
+            },
+            "detail": {
+                "title": "View Policy"
+            },
+            "policyNumber": "Policy Number",
+            "companyId": "Company Id",
+            "companyName": "Company Name",
+            "agencyId": "Agency Id",
+            "agencyName": "Agency Name",
+            "vehicleId": "Vehicle Id",
+            "registrationNumber": "Registration Number",
+            "policyHolderId": "Policy Holder Id",
+            "policyHolderName": "Policy Holder Name",
+            "startDate": "Start Date",
+            "endDate": "End Date"
+        }
+    }
+}

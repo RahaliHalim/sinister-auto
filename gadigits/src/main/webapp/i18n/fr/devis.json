@@ -1,0 +1,44 @@
+{
+    "auxiliumApp": {
+        "devis" : {
+            "home": {
+                "title": "Devis",
+                "createLabel": "Créer un nouveau devis",
+                "createOrEditLabel": "Créer ou modifier un devis",
+                "search": "Recherche pour devis",
+                "details":"Détails devis",
+                "instanceReparation": "En instance de réparation ",
+                "verification": "Vérification",
+                "missionExpert":" Mission expert",
+                "cancelExpert":" Annuler mission expert",
+                "avisExpert":"Avis expert",
+                "validation":"Validation"
+            },
+            "created": "Un nouveau devis a été créé avec l'identifiant {{ param }}",
+            "updated": "Le devis avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le devis avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer le devis {{ id }} ?"
+            },
+            "detail": {
+                "title": "devis"
+            },
+            "totalTtc": "Total TTC",
+            "etat": "État devis",
+            "totHt": "Tot Ht",
+            "isComplementaire": "Is Complementaire",
+            "isSupprime": "Is Supprime",
+            "dateGeneration": "Date génération",
+            "vetuste": "Vétusté",
+            "mvht": "MVHT",
+            "mvttc": "MVTTC",
+            "timbre": "Timbre",
+            "commentaire": "Commentaire",
+            "droitTimbre": "Droit de timbre",
+            "prestation": "Prestation",
+            "reparateur": "Réparateur",
+            "expert": "Expert:",
+            "prestationReference": "Référence GA"
+        }
+    }
+}

@@ -1,0 +1,28 @@
+{
+    "auxiliumApp": {
+        "detailsMo" : {
+            "home": {
+                "title": "Main d'oeuvre",
+                "createLabel": "Créer",
+                "createOrEditLabel": "Créer ou modifier un détails Mo",
+                "search": "Recherche pour détails Mo"
+            },
+            "created": "Un nouveau détails Mo a été créé avec l'identifiant {{ param }}",
+            "updated": "Le détails Mo avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le détails Mo avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer le détails Mo {{ id }} ?"
+            },
+            "detail": {
+                "title": "détails Mo"
+            },
+            "nombreHeures": "Nombre d'heures",
+            "designation": "Désignation",
+            "factureMo": "Facture Mo",
+            "devis": "Devis",
+            "typeIntervention": "Type d'intervention",
+            "totalTtc": "Total TTC",
+            "totalHt": "Total HT"
+        }
+    }
+}

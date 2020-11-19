@@ -1,0 +1,27 @@
+{
+    "auxiliumApp": {
+        "prestationAvt" : {
+            "home": {
+                "title": "PrestationAvts",
+                "createLabel": "Créer une nouvelle prestation Avt",
+                "createOrEditLabel": "Créer ou modifier une prestation Avt"
+            },
+            "created": "Une nouvelle prestation Avt a été créée avec l'identifiant {{ param }}",
+            "updated": "La prestation Avt avec l'identifiant {{ param }} a été mise à jour",
+            "deleted": "La prestation Avt avec l'identifiant {{ param }} a été supprimée",
+            "canceled": "La prestation Avt avec l'identifiant {{ param }} a été annulée",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer la prestation Avt {{ id }} ?"
+            },
+            "detail": {
+                "title": "Prestation Avt"
+            },
+            "prestation": "Prestation",
+            "typeService": "Type de Service",
+            "isFerier": "Est Ferié ?",
+            "isNuit": "Est Nuit ?",
+            "isPoidsLourd": "Est un Poids Lourd",
+            "isDemiMajore": "Demi Majoré"
+        }
+    }
+}

@@ -1,0 +1,182 @@
+<!-- Breadcrumb-->
+<div class="breadcrumb-holder">
+	<div class="container-fluid">
+		<ul class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="/"><span class="fa fa-home"></span>&nbsp;&nbsp;<span	jhiTranslate="global.menu.home">Home</span></a></li>
+            <li class="breadcrumb-item"><span jhiTranslate="auxiliumApp.sinisterPrestation.report.title">Reporting</span></li>
+			<li class="breadcrumb-item"><span jhiTranslate="auxiliumApp.sinisterPrestation.report.report3">PERFORMANCE DU REMORQUEUR</span></a></li>
+		</ul>
+	</div>
+</div>
+<section class="forms">
+	<div class="container-fluid">
+        <!-- Page Header-->
+        <header style="padding-top: 1rem; padding-bottom: 1rem;">
+            <h1 class="h3 display">
+                <jhi-alert-error></jhi-alert-error>
+                <jhi-alert></jhi-alert>
+            </h1>
+        </header>
+        <div class="row">
+            <div class="col-lg-12">
+                <form #cnvForm="ngForm" novalidate>
+                    <div class="card">
+                        <div class="card-header d-flex align-items-center no-padding" >
+                            <div class="notice notice-info"><span class="fa fa-search" style="color: #45ABCD"></span>&nbsp;&nbsp;<strong jhiTranslate="auxiliumApp.sinisterPrestation.report.filter">filter</strong></div>
+                        </div>
+
+                        <div class="card-body">
+
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <label jhiTranslate="auxiliumApp.refPartner.detail.title" for="field_partner">company</label>
+                                    <select class="form-control form-control-sm" id="field_partner" name="partner" [(ngModel)]="searchParams.compagnieId">
+                                        <option [ngValue]="partner.id" *ngFor="let partner of partners;">{{partner?.companyName}}</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-3">
+                                    <label jhiTranslate="auxiliumApp.refRemorqueur.detail.title" for="field_tug">refRemorqueur</label>
+                                    <select class="form-control form-control-sm" id="field_tug" name="tug" [(ngModel)]="searchParams.tugId">
+                                        <option [ngValue]="tug.id" *ngFor="let tug of tugs;">{{tug?.societeRaisonSociale}}</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label class="form-control-label" jhiTranslate="auxiliumApp.sinisterPrestation.report.startDate" for="field_startDate">startDate</label>
+                                        <div class="input-group">
+                                            <input id="field_startDate" type="text" class="form-control form-control-sm" name="startDate" ngbDatepicker #startDate="ngbDatepicker"
+                                                   [(ngModel)]="searchParams.startDateNC" [maxDate]="searchParams.endDateNC" />
+                                                   <span class="input-group-btn">
+                                                <button type="button" class="btn btn-sm btn-default" (click)="startDate.toggle()"><i class="fa fa-sm fa-calendar"></i></button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label class="form-control-label" jhiTranslate="auxiliumApp.sinisterPrestation.report.endDate" for="field_endDate">endDate</label>
+                                        <div class="input-group">
+                                            <input id="field_endDate" type="text" class="form-control form-control-sm" name="endDate" ngbDatepicker  #endDate="ngbDatepicker" [(ngModel)]="searchParams.endDateNC"
+                                                   [minDate]="searchParams.startDateNC"/>
+                                                   <span class="input-group-btn">
+                                                <button type="button" class="btn btn-sm btn-default" (click)="endDate.toggle()"><i class="fa fa-sm fa-calendar"></i></button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label class="form-control-label" jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.dmi" style="width: 100%" for="field_dmi">dmi</label>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <select class="form-control form-control-sm" id="field_tug" name="tug" [(ngModel)]="searchParams.operator">
+                                                    <option [ngValue]="operator.key" *ngFor="let operator of operators;">{{operator?.label}}</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <select class="form-control form-control-sm" id="field_dmi" name="dmi" [(ngModel)]="searchParams.dmi">
+                                                    <option [ngValue]="dmi.key" *ngFor="let dmi of dmis;">{{dmi?.label}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <label jhiTranslate="auxiliumApp.rapport.performanceRemorqueur.zone" for="field_partner">Zone </label>
+                                    <select class="form-control form-control-sm"  name="statut"  [(ngModel)]="searchParams.zoneId"  >
+                                        <option [ngValue]="gov.id" *ngFor="let gov of governorate;">{{gov?.label}}</option>
+                
+                                    </select>   
+                                </div> 
+                                       
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label class="form-control-label" style="width: 100%">&nbsp;</label>
+                                        <button type="button" (click)="filter()"
+                                            class="btn btn-sm btn-primary margin-right-5">
+                                            <span class="fa fa-searchParams"></span>&nbsp; <span jhiTranslate="auxiliumApp.sinisterPrestation.report.doFilter">Filtrer</span>
+                                        </button>&nbsp;
+                                        <button type="button" (click)="clear()"
+                                            class="btn btn-sm btn-primary margin-right-5">
+                                            <span class="fa fa-minus"></span>&nbsp; <span>Ré-initialiser</span>
+                                        </button>
+
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    </form>
+                <div class="card">
+                    <div class="card-header d-flex align-items-center no-padding" >
+                        <div class="notice notice-info">
+                            <span class="fa fa-area-chart" style="color: #45ABCD"></span>&nbsp;&nbsp;
+                            <strong jhiTranslate="auxiliumApp.sinisterPrestation.report.services">services</strong>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table datatable [dtOptions]="dtOptions"
+                             class="table table-sm table-hover table-bordered" style="width:100%">
+                                <thead style="color:white;background-color:#11859b">
+                                <tr>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.affectedTug">affectedTug</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.gaReference">gaReference</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPrestation.creationDate">creationDate</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPrestation.creationUser">creationUser</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.registrationNumber">registrationNumber</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.partner">partner</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.serviceType">serviceType</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.usage">usage</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPrestation.remAffectationDate">tugAssignedDate</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPrestation.remArrivalDate">remArrivalDate</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPrestation.assureArrivalDate">assureArrivalDate</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.dmi">dmi</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.delaiOperation">delaiOperation</span></th>
+                                    <th><span>Habillage</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.sinisterLocation">sinisterLocation</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.price">price</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPrestation.cancelGrounds">cancelGrounds</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPrestation.cancelDate">cancelDate</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPrestation.closureDate">closureDate</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPrestation.closureUser">closureUser</span></th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of reportTugPerformances">
+                                        <td>{{item.affectedTugLabel}}</td>
+                                        <td>{{item.reference}}</td>
+                                        <td>{{item.creationDate | date:'dd/MM/yyyy HH:mm:ss'}}</td>
+                                        <td>{{item.creationUser}}</td>
+                                        <td>{{item.registrationNumber}}</td>
+                                        <td>{{item.partnerName}}</td>
+                                        <td>{{item.serviceTypeLabel}}</td>
+                                        <td>{{item.usageLabel}}</td>
+                                        <td>{{item.tugAssignmentDate | date:'dd/MM/yyyy HH:mm:ss'}}</td>
+                                        <td>{{item.tugArrivalDate | date:'dd/MM/yyyy HH:mm:ss'}}</td>
+                                        <td>{{item.insuredArrivalDate | date:'dd/MM/yyyy HH:mm:ss'}}</td>
+                                        <td>{{item.interventionTimeAvg}}</td>
+                                        <td>{{item.delaiOperation}}</td>
+                                        <td>{{item.habillage}}</td>
+                                        <td>{{item.incidentGovernorateLabel}}</td>
+                                        <td>{{item.priceTtc}}</td>
+                                        <td>{{item.cancelGroundsDescription}}</td>
+                                        <td>{{item.cancelDate | date:'dd/MM/yyyy HH:mm:ss'}}</td>
+                                        <td>{{item.closureDate | date:'dd/MM/yyyy HH:mm:ss'}}</td>
+                                        <td>{{item.closureUser}}</td>
+
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+</section>

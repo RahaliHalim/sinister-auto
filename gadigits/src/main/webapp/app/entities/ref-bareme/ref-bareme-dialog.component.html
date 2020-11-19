@@ -1,0 +1,97 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myRefBaremeLabel" jhiTranslate="auxiliumApp.refBareme.home.createOrEditLabel">Create or edit a Ref Bareme</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!refBareme.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="refBareme.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="auxiliumApp.refBareme.code" for="field_code">Code</label>
+            <input type="number" class="form-control" name="code" id="field_code"
+                [(ngModel)]="refBareme.code" required max="99999999" />
+            <div [hidden]="!(editForm.controls.code?.dirty && editForm.controls.code?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.code?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.code?.errors?.max" jhiTranslate="entity.validation.max" translateValues="{ max: 99999999 }">
+                    This field cannot be more than 99999999.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.code?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="auxiliumApp.refBareme.responsabiliteX" for="field_responsabiliteX">Responsabilite X</label>
+            <input type="number" class="form-control" name="responsabiliteX" id="field_responsabiliteX"
+                [(ngModel)]="refBareme.responsabiliteX" required max="99999999" />
+            <div [hidden]="!(editForm.controls.responsabiliteX?.dirty && editForm.controls.responsabiliteX?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.responsabiliteX?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.responsabiliteX?.errors?.max" jhiTranslate="entity.validation.max" translateValues="{ max: 99999999 }">
+                    This field cannot be more than 99999999.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.responsabiliteX?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="auxiliumApp.refBareme.responsabiliteY" for="field_responsabiliteY">Responsabilite Y</label>
+            <input type="number" class="form-control" name="responsabiliteY" id="field_responsabiliteY"
+                [(ngModel)]="refBareme.responsabiliteY" required max="99999999" />
+            <div [hidden]="!(editForm.controls.responsabiliteY?.dirty && editForm.controls.responsabiliteY?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.responsabiliteY?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.responsabiliteY?.errors?.max" jhiTranslate="entity.validation.max" translateValues="{ max: 99999999 }">
+                    This field cannot be more than 99999999.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.responsabiliteY?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="auxiliumApp.refBareme.description" for="field_description">Description</label>
+            <input type="text" class="form-control" name="description" id="field_description"
+                [(ngModel)]="refBareme.description" required maxlength="256" />
+            <div [hidden]="!(editForm.controls.description?.dirty && editForm.controls.description?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.description?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.description?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 256 }">
+                   This field cannot be longer than 256 characters.
+                </small>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

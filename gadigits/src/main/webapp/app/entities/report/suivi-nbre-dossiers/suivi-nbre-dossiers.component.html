@@ -1,0 +1,173 @@
+<!-- Breadcrumb-->
+<div class="breadcrumb-holder">
+	<div class="container-fluid">
+		<ul class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="/"><span class="fa fa-home"></span>&nbsp;&nbsp;<span	jhiTranslate="global.menu.home">Home</span></a></li>
+            <li class="breadcrumb-item"><span jhiTranslate="auxiliumApp.sinisterPrestation.report.title">Reporting</span></li>
+			<li class="breadcrumb-item"><span jhiTranslate="auxiliumApp.rapport.suiviDossier.title">Souscription</span></a></li>
+		</ul>
+	</div>
+</div>
+<section class="forms">
+	<div class="container-fluid">
+        <!-- Page Header-->
+       
+        <div class="row">
+            <div class="col-lg-12">
+                <form>
+                    <div class="card-header d-flex align-items-center no-padding" >
+                        <div class="notice notice-info"><span class="fa fa-search" style="color: #45ABCD"></span>&nbsp;&nbsp;<strong jhiTranslate="auxiliumApp.contratAssurance.filter">filter</strong></div>
+                    </div>
+
+
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-sm-4">
+                            <label jhiTranslate="auxiliumApp.rapport.suiviDossier.compagnie" for="field_partner">done</label>
+                            <select class="form-control form-control-sm" id="field_partner" name="partner"   [(ngModel)]="search.compagnieId"  (ngModelChange)="changeMode(search.compagnieId,search.zoneId)" >
+                                <option [ngValue]="partner.id" *ngFor="let partner of partners;">{{partner?.companyName}}</option>
+
+                            </select>
+                        </div>
+                        <div class="col-sm-4">
+                          <label jhiTranslate="auxiliumApp.rapport.suiviDossier.mode" for="field_partner">done</label>
+                          <select class="form-control form-control-sm" id="field_partner" name="refService"  [(ngModel)]="search.modeGestionId" >
+                                <option >------ Séléctionner un mode de gestion --------</option>
+                              <option [ngValue]="mode.id" *ngFor="let mode of modeGestion;">{{mode?.libelle}}</option>
+
+                          </select>
+                      </div>
+                      <div class="col-sm-4">
+                        <label jhiTranslate="auxiliumApp.rapport.suiviDossier.charge" for="field_partner">done</label>
+                        <select class="form-control form-control-sm"  name="charge"  [(ngModel)]="search.chargeId">
+                            <option [ngValue]="list.id" *ngFor="let list of listCharge;">{{list?.nomCharge}} {{list?.prenomCharge}}</option>
+
+                        </select>     
+                    </div>
+                  </div>
+
+                    <div class="row">
+
+                    <div class="col-sm-4">
+                      <label jhiTranslate="auxiliumApp.rapport.suiviDossier.agent" for="field_partner">Agent</label>
+                      <select class="form-control form-control-sm"  name="agent"  [(ngModel)]="search.agentId" >
+                            <option >------ Séléctionner un agent  --------</option>
+                          <option [ngValue]="ag.id" *ngFor="let ag of agent;">{{ag.name}}</option>
+
+                      </select>     
+                  </div>     
+
+                  <div class="col-sm-4">
+                    <label jhiTranslate="auxiliumApp.rapport.suiviDossier.zoneAgent" for="field_partner">Zone</label>
+                    <select class="form-control form-control-sm"  name="zone"  [(ngModel)]="search.zoneId"  (ngModelChange)="changeMode(search.compagnieId,search.zoneId)">
+                            <option [ngValue]="gov.id" *ngFor="let gov of governorate;">{{gov?.label}}</option>
+
+                    </select>     
+                </div>     
+
+                <div class="col-sm-4">
+                  <label jhiTranslate="auxiliumApp.rapport.suiviDossier.etat" for="field_partner">Etat dossier</label>
+                  <select class="form-control form-control-sm" id="field_zone" name="refStep"   [(ngModel)]="search.idEtapePrestation" >
+                    <option [ngValue]="ref.id" *ngFor="let ref of RefStep;">{{ref?.label}}</option>
+                </select>  
+              </div>     
+                  </div>  
+                                                 
+                       
+                        <div class="row">
+                            <div class="col-lg-4">
+                                    <div class="form-group">
+                                            <label class="form-control-label" jhiTranslate="auxiliumApp.sinisterPrestation.report.startDate" for="field_startDate">startDate</label>
+                                            <div class="input-group">
+                                                <input id="field_startDate" type="text" class="form-control form-control-sm" name="startDate" ngbDatepicker #startDate="ngbDatepicker"
+                                                       [(ngModel)]="search.startDate" [maxDate]="search.endDate" />
+                                                       <span class="input-group-btn">
+                                                    <button type="button" class="btn btn-sm btn-default" (click)="startDate.toggle()"><i class="fa fa-sm fa-calendar"></i></button>
+                                                </span>
+                                            </div>
+                                        </div>
+                            </div>
+
+                            <div class="col-lg-4">
+                                    <div class="form-group">
+                                            <label class="form-control-label" jhiTranslate="auxiliumApp.sinisterPrestation.report.endDate" for="field_endDate">endDate</label>
+                                            <div class="input-group">
+                                                <input id="field_endDate" type="text" class="form-control form-control-sm" name="endDate" ngbDatepicker  #endDate="ngbDatepicker" [(ngModel)]="search.endDate"
+                                                       [minDate]="search.startDate"/>
+                                                       <span class="input-group-btn">
+                                                    <button type="button" class="btn btn-sm btn-default" (click)="endDate.toggle()"><i class="fa fa-sm fa-calendar"></i></button>
+                                                </span>
+                                            </div>
+                                        </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label class="form-control-label" style="width: 100%">&nbsp;</label>
+                                    <button type="button"  (click)="filter()"
+                                        class="btn btn-sm btn-primary margin-right-5">
+                                        <span class="fa fa-search"></span>&nbsp; <span jhiTranslate="auxiliumApp.sinisterPrestation.report.doFilter">Filtrer</span>
+                                    </button>&nbsp;
+                                    <button type="button"   (click)="clear()"
+                                        class="btn btn-sm btn-primary margin-right-5">
+                                        <span class="fa fa-minus"></span>&nbsp; <span>Ré-initialiser</span>
+                                    </button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                  </form>
+
+                  <div class="card">
+                    <div class="card-header d-flex align-items-center no-padding" >
+                        <div class="notice notice-info">
+                            <span class="fa fa-area-chart" style="color: #45ABCD"></span>&nbsp;&nbsp;
+                            <strong jhiTranslate="auxiliumApp.sinisterPrestation.report.services">services</strong>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"  class="table table-sm table-hover table-bordered"  style="width:100%">
+                                <thead style="color:white;background-color:#11859b">
+                                    <tr>
+                                    <th><span jhiTranslate="auxiliumApp.rapport.bonification.reference-ga">insured</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.rapport.suiviDossier.immatriculation">Immatriculation</span></th>
+
+                                    <th><span jhiTranslate="auxiliumApp.rapport.suiviDossier.agent">Agent</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.rapport.suiviDossier.zone"></span></th>
+                                    <th><span jhiTranslate="auxiliumApp.rapport.suiviDossier.compagnie"></span></th>
+                                    <th><span jhiTranslate="auxiliumApp.rapport.suiviDossier.referenceCompagnie">reference company</span></th>
+
+                                    <th><span jhiTranslate="auxiliumApp.rapport.suiviDossier.dateOuverture"></span></th>
+                                    <th><span jhiTranslate="auxiliumApp.rapport.suiviDossier.etat">gaReference</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.rapport.suiviDossier.mode">registrationNumber</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.rapport.suiviDossier.dateBonDeSortie">insured</span></th>
+
+       
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let d of dossiers">
+                                        <td>{{d.referencega}}</td>
+                                        <td>{{d.immatriculationVehicule}}</td>
+                                        <td>{{d.agent}}</td>
+                                        <td>{{d.zone}}</td>
+                                        <td>{{d.compagnie}}</td>
+                                        <td>{{d.companyReference}}</td>
+                                        <td>{{d.dateOuverture}}</td>
+                                        <td>{{d.etatDossier}}</td>
+                                        <td>{{d.modeGestion}}</td>
+                                        <td>{{d.dateBonSortie}}</td>
+                                     
+                                     
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+</section>

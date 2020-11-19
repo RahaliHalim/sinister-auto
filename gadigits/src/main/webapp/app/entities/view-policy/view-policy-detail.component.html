@@ -1,0 +1,65 @@
+
+<div *ngIf="viewPolicy">
+    <h2><span jhiTranslate="auxiliumApp.viewPolicy.detail.title">View Policy</span> {{viewPolicy.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="auxiliumApp.viewPolicy.policyNumber">Policy Number</span></dt>
+        <dd>
+            <span>{{viewPolicy.policyNumber}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.viewPolicy.companyId">Company Id</span></dt>
+        <dd>
+            <span>{{viewPolicy.companyId}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.viewPolicy.companyName">Company Name</span></dt>
+        <dd>
+            <span>{{viewPolicy.companyName}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.viewPolicy.agencyId">Agency Id</span></dt>
+        <dd>
+            <span>{{viewPolicy.agencyId}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.viewPolicy.agencyName">Agency Name</span></dt>
+        <dd>
+            <span>{{viewPolicy.agencyName}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.viewPolicy.vehicleId">Vehicle Id</span></dt>
+        <dd>
+            <span>{{viewPolicy.vehicleId}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.viewPolicy.registrationNumber">Registration Number</span></dt>
+        <dd>
+            <span>{{viewPolicy.registrationNumber}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.viewPolicy.policyHolderId">Policy Holder Id</span></dt>
+        <dd>
+            <span>{{viewPolicy.policyHolderId}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.viewPolicy.policyHolderName">Policy Holder Name</span></dt>
+        <dd>
+            <span>{{viewPolicy.policyHolderName}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.viewPolicy.startDate">Start Date</span></dt>
+        <dd>
+            <span>{{viewPolicy.startDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.viewPolicy.endDate">End Date</span></dt>
+        <dd>
+            <span>{{viewPolicy.endDate | date:'mediumDate'}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'view-policy/'+ viewPolicy.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;&nbsp;&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

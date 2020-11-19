@@ -1,0 +1,32 @@
+{
+    "auxiliumApp": {
+        "vehiclePiece" : {
+            "home": {
+                "title": "Pièces de Rechange",
+                "createLabel": "Créer une nouvelle pièce",
+                "createOrEditLabel": "Créer ou modifier une pièce de rechange",
+                "search": "Recherche pour pièce"
+            },
+            "created": "Une nouvelle pièce a été créée",
+            "updated": "La pièce a été mise à jour",
+            "deleted": "La pièce a été supprimée",
+            "refExiste": "Une pièce avec la même référence existe déjà !",
+            "useExistant" : "Utiliser cette pièce",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer cette pièce ?"
+            },
+            "detail": {
+                "title": "Pièce de rechange"
+            },
+            "code": "Référence",
+            "label": "Libellé",
+            "source": "Source",
+            "active": "Active",
+            "vetuste": "Vétuste",
+            "graphicAreaId": "Graphic Area Id",
+            "functionalGroupId": "Functional Group Id",
+            "natureId": "Nature Id",
+            "type": "Type"
+        }
+    }
+}

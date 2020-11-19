@@ -1,0 +1,98 @@
+<!-- Breadcrumb-->
+<div class="breadcrumb-holder">
+    <div class="container-fluid">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="/"><span class="fa fa-home"></span>&nbsp;&nbsp;<span
+                        jhiTranslate="global.menu.home">Home</span></a></li>
+            <li class="breadcrumb-item"><a routerLink="/verification-originals-printed"><span
+                        jhiTranslate="auxiliumApp.sinisterPec.home.verificationOriginalsPrinted">Vérification des originaux des imprimés</span></a>
+            </li>
+        </ul>
+        </ul>
+    </div>
+</div>
+<section class="forms">
+    <div class="container-fluid">
+        <!-- Page Header-->
+        <header style="padding-top: 1rem; padding-bottom: 1rem;">
+            <h1 class="h3 display">
+                <jhi-alert-error></jhi-alert-error>
+                <jhi-alert></jhi-alert>
+            </h1>
+        </header>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header d-flex align-items-center no-padding">
+                        <div class="notice notice-info">
+                            <strong
+                                jhiTranslate="auxiliumApp.sinisterPec.home.verificationOriginalsPrinted">Vérification
+                                des originaux des imprimés</strong>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+                                class="table table-sm table-hover table-bordered" style="width: 100%">
+                                <thead style="color:white;background-color:#11859b">
+                                    <tr>
+                                        <th><span jhiTranslate="auxiliumApp.sinisterPec.reference">Reference</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.sinisterPec.companyName">Company Name</span>
+                                        </th>
+                                        <th><span jhiTranslate="auxiliumApp.sinisterPec.agentName">Agent Name</span>
+                                        </th>
+                                        <th><span jhiTranslate="auxiliumApp.sinisterPec.contractNumber">Contract
+                                                Number</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.sinisterPec.insuredImmatriculation">Insured
+                                                Immatriculation </span></th>
+                                        <th><span jhiTranslate="auxiliumApp.sinisterPec.tiersImmatriculation">Tiers
+                                                Immatriculation</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.sinisterPec.modeGestion">Mode de
+                                                gestion</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.sinisterPec.reparateur">Reparateur</span>
+                                        </th>
+                                        <th><span jhiTranslate="auxiliumApp.sinisterPec.expert">expert</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.sinisterPec.incidentDate">Incident
+                                                Date</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.sinisterPec.chargeName">Nom chargé</span>
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let sinisterPec of sinisterPecsBonSortie ;trackBy: trackId">
+                                        <td>{{sinisterPec.reference}}</td>
+                                        <td>{{sinisterPec.companyName}}</td>
+                                        <td>{{sinisterPec.agenceName}}</td>
+                                        <td>{{sinisterPec.contractNumber}}</td>
+                                        <td>{{sinisterPec.immatriculationVehicle}}</td>
+                                        <td>{{sinisterPec.immatriculationTier}}</td>
+                                        <td>{{sinisterPec.labelModeGestion}}</td>
+                                        <td>{{sinisterPec.reparateurName}}</td>
+                                        <td>{{sinisterPec.expertName}}</td>
+                                        <td>{{sinisterPec.incidentDate}}</td>
+                                        <td>{{sinisterPec.assignedTofirstName}} {{sinisterPec.assignedTolastName}}</td>
+
+                                        <td class="text-right">
+                                            <div class="btn-group flex-btn-group-container">
+                                                <div class="btn-group flex-btn-group-container">
+                                                    <button type="submit"
+                                                        *ngIf="permissionToAccess.canVerifOriginalsPrinted"
+                                                        [routerLink]="['/sinister-pec-reprise-verif-origin-printed/'+sinisterPec.id]"
+                                                        replaceUrl="true" class="btn btn-primary btn-sm">
+                                                        <span class="orange" jhiTranslate="auxiliumApp.sinisterPec.consulter"></span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

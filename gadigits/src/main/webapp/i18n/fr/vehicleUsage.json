@@ -1,0 +1,24 @@
+{
+    "auxiliumApp": {
+        "vehicleUsage" : {
+            "home": {
+                "title": "Usages",
+                "createLabel": "Créer un nouvel usage",
+                "createOrEditLabel": "Créer ou modifier un usage",
+                "search": "Recherche pour usage"
+            },
+            "created": "Un nouvel usage a été créé",
+            "updated": "L'usage a été mis à jour",
+            "deleted": "L'usage a été supprimé",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer cet usage ?"
+            },
+            "detail": {
+                "title": "Usage"
+            },
+            "code": "Code",
+            "label": "Libellé",
+            "active": "Actif"
+        }
+    }
+}

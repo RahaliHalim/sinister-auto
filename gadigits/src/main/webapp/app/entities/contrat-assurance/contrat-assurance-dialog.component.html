@@ -1,0 +1,517 @@
+<!-- Breadcrumb-->
+<div class="breadcrumb-holder">
+	<div class="container-fluid">
+		<ul class="breadcrumb">
+			<li class="breadcrumb-item"><span class="fa fa-home"></span>&nbsp;&nbsp;<a routerLink="/"><span	jhiTranslate="global.menu.home">Home</span></a></li>
+			<li class="breadcrumb-item"><a routerLink="/contrat-assurance"><span jhiTranslate="auxiliumApp.contratAssurance.home.title">Contrats Assurances</span></a></li>
+			<li class="breadcrumb-item"><a  ><span jhiTranslate="auxiliumApp.contratAssurance.home.createLabel">Create or edit a Contrat Assurance</span></a></li>
+		</ul>
+	</div>
+</div>
+<section class="forms">
+	<div class="container-fluid">
+		<!-- Page Header-->
+		<header>
+			<h1 class="h3 display">
+				<jhi-alert-error></jhi-alert-error>
+				<jhi-alert></jhi-alert>
+			</h1>
+		</header>
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="card">
+					<div class="card-header d-flex align-items-center no-padding" >
+						<div class="notice notice-info"><strong jhiTranslate="auxiliumApp.contratAssurance.home.title">Détails contrat</strong></div>
+					</div>
+					<div class="card-body">
+						<form name="editGlobalForm" role="form" novalidate (ngSubmit)="save()" #editGlobalForm="ngForm">
+							<!-- Start contract details -->
+							<div class="row">
+								<div class="col-sm-3">
+									<label jhiTranslate="auxiliumApp.contratAssurance.compagnie" for="field_client">compagnie</label>
+									<select class="form-control form-control-sm" id="field_client" name="client" [(ngModel)]="contratAssurance.clientId" (ngModelChange)="listAgenceByCompagnie(contratAssurance.clientId)" (ngModelChange)="findVehiculeByCompagnyNameAndImmatriculation()" required [disabled]="modifContrat">
+										<option [ngValue]="partner.id" *ngFor="let partner of partners">{{partner?.companyName}}</option>
+									</select>
+								</div>
+								<div class="col-sm-3" *ngIf="modifContrat">
+									<label jhiTranslate="auxiliumApp.contratAssurance.agence" for="field_agence"> Agence </label>
+	                                <input type="label" class="form-control form-control-sm" name="agence" id="field_agence" required [(ngModel)]="contratAssurance.agenceNom" [readonly]="modifContrat"/>
+	                            </div>
+	                            <div class="col-sm-3" *ngIf="!modifContrat">
+									<label jhiTranslate="auxiliumApp.contratAssurance.agence" for="field_agence"> Agence </label>
+									<select class="form-control form-control-sm" id="field_agence" name="agence" [(ngModel)]="contratAssurance.agenceId" required [disabled]="modifContrat">
+										<option [ngValue]="refAgenceOption.id" *ngFor="let refAgenceOption of refagences; trackBy: trackRefAgenceById">{{refAgenceOption.name}}</option>
+									</select>
+	                            </div>
+	                            <div class="col-sm-3" [hidden]="isConcessionaire">
+									<label class="form-control-label" jhiTranslate="auxiliumApp.contratAssurance.numeroContrat" for="field_numeroContrat"> Numero Contrat </label>
+									<input type="text" class="form-control form-control-sm" name="numeroContrat" id="field_numeroContrat"  required [(ngModel)]="contratAssurance.numeroContrat" (ngModelChange)="findPolicyByNumber(contratAssurance)" />
+								</div>
+								<div class="col-sm-3">
+									<label jhiTranslate="auxiliumApp.contratAssurance.type" for="field_type"> Type </label>
+									<select class="form-control form-control-sm" id="field_type" name="type" [(ngModel)]="contratAssurance.typeId" >
+										<option [ngValue]="refTypeContratOption.id" *ngFor="let refTypeContratOption of reftypecontrats; trackBy: trackRefTypeContratById">{{refTypeContratOption.libelle}}</option>
+									</select>
+								</div>
+								<div class="col-sm-3">
+									<label jhiTranslate="auxiliumApp.contratAssurance.nature" for="field_nature"> Nature </label>
+									<select class="form-control form-control-sm" id="field_nature" name="nature" [(ngModel)]="contratAssurance.natureId" [disabled]="modifContrat">
+										<option [ngValue]="refNatureContratOption.id" *ngFor="let refNatureContratOption of refnaturecontrats; trackBy: trackRefNatureContratById">{{refNatureContratOption.libelle}}</option>
+									</select>
+								</div>
+								<div class="col-sm-3">
+									<label jhiTranslate="auxiliumApp.contratAssurance.fractionnement" for="field_fractionnement"> Fractionnement </label>
+									<select class="form-control form-control-sm" id="field_fractionnement" name="fractionnement" [(ngModel)]="contratAssurance.fractionnementId" [disabled]="modifContrat">
+										<option [ngValue]="refFractionnementOption.id" *ngFor="let refFractionnementOption of reffractionnements; trackBy: trackRefFractionnementById">{{refFractionnementOption.libelle}}</option>
+									</select>
+								</div>
+								<div class="col-sm-3">
+									<label class="form-control-label" jhiTranslate="auxiliumApp.contratAssurance.debutValidite" for="field_debutValidite"> Debut Validite </label>
+									<div class="input-group">
+										<input id="field_debutValidite" type="text" class="form-control form-control-sm" name="debutValidite" ngbDatepicker #debutValiditeDp="ngbDatepicker" [(ngModel)]="contratAssurance.debutValidite" [maxDate]="contratAssurance.finValidite" required/>
+										<span class="input-group-btn">
+											<button type="button" class="btn btn-sm btn-default" (click)="debutValiditeDp.toggle()"><i class="fa fa-calendar"></i></button>
+										</span>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<label class="form-control-label" jhiTranslate="auxiliumApp.contratAssurance.deadlineDate" for="field_deadlineDate"> deadlineDate </label>
+									<div class="input-group">
+										<input id="field_deadlineDate" type="text" class="form-control form-control-sm" name="deadlineDate" ngbDatepicker #deadlineDateDp="ngbDatepicker" [(ngModel)]="contratAssurance.deadlineDate" [minDate]="contratAssurance.debutValidite"/>
+										<span class="input-group-btn">
+											<button type="button" class="btn btn-sm btn-default" (click)="deadlineDateDp.toggle()"><i class="fa fa-calendar"></i></button>
+										</span>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<label class="form-control-label" jhiTranslate="auxiliumApp.contratAssurance.finValidite" for="field_finValidite"> Fin Validite </label>
+									<div class="input-group">
+										<input id="field_finValidite" type="text" class="form-control form-control-sm" name="finValidite" ngbDatepicker #finValiditeDp="ngbDatepicker" [(ngModel)]="contratAssurance.finValidite" [minDate]="contratAssurance.debutValidite" required/>
+										<span class="input-group-btn">
+											<button type="button" class="btn btn-sm btn-default" (click)="finValiditeDp.toggle()"><i class="fa fa-calendar"></i></button>
+										</span>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<label jhiTranslate="auxiliumApp.contratAssurance.policyStatus" for="field_policyStatus"> policyStatus </label>  
+									<select  class="form-control form-control-sm" id="field_policyStatus" name="policyStatus" [(ngModel)]="contratAssurance.statusId">
+										<option [ngValue]="policyStatusOption.id" *ngFor="let policyStatusOption of policyStatuss">{{policyStatusOption.label}}</option>
+									</select>
+								</div>
+								<div class="col-sm-3">
+									<label jhiTranslate="auxiliumApp.contratAssurance.policyReceiptStatus" for="field_policyReceiptStatus"> policyReceiptStatus </label>
+									<select  class="form-control form-control-sm" id="field_policyReceiptStatus" name="policyReceiptStatus" [(ngModel)]="contratAssurance.receiptStatusId">
+										<option [ngValue]="policyReceiptStatusOption.id" *ngFor="let policyReceiptStatusOption of policyReceiptStatuss">{{policyReceiptStatusOption.label}}</option>
+									</select>
+								</div>
+								<div class="col-sm-3">
+									<label class="form-control-label" jhiTranslate="auxiliumApp.contratAssurance.receiptValidityDate" for="field_receiptValidityDate"> receiptValidityDate </label>
+									<div class="input-group">
+										<input id="field_receiptValidityDate" type="text" class="form-control form-control-sm" name="receiptValidityDate" ngbDatepicker #receiptValidityDateDp="ngbDatepicker" [(ngModel)]="contratAssurance.receiptValidityDate"/>
+										<span class="input-group-btn">
+											<button type="button" class="btn btn-sm btn-default" (click)="receiptValidityDateDp.toggle()"><i class="fa fa-calendar"></i></button>
+										</span>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<label class="form-control-label" jhiTranslate="auxiliumApp.contratAssurance.primeAmount" for="field_primeAmount"> primeAmount</label>
+									<input type="text" class="form-control form-control-sm" name="primeAmount" id="field_primeAmount" [(ngModel)]="contratAssurance.primeAmount" />
+								</div>
+								<div class="col-sm-3">
+									<label jhiTranslate="auxiliumApp.contratAssurance.amendmentType" for="field_amendmentType"> amendmentType </label> 
+									<select  class="form-control form-control-sm" id="field_amendmentType" name="amendmentType" [(ngModel)]="contratAssurance.amendmentTypeId">
+										<option [ngValue]="amendmentTypeOption.id" *ngFor="let amendmentTypeOption of amendmentTypes">{{amendmentTypeOption.label}}</option>
+									</select>
+								</div>
+								<div class="col-sm-3">
+									<label class="form-control-label" jhiTranslate="auxiliumApp.contratAssurance.effectiveAmendmentDate" for="field_amendmentEffectiveDate"> effectiveAmendmentDate </label>
+									<div class="input-group">
+										<input id="field_amendmentEffectiveDate" type="text" class="form-control form-control-sm" name="amendmentEffectiveDate" ngbDatepicker #amendmentEffectiveDateDp="ngbDatepicker" [(ngModel)]="contratAssurance.amendmentEffectiveDate"/>
+										<span class="input-group-btn">
+											<button type="button" class="btn btn-sm btn-default" (click)="amendmentEffectiveDateDp.toggle()"><i class="fa fa-calendar"></i></button>
+										</span>
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<label class="form-control-label" jhiTranslate="auxiliumApp.contratAssurance.commentaire" for="field_commentaire"> Commentaire {{modifContrat}}</label>
+									<input type="text" class="form-control form-control-sm" name="commentaire" id="field_commenrefTypeContratOptionire" [(ngModel)]="contratAssurance.commentaire" maxlength="2000" [readonly]="modifContrat"/>
+									<div [hidden]="!(editGlobalForm.controls.commentaire?.dirty && editGlobalForm.controls.commentaire?.invrefTypeContratOptionid)">
+										<small class="form-text text-danger" [hidden]="!editGlobalForm.controls.commentaire?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 2000 }"> This field cannot be longer than 2000 characters. </small>
+									</div>
+								</div>
+							</div>
+							<!-- End contract details -->
+							<!-- Start vehicles list -->
+							<div class="row" style="margin-top:45px;">
+								<div class="col-lg-12">
+									<div class="card-header d-flex align-items-center no-padding" >
+										<div class="notice notice-info">
+											<strong>Véhicule Assuré
+										</div>
+									</div>
+									<!-- form vehicle add -->
+									<form name="editForm" role="form" novalidate #editForm="ngForm">
+									<div class="row">
+										<div class="col-lg-12">
+											<div class="card">
+												<div class="card-header d-flex align-items-center no-padding" >
+													<div class="notice notice-info"><strong jhiTranslate="auxiliumApp.vehiculeAssure.immatriculationVehicule" style="color: #45ABCD">Immatriculation</strong><span> : {{vehiculeassur.immatriculationVehicule}}</span></div>
+												</div>
+												<div class="card-body">
+													<div class="row top-buffer">
+														<div class="col-sm-3">
+															<label class="form-control-label" jhiTranslate="auxiliumApp.vehiculeAssure.immatriculationVehicule" for="field_immatriculationVehicule">Immatriculation Vehicule</label>
+															<input type="text" class="form-control form-control-sm" name="immatriculationVehicule" id="field_immatriculationVehicule" [(ngModel)]="vehiculeassur.immatriculationVehicule" (ngModelChange)="findVehiculeByCompagnyNameAndImmatriculation()" (blur)="trimRegistrationNumber();" required/>
+															<div [hidden]="!(editForm.controls.immatriculationVehicule?.dirty && editForm.controls.immatriculationVehicule?.invalid)">
+																<small class="form-text text-danger" [hidden]="!editForm.controls.immatriculationVehicule?.errors?.required" jhiTranslate="entity.validation.required">This field is required.</small>
+																<small class="form-text text-danger" [hidden]="!editForm.controls.immatriculationVehicule?.errors?.pattern" jhiTranslate="entity.validation.pattern" translateValues="{ pattern: 'Immatriculation Vehicule' }">This field should follow pattern for "Immatriculation Vehicule".</small>
+															</div>
+														</div>
+														<div class="col-sm-3">
+															<label jhiTranslate="auxiliumApp.vehiculeAssure.marque" for="field_marque">marque</label>
+															<select class="form-control form-control-sm" id="field_marque" name="marque" [(ngModel)]="vehiculeassur.marqueId" (ngModelChange)="listModelByMarque(vehiculeassur.marqueId)" required>
+																<option [ngValue]="refMarqueOption.id" *ngFor="let refMarqueOption of vehicleBrands; trackBy: trackMarqueById">{{refMarqueOption.label}}</option>
+															</select>
+														</div>
+														<div class="col-sm-3">
+															<label jhiTranslate="auxiliumApp.vehiculeAssure.modele" for="field_model">model</label>
+															<select class="form-control form-control-sm" id="field_model" name="modelVehicule" [(ngModel)]="vehiculeassur.modeleId"  required>
+																<option [ngValue]="refModelVoitureOption.id" *ngFor="let refModelVoitureOption of vehicleBrandModels; trackBy: trackRefModelById">{{refModelVoitureOption.label}}</option>
+															</select>
+														</div>												
+														<div class="col-sm-3">
+															<label class="form-control-label" jhiTranslate="auxiliumApp.vehiculeAssure.datePCirculation" for="field_datePCirculation">Date P Circulation</label>
+															<div class="input-group">
+																<input id="field_datePCirculation" type="text" class="form-control form-control-sm" name="datePCirculation" ngbDatepicker #datePCirculationDp="ngbDatepicker" [(ngModel)]="vehiculeassur.datePCirculation" [minDate]="{year: 1980, month: 1, day: 1}"/>
+																<span class="input-group-btn">
+																	<button type="button" class="btn btn-sm btn-default" (click)="datePCirculationDp.toggle()"><i class="fa fa-calendar"></i></button>
+																</span>
+															</div>
+														</div>
+														<div class="col-sm-3">
+															<label jhiTranslate="auxiliumApp.contratAssurance.usage" for="field_usage"> Usage </label>
+															<select class="form-control form-control-sm" id="field_usage" name="usage" [(ngModel)]="vehiculeassur.usageId" required>
+																<option [ngValue]="refUsageContratOption.id" *ngFor="let refUsageContratOption of vehicleUsages; trackBy: trackVehicleUsageById">{{refUsageContratOption.label}}</option>
+															</select>
+														</div>
+														<div class="col-sm-3">
+															<label jhiTranslate="auxiliumApp.contratAssurance.pack" for="field_pack"> Pack </label>  <i class="fa fa-info-circle" title="Description du pack !"></i>
+															<select  required class="form-control form-control-sm" id="field_pack" name="pack" [(ngModel)]="vehiculeassur.packId">
+																<option [ngValue]="refPackOption.id" *ngFor="let refPackOption of refpacks; trackBy: trackRefPackById">{{refPackOption.label}}</option>
+															</select>
+														</div>
+														<div class="col-sm-3">
+															<label jhiTranslate="auxiliumApp.vehiculeAssure.energie" for="field_energie">Energie</label>
+															<select class="form-control form-control-sm" id="field_energie" name="energie" [(ngModel)]="vehiculeassur.energieId">
+																<option [ngValue]="refEnergieOption.id" *ngFor="let refEnergieOption of vehicleEnergies;">{{refEnergieOption.label}}</option>
+															</select>
+														</div>
+														<div class="col-sm-3">
+															<label class="form-control-label" jhiTranslate="auxiliumApp.vehiculeAssure.puissance" for="field_puissance">Puissance</label>
+															<input type="text" class="form-control form-control-sm" name="puissance" id="field_puissance" [(ngModel)]="vehiculeassur.puissance" [pattern]="nbrVehPattern"/>
+															<div [hidden]="!(editForm.controls.puissance?.dirty && editForm.controls.puissance?.invalid)">
+																<small class="form-text text-danger" [hidden]="!editForm.controls.puissance?.errors?.max" jhiTranslate="entity.validation.max" translateValues="{ max: 99999999 }">This field cannot be more than 99999999.</small>
+																<small class="form-text text-danger" [hidden]="!editForm.controls.puissance?.errors?.number" jhiTranslate="entity.validation.number">This field should be a number.</small>
+															</div>
+														</div>
+														<div class="col-sm-3">
+															<label class="form-control-label" jhiTranslate="auxiliumApp.vehiculeAssure.numeroChassis" for="field_numeroChassis">Numero Chassis</label>
+															<input type="text" class="form-control form-control-sm" name="numeroChassis" id="field_numeroChassis" [(ngModel)]="vehiculeassur.numeroChassis" [pattern]="alphaPattern" minlength="17" maxlength="17"/>
+															<div [hidden]="!(editForm.controls.numeroChassis?.dirty && editForm.controls.numeroChassis?.invalid)" style="height: 15px;">
+																<small class="form-text text-danger" [hidden]="!editForm.controls.numeroChassis?.errors?.minlength" jhiTranslate="entity.validation.minlength" translateValues="{ min: 17 }">This field must be have 17 number.</small>
+															</div>
+															<div [hidden]="!(editForm.controls.numeroChassis?.dirty && editForm.controls.numeroChassis?.invalid)">
+																<small class="form-text text-danger" [hidden]="!editForm.controls.numeroChassis?.errors?.pattern" jhiTranslate="entity.validation.chassis" translateValues="{ pattern: 'Numero Chassis' }">This field should composed of 17 number .</small>
+															</div>
+														</div>
+														<div class="col-sm-3">
+															<label class="form-control-label" jhiTranslate="auxiliumApp.vehiculeAssure.placesNumber" for="field_placesNumber"> placesNumber</label>
+															<input type="text" class="form-control form-control-sm" name="placesNumber" id="field_placesNumber" [(ngModel)]="vehiculeassur.placesNumber" />
+														</div>
+
+														<div class="col-sm-2">
+															<label class="form-control-label"
+																jhiTranslate="auxiliumApp.sinisterPec.assujettie"></label>
+															<span style="color: #FA2F03">*</span>
+															<br />
+															<label class="btn btn-sm btn-primary" for="assujettie1"
+																(click)="changeAssujettie(true);">
+																<input type="radio" name="assujettie" id="assujettie1" required
+																	autocomplete="off" [value]="true"
+																	[(ngModel)]="vehiculeassur.assujettieTVA"> Oui
+															</label> &nbsp;
+															<label class="btn btn-sm btn-primary" for="assujettie2"
+																(click)="changeAssujettie(false);">
+																<input type="radio" name="assujettie" id="assujettie2" required
+																	autocomplete="off" [value]="false"
+																	[(ngModel)]="vehiculeassur.assujettieTVA">
+																Non
+															</label>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!--  Plafond -->
+									<div class="row">
+										<div class="col-lg-12">
+											<div class="card">
+												<div class="card-header d-flex align-items-center no-padding" >
+													<div class="notice notice-info"><strong jhiTranslate="auxiliumApp.vehiculeAssure.plafond" style="color: #45ABCD"></strong></div>
+												</div>
+												<div class="card-body">
+													<div class="row top-buffer">
+														<div class="col-sm-2">
+															<label class="form-control-label" jhiTranslate="auxiliumApp.contratAssurance.valeurNeuf" for="field_valeuraneuf">Valeur à Neuf</label>
+															<input type="text" class="form-control form-control-sm" name="valeuraneuf" id="field_valeuraneuf" [(ngModel)]="vehiculeassur.newValueVehicle" [pattern]="amountPattern"/>
+														</div>
+														<div class="col-sm-2">
+															<label class="form-control-label" jhiTranslate="auxiliumApp.contratAssurance.franchise" for="field_newValueVehicleFarnchise">Franchise</label>
+															<input type="text" class="form-control form-control-sm" name="newValueVehicleFarnchise" id="field_newValueVehicleFarnchise" [(ngModel)]="vehiculeassur.newValueVehicleFarnchise" [pattern]="amountPattern"/>
+														</div>
+														<div class="col-sm-2">
+															<label for="field_type"> Type Franchise </label>
+															<select class="form-control form-control-sm" id="field_typenewvalue" name="typenewvalue" [(ngModel)]="vehiculeassur.franchiseTypeNewValue">
+																<option value="Montant" >Montant</option>
+																<option value="Pourcentage" >Pourcentage</option>
+															</select>
+														</div>
+														<div class="col-sm-2">
+															<label class="form-control-label" jhiTranslate="auxiliumApp.contratAssurance.capitalDc" for="field_capitalDc">Capital DC</label>
+															<input type="text" class="form-control form-control-sm" name="capitalDc" id="field_capitalDc" [(ngModel)]="vehiculeassur.dcCapital" [pattern]="amountPattern"/>
+														</div>
+														<div class="col-sm-2">
+															<label class="form-control-label" jhiTranslate="auxiliumApp.contratAssurance.franchise" for="field_dcCapitalFranchise">Franchise</label>
+															<input type="text" class="form-control form-control-sm" name="dcCapitalFranchise" id="field_dcCapitalFranchise" [(ngModel)]="vehiculeassur.dcCapitalFranchise" [pattern]="amountPattern"/>
+														</div>
+														<div class="col-sm-2">
+															<label for="field_type"> Type Franchise </label>
+															<select class="form-control form-control-sm" id="field_typedccapital" name="typedccapital" [(ngModel)]="vehiculeassur.franchiseTypeDcCapital">
+																<option value="Montant" >Montant</option>
+																<option value="Pourcentage" >Pourcentage</option>
+															</select>
+														</div>
+														<div class="col-sm-2">
+															<label class="form-control-label" jhiTranslate="auxiliumApp.contratAssurance.capitalBG" for="field_capitalDc">Capital BG</label>
+															<input type="text" class="form-control form-control-sm" name="capitalBG" id="field_capitalBG" [(ngModel)]="vehiculeassur.bgCapital" [pattern]="amountPattern"/>
+														</div>
+														<div class="col-sm-2">
+															<label class="form-control-label" jhiTranslate="auxiliumApp.contratAssurance.franchise" for="field_bgCapitalFranchise">Franchise</label>
+															<input type="text" class="form-control form-control-sm" name="bgCapitalFranchise" id="field_bgCapitalFranchise" [(ngModel)]="vehiculeassur.bgCapitalFranchise" [pattern]="amountPattern"/>
+														</div>
+														<div class="col-sm-2">
+															<label for="field_type"> Type Franchise </label>
+															<select class="form-control form-control-sm" id="field_typebgcapital" name="typebgcapital" [(ngModel)]="vehiculeassur.franchiseTypeBgCapital">
+																<option value="Montant" >Montant</option>
+																<option value="Pourcentage" >Pourcentage</option>
+															</select>
+														</div>
+														<div class="col-sm-2">
+															<label class="form-control-label" jhiTranslate="auxiliumApp.contratAssurance.valeurVenale" for="field_valeurVenale">Valeur Vénal</label>
+															<input type="text" class="form-control form-control-sm" name="valeurVenale" id="field_valeurVenale" [(ngModel)]="vehiculeassur.marketValue" [pattern]="amountPattern"/>
+														</div>
+														<div class="col-sm-2">
+															<label class="form-control-label" jhiTranslate="auxiliumApp.contratAssurance.franchise" for="field_franchise">Franchise</label>
+															<input type="text" class="form-control form-control-sm" name="marketValueFranchise" id="field_marketValueFranchise" [(ngModel)]="vehiculeassur.marketValueFranchise" [pattern]="amountPattern"/>
+														</div>
+														<div class="col-sm-2">
+															<label for="field_type"> Type Franchise </label>
+															<select class="form-control form-control-sm" id="field_typemarketvalue" name="typemarketvalue" [(ngModel)]="vehiculeassur.franchiseTypeMarketValue">
+																<option value="Montant" >Montant</option>
+																<option value="Pourcentage">Pourcentage</option>
+															</select>
+														</div>
+													</div>
+													<!--  End Plafond -->	
+												</div>
+											</div>
+										</div>
+									</div>		
+									<div class="row">
+										<div class="col-lg-12">
+											<div class="card">
+												<div class="card-header d-flex align-items-center no-padding" >
+													<div class="notice notice-info"><strong jhiTranslate="auxiliumApp.vehiculeAssure.insured" style="color: #45ABCD"></strong> : {{vehiculeassur.insured.prenom}} {{vehiculeassur.insured.nom}} {{vehiculeassur.insured.raisonSociale}}</div>
+												</div>
+												<div class="card-body">																				
+													<!--  Insured -->
+													<div class="row top-buffer">
+				                                        <div class="btn-group col-sm-12" data-toggle="buttons">
+				                                        	<label class="btn btn-sm btn-primary" for="ppInsured" (click)="changeInsuredNature(false);">
+				                                            	<input type="radio" name="natureAssuree" id="ppInsured" autocomplete="off" [value]="false" [(ngModel)]="vehiculeassur.insured.company"> Particulier
+				                                            </label>
+				                                            <label class="btn btn-sm btn-primary" for="pmInsured" (click)="changeInsuredNature(true);">
+				                                                <input type="radio" name="natureAssuree" id="pmInsured" autocomplete="off" [value]="true" [(ngModel)]="vehiculeassur.insured.company"> Société
+				                                            </label>
+				                                        </div>
+				                                        <div class="col-sm-3" *ngIf="vehiculeassur.insured.company">
+				                                            <label class="form-control-label" jhiTranslate="auxiliumApp.personneMorale.raisonSociale" for="field_raisonSociale">Raison Sociale</label>
+				                                            <input type="text" class="form-control form-control-sm" name="raisonSociale" id="field_raisonSociale" [(ngModel)]="vehiculeassur.insured.raisonSociale" maxlength="50" required/>
+				                                            <div [hidden]="!(editGlobalForm.controls.raisonSociale?.dirty && editGlobalForm.controls.raisonSociale?.invalid)">
+				                                                <small class="form-text text-danger" [hidden]="!editGlobalForm.controls.raisonSociale?.errors?.required" jhiTranslate="entity.validation.required">This field is required.</small>
+				                                                <small class="form-text text-danger" [hidden]="!editGlobalForm.controls.numeroContrat?.errors?.max" jhiTranslate="entity.validation.max" translateValues="{ max: 50 }">This field cannot be more than 50.</small>
+				                                            </div>
+				                                        </div>
+				                                        <div class="col-sm-3" *ngIf="vehiculeassur.insured.company">
+				                                            <label class="form-control-label" for="field_registreCommerce">Registre de commerce</label>
+				                                                <input type="text" class="form-control form-control-sm" name="registrecommerce" id="field_registrecommerce" [(ngModel)]="vehiculeassur.insured.registreCommerce"/>
+				                                        </div>
+				                                        <div class="col-sm-6" *ngIf="vehiculeassur.insured.company">
+				                                            <label class="form-control-label" for="field_isAssujettieTva" style="width: 100%;">&nbsp;</label>
+				                                            <input type="checkbox" class="check-input" name="isAssujettieTva" id="field_isAssujettieTva" [(ngModel)]="vehiculeassur.insured.isAssujettieTva"/>
+				                                            <label class="form-control-label" jhiTranslate="auxiliumApp.personneMorale.isAssujettieTva" for="field_isAssujettieTva">Is Assujettie Tva</label>
+				                                        </div>
+				                                        <div class="col-sm-3" *ngIf="!vehiculeassur.insured.company">
+				                                            <label class="form-control-label" jhiTranslate="auxiliumApp.personnePhysique.civilite" for="field_civilite">Civilité</label>
+				                                            <select class="form-control form-control-sm" name="civilite" [(ngModel)]="vehiculeassur.insured.civilite" id="field_civilite">
+				                                                <option value="MONSIEUR" jhiTranslate="auxiliumApp.Civilite.MONSIEUR">MONSIEUR</option>
+				                                                <option value="MADAME" jhiTranslate="auxiliumApp.Civilite.MADAME">MADAME</option>
+				                                            </select>
+				                                        </div>
+				                                        <div class="col-sm-3">
+				                                            <label class="form-control-label" jhiTranslate="auxiliumApp.assure.subscriber" for="field_subscriber">subscriber</label>
+				                                            <input type="text" class="form-control form-control-sm" name="subscriber" id="field_subscriber" [(ngModel)]="vehiculeassur.insured.subscriber" maxlength="100"/>
+				                                        </div>
+				                                        <div class="col-sm-3" *ngIf="!vehiculeassur.insured.company">
+				                                            <label class="form-control-label" jhiTranslate="auxiliumApp.personnePhysique.prenom" for="field_prenom">Prenom</label>
+				                                            <input type="text" class="form-control form-control-sm" name="prenom" id="field_prenom" [(ngModel)]="vehiculeassur.insured.prenom" required maxlength="100" />
+				                                            <div [hidden]="!(editGlobalForm.controls.prenom?.dirty && editGlobalForm.controls.prenom?.invalid)">
+				                                                <small class="form-text text-danger" [hidden]="!editGlobalForm.controls.prenom?.errors?.required" jhiTranslate="entity.validation.required">This field is required.</small>
+				                                                <small class="form-text text-danger" [hidden]="!editGlobalForm.controls.prenom?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 100 }"> This field cannot be longer than 100 characters.</small>
+				                                            </div>
+				                                        </div>
+				                                        <div class="col-sm-3" *ngIf="!vehiculeassur.insured.company">
+				                                            <label class="form-control-label" jhiTranslate="auxiliumApp.personnePhysique.nom" for="field_nom">Nom</label>
+				                                            <input type="text" class="form-control form-control-sm" name="nom" id="field_nom" [(ngModel)]="vehiculeassur.insured.nom" required maxlength="100" />
+				                                            <div [hidden]="!(editGlobalForm.controls.nom?.dirty && editGlobalForm.controls.nom?.invalid)">
+				                                                <small class="form-text text-danger" [hidden]="!editGlobalForm.controls.nom?.errors?.required" jhiTranslate="entity.validation.required"> This field is required.</small>
+				                                                <small class="form-text text-danger" [hidden]="!editGlobalForm.controls.nom?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 100 }">This field cannot be longer than 100 characters.</small>
+				                                            </div>
+				                                        </div>
+				                                        <div class="col-sm-3" *ngIf="!vehiculeassur.insured.company">
+				                                            <label class="form-control-label" jhiTranslate="auxiliumApp.personnePhysique.cin" for="field_cin">Cin</label>
+                                                                            <input type="text" class="form-control form-control-sm" name="cin" id="field_cin" [(ngModel)]="vehiculeassur.insured.cin" [pattern]="nbrVehPattern" min="1" max="99999999"/>
+				                                            <div [hidden]="!(editGlobalForm.controls.cin?.dirty && editGlobalForm.controls.cin?.invalid)">
+				                                                <small class="form-text text-danger" [hidden]="!editGlobalForm.controls.cin?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 100 }">This field cannot be longer than 100 characters.</small>
+				                                            </div>
+				                                        </div>
+				                                        <div class="col-sm-3">
+				                                        	<label class="form-control-label" jhiTranslate="auxiliumApp.personnePhysique.premTelephone" for="field_premTelephone">Prem Telephone</label>
+				                                        	<input type="number" class="form-control form-control-sm" name="premTelephone" id="field_premTelephone" [(ngModel)]="vehiculeassur.insured.premTelephone" required min="0" />
+				                                        	<div [hidden]="!(editGlobalForm.controls.premTelephone?.dirty && editGlobalForm.controls.premTelephone?.invalid)">
+				                                            	<small class="form-text text-danger" [hidden]="!editGlobalForm.controls.premTelephone?.errors?.required" jhiTranslate="entity.validation.required"> This field is required.</small>
+				                                        	</div>
+				                                        </div>
+				                                        <div class="col-sm-3">
+				                                            <label class="form-control-label" jhiTranslate="auxiliumApp.personnePhysique.deuxTelephone" for="field_deuxTelephone">Deux Telephone</label>
+				                                            <input type="number" class="form-control form-control-sm" name="deuxTelephone" id="field_deuxTelephone" [(ngModel)]="vehiculeassur.insured.deuxTelephone" min="0"/>
+				                                        </div>
+				                                        <div class="col-sm-3">
+				                                            <label class="form-control-label" jhiTranslate="auxiliumApp.personnePhysique.premMail" for="field_premMail">Prem Mail</label>
+				                                            <input type="email" class="form-control form-control-sm" name="premMail" id="field_premMail" [(ngModel)]="vehiculeassur.insured.premMail" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"/>
+				                                            <div [hidden]="!(editGlobalForm.controls.premMail?.dirty && editGlobalForm.controls.premMail?.invalid)">
+				                                                <small class="form-text text-danger" [hidden]="!editGlobalForm.controls.premMail?.errors?.pattern" jhiTranslate="entity.validation.pattern" translateValues="{ pattern: 'Prem Mail' }">This field should follow pattern for "Mail".</small>
+				                                            </div>
+				                                        </div>
+				                                        <div class="col-sm-6">
+				                                           	<label class="form-control-label" jhiTranslate="auxiliumApp.personnePhysique.adresse" for="field_adresse">Adresse</label>
+				                                            <input required type="text" class="form-control form-control-sm" name="adresse" id="field_adresse" [(ngModel)]="vehiculeassur.insured.adresse" maxlength="256"/>
+				                                            <div [hidden]="!(editGlobalForm.controls.adresse?.dirty && editGlobalForm.controls.adresse?.invalid)">
+																<small class="form-text text-danger" [hidden]="!editGlobalForm.controls.adresse?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 256 }">This field cannot be longer than 256 characters.</small>
+				                                            </div>
+				                                        </div>
+				                                        <div class="col-sm-3">
+				                                            <label jhiTranslate="auxiliumApp.assure.gouvernorat">Gouvernorat</label>
+				                                            <select required class="form-control form-control-sm" id="field_lieu" name="lieu" [(ngModel)]="vehiculeassur.insured.governorateId" (ngModelChange)="fetchDelegationsByGovernorate(vehiculeassur.insured.governorateId)">
+																<option [ngValue]="governorate.id" *ngFor="let governorate of governorates">{{governorate.label}}</option>
+				                                            </select>
+				                                        </div>
+				                                        <div class="col-sm-3">
+				                                            <label jhiTranslate="auxiliumApp.personnePhysique.ville" for="field_ville">Ville</label>
+				                                            <select required class="form-control form-control-sm" id="field_ville" name="ville" [(ngModel)]="vehiculeassur.insured.delegationId">
+				                                                <option [ngValue]="delegation.id" *ngFor="let delegation of delegations">{{delegation.label}}</option>
+				                                            </select>
+				                                        </div>
+													</div>	
+													<!--  End insured -->
+												</div>
+											</div>
+										</div>
+									</div>
+											<div class="col-sm-2">
+												<label class="form-control-label" style="width: 100%">&nbsp;</label>
+												<button  type ="button" [disabled]="editForm.invalid || isSaving"  *ngIf="contratAssurance.typeId == 1 && !isVehiculeModeEdit" class="btn btn-sm btn-primary" (click)="addVehicule();">
+													<span class="fa fa-plus">Ajouter autre immatriculation</span>
+												</button>
+												<button  type ="button" [disabled]="editForm.invalid || isSaving"  *ngIf="contratAssurance.typeId == 1 && isVehiculeModeEdit" class="btn btn-sm btn-primary" (click)="updateVehicle();">
+													<span class="fa fa-plus">Mise à jour</span>
+												</button>
+											</div>
+										</form>
+										<!-- and form vehicle add -->
+									</div>
+								</div>
+
+		                    	<!-- Start list vehicles -->
+								<div class="row" style="margin-top: 15px;">
+									<div class="col-sm-12">
+										<div class="card-body">
+											<div class="table-responsive" *ngIf="vehiculeAssuress && vehiculeAssuress.length > 0">
+												<table class="table table-sm table-hover table-bordered" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-sm table-hover table-bordered" style="width: 100%">
+													<thead style="color:white;background-color:#11859b">
+														<tr>
+															<th><span jhiTranslate="auxiliumApp.contratAssurance.immatriculationVehicule">Immatriculation Vehicule</span></th>
+															<th><span jhiTranslate="auxiliumApp.contratAssurance.numeroChassis">Numero Chassis</span> </th>
+															<th><span jhiTranslate="auxiliumApp.contratAssurance.puissance">Puissance Fiscale</span> </th>
+															<th><span jhiTranslate="auxiliumApp.contratAssurance.usage">Usage</span> </th>
+															<th><span jhiTranslate="auxiliumApp.contratAssurance.marque">Marque</span> </th>
+															<th><span jhiTranslate="auxiliumApp.contratAssurance.modele">Modele</span> </th>
+															<th><span jhiTranslate="auxiliumApp.contratAssurance.energie">Energie</span> </th>
+															<th></th>
+														</tr>
+													</thead>
+													<tbody>
+														<ng-container *ngFor="let vehiculeassur of vehiculeAssuress ">
+														<tr *ngIf="!vehiculeassur.deleted">
+															<td>{{vehiculeassur.immatriculationVehicule}}</td>
+															<td>{{vehiculeassur.numeroChassis}}</td>
+															<td>{{vehiculeassur.puissance}}</td>
+															<td>{{vehiculeassur.usageLibelle}}</td>
+															<td>{{vehiculeassur.marqueLibelle}}</td>
+															<td>{{vehiculeassur.modeleLibelle}}</td>
+															<td>{{vehiculeassur.energieLibelle}}</td>
+															<td class="text-right">
+																<div class="btn-group flex-btn-group-container">
+																	<button type="button" (click)="editVehicule(vehiculeassur)" class="btn btn-primary btn-sm">
+																		<span class="fa fa-pencil"></span>
+																	</button>
+																	<button type="button" (click)="deleteVehicule(vehiculeassur)" class="btn btn-danger btn-sm" *ngIf="contratAssurance.typeId === 1">
+																		<span class="fa fa-sm fa-remove"></span>
+																	</button>
+																</div>
+															</td>
+														</tr>
+														</ng-container>
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- End vehicle list -->
+									<div class="modal-footer" >
+										<button type="submit" *ngIf="modifContrat" [disabled]="editGlobalForm.invalid || (editForm.invalid && vehiculeAssuress.length == 0) || isSaving || !isPolicyNumberUnique"  class="btn btn-sm btn-primary" >
+											<span class="fa fa-save"> </span>&nbsp; <span jhiTranslate="entity.action.save">Save</span>
+										</button>
+										<button type="submit" *ngIf="!modifContrat" [disabled]="editGlobalForm.invalid || (editForm.invalid && vehiculeAssuress.length == 0) || isSaving || !isPolicyNumberUnique"  class="btn btn-sm btn-primary" >
+											<span class="fa fa-save"> </span>&nbsp; <span jhiTranslate="entity.action.save">Save</span>
+										</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+		    </div>
+	</section>

@@ -1,0 +1,29 @@
+{
+    "auxiliumApp": {
+        "vehiclePiece" : {
+            "home": {
+                "title": "Vehicle Pieces",
+                "createLabel": "Create a new Vehicle Piece",
+                "createOrEditLabel": "Create or edit a Vehicle Piece",
+                "search": "Search for Vehicle Piece"
+            },
+            "created": "A new Vehicle Piece is created with identifier {{ param }}",
+            "updated": "A Vehicle Piece is updated with identifier {{ param }}",
+            "deleted": "A Vehicle Piece is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Vehicle Piece {{ id }}?"
+            },
+            "detail": {
+                "title": "Vehicle Piece"
+            },
+            "code": "Code",
+            "label": "Label",
+            "source": "Source",
+            "active": "Active",
+            "vetuste": "Vetuste",
+            "graphicAreaId": "Graphic Area Id",
+            "functionalGroupId": "Functional Group Id",
+            "natureId": "Nature Id"
+        }
+    }
+}

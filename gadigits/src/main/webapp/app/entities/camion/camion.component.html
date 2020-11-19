@@ -1,0 +1,83 @@
+<div>
+    <h2>
+        <span jhiTranslate="auxiliumApp.camion.home.title">Camion</span>
+        <button class="btn btn-primary float-right jh-create-entity create-camion" [routerLink]="['/', { outlets: { popup: ['camion-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down"  jhiTranslate="auxiliumApp.camion.home.createLabel">
+            Create new Camion
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+   
+    <div class="table-responsive" *ngIf="camions">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+           
+            </thead>
+            <tbody>
+            <tr *ngFor="let contact of camions ;trackBy: trackId">
+                <td><a [routerLink]="['../camion', camion.id ]">{{camion.id}}</a></td>
+               
+                <td>
+                    <div >
+                        <a  >{{camion.immatriculation}}</a>
+                    </div>
+                </td>
+                <td><div *ngIf="camion.hasHabillage" >
+                    <button class="btn btn-success btn-sm">
+                        <span class="fa fa-check"></span>
+                    </button>
+            </div>
+            <div *ngIf="!camion.hasHabillage">
+                    <button class="btn btn-danger btn-sm">
+                        <span class="fa fa-times-circle"></span>
+                    </button>
+             </div></td>
+
+               <td>
+                <td>
+                    <div >
+                        <a>{{camion.besion}}</a>
+                    </div>
+                </td>
+    
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../camion', camion.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'camion/'+ camion.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'camion/'+ camion.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+        <div *ngIf="camions && camions.length">
+            <div class="row justify-content-center">
+                <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+            </div>
+            <div class="row justify-content-center">
+                <ngb-pagination [collectionSize]="totalItems" [(page)]="page" (pageChange)="loadPage(page)"></ngb-pagination>
+            </div>
+        </div>
+</div>

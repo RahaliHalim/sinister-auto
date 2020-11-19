@@ -1,0 +1,136 @@
+<!-- Breadcrumb-->
+<div class="breadcrumb-holder">
+	<div class="container-fluid">
+		<ul class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="/"><span class="fa fa-home"></span>&nbsp;&nbsp;<span	jhiTranslate="global.menu.home">Home</span></a></li>
+            <li class="breadcrumb-item"><span jhiTranslate="auxiliumApp.sinisterPrestation.report.title">Reporting</span></li>
+			<li class="breadcrumb-item"><span jhiTranslate="auxiliumApp.contratAssurance.reportName">Souscription</span></a></li>
+		</ul>
+	</div>
+</div>
+<section class="forms">
+	<div class="container-fluid">
+        <!-- Page Header-->
+        <header style="padding-top: 1rem; padding-bottom: 1rem;">
+            <h1 class="h3 display">
+                <jhi-alert-error></jhi-alert-error>
+                <jhi-alert></jhi-alert>
+            </h1>
+        </header>
+        <div class="row">
+            <div class="col-lg-12">
+                <form>
+                    <div class="card-header d-flex align-items-center no-padding" >
+                        <div class="notice notice-info"><span class="fa fa-search" style="color: #45ABCD"></span>&nbsp;&nbsp;<strong jhiTranslate="auxiliumApp.contratAssurance.filter">filter</strong></div>
+                    </div>
+
+
+                    <div class="card-body">
+
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <label jhiTranslate="auxiliumApp.contratAssurance.compagnie" for="field_partner">company</label>
+                                <select class="form-control form-control-sm" id="field_partner" name="partner" [(ngModel)]="search.compagnieId" (ngModelChange)="changeMode(search.compagnieId)"  >
+                                    <option [ngValue]="partner.id" *ngFor="let partner of partners;">{{partner?.companyName}}</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-4">
+                                <label jhiTranslate="auxiliumApp.contratAssurance.zone" ></label>
+                                <select class="form-control form-control-sm" [(ngModel)]="search.zoneId" name="zone">
+                                    <option [ngValue]="gov.id" *ngFor="let gov of governorate;">{{gov?.label}}</option>
+                                </select>         
+                                                         
+                            </div>
+                            <div class="col-sm-4">
+                                <label jhiTranslate="auxiliumApp.contratAssurance.nature_pack" >refRemorqueur</label>
+                                <select class="form-control form-control-sm" name="pack" [(ngModel)]="search.packId" >
+                                        <option >------ Séléctionner un pack --------</option>
+                                    <option  [ngValue]="pa.id" *ngFor="let pa of pack;">{{pa?.label}}</option>
+                                </select>                                   
+                            </div>
+
+
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label class="form-control-label" jhiTranslate="auxiliumApp.sinisterPrestation.report.startDate" for="field_startDate">startDate</label>
+                                    <div class="input-group">
+                                        <input id="field_startDate" type="text" class="form-control form-control-sm" name="startDate" ngbDatepicker #startDate="ngbDatepicker"
+                                               [(ngModel)]="search.startDate" [maxDate]="search.endDate" />
+                                               <span class="input-group-btn">
+                                            <button type="button" class="btn btn-sm btn-default" (click)="startDate.toggle()"><i class="fa fa-sm fa-calendar"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label class="form-control-label" jhiTranslate="auxiliumApp.sinisterPrestation.report.endDate" for="field_endDate">endDate</label>
+                                    <div class="input-group">
+                                        <input id="field_endDate" type="text" class="form-control form-control-sm" name="endDate" ngbDatepicker  #endDate="ngbDatepicker" [(ngModel)]="search.endDate"
+                                               [minDate]="search.startDate"/>
+                                               <span class="input-group-btn">
+                                            <button type="button" class="btn btn-sm btn-default" (click)="endDate.toggle()"><i class="fa fa-sm fa-calendar"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label class="form-control-label" style="width: 100%">&nbsp;</label>
+                                    <button type="button" 
+                                        class="btn btn-sm btn-primary margin-right-5">
+                                        <span class="fa fa-search"></span>&nbsp; <span jhiTranslate="auxiliumApp.sinisterPrestation.report.doFilter">Filtrer</span>
+                                    </button>&nbsp;
+                                    <button type="button" (click)="clear()"
+                                        class="btn btn-sm btn-primary margin-right-5">
+                                        <span class="fa fa-minus"></span>&nbsp; <span>Ré-initialiser</span>
+                                    </button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                  </form>
+
+              
+                <div class="card">
+                    <div class="card-header d-flex align-items-center no-padding" >
+                        <div class="notice notice-info">
+                            <span class="fa fa-area-chart" style="color: #45ABCD"></span>&nbsp;&nbsp;
+                            <strong jhiTranslate="auxiliumApp.sinisterPrestation.report.services">services</strong>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table datatable [dtOptions]="dtOptions"  class="table table-sm table-hover table-bordered" style="width:100%" >
+                                <thead style="color:rgb(250, 228, 228);background-color:#11859b">
+                                <tr>
+                                    <th><span jhiTranslate="auxiliumApp.contratAssurance.agent">gaReference</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.contratAssurance.usage">registrationNumber</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.contratAssurance.nature_pack_f">insured</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.contratAssurance.zone_f">partner</span></th>
+       
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let cont of contrat">
+                                        <td>{{cont.nomAgentAssurance}}</td>
+                                        <td>{{cont.usageLabel}}</td>
+                                        <td>{{cont.nbrePack}}</td>
+                                        <td>{{cont.zone}}</td>
+                                     
+                                     
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+</section>

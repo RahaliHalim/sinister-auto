@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity AvisExpertMo.
+    -->
+    <changeSet id="20170912084532-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="details_mo_id"
+                                 baseTableName="avis_expert_mo"
+                                 constraintName="fk_avis_expert_mo_details_mo_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="details_mo"/>
+
+        <addForeignKeyConstraint baseColumnNames="validation_devis_id"
+                                 baseTableName="avis_expert_mo"
+                                 constraintName="fk_avis_expert_mo_validation_devis_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="validation_devis"/>
+
+    </changeSet>
+</databaseChangeLog>

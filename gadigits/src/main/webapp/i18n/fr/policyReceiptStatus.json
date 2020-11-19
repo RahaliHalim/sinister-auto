@@ -1,0 +1,24 @@
+{
+    "auxiliumApp": {
+        "policyReceiptStatus" : {
+            "home": {
+                "title": "PolicyReceiptStatuses",
+                "createLabel": "Créer un nouveau Policy Receipt Status",
+                "createOrEditLabel": "Créer ou modifier un Policy Receipt Status",
+                "search": "Recherche pour Policy Receipt Status"
+            },
+            "created": "Un nouveau Policy Receipt Status a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Policy Receipt Status avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Policy Receipt Status avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Êtes-vous sûrs de vouloir supprimer le Policy Receipt Status {{ id }} ?"
+            },
+            "detail": {
+                "title": "Policy Receipt Status"
+            },
+            "code": "Code",
+            "label": "Label",
+            "active": "Active"
+        }
+    }
+}

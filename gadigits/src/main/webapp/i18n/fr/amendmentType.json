@@ -1,0 +1,24 @@
+{
+    "auxiliumApp": {
+        "amendmentType" : {
+            "home": {
+                "title": "Type d'amendement",
+                "createLabel": "Créer un nouveau type d'amendement",
+                "createOrEditLabel": "Créer ou modifier un type d'amendement",
+                "search": "Recherche pour type d'amendement"
+            },
+            "created": "Un nouveau Type d'amendement a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Type d'amendement avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Type d'amendement avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer le type d'amendement {{ id }} ?"
+            },
+            "detail": {
+                "title": "Type d'amendement"
+            },
+            "code": "Code",
+            "label": "Label",
+            "active": "Active"
+        }
+    }
+}

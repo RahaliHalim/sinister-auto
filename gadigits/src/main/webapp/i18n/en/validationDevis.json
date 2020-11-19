@@ -1,0 +1,29 @@
+{
+    "auxiliumApp": {
+        "validationDevis" : {
+            "home": {
+                "title": "Validation Devis",
+                "createLabel": "Create a new Validation Devis",
+                "createOrEditLabel": "Create or edit a Validation Devis",
+                "search": "Search for Validation Devis"
+            },
+            "created": "A new Validation Devis is created with identifier {{ param }}",
+            "updated": "A Validation Devis is updated with identifier {{ param }}",
+            "deleted": "A Validation Devis is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Validation Devis {{ id }}?"
+            },
+            "detail": {
+                "title": "Validation Devis"
+            },
+            "isValide": "Is Valide",
+            "isAnnule": "Is Annule",
+            "commentaire": "Commentaire",
+            "dateValidation": "Date Validation",
+            "affectExpert": "Affect Expert",
+            "devis": "Devis",
+            "avisExpPiece": "Avis Exp Piece",
+            "avisExpMo": "Avis Exp Mo"
+        }
+    }
+}

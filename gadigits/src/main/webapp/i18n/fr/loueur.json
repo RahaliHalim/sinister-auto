@@ -1,0 +1,55 @@
+{
+    "auxiliumApp": {
+        "loueur" : {
+            "home": {
+                "title": "Loueurs",
+                "createLabel": "Créer",
+                "createOrEditLabel": "Créer ou éditer un Loueur",
+                "search": "Recherche pour Loueur"
+            },
+            "created": "Un nouveau Loueur a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Loueur avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Loueur avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Loueur {{ id }} ?"
+            },
+            "bloqued": "Le loueur a été bloqué",
+            "debloqued":"Le loueur a été débloqué",
+            "unique": "Le Nom, registre de commerce et la matricule fiscale du loueur doivent être uniques",
+          
+            "detail": {
+                "title": "Loueur"
+            },
+            "code": "Code",
+            "raisonSociale": "Raison Sociale",
+            "matriculeFiscale": "Matricule Fiscale",
+            "registreCommerce": "Registre de Commerce",
+            "conventionne": "Conventionné",
+            "dateEffetConvention": "Date d'effet de la convention",
+            "dateFinConvention": "Fin date de la convention",
+            "nbrVehicules": "Nbr Véhicules",
+            "address": "Adresse",
+            "reglement": "Mode de règlement",
+            "gouvernorat": "Gouvernorat",
+            "delegation": "Ville",
+            "telephone": "Télephone",
+            "motif": "Sélectionnez un Motif",
+            "reclamation": "Réclamation blocage",
+            "confirm": "Confirmer",
+
+
+
+            "blocage": "Blocage",
+            "rib": "RIB",
+
+            "bloque": {
+            	"title": "Confirmation du blocage du loueur",
+                "question": "Êtes-vous certain de vouloir bloquer ce loueur ?"
+            },
+            "debloque": {
+            	"title": "Confirmation du déblocage du loueur",
+                "question": "Êtes-vous certain de vouloir débloquer ce loueur ?"
+            }
+        }
+    }
+}

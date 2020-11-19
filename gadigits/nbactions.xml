@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+        <action>
+            <actionName>CUSTOM-run gadigits backend</actionName>
+            <displayName>run gadigits backend</displayName>
+            <goals>
+                <goal>spring-boot:run</goal>
+            </goals>
+        </action>
+        <action>
+            <actionName>CUSTOM-build gadigits</actionName>
+            <displayName>build gadigits</displayName>
+            <goals>
+                <goal>clean</goal>
+                <goal>compile</goal>
+            </goals>
+        </action>
+        <action>
+            <actionName>CUSTOM-compile prod</actionName>
+            <displayName>compile prod</displayName>
+            <goals>
+                <goal>compile</goal>
+            </goals>
+            <properties>
+                <skipTests>true</skipTests>
+            </properties>
+            <activatedProfiles>
+                <activatedProfile>prod</activatedProfile>
+            </activatedProfiles>
+        </action>
+        <action>
+            <actionName>CUSTOM-compile DEV</actionName>
+            <displayName>compile DEV</displayName>
+            <goals>
+                <goal>compile</goal>
+            </goals>
+        </action>
+    <action>
+            <actionName>CUSTOM-run gadigits prod</actionName>
+            <displayName>run gadigits prod</displayName>
+            <goals>
+                <goal>spring-boot:run</goal>
+            </goals>
+            <activatedProfiles>
+                <activatedProfile>prod</activatedProfile>
+            </activatedProfiles>
+        </action>
+    <action>
+            <actionName>CUSTOM-run gadigits dev</actionName>
+            <displayName>run gadigits dev</displayName>
+            <goals>
+                <goal>spring-boot:run</goal>
+            </goals>
+            <activatedProfiles>
+                <activatedProfile>dev</activatedProfile>
+            </activatedProfiles>
+        </action>
+    </actions>

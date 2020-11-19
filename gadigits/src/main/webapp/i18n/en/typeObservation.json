@@ -1,0 +1,10 @@
+{
+    "auxiliumApp": {
+        "TypeObservation" : {
+            "null": "",
+            "Observation": "Observation",
+            "Systeme": "Système"
+        }
+    }
+}
+

@@ -1,0 +1,66 @@
+
+            <div class="card-header d-flex align-items-center no-padding">
+                <div class="notice notice-info"><span class="fa fa-clone" style="color: #45ABCD"></span>&nbsp;&nbsp;
+                        
+                    <strong  style="color: #45ABCD" jhiTranslate="auxiliumApp.sinisterPec.decisions">Liste des décisions</strong></div>
+            </div>
+
+
+            <section class="forms">
+                <div class="container-fluid">
+                        <div class="row">
+                                <div class="col-lg-12">
+                                        <form name="editForm" role="form" novalidate #editForm="ngForm">
+                                                <div class="row">
+                                                        <div class="col-sm-12">
+                                                                <label for="field_modegestion"> Décision </label>
+                                                                <select class="form-control form-control-sm" id="field_listDecisions"
+                                                                        name="listDecisions" [(ngModel)]="sinisterPec.stepDecisionId" (ngModelChange)="selectDecision(sinisterPec.stepDecisionId);" required>
+                                                                <option [ngValue]="step.id" *ngFor="let step of statusPecsDecision;">{{step.label}}</option>
+                                                                </select>
+                                                        </div>                     
+                                                </div>
+                                                <div class="row" *ngIf="showMode">
+                                                        <div class="col-sm-12">
+                                                                <label jhiTranslate="auxiliumApp.refModeGestion.detail.title" for="field_modegestion"> Mode de gestion </label>
+                                                                <select class="form-control form-control-sm" id="field_modegestion" name="modegestion" [(ngModel)]="modeGestion" required (ngModelChange)="selectMode()">
+                                                                <option [ngValue]="mode.id" *ngFor="let mode of listModeGestion">{{mode.libelle}}</option>
+                                                                </select>
+                                                        </div>                     
+                                                </div>
+                                                <div class="row" *ngIf="!isAccepted && showMotif && reasons.length > 0">
+                                                        <div class="col-sm-12">
+                                                                <label  for="field_modegestion"> Motifs </label>
+                                                                                                           
+                                                                <select required class="form-control" id="reason" name="reason" [(ngModel)]="motifIdDecision"   >
+                                                                                                                                                                                                                                      
+                                                                <option [ngValue]="reasonOption.id" *ngFor="let reasonOption of reasons">{{reasonOption.label}}</option>
+                                                                </select>
+                                                        </div>                     
+                                                </div>
+                                        </form>
+                                </div>
+                        </div>
+                </div>
+            </section>
+            <br>
+            
+            
+            
+       
+    <div class="modal-footer">
+            <div class="form-group">
+                &nbsp;&nbsp;
+                <button type="button" (click)="clear()" data-dismiss="modal" class="btn btn-sm pull-right margin-right-5">
+                     <span jhiTranslate="entity.action.back">Back</span>
+                </button>
+                &nbsp;&nbsp;
+            </div>
+            <div class="form-group">
+                  &nbsp;&nbsp;
+                  <button type="button" [disabled]="editForm.invalid" class="btn btn-info btn-sm" (click)="valider()">
+                          <span class="fa fa-sm fa-check-square-o">Valider</span>
+                  </button>
+                  &nbsp;&nbsp;
+              </div>
+      </div>

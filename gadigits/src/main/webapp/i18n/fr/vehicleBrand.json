@@ -1,0 +1,24 @@
+{
+    "auxiliumApp": {
+        "vehicleBrand" : {
+            "home": {
+                "title": "Marques véhicule",
+                "createLabel": "Créer une Marque",
+                "createOrEditLabel": "Créer ou modifier une marque",
+                "search": "Rechercher une marque"
+            },
+            "created": "Une nouvelle marque a été créée.",
+            "updated": "La marque a été mise à jour",
+            "deleted": "La marque a été supprimée",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer la marque ?"
+            },
+            "detail": {
+                "title": "Marque véhicule"
+            },
+            "label": "Libellé",
+            "active": "Active",
+            "exist": "La Marque doit être unique"
+        }
+    }
+}

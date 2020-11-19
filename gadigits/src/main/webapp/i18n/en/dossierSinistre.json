@@ -1,0 +1,45 @@
+{
+    "auxiliumApp": {
+        "dossierSinistre" : {
+            "home": {
+                "title": "Dossier Sinistres",
+                "createLabel": "Create a new Dossier Sinistre",
+                "createOrEditLabel": "Create or edit a Dossier Sinistre",
+                "search": "Search for Dossier Sinistre"
+            },
+            "created": "A new Dossier Sinistre is created with identifier {{ param }}",
+            "updated": "A Dossier Sinistre is updated with identifier {{ param }}",
+            "deleted": "A Dossier Sinistre is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Dossier Sinistre {{ id }}?"
+            },
+            "detail": {
+                "title": "Dossier Sinistre"
+            },
+            "reference": "Reference",
+            "prenomConducteur": "Prenom Conducteur",
+            "nomConducteur": "Nom Conducteur",
+            "permisConduc": "Permis Conduc",
+            "prenomTiersConduc": "Prenom Tiers Conduc",
+            "nomTiersConduc": "Nom Tiers Conduc",
+            "permisTiersConduc": "Permis Tiers Conduc",
+            "dateAccident": "Date Accident",
+            "descPtsChoc": "Desc Pts Choc",
+            "nbrVehicules": "Nbr Vehicules",
+            "dateCreation": "Date Creation",
+            "isSupprime": "Is Supprime",
+            "commentaire": "Commentaire",
+            "pointChoc": "Points Chocs",
+            "ville": "Ville",
+            "mode": "Mode",
+            "contrat": "Contrat",
+            "posGa": "Pos GA",
+            "tiers": "Tiers",
+            "agentGenerale": "General Agent",
+            "expert": "Expert",
+            "pieceJointe": "Piece Jointe",
+            "affetctExpert": "Affect Expert",
+            "affectReparateur": "Affect Reparateur"
+        }
+    }
+}

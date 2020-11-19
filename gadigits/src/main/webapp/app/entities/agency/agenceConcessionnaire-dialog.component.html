@@ -1,0 +1,242 @@
+<!-- Breadcrumb-->
+<div class="breadcrumb-holder">
+        <div class="container-fluid">
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item"><span class="fa fa-home"></span>&nbsp;&nbsp;<a routerLink="/"><span jhiTranslate="global.menu.home">Home</span></a></li>
+                <li class="breadcrumb-item"><a routerLink="/agenceConcessionnaire"><span jhiTranslate="auxiliumApp.agency.home.titleConcess">Agency</span></a></li>
+                <li class="breadcrumb-item"><a routerLink="/agenceConcessionnaire"><span jhiTranslate="auxiliumApp.agency.home.createOrEditLabelConsess">créer</span></a></li>
+            </ul>
+        </div>
+</div>
+<section class="forms">
+        <div class="container-fluid">
+            <!-- Page Header-->
+            <header style="padding-top: 1rem; padding-bottom: 1rem;">
+                <h1 class="h3 display">
+                    <jhi-alert-error></jhi-alert-error>
+                    <jhi-alert></jhi-alert>
+                </h1>
+            </header>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header d-flex align-items-center no-padding">
+                            <div class="notice notice-info"> <strong>Agence</strong></div>
+                        </div>
+                        <form name="editForm" role="form" novalidate #editForm="ngForm">
+                            <div class="modal-body">
+                                <div class="row top-buffer">
+                
+                                    <div class="col-sm-3">
+                                        <label class="form-control-label"
+                                            jhiTranslate="auxiliumApp.agency.concessionnaire"
+                                            for="field_partner">Partner</label>
+                                            <select required class="form-control" id="field_partner" name="partner" [(ngModel)]="agency.partnerId" (ngModelChange)="findByAgenceConcessNameConcessName()"  >
+                                                    
+                                                    <option [ngValue]="partnerOption.id" *ngFor="let partnerOption of partners; trackBy: trackPartnerById">{{partnerOption.companyName}}</option>
+                                            </select>
+                                    </div>
+                                
+
+                                    <div class="col-sm-3">
+                                        <label class="form-control-label"
+                                            jhiTranslate="auxiliumApp.agency.nom"
+                                            for="field_nom">Nom</label>
+                                        <input required type="text"
+                                            class="f" name="nom"
+                                            id="field_nom" [(ngModel)]="agency.nom"  [pattern]="textPatternNotAlphNul" 
+                                             maxlength="256" (blur)="trimServiceTypeNumber()" />
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <label class="form-control-label"
+                                        jhiTranslate="auxiliumApp.agency.prenom"
+                                        for="field_prenom">prénom</label>
+                                    <input type="text"
+                                        class="form-control form-control-sm" name="prenom"
+                                        id="field_prenom" [(ngModel)]="agency.prenom"  [pattern]="textPatternNotAlphNul" 
+                                        required maxlength="256" (blur)="trimServiceTypeNumber()" />
+                                    
+                            </div>
+
+                                    <div class="col-sm-3">
+                                            <label class="form-control-label"
+                                                jhiTranslate="auxiliumApp.agency.name"
+                                                for="field_name">Nom Agence</label>
+                                            <input required type="text"
+                                                class="f" name="name"
+                                                id="field_name" [(ngModel)]="agency.name"  [pattern]="textPattern" 
+                                                 maxlength="256" (blur)="trimServiceTypeNumber()" 
+                                                 (ngModelChange)="findByAgenceConcessNameConcessName()" />
+
+                                            <div
+                                                [hidden]="!(editForm.controls.name?.dirty && editForm.controls.name?.invalid)">
+                                                <small class="form-text text-danger"
+                                                    [hidden]="!editForm.controls.name?.errors?.required"
+                                                    jhiTranslate="entity.validation.required">
+                                                    This field is required.
+                                                </small>
+                                                <small class="form-text text-danger"
+                                                    [hidden]="!editForm.controls.name?.errors?.maxlength"
+                                                    jhiTranslate="entity.validation.maxlength"
+                                                    translateValues="{ max: 256 }">
+                                                    This field cannot be longer than 256 characters.
+                                                </small>
+                                            </div>
+                                    </div>
+
+                                    
+
+                                </div>
+    
+                                <div class="row top-buffer">
+                                        
+                                        <div class="col-sm-3">
+                                                <label class="form-control-label"
+                                                    jhiTranslate="auxiliumApp.agency.phone"
+                                                    for="field_phone">Telephone</label>
+                                                <input required class="form-control form-control-sm" name="phone"
+                                                    id="field_phone"
+                                                    [(ngModel)]="agency.phone"
+                                                    pattern="([0-9]{1,50})" />
+                                                <div
+                                                    [hidden]="!(editForm.controls.phone?.dirty && editForm.controls.phone?.invalid)">
+                                                    <small class="form-text text-danger"
+                                                        [hidden]="!editForm.controls.phone?.errors?.pattern"
+                                                        jhiTranslate="entity.validation.pattern"
+                                                        translateValues="{ pattern: 'phone' }">
+                                                        This field should follow pattern for "Prem Telephone".
+                                                    </small>
+                                                </div>
+                                        </div>
+                                    
+                                        <div class="col-sm-3">
+                                                <label class="form-control-label"
+                                                    jhiTranslate="auxiliumApp.agency.mobile"
+                                                    for="field_mobile">mobile</label>
+                                                <input required  class="form-control form-control-sm" name="mobile"
+                                                    id="field_mobile"
+                                                    [(ngModel)]="agency.mobile"
+                                                    pattern="([0-9]{1,50})" />
+                                                <div
+                                                    [hidden]="!(editForm.controls.mobile?.dirty && editForm.controls.mobile?.invalid)">
+                                                    <small class="form-text text-danger"
+                                                        [hidden]="!editForm.controls.mobile?.errors?.pattern"
+                                                        jhiTranslate="entity.validation.pattern"
+                                                        translateValues="{ pattern: 'mobile' }">
+                                                        This field should follow pattern for "Prem Telephone".
+                                                    </small>
+                                                </div>
+                                        </div>
+    
+                                        
+    
+                                        <div class="col-sm-3">
+                                                <label class="form-control-label"
+                                                    jhiTranslate="auxiliumApp.agency.PremierEmail"
+                                                    for="field_email">EMail</label>
+                                                <input type="email" class="form-control form-control-sm"
+                                                    name="email" id="field_email"
+                                                    [(ngModel)]="agency.email" (ngModelChange)="findByAgenceConcessEmailUnique()"
+                                                    pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" required />
+                                                <div
+                                                    [hidden]="!(editForm.controls.email?.dirty && editForm.controls.email?.invalid)">
+                                                    <small class="form-text text-danger"
+                                                        [hidden]="!editForm.controls.email?.errors?.required"
+                                                        jhiTranslate="entity.validation.required">This
+                                                        field is
+                                                        required.</small>
+                                                    <small class="form-text text-danger"
+                                                        [hidden]="!editForm.controls.email?.errors?.pattern"
+                                                        jhiTranslate="entity.validation.pattern"
+                                                        translateValues="{ pattern: 'email' }">This
+                                                        field
+                                                        should follow pattern for "Mail".</small>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-3">
+                                                <label class="form-control-label"
+                                                    jhiTranslate="auxiliumApp.agency.DeuxiemeEmail"
+                                                    for="field_email1">EMail</label>
+                                                <input type="email" class="form-control form-control-sm"
+                                                    name="email1" id="field_email1"
+                                                    [(ngModel)]="agency.deuxiemeMail" (ngModelChange)="findByAgenceConcessEmailUnique()"
+                                                    pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" required />
+                                                <div
+                                                    [hidden]="!(editForm.controls.email1?.dirty && editForm.controls.email1?.invalid)">
+                                                    <small class="form-text text-danger"
+                                                        [hidden]="!editForm.controls.email1?.errors?.required"
+                                                        jhiTranslate="entity.validation.required">This
+                                                        field is
+                                                        required.</small>
+                                                    <small class="form-text text-danger"
+                                                        [hidden]="!editForm.controls.email1?.errors?.pattern"
+                                                        jhiTranslate="entity.validation.pattern"
+                                                        translateValues="{ pattern: 'email' }">This
+                                                        field
+                                                        should follow pattern for "Mail".</small>
+                                                </div>
+                                            </div>
+
+
+                                        
+
+                                        
+
+                                </div>
+
+                                <div class="row top-buffer">
+                                        
+                                        <div class="col-sm-3">
+                                                <label class="form-control-label"
+                                                    jhiTranslate="auxiliumApp.agency.governorate"
+                                                    for="field_governorate">governorate</label>
+                                                    <select required class="form-control" id="field_governorate" name="governorate" [(ngModel)]="agency.governorateId" (ngModelChange)="fetchDelegationsByGovernorate(agency.governorateId)" >
+                                                        
+                                                            <option [ngValue]="governorateOption.id" *ngFor="let governorateOption of governorates; trackBy: trackGovernorateById">{{governorateOption.label}}</option>
+                                                    </select>
+                                        </div>
+
+
+                                        <div class="col-sm-3">
+                                                <label class="form-control-label"
+                                                    jhiTranslate="auxiliumApp.agency.delegation"
+                                                    for="Delegation">delegation</label>
+                                                    <select required class="form-control" id="Delegation" name="delegation" [(ngModel)]="agency.delegationId" [disabled]="gov"  >
+                                                       
+                                                            <option [ngValue]="delegationOption.id" *ngFor="let delegationOption of delegations; trackBy: trackDelegationById">{{delegationOption.label}}</option>
+                                                    </select>
+                                        </div>
+
+                                        <div class="col-sm-3">
+                                                <label class="form-control-label"
+                                                    jhiTranslate="auxiliumApp.agency.typeAgence"
+                                                    for="field_typeAgence">typeAgence</label>
+                                                    <select required class="form-control" id="field_typeAgence" name="typeAgence" [(ngModel)]="agency.typeAgence" >
+                                                            
+                                                            <option [ngValue]="typeAgence.libelle" *ngFor="let typeAgence of typeAgences; trackBy: trackTypeAgenceById">{{typeAgence.libelle}}</option>
+                                                    </select>
+                                        </div>
+
+                                        
+
+                                        
+
+                                </div>
+
+                                <div class="row top-buffer">
+                                        
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" [disabled]="editForm.form.invalid || isSaving || !isPartUnique || !isEmailUnique    "  (click)="save()" class="btn btn-primary btn-sm">
+                                    <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>

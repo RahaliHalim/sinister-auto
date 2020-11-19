@@ -1,0 +1,22 @@
+{
+    "auxiliumApp": {
+        "refPositionGa" : {
+            "home": {
+                "title": "Ref Position Gas",
+                "createLabel": "Create a new Ref Position Ga",
+                "createOrEditLabel": "Create or edit a Ref Position Ga",
+                "search": "Search for Ref Position Ga"
+            },
+            "created": "A new Ref Position Ga is created with identifier {{ param }}",
+            "updated": "A Ref Position Ga is updated with identifier {{ param }}",
+            "deleted": "A Ref Position Ga is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Ref Position Ga {{ id }}?"
+            },
+            "detail": {
+                "title": "Ref Position Ga"
+            },
+            "libelle": "Libelle"
+        }
+    }
+}

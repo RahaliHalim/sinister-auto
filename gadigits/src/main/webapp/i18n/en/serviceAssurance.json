@@ -1,0 +1,22 @@
+{
+    "auxiliumApp": {
+        "serviceAssurance" : {
+            "home": {
+                "title": "Service Assurances",
+                "createLabel": "Create a new Service Assurance",
+                "createOrEditLabel": "Create or edit a Service Assurance",
+                "search": "Search for Service Assurance"
+            },
+            "created": "A new Service Assurance is created with identifier {{ param }}",
+            "updated": "A Service Assurance is updated with identifier {{ param }}",
+            "deleted": "A Service Assurance is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Service Assurance {{ id }}?"
+            },
+            "detail": {
+                "title": "Service Assurance"
+            },
+            "libelle": "Libelle"
+        }
+    }
+}

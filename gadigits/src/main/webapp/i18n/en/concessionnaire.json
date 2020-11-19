@@ -1,0 +1,23 @@
+{
+    "auxiliumApp": {
+        "concessionnaire" : {
+            "home": {
+                "title": "Concessionnaires",
+                "createLabel": "Create a new Concessionnaire",
+                "createOrEditLabel": "Create or edit a Concessionnaire",
+                "search": "Search for Concessionnaire"
+            },
+            "created": "A new Concessionnaire is created with identifier {{ param }}",
+            "updated": "A Concessionnaire is updated with identifier {{ param }}",
+            "deleted": "A Concessionnaire is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Concessionnaire {{ id }}?"
+            },
+            "detail": {
+                "title": "Concessionnaire"
+            },
+            "libelle": "Libelle",
+            "marque": "Marque"
+        }
+    }
+}

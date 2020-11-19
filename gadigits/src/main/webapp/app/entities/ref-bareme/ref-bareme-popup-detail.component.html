@@ -1,0 +1,41 @@
+<div class="modal-header" style="color:#11859b"> Liste des Cas de barème
+</div>
+<!--table-->
+
+<div class="card-body">
+    <div class="table-responsive">
+        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+            class="table table-sm table-hover table-bordered" style="width: 100%">
+            <thead style="color:white;background-color:#11859b">
+                <tr>
+                    <th><span jhiTranslate="auxiliumApp.refBareme.code">Code</span></th>
+                    <th><span jhiTranslate="auxiliumApp.refBareme.titre">titre</span></th>
+                    <th><span jhiTranslate="auxiliumApp.refBareme.responsabiliteX">ResponsabiliteX</span></th>
+                    <th><span jhiTranslate="auxiliumApp.refBareme.responsabiliteY">ResponsabiliteY</span></th>
+                    <th><span jhiTranslate="auxiliumApp.refBareme.description">Description</span></th>
+                    <th style="width: 10%"><span jhiTranslate="auxiliumApp.refBareme.croquis">Croquis</span></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let refBareme of refBaremes ; let i = index" (click)="setClickedRow(i, refBareme.id)"
+                    [class.active]="i == selectedRow">
+                    <td width="5%">{{refBareme.code}}</td>
+                    <td width="13%">{{refBareme.titre}}</td>
+                    <td width="21%">{{refBareme.responsabiliteX}}</td>
+                    <td width="21%">{{refBareme.responsabiliteY}}</td>
+                    <td width="40%">{{refBareme.description}}</td>
+                    <td><img [src]="getImage(refBareme)" /></td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+        <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+    </button>
+    <button type="button" class="btn btn-primary" (click)="afficherBareme()" [disabled]="selectedItem">
+        <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+    </button>
+</div>

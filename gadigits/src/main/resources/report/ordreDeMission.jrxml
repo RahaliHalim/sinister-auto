@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="bonAffectation" language="groovy" pageWidth="612" pageHeight="792" whenNoDataType="NoPages" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="cc977343-2ee7-4e4e-ad3b-d343c8254f6b">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="assureName" class="java.lang.String"/>
+	<parameter name="assureGsm" class="java.lang.String"/>
+	<parameter name="immatrVehicule" class="java.lang.String"/>
+	<parameter name="marqueVehicule" class="java.lang.String"/>
+	<parameter name="chassisVehicule" class="java.lang.String"/>
+	<parameter name="dateCirculation" class="java.lang.String"/>
+	<parameter name="raisonSociale" class="java.lang.String"/>
+	<parameter name="contact" class="java.lang.String"/>
+	<parameter name="commentaire" class="java.lang.String"/>
+	<parameter name="gsmRep" class="java.lang.String"/>
+	<parameter name="pointChoc" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<variable name="field2_1" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="752" splitType="Stretch">
+			<rectangle>
+				<reportElement x="10" y="243" width="350" height="228" uuid="2f707904-1bf2-4a81-9636-4e0b26683da4"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="106" y="92" width="351" height="26" uuid="f1092c32-293a-4313-a126-5ff121cc3251"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[ORDRE DE MISSION D'EXPERTISE AUTOMOBILE]]></text>
+			</staticText>
+			<image>
+				<reportElement x="183" y="10" width="192" height="77" uuid="13706020-8b82-4cb8-bf2d-75aa11ebefef"/>
+				<imageExpression><![CDATA[$P{logoGacPath}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="133" y="118" width="286" height="20" uuid="6375ddd6-bf5e-4157-9b64-b566877c97ac"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ Pièces jointes : constat + Avis technique]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="229" width="229" height="20" uuid="71e95c4c-e9d1-480a-9797-ea3e4eea9fa2"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[COORDONNEES EXPERT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="23" y="258" width="107" height="20" uuid="19d40537-d652-4884-90d0-f7e6d9cc8869"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[-Nom de l'assuré :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="319" y="663" width="157" height="20" uuid="5a1cf60c-5747-4958-8dd1-058a4c2c21ea"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Tunis, le ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="319" y="685" width="157" height="20" uuid="85ca9d56-06db-4a37-8fd9-358278157718"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[P/ Générale Assistance]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="23" y="696" width="157" height="20" uuid="47cf58fc-6255-4c8d-a012-8f43c6497edd"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Meilleures salutations ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="23" y="719" width="157" height="20" uuid="e6bbb2e1-0e84-41c7-9296-014dafab7d93"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dossier géré par]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="23" y="284" width="140" height="20" uuid="0f917235-5a51-4703-8332-c3c792b2395f"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[- Adresse de l'assuré :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="23" y="308" width="91" height="20" uuid="7920d702-cb6a-40cb-a59c-c4759ac6cf4d"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[- GSM :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="23" y="333" width="160" height="20" uuid="2453ca0c-e808-4c93-8373-8f4d66374bc2"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[- Immat du Véhicule :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="23" y="358" width="107" height="20" uuid="2f212be2-e033-435a-a0c3-df36c5817532"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[- Energie :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="160" y="402" width="180" height="20" uuid="02164f5b-0583-4dcc-86b3-09263357cd40"/>
+				<textFieldExpression><![CDATA[$P{commentaire}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="15" y="491" width="229" height="20" uuid="25f0be18-f54a-4f25-9ec2-daf318d96700"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Information de l'accident]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="23" y="380" width="130" height="20" uuid="54d2020c-9f2c-4323-928b-0d912012d9f7"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[- Date de l'accident :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="23" y="402" width="130" height="20" uuid="147417a9-77f2-4845-9817-753ff4d49849"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[- 1ère Mise En Circulation :]]></text>
+			</staticText>
+		</band>
+	</title>
+</jasperReport>

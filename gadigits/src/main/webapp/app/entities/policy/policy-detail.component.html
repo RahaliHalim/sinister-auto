@@ -1,0 +1,109 @@
+
+<div *ngIf="policy">
+    <h2><span jhiTranslate="auxiliumApp.policy.detail.title">Policy</span> {{policy.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="auxiliumApp.policy.reference">Reference</span></dt>
+        <dd>
+            <span>{{policy.reference}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.policy.startDate">Start Date</span></dt>
+        <dd>
+            <span>{{policy.startDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.policy.endDate">End Date</span></dt>
+        <dd>
+            <span>{{policy.endDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.policy.newVehiclePrice">New Vehicle Price</span></dt>
+        <dd>
+            <span>{{policy.newVehiclePrice}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.policy.newVehiclePriceIsAmount">New Vehicle Price Is Amount</span></dt>
+        <dd>
+            <span>{{policy.newVehiclePriceIsAmount}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.policy.dcCapital">Dc Capital</span></dt>
+        <dd>
+            <span>{{policy.dcCapital}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.policy.dcCapitalIsAmount">Dc Capital Is Amount</span></dt>
+        <dd>
+            <span>{{policy.dcCapitalIsAmount}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.policy.bgCapital">Bg Capital</span></dt>
+        <dd>
+            <span>{{policy.bgCapital}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.policy.bgCapitalIsAmount">Bg Capital Is Amount</span></dt>
+        <dd>
+            <span>{{policy.bgCapitalIsAmount}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.policy.marketValue">Market Value</span></dt>
+        <dd>
+            <span>{{policy.marketValue}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.policy.marketValueIsAmount">Market Value Is Amount</span></dt>
+        <dd>
+            <span>{{policy.marketValueIsAmount}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.policy.active">Active</span></dt>
+        <dd>
+            <span>{{policy.active}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.policy.deleted">Deleted</span></dt>
+        <dd>
+            <span>{{policy.deleted}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.policy.type">Type</span></dt>
+        <dd>
+            <div *ngIf="policy.typeId">
+                <a [routerLink]="['/policy-type', policy.typeId]">{{policy.typeLabel}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.policy.nature">Nature</span></dt>
+        <dd>
+            <div *ngIf="policy.natureId">
+                <a [routerLink]="['/policy-nature', policy.natureId]">{{policy.natureLabel}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.policy.periodicity">Periodicity</span></dt>
+        <dd>
+            <div *ngIf="policy.periodicityId">
+                <a [routerLink]="['/periodicity', policy.periodicityId]">{{policy.periodicityLabel}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.policy.partner">Partner</span></dt>
+        <dd>
+            <div *ngIf="policy.partnerId">
+                <a [routerLink]="['/partner', policy.partnerId]">{{policy.partnerCompanyName}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.policy.agency">Agency</span></dt>
+        <dd>
+            <div *ngIf="policy.agencyId">
+                <a [routerLink]="['/agency', policy.agencyId]">{{policy.agencyName}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.policy.policyHolder">Policy Holder</span></dt>
+        <dd>
+            <div *ngIf="policy.policyHolderId">
+                <a [routerLink]="['/policy-holder', policy.policyHolderId]">{{policy.policyHolderCompanyName}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'policy/'+ policy.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;&nbsp;&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

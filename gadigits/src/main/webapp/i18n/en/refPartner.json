@@ -1,0 +1,41 @@
+{
+    "auxiliumApp": {
+        "refPartner": {
+            "home": {
+                "title": "Partner",
+                "createLabel": "Create",
+                "createOrEditLabel": "Create or edit a partner",
+                "search": "Search for partner"
+            },
+            "created": "A new partner is created ",
+            "updated": "A partner is updated ",
+            "deleted": "A partner is deleted",
+            "delete": {
+                "question": "Are you sure you want to delete this partner?"
+            },
+            "detail": {
+                "title": "Partner"
+            },
+            "nom": "Nom",
+            "label": "Label",
+            "interventionNumber": "Intervention number",
+            "mileage": "Mileage",
+            "blocked": "Blocked",
+            "description": "Description",
+            "vrDaysNumber": "VR days number",
+            "contractNature": "Contract Nature",
+            "price": "Price",
+            "ceilingToConsume": "Ceiling to consume",
+            "combinable": "Combinable",
+            "homeService": "Home service",
+            "exclusionList": "Exclusion list",
+            "sinisterType": "Sinister types",
+            "grantTiming": "Grant timing",
+            "isBloque": "Is Bloque?",
+            "contrat": "Contrat",
+            "serviceType": "Type Service",
+            "company": "Company",
+            "usages": "Usages"
+        }
+    }
+}

@@ -1,0 +1,50 @@
+
+<div *ngIf="client">
+    <h2><span jhiTranslate="auxiliumApp.client.detail.title">Client</span> {{client.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="auxiliumApp.client.code">Code</span></dt>
+        <dd>
+            <span>{{client.code}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.client.compagnie">Compagnie</span></dt>
+        <dd>
+            <div *ngIf="client.compagnieId">
+                <a [routerLink]="['/ref-compagnie', client.compagnieId]">{{client.compagnieNom}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.client.concessionnaire">Concessionnaire</span></dt>
+        <dd>
+            <div *ngIf="client.concessionnaireId">
+                <a [routerLink]="['/concessionnaire', client.concessionnaireId]">{{client.concessionnaireLibelle}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.client.produit">Produit</span></dt>
+        <dd>
+            <span *ngFor="let produit of client.produits; let last = last">
+                <a [routerLink]="['/produit', produit?.id ]">{{produit.libelle}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.client.pack">Pack</span></dt>
+        <dd>
+            <span *ngFor="let pack of client.packs; let last = last">
+                <a [routerLink]="['/ref-pack', pack?.id ]">{{pack.nom}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'client/'+ client.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;&nbsp;&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

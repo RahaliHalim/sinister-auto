@@ -1,0 +1,24 @@
+{
+    "auxiliumApp": {
+        "policyStatus" : {
+            "home": {
+                "title": "PolicyStatuses",
+                "createLabel": "Créer un nouveau Policy Status",
+                "createOrEditLabel": "Créer ou modifier un Policy Status",
+                "search": "Recherche pour Policy Status"
+            },
+            "created": "Un nouveau Policy Status a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Policy Status avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Policy Status avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Êtes-vous sûrs de vouloir supprimer le Policy Status {{ id }} ?"
+            },
+            "detail": {
+                "title": "Policy Status"
+            },
+            "code": "Code",
+            "label": "Label",
+            "active": "Active"
+        }
+    }
+}

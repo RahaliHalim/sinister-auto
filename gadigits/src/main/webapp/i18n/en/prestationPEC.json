@@ -1,0 +1,36 @@
+{
+    "auxiliumApp": {
+        "prestationPEC" : {
+            "home": {
+                "title": "Prestations PEC",
+                "createLabel": "Create",
+                "createOrEditLabel": "Create or edit a Prestation PEC"
+            },
+            "created": "A new Prestation PEC is created with identifier {{ param }}",
+            "updated": "A Prestation PEC is updated with identifier {{ param }}",
+            "deleted": "A Prestation PEC is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Prestation PEC {{ id }}?"
+            },
+            "detail": {
+                "title": "Prestation PEC"
+            },
+            "referenceSinistre":"Reference Sinistre",
+            "descPtsChoc": "Description Points Choc",
+            "nbrVehicules": "Nbr Vehicules",
+            "prestation": "Prestation",
+            "mode": "Mode de gestion",
+            "posGa": "Pos Ga",
+            "casDeBareme": "Cas de barème",
+            "agentGenerale": "Agent Generale",
+            "affetctExpert": "Affetct Expert",
+            "affectReparateur": "Affect Reparateur",
+            "decision": "Etat du dossier",
+            "motifs": "Motifs",
+            "compagnie": "Réserves à la charge compagnie",
+            "agent": "Réserves à la charge agent",
+            "user": "Affectation gestionnaire",
+            "rendezvous": "Appointment"
+        }
+    }
+}

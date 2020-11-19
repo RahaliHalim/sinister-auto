@@ -1,0 +1,25 @@
+{
+    "auxiliumApp": {
+        "refMotif" : {
+            "home": {
+                "title": "Motifs",
+                "createLabel": "Créer",
+                "createOrEditLabel": "Créer ou modifier un motif",
+                "search": "Recherche pour motif"
+            },
+            "created": "Un nouveau motif a été créé",
+            "updated": "Le motif a été mis à jour",
+            "deleted": "Le motif a été supprimé",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer ce motif ?"
+            },
+            "detail": {
+                "title": "Motif"
+            },
+            "libelle": "Libellé",
+            "journal": "Journal",
+            "actionUtilisateur": "Action utilisateur",
+            "responsable": "Responsble"
+        }
+    }
+}

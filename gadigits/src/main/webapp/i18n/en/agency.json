@@ -1,0 +1,35 @@
+{
+    "auxiliumApp": {
+        "agency" : {
+            "home": {
+                "title": "Agencies",
+                "createLabel": "Create a new Agency",
+                "createOrEditLabel": "Create or edit a Agency",
+                "search": "Search for Agency"
+            },
+            "created": "A new Agency is created with identifier {{ param }}",
+            "updated": "A Agency is updated with identifier {{ param }}",
+            "deleted": "A Agency is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Agency {{ id }}?"
+            },
+            "detail": {
+                "title": "Agency"
+            },
+            "code": "Code",
+            "name": "Name",
+            "address": "Address",
+            "zipcode": "Zipcode",
+            "phone": "Phone",
+            "mobile": "Mobile",
+            "fax": "Fax",
+            "email": "Email",
+            "type": "Type",
+            "category": "Category",
+            "partner": "Partner",
+            "governorate": "Governorate",
+            "delegation": "Delegation",
+            "region": "Region"
+        }
+    }
+}

@@ -1,0 +1,61 @@
+
+<div *ngIf="vehicle">
+    <h2><span jhiTranslate="auxiliumApp.vehicle.detail.title">Vehicle</span> {{vehicle.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="auxiliumApp.vehicle.registrationNumber">Registration Number</span></dt>
+        <dd>
+            <span>{{vehicle.registrationNumber}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.vehicle.chassisNumber">Chassis Number</span></dt>
+        <dd>
+            <span>{{vehicle.chassisNumber}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.vehicle.firstEntryIntoService">First Entry Into Service</span></dt>
+        <dd>
+            <span>{{vehicle.firstEntryIntoService | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.vehicle.fiscalPower">Fiscal Power</span></dt>
+        <dd>
+            <span>{{vehicle.fiscalPower}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.vehicle.brand">Brand</span></dt>
+        <dd>
+            <div *ngIf="vehicle.brandId">
+                <a [routerLink]="['/vehicle-brand', vehicle.brandId]">{{vehicle.brandLabel}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.vehicle.model">Model</span></dt>
+        <dd>
+            <div *ngIf="vehicle.modelId">
+                <a [routerLink]="['/vehicle-brand-model', vehicle.modelId]">{{vehicle.modelLabel}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.vehicle.energy">Energy</span></dt>
+        <dd>
+            <div *ngIf="vehicle.energyId">
+                <a [routerLink]="['/vehicle-energy', vehicle.energyId]">{{vehicle.energyLabel}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.vehicle.usage">Usage</span></dt>
+        <dd>
+            <div *ngIf="vehicle.usageId">
+                <a [routerLink]="['/vehicle-usage', vehicle.usageId]">{{vehicle.usageLabel}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'vehicle/'+ vehicle.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

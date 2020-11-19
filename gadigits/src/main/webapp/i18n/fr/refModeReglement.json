@@ -1,0 +1,23 @@
+{
+    "auxiliumApp": {
+        "refModeReglement" : {
+            "home": {
+                "title": "RefModeReglements",
+                "createLabel": "Créer une nouvelle réf. mode de règlement",
+                "createOrEditLabel": "Créer ou modifier une réf. mode de règlement",
+                "search": "Recherche pour réf. mode de réglement"
+            },
+            "created": "Une nouvelle réf. mode règlement a été créée avec l'identifiant {{ param }}",
+            "updated": "La réf. mode de règlement avec l'identifiant {{ param }} a été mise à jour",
+            "deleted": "La réf. mode de règlement avec l'identifiant {{ param }} a été supprimée",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer la réf. mode de règlement {{ id }} ?"
+            },
+            "detail": {
+                "title": "Réf. mode de règlement"
+            },
+            "nom": "Nom",
+            "isBloque": "Is Bloque"
+        }
+    }
+}

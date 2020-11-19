@@ -1,0 +1,69 @@
+
+<div *ngIf="sinisterPec">
+    <h2><span jhiTranslate="auxiliumApp.sinisterPec.detail.title">Sinister Pec</span> {{sinisterPec.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="auxiliumApp.sinisterPec.reference">Reference</span></dt>
+        <dd>
+            <span>{{sinisterPec.reference}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.sinisterPec.companyReference">Company Reference</span></dt>
+        <dd>
+            <span>{{sinisterPec.companyReference}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.sinisterPec.declarationDate">Declaration Date</span></dt>
+        <dd>
+            <span>{{sinisterPec.declarationDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.sinisterPec.vehicleNumber">Vehicle Number</span></dt>
+        <dd>
+            <span>{{sinisterPec.vehicleNumber}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.sinisterPec.responsabilityRate">Responsability Rate</span></dt>
+        <dd>
+            <span>{{sinisterPec.responsabilityRate}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.sinisterPec.remainingCapital">Remaining Capital</span></dt>
+        <dd>
+            <span>{{sinisterPec.remainingCapital}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.sinisterPec.driverOrInsured">Driver Or Insured</span></dt>
+        <dd>
+            <span>{{sinisterPec.driverOrInsured}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.sinisterPec.driverName">Driver Name</span></dt>
+        <dd>
+            <span>{{sinisterPec.driverName}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.sinisterPec.driverLicenseNumber">Driver License Number</span></dt>
+        <dd>
+            <span>{{sinisterPec.driverLicenseNumber}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.sinisterPec.governorate">Governorate</span></dt>
+        <dd>
+            <div *ngIf="sinisterPec.governorateId">
+                <a [routerLink]="['/governorate', sinisterPec.governorateId]">{{sinisterPec.governorateId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.sinisterPec.delegation">Delegation</span></dt>
+        <dd>
+            <div *ngIf="sinisterPec.delegationId">
+                <a [routerLink]="['/delegation', sinisterPec.delegationId]">{{sinisterPec.delegationId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'sinister-pec/'+ sinisterPec.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;&nbsp;&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

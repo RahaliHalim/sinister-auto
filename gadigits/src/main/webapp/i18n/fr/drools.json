@@ -1,0 +1,84 @@
+{
+    "auxiliumApp": {
+
+        
+
+        "drools" : {
+
+            "details": {
+          
+            "client": "Compagnie d'assurance",
+            "ida": "IDA",
+            "hida": "HIDA",
+            "dommage": "DOMMAGE",
+            "connexe": "CONNEXE",
+            "garantie": "Garantie contractuelle",
+            "typerachat": "Type de rachat",
+            "typeavancefacture": "Type avance facture",
+            "plafondavancefacture": "Plafond avance sur facture",
+            "montantavancesurfacture": "Montant avance sur facture",
+            "rachat": "Rachat",
+            "fixValue": "Montant fixe",
+            "minrachat": "Montant min rachat",
+            "mode": "Mode de gestion",
+            "pourcentage": "Pourcentage",
+            "montant": "Montant",
+            "montantarajouter": "Montant à rajouter",
+            "typemontantrajouter": "Type montant à rajouter",
+            "plafond": "Plafond TRTTC", 
+            "isvetuste": "Vétusté",
+            "isfranchise": "Franchise",
+            "formule": "Formule",
+            "minfranchise": "Min franchise(XDTTC)",
+            "formulefranchise": "Formule franchise",
+            "condition": "Condition",
+            "assujettietva": "Assujettie TVA",
+            "nonassujettietva": "Non Assujettie TVA",
+            "engagementga": "Engagement GA",
+            "droitdetimbre": "Droit de timbre",
+            "vetuste": "Vétusté",
+            "avancesurfacture": "Avance sur facture",
+            "franchise": "Franchise",
+            "fraishida": "Frais de dossier HIDA",
+            "reglesproportionnel": "Règles proportionnelles",
+            "depassementplafond": "Dépassement plafond",
+            "partresponsabilite": "Part de responsabilité",
+            "rachardegarantie": "Rachat de la garantie",
+            "typepieces": "Par type piéces",
+            "pneumatique": "Pneumatique",
+            "mecanique": "Mécaniques",
+            "electrique": "Électrique",
+            "sansrp": "Sans la RP (si VA=VR)",
+            "avecrp": "Avec la RP (si VA&#60;VR)",
+            "htvainf": "Si TR(HTVA)&#60;VA",
+            "htvasup": "Si TR(HTVA)>VA",
+            "ttcinf": "Si TR(TTC)&#60;VA",
+            "ttcsup": "Si TR(TTC)>VA"
+            },
+            "home" : {
+                
+                "details": "Paramétrages drools",                
+                "title" : {
+                "title" : "Drools",
+                "compagnie": "Compagnie",   
+                "fraisparticipation": "Frais de participation", 
+                "rachat": "Rachat garantie",
+                "fraishida": "Frais de dossier HIDA",
+                "avancesurfacture": "Avance sur facture",
+                "franchise": "Franchise",
+                "engagementgatva": "En.GA Assujettie TVA",
+                "engagementganontva": "En.GA Non Assujettie TVA",
+
+                "partresptva": "Part. Resp Assujettie TVA",
+                "partrespnontva": "Part. Resp Non Assujettie TVA",
+                "depassplafondptva": "Dépass. plafond Assujettie TVA",
+                "depassplafondpnontva": "Dépass. plafond Non Assujettie TVA",
+                "regleproptva": "Régle. Prop Assujettie TVA",
+                "reglepropnontva": "Régle. Prop Non Assujettie TVA"
+                }
+                
+            }
+           
+        }
+    }
+}

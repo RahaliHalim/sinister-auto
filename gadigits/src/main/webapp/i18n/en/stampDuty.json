@@ -1,0 +1,25 @@
+{
+    "auxiliumApp": {
+        "stampDuty" : {
+            "home": {
+                "title": "Stamp Duties",
+                "createLabel": "Create a new Stamp Duty",
+                "createOrEditLabel": "Create or edit a Stamp Duty",
+                "search": "Search for Stamp Duty"
+            },
+            "created": "A new Stamp Duty is created with identifier {{ param }}",
+            "updated": "A Stamp Duty is updated with identifier {{ param }}",
+            "deleted": "A Stamp Duty is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Stamp Duty {{ id }}?"
+            },
+            "detail": {
+                "title": "Stamp Duty"
+            },
+            "amount": "Amount",
+            "startDate": "Start Date",
+            "endDate": "End Date",
+            "active": "Active"
+        }
+    }
+}

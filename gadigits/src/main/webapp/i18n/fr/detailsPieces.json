@@ -1,0 +1,36 @@
+{
+    "auxiliumApp": {
+        "detailsPieces" : {
+            "homeRechange":"Pièces",
+            "homePeinture":"Ingrédient de peinture et fourniture",
+            "homeFourniture":"Petite fourniture",
+            "home": {
+                "title": "DetailsPieces",
+                "createLabel": "Créer un nouveau détails pièces",
+                "createOrEditLabel": "Créer ou modifier un détails pièces",
+                "search": "Recherche pour détails pièces"
+            },
+            "created": "Un nouveau détails pièces a été créé avec l'identifiant {{ param }}",
+            "updated": "Le détails pièces avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le détails pièces avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer le détails pièces {{ id }} ?"
+            },
+            "detail": {
+                "title": "Détails pièces"
+            },
+            "quantite": "Quantité",
+            "designation": "Désignation",
+            "prixUnit": "Prix unit",
+            "tva": "TVA",
+            "facturePiece": "Facture pièce",
+            "fournisseur": "Fournisseur",
+            "devis": "Devis",
+            "piece": "Pièce",
+            "vetuste": "Vétusté",
+            "mvht": "MVHT",
+            "mvttc": "MVTTC"
+
+        }
+    }
+}

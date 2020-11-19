@@ -1,0 +1,47 @@
+
+<div *ngIf="reason">
+    <h2><span jhiTranslate="auxiliumApp.reason.detail.title">Reason</span> {{reason.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="auxiliumApp.reason.code">Code</span></dt>
+        <dd>
+            <span>{{reason.code}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.reason.label">Label</span></dt>
+        <dd>
+            <span>{{reason.label}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.reason.description">Description</span></dt>
+        <dd>
+            <span>{{reason.description}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.reason.responsible">Responsible</span></dt>
+        <dd>
+            <span jhiTranslate="{{'auxiliumApp.ResponsibleEnum.' + reason.responsible}}">{{reason.responsible}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.reason.active">Active</span></dt>
+        <dd>
+            <span>{{reason.active}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.reason.step">Step</span></dt>
+        <dd>
+            <div *ngIf="reason.stepId">
+                <a [routerLink]="['/step', reason.stepId]">{{reason.stepId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'reason/'+ reason.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;&nbsp;&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

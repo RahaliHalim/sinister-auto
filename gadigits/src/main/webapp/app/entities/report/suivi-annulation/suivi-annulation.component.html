@@ -1,0 +1,314 @@
+<!-- Breadcrumb-->
+<div class="breadcrumb-holder">
+    <div class="container-fluid">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="/"><span class="fa fa-home"></span>&nbsp;&nbsp;<span
+                        jhiTranslate="global.menu.home">Home</span></a></li>
+            <li class="breadcrumb-item"><span
+                    jhiTranslate="auxiliumApp.sinisterPrestation.report.title">Reporting</span></li>
+            <li class="breadcrumb-item"><span
+                    jhiTranslate="auxiliumApp.rapport.suiviAnnulation.title">Souscription</span></a></li>
+        </ul>
+    </div>
+</div>
+<section class="forms">
+    <div class="container-fluid">
+        <!-- Page Header-->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <form>
+                    <div class="card-header d-flex align-items-center no-padding">
+                        <div class="notice notice-info"><span class="fa fa-search"
+                                style="color: #45ABCD"></span>&nbsp;&nbsp;<strong
+                                jhiTranslate="auxiliumApp.contratAssurance.filter">filter</strong></div>
+                    </div>
+
+
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label jhiTranslate="auxiliumApp.rapport.suiviAnnulation.compagnie"
+                                    for="field_partner">Compagnie</label>
+                                <select class="form-control form-control-sm" id="field_partner" name="partner"
+                                    [(ngModel)]="search.compagnieId" (ngModelChange)="changeMode(search.compagnieId)">
+                                    <option [ngValue]="partner.id" *ngFor="let partner of partners;">
+                                        {{partner?.companyName}}</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-3">
+                                <label jhiTranslate="auxiliumApp.rapport.suiviAnnulation.mode-de-gestion"
+                                    for="field_partner">Mode de gestion</label>
+                                <select class="form-control form-control-sm" id="field_partner" name="refService"
+                                    [(ngModel)]="search.modeGestionId">
+                                    <option>------ Séléctionner un mode de gestion --------</option>
+                                    <option [ngValue]="mode.id" *ngFor="let mode of modeGestion;">{{mode?.libelle}}
+                                    </option>
+
+                                </select>
+
+
+                            </div>
+
+                            <div class="col-sm-3">
+                                <label jhiTranslate="auxiliumApp.rapport.suiviAnnulation.motif"
+                                    for="field_partner">Motif</label>
+                                <select class="form-control form-control-sm" id="field_partner" name="partner"
+                                    [(ngModel)]="search.motifAnnulationId">
+                                    <option [ngValue]="motif.id" *ngFor="let motif of motifsApec;">{{motif?.label}}
+                                    </option>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <label jhiTranslate="auxiliumApp.rapport.suiviAnnulation.charge"
+                                    for="field_partner">Charge</label>
+                                <select class="form-control form-control-sm" name="charge"
+                                    [(ngModel)]="search.chargeId">
+                                    <option [ngValue]="list.id" *ngFor="let list of listCharge;">{{list?.nomCharge}}
+                                        {{list?.prenomCharge}}</option>
+
+                                </select>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+
+
+                            <div class="col-sm-3">
+                                <label jhiTranslate="auxiliumApp.rapport.suiviAnnulation.reparateur"
+                                    for="field_partner">reparateur</label>
+                                <select class="form-control form-control-sm" name="zone"
+                                    [(ngModel)]="search.reparateurId">
+                                    <option *ngFor="let reparateur of reparators" [value]="reparateur.id">
+                                        {{reparateur.raisonSociale}}</option>
+
+                                </select>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <label jhiTranslate="auxiliumApp.rapport.suiviAnnulation.expert"
+                                    for="field_partner">Expert</label>
+                                <select class="form-control form-control-sm" name="agent" [(ngModel)]="search.expertId">
+                                    <option *ngFor="let expert of listExperts" [value]="expert.id">
+                                        {{expert.raisonSociale}}</option>
+
+                                </select>
+                            </div>
+                            <div class="col-sm-3">
+                                <label jhiTranslate="auxiliumApp.rapport.suiviAnnulation.zoneAgent"
+                                    for="field_partner">Zone </label>
+                                <select class="form-control form-control-sm" name="statut" [(ngModel)]="search.zoneId">
+                                    <option [ngValue]="gov.id" *ngFor="let gov of governorate;">{{gov?.label}}</option>
+
+                                </select>
+                            </div>
+                            <div class="col-lg-3">
+                                <label jhiTranslate="auxiliumApp.rapport.suiviAnnulation.zoneReparateur"
+                                    for="field_partner">Zone affectation réparateur</label>
+                                <select class="form-control form-control-sm" name="statut"
+                                    [(ngModel)]="search.idZoneReparateur">
+                                    <option [ngValue]="gov.id" *ngFor="let gov of governorate;">{{gov?.label}}</option>
+
+                                </select>
+
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <label jhiTranslate="auxiliumApp.rapport.suiviAnnulation.etatDossier"
+                                    for="field_partner"></label>
+                                <select class="form-control form-control-sm" name="statut"
+                                    [(ngModel)]="search.idStepPec">
+                                    <option [ngValue]="step.id" *ngFor="let step of stepPec;">{{step?.label}}</option>
+
+
+                            </div>
+                            <div class="col-lg-3">
+
+                                <div class="form-group">
+                                    <label class="form-control-label"
+                                        jhiTranslate="auxiliumApp.sinisterPrestation.report.startDate"
+                                        for="field_startDate">startDate</label>
+                                    <div class="input-group">
+                                        <input id="field_startDate" type="text" class="form-control form-control-sm"
+                                            name="startDate" ngbDatepicker #startDate="ngbDatepicker"
+                                            [(ngModel)]="search.startDate" [maxDate]="search.endDate" />
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-sm btn-default"
+                                                (click)="startDate.toggle()"><i
+                                                    class="fa fa-sm fa-calendar"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="form-group">
+                                    <label class="form-control-label"
+                                        jhiTranslate="auxiliumApp.sinisterPrestation.report.endDate"
+                                        for="field_endDate">endDate</label>
+                                    <div class="input-group">
+                                        <input id="field_endDate" type="text" class="form-control form-control-sm"
+                                            name="endDate" ngbDatepicker #endDate="ngbDatepicker"
+                                            [(ngModel)]="search.endDate" [minDate]="search.startDate" />
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-sm btn-default"
+                                                (click)="endDate.toggle()"><i class="fa fa-sm fa-calendar"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="form-group">
+                                    <label class="form-control-label" style="width: 100%">&nbsp;</label>
+                                    <button type="button" (click)="filter()"
+                                        class="btn btn-sm btn-primary margin-right-5">
+                                        <span class="fa fa-search"></span>&nbsp; <span
+                                            jhiTranslate="auxiliumApp.sinisterPrestation.report.doFilter">Filtrer</span>
+                                    </button>&nbsp;
+                                    <button type="button" (click)="clear()"
+                                        class="btn btn-sm btn-primary margin-right-5">
+                                        <span class="fa fa-minus"></span>&nbsp; <span>Ré-initialiser</span>
+                                    </button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+
+                <div class="card">
+                    <div class="card-header d-flex align-items-center no-padding">
+                        <div class="notice notice-info">
+                            <span class="fa fa-area-chart" style="color: #45ABCD"></span>&nbsp;&nbsp;
+                            <strong jhiTranslate="auxiliumApp.sinisterPrestation.report.services">services</strong>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+                                class="table table-sm table-hover table-bordered">
+                                <thead style="color:white;background-color:#11859b">
+                                    <tr>
+                                        <th><span
+                                                jhiTranslate="auxiliumApp.rapport.suiviAnnulation.referenceGa">gaReference</span>
+                                        </th>
+                                        <th><span
+                                                jhiTranslate="auxiliumApp.sinisterPec.incidentDate">dateIncident</span>
+                                        </th>
+
+                                        <th><span
+                                            jhiTranslate="auxiliumApp.rapport.suiviDossier.referenceCompagnie">Ref compangy</span>
+                                    </th>
+                                        <th><span
+                                                jhiTranslate="auxiliumApp.rapport.suiviAnnulation.compagnie">registrationNumber</span>
+                                        </th>
+                                        <th><span
+                                                jhiTranslate="auxiliumApp.rapport.suiviAnnulation.compagnieAdverse">insured</span>
+                                        </th>
+                                        <th><span
+                                                jhiTranslate="auxiliumApp.rapport.suiviAnnulation.agent">partner</span>
+                                        </th>
+                                        <th><span
+                                                jhiTranslate="auxiliumApp.rapport.suiviAnnulation.zoneAgent">gaReference</span>
+                                        </th>
+                                        <th><span
+                                                jhiTranslate="auxiliumApp.rapport.suiviAnnulation.mode-de-gestion">registrationNumber</span>
+                                        </th>
+                                        <th><span
+                                                jhiTranslate="auxiliumApp.rapport.suiviAnnulation.assure">insured</span>
+                                        </th>
+                                        <th><span
+                                                jhiTranslate="auxiliumApp.rapport.suiviAnnulation.immatriculation">insured</span>
+                                        </th>
+                                        <th><span
+                                                jhiTranslate="auxiliumApp.rapport.suiviAnnulation.marque">insured</span>
+                                        </th>
+                                        <th><span
+                                                jhiTranslate="auxiliumApp.rapport.suiviAnnulation.reparateur">insured</span>
+                                        </th>
+                                        <th><span
+                                                jhiTranslate="auxiliumApp.rapport.suiviAnnulation.charge">insured</span>
+                                        </th>
+                                        <th><span
+                                                jhiTranslate="auxiliumApp.rapport.suiviAnnulation.expert">insured</span>
+                                        </th>
+                                        <th><span
+                                                jhiTranslate="auxiliumApp.rapport.suiviAnnulation.zoneReparateur">insured</span>
+                                        </th>
+                                        <th><span
+                                                jhiTranslate="auxiliumApp.rapport.suiviAnnulation.dateOuvert">insured</span>
+                                        </th>
+                                        <th><span
+                                                jhiTranslate="auxiliumApp.rapport.suiviAnnulation.dateAnnulation">insured</span>
+                                        </th>
+                                        <th><span
+                                                jhiTranslate="auxiliumApp.rapport.suiviAnnulation.motif">insured</span>
+                                        </th>
+                                        <th><span
+                                                jhiTranslate="auxiliumApp.rapport.suiviAnnulation.montantDevis">insured</span>
+                                        </th>
+                                        <th><span
+                                                jhiTranslate="auxiliumApp.rapport.suiviAnnulation.type_participation">insured</span>
+                                        </th>
+                                        <th><span
+                                                jhiTranslate="auxiliumApp.rapport.suiviAnnulation.montantParticipation">insured</span>
+                                        </th>
+                                        <th><span
+                                            jhiTranslate="auxiliumApp.sinisterPec.annulerRefuser">Annuler/Refuser</span>
+                                    </th>
+
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let s of suiviAnnulation">
+                                        <td>{{s.referenceGa}}</td>
+                                        <td>{{s.dateIncident | date:'dd/MM/yyyy'}}</td>
+                                        <td>{{s.companyReference}}</td>
+                                        <td>{{s.compagnie}}</td>
+                                        <td>{{s.compagnieAdv}}</td>
+                                        <td>{{s.agence}}</td>
+                                        <td>{{s.zone}}</td>
+                                        <td>{{s.modeGestion}}</td>
+                                        <td>{{s.assure}}</td>
+                                        <td>{{s.immatriculationVehicule}}</td>
+                                        <td>{{s.marque}}</td>
+                                        <td>{{s.reparateur}}</td>
+                                        <td>{{s.nomCharge}} {{s.prenomCharge}}</td>
+                                        <td>{{s.expert}}</td>
+                                        <td>{{s.zoneReparateur}}</td>
+                                        <td>{{s.ouvertureDate}}</td>
+                                        <td>{{s.annulationDate}}</td>
+                                        <td>{{s.motifAnnulation}}</td>
+                                        <td>{{s.montantDevis}}</td>
+                                        <td>{{s.participationType}}</td>
+                                        <td>{{s.montantParticipation}}</td>
+                                        <td>{{s.decision}}</td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

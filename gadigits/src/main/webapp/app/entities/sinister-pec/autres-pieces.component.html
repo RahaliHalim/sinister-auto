@@ -1,0 +1,218 @@
+<div class="breadcrumb-holder">
+    <div class="container-fluid">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="/"><span class="fa fa-home"></span>&nbsp;&nbsp;<span
+                        jhiTranslate="global.menu.home">Home</span></a></li>
+            <li class="breadcrumb-item"><a routerLink="/autres-pieces-jointes"><span jhiTranslate="auxiliumApp.sinisterPec.autresPiecesJointes">autres-pieces-jointes</span></a></li>
+        </ul>
+    </div>
+</div>
+<section class="forms">
+    <div class="container-fluid">
+        <header style="padding-top: 1rem; padding-bottom: 1rem;">
+            <h1 class="h3 display">
+                <jhi-alert-error></jhi-alert-error>
+                <jhi-alert></jhi-alert>
+            </h1>
+        </header>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header d-flex align-items-center no-padding">
+                        <div class="notice notice-info">
+                            <strong jhiTranslate="auxiliumApp.sinisterPec.autresPiecesJointes"> autres-pieces-jointes </strong>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <form name="editForm" #editForm="ngForm">
+                            <div class="row top-buffer">
+                                <div class="col-sm-4">
+                                    <label class="form-control-label" jhiTranslate="auxiliumApp.sinisterPec.dateArrive"
+                                        for="field_dateArrive">Date Arrive</label>
+                                    <div class="input-group">
+                                        <input id="field_dateArrive" class="form-control form-control-sm" name="dateArrive"
+                                            [(ngModel)]="pieceAttachment.creationDateP" disabled />
+
+                                    </div>
+                                </div>
+                                <div class="col-sm-2"></div>
+                                <div class="col-sm-4">
+                                    <label><strong>Type pièce</strong></label>
+                                    <select class="form-control form-control-sm" id="typeId1" name="type" [(ngModel)]="labelPiece1"
+                                        required>
+                                        <option [ngValue]="typeOption.libelle" *ngFor="let typeOption of refTypePiecesList">
+                                            {{typeOption.libelle}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row top-buffer">
+
+
+                                <div class="col-sm-1">
+                                    <br>
+                                    <label jhiTranslate="auxiliumApp.sinisterPec.piece" for="attachmentPiece1">piece</label>
+                                </div>
+                                <div class="col-sm-3">
+                                    <br>
+                                    <div class="form-text text-danger clearfix">
+                                        <input type="text" class="form-control" name="attachmentPiece1" id="attachmentPiece1"
+                                            [(ngModel)]="pieceAttachment1.label" hidden />
+                                        <input id="field_nameFCart1" type="file" class="form-control form-control-sm"
+                                            name="nameFCons" (change)="onPieceFileChange1($event)" [(ngModel)]="pieceAttachment1.label"
+                                            accept=".jpg,.jpeg,.png" required />
+                                    </div>
+                                </div>
+                                <div class="col-sm-1">
+                                    <br>
+                                    <span class="input-group-btn" *ngIf="piecePreview1">
+                                        <button type="button" class="btn btn-sm btn-default" (click)="downloadPieceFile1()"><i
+                                                class="fa fa-sm fa-download"></i></button>
+                                    </span>
+                                </div>
+
+                                
+                                <!--<div class="col-sm-4">
+                                    <label class="form-control-label" jhiTranslate="auxiliumApp.sinisterPec.originale"></label>
+                                    <br />
+                                    <label class="btn btn-sm btn-primary" for="Originale1">
+                                        <input type="radio" name="Originale1" id="Originale1" autocomplete="off"
+                                            [value]="true" [(ngModel)]="pieceAttachment1.original"> Oui
+                                    </label> &nbsp;
+                                    <label class="btn btn-sm btn-primary" for="Originale1">
+                                        <input type="radio" name="Originale1" id="Originale1" autocomplete="off"
+                                            [value]="false" [(ngModel)]="pieceAttachment1.original">
+                                        Non
+                                    </label>
+                                </div>-->
+
+
+                            </div>
+                            <div class="row top-buffer">
+                                <div class="col-sm-4">
+                                    <label class="form-control-label"><strong>Description</strong></label>
+                                    <textarea type="text" class="form-control form-control-sm" [(ngModel)]="pieceAttachment1.note"
+                                        name="refBaremedescription" id="refBaremedescription" cols="33"></textarea>
+                                </div>
+                                <div class="col-sm-2"></div>
+                                <div class="col-sm-4"><br />
+                                    <button (click)="ajoutPiece1()" [disabled]=" editForm.invalid">
+                                        Autre pièce
+                                    </button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--piece1-->
+
+
+        <!--table-->
+        <div class="row" *ngIf="piecesAttachments && piecesAttachments.length > 0">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header d-flex align-items-center no-padding">
+                        <div class="notice notice-info">
+                            <strong jhiTranslate="auxiliumApp.sinisterPec.pieces"> Pieces </strong>
+                        </div>
+                    </div>
+                    <div class="row">
+                    <div class="card-body">
+                            <div class="col-lg-12">
+                        <div class="table-responsive">
+                            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-sm table-hover table-bordered" style="width: 100%">
+                                <thead style="color:white;background-color:#11859b">
+                                    <tr>
+                                        <th><span jhiTranslate="auxiliumApp.sinisterPec.dateArrive">date Arrive</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.sinisterPec.typePiece">type Piece</span></th>
+                                        <!--<th><span jhiTranslate="auxiliumApp.sinisterPec.originale">originale</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.sinisterPec.description">description</span></th>-->
+                                        <th><!--<span jhiTranslate="auxiliumApp.sinisterPec.piece">lien</span>--></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let pieceAttch of piecesAttachments ;">
+                                        <td>{{pieceAttch.creationDateP}}</td>
+                                        <td>{{pieceAttch.label}}</td>
+                                        <!--<td>{{pieceAttch.originalFr}}</td>
+                                        <td>{{pieceAttch.note}}</td>-->
+                                        <td class="text-right">
+                                            <div class="btn-group flex-btn-group-container">
+                                                <button type="button" class="btn btn-sm btn-default" (click)="downloadPieceFile(pieceAttch.pieceFile)"><i
+                                                        class="fa fa-sm fa-download"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        <!--table-->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header d-flex align-items-center no-padding">
+                        <div class="notice notice-info">
+                            <strong jhiTranslate="auxiliumApp.sinisterPec.prestations"> Prestations </strong>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-sm table-hover table-bordered" style="width: 100%;">
+                                <thead style="color:white;background-color:#11859b">
+                                    <tr>
+                                        <th><span jhiTranslate="auxiliumApp.sinisterPec.reference">Reference</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.sinisterPec.companyReference">compagnyReference</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.sinisterPec.companyName">Company Name</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.sinisterPec.agentName">Agent Name</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.sinisterPec.contractNumber">Contract Number</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.sinisterPec.insuredImmatriculation">Insured
+                                                Immatriculation </span></th>
+                                        <th><span jhiTranslate="auxiliumApp.sinisterPec.tiersImmatriculation">Tiers
+                                                Immatriculation</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.sinisterPec.modeGestion">Mode de gestion</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.sinisterPec.incidentDate">Incident Date</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.sinisterPec.creationDate">Creation Date</span></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let sinisterPec of sinisterPecs ;  let i = index" (click)="setClickedRow(i, sinisterPec.id)"
+                                        [class.active]="i == selectedRow">
+                                        <td>{{sinisterPec.gaReference}}</td>
+                                        <td>{{sinisterPec.companyReference}}</td>
+                                        <td>{{sinisterPec.companyName}}</td>
+                                        <td>{{sinisterPec.agencyName}}</td>
+                                        <td>{{sinisterPec.contractNumber}}</td>
+                                        <td>{{sinisterPec.immatriculation}}</td>
+                                        <td>{{sinisterPec.immatriculationTier}}</td>
+                                        <td>{{sinisterPec.modeLabel}}</td>
+                                        <td>{{sinisterPec.incidentDate | date:'dd/MM/yyyy'}}</td>
+                                        <td width="13%">{{sinisterPec.declarationDate | date:'dd/MM/yyyy HH:mm:ss'}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-11"></div>
+            <div class="col-sm-1">
+                <button type="submit" class="btn btn-sm btn-primary" (click)="save()" [disabled]=" piecesAttachments.length == 0 || !activeBtSaveImp">
+                    <span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+
+        </div>
+    </div>
+</section>

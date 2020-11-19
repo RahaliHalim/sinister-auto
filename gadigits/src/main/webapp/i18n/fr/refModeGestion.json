@@ -1,0 +1,24 @@
+{
+    "auxiliumApp": {
+        "refModeGestion" : {
+            "home": {
+                "title": "Mode de gestion",
+                "createLabel": "Créer un nouveau mode de gestion",
+                "createOrEditLabel": "Créer ou modifier un mode de gestion",
+                "search": "Recherche pour mode gestion"
+            },
+            "created": "Un nouveau mode de gestion a été créé avec l'identifiant {{ param }}",
+            "updated": "Le mode de gestion avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le mode de gestion avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer le mode de gestion {{ id }} ?"
+            },
+            "detail": {
+                "title": "Mode de gestion"
+            },
+            "libelle": "Libellé",
+            "description": "Description",
+            "garantie": "Garantie"
+        }
+    }
+}

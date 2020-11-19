@@ -1,0 +1,27 @@
+{
+    "auxiliumApp": {
+        "upload" : {
+            "home": {
+                "title": "Référentiel",
+                "createLabel": "Gestions référentiels",
+                "createOrEditLabel": "Créer un nouveau référentiel",
+                "search": "Recherche pour upload"
+            },
+            "created": "Un nouveau upload a été créé avec l'identifiant {{ param }}",
+            "updated": "Le upload avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le upload avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Êtes-vous sûrs de vouloir supprimer le upload {{ id }} ?"
+            },
+            "detail": {
+                "title": "upload"
+            },
+            "referentiel" : "Référentiel",
+            "document" : "Fichier à importer",
+            "date": "Date création",
+            "user": "Utilisateur"
+        }
+    }
+}
+
+    

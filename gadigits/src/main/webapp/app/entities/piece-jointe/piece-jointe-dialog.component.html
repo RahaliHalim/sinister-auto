@@ -1,0 +1,89 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myPieceJointeLabel" jhiTranslate="auxiliumApp.pieceJointe.home.createOrEditLabel">Create or edit a Piece Jointe</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!pieceJointe.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="pieceJointe.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="auxiliumApp.pieceJointe.libelle" for="field_libelle">Libelle</label>
+            <input type="text" class="form-control" name="libelle" id="field_libelle"
+                [(ngModel)]="pieceJointe.libelle" required maxlength="256" />
+            <div [hidden]="!(editForm.controls.libelle?.dirty && editForm.controls.libelle?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.libelle?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.libelle?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 256 }">
+                   This field cannot be longer than 256 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="auxiliumApp.pieceJointe.chemin" for="field_chemin">Chemin</label>
+            <input type="text" class="form-control" name="chemin" id="field_chemin"
+                [(ngModel)]="pieceJointe.chemin" required maxlength="256" />
+            <div [hidden]="!(editForm.controls.chemin?.dirty && editForm.controls.chemin?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.chemin?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.chemin?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 256 }">
+                   This field cannot be longer than 256 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="auxiliumApp.pieceJointe.isOriginale" for="field_isOriginale">Is Originale</label>
+            <input type="checkbox" class="form-control" name="isOriginale" id="field_isOriginale"
+                [(ngModel)]="pieceJointe.isOriginale"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="auxiliumApp.pieceJointe.dateImport" for="field_dateImport">Date Import</label>
+            <div class="input-group">
+                <input id="field_dateImport" type="text" class="form-control" name="dateImport" ngbDatepicker  #dateImportDp="ngbDatepicker" [(ngModel)]="pieceJointe.dateImport"
+                required/>
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" (click)="dateImportDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+            <div [hidden]="!(editForm.controls.dateImport?.dirty && editForm.controls.dateImport?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.dateImport?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label jhiTranslate="auxiliumApp.pieceJointe.type" for="field_type">Type</label>
+            <select class="form-control" id="field_type" name="type" [(ngModel)]="pieceJointe.typeId"  required>
+                <option [ngValue]="refTypePjOption.id" *ngFor="let refTypePjOption of reftypepjs; trackBy: trackRefTypePjById">{{refTypePjOption.libelle}}</option>
+            </select>
+        </div>
+        <div [hidden]="!(editForm.controls.type?.dirty && editForm.controls.type?.invalid)">
+            <small class="form-text text-danger"
+                [hidden]="!editForm.controls.type?.errors?.required" jhiTranslate="entity.validation.required">
+                This field is required.
+            </small>
+        </div>
+        
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="bonAffectation" language="groovy" pageWidth="612" pageHeight="792" whenNoDataType="NoPages" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="cc977343-2ee7-4e4e-ad3b-d343c8254f6b">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="logoGacPath" class="java.lang.String"/>
+	<parameter name="assureName" class="java.lang.String"/>
+	<parameter name="assureGsm" class="java.lang.String"/>
+	<parameter name="assureAdr" class="java.lang.String"/>
+	<parameter name="immatrVehicule" class="java.lang.String"/>
+	<parameter name="marqueVehicule" class="java.lang.String"/>
+	<parameter name="chassisVehicule" class="java.lang.String"/>
+	<parameter name="dateCirculation" class="java.lang.String"/>
+	<parameter name="raisonSociale" class="java.lang.String"/>
+	<parameter name="contact" class="java.lang.String"/>
+	<parameter name="adresseRep" class="java.lang.String"/>
+	<parameter name="gsmRep" class="java.lang.String"/>
+	<parameter name="pointChoc" class="java.lang.String"/>
+	<parameter name="commentaire" class="java.lang.String"/>
+	<parameter name="assuranceName" class="java.lang.String"/>
+	<parameter name="modeGestion" class="java.lang.String"/>
+	<parameter name="natureGarentie" class="java.lang.String"/>
+	<parameter name="capitalAssure" class="java.lang.String"/>
+	<parameter name="franchisse" class="java.lang.String"/>
+	<parameter name="garage" class="java.lang.String"/>
+	<parameter name="adrgarage" class="java.lang.String"/>
+	<parameter name="tel" class="java.lang.String"/>
+	<parameter name="fax" class="java.lang.String"/>
+	<parameter name="gsm" class="java.lang.String"/>
+	<parameter name="email" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<variable name="field2_1" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="739" splitType="Stretch">
+			<staticText>
+				<reportElement x="106" y="92" width="351" height="26" uuid="f1092c32-293a-4313-a126-5ff121cc3251"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[ORDRE DE MISSION D'EXPERTISE AUTOMOBILE]]></text>
+			</staticText>
+			<image>
+				<reportElement x="207" y="10" width="192" height="77" uuid="13706020-8b82-4cb8-bf2d-75aa11ebefef"/>
+				<imageExpression><![CDATA[$P{logoGacPath}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="133" y="118" width="286" height="20" uuid="6375ddd6-bf5e-4157-9b64-b566877c97ac"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ Pièces jointes : constat + Avis technique]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="23" y="624" width="529" height="53" uuid="29e53a4b-eea5-4402-96dc-6d5d8d6e3dcf"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Nous comptons sur votre habituelle collaboration.
+Meilleures salutations 
+                                         Dossiers gérer par :
+ 	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="319" y="679" width="157" height="20" uuid="5a1cf60c-5747-4958-8dd1-058a4c2c21ea"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Tunis, le ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="319" y="701" width="157" height="20" uuid="85ca9d56-06db-4a37-8fd9-358278157718"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[P/ Générale Assistance]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="23" y="696" width="157" height="20" uuid="47cf58fc-6255-4c8d-a012-8f43c6497edd"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Meilleures salutations ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="23" y="719" width="157" height="20" uuid="e6bbb2e1-0e84-41c7-9296-014dafab7d93"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dossier géré par]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="105" y="189" width="350" height="198" uuid="61f8f82c-1971-4fc1-91d2-2a2a39c3bdca"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="122" y="198" width="122" height="20" uuid="3db1feeb-0cbd-4f3d-91e5-c4c8c0422fe8"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[-Nom de l'assuré :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="122" y="220" width="140" height="20" uuid="72b943ac-b500-4540-95f0-c25ac7588116"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[- Adresse de l'assuré :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="122" y="242" width="91" height="20" uuid="4e3e644a-c9a3-4683-8035-31db905ce756"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[- GSM :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="122" y="264" width="139" height="20" uuid="25554758-d48c-437a-8adc-b3db434effc6"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[- Immat du Véhicule :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="122" y="286" width="107" height="20" uuid="744e301f-5036-49bc-87df-69489e52e7d4"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[- Energie :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="122" y="308" width="130" height="20" uuid="d8edf7f6-f1a6-4899-8107-e7807db299af"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[- Date de l'accident :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="122" y="330" width="162" height="20" uuid="75f7f7a2-dc99-4966-8e7f-7fbd48b0c460"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[- 1ère Mise En Circulation :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="122" y="350" width="130" height="20" uuid="c9d86ce5-685e-487a-8d65-8bc23c482457"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[- N° Châssis :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="261" y="198" width="105" height="20" uuid="bd5556be-84b2-4717-94c4-bde9cf59b73f"/>
+				<textFieldExpression><![CDATA[$P{assureName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="267" y="242" width="100" height="20" uuid="fc3c68ad-fee5-4e0d-ae4c-566d395834c7"/>
+				<textFieldExpression><![CDATA[$P{assureGsm}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="266" y="264" width="117" height="20" uuid="51e19046-0f9d-4a58-a2df-0798040bd9ef"/>
+				<textFieldExpression><![CDATA[$P{immatrVehicule}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="287" y="329" width="129" height="20" uuid="6f0dc58d-1e96-46e8-80de-a6d5698a9064"/>
+				<textFieldExpression><![CDATA[$P{dateCirculation}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="167" y="160" width="229" height="20" uuid="6dd5f3af-3312-42c7-bb6f-21de5892b60e"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[COORDONNEES EXPERT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="7" y="412" width="229" height="20" uuid="20b17fe3-f9cf-4aa7-9053-cb0cbb885115"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Information de l'accident]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="307" y="410" width="229" height="20" uuid="d222731d-5b78-4339-a3e8-36baec8f2952"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Information de l'accident]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="438" width="113" height="20" uuid="a13d02e0-faa8-48d4-a3a6-583bda8f0be6"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[-Mode de gestion:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="310" y="440" width="147" height="20" uuid="c1f491e8-03ca-46aa-9181-5e2364e796d6"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[-Nature de la garantie :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="311" y="465" width="147" height="20" uuid="af5a3df7-e65a-4e6e-8a77-90db84853724"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[-Capital Assuré :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="311" y="489" width="147" height="20" uuid="e2d431f2-cdce-43d3-904b-a54559af9d95"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[-Franchise :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="131" y="439" width="100" height="20" uuid="094f31d2-6213-430f-825b-e6c86bd5c38f"/>
+				<textFieldExpression><![CDATA[$P{modeGestion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="462" y="440" width="118" height="20" uuid="c6e3d3c1-fac4-46cc-82eb-6e53a91906c5"/>
+				<textFieldExpression><![CDATA[$P{natureGarentie}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="462" y="465" width="100" height="20" uuid="e4406b67-8d9d-4613-accc-cbd35d201ef7"/>
+				<textFieldExpression><![CDATA[$P{capitalAssure}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="462" y="489" width="100" height="20" uuid="99948898-63ab-40a2-9c9d-76ec367e309c"/>
+				<textFieldExpression><![CDATA[$P{franchisse}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="7" y="516" width="229" height="20" uuid="10a8e464-d8fe-4125-9672-644b8e0eadcf"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Lieu d'expertise du véhicule]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="29" y="540" width="71" height="20" uuid="43c522dd-b372-433a-8b00-4f37899132cc"/>
+				<text><![CDATA[-Garage :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="246" y="542" width="112" height="18" uuid="2b6ceb3a-8e38-4789-b924-92649b7b942d"/>
+				<text><![CDATA[-Adresse du garage :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="570" width="36" height="20" uuid="5d3856ed-e447-47da-a967-0b1771e7c922"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[-Tel:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="141" y="570" width="36" height="20" uuid="24fee1c4-04b8-4e81-a378-4c363736107d"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[-Fax:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="260" y="570" width="40" height="20" uuid="79dcec8f-577a-4e96-84f1-18e4c33d2f5a"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[-GSM:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="366" y="570" width="46" height="20" uuid="957bddf7-bc50-44dc-ab8f-49fe98577138"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[-Email:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="540" width="100" height="20" uuid="ea6a8231-6cf4-4f5d-9c78-c3bc9cca0315"/>
+				<textFieldExpression><![CDATA[$P{garage}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="361" y="543" width="100" height="20" uuid="51c98258-1e66-49db-802c-8aaeb93700ac"/>
+				<textFieldExpression><![CDATA[$P{adrgarage}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="50" y="570" width="87" height="20" uuid="c3d882e4-ca84-4b9c-bd68-44a1827a6d87"/>
+				<textFieldExpression><![CDATA[$P{tel}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="177" y="570" width="82" height="20" uuid="1d125382-479c-4515-a032-37e65238131b"/>
+				<textFieldExpression><![CDATA[$P{fax}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="300" y="570" width="60" height="20" uuid="2230845f-85e3-4d12-b400-143e25d8524e"/>
+				<textFieldExpression><![CDATA[$P{gsm}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="412" y="570" width="158" height="20" uuid="0a2fc467-45dc-4f2f-b4fc-2267c4da2d02"/>
+				<textFieldExpression><![CDATA[$P{email}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="266" y="220" width="100" height="20" uuid="4297150d-20b0-4f72-bbde-9e50c679a95d"/>
+				<textFieldExpression><![CDATA[$P{assureAdr}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="263" y="350" width="119" height="20" uuid="030ac983-9209-4e9d-ac0d-e763cf056989"/>
+				<textFieldExpression><![CDATA[$P{chassisVehicule}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+</jasperReport>

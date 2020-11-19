@@ -1,0 +1,74 @@
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header d-flex align-items-center no-padding">
+                <div class="notice notice-info">
+                    <strong>Attacher bon de sortie</strong>
+                </div>
+            </div>
+
+            <div class="card-body">
+                    <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label for="attachmentSortie">Bon de Sortie</label>
+                    </div> 
+                    <div class="col-sm-5">
+                            <div class="form-text text-danger clearfix">
+                                <input type="text" class="form-control" name="attachmentSortie" id="attachmentSortie"
+                                    [(ngModel)]="pieceJointe.label" hidden  />     
+                                <input id="field_nameFCart" type="file"
+                                class="form-control form-control-sm"
+                                name="nameFCons"
+                                (change)="onBonSortieFileChange($event)"
+                                [(ngModel)]="pieceJointe.label"
+                                accept=".jpg,.jpeg,.png" required  />
+                            </div> 
+                        </div>
+                        <div class="col-sm-3">     
+                                <span class="input-group-btn" *ngIf="BonSortiePreview">
+                                    <button type="button"  class="btn btn-sm btn-default" 
+                                        (click)="downloadBonSortieFile()"><i
+                                            class="fa fa-sm fa-download"></i></label>
+                                </span>    
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label for="attachmentEnquete">Enquête</label>
+                    </div> 
+                    <div class="col-sm-5">
+                            <div class="form-text text-danger clearfix">
+                                <input type="text" class="form-control" name="attachmentEnquete" id="attachmentEnquete"
+                                    [(ngModel)]="enquetePieceJointe.label" hidden  />     
+                                <input id="field_Enquete" type="file"
+                                class="form-control form-control-sm"
+                                name="nameEnquete"
+                                (change)="onEnqueteFileChange($event)"
+                                [(ngModel)]="enquetePieceJointe.label"
+                                accept=".jpg,.jpeg,.png" required  />
+                            </div> 
+                        </div>
+                        <div class="col-sm-3">     
+                                <span class="input-group-btn" *ngIf="enquetePreview">
+                                    <button type="button"  class="btn btn-sm btn-default" 
+                                        (click)="downloadEnqueteFile()"><i
+                                            class="fa fa-sm fa-download"></i></label>
+                                </span>    
+                    </div>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+        <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+    </button>
+    <button type="submit" (click)="save()" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+        <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+    </button>
+</div>

@@ -1,0 +1,60 @@
+{
+    "auxiliumApp": {
+        "assitances": {
+            "home": {
+                "success": "<strong>Le Service assistance a été créé !</strong>",
+                "title": "Service assistance",
+                "createLabel": "Créer",
+                "créationAssistance": "Création d'un nouveau service assistance",
+                "createOrEditLabel": "Assistance",
+                "createOrEditServiceLabel": "Service",
+                "details": "Détails assistance",
+                "detailsAgent": "Demande PEC",
+                "search": "Recherche pour assistance ",
+                "searchImmatriculation": "Immatriculation véhicule",
+                "type": "Type de demande",
+                "edit": "Modification",
+                "prestationsHisto": "Historique des prestations"
+            },
+            "contrat": "Cette immatriculation n'existe pas",
+            "created": "Un nouveau service assistance a été créé",
+            "updated": "Le service assistance a été mis à jour",
+            "deleted": "Le service assistance a été supprimé",
+            "notEligible": "Vous n'êtes pas éligible à ce type de service !",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer le service assistance {{ id }} ?"
+            },
+            "detail": {
+                "title": "Service assistance"
+            },
+            "demand": {
+                "detail": "Détails demande",
+                "home": "Demandes PEC"
+            },
+            "reference": "Référence GA",
+            "dateAccident": "Date de survenance",
+            "nature": "Nature de survenance",
+            "nomcompagnie": "Nom de la compagnie",
+            "NomAgent": "Nom de l'agent d'assurance",
+            "numerocontrat": "Numéro du contrat",
+            "marque": "Marque",
+            "immatriculation": "Immatriculation Assuré",
+            "raisonSociale": "Nom et Prénom-Raison Sociale",
+            "typeService": "Type de Service",
+           "remorqueur": "Remorqueur",
+            "montant": "Montant TTC",
+            "etatPrestation": "État de la prestation",
+            "motifs": "Motifs",
+            "kilometrage": "Kilométrage",
+            "villedestination": "Ville de Destination",
+            "villeincident": "Ville de l'incident"
+
+
+
+        
+
+
+
+        }
+    }
+}

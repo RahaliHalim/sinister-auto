@@ -1,0 +1,101 @@
+<div>
+    <h2>
+        <span jhiTranslate="auxiliumApp.pieceJointe.home.title">Piece Jointes</span>
+        <button class="btn btn-primary float-right jh-create-entity create-piece-jointe" [routerLink]="['/', { outlets: { popup: ['piece-jointe-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down"  jhiTranslate="auxiliumApp.pieceJointe.home.createLabel">
+            Create new Piece Jointe
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'auxiliumApp.pieceJointe.home.search' | translate }}">
+                    <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-addon btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-sm fa-remove"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="pieceJointes">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="libelle"><span jhiTranslate="auxiliumApp.pieceJointe.libelle">Libelle</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="chemin"><span jhiTranslate="auxiliumApp.pieceJointe.chemin">Chemin</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="isOriginale"><span jhiTranslate="auxiliumApp.pieceJointe.isOriginale">Is Originale</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="dateImport"><span jhiTranslate="auxiliumApp.pieceJointe.dateImport">Date Import</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="typeLibelle"><span jhiTranslate="auxiliumApp.pieceJointe.type">Type</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="userId"><span jhiTranslate="auxiliumApp.pieceJointe.user">Utilisateur</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let pieceJointe of pieceJointes ;trackBy: trackId">
+                <td><a [routerLink]="['../piece-jointe', pieceJointe.id ]">{{pieceJointe.id}}</a></td>
+                <td>{{pieceJointe.libelle}}</td>
+                <td>{{pieceJointe.chemin}}</td>
+                <td><div *ngIf="pieceJointe.isOriginale" >
+		                      <button class="btn btn-success btn-sm">
+		                          <span class="fa fa-check"></span>
+		                      </button>
+					</div>              
+					 <div *ngIf="!pieceJointe.isOriginale">
+		                      <button class="btn btn-danger btn-sm">
+		                          <span class="fa fa-times-circle"></span>
+		                      </button>
+					</div></td>
+                <td>{{pieceJointe.dateImport | date:'mediumDate'}}</td>
+                <td>
+                    <div *ngIf="pieceJointe.typeId">
+                        <a [routerLink]="['../ref-type-pj', pieceJointe.typeId  ]" >{{pieceJointe.typeLibelle}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="pieceJointe.userId">
+                        <a >{{pieceJointe.userLogin}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../piece-jointe', pieceJointe.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'piece-jointe/'+ pieceJointe.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'piece-jointe/'+ pieceJointe.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-sm fa-remove"></span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+        <div *ngIf="pieceJointes && pieceJointes.length">
+            <div class="row justify-content-center">
+                <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+            </div>
+            <div class="row justify-content-center">
+                <ngb-pagination [collectionSize]="totalItems" [(page)]="page" (pageChange)="loadPage(page)"></ngb-pagination>
+            </div>
+        </div>
+</div>

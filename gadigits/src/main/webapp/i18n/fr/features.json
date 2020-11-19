@@ -1,0 +1,25 @@
+{
+    "auxiliumApp": {
+        "features" : {
+            "home": {
+                "title": "Fonctionnalités",
+                "liste": "Liste des fonctionnalités"
+            },
+            "created": "Une nouvelle fonctionnalité a été créée avec l'identifiant {{ param }}",
+            "updated": "La fonctionalité avec l'identifiant {{ param }} a été mise à jour",
+            "deleted": "La fonctionalité avec l'identifiant {{ param }} a été supprimée",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer cette fonctionalité  ?"
+            },
+            "detail": {
+                "title": "Fonctionnalité",
+                "libelle":"Libellé",
+                "name":"Nom",
+                "url": "URL",
+                "entiti": "Entité"
+                
+            }
+            
+        }
+    }
+}

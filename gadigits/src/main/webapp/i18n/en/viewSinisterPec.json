@@ -1,0 +1,37 @@
+{
+    "auxiliumApp": {
+        "viewSinisterPec" : {
+            "home": {
+                "title": "View Sinister Pecs",
+                "createLabel": "Create a new View Sinister Pec",
+                "createOrEditLabel": "Create or edit a View Sinister Pec",
+                "search": "Search for View Sinister Pec"
+            },
+            "created": "A new View Sinister Pec is created with identifier {{ param }}",
+            "updated": "A View Sinister Pec is updated with identifier {{ param }}",
+            "deleted": "A View Sinister Pec is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete View Sinister Pec {{ id }}?"
+            },
+            "detail": {
+                "title": "View Sinister Pec"
+            },
+            "gaReference": "Ga Reference",
+            "companyReference": "Company Reference",
+            "companyName": "Company Name",
+            "agencyName": "Agency Name",
+            "contractNumber": "Contract Number",
+            "immatriculation": "Immatriculation",
+            "modeLabel": "Mode Label",
+            "declarationDate": "Declaration Date",
+            "incidentDate": "Incident Date",
+            "decision": "Decision",
+            "step": "Step",
+            "approvPec": "Approv Pec",
+            "expertId": "Expert Id",
+            "reparateurId": "Reparateur Id",
+            "userId": "User Id",
+            "assignedToId": "Assigned To Id"
+        }
+    }
+}

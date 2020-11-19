@@ -1,0 +1,47 @@
+{
+    "auxiliumApp": {
+        "apec": {
+            "home": {
+                "title": "Validation Accord",
+                "createLabel": "Créer un nouveau Accord",
+                "createOrEditLabel": "Créer ou modifier un Accord",
+                "search": "Recherche pour Apec",
+                "signatureAccord": "Signature de l’accord"
+            },
+            "created": "Un nouveau Apec a été créé avec l'identifiant {{ param }}",
+            "updated": "L'Apec avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "L'Apec avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer l'Apec {{ id }} ?"
+            },
+            "detail": {
+                "title": "Accord"
+            },
+            "dateGeneration": "Date de génération",
+            "isComplementaire": "Est-il complémentaire ?",
+            "participationGa": "Engagement Ga",
+            "participationAssure": "Participation assuré",
+            "participationVetuste": "Participation vétusté",
+            "participationRpc": "Participation responsabilité",
+            "depacementPlafond": "Dépassement plafond",
+            "estimationFranchise": "Franchise",
+            "commentaire": "Commentaire",
+            "affectReparateur": "Affectation réparateur",
+            "fraisDossier": "Frais de dossier",
+            "regleProportionnel": "Règles proportionnelles",
+            "droitDeTimbre": "Droit de timbre",
+            "avanceFacture": "Avance sur facture",
+            "participationTva": "Participation TVA",
+            "accord": "Accord",
+            "RattacherAccordCharge ": "Rattacher l’accord de la prise en charge",
+            "observation": "Observation",
+            "decision": "Décision",
+            "approuverApec": "Approuver Accord",
+            "modifierApec": "Générer Accord modifié ",
+            "validerApec": "Validation Accord",
+            "validerParticipationAssure": "Validation participation assuré",
+            "imprimerApec": "Imprimé Accord",
+            "details": "Détails Accord"
+        }
+    }
+}

@@ -1,0 +1,24 @@
+{
+    "auxiliumApp": {
+        "designationFractionnement" : {
+            "home": {
+                "title": "Designation Fractionnements",
+                "createLabel": "Create a new Designation Fractionnement",
+                "createOrEditLabel": "Create or edit a Designation Fractionnement",
+                "search": "Search for Designation Fractionnement"
+            },
+            "created": "A new Designation Fractionnement is created with identifier {{ param }}",
+            "updated": "A Designation Fractionnement is updated with identifier {{ param }}",
+            "deleted": "A Designation Fractionnement is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Designation Fractionnement {{ id }}?"
+            },
+            "detail": {
+                "title": "Designation Fractionnement"
+            },
+            "libelle": "Libelle",
+            "fractionnement": "Fractionnement",
+            "compagnie": "Compagnie"
+        }
+    }
+}

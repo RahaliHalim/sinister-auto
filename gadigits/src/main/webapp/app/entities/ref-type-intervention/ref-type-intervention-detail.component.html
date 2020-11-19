@@ -1,0 +1,31 @@
+
+<div *ngIf="refTypeIntervention">
+    <h2><span jhiTranslate="auxiliumApp.refTypeIntervention.detail.title">Ref Type Intervention</span> {{refTypeIntervention.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="auxiliumApp.refTypeIntervention.libelle">Libelle</span></dt>
+        <dd>
+            <span>{{refTypeIntervention.libelle}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.refTypeIntervention.grille">Grille</span></dt>
+        <dd>
+            <span *ngFor="let grille of refTypeIntervention.grilles; let last = last">
+                <a [routerLink]="['/grille', grille?.id ]">{{grille.id}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'ref-type-intervention/'+ refTypeIntervention.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;&nbsp;&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,27 @@
+{
+    "auxiliumApp": {
+        "refGarantieContractuelle" : {
+            "home": {
+                "title": "Ref Garantie Contractuelles",
+                "createLabel": "Create a new Ref Garantie Contractuelle",
+                "createOrEditLabel": "Create or edit a Ref Garantie Contractuelle",
+                "search": "Search for Ref Garantie Contractuelle"
+            },
+            "created": "A new Ref Garantie Contractuelle is created with identifier {{ param }}",
+            "updated": "A Ref Garantie Contractuelle is updated with identifier {{ param }}",
+            "deleted": "A Ref Garantie Contractuelle is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Ref Garantie Contractuelle {{ id }}?"
+            },
+            "detail": {
+                "title": "Ref Garantie Contractuelle"
+            },
+            "code": "Code",
+            "libelle": "Libelle",
+            "isActive": "Is Active",
+            "refModeGestion": "Ref Mode Gestion",
+            "expert": "Expert",
+            "contrat": "Contrat"
+        }
+    }
+}

@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="bonAffectation" language="groovy" pageWidth="612" pageHeight="792" whenNoDataType="NoPages" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="cc977343-2ee7-4e4e-ad3b-d343c8254f6b">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="logoCampanyPath" class="java.lang.String"/>
+	<parameter name="assurance" class="java.lang.String"/>
+	<parameter name="adrAssurance" class="java.lang.String"/>
+	<parameter name="dateAccident" class="java.lang.String"/>
+	<parameter name="assure" class="java.lang.String"/>
+	<parameter name="tiers" class="java.lang.String"/>
+	<parameter name="nRef" class="java.lang.String"/>
+	<parameter name="vRef" class="java.lang.String"/>
+	<parameter name="survenuLe" class="java.lang.String"/>
+	<parameter name="survenuA" class="java.lang.String"/>
+	<parameter name="vehiculeN" class="java.lang.String"/>
+	<parameter name="tiersImmat" class="java.lang.String"/>
+	<parameter name="appartenantA" class="java.lang.String"/>
+	<parameter name="contratAssuranceN" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<variable name="field2_1" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="752" splitType="Stretch">
+			<image>
+				<reportElement stretchType="ContainerBottom" x="213" y="0" width="141" height="53" uuid="ed30b5c8-07a1-4b23-a38b-ef37da9b9a6d"/>
+				<imageExpression><![CDATA[$P{logoCampanyPath}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="380" y="539" width="157" height="20" uuid="04854300-0e8c-46aa-908e-8ec5c2237e73"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[P/ Générale Assistance]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="60" y="449" width="502" height="20" uuid="53db1a42-b959-4f72-9f3f-4bd19b0170aa"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Veuillez agréer, Messieurs, l'expression de nos salutations distinguées.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="160" width="113" height="20" uuid="32b01c28-5ce1-47ba-804e-136df08f02a8"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Messieurs,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="219" width="476" height="20" uuid="15a292d9-871e-45d5-857d-5a62596d7155"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Nous avons l'honneur de vous rappeler l'accident de la circulation survenu le,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="90" width="51" height="20" uuid="702f5262-d280-4abe-b8e5-5b33f2edba81"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[N/Réf :]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="364" y="100" width="118" height="20" uuid="0188d228-5b4b-42cf-9e03-8929f48e78be"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$P{assurance}]]></textFieldExpression>
+			</textField>
+			<textField pattern="MMMMM dd, yyyy" isBlankWhenNull="true">
+				<reportElement x="423" y="80" width="100" height="20" uuid="21149a73-d70a-48a5-b80e-657876876748"/>
+				<textFieldExpression><![CDATA[" " + new SimpleDateFormat("dd.MM.yyyy").format(new Date())]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="10" y="110" width="51" height="20" uuid="ae97d371-4da2-4eb1-8bda-7a941733218c"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[V/Réf :]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="364" y="120" width="188" height="20" uuid="06e6976c-d39e-4abc-8043-dcbd49a74259"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$P{adrAssurance}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="364" y="80" width="59" height="20" uuid="89b5a521-27f4-4c61-bdb3-6fabdaf6d10d"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Tunis le:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="239" width="16" height="20" uuid="b8f9abfe-0f39-444c-81b2-51fd9ab06ff2"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[à]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="130" y="239" width="150" height="20" uuid="825dd1e6-96aa-4f21-942f-d5f9a4c5514e"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[opposant le véhicule N°:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="390" y="239" width="176" height="20" uuid="437f51b9-7bfe-4596-a8bd-13218cbb6b79"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[appartenant à notre assuré]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="259" width="75" height="20" uuid="5ee32141-7bb0-4889-bc59-9be93f79d3bc"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[et celui N°:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="185" y="259" width="95" height="20" uuid="676a30a5-dbc9-45d5-a9b5-02b0aedff629"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[appartenant à]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="281" width="161" height="20" uuid="21984e1d-7bd9-46cf-bbe4-23e9709f62ec"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[assuré(e) par vos soins.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="328" width="562" height="40" uuid="5b82d6e6-8838-4b95-9ee5-2d2b8b5c82e0"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Pour vous permettre de constituer un dossier et de provoquer la déclaration de votre assuré(e), nous adressons ci-joint une copie du constat amiable signé par les parties.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="384" width="560" height="42" uuid="8e2d3e91-14ea-4c80-844c-f61a5263deef"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Nous vous prions de bien vouloir nous communiquer dans les meilleurs délais les références de votre dossier, que vous auriez constitué.]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="63" y="90" width="118" height="20" uuid="5e0579dd-a844-48ff-a787-88c9cf68ca3c"/>
+				<textFieldExpression><![CDATA[$P{nRef}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="63" y="111" width="118" height="20" uuid="475af3b5-b509-43cb-8cc2-5355af4f8897"/>
+				<textFieldExpression><![CDATA[$P{vRef}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="20" y="239" width="108" height="20" uuid="87e7074a-8885-4934-b9a5-c44c411bb1dd"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{survenuA}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="280" y="239" width="110" height="20" uuid="c6874934-a969-48aa-84e5-743d1f4f4127"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{vehiculeN}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="280" y="259" width="286" height="20" uuid="e002b6d9-8107-47ed-8f14-9a0483dbb77f"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{appartenantA}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="80" y="259" width="105" height="20" uuid="388dfdba-eb2e-40a9-a430-499ef02a1cf7"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tiersImmat}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="480" y="219" width="86" height="20" uuid="301641c9-2bd3-4845-8bfc-3dd4cfc73e31"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{dateAccident}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+</jasperReport>

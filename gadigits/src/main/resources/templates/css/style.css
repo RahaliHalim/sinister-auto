@@ -1,0 +1,88 @@
+
+a {
+  color: #5D6975;
+  text-decoration: underline;
+}
+
+body {
+  position: relative;
+  width: 21cm;  
+  height: 29.7cm; 
+  margin: 0 auto; 
+  color: #001028;
+  background: #FFFFFF; 
+  font-family: Arial, sans-serif; 
+  font-size: 12px; 
+  font-family: Arial;
+}
+
+header {
+  padding: 10px 0;
+  margin-bottom: 30px;
+}
+
+.title1 {
+  border-top: 1px solid #C1CED9;
+  border-bottom: 1px solid  #5D6975;
+  color: #5D6975;
+  font-size: 2.4em;
+  line-height: 1.4em;
+  font-weight: normal;
+  text-align: center;
+  margin: 0 0 20px 0;
+  padding: 5px;
+}
+
+.supplier-title {
+  color: #5D6975;
+  text-align: right;
+  width: 110px;
+  margin-right: 10px;
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+.supplier-info {
+  text-align: left;
+  margin-right: 10px;
+  font-size: 10px;
+  white-space: nowrap;
+}
+.header-company {
+  padding: 2px 2px;
+  color: #5D6975;
+  border-bottom: 1px solid #C1CED9;
+  white-space: nowrap;        
+  font-weight: normal;
+  font-size: 8px;
+
+}
+.header-company1 {
+  padding: 2px 2px;
+  color: #5D6975;
+  border-bottom: 1px solid #C1CED9;
+  white-space: nowrap;        
+  font-weight: normal;
+  font-size: 9px;
+
+}
+
+.table-data {
+  padding: 2px 2px;
+  border-bottom: 1px solid #C1CED9;
+  white-space: nowrap;        
+  font-weight: normal;
+  font-size: 8px;
+
+}
+.table-total {
+  padding: 2px 2px;
+  border-bottom: 1px solid #C1CED9;
+  white-space: nowrap;        
+  font-weight: normal;
+  font-size: 8px;
+
+}
+.tright {
+	text-align: right;
+}

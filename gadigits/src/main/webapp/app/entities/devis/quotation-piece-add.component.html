@@ -1,0 +1,58 @@
+<section class="forms">
+    <div>
+        <!-- Page Header-->
+        <header style="padding-top: 0px; padding-bottom: 0px;">
+            <h1 class="h3 display">
+                <jhi-alert-error></jhi-alert-error>
+                <jhi-alert></jhi-alert>
+            </h1>
+        </header>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header d-flex align-items-center no-padding">
+                        <div class="notice notice-info">
+                            <span class="fa fa-folder-open" style="color: #45ABCD"></span>&nbsp;&nbsp;
+                            <strong jhiTranslate="auxiliumApp.vehiclePiece.home.createLabel">Ajouter une pièce :</strong>
+                            <span class="fa fa-lg fa-close pull-right" style="cursor: pointer"
+                                (click)="activeModal.close()"></span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <form #myform="ngForm" novalidate>
+                            <div class="row" *ngIf="pieceExist">
+                                <div class="col-lg-12">
+                                    <strong style="color: red" jhiTranslate="auxiliumApp.vehiclePiece.refExiste">ref Existe</strong> 
+                                    <strong> : ({{vehiclePieceExt.label}})</strong> 
+                                    <a (click)="useIt()"><strong style="color:#45ABCD" jhiTranslate="auxiliumApp.vehiclePiece.useExistant">use existante</strong></a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label class="form-control-label" jhiTranslate="auxiliumApp.vehiclePiece.code" for="field_code">code</label>
+                                        <input type="text" class="form-control form-control-sm" name="code" id="field_code" [(ngModel)]="vehiclePiece.reference" required />
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="form-control-label" jhiTranslate="auxiliumApp.detailsMo.designation" for="field_label">Label</label>
+                                        <input type="text" class="form-control form-control-sm" name="label" id="field_label" [(ngModel)]="vehiclePiece.label" (blur)="trimLabel();" required />
+                                    </div>
+                                </div>                               
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label style="width: 100%">&nbsp;</label>
+                                        <button type="button" [disabled]=" myform.invalid"  (click)="save()" class="btn btn-sm btn-primary margin-right-5">
+                                            <span class="fa fa-save"></span>&nbsp; <span jhiTranslate="entity.action.save">Save</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

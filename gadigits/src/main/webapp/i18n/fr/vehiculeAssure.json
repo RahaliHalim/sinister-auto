@@ -1,0 +1,35 @@
+{
+    "auxiliumApp": {
+        "vehiculeAssure" : {
+            "home": {
+                "title": "Véhicule",
+                "createLabel": "Créer",
+                "createOrEditLabel": "Créer ou modifier un véhicule",
+                "search": "Recherche pour véhicule"
+            },
+            "created": "Un nouveau véhicule a été créé",
+            "updated": "Le véhicule a été mis à jour",
+            "deleted": "Le véhicule a été supprimé",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer ce véhicule ?"
+            },
+            "detail": {
+                "title": "Véhicule"
+            },
+            "immatriculationVehicule": "Immatriculation",
+            "puissance": "Puissance",
+            "numeroChassis": "Numéro de châssis",
+            "datePCirculation": "Date de la 1ère Mise en circulation",
+            "puissanceFiscale": "Puissance fiscale",
+            "marque": "Marque",
+            "marqueCode": "Code de la marque",
+            "modele": "Modèle",
+            "energie": "Énergie",
+            "clear": "Effacer",
+            "age": "Âge",
+            "placesNumber": "Nombre de places",
+            "plafond": "Plafond",
+            "insured": "Assuré"
+        }
+    }
+}

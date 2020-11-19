@@ -1,0 +1,29 @@
+{
+    "auxiliumApp": {
+        "vehiculeAssure" : {
+            "home": {
+                "title": "Vehicule Assures",
+                "createLabel": "Create a new Vehicule Assure",
+                "createOrEditLabel": "Create or edit a Vehicule Assure",
+                "search": "Search for Vehicule Assure"
+            },
+            "created": "A new Vehicule Assure is created with identifier {{ param }}",
+            "updated": "A Vehicule Assure is updated with identifier {{ param }}",
+            "deleted": "A Vehicule Assure is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Vehicule Assure {{ id }}?"
+            },
+            "detail": {
+                "title": "Vehicule Assure"
+            },
+            "immatriculationVehicule": "Immatriculation Vehicule",
+            "puissance": "Puissance",
+            "numeroChassis": "Numero Chassis",
+            "datePCirculation": "Date P Circulation",
+            "puissanceFiscale": "Puissance Fiscale",
+            "marque": "Marque",
+            "modele": "Modele",
+            "energie": "Energie"
+        }
+    }
+}

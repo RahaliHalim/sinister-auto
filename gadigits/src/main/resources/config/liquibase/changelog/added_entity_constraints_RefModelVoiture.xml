@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity RefModelVoiture.
+    -->
+    <changeSet id="20170912084515-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="marque_id"
+                                 baseTableName="ref_model_voiture"
+                                 constraintName="fk_ref_model_voiture_marque_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ref_marque"/>
+
+        <addForeignKeyConstraint baseColumnNames="ref_model_voitures_id"
+                                 baseTableName="ref_model_voiture_piece"
+                                 constraintName="fk_ref_model_voiture_piece_ref_model_voitures_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ref_model_voiture"/>
+        <addForeignKeyConstraint baseColumnNames="pieces_id"
+                                 baseTableName="ref_model_voiture_piece"
+                                 constraintName="fk_ref_model_voiture_piece_pieces_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="piece"/>
+        
+    </changeSet>
+</databaseChangeLog>

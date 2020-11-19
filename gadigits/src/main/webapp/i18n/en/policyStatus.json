@@ -1,0 +1,24 @@
+{
+    "auxiliumApp": {
+        "policyStatus" : {
+            "home": {
+                "title": "Policy Statuses",
+                "createLabel": "Create a new Policy Status",
+                "createOrEditLabel": "Create or edit a Policy Status",
+                "search": "Search for Policy Status"
+            },
+            "created": "A new Policy Status is created with identifier {{ param }}",
+            "updated": "A Policy Status is updated with identifier {{ param }}",
+            "deleted": "A Policy Status is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Policy Status {{ id }}?"
+            },
+            "detail": {
+                "title": "Policy Status"
+            },
+            "code": "Code",
+            "label": "Label",
+            "active": "Active"
+        }
+    }
+}

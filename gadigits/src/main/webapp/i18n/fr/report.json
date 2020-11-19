@@ -1,0 +1,213 @@
+{"auxiliumApp": {
+    "rapport": {
+      "suiviDossier": {
+        "title": "Suivi du nombre de dossiers agent",
+        "agent": "Agent",
+        "referenceCompagnie": "Référence du sinistre",
+        "zone": "Zone",
+        "compagnie": "Compagnie",
+        "immatriculation": "Immatriculation",
+        "dateOuverture": "Date d'ouverture envoyée",
+        "etat": "État du dossier ",
+        "mode": "Mode de gestion ",
+        "dateBonDeSortie": "Date bon de sortie ",
+        "charge": "Chargé",
+        "zoneAgent": "Zone agent"
+  
+      },
+  
+  
+      "bonification": {
+        "title": "Chiffre d'Affaires CNG",
+        "agent": "Agent",
+        "zone": "Zone",
+        "compagnie": "Compagnie",
+        "dateOuverture": "Date d'ouverture envoyée",
+        "etat": "Etat du dossier ",
+        "mode": "Mode de gestion ",
+        "dateBonDeSortie": "Date bon de sortie",
+        "charge": "Chargé",
+        "zoneAgent": "Zone agent",
+        "service": "Service",
+        "expert": "Expert",
+        "reparateur": "Réparateur",
+        "zone-affectation": "Zone affectation réparateur",
+        "numero-contrat": "Numéro contrat",
+        "pack-souscrit": "Pack souscrit",
+        "reference-ga": "Référence GA par dossier ",
+        "zoneReparateur": "Zone réparateur",
+        "moisBonSortie": "Mois bon de sortie ",
+        "MOD-IP": "Base de calcul ristourne (remise) MOD et IP",
+        "piece": "Base de calcul ristourne (remise) pièce",
+        "part-ga": "Part GA MOD et IP+Pièce",
+        "part-cie": "Part CIE MOD et IP+Pièce",
+        "decision": "Décision"
+
+  
+  
+  
+  
+  
+  
+  
+  
+      },
+  
+      "suiviAnnulation": {
+        "title": "Suivi des annulations et refus",
+        "compagnie": "Compagnie ",
+        "mode-de-gestion": "Mode de gestion ",
+        "motif": "Motif annulation/Refus ",
+        "charge": "Chargé ",
+        "reparateur": "Réparateur ",
+        "expert": "Expert ",
+        "zoneAgent": "Zone agent ",
+        "zoneReparateur": "Zone réparateur",
+        "etatDossier": "Etat dossier",
+        "referenceGa": "Référence GA",
+        "compagnieAdverse": "Compagnie adverse",
+        "agent": "Agent",
+        "assure": "Assuré",
+        "immatriculation": "Immatriculation ",
+        "marque": "Marque",
+        "dateOuvert": "Date d'ouverture",
+        "dateAnnulation": "Date annulation ou Refus ",
+        "montantDevis": "Montant devis ",
+        "type_participation": "Type participation ",
+        "montantParticipation": "Montant participation"
+  
+      },
+      "Delai_moyen": {
+        "title": "Délai moyen immobilisation",
+        "compagnie": "Compagnie ",
+        "type_de_choc": "Mode de gestion ",
+        "Mode_de_gestion": "Mode de gestion ",
+        "charge": "Chargé ",
+        "zone": "Zone",
+        "referenceGa": "Référence GA",
+        "date_bon_de_sortie": "Date bon de sortie ",
+        "date_demande_ouverture": "Date demande ouverture",
+        "nbre_jour": "Nombre de jour",
+        "type_choc": "Type de choc",
+        "vehicleReceiptDate":"Date réception véhicule",
+        "dateAccord":"Date accord"
+      },
+      "performanceRemorqueur": {
+        "title": "Reporting de performance du remorqueur ",
+        "compagnie": "Compagnie ",
+        "remorqueur": "Remorqueur ",
+        "delai_moyen": "Délai moyen ",
+        "zone": "Zone",
+        "referenceGa": "Référence GA",
+        "immatriculation": "Immatriculation ",
+  
+        "type_service": "Type service  ",
+        "usage": "Usage ",
+        "habillage": "Habillage / Oui ou non ",
+        "lieu-sinistre": "Lieu du sinistre ",
+        "cout": "Coût de la prestation "
+  
+      },
+      "coutMoyenSinistre": {
+        "title": "Coût moyen des sinistres",
+        "compagnie": "Compagnie ",
+        "mode_de_gestion": "Mode de gestion ",
+        "type_reparateur": "Type Réparateur ",
+        "reparateur": "Réparateur ",
+        "expert": "Expert ",
+        "charge": "Chargé ",
+        "zoneAgent": "Zone agent ",
+        "zoneReparateur": "Zone réparateur",
+        "marque": "Marque",
+        "intervalle": "Intervalle engagement GA : ",
+        "n_contrat": "N° contrat ",
+        "referenceGa": "Référence GA",
+        "compagnieAdverse": "Compagnie adverse",
+        "agent": "Agent",
+        "assure": "Assuré",
+        "date_demande_envoye": "Date demande envoyée",
+        "date_bon_sortie": "Date bon sortie ",
+        "immatriculation": "Immatriculation ",
+        "age_vehicule": "Age véhicule",
+        "usage": "Usage ",
+        "positionGa": "Position GA ",
+        "cng": "CNG/ Non ",
+        "tranchesinistre": "Tranche sinistre",
+        "type_choc": "Type de choc",
+        "engagement_ga": "Engagement GA ",
+        "participation_assure": "Participation assuré",
+        "mod_ttc": "MOD TTC",
+        "pourcentage_mod": "% MOD ",
+        "avance_sur_facture": "Avance sur facture ",
+        "frais_dossier": "Frais dossier ",
+        "pdr_ttc": "PDR TTC",
+        "pourcentage_pdr": "% PDR TTC",
+        "nature_piece": "Nature pièce",
+        "ip_if": "IP et PF TCC",
+        "pourcentage_ip_if": "% IP / PF",
+        "nbre_heures_reaparation": "Nombre d'heures réparation ",
+        "nbre_heures_remplacement": "Nombre d'heures remplacement",
+        "nbre_heures_peinture": "Nombre d'heures Peinture",
+        "total_facture": "Total facture réparateur TTC"
+  
+      },
+      "coutMoyenSinistres": {
+        "title": "Cout moyen sinistre GA et CA ",
+        "compagnie": "Compagnie ",
+        "mode_de_gestion": "Mode de gestion ",
+        "type_reparateur": "Type réparateur ",
+        "reparateur": "Réparateur ",
+        "reparateurCode": "Code du réparateur ",
+        "expert": "Expert ",
+        "charge": "Chargé ",
+        "zoneAgent": "Zone agent ",
+        "zoneReparateur": "Zone réparateur",
+        "marque": "Marque",
+        "intervalle": "Intervalle engagement GA : ",
+        "de": "De",
+        "a": "à",
+        "n_contrat": "N° contrat ",
+        "referenceGa": "Référence GA",
+        "compagnieAdverse": "Compagnie adverse",
+        "agent": "Agent",
+        "assure": "Assuré",
+        "date_demande_envoye": "Date demande envoyée",
+        "date_bon_sortie": "Date bon sortie ",
+        "immatriculation": "Immatriculation ",
+        "age_vehicule": "Age Véhicule",
+        "usage": "Usage ",
+        "positionGa": "Position GA ",
+        "cng": "CNG/ Non ",
+        "tranchesinistre": "Tranche sinistre",
+        "type_choc": "Type de choc",
+        "engagement_ga": "Engagement GA ",
+        "participation_assure": "Participation Assuré",
+        "mod_ttc": "MOD TTC",
+        "pourcentage_mod": "% MOD ",
+        "avance_sur_facture": "Avance sur facture ",
+        "frais_dossier": "Frais dossier ",
+        "pdr_ttc": "PDR TTC",
+        "pourcentage_pdr": "% PDR TTC",
+        "nature_piece": "Nature pièce",
+        "ip_if": "IP et PF TCC",
+        "pourcentage_ip_if": "% IP / PF",
+        "nbre_heures_reaparation": "Nombre d'heures réparation ",
+        "nbre_heures_remplacement": "Nombre d'heures remplacement",
+        "nbre_heures_peinture": "Nombre d'heures Peinture",
+        "total_facture": "Total facture réparateur TTC",
+        "base_de_calcul_mod": "Base de calcul ristourne (remise) MOD et IP",
+        "base_de_calcul_piece": "Base de calcul ristourne (remise) pièce",
+        "total_ristourne": "Total ristourne ",
+        "frais_fixe": "Frais fixe ",
+        "total": "Total",
+        "remboursement_reparateur": "Solde réparateur"
+  
+      }
+  
+  
+  
+  
+  
+    }
+  }
+  }

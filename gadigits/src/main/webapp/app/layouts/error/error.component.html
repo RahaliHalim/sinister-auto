@@ -1,0 +1,13 @@
+<div>
+    <div class="row" style="text-align: center;">
+        <div class="col-md-12" style="text-align: center;">
+            <i class="fa fa-exclamation-triangle fa-5x" style="color: red"></i>
+        </div>
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div [hidden]="!errorMessage"><div class="alert alert-danger">{{errorMessage}}</div></div>
+            <div [hidden]="!error403" class="alert alert-danger" jhiTranslate="error.403">You are not authorized to access the page.</div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+{
+    "auxiliumApp": {
+        "refTypePj" : {
+            "home": {
+                "title": "Types pièces jointes",
+                "createLabel": "Créer une nouvelle réf. type Pj",
+                "createOrEditLabel": "Créer ou modifier une réf. type Pj",
+                "search": "Recherche pour réf. type Pj"
+            },
+            "created": "Une nouvelle réf. type Pj a été créée avec l'identifiant {{ param }}",
+            "updated": "La réf. type Pj avec l'identifiant {{ param }} a été mise à jour",
+            "deleted": "La réf. type Pj avec l'identifiant {{ param }} a été supprimée",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer la réf. type Pj {{ id }} ?"
+            },
+            "detail": {
+                "title": "Réf. type Pj",
+                "typePj": "Type pièce jointe"
+            },
+            "libelle": "Libellé"
+        }
+    }
+}

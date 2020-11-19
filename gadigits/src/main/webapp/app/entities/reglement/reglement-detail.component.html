@@ -1,0 +1,31 @@
+
+<div *ngIf="reglement">
+    <h2><span jhiTranslate="auxiliumApp.reglement.detail.title">Reglement</span> {{reglement.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="auxiliumApp.reglement.echeanceJours">Echeance Jours</span></dt>
+        <dd>
+            <span>{{reglement.echeanceJours}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.reglement.modeReglement">Mode Reglement</span></dt>
+        <dd>
+            <div *ngIf="reglement.modeReglementId">
+                <a [routerLink]="['/ref-mode-reglement', reglement.modeReglementId]">{{reglement.modeReglementId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'reglement/'+ reglement.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;&nbsp;&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

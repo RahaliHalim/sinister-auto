@@ -1,0 +1,105 @@
+<!-- Breadcrumb-->
+<div class="breadcrumb-holder">
+	<div class="container-fluid">
+		<ul class="breadcrumb">
+			<li class="breadcrumb-item"><a routerLink="/"><span class="fa fa-home"></span>&nbsp;&nbsp;<span	jhiTranslate="global.menu.home">Home</span></a></li>
+            <li class="breadcrumb-item"><a routerLink="/prestation-canceled">
+                <span jhiTranslate="auxiliumApp.sinisterPrestation.home.canceled" *ngIf="status == 2">canceled</span>
+                <span jhiTranslate="auxiliumApp.sinisterPrestation.home.inprogress" *ngIf="status == 1">inprogress</span>
+                <span jhiTranslate="auxiliumApp.sinisterPrestation.home.closed" *ngIf="status == 3">closed</span>
+                <span jhiTranslate="auxiliumApp.sinisterPrestation.home.refused" *ngIf="status == 6">refused</span>
+
+            </a></li>
+		</ul>
+	</div>
+</div>
+<section class="forms">
+	<div class="container-fluid">
+        <!-- Page Header-->
+        <header style="padding-top: 1rem; padding-bottom: 1rem;">
+            <h1 class="h3 display">
+                <jhi-alert-error></jhi-alert-error>
+                <jhi-alert></jhi-alert>
+            </h1>
+        </header>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header d-flex align-items-center no-padding" >
+                        <div class="notice notice-info">
+                            <span class="fa fa-folder-open" style="color: #45ABCD"></span>&nbsp;&nbsp;
+                            <strong jhiTranslate="auxiliumApp.sinisterPrestation.home.canceled" *ngIf="status == 2">canceled</strong>
+                            <strong jhiTranslate="auxiliumApp.sinisterPrestation.home.inprogress" *ngIf="status == 1">inprogress</strong>
+                            <strong jhiTranslate="auxiliumApp.sinisterPrestation.home.closed" *ngIf="status == 3">closed</strong>
+                            <strong jhiTranslate="auxiliumApp.sinisterPrestation.home.refused" *ngIf="status == 6">refused</strong>
+
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table datatable [dtOptions]="dtOptions"  class="table table-sm table-hover table-bordered" style="width: 100%">
+                                <thead style="color:white;background-color:#11859b">
+                                <tr>
+                                    <th><span jhiTranslate="auxiliumApp.sinister.reference">reference</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPrestation.creationDate">creationDate</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPrestation.vehicleRegistration">vehicleRegistration</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPrestation.insured">insured</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPrestation.sinisterLocation">incidentGovernorateLabel</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPrestation.deliveryLocation">deliveryGovernorateLabel</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPrestation.days">days</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPrestation.priceTtc">priceTtc</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPrestation.loueur">loueurLabel</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPrestation.acquisitionDate">acquisitionDate</span></th>
+                                    <th [hidden]="status != 3"><span jhiTranslate="auxiliumApp.sinisterPrestation.returnDate" >returnDate</span></th>
+                                    <th [hidden]="status != 6"><span jhiTranslate="auxiliumApp.sinisterPrestation.motifRefusLabel" >motifRefusLabel</span></th>
+                                    <th [hidden]="status != 2"><span jhiTranslate="auxiliumApp.sinisterPrestation.cancelGrounds" >cancelGrounds</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPec.chargeName">charge</span></th>
+                                    <th class="no-sort"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let sinisterPrestation of sinisterPrestations">
+                                        <td>{{sinisterPrestation.reference}}</td>
+                                        <td>{{sinisterPrestation.creationDate | date:'dd/MM/yyyy HH:mm:ss'}}</td>
+                                        <td>{{sinisterPrestation.registrationNumber}}</td>
+                                        <td>{{sinisterPrestation.fullName}}</td>
+                                        <td>{{sinisterPrestation.incidentGovernorateLabel}}</td>
+                                        <td>{{sinisterPrestation.deliveryGovernorateLabel}}</td>
+                                        <td>{{sinisterPrestation.days}}</td>
+                                        <td>{{sinisterPrestation.priceTtc}}</td>
+                                        <td>{{sinisterPrestation.loueurLabel}}</td>
+                                        <td>{{sinisterPrestation.acquisitionDate | date:'dd/MM/yyyy HH:mm:ss'}}</td>
+                                        <td [hidden]="status != 3">{{sinisterPrestation.returnDate | date:'dd/MM/yyyy HH:mm:ss'}}</td>
+                                        <td [hidden]="status != 6">{{sinisterPrestation.motifRefusLabel}}</td>
+                                        <td [hidden]="status != 2">{{sinisterPrestation.cancelGroundsDescription}}</td>
+                                        <td>{{sinisterPrestation.charge}}</td>
+
+                                    <td class="text-right">
+                                        <div class="btn-group flex-btn-group-container">
+                                            <button *ngIf="sinisterPrestation.isGenerated !== true" [hidden]="status == 2 || status == 6" type="submit" class="btn btn-info btn-sm center-block"
+                                            (click)="printOrdrePrestationVr(sinisterPrestation) ">
+                                            <span class="fa fa-print"></span>
+                                            <!-- <span jhiTranslate="auxiliumApp.sinisterPrestation.generation">generer</span> -->
+                                        </button>
+                                        <button *ngIf="sinisterPrestation.isGenerated" [hidden]="status == 2 || status == 6" type="button" (click)="getOrdrePrestationVr('OrdrePrestationVr', sinisterPrestation, 'OrdrePrestationVr')" class="btn btn-sm btn-default"><i class="fa fa-sm fa-download"></i></button>
+
+                                            <button type="submit" [routerLink]="['/prestation-vr/' + sinisterPrestation.id + '/view']" replaceUrl="true" class="btn btn-info btn-sm">
+                                                <span class="fa fa-sm fa-eye"></span>
+                                            </button>
+                                            <button [hidden]="status != 1" type="submit" [routerLink]="['/prestation-vr/' + sinisterPrestation.id + '/edit']" replaceUrl="true" class="btn btn-primary btn-sm">
+                                                <span class="fa fa-sm fa-pencil"></span>
+                                            </button>
+
+                                            
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+</section>

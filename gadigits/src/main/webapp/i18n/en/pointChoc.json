@@ -1,0 +1,42 @@
+{
+    "auxiliumApp": {
+        "pointChoc" : {
+            "home": {
+                "title": "Points Chocs",
+                "createLabel": "Points Choc",
+                "createOrEditLabel": "Create or edit a Points Chocs",
+                "search": "Search for Points Choc"
+            },
+            "created": "A new Points Chocs is created with identifier {{ param }}",
+            "updated": "A Points Chocs is updated with identifier {{ param }}",
+            "deleted": "A Points Chocs is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Points Chocs {{ id }}?"
+            },
+            "detail": {
+                "title": "Points Chocs"
+            },
+            "faceAv": "Face Av",
+            "tiersAvD": "Tiers Av D",
+            "tiersLatD": "Tiers Lat D",
+            "latD": "Lat D",
+            "tiersArD": "Tiers Ar D",
+            "tiersLatG": "Tiers Lat G",
+            "tiersArG": "Tiers Ar G",
+            "latG": "Lat G",
+            "faceAr": "Face Ar",
+            "diversChoc": "Divers Choc",
+            "pareBrise": "Pare Brise",
+            "triangleAvD": "Triangle Av D",
+            "triangleArD": "Triangle Ar D",
+            "triangleAvG": "Triangle Av G",
+            "triangleArG": "Triangle Ar G",
+            "vitreAvD": "Vitre Av D",
+            "vitreArD": "Vitre Ar D",
+            "vitreAvG": "Vitre Av G",
+            "vitreArG": "Vitre Ar G",
+            "lunetteAr": "Lunette Ar",
+            "tiersAvG": "Tiers Av G"
+        }
+    }
+}

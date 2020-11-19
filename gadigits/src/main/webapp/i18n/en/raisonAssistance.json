@@ -1,0 +1,27 @@
+{
+    "auxiliumApp": {
+        "raisonAssistance" : {
+            "home": {
+                "title": "Raison Assistances",
+                "createLabel": "Create a new Raison Assistance",
+                "createOrEditLabel": "Create or edit a Raison Assistance",
+                "search": "Search for Raison Assistance"
+            },
+            "created": "A new Raison Assistance is created with identifier {{ param }}",
+            "updated": "A Raison Assistance is updated with identifier {{ param }}",
+            "deleted": "A Raison Assistance is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Raison Assistance {{ id }}?"
+            },
+            "detail": {
+                "title": "Raison Assistance"
+            },
+            "code": "Code",
+            "label": "Label",
+            "active": "Active",
+            "creationDate": "Creation Date",
+            "creationUserId": "Creation User Id",
+            "operation": "Operation"
+        }
+    }
+}

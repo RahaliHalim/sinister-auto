@@ -1,0 +1,23 @@
+{
+    "auxiliumApp": {
+        "refTypeServicePack" : {
+            "home": {
+                "title": "Types de services",
+                "createLabel": "Créer un nouveau type de service",
+                "createOrEditLabel": "Créer ou modifier un type de service",
+                "search": "Recherche pour type de service"
+            },
+            "created": "Un nouveau type de service packs a été créé avec l'identifiant {{ param }}",
+            "updated": "Le type de service packs avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le type de service packs avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer le type de service packs {{ id }} ?"
+            },
+            "detail": {
+                "title": "Type service packs"
+            },
+            "nom": "Libellé",
+            "pack": "Tarif"
+        }
+    }
+}

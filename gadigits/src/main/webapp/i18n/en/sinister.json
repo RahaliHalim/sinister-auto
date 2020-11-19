@@ -1,0 +1,53 @@
+{
+    "auxiliumApp": {
+        "sinister": {
+            "home": {
+                "title": "Dossier / Service",
+                "createLabel": "Create",
+                "createOrEditLabel": "Create or edit a Dossier Rmq",
+                "search": "Search for Dossier Rmq",
+                "créationDossier": "Création d'un nouveau dossier",
+                "details": "Détails du contrat",
+                "detailsAgent": "Demande PEC",
+                "searchImmatriculation": "Immatriculation véhicule",
+                "type": "Type demande",
+                "edit": "Edit",
+                "prestationsHisto": "Historique des prestations"
+            },
+            "contrat": "Cette immatriculation n'existe pas",
+            "created": "A new Dossier is created",
+            "updated": "A Dossier is updated",
+            "deleted": "A Dossier is deleted",
+            "notEligible": "Vous n'êtes pas elligible à ce type de service !",
+            "delete": {
+                "question": "Are you sure you want to delete Dossier {{ id }}?"
+            },
+            "detail": {
+                "title": "Dossier"
+            },
+            "demand": {
+                "detail": "Demand details",
+                "home": "Demands PEC"
+            },
+            "reference": "Reference",
+            "isDelete": "Is Delete",
+            "dateCreation": "Date Creation",
+            "dateCloture": "Date Cloture",
+            "dateDerniereMaj": "Date Derniere Maj",
+            "telephone": "Telephone",
+            "nbrPassagers": "Nbr Passagers",
+            "dateAccident": "Occurrence date",
+            "natureIncident": "Nature Event",
+            "immatriculation": "Immatriculation",
+            "prenomConducteur": "Prenom Conducteur",
+            "nomConducteur": "Nom Conducteur",
+            "permisConduc": "Permis Conduc",
+            "prenomTiersConduc": "Prenom Tiers Conduc",
+            "nomTiersConduc": "Nom Tiers Conduc",
+            "permisTiersConduc": "Permis Tiers Conduc",
+            "lieu": "Lieu",
+            "vehicule": "Vehicule",
+            "assure": "Assure"
+        }
+    }
+}

@@ -1,0 +1,32 @@
+{
+    "auxiliumApp": {
+        "tugPricing" : {
+            "home": {
+                "title": "Tarifs tug",
+                "createLabel": "Create a new Tarif Tug",
+                "createOrEditLabel": "Create or edit a Tarif Tug"
+            },
+            "created": "A new Tarif Tug is created with identifier {{ param }}",
+            "updated": "A Tarif Tug is updated with identifier {{ param }}",
+            "deleted": "A Tarif Tug is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Tarif Tug {{ id }}?"
+            },
+            "detail": {
+                "title": "Tarif Tug"
+            },
+          
+            "priceUrbanPlanService": "Urban Plan Service",
+        	"priceKlmShortDistance": "Price KLM Short Distance",
+	        "priceKlmLongDistance": "Price KLM Long Distance",
+	        "priceExtraction": "Extraction",
+	        "priceReparation": "Reparation",
+	        "priceUrbanMobility": "Urban Mobility",
+	        "priceUrbanPlanServicePl": "Urban Plan Service PL",
+	        "priceKlmShortDistancePl": "Price KLM Short Distance PL",
+            "priceKlmLongDistancePl": "Prix KLM Long Distance PL",
+            "dateEffectiveAgreement":"Effective date of the agreement",
+            "dateEndAgreement":"End date of the agreement"
+        }
+    }
+}

@@ -1,0 +1,145 @@
+
+<!-- Breadcrumb-->
+<div class="breadcrumb-holder">
+    <div class="container-fluid">
+        <ul class="breadcrumb">
+           
+            
+            <li class="breadcrumb-item"><a href="#"><span class="fa fa-home"></span>&nbsp;&nbsp;<span jhiTranslate="global.menu.home">Home</span></a></li>
+            <li class="breadcrumb-item"><a routerLink="/feature"><span jhiTranslate="auxiliumApp.feature.home.title">Fonctionalités</span></a></li>
+           
+           
+        </ul>
+    </div>
+</div>
+<br>
+<section class="forms">
+        <div class="container-fluid">
+  <form name="editForm" role="form" novalidate  #editForm="ngForm">
+        <jhi-alert></jhi-alert>
+        <jhi-alert-error></jhi-alert-error>
+    <div class="row">
+        <div class="col-lg-12">
+            
+            <div class="card">                                       
+                <div class=" collapsible-card card-header align-items-center collapsed notice notice-info" >
+                        <strong jhiTranslate="auxiliumApp.feature.detail.title">Fonctionalités</strong>
+                </div>
+                <div id="addFeature" class="card-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <div class="row">
+
+                                      <div class="col-sm-2">
+                                                <label class="form-control-label" jhiTranslate="auxiliumApp.feature.detail.libelle">Libelle</label>
+                                                <input type="text" class="form-control form-control-sm" name="libelle" [(ngModel)]="feature.libelle" maxlength="50">   
+                                        </div>  
+                                        <div class="col-sm-2">
+                                            <label jhiTranslate="auxiliumApp.feature.detail.entiti" for="field_entiti">Nature</label>
+                                            <select class="form-control form-control-sm" id="field_type" name="nature" [(ngModel)]="feature.entityId" required>
+                                                <option [ngValue]="entiti.id" *ngFor="let entiti of entities; ">{{entiti.label}}</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <label class="form-control-label" jhiTranslate="auxiliumApp.feature.detail.url">Url</label>
+                                            <input type="text" class="form-control form-control-sm" name="url" [(ngModel)]="feature.url" maxlength="50">   
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <label class="form-control-label" jhiTranslate="auxiliumApp.feature.detail.name">Name</label>
+                                        <input type="text" class="form-control form-control-sm" name="name" [(ngModel)]="feature.name" maxlength="50">   
+                                    </div>
+                                                                                                                                             
+                                </div>
+                               
+                        </div>
+                    </div>
+                                          
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+  
+   
+    <div class="modal-footer">
+        <button type="submit" [disabled]="editForm.form.invalid" class="btn btn-sm btn-primary" (click)="clear()">
+                <span class="fa fa-floppy-o"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Clear</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid" class="btn btn-sm btn-primary" (click)="saveFeature()">
+            <span class="fa fa-floppy-o"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    
+    </div>
+</form>
+
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="card">
+						<div class="collapsible-card card-header align-items-center collapsed notice notice-info">
+							<h4>
+								<span jhiTranslate="auxiliumApp.feature.home.title">liste des Fonctionalités</span>
+							</h4>
+						</div>
+    <div class="card-body">
+    <div class="table-responsive" >
+        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-sm table-hover table-bordered" style="width: 100%" >
+            <thead style="color:white;background-color:#11859b">
+            <tr >    
+                    <th><span jhiTranslate="auxiliumApp.feature.detail.libelle">Libelle</span></th>
+                    <th><span jhiTranslate="auxiliumApp.feature.detail.name">Name</span></th>
+                    <th><span jhiTranslate="auxiliumApp.feature.detail.url">Url</span></th>
+                    <th><span jhiTranslate="auxiliumApp.feature.detail.entiti">Entiti</span></th>
+                <th class="no-sort"></th>
+            </tr>
+            </thead>
+            <tbody >
+            <tr *ngFor="let feature of features; ">
+                    <td>{{feature.libelle}}</td>
+                    <td>{{feature.name}}</td>
+                    <td>{{feature.url}}</td>
+                    <td>{{feature.name}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                       <button 
+                        (click)="getIdFeature(feature.id)"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'feature/'+ feature.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm" >
+                            <span class="fa fa-sm fa-remove"></span>
+
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    </div>
+   
+</div>
+
+
+
+
+
+
+
+
+</div>
+</div>
+</div>
+</div>
+</section>
+
+
+
+
+

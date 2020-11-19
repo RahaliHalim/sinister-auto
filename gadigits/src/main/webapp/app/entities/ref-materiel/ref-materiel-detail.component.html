@@ -1,0 +1,33 @@
+
+<div *ngIf="refMateriel">
+    <h2><span jhiTranslate="auxiliumApp.refMateriel.detail.title">Ref Materiel</span> {{refMateriel.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="auxiliumApp.refMateriel.libelle">Libelle</span></dt>
+        <dd>
+            <span>{{refMateriel.libelle}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.refMateriel.description">Description</span></dt>
+        <dd>
+            <span>{{refMateriel.description}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.refMateriel.obligatoireCng">Obligatoire Cng</span></dt>
+        <dd>
+            <span>{{refMateriel.obligatoireCng}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'ref-materiel/'+ refMateriel.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;&nbsp;&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

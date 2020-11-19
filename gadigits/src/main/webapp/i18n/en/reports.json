@@ -1,0 +1,21 @@
+{
+    "auxiliumApp": {
+        "reports": {
+            "home": {
+                "assistanceMonitoringCompany": "Suivi Assistance (CIE)",
+                "createLabel": "Créer un nouveau Element Menu",
+                "createOrEditLabel": "Créer ou éditer un Element Menu",
+                "search": "Recherche pour Element Menu"
+            },
+            "created": "Un nouveau Element Menu a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Element Menu avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Element Menu avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Êtes-vous sûrs de vouloir supprimer le Element Menu {{ id }} ?"
+            },
+            "detail": {
+                "title": "Element Menu"
+            }
+        }
+    }
+}

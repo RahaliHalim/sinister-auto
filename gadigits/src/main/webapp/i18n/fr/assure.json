@@ -1,0 +1,31 @@
+{
+    "auxiliumApp": {
+        "assure" : {
+            "home": {
+                "title": "Assurés",
+                "createLabel": "Créer un nouvel assuré",
+                "createOrEditLabel": "Créer ou modifier un assuré",
+                "search": "Recherche pour assuré"
+            },
+            "created": "Un nouvel assuré a été créé avec l'identifiant {{ param }}",
+            "updated": "L'assuré avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "L'assuré avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer l'assuré {{ id }} ?"
+            },
+            "detail": {
+                "title": "Assuré"
+            },
+            "personnePhyisque": "Personne phyisque",
+            "personneMorale": "Personne morale",
+            "dossier": "Dossier",
+            "ville": "Ville",
+            "address": "Adresse",
+            "gouvernorat" : "Gouvernorat",
+            "assure":"Assuré",
+            "tel": "Tél assuré",
+            "rc": "Registre de commerce",
+            "subscriber": "Souscripteur"
+        }
+    }
+}

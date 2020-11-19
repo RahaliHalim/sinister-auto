@@ -1,0 +1,23 @@
+{
+    "auxiliumApp": {
+        "functionality" : {
+            "home": {
+                "title": "Fonctionnalités",
+                "createLabel": "Créer une nouvelle fonctionnalité",
+                "createOrEditLabel": "Créer ou modifier une fonctionnalité",
+                "search": "Recherche pour fonctionnalité"
+            },
+            "created": "Une nouvelle fonctionnalité a été créée avec l'identifiant {{ param }}",
+            "updated": "La fonctionnalité avec l'identifiant {{ param }} a été mise à jour",
+            "deleted": "La fonctionnalité avec l'identifiant {{ param }} a été supprimée",
+            "delete": {
+                "question": "Êtes-vous sûrs de vouloir supprimer la fonctionnalité {{ id }} ?"
+            },
+            "detail": {
+                "title": "Fonctionnalité"
+            },
+            "label": "Label",
+            "code": "Code"
+        }
+    }
+}

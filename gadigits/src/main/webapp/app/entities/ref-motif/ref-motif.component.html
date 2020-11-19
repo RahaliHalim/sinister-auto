@@ -1,0 +1,113 @@
+    <section class="forms">
+            <div class="container-fluid">
+                <!-- Page Header-->
+                <header>
+                    <h1 class="h3 display">
+                        <jhi-alert-error></jhi-alert-error>
+                    </h1>
+                </header>
+                <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-header d-flex align-items-center no-padding" >
+                                    <div class="notice notice-info"><span class="fa fa-calendar" style="color: #45ABCD"></span>&nbsp;&nbsp;<strong jhiTranslate="auxiliumApp.refMotif.home.createOrEditLabel">create edit jour ferie</strong></div>
+                                </div>	
+            
+                                <div class="card-body">
+                                    <form  name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+                                        <div class="row">
+                                            <div class="col-lg-3">
+                                                    <div class="form-group" [hidden]="!refMotif.id">
+                                                            <label for="id" jhiTranslate="global.field.id">ID</label>
+                                                            <input type="text" class="form-control" id="id" name="id"
+                                                                   [(ngModel)]="refMotif.id" readonly />
+                                                        </div>
+                                            </div>
+                                        
+                                        
+                                            <div class="col-lg-3">
+                                                    <label class="form-control-label" jhiTranslate="auxiliumApp.refMotif.libelle" for="field_libelle">Libelle</label>
+                                                    <input type="text" class="form-control" name="libelle" id="field_libelle"
+                                                        [(ngModel)]="refMotif.libelle" required minlength="2" maxlength="100" />
+                                                    <div [hidden]="!(editForm.controls.libelle?.dirty && editForm.controls.libelle?.invalid)">
+                                                        <small class="form-text text-danger"
+                                                           [hidden]="!editForm.controls.libelle?.errors?.required" jhiTranslate="entity.validation.required">
+                                                           This field is required.
+                                                        </small>
+                                                        <small class="form-text text-danger"
+                                                           [hidden]="!editForm.controls.libelle?.errors?.minlength" jhiTranslate="entity.validation.minlength" translateValues="{ min: 2 }">
+                                                           This field is required to be at least 2 characters.
+                                                        </small>
+                                                        <small class="form-text text-danger"
+                                                           [hidden]="!editForm.controls.libelle?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 100 }">
+                                                           This field cannot be longer than 100 characters.
+                                                        </small>
+                                                    </div>
+                                            </div>
+            
+                                            <div class="col-lg-3">
+                                                <div class="form-group">		
+                                                    <label style="width: 100%">&nbsp;</label>
+                                                    <button    *ngIf="!refMotif.id && createMotif == true" type="button" [disabled]="editForm.invalid" (click)="save()" class="btn btn-sm btn-primary margin-right-5">
+                                                        <span class="fa fa-save"></span>&nbsp; <span jhiTranslate="entity.action.save">Save</span>
+                                                    </button>
+                                                    <button *ngIf="refMotif.id && editMotif == true"  type="button" [disabled]="editForm.invalid" (click)="save()" class="btn btn-sm btn-primary margin-right-5">
+                                                        <span jhiTranslate="entity.action.aJour">update</span>
+                                                    </button>						
+                                                    <button type="button" (click)="cancel()" class="btn btn-sm btn-default margin-right-5">
+                                                        <span jhiTranslate="entity.action.cancel">cancel</span>
+                                                    </button>						
+            
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+            
+                                </div>
+                            </div>			
+                        </div>
+                    </div> 
+ <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header  d-flex align-items-center no-padding" >
+                        <div class="notice notice-info">
+                            <span class="fa fa-calendar" style="color: #45ABCD"></span>&nbsp;&nbsp;
+                            <strong jhiTranslate="auxiliumApp.refMotif.home.title">refMotif</strong>
+                        </div>
+                    </div>
+                            <div class="card-body">
+                                <div class="table-responsive" *ngIf="refMotifs">
+                                    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-sm table-hover table-bordered" style="width: 100%">
+                                        <thead style="color:white;background-color:#11859b">
+                                        <tr>
+                                            <th><span jhiTranslate="global.field.id">ID</span></th>
+                                            <th><span jhiTranslate="auxiliumApp.refMotif.libelle">Libelle</span></th>
+                                            <th class="no-sort"></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let refMotif of refMotifs ;trackBy: trackId">
+                                                    <td>{{refMotif.id}}</td>
+                                                    <td>{{refMotif.libelle}}</td>
+                                        
+                                            <td class="text-right">
+                                                <div class="btn-group flex-btn-group-container">
+                                                    <button  type="button" (click)="edit(refMotif)" [hidden]="principal.selectedValue=='ROLE_RESPONSABLE' " class="btn btn-primary btn-sm">
+                                                        <span class="fa fa-sm fa-pencil"></span>
+                                                    </button>
+                                            
+        
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>

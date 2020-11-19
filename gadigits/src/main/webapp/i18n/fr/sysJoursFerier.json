@@ -1,0 +1,25 @@
+{
+    "auxiliumApp": {
+        "refHolidays" : {
+            "home": {
+                "title": "Jours fériés",
+                "createLabel": "Créer un nouveau sys jours fériés",
+                "createOrEditLabel": "Ajouter ou modifier un jour férié"
+            },
+            "created": "Un nouveau jour férié a été créé avec l'identifiant {{ param }}",
+            "updated": "Le jour férié avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le jour férié avec l'identifiant {{ param }} a été supprimé",
+            "duplicate": "Un jour férié avec le même nom ou la même date existe déjà",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer le jour férié {{ id }} ?"
+            },
+            "detail": {
+                "title": "Jour férié",
+                "joursFerier": "Jours fériés"
+            },
+            "libelle": "Libellé",
+
+            "date": "Date"
+        }
+    }
+}

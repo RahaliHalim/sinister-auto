@@ -1,0 +1,28 @@
+{
+    "auxiliumApp": {
+        "conventionAmendment": {
+            "home": {
+                "title": "Conventions",
+                "createLabel": "Créer une nouvelle convention",
+                "createOrEditLabel": "Ajouter un avenant"
+            },
+            "created": "Un nouvel avenant a été créé",
+            "updated": "L'avenant a été mis à jour",
+            "deleted": "L'avenant a été supprimé",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer la convention {{ id }} ?"
+            },
+            "detail": {
+                "title": "Avenant",
+                "joursFerier": "Avenant"
+            },
+            "label": "Libellé",
+            "startDate": "Date d'effet",
+            "endDate": "Date d'échéance",
+            "company": "Compagnie",
+            "pack": "Pack",
+            "serial": "Numéro",
+            "signedAgreement": "Avenant signé"
+        }
+    }
+}

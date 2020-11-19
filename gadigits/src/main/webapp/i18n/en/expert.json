@@ -1,0 +1,35 @@
+{
+    "auxiliumApp": {
+        "expert" : {
+            "home": {
+                "title": "Experts",
+                "createLabel": "Create",
+                "createOrEditLabel": "Create or edit a Expert",
+                "search": "Search for Expert"
+            },
+            "created": "A new Expert is created with identifier {{ param }}",
+            "updated": "A Expert is updated with identifier {{ param }}",
+            "deleted": "A Expert is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Expert {{ id }}?"
+            },
+            "detail": {
+                "title": "Expert"
+            },
+            "nmaxAffiliation": "Nmax Affiliation",
+            "numEnregFtusa": "Num Enreg Ftusa",
+            "diplome": "Diplome",
+            "specialite": "Specialite",
+            "dateAgrement": "Date Agrement",
+            "dateCreation": "Date Creation",
+            "debutConge": "Debut Conge",
+            "dateFinConge": "Date Fin Conge",
+            "isBloque": "Is Bloque",
+            "isEng": "Is Eng",
+            "personneMorale": "Personne Morale",
+            "contact": "Contact",
+            "ville": "Ville",
+            "garantie": "Garantie"
+        }
+    }
+}

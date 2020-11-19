@@ -1,0 +1,18 @@
+{
+    "auxiliumApp": {
+        "ConfirmationAnnulPrestation" : {
+            "home": {
+                "title": "Confirmation annulation prestation"
+            },
+            "detail": {
+                "title": "Confirmation annulation prestation"
+
+            },
+                "label" : "label",
+                " company" : "Compagnie",
+                " declarationDate" : "Date de décalaration",
+                " vehicleNumber" : "Numéro du véhicule"
+              
+        }
+    }
+}

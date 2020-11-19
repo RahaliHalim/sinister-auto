@@ -1,0 +1,105 @@
+
+<div *ngIf="pointChoc">
+    <h2><span jhiTranslate="auxiliumApp.pointChoc.detail.title">Points Chocs</span> {{pointChoc.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="auxiliumApp.pointChoc.faceAv">Face Av</span></dt>
+        <dd>
+            <span>{{pointChoc.faceAv}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.pointChoc.tiersAvD">Tiers Av D</span></dt>
+        <dd>
+            <span>{{pointChoc.tiersAvD}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.pointChoc.tiersLatD">Tiers Lat D</span></dt>
+        <dd>
+            <span>{{pointChoc.tiersLatD}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.pointChoc.latD">Lat D</span></dt>
+        <dd>
+            <span>{{pointChoc.latD}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.pointChoc.tiersArD">Tiers Ar D</span></dt>
+        <dd>
+            <span>{{pointChoc.tiersArD}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.pointChoc.tiersLatG">Tiers Lat G</span></dt>
+        <dd>
+            <span>{{pointChoc.tiersLatG}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.pointChoc.tiersArG">Tiers Ar G</span></dt>
+        <dd>
+            <span>{{pointChoc.tiersArG}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.pointChoc.latG">Lat G</span></dt>
+        <dd>
+            <span>{{pointChoc.latG}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.pointChoc.faceAr">Face Ar</span></dt>
+        <dd>
+            <span>{{pointChoc.faceAr}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.pointChoc.diversChoc">Divers Choc</span></dt>
+        <dd>
+            <span>{{pointChoc.diversChoc}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.pointChoc.pareBrise">Pare Brise</span></dt>
+        <dd>
+            <span>{{pointChoc.pareBrise}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.pointChoc.triangleAvD">Triangle Av D</span></dt>
+        <dd>
+            <span>{{pointChoc.triangleAvD}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.pointChoc.triangleArD">Triangle Ar D</span></dt>
+        <dd>
+            <span>{{pointChoc.triangleArD}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.pointChoc.triangleAvG">Triangle Av G</span></dt>
+        <dd>
+            <span>{{pointChoc.triangleAvG}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.pointChoc.triangleArG">Triangle Ar G</span></dt>
+        <dd>
+            <span>{{pointChoc.triangleArG}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.pointChoc.vitreAvD">Vitre Av D</span></dt>
+        <dd>
+            <span>{{pointChoc.vitreAvD}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.pointChoc.vitreArD">Vitre Ar D</span></dt>
+        <dd>
+            <span>{{pointChoc.vitreArD}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.pointChoc.vitreAvG">Vitre Av G</span></dt>
+        <dd>
+            <span>{{pointChoc.vitreAvG}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.pointChoc.vitreArG">Vitre Ar G</span></dt>
+        <dd>
+            <span>{{pointChoc.vitreArG}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.pointChoc.lunetteAr">Lunette Ar</span></dt>
+        <dd>
+            <span>{{pointChoc.lunetteAr}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.pointChoc.tiersAvG">Tiers Av G</span></dt>
+        <dd>
+            <span>{{pointChoc.tiersAvG}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'point-choc/'+ pointChoc.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;&nbsp;&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

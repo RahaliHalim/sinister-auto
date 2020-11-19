@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity SinisterPec.
+    -->
+    <changeSet id="20190507024733-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="governorate_id"
+                                 baseTableName="app_sinister_pec"
+                                 constraintName="fk_sinister_pec_governorate_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ref_governorate"/>
+
+        <addForeignKeyConstraint baseColumnNames="delegation_id"
+                                 baseTableName="app_sinister_pec"
+                                 constraintName="fk_sinister_pec_delegation_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ref_delegation"/>
+        
+        <addForeignKeyConstraint baseColumnNames="sinister_id"
+                                 baseTableName="app_sinister_pec"
+                                 constraintName="fk_sinister_pec_sinister_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="app_sinister"/>
+
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,1330 @@
+<!-- Breadcrumb-->
+<div class="breadcrumb-holder">
+    <div class="container-fluid">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#"><span class="fa fa-home"></span>&nbsp;&nbsp;<span
+                        jhiTranslate="global.menu.home">Home</span></a></li>
+            <li class="breadcrumb-item"><a routerLink="/dossier"><span
+                        jhiTranslate="auxiliumApp.dossier.home.title">Dossiers</span></a></li>
+            <li class="breadcrumb-item"><span jhiTranslate="auxiliumApp.sinister.home.details">Détails PECS</span></li>
+        </ul>
+    </div>
+</div>
+<section class="forms">
+    <div class="container-fluid">
+        <!-- Page Header-->
+        <header>
+            <h1 class="h3 display">
+                <jhi-alert-error></jhi-alert-error>
+                <jhi-alert></jhi-alert>
+            </h1>
+        </header>
+        <form name="frm" #frm="ngForm">
+            <div class="card">
+                <div class="card-header d-flex align-items-center no-padding">
+                    <div class="notice notice-info">
+                        <strong jhiTranslate="auxiliumApp.sinister.demand.detail">Détails demande</strong>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <!--Immatriculation-->
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label jhiTranslate="auxiliumApp.sinister.immatriculation"
+                                    for="currentSearch">Immatriculation</label>
+                                <div class="input-group">
+                                    <input type="text" [(ngModel)]="sinister.vehicleRegistration"
+                                        (blur)="trimRegistrationNumber();" (ngModelChange)="activeRecherche();"
+                                        class="form-control form-control-sm" name="currentSearch" id="currentSearch"
+                                        [readonly]="sinister.id" required />
+                                    <span class="input-group-btn">
+                                        <button class="input-group-addon btn btn-sm btn-info" [hidden]="sinister.id"
+                                            (click)="selectTapedVehiculeImmatriculation(sinister.vehicleRegistration)"
+                                            [disabled]="consultation || !searchActive">
+
+
+                                            <span class="fa fa-search"></span>
+                                        </button>
+                                        <button class="input-group-addon btn btn-sm btn-info" [hidden]="sinister.id"
+                                            [disabled]="contratAssurance !== null"
+                                            [routerLink]="['../contrat-assuranceP-new', sinister.vehicleRegistration ]"
+                                            [disabled]="consultation">
+                                            <span class="fa fa-plus"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2" *ngIf="showCompanyImmat == true">
+                            <label jhiTranslate="auxiliumApp.tiers.compagnie" for="companyImmatr">companyImmatr</label>
+                            <select required class="form-control form-control-sm" id="companyImmatr"
+                                name="companyImmatr" [(ngModel)]="compagnieName" (ngModelChange)="selectVehicule()">
+                                <option [ngValue]="partner.companyName" *ngFor="let partner of compagniesListes;">
+                                    {{partner.companyName}}</option>
+                            </select>
+                        </div>
+
+                        <!--<div class="col-sm-3">
+                            <div class="form-group">
+                                <label jhiTranslate="auxiliumApp.sinister.immatriculation"
+                                    for="currentSearch">Immatriculation</label>
+                                <div class="input-group">
+                                    <input type="hidden" [(ngModel)]="sinister.vehicleRegistration"
+                                        class="form-control form-control-sm" name="currentSearch" id="currentSearch"
+                                        required />
+                                    <input list="immatriculationlistes" name="currentSearch"
+                                        [(ngModel)]="vehicule.immatriculationVehicule"
+                                        (change)="selectVehicule(vehicule)"
+                                        (ngModelChange)="selectTapedVehiculeImmatriculation(vehicule)"
+                                        [readonly]="sinister.id" class="input input-sm" required />
+                                    <datalist id="immatriculationlistes">
+                                        <select>
+                                            <option *ngFor="let vehic of vehiculesListes;">
+                                                {{vehic.immatriculationVehicule}}/{{vehic.compagnyName}}
+                                            </option>
+                                        </select>
+                                    </datalist>&nbsp;&nbsp;
+                                    <span class="input-group-btn">
+                                        <button class="input-group-addon btn btn-sm btn-info" [hidden]="sinister.id"
+                                            (click)="search(sinister.vehicleRegistration)"
+                                            [disabled]="consultation || !searchActive">
+
+
+                                            <span class="fa fa-search"></span>
+                                        </button>
+                                        <button class="input-group-addon btn btn-sm btn-info" [hidden]="sinister.id"
+                                            [disabled]="contratAssurance !== null"
+                                            [routerLink]="['../contrat-assuranceP-new', sinister.vehicleRegistration ]"
+                                            [disabled]="consultation">
+                                            <span class="fa fa-plus"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>-->
+                        <div class="col-sm-2">
+                            <label class="form-control-label" jhiTranslate="auxiliumApp.dossier.dateAccident"
+                                for="field_dateAccident">Date Accident</label>
+                            <div class="input-group">
+                                <input id="field_dateAccident" type="text" class="form-control form-control-sm"
+                                    name="dateAccident" ngbDatepicker #dateAccidentDp="ngbDatepicker"
+                                    [(ngModel)]="sinister.incidentDate" (ngModelChange)="checkDateSurvenance()"
+                                    [maxDate]="nowNgbDate" required [disabled]="consultation" />
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-sm btn-default"
+                                        (click)="dateAccidentDp.toggle()"
+                                        [disabled]="!isContractLoaded || consultation "><i
+                                            class="fa fa-calendar"></i></button>
+                                </span>
+                            </div>
+                            <div [hidden]="!(frm.dateAccident?.dirty && frm.dateAccident?.invalid)">
+                                <small class="form-text text-danger" [hidden]="!frm.dateAccident?.errors?.required"
+                                    jhiTranslate="entity.validation.required">This field is required.</small>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="form-control-label" jhiTranslate="auxiliumApp.dossier.dateDeclaration"
+                                for="field_dateDeclaration">Date Declaration</label>
+                            <div class="input-group">
+                                <input id="field_dateDeclaration" class="form-control form-control-sm"
+                                    name="dateDeclaration" [(ngModel)]="sinisterPec.declarationDate" required
+                                    disabled />
+
+                            </div>
+                            <div [hidden]="!(frm.dateDeclaration?.dirty && frm.dateDeclaration?.invalid)">
+                                <small class="form-text text-danger" [hidden]="!frm.dateDeclaration?.errors?.required"
+                                    jhiTranslate="entity.validation.required">This field is required.</small>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <label class="form-control-label" jhiTranslate="auxiliumApp.sinisterPec.companyReference"
+                                for="field_reference">Reference</label>
+                            <input type="text" class="form-control form-control-sm" name="field_reference"
+                                id="field_reference" [(ngModel)]="sinisterPec.companyReference"
+                                [disabled]="consultation" />
+                            <div [hidden]="!(frm.field_reference?.dirty && frm.field_reference?.invalid)">
+                                <small class="form-text text-danger" [hidden]="!frm.field_reference?.errors?.required"
+                                    jhiTranslate="entity.validation.required">This field is required.</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" *ngIf="isContractLoaded">
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label jhiTranslate="auxiliumApp.sinisterPrestation.mode" for="field_garanties">
+                                    mode gestion
+                                    (Ex garantie)</label>
+                                <select class="form-control form-control-sm" id="field_garanties" name="garanties"
+                                    [(ngModel)]="sinisterPec.modeId" (ngModelChange)="changeMode(sinisterPec.modeId)"
+                                    [disabled]="consultation" required>
+                                    <option [ngValue]="modeGestionByPack.id"
+                                        *ngFor="let modeGestionByPack of listModeByCnvByUser; trackBy: trackGrantiesId"
+                                        [disabled]="consultation">
+                                        {{modeGestionByPack.libelle}}</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label class="form-control-label" jhiTranslate="auxiliumApp.sinisterPec.vehicleNumber"
+                                    for="field_nbrevehicule">Nbr Vehicules</label>
+                                <input type="number" id="field_nbrevehicule" class="form-control form-control-sm"
+                                    name="nbreVehicule" [(ngModel)]="sinisterPec.vehicleNumber"
+                                    (ngModelChange)="verifTiers()" [pattern]="nbrVehPattern" min="{{minVinNumber}}"
+                                    [readonly]="vehNmbrIda" required [disabled]="consultation" required />
+                                <div
+                                    [hidden]="!(frm.controls.nbreVehicule?.dirty && frm.controls.nbreVehicule?.invalid)">
+                                    <small class="form-text text-danger"
+                                        [hidden]="!frm.controls.nbreVehicule?.errors?.required"
+                                        jhiTranslate="entity.validation.required">This field is required.
+                                    </small>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3" *ngIf="garantieDommageVehicule || garantieTierce">
+                            <label class="form-control-label" jhiTranslate="auxiliumApp.contratAssurance.valeurNeuf"
+                                for="field_valeurNeuf"> Valeur Neuf </label>
+                            <input type="number" class="form-control form-control-sm" name="valeurNeuf"
+                                id="field_valeurNeuf" [(ngModel)]="vehicule.newValueVehicle" min="0"
+                                max="100000000000000000" [disabled]="consultation" required />
+                            <div [hidden]="!(frm.controls.valeurNeuf?.dirty && frm.controls.valeurNeuf?.invalid)">
+                                <small class="form-text text-danger" [hidden]="!frm.controls.valeurNeuf?.errors?.max"
+                                    jhiTranslate="entity.validation.max"
+                                    translateValues="{ max: 100000000000000000 }">This
+                                    field cannot be more than
+                                    100000000000000000. </small>
+                                <small class="form-text text-danger" [hidden]="!frm.controls.valeurNeuf?.errors?.number"
+                                    jhiTranslate="entity.validation.number"> This field should be a number. </small>
+                            </div>
+                        </div>
+
+
+                        <div class="col-sm-3" *ngIf="garantieDommageCollision || garantieTierceCollision">
+                            <label class="form-control-label" jhiTranslate="auxiliumApp.contratAssurance.capitalDc"
+                                for="field_capitalDc">Capital Dc</label>
+                            <input type="number" class="form-control form-control-sm" name="capitalDc"
+                                id="field_capitalDc" [(ngModel)]="vehicule.dcCapital" min="0" max="100000000000000000"
+                                (ngModelChange)="diffCapDcCapR()" [disabled]="consultation" required />
+                            <div [hidden]="!(frm.controls.capitalDc?.dirty && frm.controls.capitalDc?.invalid)">
+                                <small class="form-text text-danger" [hidden]="!frm.controls.capitalDc?.errors?.max"
+                                    jhiTranslate="entity.validation.max"
+                                    translateValues="{ max: 100000000000000000 }">This
+                                    field cannot be more than
+                                    100000000000000000. </small>
+                                <small class="form-text text-danger" [hidden]="!frm.controls.capitalDc?.errors?.number"
+                                    jhiTranslate="entity.validation.number"> This field should be a number. </small>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3" *ngIf="garantieVolIncendiePartiel">
+                            <label class="form-control-label" jhiTranslate="auxiliumApp.contratAssurance.valeurVenale"
+                                for="field_valeurVenale"> Valeur Venale </label>
+                            <input type="number" class="form-control form-control-sm" name="valeurVenale"
+                                id="field_valeurVenale" [(ngModel)]="vehicule.marketValue" min="0"
+                                max="100000000000000000" [disabled]="consultation" required />
+                            <div [hidden]="!(frm.controls.valeurVenale?.dirty && frm.controls.valeurVenale?.invalid)">
+                                <small class="form-text text-danger" [hidden]="!frm.controls.valeurVenale?.errors?.max"
+                                    jhiTranslate="entity.validation.max"
+                                    translateValues="{ max: 100000000000000000 }">This
+                                    field not be more than
+                                    100000000000000. </small>
+                                <small class="form-text text-danger"
+                                    [hidden]="!frm.controls.valeurVenale?.errors?.number"
+                                    jhiTranslate="entity.validation.number"> This field should be a number. </small>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3" *ngIf="garantieBrisGlace">
+                            <label class="form-control-label" jhiTranslate="auxiliumApp.contratAssurance.capitalBG"
+                                for="field_bgCapital"> capital BG </label>
+                            <input type="number" class="form-control form-control-sm" name="bgCapital"
+                                id="field_bgCapital" [(ngModel)]="vehicule.bgCapital" min="0" max="100000000000000000"
+                                [disabled]="consultation" required />
+                            <div [hidden]="!(frm.controls.bgCapital?.dirty && frm.controls.bgCapital?.invalid)">
+                                <small class="form-text text-danger" [hidden]="!frm.controls.bgCapital?.errors?.max"
+                                    jhiTranslate="entity.validation.max"
+                                    translateValues="{ max: 100000000000000000 }">This
+                                    field cannot be more than
+                                    100000000000000000. </small>
+                                <small class="form-text text-danger" [hidden]="!frm.controls.bgCapital?.errors?.number"
+                                    jhiTranslate="entity.validation.number"> This field should be a number. </small>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3"
+                            *ngIf="garantieDommageCollision || garantieBrisGlace || garantieTierceCollision">
+                            <label class="form-control-label" jhiTranslate="auxiliumApp.sinisterPec.capitalRestant"
+                                for="field_capitalRestant"> capital restant </label>
+                            <input type="number" class="form-control form-control-sm" name="capitalRestant"
+                                id="field_capitalRestant" [(ngModel)]="sinisterPec.remainingCapital" min="0"
+                                max="100000000000000000" (ngModelChange)="diffCapDcCapR()" [disabled]="consultation"
+                                required />
+                            <div
+                                [hidden]="!(frm.controls.capitalRestant?.dirty && frm.controls.capitalRestant?.invalid)">
+                                <small class="form-text text-danger"
+                                    [hidden]="!frm.controls.capitalRestant?.errors?.max"
+                                    jhiTranslate="entity.validation.max"
+                                    translateValues="{ max: 100000000000000000 }">This
+                                    field cannot be more than
+                                    100000000000000000. </small>
+                                <small class="form-text text-danger"
+                                    [hidden]="!frm.controls.capitalRestant?.errors?.number"
+                                    jhiTranslate="entity.validation.number"> This field should be a number. </small>
+                            </div>
+                        </div>
+                        <div class="col-sm-3" *ngIf="garantieDommageCollision && contratAssurance.clientId == 3">
+                            <label class="form-control-label" jhiTranslate="auxiliumApp.sinisterPec.valeurAss"
+                                for="field_valeurAss"> valeur Assure </label>
+                            <input type="number" class="form-control form-control-sm" name="valeurAss"
+                                id="field_valeurAss" [(ngModel)]="sinisterPec.valeurAssure" min="0"
+                                max="100000000000000000" [disabled]="consultation" required />
+                            <div [hidden]="!(frm.controls.valeurAss?.dirty && frm.controls.valeurAss?.invalid)">
+                                <small class="form-text text-danger" [hidden]="!frm.controls.valeurAss?.errors?.max"
+                                    jhiTranslate="entity.validation.max"
+                                    translateValues="{ max: 100000000000000000 }">This
+                                    field cannot be more than
+                                    100000000000000000. </small>
+                                <small class="form-text text-danger" [hidden]="!frm.controls.valeurAss?.errors?.number"
+                                    jhiTranslate="entity.validation.number"> This field should be a number. </small>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-1" *ngIf="garantieDommageVehicule || garantieTierce">
+                            <label class="form-control-label" jhiTranslate="auxiliumApp.contratAssurance.franchise"
+                                for="field_newValueVehicleFarnchise">Franchise</label>
+                            <input type="number" [disabled]="consultation" class="form-control form-control-sm"
+                                name="newValueVehicleFarnchise" id="field_newValueVehicleFarnchise"
+                                [(ngModel)]="vehicule.newValueVehicleFarnchise" [pattern]="amountPattern" required />
+                        </div>
+                        <div class="col-sm-2" *ngIf="garantieDommageVehicule || garantieTierce">
+                            <label for="field_type"> Type Franchise </label>
+                            <select class="form-control form-control-sm" id="field_typenewvalue" name="typenewvalue"
+                                [disabled]="consultation" [(ngModel)]="vehicule.franchiseTypeNewValue" required>
+                                <option value="Montant">Montant</option>
+                                <option value="Pourcentage">Pourcentage</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-1" *ngIf="garantieDommageCollision || garantieTierceCollision">
+                            <label class="form-control-label" jhiTranslate="auxiliumApp.contratAssurance.franchise"
+                                for="field_dcCapitalFranchise">Franchise</label>
+                            <input type="number" [disabled]="consultation" class="form-control form-control-sm"
+                                name="dcCapitalFranchise" id="field_dcCapitalFranchise"
+                                [(ngModel)]="vehicule.dcCapitalFranchise" [pattern]="amountPattern" required />
+                        </div>
+                        <div class="col-sm-2" *ngIf="garantieDommageCollision || garantieTierceCollision">
+                            <label for="field_type"> Type Franchise </label>
+                            <select class="form-control form-control-sm" [disabled]="consultation"
+                                id="field_typedccapital" name="typedccapital"
+                                [(ngModel)]="vehicule.franchiseTypeDcCapital" required>
+                                <option value="Montant">Montant</option>
+                                <option value="Pourcentage">Pourcentage</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-1" *ngIf="garantieVolIncendiePartiel">
+                            <label class="form-control-label" jhiTranslate="auxiliumApp.contratAssurance.franchise"
+                                for="field_franchise">Franchise</label>
+                            <input type="number" [disabled]="consultation" class="form-control form-control-sm"
+                                name="marketValueFranchise" id="field_marketValueFranchise"
+                                [(ngModel)]="vehicule.marketValueFranchise" [pattern]="amountPattern" required />
+                        </div>
+                        <div class="col-sm-2" *ngIf="garantieVolIncendiePartiel">
+                            <label for="field_type"> Type Franchise </label>
+                            <select class="form-control form-control-sm" [disabled]="consultation"
+                                id="field_typemarketvalue" name="typemarketvalue"
+                                [(ngModel)]="vehicule.franchiseTypeMarketValue" required>
+                                <option value="Montant">Montant</option>
+                                <option value="Pourcentage">Pourcentage</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-1" *ngIf="garantieBrisGlace">
+                            <label class="form-control-label" jhiTranslate="auxiliumApp.contratAssurance.franchise"
+                                for="field_bgCapitalFranchise">Franchise</label>
+                            <input type="number" [disabled]="consultation" class="form-control form-control-sm"
+                                name="bgCapitalFranchise" id="field_bgCapitalFranchise"
+                                [(ngModel)]="vehicule.bgCapitalFranchise" [pattern]="amountPattern" required />
+                        </div>
+                        <div class="col-sm-2" *ngIf="garantieBrisGlace">
+                            <label for="field_type"> Type Franchise </label>
+                            <select class="form-control form-control-sm" [disabled]="consultation"
+                                id="field_typebgcapital" name="typebgcapital"
+                                [(ngModel)]="vehicule.franchiseTypeBgCapital" required>
+                                <option value="Montant">Montant</option>
+                                <option value="Pourcentage">Pourcentage</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br>
+
+                    <div class="row" *ngIf="isContractLoaded">
+                        <div class="col-sm-2">
+                            <br>
+                            <label class="form-control-label" jhiTranslate="auxiliumApp.sinister.assure"
+                                for="field_isAssure">isAssure</label>
+                            <input type="checkbox" class="check-input" name="field_isAssure" id="field_isAssure"
+                                [value]="sinister.isAssure" [(ngModel)]="sinister.isAssure" [disabled]="consultation" />
+                        </div>
+                        <div class="col-sm-2" *ngIf="!sinister.isAssure">
+                            <div>
+                                <label class="form-control-label" jhiTranslate="auxiliumApp.sinister.conducteur"
+                                    for="field_nomCond"> nom conducteur </label>
+                                <input type="text" class="form-control form-control-sm" name="nomCond"
+                                    id="field_nomCond" [pattern]="textPattern" [(ngModel)]="sinister.conductorFirstName"
+                                    [required]="!sinister.isAssure" [disabled]="consultation" />
+                            </div>
+                        </div>
+                        <div class="col-sm-2" *ngIf="sinister.isAssure">
+                            <label class="form-control-label" jhiTranslate="auxiliumApp.contratAssurance.assure"
+                                for="field_prenomAssure"> nom/prenom assuré </label>
+                            <input type="text" class="form-control form-control-sm" name="nomAssure"
+                                id="field_prenomAssure" [(ngModel)]="assure" [disabled]="consultation" readonly />
+                        </div>
+                        <div class="col-sm-2">
+                            <label jhiTranslate="auxiliumApp.sinisterPec.driverLicenseNumber"
+                                for="currentSearch1">driver License Number</label>
+                            <input type="text" [(ngModel)]="sinisterPec.driverLicenseNumber" [disabled]="consultation"
+                                class="form-control form-control-sm" name="currentSearch1" id="currentSearch1" />
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="col-sm-1">
+                            <br>
+                            <span style="font-weight:bold;"><label
+                                    jhiTranslate="auxiliumApp.sinisterPec.home.LieuDuSinister">Lieu du
+                                    Sinister</label></span>
+                        </div>
+
+                        <div class="col-sm-2">
+                            <label jhiTranslate="auxiliumApp.reparateur.gouvernorat">gouvernorat</label>
+                            <select required class="form-control form-control-sm" id="field_lieu" name="lieu"
+                                [(ngModel)]="sinisterPec.governorateId" [disabled]="consultation"
+                                (ngModelChange)="fetchDelegationsByGovernorate(sinisterPec.governorateId)"
+                                [disabled]="consultation">
+                                <option [ngValue]="governorate.id"
+                                    *ngFor="let governorate of governorates; trackBy: trackGouvernoratById">
+                                    {{governorate.label}}
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="col-sm-2">
+                            <label jhiTranslate="auxiliumApp.sinisterPec.ville" for="field_ville">Ville</label>
+                            <select required class="form-control form-control-sm" id="field_ville" name="ville"
+                                [(ngModel)]="sinisterPec.delegationId" [disabled]="gov || consultation">
+                                <option [ngValue]="sysville.id"
+                                    *ngFor="let sysville of sysvilles; trackBy: trackSysVilleById">
+                                    {{sysville.label}}</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="form-control-label"
+                                jhiTranslate="auxiliumApp.dossier.telephone"
+                                for="field_telephone">Telephone</label>
+                            <input type="number" class="form-control form-control-sm"
+                                name="telephone" id="field_telephone" [(ngModel)]="sinister.phone"
+                                 />
+                            <div
+                                [hidden]="!(editFormgrantieImplique.controls.telephone?.dirty && editFormgrantieImplique.controls.telephone?.invalid)">
+                                <small class="form-text text-danger"
+                                    [hidden]="!editFormgrantieImplique.controls.telephone?.errors?.pattern"
+                                    jhiTranslate="entity.validation.pattern"
+                                    translateValues="{ pattern: 'Telephone' }">This
+                                    field should
+                                    follow pattern for "Telephone".</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br>
+                    <div class="row" *ngIf="isContractLoaded">
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label jhiTranslate="auxiliumApp.sinisterPec.casBareme" for="field_bareme">cas De
+                                    Bareme</label>
+                                <span style="color: #FA2F03">*</span>
+                                <div [hidden]="!(frm.bareme?.dirty && frm.bareme?.invalid)">
+                                    <small class="form-text text-danger" [hidden]="!frm.bareme?.errors?.required"
+                                        jhiTranslate="entity.validation.required">This field is required.</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-1">
+                            <div class="form-group">
+                                <button class="input-group-addon btn btn-sm btn-info"
+                                    [routerLink]="['/', { outlets: { popup: ['ref-bareme-pop'] } }]"
+                                    [disabled]="consultation">
+                                    <span class="fa fa-search"></span>
+                                    <span class="hidden-sm-down" jhiTranslate="auxiliumApp.refBareme.home.loop">loop
+                                        refBareme</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" *ngIf="isContractLoaded && refBarShow">
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label jhiTranslate="auxiliumApp.refBareme.code" for="field_codeBareme">code
+                                    bareme</label>
+                                <input type="text" class="form-control form-control-sm" name="codeBareme"
+                                    id="field_codeBareme" [(ngModel)]="CasBareme.code" readonly
+                                    [disabled]="consultation" />
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label jhiTranslate="auxiliumApp.refBareme.tauxR"
+                                    for="field_tauxDeResponsabilite">tauxDeResponsabilité
+                                    bareme</label>
+                                <input type="text" class="form-control form-control-sm" name="tauxDeResponsabilite"
+                                    id="field_tauxDeResponsabilite" [(ngModel)]="CasBareme.responsabiliteX" readonly
+                                    [disabled]="consultation" />
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label jhiTranslate="auxiliumApp.refBareme.description"
+                                    for="field_descriptionBareme">desciption bareme</label>
+                                <textarea type="text" class="form-control form-control-sm" name="descriptionBareme"
+                                    id="field_descriptionBareme" [(ngModel)]="CasBareme.description" readonly rows="5"
+                                    cols="33" [disabled]="consultation">
+                            </div>
+                        </div>
+                        <div> 
+                            <img *ngIf="CasBareme.attachment64" [src]="getImageB(CasBareme)" height="100" width="350">
+                        </div>
+                    </div>
+                    </div>
+                      </div>
+
+
+           
+
+            <!-- détails contrat -->
+            <div class="card">
+                <div class="card-header d-flex align-items-center no-padding" >
+                    <div class="notice notice-info">
+                        <strong jhiTranslate="auxiliumApp.contratAssurance.home.details">Détails contrat</strong>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-danger" *ngIf="immatriculationForAnotherAgent" jhiTranslate="auxiliumApp.sinister.contratForAnotherAgent">
+                        <strong>Cette immatriculation est affectée à un autre agent</strong>
+                    </div>
+                    <div class="alert alert-danger" *ngIf="contratAssurance == null" jhiTranslate="auxiliumApp.sinister.contrat">
+                        <strong>Matricule inexistante</strong>
+                    </div>
+                    <div class="alert alert-danger" *ngIf="sowContratSuspendu" jhiTranslate="auxiliumApp.sinister.contratSuspendu">
+                            <strong>Contrat Suspendu</strong>
+                        </div>
+                    <div name="editForm" role="form" *ngIf="contratAssurance !== null && !immatriculationForAnotherAgent && !sowContratSuspendu">
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <div class="form-group">
+                                    <label jhiTranslate="auxiliumApp.contratAssurance.numeroContrat" for="field_numeroContrat">numero Contrat</label>
+                                    <input type="text" class="form-control form-control-sm" name="numeroContrat" id="field_numeroContrat" [(ngModel)]="contratAssurance.numeroContrat" readonly />
+                                </div>
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="form-group">
+                                    <label jhiTranslate="auxiliumApp.refCompagnie.detail.title" for="field_compagnie">Compagnie</label>
+                                    <input type="text" class="form-control form-control-sm" name="compagnie" id="field_compagnie" [(ngModel)]="compagnie" readonly />
+                                </div>
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="form-group">
+                                    <label jhiTranslate="auxiliumApp.refAgence.detail.title" for="field_compagnie">Agence</label>
+                                    <input type="text" class="form-control form-control-sm" name="agence" id="field_agence" [(ngModel)]="agence" readonly />
+                                </div>
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="form-group">
+                                    <label jhiTranslate="auxiliumApp.contratAssurance.assure" for="field_assurePrenom">Assure</label>
+                                    <input type="text" class="form-control form-control-sm" name="assurePrenom" id="field_assurePrenom" [(ngModel)]="assure" maxlength="100" readonly />
+                                </div>
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="form-group">
+                                    <label jhiTranslate="auxiliumApp.contratAssurance.debutValidite" for="field_debutValidite_ctr">debutValidite</label>
+                                    <input type="text" class="form-control form-control-sm"
+                                                        name="debutValiditeCtr" id="field_debutValidite_ctr"
+                                                        [(ngModel)]="debut || debut1" readonly />
+                                </div>
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="form-group">
+                                    <label jhiTranslate="auxiliumApp.contratAssurance.finValidite" for="field_finValidite_ctr">finValidite</label>
+                                    <input type="text" class="form-control form-control-sm"
+                                                        name="finValiditeCtr" id="field_finValidite_ctr"
+                                                        [(ngModel)]="fin || fin1" readonly />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <div class="form-group">
+                                    <label jhiTranslate="auxiliumApp.contratAssurance.pack" for="field_pack">Pack</label>
+                                    <input type="text" class="form-control form-control-sm" name="pack" id="field_pack" [(ngModel)]="vehicule.packLabel" readonly />
+                                </div>
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="form-group">
+                                    <label jhiTranslate="auxiliumApp.contratAssurance.marque" for="field_marqueLibelle">Marque</label>
+                                    <input type="text" class="form-control form-control-sm" name="marqueLibelle" id="field_marqueLibelle" [(ngModel)]="vehicule.marqueLibelle" readonly/>
+                                </div>
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="form-group">
+                                    <label jhiTranslate="auxiliumApp.contratAssurance.modele" for="field_modeleLibelle">Modele</label>
+                                    <input id="field_modeleLibelle" type="text" class="form-control form-control-sm" name="modeleLibelle" [(ngModel)]="vehicule.modeleLibelle" readonly />
+                                </div>
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="form-group">
+                                    <label jhiTranslate="auxiliumApp.vehiculeAssure.datePCirculation" for="field_debutCirculation">Date premiére mise en circulation</label>
+                                    <input type="text" class="form-control form-control-sm" name="debutCirculation" id="field_debutCirculation" [(ngModel)]="datePCirculation" readonly/>
+                                </div>
+                            </div>
+                            <div class="col-sm-2">
+                                <br>
+                                <input type="checkbox" class="check-input" name="isAssujettieTva" id="field_isAssujettieTva" [(ngModel)]="assureur.isAssujettieTva" disabled />
+                                <label class="form-control-label" jhiTranslate="auxiliumApp.personneMorale.isAssujettieTva" for="field_isAssujettieTva">isAssujettieTva</label>
+                            </div>
+                       
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label jhiTranslate="auxiliumApp.contratAssurance.adresse" for="field_adresse">adresse</label>
+                                    <input type="text" class="form-control form-control-sm" name="adresse" id="field_adresse" [(ngModel)]="contratAssurance.adressePhysique || contratAssurance.adresseMorale" readonly />
+                                </div>
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="form-group">
+                                    <label jhiTranslate="auxiliumApp.reparateur.gouvernorat" for="field_gouvernorat">Gouvernorat</label>
+                                    <input type="text" class="form-control form-control-sm" name="gouvernorat" id="field_gouvernorat" [(ngModel)]=" this.gouvernorat" readonly />
+                                </div>
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="form-group">
+                                    <label jhiTranslate="auxiliumApp.contratAssurance.ville" for="field_ville">Ville</label>
+                                    <input type="text" class="form-control form-control-sm" name="villeLibelle" id="field_ville" [(ngModel)]="contratAssurance.villeLibelle || contratAssurance.villeMoraleLibelle" readonly />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End detail contrat -->
+            <!-- Tier list -->
+            <div class="row">
+                    <div class="col-lg-12">
+                    <div class="card">
+                        <div class=" collapsible-card card-header align-items-center collapsed notice notice-info" data-toggle="collapse" href="#collapseTier">
+                            <strong jhiTranslate="auxiliumApp.tiers.home.title">Tiers</strong>
+                        </div>
+                        
+                        <div id="collapseTier" class="card-body collapse">
+                    <div >         
+            <form name="editFormgrantieImplique" role="form" novalidate  #editFormgrantieImplique="ngForm">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                        <div class="row" *ngIf="!showFrmTiers">
+                                                <div class="col-sm-12">
+                                                        <div class="row">
+                                                                <div class="col-sm-11" ></div>
+                                                                <div class="col-sm-1" >
+                
+                                                                        <button  
+                                                                        
+                                                                        class="btn btn-sm btn-primary addnew" (click)="addForm();" [disabled]="consultation">
+                                                                            <span class="fa fa-plus"></span>
+                                                                            <span  jhiTranslate="auxiliumApp.observation.home.createLabel">Create new tier</span>
+                                                                        </button>
+                                                                    
+                                                                </div>
+                                                        </div>
+
+                                                        <div class="row">
+                                                                <div class="col-sm-10" >
+                                                            <div class="alert alert-danger" *ngIf="showAlertTiers" jhiTranslate="auxiliumApp.sinisterPec.verifTiers">
+                                                                <strong>Merci de vérifier le nombre de vehicule</strong>
+                                                            </div>
+                                                             </div>
+                                                        </div>
+                
+                                                </div>
+                                            </div>
+                                            
+                
+                                           
+                                    <div class="row" *ngIf="newFormTiers == true && showFrmTiers">
+      
+                          <!--Immatriculation-->
+                        <div class="col-sm-2">
+                                    <label class="form-control-label" jhiTranslate="auxiliumApp.tiers.immatriculation" for="field_immatriculation">Immatriculation</label>
+                                    <input type="text" [(ngModel)]="tier.immatriculation"
+                                            class="form-control form-control-sm" name="immatriculation" id="field_immatriculation" (blur)="trimRegistrationNumberTiers();"required/>
+                            </div> 
+                            <div class="col-sm-2">
+                                <div class="form-group">
+                                    <label class="form-control-label" jhiTranslate="auxiliumApp.tiers.compagnie" for="field_compagnieAssuranceImmatriculation">Compagnie Assurance immatriculation</label>
+                                    <div class="input-group">
+                                        <select class="form-control form-control-sm" id="field_compagnieAssuranceImmatriculation" name="compagnieAssuranceImmat" [(ngModel)]="companyId">
+                                        <option [ngValue]="compagnieOption.id" *ngFor="let compagnieOption of compagnies">
+                                        {{compagnieOption.companyName}} </option>
+                                    </select>
+                                        <span class="input-group-btn">
+                                            <button class="input-group-addon btn btn-sm btn-info"
+                                                (click)="searchTiers(tier.immatriculation, companyId)"[disabled]="consultation">
+                                                <span class="fa fa-search"></span>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>       
+
+                             <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <label jhiTranslate="auxiliumApp.tiers.numeroContrat" for="field_tiersNumeroContratTier">numero Contrat Tiers</label>
+                                        <input type="text" class="form-control form-control-sm" name="numeroContratTier" id="field_tiersNumeroContratTier" [(ngModel)]="tier.numeroContrat" [disabled]="agentCompanyRO" [readonly]="old"/>
+                                    </div>
+                                </div> 
+
+                                <div class="col-sm-2" >
+                                    <label class="form-control-label" jhiTranslate="auxiliumApp.tiers.compagnieAssurance" for="field_compagnieAssuranceTier">Compagnie Assurance New Tier</label>
+                                    <select class="form-control form-control-sm" id="field_compagnieAssuranceTier" name="compagnieAssuranceTier" [(ngModel)]="tier.compagnieId"
+                                    (ngModelChange)="listAgenceByCompagnie(tier.compagnieId)"required [disabled]="agentCompanyRO"  >
+                                        <option [ngValue]="compagnieOption.id" *ngFor="let compagnieOption of compagnies">
+                                        {{compagnieOption.companyName}} </option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-2" *ngIf="this.otherField == false">
+                                        <label jhiTranslate="auxiliumApp.contratAssurance.agence" for="field_agenceNewTier"> Agence New Tier
+                                        </label> <select class="form-control form-control-sm" id="field_agenceNewTier" name="agenceNewTier" [(ngModel)]="tier.agenceId" [disabled]="agentCompanyRO">
+                                            <option [ngValue]="refAgenceOption.id" *ngFor="let refAgenceOption of refagences" >
+                                                {{refAgenceOption.code}}_{{refAgenceOption.name}}</option>
+                                        </select>
+                                    </div>
+                                <div class="col-sm-2"   *ngIf="this.otherField == true">
+                                            <label jhiTranslate="auxiliumApp.contratAssurance.agence" for="field_agenceNew"> Agence New Tier
+                                            </label> 
+                                            <select class="form-control form-control-sm" id="field_agenceNew"  name="agenceNew"  [(ngModel)]="tier.optionalAgencyName" (ngModelChange)="newfield(tier.optionalAgencyName)" >
+                                                    <option value="Autre">Autre</option>
+                                            </select>
+                                </div>
+                                <div class="col-sm-2"*ngIf="nameAgence">
+                                        <label class="form-control-label"
+                                        jhiTranslate="auxiliumApp.tiers.agence"
+                                            for="field_prenom">prenom</label>
+                                        <input type="text" class="form-control form-control-sm" name="agencyName"
+                                            id="field_agencyName" [(ngModel)]="tier.agenceTier"
+                                            pattern="[A-Za-z0-9 ]{1,50}"  maxlength="100" [readonly]="old" required />
+                                        <small class="form-text text-danger"
+                                            [hidden]="!editFormgrantieImplique.controls.agencyName?.errors?.pattern"
+                                            jhiTranslate="entity.validation.pattern"
+                                            translateValues="{ pattern: 'agencyName' }">
+                                            This field should follow pattern for "Mail".
+                                        </small>
+                                        <div
+                                            [hidden]="!(editFormgrantieImplique.controls.agencyName?.dirty && editFormgrantieImplique.controls.agencyName?.invalid)">
+                                            <small class="form-text text-danger"
+                                                [hidden]="!editFormgrantieImplique.controls.agencyName?.errors?.required"
+                                                jhiTranslate="entity.validation.required">
+                                                This field is required.
+                                            </small>
+                                        </div>
+                                    </div>
+                                        <div class="col-sm-2">
+                                            <label class="form-control-label" jhiTranslate="auxiliumApp.tiers.fullName" for="field_raisonSocial">Raison Social</label>
+                                            <input type="text" class="form-control form-control-sm" name="raisonSocialTier" id="field_raisonSocial" [(ngModel)]="tier.fullName" [readonly]="old" maxlength="100"  [disabled]="consultation || agentCompanyRO" required />
+                                        </div>
+                                
+                                            <div class="col-sm-1">
+                                            </div>
+                                            <div class="col-sm-1">
+
+                                                    <button *ngIf="newFormTiers == false"
+                                                    
+                                                    class="btn btn-sm btn-primary addnew" (click)="addForm();" [disabled]="consultation">
+                                                        <span class="fa fa-plus"></span>
+                                                        <span  jhiTranslate="auxiliumApp.observation.home.createLabel">Create new tier</span>
+                                                    </button>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+    
+                                    <div class="col-sm-12">
+                                            <div class="row" *ngIf="newFormTiers == true && showFrmTiers">
+
+                                            <div class="col-sm-2" >
+                                            <label class="form-control-label" jhiTranslate="auxiliumApp.tiers.debutValidite" for="field_debutValidite">Debut Validite</label>
+                                            <div class="input-group">
+                                                <input id="field_debutValidite" type="text" class="form-control form-control-sm" name="debutValidite" ngbDatepicker  #debutValiditeDp="ngbDatepicker" 
+                                                [(ngModel)]="tier.debutValidite" [maxDate]="tier.finValidite" [disabled]="agentCompanyRO" [readonly]="old" required/>
+                                                <span class="input-group-btn">
+                                            <button type="button" class="btn btn-sm btn-default" [disabled]="consultation || agentCompanyRO" (click)="debutValiditeDp.toggle()"><i class="fa fa-calendar"></i></button>
+                                        </span>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="col-sm-2" >
+                                            <label class="form-control-label" jhiTranslate="auxiliumApp.tiers.finValidite" for="field_finValidite">Fin Validite</label>
+                                            <div class="input-group">
+                                                <input id="field_finValidite" type="text" class="form-control form-control-sm" name="finValidite" ngbDatepicker  #finValiditeDp="ngbDatepicker" 
+                                                [(ngModel)]="tier.finValidite" [minDate]="tier.debutValidite"[readonly]="old"  [disabled]="consultation || agentCompanyRO" required/>
+                                                <span class="input-group-btn">
+                                                <button type="button" class="btn btn-sm btn-default" [disabled]="consultation || agentCompanyRO" (click)="finValiditeDp.toggle()"><i class="fa fa-calendar"></i></button>
+                                                </span>
+                                                <br>
+                                                <small class="form-text text-danger" *ngIf="isvalideDate == true"> Date expiré. </small>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-2" *ngIf="showResponsible">
+                                                <br>
+                                                <input type="checkbox" class="check-input" name="responsable" id="field_responsable" [(ngModel)]="tier.responsible" />
+                                                <label class="form-control-label" jhiTranslate="auxiliumApp.tiers.afficherTiers" for="field_responsable">afficherTiers</label>
+                                            </div>
+
+
+
+                                    </div>
+                                </div>
+                                <div class="col-sm-2" *ngIf="newFormTiers == true && showFrmTiers">
+                                    <label class="form-control-label" style="width: 100%">&nbsp;</label>
+                                    <button *ngIf="!isTierModeEdit" 
+                                    [disabled]="editFormgrantieImplique.form.invalid "
+                                    class="btn btn-sm btn-primary addnew" (click)="addTier();" [disabled]="consultation">
+                                        <span class="fa fa-plus"></span>
+                                        <span  jhiTranslate="auxiliumApp.tiers.creerTiers">Create new tier</span>
+                                    </button>
+                                    <button *ngIf="isTierModeEdit" 
+                                    [disabled]="editFormgrantieImplique.form.invalid "
+                                    class="btn btn-sm btn-primary addnew" (click)="editTier();"[disabled]="consultation">
+                                        <span class="fa fa-pencil"></span>
+                                        <span  jhiTranslate="auxiliumApp.observation.home.editLabel">Edit tier</span>
+                                    </button>
+                                </div>
+                                
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-sm-6" >
+                            <div class="alert alert-danger" *ngIf="!tierResponsableVerif" jhiTranslate="auxiliumApp.sinisterPec.verifTiersResponsable">
+                                <strong>Merci de vérifier le nombre de vehicule</strong>
+                            </div>
+                             </div>
+                        </div>
+
+                        </form>
+                    </div>
+
+                            <div class="row" style="margin-top: 15px;">
+                                <div class="col-sm-12">
+                                    <div class="table-responsive" *ngIf="tiers && tiers.length > 0">
+                                        <table datatable [dtOptions]="dtOptions" 
+                                        class="table table-sm table-hover table-bordered" >
+                                            <thead>
+                                            <tr jhiSort  style="color: white; background-color: #167F92">
+                                                <th><span jhiTranslate="auxiliumApp.tiers.fullName">fullName</span></th>
+                                                <th><span jhiTranslate="auxiliumApp.contratAssurance.numeroContrat">numeroContrat</span></th>
+                                                <th><span jhiTranslate="auxiliumApp.tiers.debutValidite">Debut Validite</span></th>
+                                                <th><span jhiTranslate="auxiliumApp.tiers.finValidite">Fin Validite</span></th>
+                                                <th><span jhiTranslate="auxiliumApp.tiers.compagnieAssurance">Compagnie Assurance</span></th>
+                                                <th><span jhiTranslate="auxiliumApp.tiers.immatriculation">Immatriculation</span></th>
+                                                <th></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <ng-container *ngFor="let tierr of tiers"  >
+                                                <tr *ngIf="!tierr.deleted">
+                                                    <td>{{tierr.fullName}}</td>
+                                                    <td>{{tierr.numeroContrat}}</td>
+                                                    <td>{{parseHtmlDate(tierr.debutValidite)}}</td>
+                                                    <td>{{parseHtmlDate(tierr.finValidite)}}</td>
+                                                    <td>{{tierr.compagnieNom}}</td>
+                                                    <td>{{tierr.immatriculation}}</td>
+                                                    <td class="text-right">
+                                                        <div class="btn-group flex-btn-group-container">
+                                                            <button type="button" (click)="prepareEditTier(tierr)" class="btn btn-primary btn-sm"  [disabled]="consultation">
+                                                                <span class="fa fa-pencil"></span>
+                                                            </button>
+                                                            <button type="button" (click)="deleteTier(tierr)" class="btn btn-danger btn-sm" [disabled]="consultation">
+                                                                <span class="fa fa-sm fa-remove"></span>
+                                                            </button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </ng-container>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Tiers list -->
+
+            <!-- Piéces Jointes -->
+            <div class="row">
+                    <div class="col-lg-12">
+                    <div class="card">
+                        <div class=" collapsible-card card-header align-items-center collapsed notice notice-info" data-toggle="collapse" href="#pjDetails">
+                            <strong jhiTranslate="auxiliumApp.pieceJointe.home.title">Piece Jointes</strong>
+                        </div>
+                        <div id="pjDetails" class="card-body collapse">
+                            <div class="row">
+                                        <div class="col-sm-3">
+                                            <label jhiTranslate="auxiliumApp.pieceJointe.constat" for="attachmentConstat">constat</label>
+                                        </div> 
+                                        <div class="col-sm-3" *ngIf="showConstatAttachment">
+                                                <div class="form-text text-danger clearfix">
+                                                    <input type="text" class="form-control" name="attachmentConstat" id="attachmentConstat"
+                                                        [(ngModel)]="constatAttachment.label" hidden />     
+                                                    <input id="field_nameFCart" type="file"
+                                                    class="form-control form-control-sm"
+                                                    name="nameFCons"
+                                                    (change)="onConstatFileChange($event)"
+                                                    [(ngModel)]="constatAttachment.label"
+                                                    accept=".jpg,.jpeg,.png" required  [disabled]="consultation"/>
+                                                </div> 
+                                            </div>
+                                            <div class="col-sm-3">     
+                                                    <span class="input-group-btn" *ngIf="constatPreview">
+                                                        <button type="button" class="btn btn-sm btn-default" 
+                                                            (click)="downloadConstatFile()" ><i
+                                                                class="fa fa-sm fa-download"></i></label>
+                                                    </span> 
+                                                    <span class="input-group-btn" *ngIf="showConstat">
+                                                        <button type="button"  class="btn btn-sm btn-default" 
+                                                            (click)="getPieceNew('prestationPEC', sinisterPec.id, 'Constat')"><i
+                                                                class="fa fa-sm fa-download"></i></label>
+                                                    </span>
+                                                    <span class="input-group-btn" *ngIf="showConstat && !consultation">
+                                                            <button type="button" class="btn btn-danger btn-sm" 
+                                                                (click)="deleteConstatFile()"><i
+                                                                class="fa fa-sm fa-remove"></i></label>
+                                                    </span>   
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <label jhiTranslate="auxiliumApp.pieceJointe.carteGrise" for="attachmentCarteGrise">carteGrise</label>
+                                        </div> 
+                                        <div class="col-sm-3" *ngIf="showCarteGriseAttachment">
+                                                <div class="form-text text-danger clearfix">
+                                                    <input type="text" class="form-control" name="attachmentCarteGrise" id="attachmentCarteGrise"
+                                                        [(ngModel)]="carteGriseAttachment.label"  [disabled]="consultation" hidden />
+                                                    <input id="field_nameFCart" type="file"
+                                                    class="form-control form-control-sm"
+                                                    name="nameFCart"
+                                                    [(ngModel)]="carteGriseAttachment.label"
+                                                    (change)="onCarteGrisFileChange($event)"
+                                                    accept=".jpg,.jpeg,.png" required   [disabled]="consultation" />
+                                                    <div *ngIf="!carteGrisePreview">
+                                                        <span class="help-block error" [hidden]="!carteGrisePreview"> 
+                                                          File is Required 
+                                                        </span>
+                                                       </div>
+                                                </div>
+                                            </div>
+                                                <div class="col-sm-3">
+                                                    <span class="input-group-btn" *ngIf="carteGrisePreview">
+                                                        <button type="button" class="btn btn-sm btn-default" 
+                                                            (click)="downloadCarteGriseFile()"><i
+                                                                class="fa fa-sm fa-download"></i></label>
+                                                    </span>
+                                                    <span class="input-group-btn" *ngIf="showCarteGrise">
+                                                        <button type="button"  class="btn btn-sm btn-default" 
+                                                            (click)="getPieceNew('prestationPEC', sinisterPec.id, 'Carte Grise')"><i
+                                                                class="fa fa-sm fa-download"></i></label>
+                                                    </span>
+                                                    <span class="input-group-btn" *ngIf="showCarteGrise && !consultation">
+                                                            <button type="button" class="btn btn-danger btn-sm" 
+                                                                (click)="deleteCarteGriseFile()" ><i
+                                                                class="fa fa-sm fa-remove"></i></label>
+                                                    </span>
+                                                </div>
+                                                
+                                       
+                                    </div>
+                                    <br /> 
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <label jhiTranslate="auxiliumApp.pieceJointe.acteDeCession" for="attachmentActeDeCession">acteDeCession</label>
+                                        </div> 
+                                        <div class="col-sm-3" *ngIf="showActeDeCessionAttachment" >
+                                                <div class="form-text text-danger clearfix">
+                                                    <input type="text" class="form-control" name="attachmentActeDeCession" id="attachmentActeDeCession"
+                                                        [(ngModel)]="acteCessionAttachment.label" hidden />
+                                            
+                                                        <input id="field_nameFacte" type="file"
+                                                        class="form-control form-control-sm"
+                                                        name="nameFacte"
+                                                        [(ngModel)]="acteCessionAttachment.label"
+                                                        (change)="onActeCessionFileChange($event)"
+                                                        accept=".jpg,.jpeg,.png" required  [disabled]="consultation" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <span class="input-group-btn" *ngIf="acteCessionPreview">
+                                                        <button type="button" class="btn btn-sm btn-default" 
+                                                            (click)="downloadActeCessionFile()"  ><i
+                                                                class="fa fa-sm fa-download"></i></label>
+                                                    </span>
+                                                    <span class="input-group-btn" *ngIf="showActeDeCession">
+                                                        <button type="button"  class="btn btn-sm btn-default" 
+                                                            (click)="getPieceNew('prestationPEC', sinisterPec.id, 'Acte de cession')"><i
+                                                                class="fa fa-sm fa-download"></i></label>
+                                                    </span>
+                                                    <span class="input-group-btn" *ngIf="showActeDeCession && !consultation">
+                                                            <button type="button" class="btn btn-danger btn-sm" 
+                                                                (click)="deleteActeDeCessionFile()"><i
+                                                                class="fa fa-sm fa-remove"></i></label>
+                                                    </span>
+                                        </div>
+                                  </div>
+                                  <br *ngIf="!consultation">
+                                      <div class="row" *ngIf="!consultation">
+                                        <div class="col-sm-2">
+                                        <button type="button" class="btn btn-primary btn-sm pull-right"
+                                            (click)="ajoutNouvelpieceJointe();" style="margin-top:15px">
+                                            <span class="fa fa-edit"></span> <span>Ajouter Nouvelle Piéce Jointe
+                                            </span>
+                                        </button>
+                                    </div>
+                                      </div>
+                                      <br>
+                                      <div *ngIf="ajoutNouvelpieceform">
+                                        <div class="col-sm-12">
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <label class="form-control-label"
+                                                        jhiTranslate="auxiliumApp.pieceJointe.libelle"
+                                                        for="field_libelle">Libelle</label>
+                                                    <input type="text" class="form-control form-control-sm"
+                                                        name="libelle" id="libelle"
+                                                        [(ngModel)]="pieceAttachment1.label" />
+                                                    <div [hidden]="!isError">
+                                                        <small class="form-text text-danger"
+                                                            [hidden]="!islibelleError"
+                                                            jhiTranslate="entity.validation.required">This
+                                                            field is required.</small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label class="form-control-label"
+                                                        jhiTranslate="auxiliumApp.pieceJointe.file"
+                                                        for="field_chemin">Fichier</label>
+                                                    <input id="field_chemin" type="file"
+                                                        class="form-control form-control-sm" name="field_chemin"
+                                                        (change)="onPieceFileChange1($event)"
+                                                        accept=".jpg,.jpeg,.png" [(ngModel)]="pieceAttachment1.type"
+                                                        required />
+
+
+
+                                                    <span class="input-group-btn" *ngIf="piecePreview1">
+                                                        <button type="button" class="btn btn-sm btn-default"
+                                                            (click)="downloadPieceFile1()"><i
+                                                                class="fa fa-sm fa-download"></i></button>
+                                                    </span>
+
+
+
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label style="width: 100%">&nbsp;</label>
+                                                    <button
+                                                        [disabled]="pieceAttachment1.label  == null ||  pieceAttachment1.type == undefined"
+                                                        class="btn btn-sm btn-primary addnew"
+                                                        (click)="ajoutPiece1();">
+                                                        <span class="fa fa-plus"></span>
+                                                        <span
+                                                            jhiTranslate="auxiliumApp.observation.home.createLabel">Create
+                                                            new Description
+                                                        </span>
+                                                    </button>
+                                                </div>
+                                                <br />
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="table-responsive"
+                                                *ngIf="piecesAttachments && piecesAttachments.length > 0">
+                                                <table class="table table-sm table-hover table-bordered">
+                                                    <thead>
+                                                        <tr jhiSort style="color: white; background-color: #167F92">
+                                                            <th jhiSortBy="date"><span
+                                                                    jhiTranslate="auxiliumApp.pieceJointe.libelle">Libelle</span>
+                                                                <span class="fa fa-sort"></span></th>
+                                                            <th jhiSortBy="date"><span
+                                                                    jhiTranslate="auxiliumApp.pieceJointe.dateCreation">Date
+                                                                    Creation</span>
+                                                                <span class="fa fa-sort"></span></th>
+
+                                                            <th><span
+                                                                    jhiTranslate="auxiliumApp.pieceJointe.file">Fichier</span>
+                                                                <span class="fa fa-sort"></span></th>
+                                                            <th><span></span>
+                                                                <span class="fa fa-sort"></span></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr *ngFor="let piecesjointe of piecesAttachments">
+                                                            <td>{{piecesjointe.label}}</td>
+                                                            <td>{{piecesjointe.creationDate | date:'dd/MM/yyyy HH:mm:ss'}}</td>
+
+                                                            <td class="text-right" *ngIf="!piecesjointe.id">
+                                                                <div class="btn-group flex-btn-group-container">
+                                                                    <button type="button" class="btn btn-sm btn-default"
+                                                                        (click)="downloadPieceFile(piecesjointe.pieceFile)"><i
+                                                                            class="fa fa-sm fa-download"></i></button>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-right" *ngIf="piecesjointe.id">
+                                                                <div class="btn-group flex-btn-group-container">
+                                                                    <button type="button" class="btn btn-sm btn-default"
+                                                                        (click)="getPieceForAttachment('PLUSPHOTOPEC', piecesjointe.id, piecesjointe.originalName)"><i
+                                                                            class="fa fa-sm fa-download"></i></button>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-right" *ngIf="!piecesjointe.id">
+                                                                <div class="btn-group flex-btn-group-container">
+                                                                    <!--<button type="button"
+                                                                                    (click)="prepareEditPieceJ(piecesjointe)"
+                                                                                    class="btn btn-primary btn-sm">
+                                                                                    <span class="fa fa-pencil"></span>
+                                                                                </button>-->
+                                                                    <button type="button"
+                                                                        (click)="deletePieceJ(piecesjointe)" [disabled]="consultation"
+                                                                        class="btn btn-danger btn-sm">
+                                                                        <span class="fa fa-sm fa-remove"></span>
+                                                                    </button>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-right"
+                                                                *ngIf="piecesjointe.id">
+                                                                <div class="btn-group flex-btn-group-container">
+
+                                                                    <button type="button"
+                                                                        (click)="deletePieceJointesPH(piecesjointe)" [disabled]="consultation"
+                                                                        class="btn btn-danger btn-sm"><i
+                                                                            class="fa fa-sm fa-remove"></i></button>
+                                                                </div>
+                                                            </td>
+
+                                                            </ng-container>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                        </div>
+                    </div>
+                </div>
+            </div>     
+                
+            <!-- End Piéces Jointes -->
+           <!-- Lieu de Réparation / Expert -->
+           <div class="row">
+                <div class="col-lg-12">
+                <div class="card">
+          
+                    <div class=" collapsible-card card-header align-items-center collapsed notice notice-info" data-toggle="collapse" href="#LieuReparation">
+                        <strong > Lieu de Réparation / Expert</strong>
+                    </div>
+                    <div id="LieuReparation" class="card-body collapse">
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <br>
+                                <span style="font-weight:bold;">
+                                <label jhiTranslate="auxiliumApp.reparateur.home.LieuDuReparation">Lieu Du Reparation</label></span>
+                                        
+                                </div>
+                        <div class="col-sm-3">
+                            <label jhiTranslate="auxiliumApp.reparateur.gouvernorat">gouvernoratRep</label>
+                            <select required class="form-control form-control-sm" id="field_lieuRep" name="lieuRep"
+                                [(ngModel)]="sinisterPec.gouvernoratRepId"
+                                (ngModelChange)="fetchDelegationsByGovernorateRep(sinisterPec.gouvernoratRepId)" [disabled]="consultation">
+                                <option [ngValue]="governorateRep.id" *ngFor="let governorateRep of governorates; trackBy: trackGouvernoratRepById">
+                                    {{governorateRep.label}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-sm-3">
+                            <label jhiTranslate="auxiliumApp.sinisterPec.ville" for="field_villeRep">Ville</label>
+                            <select required class="form-control form-control-sm" id="field_villeRep" name="villeRep"
+                                [(ngModel)]="sinisterPec.villeRepId" [disabled]="govRep ||consultation">
+                                <option [ngValue]="sysvilleRep.id"
+                                    *ngFor="let sysvilleRep of sysvillesRep; trackBy: trackSysVilleRepById">
+                                    {{sysvilleRep.label}}</option>
+                            </select>
+                        </div>
+                    </div>
+                        <div class="row" *ngIf="isCentreExpertise">
+                        <div class="col-sm-3">
+                                <label jhiTranslate="auxiliumApp.sinisterPec.expert">expert</label>
+                                <select  class="form-control form-control-sm" id="field_expert" name="expert"
+                                    [(ngModel)]="sinisterPec.expertId" [disabled]="consultation" >
+                                    <option [ngValue]="expert.id" *ngFor="let expert of experts">
+                                        {{expert.raisonSociale}}
+                                    </option>
+                                </select>
+                            </div>
+                    </div>   
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Lieu de Réparation / Expert -->
+
+        <!--Listes Observation-->
+<div class="row">
+    <div class="col-lg-12">
+
+        <div class="card">
+            <div class=" collapsible-card card-header align-items-center collapsed notice notice-info"
+                data-toggle="collapse" href="#collapseObservation">
+                <strong>Observations </strong>
+            </div>
+        </div>
+        <div id="collapseObservation" class="card-body collapse">
+            <div class="row">
+                <div class="col-sm-6">
+                    <input type="text" class="form-control form-control-sm" name="observation"
+                        id="observationId" [(ngModel)]="observation.commentaire" />
+                    <div [hidden]="!isCommentError">
+                        <small class="form-text text-danger" [hidden]="!isCommentError"
+                            jhiTranslate="entity.validation.required">This
+                            field is required.</small>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <button *ngIf="!isObsModeEdit" class="btn btn-sm btn-primary addnew"
+                        (click)="addObservation();">
+                        <span class="fa fa-plus"></span>
+                        <span jhiTranslate="auxiliumApp.observation.home.createLabel">Create new
+                            Observation
+                        </span>
+                    </button>
+                    <button *ngIf="isObsModeEdit" class="btn btn-sm btn-primary addnew"
+                        (click)="editObservation();">
+                        <span class="fa fa-pencil"></span>
+                        <span jhiTranslate="auxiliumApp.observation.home.editLabel">Edit
+                            Observation
+                        </span>
+                    </button>
+                   
+                </div>
+            </div>
+            <div class="row" style="margin-top: 15px;">
+                <div class="col-sm-12">
+                    <div class="table-responsive"
+                        *ngIf="observationss && observationss.length > 0">
+                        <table class="table table-sm table-hover table-bordered" style="width: 100%">
+                            <thead>
+                                <tr jhiSort style="color: white; background-color: #167F92">
+                                    <th jhiSortBy="date"><span
+                                            jhiTranslate="auxiliumApp.observation.date">Date</span>
+                                        <span class="fa fa-sort"></span></th>
+                                    <th><span
+                                            jhiTranslate="auxiliumApp.observation.commentaire">Commentaire</span>
+                                        <span class="fa fa-sort"></span></th>
+                                    <th jhiSortBy="userLogin"><span
+                                            jhiTranslate="auxiliumApp.observation.user">Utilisateur</span>
+                                        <span class="fa fa-sort"></span></th>
+                                    <!--<th></th>-->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ng-container *ngFor="let observation of observationss">
+                                    <tr *ngIf="!observation.deleted">
+                                        <td>{{observation.date  | date:'dd/MM/yy'}}</td>
+                                        <td>{{observation.commentaire}}</td>
+                                        <td>{{observation.firstName}}
+                                            {{observation.lastName}}</td>
+                                        <!--<td class="text-right">
+                                            <div class="btn-group flex-btn-group-container">
+                                                <button type="button"
+                                                    (click)="prepareEditObservation(observation)"
+                                                    class="btn btn-primary btn-sm">
+                                                    <span class="fa fa-pencil"></span>
+                                                </button>
+                                                <button type="button"
+                                                    (click)="deleteObservation(observation)"
+                                                    class="btn btn-danger btn-sm">
+                                                    <span class="fa fa-trash"></span>
+                                                </button>
+                                            </div>
+                                        </td>-->
+                                    </tr>
+                                </ng-container>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<!--Listes Observations-->
+            <!-- Bouton Save et Envoyer-->
+
+            <div class="row">
+                <div class="col-sm-6">
+                        <div class="alert alert-danger" *ngIf="!tierRespMin" jhiTranslate="auxiliumApp.sinisterPec.minTiersResponsable">
+                                <strong>Merci d'ajouter un tiers à afficher</strong>
+                            </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                        <div class="alert alert-danger" *ngIf="showtraitDemendPecAlert" jhiTranslate="auxiliumApp.sinisterPec.showtraitDemendPecAlert">
+                                <strong>La prestation est affecté à un autre chargé</strong>
+                            </div>
+                </div>
+            </div>
+
+
+
+            <div class="modal-footer" *ngIf="!consultation">
+                <button type="submit" [disabled]="frm.invalid  ||  !tiersLength  || blockAgentForAddPrest || !oneClickForButton1" class="btn btn-sm btn-primary" (click)="saveDemandPec()">
+                    <span class="fa fa-save"></span>&nbsp;
+                    <span jhiTranslate="entity.action.save">Save</span>
+                </button>
+                <button type="submit" *ngIf="!hiddenEnvoyerButton" [disabled]="frm.invalid ||  !tiersLength  || blockAgentForAddPrest || !oneClickForButton2" class="btn btn-sm btn-primary" (click)="envoyerDemandPec()">
+                    <span jhiTranslate="entity.action.envoyer">Envoyer</span>
+                </button>
+            </div>
+            <div class="modal-footer" *ngIf="consultation && permissionToAccess.canTrait">
+                <button type="submit" class="btn btn-sm btn-primary" [disabled]="!oneClickForButton3" (click)="Traiter()">
+                    <span class="fa fa-plus"></span>&nbsp;
+                    <span >Traiter</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</section>
+<!-- PRESTATION PEC AGENT-->

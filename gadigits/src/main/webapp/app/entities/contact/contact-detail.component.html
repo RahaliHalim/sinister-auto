@@ -1,0 +1,38 @@
+
+<div *ngIf="contact">
+    <h2><span jhiTranslate="auxiliumApp.contact.detail.title">Contact</span> {{contact.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="auxiliumApp.contact.isGerant">Is Gerant</span></dt>
+        <dd>
+            <span>{{contact.isGerant}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.contact.personnePhysique">Personne Physique</span></dt>
+        <dd>
+            <div *ngIf="contact.personnePhysiqueId">
+                <a [routerLink]="['/personne-physique', contact.personnePhysiqueId]">{{contact.personnePhysiqueNom}}</a>
+            </div>
+        </dd>
+         <dt><span jhiTranslate="auxiliumApp.contact.personneMorale">Personne Morale</span></dt>
+        <dd>
+            <div *ngIf="contact.personneMoraleId">
+                <a [routerLink]="['/personne-morale', contact.personneMoraleId]">{{contact.personneMoraleId}}</a>
+            </div>
+        </dd>
+       
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'contact/'+ contact.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;&nbsp;&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

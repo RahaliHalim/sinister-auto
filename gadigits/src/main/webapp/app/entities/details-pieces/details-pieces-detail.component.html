@@ -1,0 +1,55 @@
+
+<div *ngIf="detailsPieces">
+    <h2><span jhiTranslate="auxiliumApp.detailsPieces.detail.title">Details Pieces</span> {{detailsPieces.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="auxiliumApp.detailsPieces.quantite">Quantite</span></dt>
+        <dd>
+            <span>{{detailsPieces.quantite}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.detailsPieces.designation">Designation</span></dt>
+        <dd>
+            <span>{{detailsPieces.designation}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.detailsPieces.prixUnit">Prix Unit</span></dt>
+        <dd>
+            <span>{{detailsPieces.prixUnit}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.detailsPieces.tva">Tva</span></dt>
+        <dd>
+            <span>{{detailsPieces.tva}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.detailsPieces.fournisseur">Fournisseur</span></dt>
+        <dd>
+            <div *ngIf="detailsPieces.fournisseurId">
+                <a [routerLink]="['/fournisseur', detailsPieces.fournisseurId]">{{detailsPieces.fournisseurId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.detailsPieces.devis">Devis</span></dt>
+        <dd>
+            <div *ngIf="detailsPieces.devisId">
+                <a [routerLink]="['/devis', detailsPieces.devisId]">{{detailsPieces.devisId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.detailsPieces.piece">Piece</span></dt>
+        <dd>
+            <div *ngIf="detailsPieces.pieceId">
+                <a [routerLink]="['/piece', detailsPieces.pieceId]">{{detailsPieces.pieceRef}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'details-pieces/'+ detailsPieces.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;&nbsp;&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

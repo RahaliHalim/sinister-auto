@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity ContratAssurance.
+    -->
+    <changeSet id="20170915105445-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="type_id"
+                                 baseTableName="contrat_assurance"
+                                 constraintName="fk_contrat_assurance_type_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ref_type_contrat"/>
+
+        <addForeignKeyConstraint baseColumnNames="nature_id"
+                                 baseTableName="contrat_assurance"
+                                 constraintName="fk_contrat_assurance_nature_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ref_nature_contrat"/>
+
+        <addForeignKeyConstraint baseColumnNames="agence_id"
+                                 baseTableName="contrat_assurance"
+                                 constraintName="fk_contrat_assurance_agence_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ref_agence"/>
+
+        <addForeignKeyConstraint baseColumnNames="usage_id"
+                                 baseTableName="contrat_assurance"
+                                 constraintName="fk_contrat_assurance_usage_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ref_usage_contrat"/>
+
+        <addForeignKeyConstraint baseColumnNames="vehicule_id"
+                                 baseTableName="contrat_assurance"
+                                 constraintName="fk_contrat_assurance_vehicule_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="vehicule_assure"/>
+
+        <addForeignKeyConstraint baseColumnNames="assure_id"
+                                 baseTableName="contrat_assurance"
+                                 constraintName="fk_contrat_assurance_assure_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="assure"/>
+
+        <addForeignKeyConstraint baseColumnNames="fractionnement_id"
+                                 baseTableName="contrat_assurance"
+                                 constraintName="fk_contrat_assurance_fractionnement_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ref_fractionnement"/>
+
+        <addForeignKeyConstraint baseColumnNames="contrat_assurances_id"
+                                 baseTableName="contrat_assurance_garantie"
+                                 constraintName="fk_contrat_assurance_garantie_contrat_assurances_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="contrat_assurance"/>
+        <addForeignKeyConstraint baseColumnNames="garanties_id"
+                                 baseTableName="contrat_assurance_garantie"
+                                 constraintName="fk_contrat_assurance_garantie_garanties_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ref_garantie_contractuelle"/>
+        
+        <addForeignKeyConstraint baseColumnNames="pack_id"
+                                 baseTableName="contrat_assurance"
+                                 constraintName="fk_contrat_assurance_pack_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ref_pack"/>
+
+        <addForeignKeyConstraint baseColumnNames="client_id"
+                                 baseTableName="contrat_assurance"
+                                 constraintName="fk_contrat_assurance_client_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="client"/>
+
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,37 @@
+{
+    "auxiliumApp": {
+        "tiers" : {
+            "home": {
+                "title": "Tiers",
+                "createLabel": "Créer un nouveau tiers",
+                "createOrEditLabel": "Tiers",
+                "search": "Recherche pour tiers"
+            },
+            "created": "Un nouveau tiers a été créé",
+            "updated": "Le tiers a été mis à jour",
+            "deleted": "Le tiers a été supprimé",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer ce tiers ?"
+            },
+            "detail": {
+                "title": "Tiers"
+            },
+            "prenom": "Prénom",
+            "nom": "Nom",
+            "debutValidite": "Début de validité",
+            "finValidite": "Fin de validité",
+            "compagnieAssurance": "Compagnie d'assurance",
+            "immatriculation": "Immatriculation",
+            "numeroContrat":"Numéro du contrat",
+            "agence":"Agence",
+            "nomEtPrenom":"Nom et prénom",
+            "raisonSocial":"Raison sociale",
+            "responsable":"Responsable",
+            "afficherTiers":"Tiers à afficher ",
+
+            "fullName":"Tiers",
+            "compagnie": "Compagnie",
+            "creerTiers": "Enregistrer"
+        }
+    }
+}

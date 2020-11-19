@@ -1,0 +1,28 @@
+{
+    "auxiliumApp": {
+        "refAgence" : {
+            "home": {
+                "title": "Agences",
+                "createLabel": "Créer",
+                "createOrEditLabel": "Créer ou modifier une agence",
+                "search": "Recherche pour agence"
+            },
+            "created": "Une nouvelle agence a été créé",
+            "updated": "L'agence a été mise à jour",
+            "deleted": "L'agence a été supprimée",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer cette agence ?"
+            },
+            "detail": {
+                "title": "Agence"
+            },
+            "nom": "Nom",
+            "telephone": "Téléphone",
+            "adresse": "Adresse",
+            "code": "Code",
+            "compagnie": "Compagnie",
+            "gouvernorat": "Gouvernorat",
+            "ville": "Ville"
+        }
+    }
+}

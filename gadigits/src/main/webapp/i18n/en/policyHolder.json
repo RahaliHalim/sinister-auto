@@ -1,0 +1,41 @@
+{
+    "auxiliumApp": {
+        "policyHolder" : {
+            "home": {
+                "title": "Policy Holders",
+                "createLabel": "Create a new Policy Holder",
+                "createOrEditLabel": "Create or edit a Policy Holder",
+                "search": "Search for Policy Holder"
+            },
+            "created": "A new Policy Holder is created with identifier {{ param }}",
+            "updated": "A Policy Holder is updated with identifier {{ param }}",
+            "deleted": "A Policy Holder is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Policy Holder {{ id }}?"
+            },
+            "detail": {
+                "title": "Policy Holder"
+            },
+            "company": "Company",
+            "title": "Title",
+            "firstName": "First Name",
+            "lastName": "Last Name",
+            "companyName": "Company Name",
+            "firstPhone": "First Phone",
+            "secondPhone": "Second Phone",
+            "fax": "Fax",
+            "firstEmail": "First Email",
+            "secondEmail": "Second Email",
+            "address": "Address",
+            "identifier": "Identifier",
+            "vatRegistered": "Vat Registered",
+            "tradeRegister": "Trade Register",
+            "creationDate": "Creation Date",
+            "updateDate": "Update Date",
+            "governorate": "Governorate",
+            "delegation": "Delegation",
+            "creationUser": "Creation User",
+            "updateUser": "Update User"
+        }
+    }
+}

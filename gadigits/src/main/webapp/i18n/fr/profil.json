@@ -1,0 +1,24 @@
+{
+    "auxiliumApp": {
+        "profil" : {
+            "home": {
+                "title": "Profils",
+                "liste": "Liste des profils"
+            },
+            "created": "Un nouveau profil a été créé avec l'identifiant {{ param }}",
+            "updated": "Le profil avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le profil avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer le profil  ?"
+            },
+            "detail": {
+                "title": "Profil",
+                "id":"ID",
+                "name":"Nom du profil",
+                "type": "Nature"
+               
+            }
+            
+        }
+    }
+}

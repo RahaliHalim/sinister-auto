@@ -1,0 +1,28 @@
+{
+    "auxiliumApp": {
+        "raisonAssistance" : {
+            "home": {
+                "title": "Motifs Assistance",
+                "createLabel": "Créer un nouveau motif assistance",
+                "createOrEditLabel": "Créer ou modifier un motif assistance",
+                "search": "Recherche pour raison assistance"
+            },
+            "created": "Un nouveau motif assistance a été créé",
+            "updated": "Le motif assistance a été mis à jour",
+            "deleted": "Le motif assistance a été supprimé",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer la raison assistance {{ id }} ?"
+            },
+            "detail": {
+                "title": "Motif assistance"
+            },
+            "code": "Code",
+            "label": "Libellé",
+            "active": "Actif",
+            "creationDate": "Création Date",
+            "creationUserId": "Création User Id",
+            "operation": "Opération",
+            "status": "État prestation"
+        }
+    }
+}

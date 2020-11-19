@@ -1,0 +1,300 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+
+    <div>
+        <jhi-alert-error></jhi-alert-error>
+
+
+        <div class="row top-buffer">
+
+            <div class="col-sm-12">
+                <input type="checkbox" class="check-input" name="isAssujettieTva" id="field_isAssujettieTva" [(ngModel)]="personneMorale.isAssujettieTva"
+                />
+                <label class="form-control-label" jhiTranslate="auxiliumApp.personneMorale.isAssujettieTva" for="field_isAssujettieTva">Is Assujettie Tva</label>
+            </div>
+        </div>
+        <div class="row top-buffer">
+            <div class="col-sm-3">
+                <label class="form-control-label" jhiTranslate="auxiliumApp.personneMorale.raisonSociale" for="field_raisonSociale">Raison Sociale</label>
+                <input readonly type="text" class="form-control form-control-sm" name="raisonSociale" id="field_raisonSociale" [(ngModel)]="personneMorale.raisonSociale"
+                    required maxlength="50" number />
+                <div [hidden]="!(editForm.controls.raisonSociale?.dirty && editForm.controls.raisonSociale?.invalid)">
+                    <small class="form-text text-danger" [hidden]="!editForm.controls.raisonSociale?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                    <small class="form-text text-danger" [hidden]="!editForm.controls.numeroContrat?.errors?.max" jhiTranslate="entity.validation.max"
+                        translateValues="{ max: 50 }">
+                        This field cannot be more than 50.
+                    </small>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <label class="form-control-label" jhiTranslate="auxiliumApp.personneMorale.adresse" for="field_adresse">Adresse</label>
+                <input readonly type="text" class="form-control form-control-sm" name="adresse" id="field_adresse" [(ngModel)]="personneMorale.adresse" required maxlength="256"
+                />
+                <div [hidden]="!(editForm.controls.adresse?.dirty && editForm.controls.adresse?.invalid)">
+                    <small class="form-text text-danger" [hidden]="!editForm.controls.adresse?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                    <small class="form-text text-danger" [hidden]="!editForm.controls.adresse?.errors?.maxlength" jhiTranslate="entity.validation.maxlength"
+                        translateValues="{ max: 256 }">
+                        This field cannot be longer than 256 characters.
+                    </small>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <label jhiTranslate="auxiliumApp.assure.gouvernorat">
+                    gouvernorat
+                </label>
+                <select disabled class="form-control form-control-sm" id="field_lieu" name="lieu" [(ngModel)]="personneMorale && personneMorale.gouvernorat && personneMorale.gouvernorat.id"
+                    (ngModelChange)="listVillesByGouvernoratLieu(personneMorale.gouvernorat.id)">
+                    <option [ngValue]="gouvernoratOption.id" *ngFor="let gouvernoratOption of sysgouvernorats; trackBy: trackGouvernoratById">
+                        {{gouvernoratOption.libelle}}
+                    </option>
+                </select>
+            </div>
+            <div class="col-sm-3">
+                <label jhiTranslate="auxiliumApp.personneMorale.ville" for="field_ville">Ville</label>
+                <select disabled  class="form-control form-control-sm" id="field_ville" name="ville" [(ngModel)]="personneMorale.villeId">
+                    <option [ngValue]="sysVilleOption.id" *ngFor="let sysVilleOption of sysvilles; trackBy: trackSysVilleById">{{sysVilleOption.libelle}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="row top-buffer">
+            <div class="col-sm-3">
+                <label class="form-control-label" jhiTranslate="auxiliumApp.personneMorale.matriculeFiscale" for="field_matriculeFiscale">Matricule Fiscale</label>
+                <input readonly type="text" class="form-control form-control-sm" name="matriculeFiscale" id="field_matriculeFiscale" [(ngModel)]="personneMorale.matriculeFiscale"
+                    minlength="9" maxlength="9" />
+                <div [hidden]="!(editForm.controls.matriculeFiscale?.dirty && editForm.controls.matriculeFiscale?.invalid)">
+                    <small class="form-text text-danger" [hidden]="!editForm.controls.matriculeFiscale?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                    <small class="form-text text-danger" [hidden]="!editForm.controls.matriculeFiscale?.errors?.minlength" jhiTranslate="entity.validation.minlength"
+                        translateValues="{ min: 9 }">
+                        This field is required to be at least 9 characters.
+                    </small>
+                    <small class="form-text text-danger" [hidden]="!editForm.controls.matriculeFiscale?.errors?.maxlength" jhiTranslate="entity.validation.maxlength"
+                        translateValues="{ max: 9 }">
+                        This field cannot be longer than 9 characters.
+                    </small>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <label class="form-control-label" jhiTranslate="auxiliumApp.personneMorale.codeTVA" for="field_codeTVA">Code TVA</label>
+                <input readonly type="text" class="form-control form-control-sm" name="codeTVA" id="field_codeTVA" [(ngModel)]="personneMorale.codeTVA" minlength="1"
+                    maxlength="1" />
+                <div [hidden]="!(editForm.controls.codeTVA?.dirty && editForm.controls.codeTVA?.invalid)">
+                    <small class="form-text text-danger" [hidden]="!editForm.controls.codeTVA?.errors?.minlength" jhiTranslate="entity.validation.minlength"
+                        translateValues="{ min: 1 }">
+                        This field is required to be at least 1 characters.
+                    </small>
+                    <small class="form-text text-danger" [hidden]="!editForm.controls.codeTVA?.errors?.maxlength" jhiTranslate="entity.validation.maxlength"
+                        translateValues="{ max: 1 }">
+                        This field cannot be longer than 1 characters.
+                    </small>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <label class="form-control-label" jhiTranslate="auxiliumApp.personneMorale.numEtablissement" for="field_numEtablissement">Num Etablissement</label>
+                <input readonly type="text" class="form-control form-control-sm" name="numEtablissement" id="field_numEtablissement" [(ngModel)]="personneMorale.numEtablissement"
+                    minlength="3" maxlength="3" />
+                <div [hidden]="!(editForm.controls.numEtablissement?.dirty && editForm.controls.numEtablissement?.invalid)">
+                    <small class="form-text text-danger" [hidden]="!editForm.controls.numEtablissement?.errors?.minlength" jhiTranslate="entity.validation.minlength"
+                        translateValues="{ min: 3 }">
+                        This field is required to be at least 3 characters.
+                    </small>
+                    <small class="form-text text-danger" [hidden]="!editForm.controls.numEtablissement?.errors?.maxlength" jhiTranslate="entity.validation.maxlength"
+                        translateValues="{ max: 3 }">
+                        This field cannot be longer than 3 characters.
+                    </small>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <label class="form-control-label" jhiTranslate="auxiliumApp.personneMorale.codeCategorie" for="field_codeCategorie">Code Categorie</label>
+                <input readonly type="text" class="form-control form-control-sm" name="codeCategorie" id="field_codeCategorie" [(ngModel)]="personneMorale.codeCategorie"
+                    minlength="1" maxlength="1" />
+                <div [hidden]="!(editForm.controls.codeCategorie?.dirty && editForm.controls.codeCategorie?.invalid)">
+                    <small class="form-text text-danger" [hidden]="!editForm.controls.codeCategorie?.errors?.minlength" jhiTranslate="entity.validation.minlength"
+                        translateValues="{ min: 1 }">
+                        This field is required to be at least 1 characters.
+                    </small>
+                    <small class="form-text text-danger" [hidden]="!editForm.controls.codeCategorie?.errors?.maxlength" jhiTranslate="entity.validation.maxlength"
+                        translateValues="{ max: 1 }">
+                        This field cannot be longer than 1 characters.
+                    </small>
+                </div>
+            </div>
+        </div>
+        <div class="row top-buffer">
+            <div class="col-sm-3">
+                <label class="form-control-label" jhiTranslate="auxiliumApp.personneMorale.registreCommerce" for="field_registreCommerce">Registre Commerce</label>
+                <input readonly type="text" class="form-control form-control-sm" name="registreCommerce" id="field_registreCommerce" [(ngModel)]="personneMorale.registreCommerce"
+                    required maxlength="100" />
+                <div [hidden]="!(editForm.controls.registreCommerce?.dirty && editForm.controls.registreCommerce?.invalid)">
+                    <small class="form-text text-danger" [hidden]="!editForm.controls.registreCommerce?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                    <small class="form-text text-danger" [hidden]="!editForm.controls.registreCommerce?.errors?.maxlength" jhiTranslate="entity.validation.maxlength"
+                        translateValues="{ max: 100 }">
+                        This field cannot be longer than 100 characters.
+                    </small>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <label class="form-control-label" jhiTranslate="auxiliumApp.personneMorale.banque" for="field_banque">Banque</label>
+                <input readonly type="text" class="form-control form-control-sm" name="banque" id="field_banque" [(ngModel)]="personneMorale.banque" maxlength="100"
+                />
+                <div [hidden]="!(editForm.controls.banque?.dirty && editForm.controls.banque?.invalid)">
+                    <small class="form-text text-danger" [hidden]="!editForm.controls.banque?.errors?.maxlength" jhiTranslate="entity.validation.maxlength"
+                        translateValues="{ max: 100 }">
+                        This field cannot be longer than 100 characters.
+                    </small>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <label class="form-control-label" jhiTranslate="auxiliumApp.personneMorale.agence" for="field_agence">Agence</label>
+                <input readonly type="text" class="form-control form-control-sm" name="agence" id="field_agence" [(ngModel)]="personneMorale.agence" maxlength="100"
+                />
+                <div [hidden]="!(editForm.controls.agence?.dirty && editForm.controls.agence?.invalid)">
+                    <small class="form-text text-danger" [hidden]="!editForm.controls.agence?.errors?.maxlength" jhiTranslate="entity.validation.maxlength"
+                        translateValues="{ max: 100 }">
+                        This field cannot be longer than 100 characters.
+                    </small>
+                </div>
+            </div>
+
+            <div class="col-sm-3">
+                <label class="form-control-label" jhiTranslate="auxiliumApp.personneMorale.rib" for="field_rib">Rib</label>
+                <input readonly type="number" class="form-control form-control-sm" name="rib" id="field_rib" [(ngModel)]="personneMorale.rib" max="100000000000000000"
+                />
+                <div [hidden]="!(editForm.controls.rib?.dirty && editForm.controls.rib?.invalid)">
+                    <small class="form-text text-danger" [hidden]="!editForm.controls.rib?.errors?.max" jhiTranslate="entity.validation.max"
+                        translateValues="{ max: 100000000000000000 }">
+                        This field cannot be more than 100000000000000000.
+                    </small>
+                    <small class="form-text text-danger" [hidden]="!editForm.controls.rib?.errors?.number" jhiTranslate="entity.validation.number">
+                        This field should be a number.
+                    </small>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</form>
+
+
+<br/>
+<br/>
+<div>
+    <h2>
+
+        <button class="btn btn-primary float-right jh-create-entity create-contact" [disabled]="this.personneMorale.id == undefined"
+            [routerLink]="['/', { outlets: { popup: 'new-contact'} }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down" jhiTranslate="auxiliumApp.contact.home.createLabel">
+                Create new Contact
+            </span>
+        </button>
+    </h2>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr jhiSort>
+
+                    <th jhiSortBy="isGerant">
+                        <span jhiTranslate="auxiliumApp.contact.isGerant">Is Gerant</span>
+                        <span class="fa fa-sort"></span>
+                    </th>
+                    <th jhiSortBy="personnePhysiqueNom">
+                        <span jhiTranslate="auxiliumApp.contact.nom">Nom</span>
+                        <span class="fa fa-sort"></span>
+                    </th>
+                    <th jhiSortBy="personnePhysiquePrenom">
+                        <span jhiTranslate="auxiliumApp.contact.prenom">Prenom</span>
+                        <span class="fa fa-sort"></span>
+                    </th>
+                    <th jhiSortBy="personnePhysiqueEmail">
+                        <span jhiTranslate="auxiliumApp.contact.email">Email</span>
+                        <span class="fa fa-sort"></span>
+                    </th>
+                    <th jhiSortBy="personnePhysiqueTel">
+                        <span jhiTranslate="auxiliumApp.contact.tel">Tel</span>
+                        <span class="fa fa-sort"></span>
+                    </th>
+
+                    <th jhiSortBy="villeLibelle">
+                        <span jhiTranslate="auxiliumApp.contact.ville">Ville</span>
+                        <span class="fa fa-sort"></span>
+                    </th>
+
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let contact of listContacts ;trackBy: trackContactsId">
+
+                    <td>
+                        <div *ngIf="contact.isGerant">
+                            <button class="btn btn-success btn-sm">
+                                <span class="fa fa-check-square"></span>
+                            </button>
+                        </div>
+                        <div *ngIf="!contact.isGerant">
+                            <button class="btn btn-danger btn-sm">
+                                <span class="fa fa-window-close"></span>
+                            </button>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="contact.personnePhysiqueId">
+                            <a [routerLink]="['../personne-physique', contact.personnePhysiqueId  ]">{{contact.personnePhysiqueNom}}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="contact.personnePhysiqueId">
+                            <a [routerLink]="['../personne-physique', contact.personnePhysiqueId  ]">{{contact.personnePhysiquePrenom}}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="contact.personnePhysiqueId">
+                            <a [routerLink]="['../personne-physique', contact.personnePhysiqueId  ]">{{contact.personnePhysiqueEmail}}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="contact.personnePhysiqueId">
+                            <a [routerLink]="['../personne-physique', contact.personnePhysiqueId  ]">{{contact.personnePhysiqueTel}}</a>
+                        </div>
+                    </td>
+
+                    <td>
+                        <div *ngIf="contact.villeId">
+                            <a [routerLink]="['../sys-ville', contact.villeId  ]">{{contact.villeLibelle}}</a>
+                        </div>
+                    </td>
+
+
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit" [routerLink]="['../contact', contact.id ]" class="btn btn-info btn-sm">
+                                <span class="fa fa-eye"></span>
+
+                            </button>
+                            <button type="submit" [routerLink]="['/', { outlets: { popup: 'contact/'+ contact.id + '/edit'} }]" replaceUrl="true" class="btn btn-primary btn-sm">
+                                <span class="fa fa-pencil"></span>
+
+                            </button>
+                            <button type="submit" [routerLink]="['/', { outlets: { popup: 'contact/'+ contact.id + '/delete'} }]" replaceUrl="true" class="btn btn-danger btn-sm">
+                                <span class="fa fa-sm fa-remove"></span>
+
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

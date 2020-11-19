@@ -1,0 +1,25 @@
+{
+    "auxiliumApp": {
+        "delegation" : {
+            "home": {
+                "title": "Délégations",
+                "createLabel": "Créer une nouvelle délégation",
+                "createOrEditLabel": "Créer ou modifier une délégation",
+                "search": "Recherche pour délégation"
+            },
+            "created": "Une nouvelle délégation a été créée avec l'identifiant {{ param }}",
+            "updated": "La délégation avec l'identifiant {{ param }} a été mise à jour",
+            "deleted": "La délégation avec l'identifiant {{ param }} a été supprimée",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer la délégation {{ id }} ?"
+            },
+            "detail": {
+                "title": "Délégation"
+            },
+            "label": "Label",
+            "latitude": "Latitude",
+            "longitude": "Longitude",
+            "governorate": "Gouvernorat"
+        }
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "auxiliumApp": {
+        "NatureIncident" : {
+            "null": "",
+            "PANNE": "PANNE",
+            "ACCIDENT": "ACCIDENT"
+        }
+    }
+}

@@ -1,0 +1,28 @@
+{
+    "auxiliumApp": {
+        "affectReparateur" : {
+            "home": {
+                "title": "Affect Reparateurs",
+                "createLabel": "Create a new Affect Reparateur",
+                "createOrEditLabel": "Create or edit a Affect Reparateur",
+                "search": "Search for Affect Reparateur"
+            },
+            "created": "A new Affect Reparateur is created with identifier {{ param }}",
+            "updated": "A Affect Reparateur is updated with identifier {{ param }}",
+            "deleted": "A Affect Reparateur is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Affect Reparateur {{ id }}?"
+            },
+            "detail": {
+                "title": "Affect Reparateur"
+            },
+            "dateEffet": "Date Effet",
+            "dateModif": "Date Modif",
+            "commentaire": "Commentaire",
+            "devis": "Devis",
+            "prestation": "Prestation",
+            "apec": "Apec",
+            "reparateur": "Reparateur"
+        }
+    }
+}

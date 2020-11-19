@@ -1,0 +1,44 @@
+{
+    "auxiliumApp": {
+        "refCompagnie" : {
+            "home": {
+                "title": " Compagnies",
+                "createLabel": "Create a new Compagnie",
+                "createOrEditLabel": "Create or edit a Compagnie",
+                "search": "Search for Compagnie"
+            },
+            "created": "A new Compagnie is created",
+            "updated": "A Compagnie is updated",
+            "deleted": "A Compagnie is deleted",
+             "bloqued": "La Compagnie a été bloquée",
+             "debloqued": "La Compagnie a été débloquée",
+            "delete": {
+                "question": "Are you sure you want to delete this Compagnie?"
+            },
+            "detail": {
+                "title": "Ref Compagnie"
+            },
+            "nom": "Nom",
+            "reference": "Reference",
+            "isEtrangere": "Is Etrangere",
+            "dateCreation": "Date Creation",
+            "logo": "Logo",
+            "isBloque": "Is Bloque",
+            "isDelete": "Is Delete",
+            "isClient": "Is Client",
+            "personneMorale": "Personne Morale",
+            "pack": "Pack",
+            "nature": "Nature",
+            "type": "Type",
+            "usage": "Usage",
+            "garanties": "Garanties",
+            "bloquer": "Bloquer",
+            "debloquer": "Débloquer",
+            "confirm": "Confirmer",
+            "bloque": {
+            	"title": "Confirmer blocage/débloage compagnie",
+                "question": "Êtes-vous sûrs de vouloir bloquer/débloquer cette Compagnie ?"
+            }
+        }
+    }
+}

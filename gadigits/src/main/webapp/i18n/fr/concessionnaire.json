@@ -1,0 +1,23 @@
+{
+    "auxiliumApp": {
+        "concessionnaire" : {
+            "home": {
+                "title": "Concessionnaires",
+                "createLabel": "Créer un nouveau concessionnaire",
+                "createOrEditLabel": "Créer ou modifier un concessionnaire",
+                "search": "Recherche pour concessionnaire"
+            },
+            "created": "Un nouveau concessionnaire a été créé avec l'identifiant {{ param }}",
+            "updated": "Le concessionnaire avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le concessionnaire avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer le concessionnaire {{ id }} ?"
+            },
+            "detail": {
+                "title": "Concessionnaire"
+            },
+            "libelle": "Libellé",
+            "marque": "Marque"
+        }
+    }
+}

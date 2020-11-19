@@ -1,0 +1,25 @@
+{
+    "auxiliumApp": {
+        "bonSortie" : {
+            "home": {
+                "title": "Bon Sorties",
+                "createLabel": "Create a new Bon Sortie",
+                "createOrEditLabel": "Create or edit a Bon Sortie",
+                "search": "Search for Bon Sortie"
+            },
+            "created": "A new Bon Sortie is created with identifier {{ param }}",
+            "updated": "A Bon Sortie is updated with identifier {{ param }}",
+            "deleted": "A Bon Sortie is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Bon Sortie {{ id }}?"
+            },
+            "detail": {
+                "title": "Bon Sortie"
+            },
+            "numero": "Numero",
+            "isSigne": "Is Signe",
+            "observation": "Observation",
+            "refEtatBs": "Ref Etat Bs"
+        }
+    }
+}

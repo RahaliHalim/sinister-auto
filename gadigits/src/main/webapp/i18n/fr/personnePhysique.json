@@ -1,0 +1,35 @@
+{
+    "auxiliumApp": {
+        "personnePhysique" : {
+            "home": {
+                "title": "Personne physique",
+                "createLabel": "Créer",
+                "createOrEditLabel": "Créer ou modifier une personne physique",
+                "search": "Recherche pour personne physique"
+            },
+            "created": "",
+            "updated": "",
+            "deleted": "",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer la personne physique {{ id }} ?"
+            },
+            "detail": {
+                "title": "Personne physique"
+            },
+            "prenom": "Prénom",
+            "nom": "Nom",
+            "cin": "CIN",
+            "fax": "Fax",
+            "civilite": "Civilité",
+            "premTelephone": "Premier téléphone",
+            "deuxTelephone": "Deuxième téléphone",
+            "premMail": " Email",
+            "deuxMail": "Deuxième Email",
+            "adresse": "Adresse",
+            "ville": "Ville",
+            "reference": "Référence",
+            "isUtilisateur": "Associer un utilisateur",
+            "user": "User"
+        }
+    }
+}

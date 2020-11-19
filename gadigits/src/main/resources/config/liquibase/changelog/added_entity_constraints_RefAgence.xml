@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity RefAgence.
+    -->
+    <changeSet id="20170912084502-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="compagnie_id"
+                                 baseTableName="ref_agence"
+                                 constraintName="fk_ref_agence_compagnie_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ref_compagnie"/>
+
+        <addForeignKeyConstraint baseColumnNames="ville_id"
+                                 baseTableName="ref_agence"
+                                 constraintName="fk_ref_agence_ville_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="sys_ville"/>
+
+    </changeSet>
+</databaseChangeLog>

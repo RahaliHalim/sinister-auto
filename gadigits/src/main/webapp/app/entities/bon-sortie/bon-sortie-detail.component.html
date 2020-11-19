@@ -1,0 +1,39 @@
+
+<div *ngIf="bonSortie">
+    <h2><span jhiTranslate="auxiliumApp.bonSortie.detail.title">Bon Sortie</span> {{bonSortie.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="auxiliumApp.bonSortie.numero">Numero</span></dt>
+        <dd>
+            <span>{{bonSortie.numero}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.bonSortie.isSigne">Is Signe</span></dt>
+        <dd>
+            <span>{{bonSortie.isSigne}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.bonSortie.observation">Observation</span></dt>
+        <dd>
+            <span>{{bonSortie.observation}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.bonSortie.refEtatBs">Ref Etat Bs</span></dt>
+        <dd>
+            <div *ngIf="bonSortie.refEtatBsId">
+                <a [routerLink]="['/ref-etat-bs', bonSortie.refEtatBsId]">{{bonSortie.refEtatBsId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'bon-sortie/'+ bonSortie.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;&nbsp;&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,24 @@
+{
+    "auxiliumApp": {
+        "designationTypeContrat" : {
+            "home": {
+                "title": "Designation Type Contrats",
+                "createLabel": "Create a new Designation Type Contrat",
+                "createOrEditLabel": "Create or edit a Designation Type Contrat",
+                "search": "Search for Designation Type Contrat"
+            },
+            "created": "A new Designation Type Contrat is created with identifier {{ param }}",
+            "updated": "A Designation Type Contrat is updated with identifier {{ param }}",
+            "deleted": "A Designation Type Contrat is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Designation Type Contrat {{ id }}?"
+            },
+            "detail": {
+                "title": "Designation Type Contrat"
+            },
+            "libelle": "Libelle",
+            "compagnie": "Compagnie",
+            "refTypeContrat": "Ref Type Contrat"
+        }
+    }
+}

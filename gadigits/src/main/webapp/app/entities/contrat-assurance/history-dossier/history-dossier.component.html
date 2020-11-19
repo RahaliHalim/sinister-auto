@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header d-flex align-items-center no-padding">
+        <div class="col-lg-5" style="max-height: 25px;">
+          <hr class="my-4">
+        </div>
+        <div>
+          <strong style="color:#11859b">Historique</strong>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+            class="table table-sm table-hover table-bordered">
+            <thead style="color:white;background-color:#11859b">
+              <tr>
+                <th><span jhiTranslate="auxiliumApp.history.operationName">Operation</span></th>
+                <th><span jhiTranslate="auxiliumApp.history.operationDate">Date</span></th>
+                <th><span jhiTranslate="auxiliumApp.history.userName">Name</span></th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let history of sortedHistories">
+                <td><span style="font-weight:bold;">{{history.operationName}}</span></td>
+                <td width=25%><span
+                    style="font-weight:bold;">{{history.operationDate | date:'dd/MM/yyyy HH:mm:ss'}}</span></td>
+                <td width=25%><span style="font-weight:bold;">{{history.firstName}} {{history.lastName}}</span> </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <div class="form-group">
+    &nbsp;&nbsp;
+    <button type="button" (click)="clear()" data-dismiss="modal" class="btn btn-sm pull-right margin-right-5">
+      <span jhiTranslate="entity.action.back">Back</span>
+    </button>
+    &nbsp;&nbsp;
+  </div>
+  <!--<button type="button" class="btn btn-danger btn-sm" data-dismiss="modal" (click)="clear()">
+        <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+    </button>-->
+</div>

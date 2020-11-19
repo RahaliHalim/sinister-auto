@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity Policy.
+    -->
+    <changeSet id="20190312012313-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="type_id"
+                                 baseTableName="app_policy"
+                                 constraintName="fk_policy_type_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ref_policy_type"/>
+
+        <addForeignKeyConstraint baseColumnNames="nature_id"
+                                 baseTableName="app_policy"
+                                 constraintName="fk_policy_nature_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ref_policy_nature"/>
+
+        <addForeignKeyConstraint baseColumnNames="periodicity_id"
+                                 baseTableName="app_policy"
+                                 constraintName="fk_policy_periodicity_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ref_periodicity"/>
+
+        <addForeignKeyConstraint baseColumnNames="partner_id"
+                                 baseTableName="app_policy"
+                                 constraintName="fk_policy_partner_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ref_partner"/>
+
+        <addForeignKeyConstraint baseColumnNames="agency_id"
+                                 baseTableName="app_policy"
+                                 constraintName="fk_policy_agency_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ref_agency"/>
+
+        <addForeignKeyConstraint baseColumnNames="policy_holder_id"
+                                 baseTableName="app_policy"
+                                 constraintName="fk_policy_policy_holder_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="app_policy_holder"/>
+
+        <addForeignKeyConstraint baseColumnNames="pack_id"
+                                 baseTableName="app_policy"
+                                 constraintName="fk_policy_pack_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ref_pack"/>
+
+    </changeSet>
+</databaseChangeLog>

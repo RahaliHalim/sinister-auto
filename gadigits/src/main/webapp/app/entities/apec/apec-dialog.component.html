@@ -1,0 +1,2209 @@
+<!-- Breadcrumb-->
+<div class="breadcrumb-holder">
+    <div class="container-fluid">
+        <ul class="breadcrumb">
+
+
+            <li class="breadcrumb-item"><a href="#"><span class="fa fa-home"></span>&nbsp;&nbsp;<span
+                        jhiTranslate="global.menu.home">Home</span></a></li>
+            <li class="breadcrumb-item"><a><span jhiTranslate="auxiliumApp.apec.detail.title">Validation APEC</span></a>
+            </li>
+        </ul>
+
+    </div>
+</div>
+
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+
+
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="col-lg-12">
+            <i class="fa fa-history" aria-hidden="true" (click)="historyApec()" style="font-size: 35px;
+            position: absolute; right: 16px; top: 11px;"></i>
+
+        </div>
+        </br></br>
+
+
+        <div class="row">
+            <div class="col-lg-12">
+
+                <div class="row">
+                    <!-- ---------------------------------------------------------détails assuré-------------------------------------------------------------------------------------------------------->
+
+                    <div class="col-sm-6">
+                        <div class="card">
+
+                            <span class="anchor" id="formUserEdit"></span>
+                            <div class=" collapsible-card card-header align-items-center collapsed notice notice-info"
+                                data-toggle="collapse" href="#AssurDetails">
+                                <strong jhiTranslate="auxiliumApp.contratAssurance.assure">Détails
+                                    assure</strong>
+                            </div>
+                            <br />
+                            <div class="col-sm-12">
+                                <div class="row">
+                                    <div class="form-group col-sm-4">
+                                        <label jhiTranslate="auxiliumApp.assure.assure"
+                                            for="field_assurePrenom">Assure</label>
+                                        <input type="text" class="form-control form-control-sm" name="assurePrenom"
+                                            id="field_assurePrenom" [(ngModel)]="assure" readonly />
+                                    </div>
+                                    <div class="form-group col-sm-4">
+                                        <label jhiTranslate="auxiliumApp.vehiculeAssure.immatriculationVehicule"
+                                            for="field_immatriculationVehicule"> Immatriculation
+
+                                        </label>
+                                        <input type="text" class="form-control form-control-sm"
+                                            name="immatriculationVehicule" id="field_immatriculationVehicule"
+                                            [(ngModel)]="vehicule.immatriculationVehicule" readonly />
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <label jhiTranslate="auxiliumApp.contratAssurance.usage" for="field_usage">
+                                            Usage
+                                        </label>
+                                        <select class="form-control form-control-sm" id="field_usage" name="usage"
+                                            [(ngModel)]="vehicule.usageId" disabled>
+                                            <option [ngValue]="refUsageContratOption.id"
+                                                *ngFor="let refUsageContratOption of refusagecontrats;">
+                                                {{refUsageContratOption.label}}</option>
+                                        </select>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-sm-12">
+                                <div class="row">
+                                    <div class="form-group col-sm-3">
+                                        <label jhiTranslate="auxiliumApp.vehiculeAssure.numeroChassis"
+                                            for="field_numeroChassis">Numero
+                                            Chassis
+                                        </label>
+                                        <input type="text" class="form-control form-control-sm" name="numeroChassis"
+                                            id="field_numeroChassis" [(ngModel)]="vehicule.numeroChassis" readonly />
+                                    </div>
+                                    <div class="form-group col-sm-3">
+                                        <label jhiTranslate="auxiliumApp.contratAssurance.energie"
+                                            for="field_energie">Energie</label>
+                                        <input type="text" class="form-control form-control-sm" name="energie"
+                                            id="field_energie" [(ngModel)]="vehicule.puissance" readonly />
+                                    </div>
+                                    <div class="form-group col-sm-3">
+                                        <label jhiTranslate="auxiliumApp.contratAssurance.marque"
+                                            for="field_marqueLibelle">Marque</label>
+                                        <input type="text" class="form-control form-control-sm" name="marqueLibelle"
+                                            id="field_marqueLibelle" [(ngModel)]="vehicule.marqueLibelle" readonly />
+                                    </div>
+                                    <div class="form-group col-sm-3">
+                                        <label jhiTranslate="auxiliumApp.contratAssurance.modele"
+                                            for="field_modeleLibelle">Modele</label>
+                                        <input id="field_modeleLibelle" type="text" class="form-control form-control-sm"
+                                            name="modeleLibelle" [(ngModel)]="vehicule.modeleLibelle" readonly />
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div *ngIf="AvisExpert">
+                                            <label class="form-control-label"
+                                                jhiTranslate="auxiliumApp.reparateur.raisonSociale"
+                                                for="field_raisonSociale">Raison Sociale</label>
+                                            <input type="text" class="form-control form-control-sm" name="raisonSociale"
+                                                id="field_raisonSocial" [(ngModel)]="reparateur.raisonSociale"
+                                                disabled />
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12">
+                                <div class="row">
+
+                                    <div class="col-sm-3">
+                                        <div *ngIf="AvisExpert &&  contratAssurance.marketValue ">
+                                            <label class="form-control-label"
+                                                jhiTranslate="auxiliumApp.contratAssurance.valeurAssure"
+                                                for="field_raisonSociale">Raison Sociale</label>
+                                            <input type="text" class="form-control form-control-sm" name="raisonSociale"
+                                                id="field_raisonSocial" [(ngModel)]=" contratAssurance.marketValue"
+                                                disabled />
+
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div *ngIf="AvisExpert && contratAssurance.newValueVehicle">
+                                            <label class="form-control-label"
+                                                jhiTranslate="auxiliumApp.contratAssurance.valeurAssure"
+                                                for="field_raisonSociale">Raison Sociale</label>
+                                            <input type="text" class="form-control form-control-sm" name="raisonSociale"
+                                                id="field_raisonSocial" [(ngModel)]="contratAssurance.newValueVehicle"
+                                                disabled />
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <!---------------------------------------------------------------------------Réception véhicule---------------------------------------------------------------------------------------------------->
+                    <div class="col-sm-6">
+                        <div *ngIf="expert != true">
+                            <div class="card">
+                                <span class="anchor" id="formUserEdit"></span>
+                                <div
+                                    class=" collapsible-card card-header align-items-center collapsed notice notice-info">
+                                    <strong> Réception Véhicule</strong>
+                                </div>
+                                <br />
+                                <div class="col-sm-12">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <label class="form-control-label"
+                                                jhiTranslate="auxiliumApp.sinisterPec.receptionVehicule"
+                                                for="field_receptionVehicule">Réception Véhicule</label>
+                                            <input type="checkbox" class="check-input" name="receptionVehicule"
+                                                id="field_receptionVehicule" [(ngModel)]="sinisterPec.receptionVehicule"
+                                                [disabled]="!receiveVehicule" />
+                                        </div>
+                                        <div class="col-sm-6" *ngIf="sinisterPec.receptionVehicule">
+                                            <label class="form-control-label"
+                                                jhiTranslate="auxiliumApp.sinisterPec.dateReceptionVehicule"
+                                                for="field_dateReceptionVehicule">dateReceptionVehicule</label>
+                                            <div class="input-group">
+                                                <input id="field_myDateReceptionVehicule"
+                                                    class="form-control form-control-sm" name="myDateReceptionVehicule"
+                                                    [(ngModel)]="myDate" required readonly />
+                                                <span class="input-group-btn">
+                                                </span>&nbsp;&nbsp;
+                                            </div>
+                                        </div>
+
+                                        <!--<div class="col-sm-6" *ngIf="!sinisterPec.receptionVehicule">
+                                            <label class="form-control-label"
+                                                jhiTranslate="auxiliumApp.sinisterPec.dateReceptionVehicule"
+                                                for="field_dateReceptionVehicule">dateReceptionVehicule</label>
+                                            <div class="input-group">
+                                                <input id="field_dateReceptionVehicule" type="text"
+                                                    class="form-control form-control-sm" name="dateReceptionVehicule"
+                                                    ngbDatepicker #dateReceptionVehiculeDp="ngbDatepicker"
+                                                    [(ngModel)]="sinisterPec.vehicleReceiptDate" required
+                                                    [disabled]="!receiveVehicule" />
+                                            </div>
+                                        </div>-->
+
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="col-sm-12">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <label class="form-control-label"
+                                                jhiTranslate="auxiliumApp.sinisterPec.etatDuChoc"
+                                                for="field_etatduchoc">État
+                                                du choc</label>
+                                            <div class="input-group" data-toggle="buttons">
+                                                <label class="btn btn-sm btn-primary" for="ppInsured"
+                                                    (click)="changeNatureReparation(true);">
+                                                    <input type="radio" [disabled]="true" name="natureReparation"
+                                                        id="leger" autocomplete="off" [value]="true"
+                                                        [(ngModel)]="sinisterPec.lightShock"> Choc
+                                                    Léger
+                                                </label> &nbsp;
+                                                <label class="btn btn-sm btn-primary" for="pmInsured"
+                                                    (click)="changeNatureReparation(false);">
+                                                    <input type="radio" [disabled]="true" name="natureReparation"
+                                                        id="nonLeger" autocomplete="off" [value]="false"
+                                                        [(ngModel)]="sinisterPec.lightShock"> Choc
+                                                    non léger
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-6">
+                                            <label class="form-control-label"
+                                                jhiTranslate="auxiliumApp.sinisterPec.demandeDeDemantage"
+                                                for="field_demandededemantage">demande
+                                                de démontage</label>
+                                            <div class="input-group" data-toggle="buttons">
+                                                <label class="btn btn-sm btn-primary" for="ppInsured">
+                                                    <input type="radio" name="demontage" id="demontage"
+                                                        autocomplete="off" [value]="true"
+                                                        [(ngModel)]="sinisterPec.disassemblyRequest" disabled> Oui
+                                                </label> &nbsp;
+                                                <label class="btn btn-sm btn-primary" for="pmInsured">
+                                                    <input type="radio" name="demontage" id="nonDemontage"
+                                                        autocomplete="off" [value]="false"
+                                                        [(ngModel)]="sinisterPec.disassemblyRequest" disabled>
+                                                    Non
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!------------------------------------------------------------ Sinister PEC ------------------------------------------>
+
+
+        <div class="card">
+            <div class="card-header d-flex align-items-center no-padding">
+                <div class="notice notice-info">
+                    <strong jhiTranslate="auxiliumApp.sinisterPec.home.detail">Sinistre Pec</strong>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+
+                    <div class="col-sm-2">
+                        <label class="form-control-label" jhiTranslate="auxiliumApp.sinisterPec.companyReference"
+                            for="field_reference">Référence</label>
+                        <input type="text" class="form-control form-control-sm" name="field_reference"
+                            id="field_reference" [(ngModel)]="sinisterPec.companyReference" readonly />
+                        <div [hidden]="!(editForm.field_reference?.dirty && editForm.field_reference?.invalid)">
+                            <small class="form-text text-danger" [hidden]="!editForm.field_reference?.errors?.required"
+                                jhiTranslate="entity.validation.required">This field is required.</small>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <label class="form-control-label" jhiTranslate="auxiliumApp.dossier.dateDeclaration"
+                            for="field_dateDeclaration">Date
+                            Declaration</label>
+                        <div class="input-group">
+                            <input id="field_dateDeclaration" class="form-control form-control-sm"
+                                name="dateDeclaration"
+                                value="{{sinisterPec.declarationDate | date:'dd/MM/yyyy HH:mm:ss'}}" readonly />
+
+                        </div>
+                        <div [hidden]="!(editForm.dateDeclaration?.dirty && editForm.dateDeclaration?.invalid)">
+                            <small class="form-text text-danger" [hidden]="!editForm.dateDeclaration?.errors?.required"
+                                jhiTranslate="entity.validation.required">This field is required.</small>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label jhiTranslate="auxiliumApp.sinisterPrestation.mode" for="field_garanties">
+                                mode gestion
+                                (Ex garantie)</label>
+                            <select class="form-control form-control-sm" id="field_garanties" name="garanties"
+                                [(ngModel)]="sinisterPec.modeId" required [disabled]="true">
+                                <option [ngValue]="modeGestionByPack.id"
+                                    *ngFor="let modeGestionByPack of listModeGestionByPack; ">
+                                    {{modeGestionByPack.libelle}}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2" *ngIf="(isApprouved && showModeToModif) || isAcceptedWithChangeStatus">
+                        <div class="form-group">
+                            <label jhiTranslate="auxiliumApp.sinisterPec.mode_to_modif" for="mode_to_modif">
+                                mode gestion
+                                (Ex garantie)</label>
+                            <select class="form-control form-control-sm" id="mode_to_modif" name="modeModif"
+                                [(ngModel)]="sinisterPec.modeModifId" required [disabled]="true">
+                                <option [ngValue]="modeGestionByPack.id"
+                                    *ngFor="let modeGestionByPack of listModeGestionByPack; ">
+                                    {{modeGestionByPack.libelle}}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label jhiTranslate="auxiliumApp.sinisterPec.posGa" for="field_pos_ga">
+                                pos ga</label>
+                            <select class="form-control form-control-sm" id="field_pos_ga" name="pos_ga"
+                                [(ngModel)]="sinisterPec.posGaId" required [disabled]="true">
+                                <option [ngValue]="posGa.id" *ngFor="let posGa of listPositionGa; ">
+                                    {{posGa.libelle}}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-1">
+                        <div class="form-group">
+                            <label class="form-control-label" jhiTranslate="auxiliumApp.sinisterPec.vehicleNumber"
+                                for="field_nbrevehicule">Nbr Vehicules</label>
+                            <input type="number" id="field_nbrevehicule" class="form-control form-control-sm"
+                                name="nbreVehicule" [(ngModel)]="sinisterPec.vehicleNumber"
+                                (ngModelChange)="verifTiers()" min="{{minVinNumber}}" readonly />
+                            <div [hidden]="!(editForm.nbreVehicule?.dirty && editForm.nbreVehicule?.invalid)">
+                                <small class="form-text text-danger" [hidden]="!editForm.nbreVehicule?.errors?.required"
+                                    jhiTranslate="entity.validation.required">This field is required.</small>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-sm-3" *ngIf="garantieDommageVehicule || garantieTierce">
+                        <label class="form-control-label" jhiTranslate="auxiliumApp.contratAssurance.valeurNeuf"
+                            for="field_valeurNeuf"> Valeur assuré </label>
+                        <input type="number" class="form-control form-control-sm" name="valeurNeuf"
+                            id="field_valeurNeuf" [(ngModel)]="vehicule.newValueVehicle" min="0"
+                            max="100000000000000000" readonly />
+                    </div>
+
+                    <div class="col-sm-3" *ngIf="garantieDommageCollision || garantieTierceCollision">
+                        <label class="form-control-label" jhiTranslate="auxiliumApp.contratAssurance.capitalDc"
+                            for="field_capitalDc">Capital
+                            Dc</label>
+                        <input type="number" class="form-control form-control-sm" name="capitalDc" id="field_capitalDc"
+                            [(ngModel)]="vehicule.dcCapital" min="0" max="100000000000000000"
+                            (ngModelChange)="diffCapDcCapR()" readonly />
+                    </div>
+                    <div class="col-sm-3" *ngIf="garantieVolIncendiePartiel">
+                        <label class="form-control-label" jhiTranslate="auxiliumApp.contratAssurance.valeurVenale"
+                            for="field_valeurVenale"> Valeur Venale </label>
+                        <input type="number" class="form-control form-control-sm" name="valeurVenale"
+                            id="field_valeurVenale" [(ngModel)]="vehicule.marketValue" min="0" max="100000000000000000"
+                            readonly />
+                    </div>
+                    <div class="col-sm-3" *ngIf="garantieBrisGlace">
+                        <label class="form-control-label" jhiTranslate="auxiliumApp.contratAssurance.capitalBG"
+                            for="field_bgCapital">
+                            capital BG </label>
+                        <input type="number" class="form-control form-control-sm" name="bgCapital" id="field_bgCapital"
+                            [(ngModel)]="vehicule.bgCapital" min="0" max="100000000000000000"
+                            (ngModelChange)="diffCapDcCapR()" readonly />
+                    </div>
+                    <div class="col-sm-3"
+                        *ngIf="garantieDommageCollision || garantieBrisGlace || garantieTierceCollision">
+                        <label class="form-control-label" jhiTranslate="auxiliumApp.sinisterPec.capitalRestant"
+                            for="field_capitalRestant">
+                            capital restant </label>
+                        <input type="number" class="form-control form-control-sm" name="capitalRestant"
+                            id="field_capitalRestant" [(ngModel)]="sinisterPec.remainingCapital" min="0"
+                            max="100000000000000000" (ngModelChange)="diffCapDcCapR()" readonly />
+                    </div>
+
+                    <div class="col-sm-1" *ngIf="garantieDommageVehicule || garantieTierce">
+                        <label class="form-control-label" jhiTranslate="auxiliumApp.contratAssurance.franchise"
+                            for="field_newValueVehicleFarnchise">Franchise</label>
+                        <input type="text" class="form-control form-control-sm" name="newValueVehicleFarnchise"
+                            id="field_newValueVehicleFarnchise" [(ngModel)]="vehicule.newValueVehicleFarnchise"
+                            [pattern]="amountPattern" readonly />
+                    </div>
+                    <div class="col-sm-2" *ngIf="garantieDommageVehicule || garantieTierce">
+                        <label for="field_type"> Type de franchise </label>
+                        <select class="form-control form-control-sm" id="field_typenewvalue" name="typenewvalue"
+                            [(ngModel)]="vehicule.franchiseTypeNewValue" [disabled]="true">
+                            <option value="Montant">Montant</option>
+                            <option value="Pourcentage">Pourcentage</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-1" *ngIf="garantieDommageCollision || garantieTierceCollision">
+                        <label class="form-control-label" jhiTranslate="auxiliumApp.contratAssurance.franchise"
+                            for="field_dcCapitalFranchise">Franchise</label>
+                        <input type="text" class="form-control form-control-sm" name="dcCapitalFranchise"
+                            id="field_dcCapitalFranchise" [(ngModel)]="vehicule.dcCapitalFranchise"
+                            [pattern]="amountPattern" readonly />
+                    </div>
+                    <div class="col-sm-2" *ngIf="garantieDommageCollision || garantieTierceCollision">
+                        <label for="field_type"> Type de franchise </label>
+                        <select class="form-control form-control-sm" id="field_typedccapital" name="typedccapital"
+                            [(ngModel)]="vehicule.franchiseTypeDcCapital" [disabled]="true">
+                            <option value="Montant">Montant</option>
+                            <option value="Pourcentage">Pourcentage</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-1" *ngIf="garantieVolIncendiePartiel">
+                        <label class="form-control-label" jhiTranslate="auxiliumApp.contratAssurance.franchise"
+                            for="field_franchise">Franchise</label>
+                        <input type="text" class="form-control form-control-sm" name="marketValueFranchise"
+                            id="field_marketValueFranchise" [(ngModel)]="vehicule.marketValueFranchise"
+                            [pattern]="amountPattern" readonly />
+                    </div>
+                    <div class="col-sm-2" *ngIf="garantieVolIncendiePartiel">
+                        <label for="field_type"> Type de franchise </label>
+                        <select class="form-control form-control-sm" id="field_typemarketvalue" name="typemarketvalue"
+                            [(ngModel)]="vehicule.franchiseTypeMarketValue" [disabled]="true">
+                            <option value="Montant">Montant</option>
+                            <option value="Pourcentage">Pourcentage</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-1" *ngIf="garantieBrisGlace">
+                        <label class="form-control-label" jhiTranslate="auxiliumApp.contratAssurance.franchise"
+                            for="field_bgCapitalFranchise">Franchise</label>
+                        <input type="text" class="form-control form-control-sm" name="bgCapitalFranchise"
+                            id="field_bgCapitalFranchise" [(ngModel)]="vehicule.bgCapitalFranchise"
+                            [pattern]="amountPattern" readonly />
+                    </div>
+                    <div class="col-sm-2" *ngIf="garantieBrisGlace">
+                        <label for="field_type"> Type Franchise </label>
+                        <select class="form-control form-control-sm" id="field_typebgcapital" name="typebgcapital"
+                            [(ngModel)]="vehicule.franchiseTypeBgCapital" [disabled]="true">
+                            <option value="Montant">Montant</option>
+                            <option value="Pourcentage">Pourcentage</option>
+                        </select>
+                    </div>
+                </div>
+                <br>
+
+                <div class="row">
+
+                    <div class="col-sm-1">
+                        <br>
+                        <span style="font-weight:bold;"><label
+                                jhiTranslate="auxiliumApp.sinisterPec.home.LieuDuSinister">Lieu
+                                du
+                                Sinister</label></span>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <label jhiTranslate="auxiliumApp.reparateur.gouvernorat">Gouvernorat</label>
+                        <select class="form-control form-control-sm" id="field_lieu" name="lieu"
+                            [(ngModel)]="sinisterPec.governorateId" [disabled]="true">
+                            <option [ngValue]="governorate.id" *ngFor="let governorate of governorates; ">
+                                {{governorate.label}}
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <label jhiTranslate="auxiliumApp.sinisterPec.ville" for="field_ville">Ville</label>
+                        <select class="form-control form-control-sm" id="field_ville" name="ville"
+                            [(ngModel)]="sinisterPec.delegationId" [disabled]="true">
+                            <option [ngValue]="sysville.id" *ngFor="let sysville of sysvilles; ">
+                                {{sysville.label}}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <br>
+            </div>
+        </div>
+
+        <!-------------------------------------------------------------------------Photos avant réparation------------------------------------------------------------------------------------->
+
+        <div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <span class="anchor" id="formUserEdit"></span>
+                        <div class=" collapsible-card card-header align-items-center collapsed notice notice-info"
+                            data-toggle="collapse" href="#collapsePhotos">
+                            <strong>Photos avant réparation</strong>
+                        </div>
+                        <br />
+                        <div id="collapsePhotos" class="card-body collapse" [ngbCollapse]="true">
+                            <div class="col-lg-12">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="col-lg-12">
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <label class="field_faceAvantDoit"
+                                                        jhiTranslate="auxiliumApp.reparateur.faceAvantDroit"
+                                                        for="field_faceAvantDoit">face
+                                                        Avant Droit
+                                                    </label>
+                                                </div>
+                                                <!--<div class="col-lg-4" *ngIf="showFaceAvantDroitAttachment">
+                                                                <div class="form-group">
+                                                                    <input id="field_faceAvantDoit" required type="file"
+                                                                        class="form-control form-control-sm"
+                                                                        name="faceAvantDroit"
+                                                                        [(ngModel)]="faceAvantDroitAttachment.label"
+                                                                        (change)="onFaceAvantDroitFileChange($event)"
+                                                                        accept=".jpg,.jpeg,.png" required
+                                                                        [disabled]="!receiveVehicule" />
+                                                                </div>
+                                                            </div>-->
+                                                <div class="col-lg-5">
+                                                    <div class="form-group">
+                                                        <span class="input-group-btn">
+                                                            <button type="button" class="btn btn-sm btn-default"
+                                                                (click)="getPieceNew('quotation', sinisterPec.id, 'Face Avant Droit')"><i
+                                                                    class="fa fa-sm fa-download"></i></button>
+                                                        </span>
+                                                        <!--<span class="input-group-btn"
+                                                                        *ngIf="faceAvantDroitPreview">
+                                                                        <button type="button" class="btn btn-danger btn-sm"
+                                                                            
+                                                                            [disabled]="true"><i
+                                                                                class="fa fa-sm fa-remove"></i></label>
+                                                                    </span>
+                                                                            (click)="deleteFaceAvantDroitFile()"
+                                                                            [disabled]="!receiveVehicule"><i
+                                                                                class="fa fa-trash"></i></label>
+                                                                    </span>-->
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <br />
+
+                                        <div class="col-lg-12">
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <label class="field_faceAvantGauche"
+                                                        jhiTranslate="auxiliumApp.reparateur.faceAvantGauche"
+                                                        for="field_faceAvantGauche">face
+                                                        Avant Gauche
+                                                    </label>
+                                                </div>
+                                                <!--<div class="col-lg-4" *ngIf="showFaceAvantGaucheAttachment">
+                                                                <div class="form-group">
+                                                                    <input id="field_faceAvantGauche" type="file"
+                                                                        class="form-control form-control-sm"
+                                                                        name="faceAvantGauche"
+                                                                        [(ngModel)]="faceAvantGaucheAttachment.label"
+                                                                        (change)="onFaceAvantGaucheFileChange($event)"
+                                                                        accept=".jpg,.jpeg,.png" required
+                                                                        [disabled]="!receiveVehicule" />
+                                                                </div>
+                                                            </div>-->
+                                                <div class="col-lg-5">
+                                                    <div class="form-group">
+                                                        <span class="input-group-btn">
+                                                            <button type="button" class="btn btn-sm btn-default"
+                                                                (click)="getPieceNew('quotation', sinisterPec.id, 'Face Avant Gauche')"><i
+                                                                    class="fa fa-sm fa-download"></i></button>
+                                                        </span>
+                                                        <!--<span class="input-group-btn"
+                                                                        *ngIf="faceAvantGauchePreview">
+                                                                        <button type="button" class="btn btn-danger btn-sm"
+                                                                            
+                                                                            [disabled]="true"><i
+                                                                                class="fa fa-sm fa-remove"></i></label>
+                                                                    </span>
+                                                                            (click)="deleteFaceAvantGaucheFile()"
+                                                                            [disabled]="!receiveVehicule"><i
+                                                                                class="fa fa-trash"></i></label>
+                                                                    </span>-->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br />
+
+
+                                        <div class="col-lg-12">
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <label class="field_faceArriereDroit"
+                                                        jhiTranslate="auxiliumApp.reparateur.faceArriereDroit"
+                                                        for="field_faceArriereDroit">face Arriere Droit
+                                                    </label>
+                                                </div>
+                                                <!--<div class="col-lg-4" *ngIf="showFaceArriereDroitAttachment">
+                                                                <div class="form-group">
+                                                                    <input id="field_faceArriereDroit" type="file"
+                                                                        class="form-control form-control-sm"
+                                                                        name="faceArriereDroit"
+                                                                        [(ngModel)]="faceArriereDroitAttachment.label"
+                                                                        (change)="onFaceArriereDroitFileChange($event)"
+                                                                        accept=".jpg,.jpeg,.png" required
+                                                                        [disabled]="!receiveVehicule" />
+                                                                </div>
+                                                            </div>-->
+                                                <div class="col-lg-5">
+                                                    <div class="form-group">
+                                                        <span class="input-group-btn">
+                                                            <button type="button" class="btn btn-sm btn-default"
+                                                                (click)="getPieceNew('quotation', sinisterPec.id, 'Face Arriere Droit')"><i
+                                                                    class="fa fa-sm fa-download"></i></button>
+                                                        </span>
+                                                        <!--<span class="input-group-btn"
+                                                                        *ngIf="faceArriereDroitPreview">
+                                                                        <button type="button" class="btn btn-danger btn-sm"
+                                                                            
+                                                                            [disabled]="true"><i
+                                                                                class="fa fa-sm fa-remove"></i></label>
+                                                                    </span>
+                                                                            (click)="deleteFaceArriereDroitFile()"
+                                                                            [disabled]="!receiveVehicule"><i
+                                                                                class="fa fa-trash"></i></label>
+                                                                    </span>-->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="col-lg-12">
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <label class="field_FaceArriereGauche"
+                                                        jhiTranslate="auxiliumApp.reparateur.faceArriereGauche"
+                                                        for="field_FaceArriereGauche">Face Arriere Gauche
+                                                    </label>
+                                                </div>
+                                                <!--<div class="col-lg-4" *ngIf="showFaceArriereGaucheAttachment">
+                                                                <div class="form-group">
+                                                                    <input id="field_FaceArriereGauche" type="file"
+                                                                        class="form-control form-control-sm"
+                                                                        name="FaceArriereGauche"
+                                                                        [(ngModel)]="faceArriereGaucheAttachment.label"
+                                                                        (change)="onFaceArriereGaucheFileChange($event)"
+                                                                        accept=".jpg,.jpeg,.png" required
+                                                                        [disabled]="!receiveVehicule" />
+                                                                </div>
+                                                            </div>-->
+                                                <div class="col-lg-5">
+                                                    <div class="form-group">
+                                                        <span class="input-group-btn">
+                                                            <button type="button" class="btn btn-sm btn-default"
+                                                                (click)="getPieceNew('quotation', sinisterPec.id, 'Face Arriere Gauche')"><i
+                                                                    class="fa fa-sm fa-download"></i></button>
+                                                        </span>
+                                                        <!--<span class="input-group-btn"
+                                                                        *ngIf="faceArriereGauchePreview">
+                                                                        <button type="button" class="btn btn-danger btn-sm"
+                                                                            
+                                                                            [disabled]="true"><i
+                                                                                class="fa fa-sm fa-remove"></i></label>
+                                                                    </span>
+                                                                            (click)="deleteFaceArriereGaucheFile()"
+                                                                            [disabled]="!receiveVehicule"><i
+                                                                                class="fa fa-trash"></i></label>
+                                                                    </span>-->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="col-lg-12">
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <label class="field_Finition"
+                                                        jhiTranslate="auxiliumApp.reparateur.finition"
+                                                        for="field_Finition">Finition
+                                                    </label>
+                                                </div>
+                                                <!--<div class="col-lg-4" *ngIf="showFinitionAttachment">
+                                                                <div class="form-group">
+                                                                    <input id="field_Finition" type="file"
+                                                                        class="form-control form-control-sm" name="Finition"
+                                                                        [(ngModel)]="finitionAttachment.label"
+                                                                        (change)="onFinitionFileChange($event)"
+                                                                        accept=".jpg,.jpeg,.png" required
+                                                                        [disabled]="!receiveVehicule" />
+                                                                </div>
+                                                            </div>-->
+                                                <div class="col-lg-5">
+                                                    <div class="form-group">
+                                                        <span class="input-group-btn">
+                                                            <button type="button" class="btn btn-sm btn-default"
+                                                                (click)="getPieceNew('quotation', sinisterPec.id, 'Finition')"><i
+                                                                    class="fa fa-sm fa-download"></i></button>
+                                                        </span>
+                                                        <!--<span class="input-group-btn" *ngIf="finitionPreview">
+                                                                        <button type="button" class="btn btn-danger btn-sm"
+                                                                            
+                                                                            [disabled]="true"><i
+                                                                                class="fa fa-sm fa-remove"></i></label>
+                                                                    </span>
+                                                                            (click)="deleteFinitionFile()"
+                                                                            [disabled]="!receiveVehicule"><i
+                                                                                class="fa fa-trash"></i></label>
+                                                                    </span>-->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div class="col-lg-6">
+                                        <div class="col-lg-12">
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <label class="field_nSerie"
+                                                        jhiTranslate="auxiliumApp.reparateur.nSerie"
+                                                        for="field_nSerie">N°
+                                                        Série
+                                                    </label>
+                                                </div>
+                                                <!--<div class="col-lg-4" *ngIf="showNSerieAttachment">
+                                                                <div class="form-group">
+                                                                    <input id="field_nSerie" type="file"
+                                                                        class="form-control form-control-sm" name="nSerie"
+                                                                        [(ngModel)]="nSerieAttachment.label"
+                                                                        (change)="onNSerieFileChange($event)"
+                                                                        accept=".jpg,.jpeg,.png" required
+                                                                        [disabled]="!receiveVehicule" />
+                                                                </div>
+                                                            </div>-->
+                                                <div class="col-lg-5">
+                                                    <div class="form-group">
+                                                        <span class="input-group-btn">
+                                                            <button type="button" class="btn btn-sm btn-default"
+                                                                (click)="getPieceNew('quotation', sinisterPec.id, 'NSerie')"><i
+                                                                    class="fa fa-sm fa-download"></i></button>
+                                                        </span>
+                                                        <!--<span class="input-group-btn" *ngIf="nSeriePreview">
+                                                                        <button type="button" class="btn btn-danger btn-sm"
+                                                                            
+                                                                            [disabled]="true"><i
+                                                                                class="fa fa-sm fa-remove"></i></label>
+                                                                    </span>
+                                                                            (click)="deleteNSerieFile()"
+                                                                            [disabled]="!receiveVehicule"><i
+                                                                                class="fa fa-trash"></i></label>
+                                                                    </span>-->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="col-lg-12">
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <label class="field_immatriculation"
+                                                        jhiTranslate="auxiliumApp.reparateur.immatriculation"
+                                                        for="field_immatriculation">Immatriculation</label>
+                                                </div>
+
+                                                <!--<div class="col-lg-4" *ngIf="showImmatriculationAttachment">
+                                                                <div class="form-group">
+    
+                                                                    <input id="field_immatriculation" type="file"
+                                                                        class="form-control form-control-sm"
+                                                                        name="immatriculation"
+                                                                        [(ngModel)]="immatriculationAttachment.label"
+                                                                        (change)="onImmatriculationFileChange($event)"
+                                                                        accept=".jpg,.jpeg,.png" required
+                                                                        [disabled]="!receiveVehicule" />
+                                                                </div>
+                                                            </div>-->
+                                                <div class="col-lg-5">
+                                                    <div class="form-group">
+                                                        <span class="input-group-btn">
+                                                            <button type="button" class="btn btn-sm btn-default"
+                                                                (click)="getPieceNew('quotation', sinisterPec.id, 'Immatriculation')"><i
+                                                                    class="fa fa-sm fa-download"></i></button>
+                                                        </span>
+                                                        <!--<span class="input-group-btn"
+                                                                        *ngIf="immatriculationPreview">
+                                                                        <button type="button" class="btn btn-danger btn-sm"
+                                                                            
+                                                                            [disabled]="true"><i
+                                                                                class="fa fa-sm fa-remove"></i></label>
+                                                                    </span>
+                                                                            (click)="deleteImmatriculationFile()"
+                                                                            [disabled]="!receiveVehicule"><i
+                                                                                class="fa fa-trash"></i></label>
+                                                                    </span>-->
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="col-lg-12">
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <label class="field_compteur"
+                                                        jhiTranslate="auxiliumApp.reparateur.compteur"
+                                                        for="field_compteur">compteur</label>
+                                                </div>
+                                                <!--<div class="col-lg-4" *ngIf="showCompteurAttachment">
+                                                                <div class="form-group">
+    
+                                                                    <input id="field_compteur" type="file"
+                                                                        class="form-control form-control-sm" name="compteur"
+                                                                        [(ngModel)]="compteurAttachment.label"
+                                                                        (change)="onCompteurFileChange($event)"
+                                                                        accept=".jpg,.jpeg,.png" required
+                                                                        [disabled]="!receiveVehicule" />
+                                                                </div>
+                                                            </div>-->
+                                                <div class="col-lg-5">
+                                                    <div class="form-group">
+                                                        <span class="input-group-btn">
+                                                            <button type="button" class="btn btn-sm btn-default"
+                                                                (click)="getPieceNew('quotation', sinisterPec.id, 'Compteur')"><i
+                                                                    class="fa fa-sm fa-download"></i></button>
+                                                        </span>
+                                                        <!--<span class="input-group-btn" *ngIf="compteurPreview">
+                                                                        <button type="button" class="btn btn-danger btn-sm"
+                                                                            
+                                                                            [disabled]="true"><i
+                                                                                class="fa fa-sm fa-remove"></i></label>
+                                                                    </span>
+                                                                            (click)="deleteCompteurFile()"
+                                                                            [disabled]="!receiveVehicule"><i
+                                                                                class="fa fa-trash"></i></label>
+                                                                    </span>-->
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="col-lg-12">
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <label class="field_carteGrise"
+                                                        jhiTranslate="auxiliumApp.reparateur.carteGrise"
+                                                        for="field_carteGrise">carte Grise</label>
+                                                </div>
+
+                                                <!--<div class="col-lg-4" *ngIf="showCarteGriseAttachment">
+                                                                <div class="form-group">
+    
+                                                                    <input id="field_carteGrise" type="file"
+                                                                        class="form-control form-control-sm"
+                                                                        name="carteGrise"
+                                                                        [(ngModel)]="carteGriseAttachment.label"
+                                                                        (change)="onCarteGriseFileChange($event)"
+                                                                        accept=".jpg,.jpeg,.png" required
+                                                                        [disabled]="!receiveVehicule" />
+                                                                </div>
+                                                            </div>-->
+                                                <div class="col-lg-5">
+                                                    <div class="form-group">
+                                                        <span class="input-group-btn">
+                                                            <button type="button" class="btn btn-sm btn-default"
+                                                                (click)="getPieceNew('quotation', sinisterPec.id, 'Carte Grise Quotation')"><i
+                                                                    class="fa fa-sm fa-download"></i></button>
+                                                        </span>
+                                                        <!--<span class="input-group-btn" *ngIf="carteGrisePreview">
+                                                                        <button type="button" class="btn btn-danger btn-sm"
+                                                                            (click)="deleteCarteGriseFile()"
+                                                                            [disabled]="!receiveVehicule"><i
+                                                                                class="fa fa-trash"></i></label>
+                                                                    </span>-->
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <!--<div *ngIf="showBlockGTRapport" class="col-lg-12">
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <label class="field_gt"
+                                                        jhiTranslate="auxiliumApp.quotation.gtRapport" for="field_gt">gt
+                                                        Rapport</label>
+                                                </div>
+                                                <div class="col-lg-5">
+                                                    <div class="form-group">
+                                                        <span class="input-group-btn" *ngIf="gtShow">
+                                                            <button type="button" class="btn btn-sm btn-default"
+                                                                (click)="downloadGTFile()"><i
+                                                                    class="fa fa-sm fa-download"></i></button>
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>-->
+                                        <br />
+                                        <div class="col-lg-12" *ngIf="sinisterPec.modeId == 2">
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <label class="form-control-label"
+                                                        jhiTranslate="auxiliumApp.sinisterPec.photosTiers"
+                                                        for="field_receptionVehicule">Photos Tiers</label>
+                                                    <input type="checkbox" class="check-input" name="receptionVehicule"
+                                                        id="field_receptionVehicule"
+                                                        [(ngModel)]="sinisterPec.thirdPhotos" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                    </div>
+                                    <div class="col-lg-12" *ngIf="piecesAttachments && piecesAttachments.length > 0">
+                                        <div class="row">
+                                            <div class="table-responsive">
+                                                <table class="table table-sm table-hover table-bordered">
+                                                    <thead>
+                                                        <tr jhiSort style="color: white; background-color: #167F92">
+                                                            <th jhiSortBy="date"><span
+                                                                    jhiTranslate="auxiliumApp.pieceJointe.libelle">Libelle</span>
+                                                                <span class="fa fa-sort"></span></th>
+                                                            <th jhiSortBy="date"><span
+                                                                    jhiTranslate="auxiliumApp.pieceJointe.dateCreation">Date
+                                                                    Creation</span>
+                                                                <span class="fa fa-sort"></span></th>
+
+                                                            <th><span
+                                                                    jhiTranslate="auxiliumApp.pieceJointe.file">Fichier</span>
+                                                                <span class="fa fa-sort"></span></th>
+                                                            <th><span></span>
+                                                                <span class="fa fa-sort"></span></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr *ngFor="let piecesjointe of piecesAttachments">
+                                                            <td>{{piecesjointe.label}}</td>
+                                                            <td>{{piecesjointe.creationDate | date:'dd/MM/yyyy HH:mm:ss'}}</td>
+
+                                                            <td class="text-right">
+                                                                <div class="btn-group flex-btn-group-container">
+                                                                    <button type="button" class="btn btn-sm btn-default"
+                                                                        (click)="getPieceForAttachment('PHOTOREPARATION', piecesjointe.id, piecesjointe.originalName)"><i
+                                                                            class="fa fa-sm fa-download"></i></button>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-right" *ngIf="receiveVehicule">
+                                                                <div class="btn-group flex-btn-group-container">
+                                                                    <!--<button type="button"
+                                                                                    (click)="prepareEditPieceJ(piecesjointe)"
+                                                                                    class="btn btn-primary btn-sm">
+                                                                                    <span class="fa fa-pencil"></span>
+                                                                                </button>-->
+                                                                    <button type="button"
+                                                                        (click)="deletePieceJ(piecesjointe)"
+                                                                        class="btn btn-danger btn-sm">
+                                                                        <span class="fa fa-sm fa-remove"></span>
+                                                                    </button>
+                                                                </div>
+                                                            </td>
+
+                                                            </ng-container>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <br />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-------------------------------------------------------------------------Devis------------------------------------------------------------------------------------->
+
+        <div>
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <div class="card">
+                        <span class="anchor" id="formUserEdit"></span>
+
+                        <div class=" collapsible-card card-header align-items-center collapsed notice notice-info"
+                            data-toggle="collapse" href="#collapsedevis">
+                            <strong>Devis</strong>
+                        </div>
+                        <div id="collapsedevis" class="card-body collapse" [ngbCollapse]="true">
+                            <div class="card-body">
+                                <div class="row">
+                                    <!-- MO details list -->
+
+                                    <div class="col-lg-12">
+                                        <div class="card">
+                                            <div class=" collapsible-card card-header align-items-center collapsed"
+                                                data-toggle="collapse" href="#collapseDetailsMo">
+                                                <h4 jhiTranslate="auxiliumApp.detailsMo.home.title">Détails
+                                                    mo
+                                                </h4>
+                                            </div>
+                                            <div id="collapseDetailsMo" class="card-body collapse">
+                                                <div class="row">
+
+                                                    <div class="col-sm-12">
+                                                        <div class="table-responsive"
+                                                            *ngIf="detailsPiecesMO && detailsPiecesMO.length > 0">
+                                                            <table class="table table-striped">
+                                                                <thead>
+                                                                    <tr>
+
+                                                                        <th><span
+                                                                                jhiTranslate="auxiliumApp.detailsMo.designation">Designation</span>
+                                                                        </th>
+                                                                        <th><span
+                                                                                jhiTranslate="auxiliumApp.detailsMo.typeIntervention">Type
+                                                                                d'intervention
+                                                                            </span>
+                                                                        </th>
+                                                                        <th><span
+                                                                                jhiTranslate="auxiliumApp.grille.th">th</span>
+                                                                        </th>
+                                                                        <th><span
+                                                                                jhiTranslate="auxiliumApp.detailsMo.nombreHeures">Nombre
+                                                                                d'heures
+                                                                            </span>
+                                                                        </th>
+                                                                        <!--<th><span
+                                                                                jhiTranslate="auxiliumApp.detailsMo.totalHt">Total
+                                                                                Ht</span>
+                                                                        </th>
+                                                                        <th><span
+                                                                                jhiTranslate="auxiliumApp.grille.remise">Remise</span>
+                                                                        </th>
+                                                                        <th><span
+                                                                                jhiTranslate="auxiliumApp.grille.totalRemise">Total
+                                                                                remise</span>
+                                                                        </th>
+                                                                        <th><span
+                                                                                jhiTranslate="auxiliumApp.grille.totalApresRemise">Total
+                                                                                après remise</span>
+                                                                        </th>-->
+                                                                        <th><span
+                                                                                jhiTranslate="auxiliumApp.grille.tva">tva</span>
+                                                                        </th>
+                                                                        <!--<th><span
+                                                                                jhiTranslate="auxiliumApp.grille.totalTva">total
+                                                                                TVA</span>
+                                                                        </th>-->
+                                                                        <th><span
+                                                                                jhiTranslate="auxiliumApp.detailsMo.totalTtc">total
+                                                                                ttc</span>
+                                                                        </th>
+
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr
+                                                                        *ngFor="let detailsPieceMo of detailsPiecesMO; let i=index">
+
+
+                                                                        <td>
+                                                                            <input list="piecesmodes"
+                                                                                name="piecMoDesignation[{{i}}]"
+                                                                                [(ngModel)]="detailsPieceMo.designation"
+                                                                                placeholder="Choisissez une désignation"
+                                                                                class="input input-sm" readonly />
+
+                                                                        </td>
+                                                                        <td>
+                                                                            <select class="btn-default btn-sm"
+                                                                                style="background-color: white"
+                                                                                [(ngModel)]="detailsPieceMo.typeInterventionId"
+                                                                                (ngModelChange)="observationExpertByTypeIntervention(detailsPieceMo)"
+                                                                                name="interventionMo[{{i}}]"
+                                                                                [disabled]="true">
+                                                                                <option
+                                                                                    [ngValue]="reftypeinterventionOption.id"
+                                                                                    *ngFor="let reftypeinterventionOption of refOperationTypesMo">
+                                                                                    {{reftypeinterventionOption.libelle}}
+                                                                                </option>
+                                                                            </select>
+                                                                        </td>
+                                                                        <td><input type="number" class="input input-sm"
+                                                                                style="width: 100px"
+                                                                                [(ngModel)]="detailsPieceMo.prixUnit"
+                                                                                (ngModelChange)="changeMo(detailsPieceMo)"
+                                                                                name="puMo[{{i}}]" min="0"
+                                                                                pattern="[0-9]+([.][0-9]+)?" readonly />
+                                                                        </td>
+                                                                        <td><input type="number" class="input input-sm"
+                                                                                style="width: 100px"
+                                                                                [(ngModel)]="detailsPieceMo.nombreHeures"
+                                                                                (ngModelChange)="changeMo(detailsPieceMo)"
+                                                                                name="nombreHeures[{{i}}]" min="0"
+                                                                                pattern="[0-9]+([.][0-9]+)?" readonly />
+                                                                        </td>
+                                                                        <!--<td><input type="number"
+                                                                                [disabled]="AvisExpert || modeConfirmation"
+                                                                                class="input input-sm"
+                                                                                style="width: 100px"
+                                                                                [(ngModel)]="detailsPieceMo.totalHt"
+                                                                                name="moTht[{{i}}]" readonly />
+                                                                        </td>
+                                                                        <td><input type="number" class="input input-sm"
+                                                                                style="width: 100px"
+                                                                                [(ngModel)]="detailsPieceMo.discount"
+                                                                                (ngModelChange)="changeMo(detailsPieceMo)"
+                                                                                name="discount[{{i}}]" min="0"
+                                                                                pattern="[0-9]+([.][0-9]+)?" readonly />
+                                                                        </td>
+                                                                        <td><input type="number" class="input input-sm"
+                                                                                style="width: 100px"
+                                                                                [(ngModel)]="detailsPieceMo.amountDiscount"
+                                                                                name="totalDiscount[{{i}}]" readonly>
+                                                                        </td>
+                                                                        <td><input type="number" class="input input-sm"
+                                                                                style="width: 100px"
+                                                                                [(ngModel)]="detailsPieceMo.amountAfterDiscount"
+                                                                                name="amountAfterDiscountMo[{{i}}]"
+                                                                                readonly>
+                                                                        </td>-->
+                                                                        <td>
+                                                                            <select class="btn-default btn-sm"
+                                                                                style="background-color: white"
+                                                                                name="vatMo[{{i}}]"
+                                                                                [(ngModel)]="detailsPieceMo.tva"
+                                                                                (ngModelChange)="changeMo(detailsPieceMo)"
+                                                                                [disabled]="true">
+                                                                                <option [ngValue]="vat.vatRate"
+                                                                                    *ngFor="let vat of listVat;">
+                                                                                    {{vat.vatRate}}
+                                                                                </option>
+                                                                            </select>
+                                                                        </td>
+                                                                        <!--<td><input type="number" class="input input-sm"
+                                                                                style="width: 100px"
+                                                                                [(ngModel)]="detailsPieceMo.amountVat"
+                                                                                name="amountTvaMo[{{i}}]" readonly />
+                                                                        </td>-->
+                                                                        <td><input type="number" class="input input-sm"
+                                                                                style="width: 100px"
+                                                                                [(ngModel)]="detailsPieceMo.totalTtc"
+                                                                                name="moTtc[{{i}}]" readonly />
+                                                                        </td>
+
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                            <div class="row justify-content-center"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- home peinture list -->
+                                    <div class="col-lg-12">
+                                        <div class="card">
+                                            <div class=" collapsible-card card-header align-items-center collapsed"
+                                                data-toggle="collapse" href="#collapseHomePaint">
+                                                <h4 jhiTranslate="auxiliumApp.detailsPieces.homePeinture">
+                                                    Home
+                                                    Peinture
+                                                </h4>
+                                            </div>
+                                            <div id="collapseHomePaint" class="card-body collapse">
+                                                <div class="row">
+
+                                                    <div class="col-sm-12">
+                                                        <div class="table-responsive"
+                                                            *ngIf="detailsPiecesIngredient && detailsPiecesIngredient.length > 0">
+                                                            <table class="table table-striped">
+                                                                <thead>
+                                                                    <tr>
+
+                                                                        <th><span
+                                                                                jhiTranslate="auxiliumApp.detailsMo.designation">Designation</span>
+                                                                        </th>
+                                                                        <th><span
+                                                                                jhiTranslate="auxiliumApp.detailsMo.typeIntervention">Type
+                                                                                d'intervention
+                                                                            </span>
+                                                                        </th>
+                                                                        <th><span
+                                                                                jhiTranslate="auxiliumApp.grille.th">th</span>
+                                                                        </th>
+                                                                        <th><span
+                                                                                jhiTranslate="auxiliumApp.detailsMo.nombreHeures">Nombre
+                                                                                d'heures
+                                                                            </span>
+                                                                        </th>
+                                                                        <!--<th><span
+                                                                                jhiTranslate="auxiliumApp.detailsMo.totalHt">Total
+                                                                                Ht</span>
+                                                                        </th>
+                                                                        <th><span
+                                                                                jhiTranslate="auxiliumApp.grille.remise">Remise</span>
+                                                                        </th>
+                                                                        <th><span
+                                                                                jhiTranslate="auxiliumApp.grille.totalRemise">Total
+                                                                                remise</span>
+                                                                        </th>
+
+                                                                        <th><span
+                                                                                jhiTranslate="auxiliumApp.grille.totalApresRemise">Total
+                                                                                après remise</span>
+                                                                        </th>-->
+                                                                        <th><span
+                                                                                jhiTranslate="auxiliumApp.grille.tva">TVA</span>
+                                                                        </th>
+                                                                        <!--<th><span
+                                                                                jhiTranslate="auxiliumApp.grille.totalTva">total
+                                                                                tva</span>
+                                                                        </th>-->
+                                                                        <th><span
+                                                                                jhiTranslate="auxiliumApp.detailsMo.totalTtc">Total
+                                                                                TTC</span>
+                                                                        </th>
+
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr
+                                                                        *ngFor="let dpIngredient of detailsPiecesIngredient ; let i=index">
+
+                                                                        <td>
+                                                                            <input list="piecespedes"
+                                                                                name="piecPeDesignation[{{i}}]"
+                                                                                [(ngModel)]="dpIngredient.designation"
+                                                                                placeholder="Choisissez une désignation"
+                                                                                class="input input-sm" readonly />
+
+                                                                        </td>
+                                                                        <td>
+
+                                                                            <select class="btn-default btn-sm"
+                                                                                style="background-color: white"
+                                                                                [(ngModel)]="dpIngredient.typeInterventionId"
+                                                                                name="interventionIng[{{i}}]"
+                                                                                [disabled]="true">
+                                                                                <option
+                                                                                    [ngValue]="reftypeinterventionOption.id"
+                                                                                    *ngFor="let reftypeinterventionOption of refOperationTypesPeinture">
+                                                                                    {{reftypeinterventionOption.libelle}}
+                                                                                </option>
+                                                                            </select>
+                                                                        </td>
+                                                                        <td>
+
+                                                                            <input type="number" class="input input-sm"
+                                                                                style="width: 100px"
+                                                                                [(ngModel)]="dpIngredient.prixUnit"
+                                                                                name="pu[{{i}}]" min="0"
+                                                                                pattern="[0-9]+([.][0-9]+)?" readonly />
+                                                                        </td>
+                                                                        <td>
+
+                                                                            <input type="number" class="input input-sm"
+                                                                                [(ngModel)]="dpIngredient.quantite"
+                                                                                name="quantite[{{i}}]"
+                                                                                style="width: 100px" min="0"
+                                                                                pattern="[0-9]+([.][0-9]+)?" readonly />
+                                                                        </td>
+                                                                        <!--<td><input type="number" class="input input-sm"
+                                                                                [value]="dpIngredient.totalHt"
+                                                                                name="ingrTht[{{i}}]" readonly
+                                                                                style="width: 100px" />
+                                                                        </td>
+                                                                        <td><input type="number" class="input input-sm"
+                                                                                [(ngModel)]="dpIngredient.discount"
+                                                                                (ngModelChange)="changeIngredient(dpIngredient)"
+                                                                                name="discountIng[{{i}}]"
+                                                                                style="width: 100px" min="0"
+                                                                                pattern="[0-9]+([.][0-9]+)?" readonly />
+                                                                        </td>
+                                                                        <td><input type="number" class="input input-sm"
+                                                                                style="width: 100px"
+                                                                                [(ngModel)]="dpIngredient.amountDiscount"
+                                                                                name="totalDiscountIng[{{i}}]" readonly>
+                                                                        </td>
+                                                                        <td><input type="number" class="input input-sm"
+                                                                                style="width: 100px"
+                                                                                [(ngModel)]="dpIngredient.amountAfterDiscount"
+                                                                                name="amountAfterDiscountIng[{{i}}]"
+                                                                                readonly>
+                                                                        </td>-->
+                                                                        <td>
+
+                                                                            <select class="btn-default btn-sm"
+                                                                                style="background-color: white"
+                                                                                name="vatIng[{{i}}]"
+                                                                                [(ngModel)]="dpIngredient.tva"
+                                                                                (ngModelChange)="changeIngredient(dpIngredient)"
+                                                                                [disabled]="true">
+                                                                                <option [ngValue]="vat.vatRate"
+                                                                                    *ngFor="let vat of listVat;">
+                                                                                    {{vat.vatRate}}
+                                                                                </option>
+                                                                            </select>
+                                                                        </td>
+                                                                        <!--<td><input type="number" class="input input-sm"
+                                                                                style="width: 100px"
+                                                                                [(ngModel)]="dpIngredient.amountVat"
+                                                                                name="amountTvaIng[{{i}}]" readonly>
+                                                                        </td>-->
+                                                                        <td><input type="number" class="input input-sm"
+                                                                                [(ngModel)]="dpIngredient.totalTtc"
+                                                                                name="ingrTtc[{{i}}]" readonly
+                                                                                style="width: 100px" />
+                                                                        </td>
+
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                            <div class="row justify-content-center"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- home fourniture list -->
+                                                </br>
+                                                <div class="row">
+
+                                                    <div class="col-sm-12">
+                                                        <div class="table-responsive"
+                                                            *ngIf="detailsPiecesFourniture && detailsPiecesFourniture.length > 0">
+                                                            <table class="table table-striped">
+                                                                <thead>
+                                                                    <tr>
+
+                                                                        <th><span
+                                                                                jhiTranslate="auxiliumApp.detailsMo.designation">Designation</span>
+                                                                        </th>
+                                                                        <th><span
+                                                                                jhiTranslate="auxiliumApp.detailsMo.typeIntervention">Type
+                                                                                d'intervention
+                                                                            </span>
+                                                                        </th>
+                                                                        <th><span
+                                                                                jhiTranslate="auxiliumApp.grille.th">th</span>
+                                                                        </th>
+                                                                        <th><span
+                                                                                jhiTranslate="auxiliumApp.detailsMo.nombreHeures">Nombre
+                                                                                d'heures
+                                                                            </span>
+                                                                        </th>
+                                                                        <!--<th><span
+                                                                                jhiTranslate="auxiliumApp.detailsMo.totalHt">Total
+                                                                                HT</span>
+                                                                        </th>
+                                                                        <th><span
+                                                                                jhiTranslate="auxiliumApp.grille.remise">Remise</span>
+                                                                        </th>
+                                                                        <th><span
+                                                                                jhiTranslate="auxiliumApp.grille.totalRemise">Total
+
+                                                                                Remise</span>
+                                                                        </th>
+                                                                        <th><span
+                                                                                jhiTranslate="auxiliumApp.grille.totalApresRemise">Total
+                                                                                après remise</span>
+                                                                        </th>-->
+                                                                        <th><span
+                                                                                jhiTranslate="auxiliumApp.grille.tva">TVA</span>
+                                                                        </th>
+                                                                        <!--<th><span
+                                                                                jhiTranslate="auxiliumApp.grille.totalTva">Total
+                                                                                TVA</span>
+                                                                        </th>-->
+                                                                        <th><span
+                                                                                jhiTranslate="auxiliumApp.detailsMo.totalTtc">Total
+                                                                                ttc</span>
+                                                                        </th>
+
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr
+                                                                        *ngFor="let fourniture of detailsPiecesFourniture ; let i=index">
+
+                                                                        <td>
+                                                                            <input list="piecesfodes"
+                                                                                name="piecFoDesignation[{{i}}]"
+                                                                                [(ngModel)]="fourniture.designation"
+                                                                                placeholder="Choisissez une désignation"
+                                                                                class="input input-sm" readonly />
+
+                                                                        </td>
+                                                                        <td>
+
+                                                                            <select class="btn-default btn-sm"
+                                                                                style="background-color: white"
+                                                                                [(ngModel)]="fourniture.typeInterventionId"
+                                                                                name="interventionFourn[{{i}}]"
+                                                                                [disabled]="true">
+                                                                                <option
+                                                                                    [ngValue]="reftypeinterventionOption.id"
+                                                                                    *ngFor="let reftypeinterventionOption of refOperationTypesFourniture">
+                                                                                    {{reftypeinterventionOption.libelle}}
+                                                                                </option>
+                                                                            </select>
+                                                                        </td>
+                                                                        <td>
+
+                                                                            <input type="number" class="input input-sm"
+                                                                                style="width: 100px"
+                                                                                [(ngModel)]="fourniture.prixUnit"
+                                                                                (ngModelChange)="changeFourniture(fourniture)"
+                                                                                name="puFour[{{i}}]" min="0"
+                                                                                pattern="[0-9]+([.][0-9]+)?" readonly />
+
+                                                                        </td>
+                                                                        <td>
+
+                                                                            <input type="number" class="input input-sm"
+                                                                                [(ngModel)]="fourniture.quantite"
+                                                                                (ngModelChange)="changeFourniture(fourniture)"
+                                                                                name="quantiteFourn[{{i}}]"
+                                                                                style="width: 100px" min="0"
+                                                                                pattern="[0-9]+([.][0-9]+)?" readonly />
+                                                                        </td>
+                                                                        <!--<td><input type="number" class="input input-sm"
+                                                                                [value]="fourniture.totalHt"
+                                                                                name="fournTht[{{i}}]" readonly
+                                                                                style="width: 100px" />
+                                                                        </td>
+
+                                                                        <td>
+                                                                            <input type="number" class="input input-sm"
+                                                                                [(ngModel)]="fourniture.discount"
+                                                                                (ngModelChange)="changeFourniture(fourniture)"
+                                                                                name="discountFourn[{{i}}]"
+                                                                                style="width: 100px" min="0"
+                                                                                pattern="[0-9]+([.][0-9]+)?" readonly />
+                                                                        </td>
+
+                                                                        <td><input type="number" class="input input-sm"
+                                                                                style="width: 100px"
+                                                                                [(ngModel)]="fourniture.amountDiscount "
+                                                                                name="totalDiscountFourn[{{i}}]"
+                                                                                readonly>
+                                                                        </td>
+                                                                        <td><input type="number" class="input input-sm"
+                                                                                style="width: 100px"
+                                                                                [(ngModel)]="fourniture.amountAfterDiscount"
+                                                                                name="amountAfterDiscountFourn[{{i}}]"
+                                                                                readonly>
+                                                                        </td>-->
+                                                                        <td>
+
+                                                                            <select class="btn-default btn-sm"
+                                                                                style="background-color: white"
+                                                                                name="vatFourn[{{i}}]"
+                                                                                [(ngModel)]="fourniture.tva"
+                                                                                (ngModelChange)="changeFourniture(fourniture)"
+                                                                                [disabled]="true">
+                                                                                <option [ngValue]="vat.vatRate"
+                                                                                    *ngFor="let vat of listVat;">
+                                                                                    {{vat.vatRate}}
+                                                                                </option>
+                                                                            </select>
+
+                                                                        </td>
+                                                                        <!--<td><input type="number" class="input input-sm"
+                                                                                style="width: 100px"
+                                                                                [(ngModel)]="fourniture.amountVat"
+                                                                                name="amountTvaFourn[{{i}}]" readonly>
+                                                                        </td>-->
+                                                                        <td><input type="number" class="input input-sm"
+                                                                                [(ngModel)]="fourniture.totalTtc"
+                                                                                name="fournTtc[{{i}}]" readonly
+                                                                                style="width: 100px" />
+                                                                        </td>
+
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                            <div class="row justify-content-center"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- End fourniture list-->
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- pieces de rechange -->
+                                    <div class="col-lg-12">
+                                        <div class="card">
+                                            <div class=" collapsible-card card-header align-items-center collapsed"
+                                                data-toggle="collapse" href="#collapseHomePieces">
+                                                <h4 jhiTranslate="auxiliumApp.detailsPieces.homeRechange">
+                                                    Home
+                                                    pieces
+                                                </h4>
+                                            </div>
+
+                                            <div id="collapseHomePieces" class="card-body collapse">
+                                                <div class="row">
+
+                                                    <div class="col-sm-12">
+                                                        <div class="table-responsive"
+                                                            *ngIf="detailsPieces && detailsPieces.length > 0">
+                                                            <table class="table table-striped">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th *ngIf="modeApprouv || modeValid">
+                                                                            <span>Vétusté</span>
+                                                                        </th>
+                                                                        <th><span>Observation</span></th>
+                                                                        <th><span>Référence</span></th>
+                                                                        <th><span
+                                                                                jhiTranslate="auxiliumApp.detailsPieces.designation">Designation</span>
+                                                                        </th>
+                                                                        <th><span
+                                                                                jhiTranslate="auxiliumApp.detailsPieces.prixUnit">Prix
+                                                                                Unit
+                                                                            </span>
+                                                                        </th>
+                                                                        <th><span>Nature de la Pièce</span></th>
+                                                                        <th><span
+                                                                                jhiTranslate="auxiliumApp.detailsPieces.quantite">Quantite</span>
+                                                                        </th>
+                                                                        <!--<th><span
+                                                                                jhiTranslate="auxiliumApp.detailsMo.totalHt">Total
+                                                                                HT</span>
+                                                                        </th>
+
+                                                                        <th><span
+                                                                                jhiTranslate="auxiliumApp.grille.remise">Remise</span>
+                                                                        </th>
+                                                                        <th><span
+                                                                                jhiTranslate="auxiliumApp.grille.totalRemise">Total
+                                                                                remise</span>
+                                                                        </th>
+                                                                        <th><span
+                                                                                jhiTranslate="auxiliumApp.grille.totalApresRemise">Total
+                                                                                après remise</span>
+                                                                        </th>-->
+                                                                        <th><span
+                                                                                jhiTranslate="auxiliumApp.grille.tva">TVA</span>
+                                                                        </th>
+                                                                        <!--<th><span
+                                                                                jhiTranslate="auxiliumApp.grille.totalTva">Total
+                                                                                TVA</span>
+                                                                        </th>-->
+                                                                        <th><span
+                                                                                jhiTranslate="auxiliumApp.detailsMo.totalTtc">Total
+                                                                                TTC</span>
+                                                                        </th>
+
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr
+                                                                        *ngFor="let pieces of detailsPieces ; let i=index">
+                                                                        <td *ngIf="modeApprouv || modeValid">
+                                                                            <input type="number"
+                                                                                class="form-control form-control-sm"
+                                                                                class="input input-sm"
+                                                                                style="width: 100px"
+                                                                                [(ngModel)]="pieces.vetuste"
+                                                                                name="vetuste[{{i}}]" min="0"
+                                                                                pattern="[0-9]+([.][0-9]+)?" readonly />
+                                                                            <!--   [disabled]=" pieces.observationExpert == 1 || pieces.observationExpert == 2 || modeConfirmation || (isMaJDevis && pieces.modifiedLine != null)"-->
+
+                                                                        </td>
+                                                                        <td>
+
+                                                                            <select class="btn-default btn-sm"
+                                                                                [(ngModel)]="pieces.observationRepairer"
+                                                                                name="observation[{{i}}]"
+                                                                                id="field_observation"
+                                                                                style="width: 100px"
+                                                                                style="background-color: white"
+                                                                                [disabled]="true">
+                                                                                <option value="PIECE_DISPONIBLE">
+                                                                                    Pièce_disponible
+                                                                                </option>
+                                                                                <option value="COMMANDE_FERME">
+                                                                                    Commande_fermée
+                                                                                </option>
+                                                                                <option value="PIECE_NON_DISPONIBLE">
+                                                                                    Pièce_non_disponible
+                                                                                </option>
+                                                                            </select>
+                                                                        </td>
+
+                                                                        <td>
+
+
+                                                                            <input list="piecesrechange"
+                                                                                name="piecReference[{{i}}]"
+                                                                                [(ngModel)]="pieces.designationReference"
+                                                                                placeholder="Choisissez une référence"
+                                                                                class="input input-sm" readonly />
+
+                                                                        </td>
+                                                                        <td>
+                                                                            <input list="piecesrechangedes"
+                                                                                name="piecDesignation[{{i}}]"
+                                                                                [(ngModel)]="pieces.designation"
+                                                                                placeholder="Choisissez une désignation"
+                                                                                class="input input-sm" readonly />
+
+
+                                                                        </td>
+
+
+                                                                        <td>
+                                                                            <input type="number" class="input input-sm"
+                                                                                style="width: 100px"
+                                                                                [(ngModel)]="pieces.prixUnit"
+                                                                                name="piecPrixUnit[{{i}}]" min="0"
+                                                                                pattern="[0-9]+([.][0-9]+)?" readonly />
+
+
+                                                                        </td>
+                                                                        <td>
+                                                                            <select class="btn-default btn-sm"
+                                                                                name="naturePiece[{{i}}]"
+                                                                                [(ngModel)]="pieces.naturePiece"
+                                                                                id="field_naturePiece"
+                                                                                style="width: 100px"
+                                                                                style="background-color: white"
+                                                                                [disabled]="true">
+                                                                                <option value="ORIGINE">
+                                                                                    Origine
+                                                                                </option>
+                                                                                <option value="GENERIQUE">
+                                                                                    Générique</option>
+                                                                                <option value="CASSE">Casse
+                                                                                </option>
+                                                                            </select>
+                                                                        </td>
+                                                                        <td>
+
+                                                                            <input type="number" class="input input-sm"
+                                                                                [(ngModel)]="pieces.quantite"
+                                                                                name="piecQuantite[{{i}}]"
+                                                                                style="width: 100px" min="0"
+                                                                                pattern="[0-9]+([.][0-9]+)?" readonly />
+
+                                                                        </td>
+                                                                        <!--<td><input type="number" class="input input-sm"
+                                                                                [value]="pieces.totalHt"
+                                                                                name="piecTht[{{i}}]" readonly
+                                                                                style="width: 100px" />
+                                                                        </td>
+                                                                        <td>
+                                                                            <input type="text" class="input input-sm"
+                                                                                [(ngModel)]="pieces.discount"
+                                                                                (ngModelChange)="changePieceRechange(pieces)"
+                                                                                name="discountPiece[{{i}}]" min="0"
+                                                                                pattern="[0-9]+([.][0-9]+)?"
+                                                                                style="width: 100px" readonly />
+                                                                        </td>
+                                                                        <td><input type="number" class="input input-sm"
+                                                                                style="width: 100px"
+                                                                                [(ngModel)]="pieces.amountDiscount"
+                                                                                name="totalDiscountPiece[{{i}}]"
+                                                                                readonly>
+                                                                        </td>
+                                                                        <td><input type="number" class="input input-sm"
+                                                                                style="width: 100px"
+                                                                                [(ngModel)]="pieces.amountAfterDiscount"
+                                                                                name="amountAfterDiscountPiece[{{i}}]"
+                                                                                readonly>
+                                                                        </td>-->
+                                                                        <td>
+                                                                            <select class="btn-default btn-sm"
+                                                                                style="background-color: white"
+                                                                                name="piecTva[{{i}}]"
+                                                                                [(ngModel)]="pieces.tva"
+                                                                                [disabled]="true">
+                                                                                <option [ngValue]="vat.vatRate"
+                                                                                    *ngFor="let vat of listVat;">
+                                                                                    {{vat.vatRate}}
+                                                                                </option>
+                                                                            </select>
+                                                                        </td>
+                                                                        <!--<td><input type="number" class="input input-sm"
+                                                                                style="width: 100px"
+                                                                                [(ngModel)]="pieces.amountVat"
+                                                                                name="amountTvaPiec[{{i}}]" readonly>
+                                                                        </td>-->
+
+                                                                        <td><input type="number" class="input input-sm"
+                                                                                [(ngModel)]="pieces.totalTtc"
+                                                                                (ngModelChange)="changeByExpertOrVerify(pieces)"
+                                                                                name="piecTtc[{{i}}]" readonly
+                                                                                style="width: 100px" />
+                                                                        </td>
+
+
+
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                            <div class="row justify-content-center"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row top-buffer"></div>
+                                    <br />
+                                    <div class="col-lg-2">
+
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <span class="anchor" id="formUserEdit"></span>
+                                        <div class="card">
+                                            <div class="card-header align-items-center notice-info">
+                                                <strong>Total de la réparation</strong>
+                                            </div>
+
+                                            <div class="card-body">
+                                                <div class="row">
+
+                                                    <div class="form-group col-sm-3">
+                                                        <label jhiTranslate="auxiliumApp.devis.droitTimbre">Droit de
+                                                            timbre</label>
+
+                                                        <input id="field_droitTimbre" type="number"
+                                                            class="form-control input input-sm" name="droitTimbre"
+                                                            [(ngModel)]="quotation.stampDuty" readonly />
+                                                    </div>
+                                                    <div class="form-group col-sm-3">
+                                                        <label jhiTranslate="auxiliumApp.devis.totalTtc">Total
+                                                            TTC</label>
+                                                        <input id="field_totalTtc" type="text"
+                                                            class="form-control input input-sm" name="totalTtc"
+                                                            [(ngModel)]="quotation.ttcAmount" readonly />
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!------------------------------------------ End Devis ---------------------------------------------->
+
+        <!------------------------------------------  Accord ------------------------------------------------>
+
+        <div class="card">
+            <div class="card-header d-flex align-items-center no-padding">
+                <div class="notice notice-info">
+                    <strong jhiTranslate="auxiliumApp.apec.accord">Accord</strong>
+                </div>
+            </div>
+            <div class="card-body">
+
+                <div id="Accord">
+                    <div class="row">
+
+                        <div class="col-sm-2">
+                            <label jhiTranslate="auxiliumApp.apec.participationGa">Participation GA</label>
+                        </div>
+                        <div class="col-sm-2">
+                            <input type="number" class="form-control form-control-sm" name="field_ga" id="field_ga"
+                                [(ngModel)]="apec.participationGa" readonly />
+                        </div>
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-2">
+                            <label jhiTranslate="auxiliumApp.apec.droitDeTimbre">droit de timbre</label>
+                        </div>
+                        <div class="col-sm-2">
+                            <input type="number" class="form-control form-control-sm" name="field_Timbre"
+                                id="field_Timbre" [(ngModel)]="apec.droitDeTimbre" [readonly]="!modeEdit" />
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+
+                        <div class="col-sm-2">
+                            <label jhiTranslate="auxiliumApp.apec.participationAssure">Participation de l'assuré</label>
+                        </div>
+                        <div class="col-sm-2">
+                            <input type="number" class="form-control form-control-sm" name="field_assure"
+                                id="field_assure" [(ngModel)]="apec.participationAssure" readonly />
+                        </div>
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-2">
+                            <label jhiTranslate="auxiliumApp.apec.participationVetuste">Participation vétuste</label>
+                        </div>
+                        <div class="col-sm-2">
+                            <input type="number" class="form-control form-control-sm" name="field_vetuste"
+                                id="field_vetuste" [(ngModel)]="apec.participationVetuste" [readonly]="!modeEdit" />
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+
+                        <div class="col-sm-2">
+                            <label jhiTranslate="auxiliumApp.apec.participationTva">Participation TVA</label>
+                        </div>
+                        <div class="col-sm-2">
+                            <input type="number" class="form-control form-control-sm" name="field_TVA" id="field_TVA"
+                                [(ngModel)]="apec.participationTva" [readonly]="!modeEdit" />
+                        </div>
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-2">
+                            <label jhiTranslate="auxiliumApp.apec.participationRpc">Participation responsabilité</label>
+                        </div>
+                        <div class="col-sm-2">
+                            <input type="number" class="form-control form-control-sm" name="field_responsability"
+                                id="field_responsability" [(ngModel)]="apec.participationRpc" [readonly]="!modeEdit" />
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+
+                        <div class="col-sm-2">
+                            <label jhiTranslate="auxiliumApp.apec.fraisDossier">Frais de dossier</label>
+                        </div>
+                        <div class="col-sm-2">
+                            <input type="number" class="form-control form-control-sm" name="field_frais"
+                                id="field_frais" [(ngModel)]="apec.fraisDossier" [readonly]="!modeEdit" />
+                        </div>
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-2">
+                            <label jhiTranslate="auxiliumApp.apec.avanceFacture">Avance sur facture</label>
+                        </div>
+                        <div class="col-sm-2">
+                            <input type="number" class="form-control form-control-sm" name="field_avance"
+                                id="field_avance" [(ngModel)]="apec.avanceFacture" [readonly]="!modeEdit" />
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+
+                        <div class="col-sm-2">
+                            <label jhiTranslate="auxiliumApp.apec.depacementPlafond">Déplacement plafond</label>
+                        </div>
+                        <div class="col-sm-2">
+                            <input type="number" class="form-control form-control-sm" name="field_plafond"
+                                id="field_plafond" [(ngModel)]="apec.depacementPlafond" [readonly]="!modeEdit" />
+                        </div>
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-2">
+                            <label jhiTranslate="auxiliumApp.apec.estimationFranchise">Franchise</label>
+                        </div>
+                        <div class="col-sm-2">
+                            <input type="number" class="form-control form-control-sm" name="field_franchise"
+                                id="field_franchise" [(ngModel)]="apec.estimationFranchise" [readonly]="!modeEdit" />
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+
+                        <div class="col-sm-2">
+                            <label jhiTranslate="auxiliumApp.apec.regleProportionnel">Règle Proportionelle</label>
+                        </div>
+                        <div class="col-sm-2">
+                            <input type="number" class="form-control form-control-sm" name="field_regle_proportionelle"
+                                id="field_regle_proportionelle" [(ngModel)]="apec.regleProportionnel"
+                                [readonly]="!modeEdit" />
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!--Listes Observation-->
+        <div class="row">
+            <div class="col-lg-12">
+
+                <div class="card">
+                    <div class=" collapsible-card card-header align-items-center collapsed notice notice-info"
+                        data-toggle="collapse" href="#collapseObservation">
+                        <strong>Observations </strong>
+                    </div>
+                </div>
+                <div id="collapseObservation" class="card-body collapse">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control form-control-sm" name="observationApecp"
+                                id="observationId" [(ngModel)]="observationAp.commentaire" />
+                            <div [hidden]="!isCommentError">
+                                <small class="form-text text-danger" [hidden]="!isCommentError"
+                                    jhiTranslate="entity.validation.required">This
+                                    field is required.</small>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-sm btn-primary addnew" (click)="addObservation();">
+                                <span class="fa fa-plus"></span>
+                                <span jhiTranslate="auxiliumApp.observation.home.createLabel">Create new
+                                    Observation
+                                </span>
+                            </button>
+
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 15px;">
+                        <div class="col-sm-12">
+                            <div class="table-responsive" *ngIf="observationss && observationss.length > 0">
+                                <table class="table table-sm table-hover table-bordered" style="width: 100%">
+                                    <thead>
+                                        <tr jhiSort style="color: white; background-color: #167F92">
+                                            <th jhiSortBy="date"><span
+                                                    jhiTranslate="auxiliumApp.observation.date">Date</span>
+                                                <span class="fa fa-sort"></span></th>
+                                            <th><span
+                                                    jhiTranslate="auxiliumApp.observation.commentaire">Commentaire</span>
+                                                <span class="fa fa-sort"></span></th>
+                                            <th jhiSortBy="userLogin"><span
+                                                    jhiTranslate="auxiliumApp.observation.user">Utilisateur</span>
+                                                <span class="fa fa-sort"></span></th>
+                                            <!--<th></th>-->
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <ng-container *ngFor="let observation of observationss">
+                                            <tr *ngIf="!observation.deleted">
+                                                <td>{{observation.date  | date:'dd/MM/yy'}}</td>
+                                                <td>{{observation.commentaire}}</td>
+                                                <td>{{observation.firstName}}
+                                                    {{observation.lastName}}</td>
+                                                <!--<td class="text-right">
+                                        <div class="btn-group flex-btn-group-container">
+                                            <button type="button"
+                                                (click)="prepareEditObservation(observation)"
+                                                class="btn btn-primary btn-sm">
+                                                <span class="fa fa-pencil"></span>
+                                            </button>
+                                            <button type="button"
+                                                (click)="deleteObservation(observation)"
+                                                class="btn btn-danger btn-sm">
+                                                <span class="fa fa-trash"></span>
+                                            </button>
+                                        </div>
+                                    </td>-->
+                                            </tr>
+                                        </ng-container>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <!--Listes Observations-->
+    </div>
+
+
+
+
+    <div class="col-lg-12" *ngIf="modeApprouv && !modeEdit" style="margin-left: 25px">
+        <div class="form-group">
+            <div class="row">
+                <div *ngFor="let decision of decisions" class="form-check col-sm-3">
+                    <label class="form-check-label">
+                        <input type="radio" name="decisions" class="form-check-input" value="{{decision.value}}"
+                            [(ngModel)]="apec.decision" (change)="onClickedDecisionSiege(apec.decision, $event)" />
+                        {{decision.name}}
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3" *ngIf="apec.decision == 2 && !modeImprimer && !modeValidPart && !modeEdit">
+        <label for="field_type"> Motifs</label>
+        <select class="form-control form-control-sm" id="field_motif_accord_invalid" name="accordinvalid"
+            [(ngModel)]="apec.accordRaisonId">
+            <option [ngValue]="motif.id" *ngFor="let motif of motifsDefavApec; ">
+                {{motif.label}}
+            </option>
+        </select>
+    </div>
+    <div class="col-sm-3" *ngIf="apec.decision == 5 && !modeImprimer && !modeValidPart && !modeEdit">
+        <label for="field_type"> Motifs</label>
+        <select class="form-control form-control-sm" id="field_motif_accord_invalid" name="accordinvalid"
+            [(ngModel)]="apec.accordRaisonId">
+            <option [ngValue]="motif.id" *ngFor="let motif of motifsFavoAvecReservevApec; ">
+                {{motif.label}}
+            </option>
+        </select>
+    </div>
+
+    <div class="col-lg-12"
+        *ngIf="(modeValidPart || apec.decisionAssure != null) && !modeImprimer && !modeApprouv && !modeValid && !modeEdit"
+        style="margin-left: 25px">
+        <div class="form-group">
+            <div class="row">
+                <div *ngFor="let decision of decisionsAssure" class="form-check col-sm-3">
+                    <label class="form-check-label">
+                        <input type="radio" name="decisions" class="form-check-input" value="{{decision.value}}"
+                            [(ngModel)]="apec.decisionAssure"
+                            (change)="onClickedDecisionAssure(apec.decisionAssure, $event)" />
+                        {{decision.name}}
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="form-group"
+                *ngIf="(instanceParticipation || observation || showObservationAssure) && !modeValid && !modeImprimer">
+                <label class="form-control-label" jhiTranslate="auxiliumApp.apec.observation"
+                    for="field_observation">Observation</label>
+                <select class="btn-default btn-sm" name="observation" [(ngModel)]="observationApec.observationAssure"
+                    id="field_observation" [disabled]="modeEdit" style="width: 100px" style="background-color: white"
+                    (ngModelChange)="selectObservationAssure(observationApec.observationAssure)">
+                    <option value="CHANGEMENT_RP">
+                        Changement RP
+                    </option>
+                    <option value="CHANGEMENT_TVA">
+                        Changement TVA
+                    </option>
+                    <option value="AUTRE">
+                        Autre
+                    </option>
+                </select>
+            </div>
+        </div>
+
+        <!--<div class="col-sm-3">
+        <div class="form-group" *ngIf="observation && apec.decisionAssure == null && !modeValid && !modeImprimer">
+                        <label class="form-control-label" jhiTranslate="auxiliumApp.apec.observation" for="field_observationASS">Observation</label>
+                                <select
+                                class="btn-default btn-sm"
+                                name="observationASS"
+                                [(ngModel)]="apec.observation"
+                                id="field_observationASS"
+                                style="width: 100px"
+                                style="background-color: white" (ngModelChange)="selectObservation(apec.observation)" [disabled]="modeEdit" >
+                                <option [ngValue]="observation.label" *ngFor="let observation of observationSiege">{{observation.label}}</option>
+                                <option
+                                        value="CHANGEMENT_RP">
+                                        Changement RP
+                                    </option>
+                                    <option
+                                        value="CHANGEMENT_TVA">
+                                        Changement TVA
+                                    </option>
+                                    <option
+                                        value="AUTRE">
+                                        Autre
+                                    </option>
+                            </select>
+        </div>
+    </div>-->
+        <!--<div class="col-sm-3" *ngIf="autreObservation && apec.decisionAssure == null && !modeValid && !modeValidPart && !modeImprimer">
+            <label class="form-control-label"  for="field_observation">Description</label>
+        <div class="form-group ">
+            
+            <input type="text" class="form-control" name="observation" id="field_observationDesc"
+                [(ngModel)]="apec.decriptionObservation" [disabled]="modeEdit" />
+        </div>
+    </div>-->
+        <div class="col-sm-3" *ngIf="autreObservationAssure && !modeValid && !modeImprimer">
+            <div class="form-group">
+                <label class="form-control-label" for="field_observationassure">Description</label>
+                <input type="text" class="form-control" name="observationassure" id="field_observationassure"
+                    [(ngModel)]="observationApec.decriptionObservationAssure" [disabled]="modeEdit" />
+            </div>
+        </div>
+
+    </div>
+    <!--<div class="row" style="margin-left: 25px">
+        <div class="col-sm-3" *ngIf="autreObservation && apec.decisionAssure == null && !modeValid && !modeValidPart">
+                        <div class="form-group">
+                            <label class="form-control-label"  for="field_observation">Observation</label>
+                            <input type="text" class="form-control" name="observation" id="field_observation"
+                                [(ngModel)]="apec.decriptionObservation" [readonly]="modeEdit" required/>
+                        </div>
+        </div>
+        <div class="col-sm-3" *ngIf="autreObservationAssure || apec.decriptionObservationAssure != null">
+            <div class="form-group">
+                <label class="form-control-label"  for="field_observationassure">Observation</label>
+                <input type="text" class="form-control" name="observationassure" id="field_observationassure"
+                    [(ngModel)]="apec.decriptionObservationAssure" />
+            </div>
+        </div>
+    </div>-->
+
+    <div class="col-lg-12" *ngIf="modeValid" style="margin-left: 25px">
+        <div class="form-group">
+            <div class="row">
+
+                <label class="form-check col-sm-3">
+                    <input type="radio" name="validAccord" value="7" (change)="onValidAccord(apec.etat, $event)"
+                        [(ngModel)]="apec.etat">Valider
+                </label>
+                <label class="form-check col-sm-3">
+                    <input type="radio" name="nonValidAccord" value="8" (change)="onValidAccord(apec.etat, $event)"
+                        [(ngModel)]="apec.etat">Ne pas valider
+                </label>
+                <div class="col-sm-3" *ngIf="apec.etat == 8">
+                    <label for="field_type"> Motifs</label>
+                    <select class="form-control form-control-sm" id="field_motif_accord_invalid" name="accordinvalid"
+                        [(ngModel)]="apec.accordRaisonId">
+                        <option [ngValue]="motif.id" *ngFor="let motif of motifsApec; ">
+                            {{motif.label}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--<div class="row">
+    <div class="form-group col-sm-10" style="float: left;">
+        <fieldset *ngIf=" modeValid ">
+            <input type="radio" name="validAccord"
+                value="7"
+                [(ngModel)]="apec.etat">Valider<br>
+            <input type="radio" name="nonValidAccord"
+                value="8"
+                [(ngModel)]="apec.etat">Non Valider<br>
+        </fieldset>
+    </div>
+    <div class="col-sm-1" *ngIf="apec.etat == 8">
+        <label for="field_type"> Motifs</label>
+         <select class="form-control form-control-sm" id="field_motif_accord_invalid" name="accordinvalid" [(ngModel)]="apec.accordRaisonId">
+             <option value="93" >Accord Non Valide</option>
+         </select>
+     </div>
+    </div>-->
+
+
+
+
+    <div class="modal-footer">
+        <!--<button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>-->
+        <button
+            *ngIf="!modeValidPart && !modeImprimer && (permissionToAccess.canApprouvApec || permissionToAccess.canValidApec || permissionToAccess.canModifApec ) && (buttonApprouvApec || buttonValid || buttonModifApec) "
+            type="submit" [disabled]="editForm.form.invalid || isSaving || isNotValid || isNotApprouv"
+            class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+        <!--<button *ngIf="modeValid" type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span >Valider</span>
+        </button>
+        <button *ngIf="modeValid" type="button" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary" (click)="nonValide()">
+            <span class="fa fa-save"></span>&nbsp;<span >Ne pas Valider</span>
+        </button>-->
+        <button *ngIf="modeValidPart && permissionToAccess.canValidAssurApec && buttonParticipAss" type="button"
+            [disabled]="editForm.form.invalid || isSaving || isNotValidPart" class="btn btn-primary"
+            (click)="validationAssure()">
+            <span class="fa fa-save"></span>&nbsp;<span>Enregistrer</span>
+        </button>
+        <button *ngIf="modeImprimer && permissionToAccess.canImprimApec && buttonImprime" type="button"
+            class="btn btn-primary" (click)="imprimer()">
+            <span>Imprimer</span>
+        </button>
+    </div>
+</form>

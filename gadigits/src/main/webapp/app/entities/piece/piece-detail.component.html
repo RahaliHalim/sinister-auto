@@ -1,0 +1,35 @@
+
+<div *ngIf="piece">
+    <h2><span jhiTranslate="auxiliumApp.piece.detail.title">Piece</span> {{piece.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="auxiliumApp.piece.reference">Reference</span></dt>
+        <dd>
+            <span>{{piece.reference}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.piece.isVetuste">Is Vetuste</span></dt>
+        <dd>
+            <span>{{piece.isVetuste}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.piece.typePiece">Type Piece</span></dt>
+        <dd>
+            <div *ngIf="piece.typePieceId">
+                <a [routerLink]="['/ref-type-pieces', piece.typePieceId]">{{piece.typePieceLibelle}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'piece/'+ piece.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;&nbsp;&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

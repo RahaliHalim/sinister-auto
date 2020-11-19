@@ -1,0 +1,823 @@
+<div class="card">
+    <span class="anchor" id="formUserEdit"></span>
+    <div class="card-header d-flex align-items-center no-padding">
+        <div class="notice notice-info">
+            <span class="fa fa-list" style="color: #45abcd"></span
+            >&nbsp;&nbsp;<strong
+                jhiTranslate="auxiliumApp.sinister.home.createOrEditServiceLabel"
+                >Service</strong
+            >
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label
+                                jhiTranslate="auxiliumApp.sinisterPrestation.sgovernorate"
+                                >gouvernorat</label
+                            >
+                            <select
+                                class="form-control form-control-sm"
+                                id="field_sgovernorate"
+                                name="sgovernorate"
+                                [(ngModel)]="
+                                    sinisterPrestation.incidentGovernorateId
+                                "
+                                (ngModelChange)="
+                                    fetchDelegationsByGovernorate(
+                                        sinisterPrestation.incidentGovernorateId,
+                                        true
+                                    )
+                                "
+                                required
+                                [disabled]="isViewVr"
+                            >
+                                <option
+                                    [ngValue]="gouvernoratOption.id"
+                                    *ngFor="
+                                        let gouvernoratOption of governorates
+                                    "
+                                >
+                                    {{ gouvernoratOption.label }}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label
+                                jhiTranslate="auxiliumApp.sinisterPrestation.sdelegation"
+                                for="field_ville"
+                                >lieu</label
+                            >
+                            <select
+                                class="form-control form-control-sm"
+                                id="field_ville"
+                                name="ville"
+                                [(ngModel)]="
+                                    sinisterPrestation.incidentLocationId
+                                "
+                                required
+                                [disabled]="isViewVr"
+                            >
+                                <option
+                                    [ngValue]="sysVilleOption.id"
+                                    *ngFor="let sysVilleOption of delegations"
+                                >
+                                    {{ sysVilleOption.label }}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label
+                                jhiTranslate="auxiliumApp.sinisterPrestation.gouvernorat"
+                                >gouvernorat</label
+                            >
+                            <select
+                                class="form-control form-control-sm"
+                                id="field_destGovernorate"
+                                name="destGovernorate"
+                                [(ngModel)]="
+                                    sinisterPrestation.deliveryGovernorateId
+                                "
+                                (ngModelChange)="
+                                    fetchDestDelegationsByGovernorate(
+                                        sinisterPrestation.deliveryGovernorateId,
+                                        true
+                                    )
+                                "
+                                required
+                                [disabled]="isViewVr"
+                            >
+                                <option
+                                    [ngValue]="gouvernoratOption.id"
+                                    *ngFor="
+                                        let gouvernoratOption of governorates
+                                    "
+                                >
+                                    {{ gouvernoratOption.label }}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label
+                                jhiTranslate="auxiliumApp.sinisterPrestation.ville"
+                                for="field_destCity"
+                                >lieu</label
+                            >
+                            <select
+                                class="form-control form-control-sm"
+                                id="field_destCity"
+                                name="destCity"
+                                [(ngModel)]="
+                                    sinisterPrestation.deliveryLocationId
+                                "
+                                required
+                                [disabled]="isViewVr"
+                            >
+                                <option
+                                    [ngValue]="sysVilleOption.id"
+                                    *ngFor="
+                                        let sysVilleOption of delegationsDest
+                                    "
+                                >
+                                    {{ sysVilleOption.label }}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-lg-2">
+                <div class="form-group">
+                    <label
+                        class="form-control-label"
+                        jhiTranslate="auxiliumApp.sinisterPrestation.firstDriver"
+                        for="field_firstDriver"
+                        >firstDriver</label
+                    >
+                    <input
+                        type="text"
+                        class="form-control form-control-sm"
+                        name="firstDriver"
+                        id="field_firstDriver"
+                        [(ngModel)]="sinisterPrestation.firstDriver"
+                        [disabled]="isViewVr"
+                        required
+
+                    />
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <label
+                    class="form-control-label"
+                    for="field_setSecondDriver"
+                    style="width: 100%"
+                    >&nbsp;</label
+                >
+                <input
+                    type="checkbox"
+                    class="check-input"
+                    name="setSecondDriver"
+                    id="field_setSecondDriver"
+                    [(ngModel)]="setSecondDriver"
+                    [checked]="sinisterPrestation.secondDriver != null ? true : false"
+
+                    [disabled]="isViewVr"
+                />
+
+                <label
+                    class="form-control-label"
+                    jhiTranslate="auxiliumApp.sinisterPrestation.setSecondDriver"
+                    for="field_setSecondDriver"
+                    >setSecondDriver</label
+                >
+            </div>
+            <div class="col-lg-2" *ngIf="setSecondDriver || sinisterPrestation.secondDriver">
+                <div class="form-group">
+                    <label
+                        class="form-control-label"
+                        jhiTranslate="auxiliumApp.sinisterPrestation.secondDriver"
+                        for="field_secondDriver"
+                        >secondDriver</label
+                    >
+                    <input
+                        type="text"
+                        class="form-control form-control-sm"
+                        name="secondDriver"
+                        id="field_secondDriver"
+                        [(ngModel)]="sinisterPrestation.secondDriver"
+                        [disabled]="isViewVr"
+                        [required]="setSecondDriver"
+
+
+                    />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3">
+                <label
+                    class="form-control-label"
+                    for="field_longDuration"
+                    style="width: 100%"
+                    >&nbsp;</label
+                >
+                <input
+                    type="checkbox"
+                    class="check-input"
+                    name="longDuration"
+                    id="field_longDuration"
+                    [(ngModel)]="sinisterPrestation.longDuration"
+                    (ngModelChange)="initPerstation()"
+                    [disabled]="sinisterPrestation.shortDuration || isViewVr"
+                />
+
+                <label
+                    class="form-control-label"
+                    jhiTranslate="auxiliumApp.sinisterPrestation.longDuration"
+                    for="field_longDuration"
+                    >longDuration</label
+                >
+            </div>
+            <div class="col-lg-3">
+                <label
+                    class="form-control-label"
+                    for="field_shortDuration"
+                    style="width: 100%"
+                    >&nbsp;</label
+                >
+                <input
+                    type="checkbox"
+                    class="check-input"
+                    name="shortDuration"
+                    id="field_shortDuration"
+                    [(ngModel)]="sinisterPrestation.shortDuration"
+                    (ngModelChange)="initPerstation()"
+                    [disabled]="sinisterPrestation.longDuration || isViewVr"
+                />
+                <label
+                    class="form-control-label"
+                    jhiTranslate="auxiliumApp.sinisterPrestation.shortDuration"
+                    for="field_shortDuration"
+                    >shortDuration</label
+                >
+            </div>
+
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label
+                        class="form-control-label"
+                        jhiTranslate="auxiliumApp.sinisterPrestation.loueur"
+                        for="field_loueurLabel"
+                        >loueur</label
+                    >
+                    <i
+                        class="fa fa-sm fa-info-circle"
+                        title="{{ sinisterPrestation.loueurLabel }}"
+                    ></i>
+                    <div class="input-group">
+                        <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            name="loueurLabel"
+                            id="field_loueurLabel"
+                            [(ngModel)]="sinisterPrestation.loueurLabel"
+                            required
+                            readonly
+                            (ngModelChange)="calculatePricePerDay(sinisterPrestation.loueurId)"
+                            [disabled]="isViewVr"
+                        />
+                        <span class="input-group-btn">
+                            <button
+                                [disabled]="
+                                    !(
+                                        sinisterPrestation.shortDuration ||
+                                        sinisterPrestation.longDuration
+                                    )
+                                    || isViewVr
+                                "
+                                type="button"
+                                class="btn btn-sm btn-default"
+                                (click)="selectLoueur()"
+                               
+                            >
+                                <i class="fa fa-sm fa-car text-info"></i>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="form-group">
+                    <label
+                        class="form-control-label"
+                        jhiTranslate="auxiliumApp.sinisterPrestation.deliveryDate"
+                        for="field_deliveryDate"
+                        >Date livraison</label
+                    >
+                    <div class="input-group">
+                        <input
+                            id="field_deliveryDate"
+                            (ngModelChange)="calculateDays()"
+                            type="text"
+                            class="form-control form-control-sm"
+                            name="deliveryDate"
+                            [minDate]="sinister.incidentDate"
+                            [maxDate]="sinisterPrestation.expectedReturnDate"
+                            ngbDatepicker
+                            #deliveryDate="ngbDatepicker"
+                            [(ngModel)]="sinisterPrestation.deliveryDate"
+                            [required]="deliveryTime"
+                            [disabled]="isViewVr"
+
+                        />
+                        <span class="input-group-btn">
+                            <button
+                                type="button"
+                                class="btn btn-sm btn-default"
+                                (click)="deliveryDate.toggle()"
+                                [disabled]="isViewVr"
+
+                            >
+                                <i class="fa fa-sm fa-calendar"></i>
+                            </button> </span
+                        >&nbsp;&nbsp;
+                        <ngb-timepicker
+                            size="small"
+                            [(ngModel)]="deliveryTime"
+                            (ngModelChange)="
+                                validateDeliveryTime(); calculateDays()
+                            "
+                            [spinners]="false"
+                            name="deliveryTime"
+                            [required]="sinisterPrestation.deliveryDate"
+                            [disabled]="isViewVr"
+
+                        >
+                        </ngb-timepicker>
+                    </div>
+                </div>
+                <!-- <div [hidden]="prestationDateValide">
+                            <small class="form-text text-danger" [hidden]="prestationDateValide">Date / heure arrivée loueur doit être inférieur à date / heure arrivée assuré</small>
+                        </div> -->
+            </div>
+            <div class="col-lg-3">
+                <div class="form-group">
+                    <label
+                        class="form-control-label"
+                        jhiTranslate="auxiliumApp.sinisterPrestation.expectedReturnDate"
+                        for="field_expectedReturnDate"
+                        >Date prévu retour</label
+                    >
+                    <div class="input-group">
+                        <input
+                            id="field_expectedReturnDate"
+                            (ngModelChange)="calculateDays()"
+                            type="text"
+                            class="form-control form-control-sm"
+                            name="expectedReturnDate"
+                            ngbDatepicker
+                            #expectedReturnDate="ngbDatepicker"
+                            [minDate]="minExpectedReturnDate"
+                            [(ngModel)]="sinisterPrestation.expectedReturnDate"
+                            [required]="expectedReturnTime"
+                            [disabled]="isViewVr"
+                            
+
+                        />
+                        <span class="input-group-btn">
+                            <button
+                                type="button"
+                                class="btn btn-sm btn-default"
+                                (click)="expectedReturnDate.toggle()"
+                                [disabled]="isViewVr"
+
+                            >
+                                <i class="fa fa-sm fa-calendar"></i>
+                            </button> </span
+                        >&nbsp;&nbsp;
+                        <ngb-timepicker
+                            size="small"
+                            [(ngModel)]="expectedReturnTime"
+                            (ngModelChange)="
+                                validateExpectedReturnTime(); calculateDays()
+                            "
+                            [spinners]="false"
+                            name="expectedReturnTime"
+                            [disabled]="isViewVr"
+
+                            [required]="sinisterPrestation.expectedReturnDate"
+                        ></ngb-timepicker>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3">
+                <div class="form-group">
+                    <label
+                        class="form-control-label"
+                        jhiTranslate="auxiliumApp.sinisterPrestation.acquisitionDate"
+                        for="field_acquisitionDate"
+                        >acquisition Date</label
+                    >
+                    <div class="input-group">
+                        <input
+                            id="field_acquisitionDate"
+                            type="text"
+                            class="form-control form-control-sm"
+                            name="acquisitionDate"
+                            [minDate]="sinister.incidentDate"
+                            [maxDate]="sinisterPrestation.returnDate"
+                            ngbDatepicker
+                            #acquisitionDate="ngbDatepicker"
+                            
+
+                            [(ngModel)]="sinisterPrestation.acquisitionDate"
+                            [required]="acquisitionTime"
+                            [disabled]="isViewVr"
+
+
+                        />
+                        <span class="input-group-btn">
+                            <button
+                                type="button"
+                                class="btn btn-sm btn-default"
+                                (click)="acquisitionDate.toggle()"
+                                [disabled]="isViewVr"
+
+                            >
+                                <i class="fa fa-sm fa-calendar"></i>
+                            </button> </span
+                        >&nbsp;&nbsp;
+                        <ngb-timepicker
+                            size="small"
+                            [(ngModel)]="acquisitionTime"
+                            (ngModelChange)="validateAcquisitionTime()"
+                            [spinners]="false"
+                            name="acquisitionTime"
+                            [required]="sinisterPrestation.acquisitionDate"
+                            [disabled]="isViewVr"
+
+                        ></ngb-timepicker>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="form-group">
+                    <label
+                        class="form-control-label"
+                        jhiTranslate="auxiliumApp.sinisterPrestation.returnDate"
+                        for="field_returnDate"
+                        >returnDate</label
+                    >
+                    <div class="input-group">
+                        <input
+                            id="field_returnDate"
+                            type="text"
+                            class="form-control form-control-sm"
+                            name="returnDate"
+                            [minDate]="minReturnDate"
+                            ngbDatepicker
+                            #returnDate="ngbDatepicker"
+                            [(ngModel)]="sinisterPrestation.returnDate"
+                            [required]="returnTime"
+                            [disabled]="isViewVr"
+
+                        />
+                        <span class="input-group-btn">
+                            <button
+                                type="button"
+                                class="btn btn-sm btn-default"
+                                (click)="returnDate.toggle()"
+                                [disabled]="isViewVr"
+
+                            >
+                                <i class="fa fa-sm fa-calendar"></i>
+                            </button> </span
+                        >&nbsp;&nbsp;
+                        <ngb-timepicker
+                            size="small"
+                            [(ngModel)]="returnTime"
+                            (ngModelChange)="validateReturnTime()"
+                            [spinners]="false"
+                            name="returnTime"
+                            [required]="sinisterPrestation.returnDate"
+                            [disabled]="isViewVr"
+
+                        >
+                        </ngb-timepicker>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-2" *ngIf="sinisterPrestation.shortDuration">
+                <label
+                    jhiTranslate="auxiliumApp.sinisterPrestation.immatriculation"
+                    for="immatriculationVr"
+                    >immatriculationVr</label
+                >
+                <input
+                    type="text"
+                    [(ngModel)]="sinisterPrestation.immatriculationVr"
+                    class="form-control form-control-sm"
+                    name="immatriculationVr"
+                    id="immatriculationVr"
+                    required
+                    [disabled]="isViewVr"
+
+                />
+            </div>
+            <div class="col-lg-2">
+                <div class="form-group">
+                    <label
+                        class="form-control-label"
+                        jhiTranslate="auxiliumApp.sinisterPrestation.days"
+                        for="field_days"
+                        >days</label
+                    >
+                    <input
+                        type="text"
+                        class="form-control form-control-sm"
+                        name="days"
+                        id="field_days"
+                        [(ngModel)]="sinisterPrestation.days"
+                        pattern="^[0-9]+(\.[0-9]{1,3})?"
+                        (ngModelChange)="calculatePriceTtc()"
+                        readonly
+                        [disabled]="isViewVr"
+
+                    />
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="form-group">
+                    <label
+                        class="form-control-label"
+                        jhiTranslate="auxiliumApp.sinisterPrestation.pricePerDay"
+                        for="field_pricePerDay"
+                        >pricePerDay</label
+                    >
+                    <input
+                        type="text"
+                        class="form-control form-control-sm"
+                        name="pricePerDay"
+                        id="field_pricePerDay"
+                        [(ngModel)]="sinisterPrestation.pricePerDay"
+                        (ngModelChange)="calculatePriceTtc()"
+                        [required]="sinisterPrestation.shortDuration"
+                        pattern="^[0-9]+(\.[0-9]{1,3})?"
+                        [readonly]="!sinisterPrestation.shortDuration"
+                        [disabled]="isViewVr"
+
+                    />
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="form-group">
+                    <label
+                        class="form-control-label"
+                        jhiTranslate="auxiliumApp.sinisterPrestation.priceTtc"
+                        for="field_priceTtc"
+                        >priceTtc</label
+                    >
+                    <input
+                        type="text"
+                        class="form-control form-control-sm"
+                        name="priceTtc"
+                        id="field_priceTtc"
+                        [(ngModel)]="sinisterPrestation.priceTtc"
+                        pattern="^[0-9]+(\.[0-9]{1,3})?"
+                        readonly
+                        [disabled]="isViewVr"
+
+                    />
+                </div>
+            </div>
+        </div>
+        <div class="row"  >
+            <div class="col-sm-6" *ngIf="isEditVr">
+                <label class="form-control-label"
+                    jhiTranslate="auxiliumApp.sinisterPrestation.generated"
+                    for="field_generated">État
+                    du choc</label>
+                <div class="input-group" data-toggle="buttons">
+                    <label class="btn btn-sm btn-primary" for="isGenerated"
+                        (click)="changeIsGenerated(true);">
+                        <input type="radio" [disabled]="true" name="isGenerated"
+                            id="isGenerated" autocomplete="off" [value]="true"
+                            [(ngModel)]="sinisterPrestation.isGenerated"> Oui
+                    </label> &nbsp;
+                    <label class="btn btn-sm btn-primary" for="isNotGenerated"
+                        (click)="changeIsGenerated(false);">
+                        <input type="radio" [disabled]="true" name="isNotGenerated"
+                            id="isNotGenerated" autocomplete="off" [value]="false"
+                            [(ngModel)]="sinisterPrestation.isGenerated"> Non
+                    </label>
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <div class="row">
+                    <div class="col-lg-10">
+                        <div class="form-group" *ngIf="(sinisterSettings.showCancelGrounds || sinisterPrestation.cancelGroundsId != null ) && !isReopenVr">
+                            <label jhiTranslate="auxiliumApp.sinisterPrestation.cancelGrounds">cancelGrounds</label>
+                            <select class="form-control form-control-sm" id="field_cancelGroundsVr" name="cancelGroundsVr"
+                                [(ngModel)]="sinisterPrestation.cancelGroundsId" required  [disabled]="isViewVr">
+                                <option [ngValue]="optionvr.id" *ngFor="let optionvr of cancelGrounds">
+                                    {{optionvr.label}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="form-group" *ngIf="(sinisterSettings.showMotifRefus || sinisterPrestation.motifRefusId != null) && !isReopenVr">
+                            <label jhiTranslate="auxiliumApp.sinisterPrestation.motifRefusLabel">MotifRefus</label>
+                            <select class="form-control form-control-sm" id="field_MotifRefus" name="MotifRefus"
+                                [(ngModel)]="sinisterPrestation.motifRefusId" required  [disabled]="isViewVr">
+                                <option [ngValue]="optionvr.id" *ngFor="let optionvr of motifRefus">
+                                    {{optionvr.label}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="form-group" *ngIf="sinisterSettings.showReopenGrounds">
+                            <label
+                                jhiTranslate="auxiliumApp.sinisterPrestation.reopenGrounds">reopenGrounds</label>
+                            <select class="form-control form-control-sm"
+                                id="field_reopenGrounds" name="reopenGrounds"
+                                [(ngModel)]="sinisterPrestation.reopenGroundsId" required  [disabled]="isViewVr">
+                                <option [ngValue]="option.id"
+                                    *ngFor="let option of reopenGrounds">
+                                    {{option.label}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!----------------------------------------------------------------------------------Observation---------------------------------------------------------------------------->
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div
+                class="collapsible-card card-header align-items-center collapsed notice notice-info"
+                data-toggle="collapse"
+                href="#collapseOb"
+            >
+                <strong>Observations </strong>
+            </div>
+            <div id="collapseOb" class="card-body collapse">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            name="observation"
+                            id="observationId"
+                            [(ngModel)]="observation.commentaire"
+                        />
+                        <div [hidden]="!isCommentError">
+                            <small
+                                class="form-text text-danger"
+                                [hidden]="!isCommentError"
+                                jhiTranslate="entity.validation.required"
+                                >This field is required.</small
+                            >
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <button
+                            *ngIf="!isObsModeEdit"
+                            class="btn btn-sm btn-primary addnew"
+                            (click)="newObservation()"
+                        >
+                            <span class="fa fa-plus"></span>
+                            <span
+                                jhiTranslate="auxiliumApp.observation.home.createLabel"
+                                >Create new Observation
+                            </span>
+                        </button>
+                        <!--<button *ngIf="isObsModeEdit" class="btn btn-sm btn-primary addnew"
+                                        (click)="editObservation();">
+                                        <span class="fa fa-pencil"></span>
+                                        <span jhiTranslate="auxiliumApp.observation.home.editLabel">Edit
+                                            Observation
+                                        </span>
+                                    </button>-->
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 15px">
+                    <div class="col-sm-12">
+                        <div
+                            class="table-responsive"
+                            *ngIf="observation && observations.length > 0"
+                        >
+                            <table
+                                class="table table-sm table-hover table-bordered"
+                                style="width: 100%"
+                            >
+                                <thead>
+                                    <tr
+                                        jhiSort
+                                        style="
+                                            color: white;
+                                            background-color: #167f92;
+                                        "
+                                    >
+                                        <th jhiSortBy="date">
+                                            <span
+                                                jhiTranslate="auxiliumApp.observation.date"
+                                                >Date</span
+                                            >
+                                            <span class="fa fa-sort"></span>
+                                        </th>
+                                        <th>
+                                            <span
+                                                jhiTranslate="auxiliumApp.observation.commentaire"
+                                                >Commentaire</span
+                                            >
+                                            <span class="fa fa-sort"></span>
+                                        </th>
+                                        <th jhiSortBy="userLogin">
+                                            <span
+                                                jhiTranslate="auxiliumApp.observation.user"
+                                                >Utilisateur</span
+                                            >
+                                            <span class="fa fa-sort"></span>
+                                        </th>
+                                        <!--<th></th>-->
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <ng-container
+                                        *ngFor="let observation of observations"
+                                    >
+                                        <tr *ngIf="!observation.deleted">
+                                            <td>
+                                                {{
+                                                    observation.date
+                                                        | date: "dd/MM/yyyy"
+                                                }}
+                                            </td>
+                                            <td>
+                                                {{ observation.commentaire }}
+                                            </td>
+                                            <td>
+                                                {{ observation.firstName }}
+                                                {{ observation.lastName }}
+                                            </td>
+                                            <!--<td class="text-right">
+                                                            <div class="btn-group flex-btn-group-container">
+                                                                <button type="button"
+                                                                    (click)="prepareEditObservation(observation)"
+                                                                    class="btn btn-primary btn-sm">
+                                                                    <span class="fa fa-pencil"></span>
+                                                                </button>
+                                                                <button type="button"
+                                                                    (click)="deleteObservation(observation)"
+                                                                    class="btn btn-danger btn-sm">
+                                                                    <span class="fa fa-trash"></span>
+                                                                </button>
+                                                            </div>
+                                                        </td>-->
+                                        </tr>
+                                    </ng-container>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!------------------------------------------------------- fin observation ----------------------------------------------------------->
+<div class="modal-footer">
+   
+    <button
+        type="submit"
+        class="btn btn-sm btn-primary float-right"
+        (click)="save()"
+        [hidden]="isViewVr"
+        [disabled]="valid"
+    >
+        <span class="fa fa-save"></span>&nbsp;
+        <span jhiTranslate="entity.action.save">Save</span>
+    </button> &nbsp;&nbsp;
+    <button type="button" class="btn btn-sm btn-primary float-right" *ngIf="((sinisterPrestation.statusId == 1 && (isViewVr || isRefuseVr|| isCancelVr || isEditVr) )|| ((sinisterPrestation.statusId == 6 || sinisterPrestation.statusId == 2) && (isEditVr) )) && !isReopenVr" [disabled]="isCancelVr || sinisterSettings.showCancelGrounds "  (click)="cancel()">
+    
+        <span class="fa fa-close"></span>&nbsp;
+        <span jhiTranslate="entity.action.cancel">cancel</span>
+    </button> 
+    <button type="button" class="btn btn-sm btn-primary float-right" *ngIf="((sinisterPrestation.statusId == 1 && (isViewVr || isRefuseVr|| isCancelVr || isEditVr) )|| ((sinisterPrestation.statusId == 6 || sinisterPrestation.statusId == 2) && (isEditVr) )) && !isReopenVr" [disabled]="isRefuseVr || sinisterSettings.showMotifRefus"  (click)="refuse()">
+        <span class="fa fa-close"></span>&nbsp;
+        <span jhiTranslate="entity.action.refuser">refuse</span>
+    </button> 
+    <button type="button" class="btn btn-sm btn-primary float-right" *ngIf="sinisterPrestation.statusId != 1" [hidden]="!(isViewVr)" (click)="reopen()">
+        <span class="fa fa-window-restore"></span>&nbsp;
+        <span jhiTranslate="entity.action.reopen">reopen</span>
+    </button> 
+   
+</div>

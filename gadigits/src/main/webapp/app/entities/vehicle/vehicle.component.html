@@ -1,0 +1,99 @@
+<div>
+    <h2>
+        <span jhiTranslate="auxiliumApp.vehicle.home.title">Vehicles</span>
+        <button class="btn btn-primary float-right jh-create-entity create-vehicle" [routerLink]="['/', { outlets: { popup: ['vehicle-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down"  jhiTranslate="auxiliumApp.vehicle.home.createLabel">
+            Create new Vehicle
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'auxiliumApp.vehicle.home.search' | translate }}">
+                    <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-addon btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-sm fa-remove"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="vehicles">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="auxiliumApp.vehicle.registrationNumber">Registration Number</span></th>
+            <th><span jhiTranslate="auxiliumApp.vehicle.chassisNumber">Chassis Number</span></th>
+            <th><span jhiTranslate="auxiliumApp.vehicle.firstEntryIntoService">First Entry Into Service</span></th>
+            <th><span jhiTranslate="auxiliumApp.vehicle.fiscalPower">Fiscal Power</span></th>
+            <th><span jhiTranslate="auxiliumApp.vehicle.brand">Brand</span></th>
+            <th><span jhiTranslate="auxiliumApp.vehicle.model">Model</span></th>
+            <th><span jhiTranslate="auxiliumApp.vehicle.energy">Energy</span></th>
+            <th><span jhiTranslate="auxiliumApp.vehicle.usage">Usage</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let vehicle of vehicles ;trackBy: trackId">
+                <td><a [routerLink]="['../vehicle', vehicle.id ]">{{vehicle.id}}</a></td>
+                <td>{{vehicle.registrationNumber}}</td>
+                <td>{{vehicle.chassisNumber}}</td>
+                <td>{{vehicle.firstEntryIntoService | date:'mediumDate'}}</td>
+                <td>{{vehicle.fiscalPower}}</td>
+                <td>
+                    <div *ngIf="vehicle.brandId">
+                        <a [routerLink]="['../vehicle-brand', vehicle.brandId  ]" >{{vehicle.brandLabel}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="vehicle.modelId">
+                        <a [routerLink]="['../vehicle-brand-model', vehicle.modelId  ]" >{{vehicle.modelLabel}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="vehicle.energyId">
+                        <a [routerLink]="['../vehicle-energy', vehicle.energyId  ]" >{{vehicle.energyLabel}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="vehicle.usageId">
+                        <a [routerLink]="['../vehicle-usage', vehicle.usageId  ]" >{{vehicle.usageLabel}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../vehicle', vehicle.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'vehicle/'+ vehicle.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'vehicle/'+ vehicle.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

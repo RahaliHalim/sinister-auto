@@ -1,0 +1,134 @@
+<!-- Breadcrumb-->
+<div class="breadcrumb-holder">
+    <div class="container-fluid">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="/"><span class="fa fa-home"></span>&nbsp;&nbsp;<span jhiTranslate="global.menu.home">Home</span></a></li>
+            <li class="breadcrumb-item"><a routerLink="/raison-assistance"><span jhiTranslate="auxiliumApp.raisonAssistance.home.title">Raison assistance</span></a></li>
+        </ul>
+    </div>
+</div>
+<section class="forms">
+    <div class="container-fluid">
+        <!-- Page Header-->
+        <header style="padding-top: 1rem; padding-bottom: 1rem;">
+            <h1 class="h3 display">
+                <jhi-alert-error></jhi-alert-error>
+                <jhi-alert></jhi-alert>
+            </h1>
+        </header>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header d-flex align-items-center no-padding" >
+                        <div class="notice notice-info">
+                            <span class="fa fa-bandcamp" style="color: #45ABCD"></span>&nbsp;&nbsp;<strong jhiTranslate="auxiliumApp.raisonAssistance.home.createOrEditLabel">VehicleBrandModel</strong>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <form #myform="ngForm" novalidate>
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label class="form-control-label" jhiTranslate="auxiliumApp.raisonAssistance.label" for="field_label">Label</label>
+                                        <input type="text" class="form-control form-control-sm" name="label" id="field_label" [(ngModel)]="raisonAssistance.label" (blur)="trimLabel();" 
+                                            required />
+                                            <small class="form-text text-danger"
+                                        [hidden]="!myform.controls.label?.errors?.pattern"
+                                        jhiTranslate="entity.validation.pattern"
+                                        translateValues="{ pattern: 'label' }">
+                                        This field should follow pattern for "label".
+                                    </small>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <label jhiTranslate="auxiliumApp.raisonAssistance.operation" for="field_operation">operation</label>
+                                    <select class="form-control form-control-sm" id="field_operation" name="operation" [(ngModel)]="raisonAssistance.operationId" required>
+                                        <option [ngValue]="operationOption.id" *ngFor="let operationOption of operations">{{operationOption.label}}</option>
+                                    </select>
+                                </div>                               
+                                <div class="col-sm-3">
+                                    <label jhiTranslate="auxiliumApp.raisonAssistance.status" for="field_status">status</label>
+                                    <select *ngIf="raisonAssistance.operationId == 1" class="form-control form-control-sm" id="field_status" name="status" [(ngModel)]="raisonAssistance.statusId" required>
+                                        <option [ngValue]="statusOption.id" *ngFor="let statusOption of statuss">{{statusOption.label}}</option>
+                                    </select>
+                                    <select *ngIf="raisonAssistance.operationId != 1" class="form-control form-control-sm" id="field_status" name="status" [(ngModel)]="raisonAssistance.statusId">
+                                        <option [ngValue]="statusOption.id" *ngFor="let statusOption of statuss">{{statusOption.label}}</option>
+                                    </select>
+
+                                </div>                               
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label style="width: 100%">&nbsp;</label>
+                                        <button *ngIf="!raisonAssistance.id" type="button" [disabled]=" myform.invalid"  (click)="save()" class="btn btn-sm btn-primary margin-right-5">
+                                            <span class="fa fa-save"></span>&nbsp; <span jhiTranslate="entity.action.save">Save</span>
+                                        </button>
+                                        <button *ngIf="raisonAssistance.id" type="button" [disabled]=" myform.invalid" (click)="save()" class="btn btn-sm btn-primary margin-right-5">
+                                             <span jhiTranslate="entity.action.aJour">update</span>
+                                        </button>
+                                        <button type="button" (click)="cancel()" class="btn btn-sm btn-default margin-right-5">
+                                           <span jhiTranslate="entity.action.cancel">cancel</span>
+                                        </button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header d-flex align-items-center no-padding" >
+                        <div class="notice notice-info">
+                            
+                            <strong jhiTranslate="auxiliumApp.raisonAssistance.home.title">raison assistance</strong>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-sm table-hover table-bordered" style="width: 100%">
+                                <thead style="color:white;background-color:#11859b">
+                                <tr>
+                                    <th><span jhiTranslate="auxiliumApp.raisonAssistance.label">Label</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.raisonAssistance.operation">Operation</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.raisonAssistance.status">Status</span></th>
+                                    <th class="no-sort"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr *ngFor="let raisonAssistance of raisonAssistances">
+                                    <td>{{raisonAssistance.label}} </td>
+                                    <td>{{raisonAssistance.operationLabel}} </td>
+                                    <td>{{raisonAssistance.statusLabel}} </td>
+                                    <td class="text-right">
+                                        <div class="btn-group flex-btn-group-container">
+                                            <button type="button" (click)="edit(raisonAssistance.id)" class="btn btn-primary btn-sm">
+                                                <span class="fa fa-sm fa-pencil"></span>
+                                            </button>
+                                            <button *ngIf="raisonAssistance.active" type="button" (click)="disable(raisonAssistance)" class="btn btn-danger btn-sm">
+                                                <span jhiTranslate="entity.action.disable"></span>
+                                            </button>                                            
+                                            <button *ngIf="!raisonAssistance.active" type="button" (click)="activate(raisonAssistance)" class="btn btn-success btn-sm">
+                                                <span jhiTranslate="entity.action.activate"></span>
+                                            </button>&nbsp;&nbsp;
+                                            <button class="btn btn-sm btn-primary float-right "  (click)="selectHistory(raisonAssistance.id, entityName)">
+                                                <span class="hidden-sm-down" jhiTranslate="auxiliumApp.agency.home.History">History</span>
+                                            </button>                                            
+
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

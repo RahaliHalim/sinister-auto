@@ -1,0 +1,35 @@
+
+<div *ngIf="fournisseur">
+    <h2><span jhiTranslate="auxiliumApp.fournisseur.detail.title">Fournisseur</span> {{fournisseur.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="auxiliumApp.fournisseur.remise">Remise</span></dt>
+        <dd>
+            <span>{{fournisseur.remise}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.fournisseur.isBloque">Is Bloque</span></dt>
+        <dd>
+            <span>{{fournisseur.isBloque}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.fournisseur.personneMorale">Personne Morale</span></dt>
+        <dd>
+            <div *ngIf="fournisseur.personneMoraleId">
+                <a [routerLink]="['/personne-morale', fournisseur.personneMoraleId]">{{fournisseur.personneMoraleRaisonSociale}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'fournisseur/'+ fournisseur.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;&nbsp;&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

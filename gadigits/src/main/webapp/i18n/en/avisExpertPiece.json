@@ -1,0 +1,26 @@
+{
+    "auxiliumApp": {
+        "avisExpertPiece" : {
+            "home": {
+                "title": "Avis Expert Pieces",
+                "createLabel": "Create a new Avis Expert Piece",
+                "createOrEditLabel": "Create or edit a Avis Expert Piece",
+                "search": "Search for Avis Expert Piece"
+            },
+            "created": "A new Avis Expert Piece is created with identifier {{ param }}",
+            "updated": "A Avis Expert Piece is updated with identifier {{ param }}",
+            "deleted": "A Avis Expert Piece is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Avis Expert Piece {{ id }}?"
+            },
+            "detail": {
+                "title": "Avis Expert Piece"
+            },
+            "motif": "Motif",
+            "commentaire": "Commentaire",
+            "quantite": "Quantite",
+            "detailsPieces": "Details Pieces",
+            "validationDevis": "Validation Devis"
+        }
+    }
+}

@@ -1,0 +1,24 @@
+{
+    "auxiliumApp": {
+        "userProfile" : {
+            "home": {
+                "title": "UserProfiles",
+                "createLabel": "Créer un nouveau profil utilisateur",
+                "createOrEditLabel": "Créer ou modifier un profil utilisateur",
+                "search": "Recherche pour profil utilisateur"
+            },
+            "created": "Un nouveau profil utilisateur a été créé avec l'identifiant {{ param }}",
+            "updated": "Le profil utilisateur avec l'Identifiant {{ param }} a été mis à jour",
+            "deleted": "Le profil utilisateur avec l'Identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer le profil utilisateur {{ id }} ?"
+            },
+            "detail": {
+                "title": "Profil utilisateur"
+            },
+            "label": "Label",
+            "code": "Code",
+            "active": "Active"
+        }
+    }
+}

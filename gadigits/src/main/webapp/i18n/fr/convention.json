@@ -1,0 +1,27 @@
+{
+    "auxiliumApp": {
+        "convention": {
+            "home": {
+                "title": "Conventions",
+                "createLabel": "Créer ",
+                "createOrEditLabel": "Ajouter ou modifier une convention"
+            },
+            "created": "Une nouvelle convention a été créée",
+            "updated": "La convention a été mise à jour",
+            "deleted": "La convention a été supprimée",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer la convention {{ id }} ?"
+            },
+            "detail": {
+                "title": "Convention",
+                "joursFerier": "Convention"
+            },
+            "label": "Libellé",
+            "startDate": "Date d'effet",
+            "endDate": "Date d'échéance",
+            "company": "Compagnie",
+            "pack": "Pack",
+            "signedAgreement": "Convention signée"
+        }
+    }
+}

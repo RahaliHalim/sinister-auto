@@ -1,0 +1,67 @@
+<form name="editForm" (ngSubmit)="confirmBlock(refRemorqueur)" role="form" novalidate #editForm="ngForm">
+    <div class="modal-header">
+        <h4 class="modal-title" [hidden]="refRemorqueur.isBloque" jhiTranslate="auxiliumApp.refRemorqueur.bloque.title">
+            Confirm delete operation</h4>
+        <h4 class="modal-title" [hidden]="!refRemorqueur.isBloque"
+            jhiTranslate="auxiliumApp.refRemorqueur.debloque.title">Confirm delete operation</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <p [hidden]="refRemorqueur.isBloque" jhiTranslate="auxiliumApp.refRemorqueur.bloque.question" translateValues="{id: '{{refRemorqueur.id}}'}">Are you sure you want to delete this Ref Compagnie?</p>
+        <p [hidden]="!refRemorqueur.isBloque" jhiTranslate="auxiliumApp.refRemorqueur.debloque.question" translateValues="{id: '{{refRemorqueur.id}}'}">Are you sure you want to delete this Ref Compagnie?</p>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+   
+    <div class="col-sm-6"  >
+             <div class="row">
+            <div class="col-sm-3" *ngIf="bloque != false">
+                <button (click)="handleClickMotif()" type="button">Motifs</button>
+           </div>
+            <div class="col-sm-3" *ngIf="bloque != false">
+                <button (click)="handleClickReclamation()" type="button">Reclamation</button>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div *ngIf="bloque != false">
+        <div *ngIf="this.disabledMotif == true">
+            <div class="col-sm-3">
+                <label class="form-control-label" jhiTranslate="auxiliumApp.refRemorqueur.motifs"
+                    for="field_isBloque">Is Bloque</label>
+                <select class="form-control form-control-sm" id="field_motif" name="motif" [(ngModel)]="idMotif"
+                    required>
+                    <option [ngValue]="refMotifOption.id"
+                        *ngFor="let refMotifOption of motifs; trackBy: trackTarifsById">{{refMotifOption.label}}
+                    </option>
+                </select>
+            </div>
+         
+        </div>
+        <div *ngIf="this.disabledReclamation ==true">
+            <div class="col-sm-12">
+                <label class="form-control-label" jhiTranslate="auxiliumApp.refRemorqueur.reclamation"
+                    for="field_reclamation"> reclamation </label>
+                <input type="text" class="form-control form-control-sm" name="reclamation" id="field_reclamation"
+                    [(ngModel)]="reclamationRmq" required />
+                <div [hidden]="!(editForm.controls.reclamation?.dirty && editForm.controls.reclamation?.invalid)">
+                    <small class="form-txt text-danger" [hidden]="!editForm.controls.reclamation?.errors?.required"
+                        jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button [disabled]="editForm.form.invalid" type="submit" class="btn btn-danger">
+            <span class="fa fa-remove"></span>&nbsp;<span jhiTranslate="auxiliumApp.refRemorqueur.confirm">Bloque</span>
+        </button>
+    </div>
+</form>

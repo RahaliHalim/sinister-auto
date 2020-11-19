@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <property name="now" value="now()" dbms="h2"/>
+
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+
+    <property name="floatType" value="float4" dbms="postgresql, h2"/>
+    <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
+
+    <!--
+        Added the entity Prestation.
+    -->
+    <changeSet id="20171012095020-1" author="jhipster">
+        <createTable tableName="prestation">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="reference" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="is_delete" type="boolean">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="date_creation" type="timestamp">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="date_cloture" type="timestamp">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="date_derniere_maj" type="timestamp">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="is_ferier" type="boolean">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="is_nuit" type="boolean">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="commentaire" type="varchar(2000)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="type_prestation" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="dossier_id" type="bigint">
+                <constraints nullable="false" />
+            </column>
+
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+        </createTable>
+        <dropDefaultValue tableName="prestation" columnName="date_creation" columnDataType="datetime"/>
+        <dropDefaultValue tableName="prestation" columnName="date_cloture" columnDataType="datetime"/>
+        <dropDefaultValue tableName="prestation" columnName="date_derniere_maj" columnDataType="datetime"/>
+    
+        
+    </changeSet>
+</databaseChangeLog>

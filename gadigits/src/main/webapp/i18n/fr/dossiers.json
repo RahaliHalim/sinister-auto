@@ -1,0 +1,51 @@
+{
+    "auxiliumApp": {
+        "dossiers": {
+            "home": {
+                "success": "<strong>Le dossier a été créé !</strong>",
+                "title": "Dossier global",
+                "createLabel": "Créer",
+                "créationDossier": "Création d'un nouveau dossier",
+                "createOrEditLabel": "Dossier",
+                "createOrEditServiceLabel": "Service",
+                "details": "Détails dossier",
+                "detailsAgent": "Demande PEC",
+                "search": "Recherche pour dossier assistance",
+                "searchImmatriculation": "Immatriculation véhicule",
+                "type": "Type de demande",
+                "edit": "Modifier",
+                "prestationsHisto": "Historique des prestations"
+            },
+            "contrat": "Cette immatriculation n'existe pas",
+            "created": "Un nouveau dossier a été créé",
+            "updated": "Le dossier a été mis à jour",
+            "deleted": "Le dossier a été supprimé",
+            "notEligible": "Vous n'êtes pas éligible à ce type de service !",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer le dossier {{ id }} ?"
+            },
+            "detail": {
+                "title": "Dossier global"
+            },
+            "demand": {
+                "detail": "Détails demande",
+                "home": "Demandes PEC"
+            },
+            "reference": "Référence GA",
+            "dateAccident": "Date de survenance",
+            "mois": "Mois de survenance",
+            "nature": "Nature de survenance",
+            "nomcompagnie": "Nom de la compagnie",
+            "NomAgent": "Nom de l'agent d'assurance",
+            "numerocontrat": "Numéro du contrat",
+            
+            "pack": "Pack",
+            "marque": "Marque",
+            "immatriculation": "Immatriculation de l'assuré",
+            "raisonSociale": "Nom et Prénom-Raison Sociale",
+            "typeService": "Type de service",
+            "nombreService": "Nombre de services"
+        
+        }
+    }
+}

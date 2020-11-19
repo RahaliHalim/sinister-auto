@@ -1,0 +1,105 @@
+{
+    "auxiliumApp": {
+        "contratAssurance" : {
+            "home": {
+                "title": "Contrats assurances",
+                "createLabel": "Créer",
+                "createOrEditLabel": "Créer ou modifier un contrat d'assurance",
+                "search": "Recherche pour contrat assurance",
+                "details": "Détails contrat assurance",
+                "edit": "Modifier",
+                "history" : "Historique"
+            },
+            "created": "Un nouveau contrat d'assurance a été créé",
+            "updated": "Le contrat d'assurance a été mis à jour",
+            "deleted": "Le contrat d'assurance avec l'identifiant {{ param }} a été supprimé",
+            "unique": "Le numéro du contrat d'assurance doit être unique",
+            "uniqueVin": "L'immatriculation doit être unique",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer le contrat d'assurance {{ id }} ?"
+            },
+            "detail": {
+                "title": "Contrat d'assurance"
+            },
+            "immatriculationVehicule": "Immatriculation",
+            "numeroContrat": "Numéro du contrat",
+            "debutValidite": "Début de validité",
+            "debutCirculation": "Début de circulation",
+            "finValidite": "Fin de validité",
+            "isSuspendu": "Suspendu",
+            "isDelete": "Supprimé",
+            "valeurNeuf": "Valeur assuré",
+            "franchise": "Franchise",
+            "capitalDc": "Capital DC",
+            "capitalBG": "Capital BG",
+            "valeurVenale": "Valeur vénale",
+            "souscripteur": "Souscripteur",
+            "commentaire": "Commentaire",
+            "valeurAssure": "Valeur assurée",
+            
+            "type": "Type",
+            "typeFranchise": "Type",
+            "nature": "Nature",
+            "agence": "Agence",
+            "usage": "Usage",
+            "vehicule": "Véhicule",
+            "marque": "Marque",
+            "ville": "Ville",
+            "adresse": "Adresse",
+            "modele": "Modèle",
+            "assure": "Assuré",
+            "fractionnement": "Fractionnement",
+            "pack": "Pack",
+            "date": "Date du contrat",
+            "garantie": "Garantie",
+            "client": "Client",
+            "compagnie": "Compagnie",
+            "isAssujettieTva": "Assujettie à la TVA",
+            "isRachat": "A un rachat",
+            "puissance": "Puissance",
+            "numeroChassis": "Numéro de chassis",
+            "datePCirculation": "Date de la 1ère mise en circulation",
+            "puissanceFiscale": "Puissance fiscale",
+            "energie": "Énergie",
+            "nbreintervention": "Nombre d'interventions",
+            "nbreinterventionrestant": "Nombre d'interventions restantes",
+            "policyStatus": "Statut contrat",
+            "policyReceiptStatus": "Statut quittance",
+            "receiptValidityDate": "Validité quittance",
+            "primeAmount": "Montant de la prime",
+            "deadlineDate": "Date d'échéance",
+            "amendmentType": "Type d'avenant",
+            "effectiveAmendmentDate": "Date d'effet de l'avenant",
+            "subscriber": "Souscripteur",
+            "placesNumber": "Nombre de places",
+            "agent" : "Agent",
+            "nature_pack_f" : "Nature pack filtré",
+            "nature_pack"  : "Nature pack",
+            "zone_f" : "Zone filtrée",
+            "zone" : "Zone",
+            "filter" : "Filtre",
+            "reportName" : "Indicateur souscription ",
+            "service" : "Service",
+             "souscription": {
+                "title": "Chiffre d'affaires souscriptions GA",
+                "compagnie":"Compagnie",
+                "contrat":"Numéro du contrat",
+                "zone":"Zone agent",
+                "pack":"Pack souscrit",
+                "primeht":"Prime HT GA",
+                "primettc":"Prime TTC GA",
+                "partre":"Part réassureur ",
+                "service":"Service",
+                "charge":"Chargé",
+                "zone_agent" : "Zone agent"
+    
+    
+    
+            }
+            
+
+
+        }
+       
+    }
+}

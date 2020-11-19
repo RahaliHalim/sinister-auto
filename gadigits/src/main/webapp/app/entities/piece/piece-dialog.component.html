@@ -1,0 +1,57 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myPieceLabel" jhiTranslate="auxiliumApp.piece.home.createOrEditLabel">Create or edit a Piece</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!piece.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="piece.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="auxiliumApp.piece.reference" for="field_reference">Reference</label>
+            <input type="text" class="form-control" name="reference" id="field_reference"
+                [(ngModel)]="piece.reference" required maxlength="100" />
+            <div [hidden]="!(editForm.controls.reference?.dirty && editForm.controls.reference?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.reference?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.reference?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 100 }">
+                   This field cannot be longer than 100 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="auxiliumApp.piece.isVetuste" for="field_isVetuste">Is Vetuste</label>
+            <input type="checkbox" class="form-control" name="isVetuste" id="field_isVetuste"
+                [(ngModel)]="piece.isVetuste"  />
+        </div>
+
+        <div class="form-group">
+            <label jhiTranslate="auxiliumApp.piece.typePiece" for="field_typePiece">Type Piece</label>
+            <select class="form-control" id="field_typePiece" name="typePiece" [(ngModel)]="piece.typePieceId"  required>
+                <option [ngValue]="refTypePiecesOption.id" *ngFor="let refTypePiecesOption of reftypepieces; trackBy: trackRefTypePiecesById">{{refTypePiecesOption.libelle}}</option>
+            </select>
+        </div>
+        <div [hidden]="!(editForm.controls.typePiece?.dirty && editForm.controls.typePiece?.invalid)">
+            <small class="form-text text-danger"
+                [hidden]="!editForm.controls.typePiece?.errors?.required" jhiTranslate="entity.validation.required">
+                This field is required.
+            </small>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://gtmotive.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" targetNamespace="http://gtmotive.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://gtmotive.com/">
+      <s:element name="GTIWS">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GTIWSResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GTIWSResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GTIService">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GtRequestXml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GTIServiceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GTIServiceResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GTIWSSoapIn">
+    <wsdl:part name="parameters" element="tns:GTIWS" />
+  </wsdl:message>
+  <wsdl:message name="GTIWSSoapOut">
+    <wsdl:part name="parameters" element="tns:GTIWSResponse" />
+  </wsdl:message>
+  <wsdl:message name="GTIServiceSoapIn">
+    <wsdl:part name="parameters" element="tns:GTIService" />
+  </wsdl:message>
+  <wsdl:message name="GTIServiceSoapOut">
+    <wsdl:part name="parameters" element="tns:GTIServiceResponse" />
+  </wsdl:message>
+  <wsdl:portType name="GtInterfaceWSSoap">
+    <wsdl:operation name="GTIWS">
+      <wsdl:input message="tns:GTIWSSoapIn" />
+      <wsdl:output message="tns:GTIWSSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GTIService">
+      <wsdl:input message="tns:GTIServiceSoapIn" />
+      <wsdl:output message="tns:GTIServiceSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="GtInterfaceWSSoap" type="tns:GtInterfaceWSSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GTIWS">
+      <soap:operation soapAction="http://gtmotive.com/GTIWS" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GTIService">
+      <soap:operation soapAction="http://gtmotive.com/GTIService" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="GtInterfaceWSSoap12" type="tns:GtInterfaceWSSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GTIWS">
+      <soap12:operation soapAction="http://gtmotive.com/GTIWS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GTIService">
+      <soap12:operation soapAction="http://gtmotive.com/GTIService" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="GtInterfaceWS">
+    <wsdl:port name="GtInterfaceWSSoap" binding="tns:GtInterfaceWSSoap">
+      <soap:address location="http://www.gtestimate.com/webservice/GtInterfaceWS.asmx" />
+    </wsdl:port>
+    <wsdl:port name="GtInterfaceWSSoap12" binding="tns:GtInterfaceWSSoap12">
+      <soap12:address location="http://www.gtestimate.com/webservice/GtInterfaceWS.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

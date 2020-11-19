@@ -1,0 +1,25 @@
+{
+    "auxiliumApp": {
+        "governorate" : {
+            "home": {
+                "title": "Gouvernorat",
+                "createLabel": "Créer un nouveau gouvernorat",
+                "createOrEditLabel": "Créer ou modifier un gouvernorat",
+                "search": "Recherche pour gouvernorat"
+            },
+            "created": "Un nouveau gouvernorat a été créé avec l'identifiant {{ param }}",
+            "updated": "Le gouvernorat avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le gouvernorat avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer le gouvernorat {{ id }} ?"
+            },
+            "detail": {
+                "title": "gouvernorat"
+            },
+            "code": "Code",
+            "label": "Label",
+            "latitude": "Latitude",
+            "longitude": "Longitude"
+        }
+    }
+}

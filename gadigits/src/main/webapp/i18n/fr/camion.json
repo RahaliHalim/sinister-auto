@@ -1,0 +1,30 @@
+{
+    "auxiliumApp": {
+        "camion" : {
+            "home": {
+                "title": "Camions",
+                "createLabel": "Ajouter immatriculation",
+                "createOrEditLabel": "Créer ou modifier un camion",
+                "search": "Recherche pour camion"
+                
+            },
+            "created": "",
+            "updated": "",
+            "deleted": "",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer le Camion {{ id }} ?"
+            },
+            "detail": {
+                "title": "Camion"
+            },
+            "immatriculation": "Immatriculation",
+            "hasHabillage": "Habillage",
+            "besoin": "Services",
+            "refRemorqueur": "Remorqueur",
+            "status": "Statuts",
+            "inProgress": "Occupé",
+            "free": "Libre",
+            "truck": "Camion"
+        }
+    }
+}

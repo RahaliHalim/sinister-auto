@@ -1,0 +1,37 @@
+{
+    "auxiliumApp": {
+        "devis" : {
+            "home": {
+                "title": "Devis",
+                "createLabel": "Create a new Devis",
+                "createOrEditLabel": "Create or edit a Devis",
+                "search": "Search for Devis"
+            },
+            "created": "A new Devis is created with identifier {{ param }}",
+            "updated": "A Devis is updated with identifier {{ param }}",
+            "deleted": "A Devis is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Devis {{ id }}?"
+            },
+            "detail": {
+                "title": "Devis"
+            },
+            "totalTtc": "Total Ttc",
+            "etat": "Etat Devis",
+            "totHt": "Tot Ht",
+            "isComplementaire": "Is Complementaire",
+            "isSupprime": "Is Supprime",
+            "dateGeneration": "Date Generation",
+            "vetuste": "Vetuste",
+            "mvht": "MVHT",
+            "mvttc": "MVTTC",
+            "timbre": "Timbre",
+            "commentaire": "Commentaire",
+            "droitTimbre": "Droit Timbre",
+            "prestation": "Prestation",
+            "reparateur": "Reparateur",
+            "expert": "Expert:",
+            "prestationReference": "Référence GA"
+        }
+    }
+}

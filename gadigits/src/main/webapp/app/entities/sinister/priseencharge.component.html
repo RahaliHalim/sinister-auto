@@ -1,0 +1,122 @@
+<!-- Breadcrumb-->
+<div class="breadcrumb-holder">
+    <div class="container-fluid">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="/"><span class="fa fa-home"></span>&nbsp;&nbsp;<span	jhiTranslate="global.menu.home">Home</span></a></li>
+            <li class="breadcrumb-item"><span jhiTranslate="auxiliumApp.priseEnCharge.home.title">Dossiers</span></li>
+        </ul>
+    </div>
+</div>
+<section class="forms">
+    <div class="container-fluid">
+        <!-- Page Header-->
+        <header style="padding-top: 1rem; padding-bottom: 1rem;">
+            <h1 class="h3 display">
+                <jhi-alert-error></jhi-alert-error>
+                <jhi-alert></jhi-alert>
+            </h1>
+        </header>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header d-flex align-items-center no-padding" >
+                        <div class="notice notice-info">
+                            <span class="fa fa-folder-open" style="color: #45ABCD"></span>&nbsp;&nbsp;
+                            <strong jhiTranslate="auxiliumApp.priseEnCharge.home.title">prise en charge</strong>
+                            </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-sm table-hover table-bordered">
+                                   <thead style="color:white;background-color:#11859b">
+                                    <tr>
+                                        <th><span jhiTranslate="auxiliumApp.priseEnCharge.reference">Référence GA</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.priseEnCharge.referencesinister">Référence de sinistre</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.priseEnCharge.dateAccident">Date survenance</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.priseEnCharge.dateDeclaration">Date déclaration</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.priseEnCharge.nomcompagnie">Nom de la Compagnie</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.priseEnCharge.NomAgent">Nom agent assurance</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.priseEnCharge.numerocontrat">Numéro du contrat</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.priseEnCharge.immatriculation">Immatriculation assuré</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.priseEnCharge.raisonSociale">Nom et Prénom-Raison Sociale </span></th>
+                                        <th><span jhiTranslate="auxiliumApp.priseEnCharge.marque">Marque</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.priseEnCharge.NomCompagnieadverse">Nom de la Compagnie adverse</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.priseEnCharge.ImmatriculationTiers">Immatriculation Tiers</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.priseEnCharge.raisonSocialeTiers">Nom et Prénom /Raison Sociale (Tiers)</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.priseEnCharge.DateCreation">Date création </span></th>
+                                        <th><span jhiTranslate="auxiliumApp.priseEnCharge.ModeDeGestion">Mode de gestion</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.priseEnCharge.CasdeBareme">Cas de barème</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.priseEnCharge.PositionGA">Position GA</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.priseEnCharge.PointChoc"></span></th>
+                                        <th><span jhiTranslate="auxiliumApp.priseEnCharge.Naturedechoc">Nature de choc</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.priseEnCharge.Montanttotaldevis">Montant total devis</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.priseEnCharge.DateAPEC">Date génération APEC</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.priseEnCharge.Datebonsortie">Date bon sortie</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.priseEnCharge.Chargeclient">Chargé client</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.priseEnCharge.Reparateur">Réparateur</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.priseEnCharge.Expert">Expert </span></th>
+                                        <th><span jhiTranslate="auxiliumApp.priseEnCharge.ResponsablePec">Responsable Pec</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.priseEnCharge.ResponsableContrôleTechnique">Responsable contrôle technique </span></th>
+                                        <th><span jhiTranslate="auxiliumApp.priseEnCharge.DirecteurPrestation">Directeur de Prestation </span></th>
+                                        <th><span jhiTranslate="auxiliumApp.priseEnCharge.etatPrestation">Etat préstation</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.priseEnCharge.motifs">Motifs</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.priseEnCharge.EtatApprobation">État d'approbation</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.priseEnCharge.EtapePrestation">Étape Prestation</span></th>                 
+                                        <th class="no-sort"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let priseencharge of priseencharges">
+                                        <td>{{priseencharge.reference}}</td>
+                                        <td>{{priseencharge.refSinister}}</td>
+                                        <td>{{priseencharge.incidentDate | date:'dd/MM/yyyy'}}</td>
+                                        <td>{{priseencharge.declarationDate | date:'dd/MM/yyyy'}}</td>
+                                        <td>{{priseencharge.companyName}}</td>
+                                        <td>{{priseencharge.nomAgentAssurance}}</td>
+                                        <td>{{priseencharge.numeroContrat}}</td>
+                                        <td>{{priseencharge.immatriculationVehicule}}</td>
+                                        <td>{{priseencharge.nomPrenomRaison}}</td>
+                                        <td>{{priseencharge.marque}}</td>
+                                        <td>{{priseencharge.compagnieAdverse}}</td>
+                                        <td>{{priseencharge.immatriculation_tiers}}</td>
+                                        <td>{{priseencharge.raisonSocialTiers}}</td>
+                                        <td>{{priseencharge.creationDate | date:'dd/MM/yyyy'}}</td>
+                                        <td>{{priseencharge.modeGestion}}</td>
+                                        <td>{{priseencharge.casbareme}}</td>
+                                        <td><!--Position GA--></td>
+                                        <td>{{priseencharge.pointchock}}</td>
+                                        <td>{{priseencharge.stateShock}}</td>
+                                        <td>{{priseencharge.montantTotalDevis}}</td>
+                                        <td><!--Date génération APEC--></td>
+                                        <td><!--Date bon sortie--></td>
+                                        <td><!--Chargé client--></td>
+                                        <td>{{priseencharge.reparateur}}</td>
+                                        <td>{{priseencharge.expert}}</td>
+                                        <td><!--Responsable Pec--></td>
+                                        <td><!--Responsable contrôle technique--></td>
+                                        <td><!--Directeur Prestation--></td>
+                                        <td>{{priseencharge.etatPrestation}}</td>
+                                        <td>{{priseencharge.motif}}</td>
+                                        <td>{{priseencharge.approvPec}}</td>
+                                        <td>{{priseencharge.etapePrestation}}</td>
+                                       
+
+
+                                        <td class="text-right">
+                                            <div class="btn-group flex-btn-group-container">
+                                                <button type="submit"  [routerLink]="['/acueilpriseencharge', priseencharge.id ]" replaceUrl="true" class="btn btn-info btn-sm">
+                                                        <span class="fa fa-sm fa-eye"></span>
+                                                </button>
+        
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

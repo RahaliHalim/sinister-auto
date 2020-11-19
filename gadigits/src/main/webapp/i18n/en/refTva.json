@@ -1,0 +1,22 @@
+{
+    "auxiliumApp": {
+        "refTva" : {
+            "home": {
+                "title": "RefTvas",
+                "createLabel": "Create a new Tva",
+                "createOrEditLabel": "Create or edit a Tva"
+            },
+            "created": "A new tva is created with identifier {{ param }}",
+            "updated": "A Tva is updated with identifier {{ param }}",
+            "deleted": "A Tva is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Tva {{ id }}?"
+            },
+            "detail": {
+                "title": "Tva"
+            },
+
+            "vatRate": "Taux Tva"
+        }
+    }
+}

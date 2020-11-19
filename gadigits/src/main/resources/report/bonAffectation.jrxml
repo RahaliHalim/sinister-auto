@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="bonAffectation" language="groovy" pageWidth="612" pageHeight="792" whenNoDataType="NoPages" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="cc977343-2ee7-4e4e-ad3b-d343c8254f6b">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="logoGacPath" class="java.lang.String"/>
+	<parameter name="assureName" class="java.lang.String"/>
+	<parameter name="assureGsm" class="java.lang.String"/>
+	<parameter name="immatrVehicule" class="java.lang.String"/>
+	<parameter name="marqueVehicule" class="java.lang.String"/>
+	<parameter name="chassisVehicule" class="java.lang.String"/>
+	<parameter name="dateCirculation" class="java.lang.String"/>
+	<parameter name="raisonSociale" class="java.lang.String"/>
+	<parameter name="contact" class="java.lang.String"/>
+	<parameter name="adresseRep" class="java.lang.String"/>
+	<parameter name="gsmRep" class="java.lang.String"/>
+	<parameter name="pointChoc" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<variable name="field2_1" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="752" splitType="Stretch">
+			<rectangle>
+				<reportElement x="23" y="196" width="529" height="243" uuid="2f707904-1bf2-4a81-9636-4e0b26683da4"/>
+			</rectangle>
+			<line>
+				<reportElement x="287" y="196" width="1" height="243" uuid="94674f6c-03eb-4d5e-b230-3be7016de100"/>
+			</line>
+			<staticText>
+				<reportElement x="106" y="92" width="351" height="26" uuid="f1092c32-293a-4313-a126-5ff121cc3251"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[BON D’AFFECTATION DE REPARATEUR]]></text>
+			</staticText>
+			<image>
+				<reportElement x="207" y="10" width="192" height="77" uuid="13706020-8b82-4cb8-bf2d-75aa11ebefef"/>
+				<imageExpression><![CDATA[$P{logoGacPath}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="133" y="118" width="286" height="20" uuid="6375ddd6-bf5e-4157-9b64-b566877c97ac"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ Pièces jointes : constat + Avis technique]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="299" y="169" width="229" height="20" uuid="71e95c4c-e9d1-480a-9797-ea3e4eea9fa2"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[COORDONNEES REPARATEUR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="29" y="203" width="57" height="20" uuid="19d40537-d652-4884-90d0-f7e6d9cc8869"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Assuré : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="29" y="241" width="57" height="20" uuid="dcbe894f-cc78-48b6-abac-257d78ca7b53"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[GSM : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="29" y="312" width="57" height="20" uuid="ce8ae063-1e52-4848-a29c-c553329f311b"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Marque : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="29" y="276" width="112" height="20" uuid="c97a637f-9532-4174-95aa-f0d6be573f1c"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Immat. Véhicule : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="29" y="386" width="161" height="20" uuid="6c8ba698-6f57-475e-953b-13b9bb5ee6e2"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[1ère Mise en circulation :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="29" y="350" width="75" height="20" uuid="0e39db79-47dd-4803-8a3b-a8bfe63a26d7"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[N° Châssis : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="294" y="203" width="137" height="20" uuid="b304a659-6421-49ee-9fe1-fc9096894810"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Nom/Raison sociale :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="294" y="263" width="67" height="20" uuid="422e1ab2-70ae-4b6b-b0ab-1507521e3cb4"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Contact :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="294" y="323" width="67" height="20" uuid="32f87a23-d685-4bd7-9d99-44113a52d951"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Adresse :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="294" y="378" width="46" height="20" uuid="e1ca3ce5-7791-4276-891e-875242f3db13"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[GSM :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="23" y="465" width="529" height="180" uuid="29e53a4b-eea5-4402-96dc-6d5d8d6e3dcf"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Cher partenaire,
+Nous vous affectons le véhicule cité en objet pour établissement d’un devis de réparation. Nous vous rappelons par ailleurs que l’expertise du dit véhicule se fera par l’expert cité plus haut et vous invitons de ce fait à :
+‑Bien accueillir notre client propriétaire du véhicule accidenté
+‑Etablir un état descriptif du véhicule lors de sa réception en présence de notre client
+‑Faciliter la tâche de l’expert
+‑Adressez dans les plus brefs délais à GA le formulaire d’avis technique, ci‑joint dûment rempli et signé avec l’expert.
+Nous vous transmettrons l’accord de prise en charge dès réception de ce formulaire.
+Nous comptons sur votre habituelle collaboration.
+Cordialement.   	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="319" y="647" width="157" height="20" uuid="5a1cf60c-5747-4958-8dd1-058a4c2c21ea"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Tunis, le ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="319" y="669" width="157" height="20" uuid="85ca9d56-06db-4a37-8fd9-358278157718"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[P/ Générale Assistance]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="23" y="696" width="157" height="20" uuid="47cf58fc-6255-4c8d-a012-8f43c6497edd"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Meilleures salutations ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="23" y="719" width="157" height="20" uuid="e6bbb2e1-0e84-41c7-9296-014dafab7d93"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dossier géré par]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="86" y="203" width="105" height="20" uuid="f19e2b63-eb99-4cea-a25a-f45178b5131f"/>
+				<textFieldExpression><![CDATA[$P{assureName}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="86" y="241" width="100" height="20" uuid="820b1122-7ac5-428c-bf99-90a482a5e279"/>
+				<textFieldExpression><![CDATA[$P{assureGsm}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="140" y="276" width="117" height="20" uuid="b25f0449-4be9-447f-a68e-0551d5e8afca"/>
+				<textFieldExpression><![CDATA[$P{immatrVehicule}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="85" y="312" width="138" height="20" uuid="4fa7da72-a875-4ad0-aa9f-9f33908082fe"/>
+				<textFieldExpression><![CDATA[$P{marqueVehicule}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="104" y="350" width="119" height="20" uuid="d6e90395-dd54-48ad-8c32-738ede17faef"/>
+				<textFieldExpression><![CDATA[$P{chassisVehicule}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="188" y="386" width="99" height="20" uuid="3d4cd681-9f17-442e-a310-e4c042f1cfad"/>
+				<textFieldExpression><![CDATA[$P{dateCirculation}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="431" y="203" width="121" height="20" uuid="e9f720eb-9abb-41ec-856b-5bebe193f546"/>
+				<textFieldExpression><![CDATA[$P{raisonSociale}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="361" y="263" width="180" height="20" uuid="4ed1c67e-c147-48ec-a1fe-9630cbe2b0a1"/>
+				<textFieldExpression><![CDATA[$P{contact}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="361" y="323" width="180" height="20" uuid="308ce3cd-ea6f-4911-b46a-c3bdf5776368"/>
+				<textFieldExpression><![CDATA[$P{adresseRep}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="340" y="378" width="136" height="20" uuid="5b4cd65d-dad9-4ff8-9aff-7d731547136e"/>
+				<textFieldExpression><![CDATA[$P{gsmRep}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="29" y="415" width="104" height="20" uuid="1252837e-5e2a-4f70-bba6-9ad8deb67d88"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Point de choc :]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="133" y="415" width="138" height="20" uuid="64927400-8522-4b69-8069-2e0ebdbf3f78"/>
+				<textFieldExpression><![CDATA[$P{pointChoc}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+</jasperReport>

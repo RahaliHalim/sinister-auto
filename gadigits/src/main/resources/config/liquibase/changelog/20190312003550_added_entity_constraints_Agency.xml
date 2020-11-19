@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity Agency.
+    -->
+    <changeSet id="20190312003550-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="partner_id"
+                                 baseTableName="ref_agency"
+                                 constraintName="fk_agency_partner_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ref_partner"/>
+
+        <addForeignKeyConstraint baseColumnNames="governorate_id"
+                                 baseTableName="ref_agency"
+                                 constraintName="fk_agency_governorate_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ref_governorate"/>
+
+        <addForeignKeyConstraint baseColumnNames="delegation_id"
+                                 baseTableName="ref_agency"
+                                 constraintName="fk_agency_delegation_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ref_delegation"/>
+
+        <addForeignKeyConstraint baseColumnNames="region_id"
+                                 baseTableName="ref_agency"
+                                 constraintName="fk_agency_region_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ref_region"/>
+
+    </changeSet>
+</databaseChangeLog>

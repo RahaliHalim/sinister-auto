@@ -1,0 +1,24 @@
+{
+    "auxiliumApp": {
+        "policyNature" : {
+            "home": {
+                "title": "Policy Natures",
+                "createLabel": "Create a new Policy Nature",
+                "createOrEditLabel": "Create or edit a Policy Nature",
+                "search": "Search for Policy Nature"
+            },
+            "created": "A new Policy Nature is created with identifier {{ param }}",
+            "updated": "A Policy Nature is updated with identifier {{ param }}",
+            "deleted": "A Policy Nature is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Policy Nature {{ id }}?"
+            },
+            "detail": {
+                "title": "Policy Nature"
+            },
+            "code": "Code",
+            "label": "Label",
+            "active": "Active"
+        }
+    }
+}

@@ -1,0 +1,49 @@
+
+<div *ngIf="pieceJointe">
+    <h2><span jhiTranslate="auxiliumApp.pieceJointe.detail.title">Piece Jointe</span> {{pieceJointe.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="auxiliumApp.pieceJointe.libelle">Libelle</span></dt>
+        <dd>
+            <span>{{pieceJointe.libelle}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.pieceJointe.chemin">Chemin</span></dt>
+        <dd>
+            <span>{{pieceJointe.chemin}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.pieceJointe.isOriginale">Is Originale</span></dt>
+        <dd>
+            <span>{{pieceJointe.isOriginale}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.pieceJointe.dateImport">Date Import</span></dt>
+        <dd>
+            <span>{{pieceJointe.dateImport | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.pieceJointe.type">Type</span></dt>
+        <dd>
+            <div *ngIf="pieceJointe.typeId">
+                <a [routerLink]="['/ref-type-pj', pieceJointe.typeId]">{{pieceJointe.typeLibelle}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.pieceJointe.user">Utilisateur</span></dt>
+        <dd>
+            <div *ngIf="pieceJointe.userId">
+                <a>{{pieceJointe.userLogin}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'piece-jointe/'+ pieceJointe.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;&nbsp;&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

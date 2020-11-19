@@ -1,0 +1,87 @@
+<div>
+    <h2>
+        <span jhiTranslate="auxiliumApp.bonSortie.home.title">Bon Sorties</span>
+        <button class="btn btn-primary float-right jh-create-entity create-bon-sortie" [routerLink]="['/', { outlets: { popup: ['bon-sortie-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down"  jhiTranslate="auxiliumApp.bonSortie.home.createLabel">
+            Create new Bon Sortie
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'auxiliumApp.bonSortie.home.search' | translate }}">
+                    <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-addon btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-sm fa-remove"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="bonSorties">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="numero"><span jhiTranslate="auxiliumApp.bonSortie.numero">Numero</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="isSigne"><span jhiTranslate="auxiliumApp.bonSortie.isSigne">Is Signe</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="observation"><span jhiTranslate="auxiliumApp.bonSortie.observation">Observation</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="refEtatBsId"><span jhiTranslate="auxiliumApp.bonSortie.refEtatBs">Ref Etat Bs</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let bonSortie of bonSorties ;trackBy: trackId">
+                <td><a [routerLink]="['../bon-sortie', bonSortie.id ]">{{bonSortie.id}}</a></td>
+                <td>{{bonSortie.numero}}</td>
+                <td>{{bonSortie.isSigne}}</td>
+                <td>{{bonSortie.observation}}</td>
+                <td>
+                    <div *ngIf="bonSortie.refEtatBsId">
+                        <a [routerLink]="['../ref-etat-bs', bonSortie.refEtatBsId  ]" >{{bonSortie.refEtatBsId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../bon-sortie', bonSortie.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'bon-sortie/'+ bonSortie.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'bon-sortie/'+ bonSortie.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+        <div *ngIf="bonSorties && bonSorties.length">
+            <div class="row justify-content-center">
+                <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+            </div>
+            <div class="row justify-content-center">
+                <ngb-pagination [collectionSize]="totalItems" [(page)]="page" (pageChange)="loadPage(page)"></ngb-pagination>
+            </div>
+        </div>
+</div>

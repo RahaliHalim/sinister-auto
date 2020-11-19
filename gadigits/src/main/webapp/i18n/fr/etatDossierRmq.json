@@ -1,0 +1,10 @@
+{
+    "auxiliumApp": {
+        "EtatDossierRmq" : {
+            "null": "",
+            "Encours": "En cours",
+            "Cloturer": "Clôturé",
+            "Annuler": "Annulé"
+        }
+    }
+}

@@ -1,0 +1,178 @@
+package com.gaconnecte.auxilium.drools;
+
+
+import com.gaconnecte.auxilium.drools.FactDevis;
+
+
+   
+   
+rule "Droit de Timbre IDA"
+   when
+     devisObject: FactDevis(new Float(0).equals(droitTimbre))
+     
+	then
+     System.out.println("Droit de timbre");
+     devisObject.setDroitTimbre(Float.valueOf(devisObject.getDroitTimbre().toString()));
+end
+   
+   
+/**************************************** MODE DE GESTION IDA *****************************************/
+   
+   
+rule "Assujettie for  TVA IDA" 
+
+   when 
+     devisObject: FactDevis(isAssujettie.equals(true)) && (FactDevis(modeId == 1) || FactDevis(modeId == 2))
+   then 
+   
+    Float tva = 0.19F;
+    Float vetuse = 0F;
+    
+	   devisObject.setFraisDossier(0F);			          
+	   devisObject.setTotalPartAssuree(((Float.valueOf(devisObject.getTotHt().toString())
+		 
+		         - Float.valueOf(devisObject.getVetuste().toString())) 
+	            * Float.valueOf(devisObject.getResponsabilite().toString()))
+			        + Float.valueOf(devisObject.getVetuste().toString()) 
+							+ Float.valueOf(devisObject.getTva().toString())
+			        + Float.valueOf(devisObject.getDroitTimbre().toString()));
+			    
+	   if(
+			 (
+					Float.valueOf(devisObject.getTotalTtc().toString())
+			    - 
+					(
+						Float.valueOf(Float.valueOf(devisObject.getTotHt().toString()) - Float.valueOf(devisObject.getVetuste().toString())) 
+						* 
+						Float.valueOf(devisObject.getResponsabilite().toString())
+			      + 
+						Float.valueOf(devisObject.getVetuste().toString()) 
+						+ 
+						Float.valueOf(devisObject.getTva().toString())  
+			      + 
+						Float.valueOf(devisObject.getDroitTimbre().toString())
+					)
+				) >= 0){
+			   
+	   devisObject.setSoldeReparateur(Float.valueOf(devisObject.getTotalTtc().toString())
+			    - 
+					(
+						Float.valueOf(Float.valueOf(devisObject.getTotHt().toString()) - Float.valueOf(devisObject.getVetuste().toString())) 
+						* 
+						Float.valueOf(devisObject.getResponsabilite().toString())
+			      + 
+						Float.valueOf(devisObject.getVetuste().toString()) 
+						+ 
+						Float.valueOf(devisObject.getTva().toString())  
+			      + 
+						Float.valueOf(devisObject.getDroitTimbre().toString())
+					));
+			    
+	   devisObject.setSurplusEncaisse(0F);
+	   
+		}else{
+			   
+	   devisObject.setSoldeReparateur(0F);
+			    
+	   devisObject.setSurplusEncaisse((- Float.valueOf(devisObject.getTotalTtc().toString())
+          + Float.valueOf(Float.valueOf(devisObject.getTotHt().toString()) + Float.valueOf(devisObject.getVetuste().toString()))
+          * Float.valueOf(devisObject.getResponsabilite().toString())
+			    + Float.valueOf(devisObject.getVetuste().toString()) + Float.valueOf(devisObject.getTva().toString())
+			    + Float.valueOf(devisObject.getDroitTimbre().toString())));
+			   
+	    }
+			   
+  
+   devisObject.setEngagementGa((Float.valueOf(devisObject.getTotHt().toString()) - Float.valueOf(devisObject.getVetuste().toString())) 
+    - ((Float.valueOf(devisObject.getTotHt().toString()) - Float.valueOf(devisObject.getVetuste().toString()))
+	*(Float.valueOf(devisObject.getResponsabilite().toString()))));
+  
+   devisObject.setAvance(0F);
+  
+    
+    devisObject.setPartResponsabilite((Float.valueOf(devisObject.getTotHt().toString()) - Float.valueOf(devisObject.getVetuste().toString()))
+	* Float.valueOf(devisObject.getResponsabilite().toString())); 
+    devisObject.setTva(Double.valueOf(devisObject.getTva().toString())); 
+    devisObject.setDepassplafond(0F);
+    devisObject.setReglepropor(0F);
+    
+    
+ end  
+ 
+   
+rule "Non Assujettie for  TVA IDA" 
+
+   when 
+     devisObject: FactDevis(!isAssujettie.equals(true)) && (FactDevis(modeId == 1) || FactDevis(modeId == 2))
+   then
+   
+    Float vetuse = 0F;
+   
+
+   
+	  
+   
+	   devisObject.setFraisDossier(0F);
+			          
+	   devisObject.setTotalPartAssuree(((Float.valueOf(devisObject.getTotalTtc().toString()) - Float.valueOf(devisObject.getVetuste().toString()) - Float.valueOf(devisObject.getDroitTimbre().toString()))
+	            * Float.valueOf(devisObject.getResponsabilite().toString()))
+			    + Float.valueOf(devisObject.getVetuste().toString()) + Float.valueOf(devisObject.getDroitTimbre().toString()));
+			    
+	   if((Float.valueOf(devisObject.getTotalTtc().toString())
+			     - (Float.valueOf(Float.valueOf(devisObject.getTotalTtc().toString())
+			     - Float.valueOf(devisObject.getVetuste().toString())) * Float.valueOf(devisObject.getResponsabilite().toString())
+			    + Float.valueOf(devisObject.getVetuste().toString()) + Float.valueOf(devisObject.getDroitTimbre().toString()))) >= 0){
+			   
+	   devisObject.setSoldeReparateur(
+			 
+			 Float.valueOf(devisObject.getTotalTtc().toString())
+
+			    - 
+					(
+						Float.valueOf(Float.valueOf(devisObject.getTotalTtc().toString()) - Float.valueOf(devisObject.getDroitTimbre().toString()) - Float.valueOf(devisObject.getVetuste().toString())) 
+						* 
+						Float.valueOf(devisObject.getResponsabilite().toString())
+			      + 
+						Float.valueOf(devisObject.getVetuste().toString()) 
+			      + 
+						Float.valueOf(devisObject.getDroitTimbre().toString())
+					));
+
+
+			    
+	   devisObject.setSurplusEncaisse(0F);
+	   
+		}else{
+			   
+	   devisObject.setSoldeReparateur(0F);
+			    
+	   devisObject.setSurplusEncaisse((- Float.valueOf(devisObject.getTotalTtc().toString())
+          + Float.valueOf(Float.valueOf(devisObject.getTotalTtc().toString()) + Float.valueOf(devisObject.getVetuste().toString()))
+          * Float.valueOf(devisObject.getResponsabilite().toString())
+			    + Float.valueOf(devisObject.getVetuste().toString())
+					 + Float.valueOf(devisObject.getDroitTimbre().toString())));
+			   
+	    }
+			   
+  
+   devisObject.setEngagementGa((Float.valueOf(devisObject.getTotalTtc().toString()) - Float.valueOf(devisObject.getVetuste().toString()) - Float.valueOf(devisObject.getDroitTimbre().toString())) 
+    - ((Float.valueOf(devisObject.getTotalTtc().toString()) - Float.valueOf(devisObject.getVetuste().toString()) - Float.valueOf(devisObject.getDroitTimbre().toString()))
+	*(Float.valueOf(devisObject.getResponsabilite().toString()))));
+
+   devisObject.setAvance(0F);
+
+    
+    devisObject.setPartResponsabilite((Float.valueOf(devisObject.getTotalTtc().toString()) - Float.valueOf(devisObject.getVetuste().toString()) - Float.valueOf(devisObject.getDroitTimbre().toString()))
+    * Float.valueOf(devisObject.getResponsabilite().toString())); 
+    devisObject.setTva(0D); 
+    devisObject.setDepassplafond(0F);
+    devisObject.setReglepropor(0F);
+end 
+   
+
+
+
+
+
+
+       

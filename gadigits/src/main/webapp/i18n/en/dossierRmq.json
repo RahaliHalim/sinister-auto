@@ -1,0 +1,47 @@
+{
+    "auxiliumApp": {
+        "dossierRmq" : {
+            "home": {
+                "successRmq":"Le remorqueur est affecté avec succés",
+                "title": "Dossier Rmqs",
+                "createLabel": "Create",
+                "createOrEditLabel": "Create or edit a Dossier Rmq",
+                "search": "Search for Dossier Rmq"
+            },
+            "created": "A new Dossier Rmq is created with identifier {{ param }}",
+            "updated": "A Dossier Rmq is updated with identifier {{ param }}",
+            "deleted": "A Dossier Rmq is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Dossier Rmq {{ id }}?"
+            },
+            "detail": {
+                "title": "Dossier Rmq"
+            },
+            "reference": "Reference",
+            "distance": "Distance",
+            "observation": "Observation",
+            "isDelete": "Is Delete",
+            "etat": "Etat",
+            "lieu": "Lieu",
+            "motif": "Motif",
+            "destination": "Destination",
+            "immatriculation": "Immatriculation",
+            "remorqueur": "Remorqueur",
+            "gouvernorat": "Gouvernorat",
+            "ville": "Ville",
+            "typeService": "Type Service",
+            "vehicule": "Vehicule",
+            "immatriculationVehicule": "Immatriculation",
+            "dateCreation": "Date Creation",
+            "dateCloture": "Date Cloture",
+            "telephone": "Telephone",
+            "nbrPassagers": "Nbr Passagers",
+            "isFerier": "Majoration ferié",
+            "isNuit": "Majoration nuit",
+            "natureIncident": "Nature Incident",
+            "btnAnnuler": "Annuler",
+            "btnClourer": "Clôturer",
+            "btnAffecter": "Affecter Remorqueur"
+        }
+    }
+}

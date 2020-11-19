@@ -1,0 +1,24 @@
+{
+    "auxiliumApp": {
+        "designationFractionnement" : {
+            "home": {
+                "title": "Désignation fractionnements",
+                "createLabel": "Créer une nouvelle désignation fractionnement",
+                "createOrEditLabel": "Créer ou modifier une désignation fractionnement",
+                "search": "Recherche pour désignation fractionnement"
+            },
+            "created": "Une nouvelle désignation fractionnement a été créée avec l'identifiant {{ param }}",
+            "updated": "La désignation fractionnement avec l'identifiant {{ param }} a été mise à jour",
+            "deleted": "La désignation fractionnement avec l'identifiant {{ param }} a été supprimée",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer la designation fractionnement {{ id }} ?"
+            },
+            "detail": {
+                "title": "Désignation fractionnement"
+            },
+            "libelle": "Libellé",
+            "fractionnement": "Fractionnement",
+            "compagnie": "Compagnie"
+        }
+    }
+}

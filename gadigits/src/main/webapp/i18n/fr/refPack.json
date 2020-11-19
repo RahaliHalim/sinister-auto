@@ -1,0 +1,69 @@
+{
+    "auxiliumApp": {
+    	"refPackDTO":{
+    		"maxServices" : "Max Services"
+    	},
+        "refPack" : {
+            "home": {
+                "title": "Service / pack",
+                "titleAvenant": "Avenant",
+                "createLabel": "Créer un service / pack",
+                "createLabelAvenant": "Créer un avenant",
+                "createOrEditLabel": "Créer ou modifier un service / pack",
+                "search": "Recherche pour pack"
+            },
+            "created": "Un nouveau service / pack a été créé ",
+            "updated": "Le service / pack a été mis à jour",
+            "deleted": "Le service / pack a été supprimé",
+            "bloqued": "Le service / pack a été bloqué",
+            "debloqued":"Le service /pack a été débloqué",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer ce pack  ?"
+            },
+            "detail": {
+                "title": "Service / pack"
+            },
+            "nom": "Nom",
+            "label": "Libellé",
+            "interventionNumber": "Nombre d'interventions",
+            "interventionNumberRemaining": "Nombre d'interventions restantes",
+            "mileage": "Kilométrage",
+            "blocked": "Bloqué",
+            "description": "Description",
+            "numberAvenant": "Numéro",
+            "vrDaysNumberTitle": "Nombre de jours pour le véhicule de remplacement",
+            "vrDaysNumber": "Jours VR",
+            "contractNature": "Nature du Contrat",
+            "ceilingToConsume": "Plafond à Consommer",
+            "combinable": "Cumul. nombre",
+            "homeService": "SAD",
+			"price": "Tarif",
+            "exclusionList": "Liste des Éxclusions",
+            "sinisterType": "Type de dossier sinistre",
+            "grantTiming": "Timing d'octroi",
+            "isBloque": "Bloqué?",
+            "contrat": "Contrat",
+            "serviceType": "Type de Service",
+            "serviceTypeCeiling": "Expertise / Type de dossier sinistre",
+            "apecCeiling": "APEC / Type de dossier sinistre",
+            "company": "Compagnie",
+            "usages": "Usages",
+            "companyPart": "Part GA",
+            "reinsurerPart": "Part réassureur",
+            "reinsurer": "Réassureur",
+            "partnerPart": "Part Partenaire",
+            "bloquer": "Bloquer",
+            "debloquer": "Debloquer",
+            "apecValidation": "Validation APEC par la compagnie",
+            "bloque": {
+            	"title": "Confirmation du blocage du pack",
+                "question": "Êtes-vous certain de vouloir bloquer ce pack ?"
+            },
+            "debloque": {
+            	"title": "Confirmation du débloage du pack",
+                "question": "Êtes-vous certain de vouloir débloquer ce pack ?"
+            }
+        }
+    }
+}
+

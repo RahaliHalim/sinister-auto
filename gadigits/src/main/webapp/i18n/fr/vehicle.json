@@ -1,0 +1,29 @@
+{
+    "auxiliumApp": {
+        "vehicle" : {
+            "home": {
+                "title": "Véhicles",
+                "createLabel": "Créer un nouveau véhicle",
+                "createOrEditLabel": "Créer ou modifier un véhicule",
+                "search": "Recherche pour véhicle"
+            },
+            "created": "Un nouveau véhicule a été créé avec l'identifiant {{ param }}",
+            "updated": "Le véhicule avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le véhicule avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer le véhicule {{ id }} ?"
+            },
+            "detail": {
+                "title": "Véhicle"
+            },
+            "registrationNumber": "Num de registration",
+            "chassisNumber": "Num de chassis",
+            "firstEntryIntoService": "First Entry Into Service",
+            "fiscalPower": "Fiscal Power",
+            "brand": "Brand",
+            "model": "Model",
+            "energy": "Energy",
+            "usage": "Usage"
+        }
+    }
+}

@@ -1,0 +1,24 @@
+{
+    "auxiliumApp": {
+        "sysActionUtilisateur" : {
+            "home": {
+                "title": "Sys Action Utilisateurs",
+                "createLabel": "Create",
+                "createOrEditLabel": "Create or edit a Sys Action Utilisateur",
+                "search": "Search for Sys Action Utilisateur"
+            },
+            "created": "A new Sys Action Utilisateur is created with identifier {{ param }}",
+            "updated": "A Sys Action Utilisateur is updated with identifier {{ param }}",
+            "deleted": "A Sys Action Utilisateur is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Sys Action Utilisateur {{ id }}?"
+            },
+            "detail": {
+                "title": "Sys Action Utilisateur"
+            },
+            "nom": "Nom",
+            "journal": "Journal",
+            "motif": "Motif"
+        }
+    }
+}

@@ -1,0 +1,30 @@
+{
+    "auxiliumApp": {
+        "raisonPec" : {
+            "home": {
+                "title": "Motifs Pec",
+                "createLabel": "Créer un nouveau motif Pec",
+                "createOrEditLabel": "Créer ou modifier un motif Pec",
+                "search": "Recherche pour raison Pec"
+            },
+            "created": "Un nouveau motif Pec a été créé",
+            "updated": "Le motif Pec a été mis à jour",
+            "deleted": "Le motif Pec a été supprimé",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer la raison Pec {{ id }} ?"
+            },
+            "detail": {
+                "title": "Motif Pec"
+            },
+            "code": "Code",
+            "label": "Libellé",
+            "active": "Active",
+            "status": "État prestation",
+            "creationDate": "Création date",
+            "creationUserId": "Creation User Id",
+            "responsible": "À la charge de",
+            "operation": "Opération",
+            "pecStatusChangeMatrix": "Matrice de modification de statuts"
+        }
+    }
+}

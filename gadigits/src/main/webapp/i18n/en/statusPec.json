@@ -1,0 +1,25 @@
+{
+    "auxiliumApp": {
+        "statusPec" : {
+            "home": {
+                "title": "Status Pecs",
+                "createLabel": "Create a new Status Pec",
+                "createOrEditLabel": "Create or edit a Status Pec",
+                "search": "Search for Status Pec"
+            },
+            "created": "A new Status Pec is created with identifier {{ param }}",
+            "updated": "A Status Pec is updated with identifier {{ param }}",
+            "deleted": "A Status Pec is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Status Pec {{ id }}?"
+            },
+            "detail": {
+                "title": "Status Pec"
+            },
+            "code": "Code",
+            "label": "Label",
+            "hasReason": "Has Reason",
+            "active": "Active"
+        }
+    }
+}

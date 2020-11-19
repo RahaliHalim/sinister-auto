@@ -1,0 +1,89 @@
+
+<div class="outer-div">
+    <!-- Breadcrumb-->
+<div class="inner-div">
+    <div class="container-fluid login-bg-image1" style="height: 240px">
+        <div class="row main-content-div">
+            <div class="child-div">
+                <div></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid login-bg-image2" style="height: 340px">
+        <div class="row main-content-div">
+            <div class="child-div">
+                <div>
+                    <div class="alert alert-danger" *ngIf="authenticationError" jhiTranslate="login.messages.error.authentication" style="text-align: center;">
+                        <strong>Failed to sign in!</strong> Please check your credentials and try again.
+                    </div>
+                </div>
+
+                <div>
+                    <form class="form" role="form" (ngSubmit)="login()">
+                        <div class="row">
+                        <div class="col-sm-3"></div>
+                        <div class="col-sm-7">
+                        <div class="form-group">
+                            <label for="username" jhiTranslate="global.form.email">email</label>
+                            <input type="text" class="form-control" name="username" id="username" placeholder="{{'global.form.email.placeholder' | translate}}"
+                                [(ngModel)]="username">
+                        </div>
+                        </div>
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-3"></div>
+                        <div class="col-sm-7">
+                        <div class="form-group">
+                            <label for="password" jhiTranslate="login.form.password">Password</label>
+                            <input type="password" class="form-control" name="password" id="password" placeholder="{{'login.form.password.placeholder' | translate}}"
+                                [(ngModel)]="password">
+                        </div>
+                        </div>
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-3"></div>
+                        
+                        <div class="col-sm-12" style="display: flex;align-items: center;justify-content: center;">
+                        <button type="submit" class="btn btn-sm btn-primary pull-right" style=" background-image:linear-gradient(to right, #227580,#72d5db, #459eaa)!important;">   Se Connecter   </button>
+                        </div>
+                        <div class="col-sm-2"></div>
+                        </div>
+                        <div class="col-sm-12" style="display: flex; align-items: center;justify-content: center;">
+                            <div class="form-check">
+                                <label class="form-check-label" for="rememberMe">
+                                    <a class="alert-link" (click)="requestResetPassword()"><span style="font-size: 10px;text-decoration: underline;">MOT DE PASSE OUBLIÉ ?</span></a>
+                                </label>
+                            </div>
+                            </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" style="height: 100%; margin-top: 40px;">
+        <div class="row main-content-div">
+            <div class="child-div">
+                <div class="row">
+                    <div class="col-sm-12" style="text-align: center; margin-top: 40px;">
+                        <i class="fa fa-copyright" style="font-size:16px; color: black" > Générale Assistance Powered by GA Connecté</i>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+

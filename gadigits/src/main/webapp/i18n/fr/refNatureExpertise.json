@@ -1,0 +1,23 @@
+{
+    "auxiliumApp": {
+        "refNatureExpertise" : {
+            "home": {
+                "title": "RefNatureExpertises",
+                "createLabel": "Créer une nouvelle réf. nature expertise",
+                "createOrEditLabel": "Créer ou modifier une réf. nature expertise",
+                "search": "Recherche pour réf. nature expertise"
+            },
+            "created": "Une nouvelle réf. nature expertise a été créée avec l'identifiant {{ param }}",
+            "updated": "La réf. nature expertise avec l'identifiant {{ param }} a été mise à jour",
+            "deleted": "La réf. nature expertise avec l'identifiant {{ param }} a été supprimée",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer la réf. nature expertise {{ id }} ?"
+            },
+            "detail": {
+                "title": "Réf. nature expertise"
+            },
+            "libelle": "Libelle",
+            "isActive": "Is Active"
+        }
+    }
+}

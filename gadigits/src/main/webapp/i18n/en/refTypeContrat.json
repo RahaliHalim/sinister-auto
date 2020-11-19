@@ -1,0 +1,25 @@
+{
+    "auxiliumApp": {
+        "refTypeContrat" : {
+            "home": {
+                "title": "Ref Type Contrats",
+                "createLabel": "Create a new Ref Type Contrat",
+                "createOrEditLabel": "Create or edit a Ref Type Contrat",
+                "search": "Search for Ref Type Contrat"
+            },
+            "created": "A new Ref Type Contrat is created with identifier {{ param }}",
+            "updated": "A Ref Type Contrat is updated with identifier {{ param }}",
+            "deleted": "A Ref Type Contrat is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Ref Type Contrat {{ id }}?"
+            },
+            "detail": {
+                "title": "Ref Type Contrat"
+            },
+            "code": "Code",
+            "libelle": "Libelle",
+            "isActif": "Is Actif",
+            "compagnie": "Compagnie"
+        }
+    }
+}

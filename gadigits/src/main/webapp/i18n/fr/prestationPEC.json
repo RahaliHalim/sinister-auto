@@ -1,0 +1,60 @@
+{
+    "auxiliumApp": {
+        "prestationPEC" : {
+            "home": {
+                "title": "Prestations PEC",
+                "createLabel": "Créer",
+                "createOrEditLabel": "Créer ou modifier une prestation PEC",
+                "DetailsprestationPEC": "Détails prestation PEC"
+            },
+            "created": "Une nouvelle prestation PEC a été créée avec l'identifiant {{ param }}",
+            "updated": "La prestation PEC avec l'identifiant {{ param }} a été mise à jour",
+            "deleted": "La prestation PEC avec l'identifiant {{ param }} a été supprimée",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer la prestation PEC {{ id }} ?"
+            },
+            "detail": {
+                "title": "Prestation PEC"
+            },
+            "referenceSinistre":"Référence sinistre",
+            "referencePrestation":"Référence prestation",
+            "referenceDossier":"Référence dossier",
+            "descPtsChoc": "Description points choc",
+            "nbrVehicules": "Nbre de véhicules",
+            "prestation": "Référence",
+            "mode": "Mode de gestion",
+            "posGa": "Pos GA",
+            "casDeBareme": "Cas de barème",
+            "agentGenerale": "Agent général", 
+            "affectExpert": "Missionner expert",
+            "btnAffecter": "Affecter réparateur",
+            "affectReparateur": "Affecter réparateur",
+            "etat": "État du dossier ",
+            "etatDuChoc": "État du Choc",
+            "etatDuConfirmation":"État de confirmation",
+            "demandeDeDemantage":  "Demande de démontage",
+            "motifs": "Motifs",
+            "dateReceptionVehicule": "Date de réception du véhicule",
+            "compagnie": "Réserves à la charge de la compagnie",
+            "agent": "Réserves à la charge de l'agent",
+            "user": "Affectation gestionnaire",
+            "agentAffecte": "Affectation gestionnaire",
+            "reparateur": "Réparateur",
+            "expert": "Expert",
+            "decision": "Décision",
+            "gouvernorat": "Gouvernorat",
+            "ida": " Lettre I.D.A ",
+            "lettre-ouverture": "Lettre d'ouverture",
+            "ida-lettre-ouverture": "Lettre I.D.A/Ouverture",
+            "favorable": "Favorable",
+            "defavorable": "Défavorable",
+            "rendezvous": "Rendez-Vous",
+            "dateRdvReparateur": "Date RDV chez réparateur",
+            "heureRdvReparateur":"Heure RDV chez réparateur",
+            "capacite":"Capacité",
+            "receptionVehicule":"Réception Véhicule"
+
+
+        }
+    }
+}

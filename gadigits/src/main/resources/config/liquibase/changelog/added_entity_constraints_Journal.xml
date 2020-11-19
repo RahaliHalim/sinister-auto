@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity Journal.
+    -->
+    <changeSet id="20170912084505-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="sys_action_utilisateur_id"
+                                 baseTableName="journal"
+                                 constraintName="fk_journal_sys_action_utilisateur_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="sys_action_utilisateur"/>
+
+        <addForeignKeyConstraint baseColumnNames="journals_id"
+                                 baseTableName="journal_motif"
+                                 constraintName="fk_journal_motif_journals_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="journal"/>
+        <addForeignKeyConstraint baseColumnNames="motifs_id"
+                                 baseTableName="journal_motif"
+                                 constraintName="fk_journal_motif_motifs_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ref_motif"/>
+        <addForeignKeyConstraint baseColumnNames="dossier_id"
+                                 baseTableName="journal"
+                                 constraintName="fk_journal_dossier_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="dossier"/>
+
+        <addForeignKeyConstraint baseColumnNames="prestation_id"
+                                 baseTableName="journal"
+                                 constraintName="fk_journal_prestation_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="prestation"/>
+
+        
+    </changeSet>
+</databaseChangeLog>

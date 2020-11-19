@@ -1,0 +1,24 @@
+{
+    "AuxiliumApp": {
+        "produit" : {
+            "home": {
+                "title": "Produits",
+                "createLabel": "Créer un nouveau produit",
+                "createOrEditLabel": "Créer ou modifier un produit",
+                "search": "Recherche pour produit"
+            },
+            "created": "Un nouveau produit a été créé avec l'identifiant {{ param }}",
+            "updated": "Le produit avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le produit avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer le produit {{ id }} ?"
+            },
+            "detail": {
+                "title": "Produit"
+            },
+            "code": "Code",
+            "libelle": "Libellé",
+            "client": "Client"
+        }
+    }
+}

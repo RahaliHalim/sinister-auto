@@ -1,0 +1,24 @@
+{
+    "auxiliumApp": {
+        "designationNatureContrat" : {
+            "home": {
+                "title": "Désignation nature du Contrat",
+                "createLabel": "Créer une nouvelle désignation nature du contrat",
+                "createOrEditLabel": "Créer ou modifier une désignation nature du contrat",
+                "search": "Recherche pour désignation nature du contrat"
+            },
+            "created": "Une nouvelle désignation nature du contrat a été créée avec l'identifiant {{ param }}",
+            "updated": "La désignation nature du contrat avec l'identifiant {{ param }} a été mise à jour",
+            "deleted": "La désignation nature du contrat avec l'identifiant {{ param }} a été supprimée",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer la designation nature du contrat {{ id }} ?"
+            },
+            "detail": {
+                "title": "Désignation nature du contrat"
+            },
+            "libelle": "Libellé",
+            "compagnie": "Compagnie",
+            "refTypeContrat": "Réf. type Contrat"
+        }
+    }
+}

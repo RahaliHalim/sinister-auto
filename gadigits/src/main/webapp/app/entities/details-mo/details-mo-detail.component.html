@@ -1,0 +1,41 @@
+
+<div *ngIf="detailsMo">
+    <h2><span jhiTranslate="auxiliumApp.detailsMo.detail.title">Details Mo</span> {{detailsMo.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="auxiliumApp.detailsMo.nombreHeures">Nombre Heures</span></dt>
+        <dd>
+            <span>{{detailsMo.nombreHeures}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.detailsMo.designation">Designation</span></dt>
+        <dd>
+            <span>{{detailsMo.designation}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.detailsMo.devis">Devis</span></dt>
+        <dd>
+            <div *ngIf="detailsMo.devisId">
+                <a [routerLink]="['/devis', detailsMo.devisId]">{{detailsMo.devisId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.detailsMo.typeIntervention">Type Intervention</span></dt>
+        <dd>
+            <div *ngIf="detailsMo.typeInterventionId">
+                <a [routerLink]="['/ref-type-intervention', detailsMo.typeInterventionId]">{{detailsMo.typeInterventionLibelle}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'details-mo/'+ detailsMo.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;&nbsp;&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

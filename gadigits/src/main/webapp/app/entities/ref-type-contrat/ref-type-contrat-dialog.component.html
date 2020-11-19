@@ -1,0 +1,70 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myRefTypeContratLabel" jhiTranslate="auxiliumApp.refTypeContrat.home.createOrEditLabel">Create or edit a Ref Type Contrat</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!refTypeContrat.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="refTypeContrat.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="auxiliumApp.refTypeContrat.code" for="field_code">Code</label>
+            <input type="number" class="form-control" name="code" id="field_code"
+                [(ngModel)]="refTypeContrat.code" required max="99999999" />
+            <div [hidden]="!(editForm.controls.code?.dirty && editForm.controls.code?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.code?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.code?.errors?.max" jhiTranslate="entity.validation.max" translateValues="{ max: 99999999 }">
+                    This field cannot be more than 99999999.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.code?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="auxiliumApp.refTypeContrat.libelle" for="field_libelle">Libelle</label>
+            <input type="text" class="form-control" name="libelle" id="field_libelle"
+                [(ngModel)]="refTypeContrat.libelle" required maxlength="100" />
+            <div [hidden]="!(editForm.controls.libelle?.dirty && editForm.controls.libelle?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.libelle?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.libelle?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 100 }">
+                   This field cannot be longer than 100 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="auxiliumApp.refTypeContrat.isActif" for="field_isActif">Is Actif</label>
+            <input type="checkbox" class="form-control" name="isActif" id="field_isActif"
+                [(ngModel)]="refTypeContrat.isActif"  />
+        </div>
+
+        <div class="form-group">
+            <label jhiTranslate="auxiliumApp.refTypeContrat.compagnie" for="field_compagnie">Compagnie</label>
+            <select class="form-control" id="field_compagnie" multiple name="compagnie" [(ngModel)]="refTypeContrat.compagnies">
+                <option [ngValue]="getSelected(refTypeContrat.compagnies, refCompagnieOption)" *ngFor="let refCompagnieOption of refcompagnies; trackBy: trackRefCompagnieById">{{refCompagnieOption.nom}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

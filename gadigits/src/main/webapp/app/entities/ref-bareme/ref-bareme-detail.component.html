@@ -1,0 +1,37 @@
+
+<div *ngIf="refBareme">
+    <h2><span jhiTranslate="auxiliumApp.refBareme.detail.title">Ref Bareme</span> {{refBareme.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="auxiliumApp.refBareme.code">Code</span></dt>
+        <dd>
+            <span>{{refBareme.code}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.refBareme.responsabiliteX">Responsabilite X</span></dt>
+        <dd>
+            <span>{{refBareme.responsabiliteX}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.refBareme.responsabiliteY">Responsabilite Y</span></dt>
+        <dd>
+            <span>{{refBareme.responsabiliteY}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.refBareme.description">Description</span></dt>
+        <dd>
+            <span>{{refBareme.description}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'ref-bareme/'+ refBareme.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;&nbsp;&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <property name="now" value="now()" dbms="h2"/>
+
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+
+    <property name="floatType" value="float4" dbms="postgresql, h2"/>
+    <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
+
+    <!--
+        Added the entity Vehicle.
+    -->
+    <changeSet id="20190311115345-1" author="jhipster">
+        <createTable tableName="app_vehicle">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" primaryKeyName="pk_vehicle"/>
+            </column>
+            <column name="registration_number" type="varchar(20)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="chassis_number" type="varchar(20)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="first_entry_into_service" type="date">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="fiscal_power" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="brand_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="model_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="energy_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="usage_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="policy_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+        </createTable>
+        
+    </changeSet>
+</databaseChangeLog>

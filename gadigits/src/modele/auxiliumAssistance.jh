@@ -1,0 +1,591 @@
+
+
+DEFAULT_MIN_LENGTH = 1
+DEFAULT_MAX_LENGTH = 100
+SHORT_STRING_LENGTH = 60
+LONG_STRING_LENGTH = 256
+COMMENT_LENGTH = 2000
+DEFAULT_MIN = 0
+DEFAULT_MAX = 99999999999999999
+SHORT_INT = 99999999
+
+entity RefPack {
+	nom String maxlength(SHORT_STRING_LENGTH) required,
+	description String maxlength(LONG_STRING_LENGTH),
+	maxServices Long max(90),
+	maxKil Long max(9999),
+	isBloque Boolean
+}
+
+entity DossierRmq {
+	reference String,
+	distance Long,
+	observation String maxlength(COMMENT_LENGTH)
+}
+
+entity RefTypeService {
+	nom String required  maxlength(SHORT_STRING_LENGTH)
+} 
+
+entity RefRemorqueur {
+	hasHabillage Boolean required
+}
+
+
+entity Reparateur {
+    nmaxAffiliation Integer max(SHORT_INT) 
+    debutConge LocalDate
+    datFinConge LocalDate
+    dateCreation LocalDate required
+    isBloque Boolean
+    isCng Boolean
+    
+}
+
+entity Contact  {       
+        isGerant Boolean
+}
+
+entity PersonnePhysique {
+    prenom String maxlength(DEFAULT_MAX_LENGTH) required
+    nom String maxlength(DEFAULT_MAX_LENGTH) required
+    premTelephone String  pattern("([0-9]{8})") required
+    deuxTelephone String  pattern("([0-9]{8})") 
+    fax String pattern("([0-9]{8})") 
+    premMail String pattern("^(.+)@(.+)$") required
+    deuxMail String pattern("^(.+)@(.+)$")
+    adresse String maxlength(LONG_STRING_LENGTH)
+    latitude Double
+    longitude Double
+    reference String maxlength(DEFAULT_MAX_LENGTH) required 
+	isUtilisateur Boolean
+    
+}
+entity PersonneMorale {
+    raisonSociale String maxlength(LONG_STRING_LENGTH) required,
+    registreCommerce String maxlength(DEFAULT_MAX_LENGTH) required,
+    numEtablissement String minlength(3) maxlength(3),
+    codeCategorie String minlength(1) maxlength(1),
+    codeTVA String minlength(1) maxlength(1),
+    matriculeFiscale String minlength(9) maxlength(9) required,
+    adresse String maxlength(LONG_STRING_LENGTH) required,
+    latitude Double,
+    longitude Double
+    banque String maxlength(DEFAULT_MAX_LENGTH),
+    agence String maxlength(DEFAULT_MAX_LENGTH),
+    rib Double max(DEFAULT_MAX)
+}
+
+entity SysVille{
+    libelle String maxlength(DEFAULT_MAX_LENGTH) required,
+    latitude Double,
+    longitude Double
+}
+
+entity SysGouvernorat{
+    libelle String maxlength(DEFAULT_MAX_LENGTH) required,
+    latitude Double,
+    longitude Double,
+    codeIso String maxlength(SHORT_STRING_LENGTH),
+}
+
+entity Reglement{
+    echeanceJours Integer max(365) 
+}
+
+entity RefModeReglement{
+        nom String maxlength(SHORT_STRING_LENGTH) required,
+        isBloque Boolean
+}
+
+entity RefZoneGeo{
+    libelle String maxlength(DEFAULT_MAX_LENGTH) required
+}
+
+
+entity RefTypeIntervention{
+    libelle String maxlength(SHORT_STRING_LENGTH) required
+}
+entity RefMateriel{
+    libelle String maxlength(DEFAULT_MAX_LENGTH) required,
+    description String,
+    obligatoireCng Boolean
+}
+
+entity RefMarque{
+    libelle String maxlength(DEFAULT_MAX_LENGTH) required,
+    isBloque Boolean
+}
+
+entity Concessionnaire{
+        libelle String required
+}
+
+entity Fournisseur{
+        remise Float max(99),
+    isBloque Boolean
+    
+}
+
+entity Expert{
+        nmaxAffiliation Integer max(SHORT_INT),
+    numEnreg_Ftusa String maxlength(DEFAULT_MAX_LENGTH),
+    diplome String maxlength(DEFAULT_MAX_LENGTH),
+    specialite String maxlength(DEFAULT_MAX_LENGTH),
+    dateAgrement LocalDate,
+    dateCreation LocalDate,
+    debutConge LocalDate,
+    dateFinConge LocalDate,
+    isBloque Boolean
+    isEng Boolean
+}
+
+entity AgentGeneral{ 
+    code Double max(DEFAULT_MAX) required,
+    isBloque Boolean
+}
+
+entity RefCompagnie{
+    nom String maxlength(DEFAULT_MAX_LENGTH) required,
+    reference Integer max(SHORT_INT) required,
+    isEtrangere Boolean, 
+    dateCreation LocalDate,
+    logo Blob,
+    isBloque Boolean
+}
+
+entity RefAgence{
+        nom String maxlength(DEFAULT_MAX_LENGTH) required,
+	Telephone String pattern("([0-9]{8})") required,
+        adresse String maxlength(LONG_STRING_LENGTH) required,
+}
+
+entity RefMotif{
+        libelle String minlength(2) maxlength(DEFAULT_MAX_LENGTH) required
+}
+
+entity SysActionUtilisateur{
+        nom String minlength(2) maxlength(DEFAULT_MAX_LENGTH) required
+}
+
+entity Journal{
+    commentaire String maxlength(COMMENT_LENGTH)
+    timestamp ZonedDateTime required
+}
+
+entity Assure{
+    cin Integer max(SHORT_INT),
+    isAssujettieTva Boolean,
+    civilite Civilite
+}
+
+enum Civilite{
+    MONSIEUR, MADAME
+}
+
+entity Tiers{
+    prenom String maxlength(DEFAULT_MAX_LENGTH) required
+    nom String maxlength(DEFAULT_MAX_LENGTH) required
+    debutValidite LocalDate required
+    finValidite LocalDate required
+    compagnieAssurance String maxlength(DEFAULT_MAX_LENGTH) required
+    immatriculation String  pattern("([0-9]{4})TU([0-9]{3})") required
+}
+
+entity DossierSinistre{
+    reference String maxlength(DEFAULT_MAX_LENGTH) required
+    prenomConducteur String maxlength(DEFAULT_MAX_LENGTH) required
+    nomConducteur String maxlength(DEFAULT_MAX_LENGTH) required
+    permisConduc Integer  max(SHORT_INT)
+    prenomTiersConduc String maxlength(DEFAULT_MAX_LENGTH) 
+    nomTiersConduc String maxlength(DEFAULT_MAX_LENGTH) 
+    permisTiersConduc Integer  max(SHORT_INT)
+    dateAccident ZonedDateTime required
+    descPtsChoc String maxlength(LONG_STRING_LENGTH) 
+    nbrVehicules Integer max(SHORT_INT) required 
+    dateCreation LocalDate required
+    isSupprime Boolean
+    commentaire String maxlength(COMMENT_LENGTH)
+}
+
+entity Grille{
+        th Float max(SHORT_INT) required
+    remise Float max(99)
+    tva Float max(99)
+}
+
+entity AffectExpert{
+    dateEffet LocalDate required
+    dateModif LocalDate
+    commentaire String maxlength(COMMENT_LENGTH)
+}
+
+entity AffectReparateur{
+    dateEffet LocalDate required
+    dateModif LocalDate
+    commentaire String maxlength(COMMENT_LENGTH)
+}
+entity DetailsPieces{
+    quantite Integer max(SHORT_INT) required
+    designation String maxlength(DEFAULT_MAX_LENGTH)
+    prixUnit Double max(DEFAULT_MAX) required
+    tva Float max(99)
+}
+entity Piece{
+    reference String maxlength(DEFAULT_MAX_LENGTH) required
+    isVetuste Boolean
+    
+}
+entity RefTypePieces{
+        libelle String maxlength(DEFAULT_MAX_LENGTH) required
+}
+entity RefModelVoiture{
+        libelle String maxlength(DEFAULT_MAX_LENGTH) required
+}
+entity PieceJointe{
+        libelle String maxlength(LONG_STRING_LENGTH) required,
+    chemin String maxlength(LONG_STRING_LENGTH) required,
+    isOriginale Boolean
+    dateImport LocalDate required
+
+}
+entity RefModeGestion{
+    libelle String maxlength(DEFAULT_MAX_LENGTH) required,
+    description String maxlength(LONG_STRING_LENGTH)
+}
+entity ContratAssurance{
+   
+    numeroContrat Double max(DEFAULT_MAX) required,
+    debutValidite LocalDate required,
+    finValidite LocalDate required,
+    isSuspendu Boolean,
+    isAssujettieTva Boolean,
+    valeurNeuf Double max(DEFAULT_MAX),
+    franchise Double max(DEFAULT_MAX),
+    capitalDc Double max(DEFAULT_MAX),
+    valeurVenale Double max(DEFAULT_MAX),
+    souscripteur String maxlength(DEFAULT_MAX_LENGTH)
+    commentaire String maxlength(COMMENT_LENGTH)
+    
+    
+}
+entity RefNatureContrat{
+    code Integer max(SHORT_INT) required,
+    libelle String maxlength(DEFAULT_MAX_LENGTH) required,
+    isActif Boolean
+}
+entity RefTypeContrat{
+    code Integer max(SHORT_INT) required,
+    libelle String maxlength(DEFAULT_MAX_LENGTH) required,
+    isActif Boolean
+}
+entity RefUsageContrat{
+    code Integer max(SHORT_INT) required,
+    libelle String maxlength(DEFAULT_MAX_LENGTH) required,
+    isActif Boolean
+}
+entity VehiculeAssure{
+    immatriculationVehicule String pattern("([0-9]{4})TU([0-9]{3})") required,
+    puissance Integer max(SHORT_INT),
+    numeroChassis String maxlength(DEFAULT_MAX_LENGTH) required,
+    datePCirculation LocalDate,
+	puissanceFiscale Long,
+}
+entity RefEnergie{
+    libelle String maxlength(SHORT_STRING_LENGTH) required
+}
+entity RefPositionGa{
+    libelle String maxlength(DEFAULT_MAX_LENGTH) required
+}
+entity RefBareme{
+    code Integer max(SHORT_INT) required,
+    responsabiliteX Integer max(SHORT_INT) required,
+    responsabiliteY Integer max(SHORT_INT) required,
+    description String maxlength(LONG_STRING_LENGTH) required
+}
+entity Devis{
+    totalTtc Double max(DEFAULT_MAX) required
+    totHt Double max(DEFAULT_MAX)
+    isComplementaire Boolean
+    isSupprime Boolean
+    dateGeneration LocalDate required 
+    vetuste Float max(99)
+    Timbre Float max(99)
+    commentaire String maxlength(COMMENT_LENGTH)
+    droitTimbre Float max(SHORT_INT) required 
+}
+entity DetailsMo{
+    nombreHeures Integer max(SHORT_INT)
+    designation String maxlength(DEFAULT_MAX_LENGTH)
+}
+entity Facture{
+    isSupprime Boolean
+    dateGeneration LocalDate required 
+}
+entity FactureDetailsMo{
+        dateGeneration LocalDate required 
+}
+entity FacturePieces{
+    dateGeneration LocalDate required 
+}
+entity BonSortie{
+
+    numero Double max(DEFAULT_MAX) required
+    isSigne Boolean
+    observation String maxlength(LONG_STRING_LENGTH)
+    
+}
+entity AvisExpertMo{
+        motif String maxlength(DEFAULT_MAX_LENGTH)
+    commentaire String maxlength(COMMENT_LENGTH)
+    quantite Double max(DEFAULT_MAX)
+}
+entity AvisExpertPiece{
+        motif String maxlength(DEFAULT_MAX_LENGTH)
+    commentaire String maxlength(COMMENT_LENGTH)
+    quantite Double max(DEFAULT_MAX)
+}
+entity ValidationDevis{
+        isValide Boolean
+	isAnnule Boolean
+    commentaire String maxlength(COMMENT_LENGTH)
+    dateValidation LocalDate required
+}
+
+
+entity RefTypePj{
+        libelle String maxlength(DEFAULT_MAX_LENGTH) required
+}
+entity RefEtatDossier{
+        libelle String maxlength(DEFAULT_MAX_LENGTH) required
+}
+entity RefFractionnement{
+        code Integer max(SHORT_INT) required
+    libelle String maxlength(DEFAULT_MAX_LENGTH) required
+}
+entity RefNatureExpertise{
+        libelle String maxlength(DEFAULT_MAX_LENGTH) required
+    isActive Boolean
+}
+
+entity Apec{
+        dateGeneration LocalDate required
+    isComplementaire Boolean
+    participationGa Double required
+    participationAssure Double required
+    participationVetuste Double
+    participationRpc Double
+    depacementPlafond Double
+    estimationFranchise Double
+    commentaire String maxlength(COMMENT_LENGTH)
+    
+}
+
+
+entity RefGarantieContractuelle{
+        code Integer max(SHORT_INT) required
+    libelle String maxlength(DEFAULT_MAX_LENGTH) required
+    isActive Boolean
+}
+entity PointChoc{
+    faceAv Boolean
+    tiersAvD Boolean
+    tiersLatD Boolean
+    latD Boolean
+    tiersArD Boolean
+    tiersLatG Boolean
+    tiersArG Boolean
+    latG Boolean
+    faceAr Boolean
+    diversChoc Boolean
+    pareBrise Boolean
+    triangleAvD Boolean
+    triangleArD Boolean
+    triangleAvG Boolean
+    triangleArG Boolean
+    vitreAvD Boolean
+    vitreArD Boolean
+    vitreAvG Boolean
+    vitreArG Boolean
+    lunetteAr Boolean
+    tiersAvG Boolean
+}
+entity RefEtatBs{
+	libelle String maxlength(DEFAULT_MAX_LENGTH) required 
+}
+entity ServiceAssurance{
+	libelle String maxlength(DEFAULT_MAX_LENGTH) required 
+}
+entity DesignationTypeContrat{
+    libelle String maxlength(DEFAULT_MAX_LENGTH) required 
+}
+entity DesignationNatureContrat{
+    libelle String maxlength(DEFAULT_MAX_LENGTH) required 
+}
+entity DesignationUsageContrat{
+    libelle String maxlength(DEFAULT_MAX_LENGTH) required 
+}
+entity DesignationFractionnement{
+    libelle String maxlength(DEFAULT_MAX_LENGTH) required 
+}
+
+relationship OneToOne{
+	RefRemorqueur{societe(raisonSociale) required} to PersonneMorale,
+        /* Relations concernant le Reparateur */
+    Reparateur{personneMorale(raisonSociale) required} to PersonneMorale,
+    /* Relations concernant le Fournisseur */  
+    Fournisseur{personneMorale(raisonSociale) required} to PersonneMorale,
+     /* Relation concernant l'Expert */
+    Expert{personneMorale(raisonSociale) required} to PersonneMorale,
+    /* Relation concernant la personne Physique */
+    Contact{personnePhysique(nom) required} to PersonnePhysique,
+    /*Relations concernant l'agent general */
+    AgentGeneral{personnePhysique(nom) required} to PersonnePhysique,
+    /*Relations concernant la table assure */
+    Assure{personnePhyisque(nom)} to PersonnePhysique,
+    Assure{personneMorale(raisonSociale)} to PersonneMorale,
+    /* Relation concernant la facture */
+    Facture{devis required} to Devis,
+    Facture{bonSortie(numero)} to BonSortie,
+    
+    ValidationDevis{devis} to Devis,
+    Facture{dossier(reference)} to DossierSinistre,
+    /* Relation concernant l'avis d expert */
+    AvisExpertMo{detailsMo} to DetailsMo,
+    AvisExpertPiece{detailsPieces} to DetailsPieces, 
+    RefCompagnie{personneMorale(raisonSociale) required} to PersonneMorale,
+    //Relation concernant les affectaions
+    AffectReparateur{devis required} to Devis,
+    AffectExpert{dossier(reference) } to DossierSinistre{affetctExpert},
+    AffectReparateur{dossier(reference) } to DossierSinistre{affectReparateur},
+    PersonnePhysique{user } to User
+}
+
+relationship OneToMany {
+
+	Assure{dossier} to DossierRmq{assure(nom)},
+	RefPack{contrat} to ContratAssurance{pack(nom)},
+	RefCompagnie{contrat} to ContratAssurance{compagnie(nom)},
+        
+    Fournisseur{contact required} to Contact,
+    
+    Expert{contact required} to Contact,
+    Reglement{reparateur} to Reparateur,
+    //Relation Conceranant la validation du devis
+    ValidationDevis{avisExpPiece} to AvisExpertPiece,
+    ValidationDevis{avisExpMo} to AvisExpertMo,
+    AffectExpert{validationDevis required} to ValidationDevis ,
+    AffectReparateur{apec required} to Apec,
+  
+    RefModeGestion{garantie required} to RefGarantieContractuelle,
+    //Etat bon de sortie qui etait un champ integer dans l ancienne base
+    RefEtatBs{bonSortie} to BonSortie,
+    //Relations concernant les factures
+    DetailsMo{factureMo} to FactureDetailsMo,
+    DetailsPieces{facturePiece} to FacturePieces,
+    Facture{factureMo required} to FactureDetailsMo,
+    Facture{factPiece required} to FacturePieces,
+    SysActionUtilisateur{journal required} to Journal
+	DetailsPieces{facturePiece} to FacturePieces,
+}
+
+relationship ManyToOne{
+	DossierRmq{lieu(nom)} to SysVille,
+	DossierRmq{destination(nom)} to SysVille,
+	DossierRmq{remorqueur} to RefRemorqueur,
+	Contact{remorqueur} to RefRemorqueur{contact},
+    Contact{reparateur} to Reparateur,
+    Reparateur{ville(libelle) required} to SysVille,
+    Contact{ville(libelle) required} to SysVille,
+    Fournisseur{ville(libelle) required} to SysVille,
+    Expert{ville(libelle) required} to SysVille,
+    AgentGeneral{agence(nom) required} to RefAgence,
+    AgentGeneral{ville(libelle)} to SysVille,
+    AgentGeneral{serviceAssurance(libelle)} to ServiceAssurance,
+    DossierSinistre{ville(libelle) required} to SysVille,
+    RefAgence{compagnie(nom) required} to RefCompagnie,
+    RefAgence{ville(libelle) required} to SysVille,
+    Assure{ville(libelle) required} to SysVille,
+    SysVille{gouvernorat(libelle) required} to SysGouvernorat,
+    //Relation concernant les dossiers sinistres
+    DossierSinistre{mode(libelle) required} to RefModeGestion,
+    DossierSinistre{contrat(numeroContrat) required} to ContratAssurance,
+    DossierSinistre{posGa} to RefPositionGa,
+    DossierSinistre{tiers(prenom) } to Tiers,
+    //Relation concernant les contrat d assurances
+    ContratAssurance{type required} to RefTypeContrat,
+    ContratAssurance{nature required} to RefNatureContrat,/* Relation concernant les vehicules assures*/
+    VehiculeAssure{modele(libelle)} to RefModelVoiture,
+    ContratAssurance{agence(nom) required} to RefAgence,
+    ContratAssurance{usage(libelle) required} to RefUsageContrat,
+    ContratAssurance{vehicule(immatriculationVehicule) required} to VehiculeAssure,
+    ContratAssurance{assure(prenom) required} to Assure,
+    ContratAssurance{fractionnement(libelle) required} to RefFractionnement,
+    /* Relation concernant les vehicules assures*/
+    VehiculeAssure{energie(libelle)} to RefEnergie,
+    /* Relation concernant le Devis*/
+    Devis{dossier(reference) required} to DossierSinistre,
+    DetailsPieces{fournisseur required} to Fournisseur,
+    Devis{reparateur required} to Reparateur,
+    /* Relation concernant le devis main d oeuvre*/ 
+    DetailsMo{devis required} to Devis,
+    DetailsPieces{devis required} to Devis,
+    DetailsPieces{piece(ref) required} to Piece,
+     /* Relation concernant les pieces jointes */
+    PieceJointe{type(libelle) required} to RefTypePj,
+    PieceJointe{etat(libelle) required} to RefEtatDossier,
+    AffectReparateur{reparateur required} to Reparateur,
+    AffectExpert{natureExpertise(libelle) required} to RefNatureExpertise,
+    AffectExpert{expert required} to Expert,
+    Reparateur{agentOfficiel(libelle) } to RefMarque{reparateurOfficiel(libelle)}, 
+    RefModelVoiture{marque(libelle) required} to RefMarque,
+    DetailsMo{typeIntervention(libelle) required} to RefTypeIntervention{detailMo},
+    Reglement{modeReglement required} to RefModeReglement,
+    Piece{typePiece(libelle) required} to RefTypePieces,
+    DesignationFractionnement{fractionnement(libelle)} to RefFractionnement,
+    DesignationFractionnement{compagnie(nom)} to RefCompagnie,
+    DesignationUsageContrat{compagnie(nom)} to RefCompagnie,
+    DesignationNatureContrat{compagnie(nom)} to RefCompagnie,
+    DesignationTypeContrat{compagnie(nom)} to RefCompagnie,
+    DesignationTypeContrat{refTypeContrat(libelle)} to RefTypeContrat,
+    DesignationNatureContrat{refTypeContrat(libelle)} to RefNatureContrat,
+    DesignationUsageContrat{refUsageContrat(libelle)} to RefUsageContrat
+   
+}
+
+relationship ManyToMany {
+	RefTypeService{dossier(reference)} to DossierRmq{typeService(nom)},
+	RefCompagnie{pack(nom)} to RefPack{compagnie(nom)},
+	RefPack{typeService(nom)} to RefTypeService{pack(nom)},
+
+    Reparateur{marquePrincipale(libelle)} to RefMarque{reparateurPrincipal(libelle)},
+        Reparateur{autreMarque(libelle)} to RefMarque{reparateur},
+    RefZoneGeo{gouvernorat(libelle) required} to SysGouvernorat {zone(libelle)},
+    Concessionnaire{marque(libelle) required} to RefMarque{concessionnaire(libelle)},
+    Reparateur{materiel(libelle)} to RefMateriel{reparateur},
+    SysActionUtilisateur{motif(libelle)} to RefMotif{actionUtilisateur(nom)},
+    Reparateur{grille} to Grille{reparateur },
+    Journal{motif(libelle)} to RefMotif{journal },
+    // Relation concernant le model relatif au DEVIS
+    
+    RefTypeIntervention{grille} to Grille{typeInter(libelle)},
+    RefModelVoiture{piece(ref)} to Piece{modelVoiture(libelle)},
+    RefGarantieContractuelle{expert} to Expert{garantie(libelle)},
+    //Relation concernant les dossiers sinistres 
+    DossierSinistre{agentGenerale required} to AgentGeneral{dossier},
+    /* Relation concernant le type de contrat et la compagnie d'assurance*/
+    RefNatureContrat{compagnie(nom)} to RefCompagnie{nature(libelle)},
+    RefTypeContrat{compagnie(nom)} to RefCompagnie{type(libelle)},
+    RefUsageContrat{compagnie(nom)} to RefCompagnie{usage(libelle)},
+    DossierSinistre{expert } to Expert{dossier(reference)},
+    DossierSinistre{pieceJointe(libelle)} to PieceJointe{dossierSinistre(reference)}
+}
+
+
+// Set pagination options
+paginate * with pagination
+
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl

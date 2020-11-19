@@ -1,0 +1,55 @@
+
+    <div class="modal-header">
+        <h4 class="modal-title" jhiTranslate="entity.missionner.title">Confirm delete operation</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="col-sm-6">
+        <label jhiTranslate="auxiliumApp.serviceRmq.ville">ville</label>
+        <select class="form-control" id="field_lieu" name="lieu" [(ngModel)]="selectedVille" (ngModelChange)="listExpertsByVille(selectedVille)">
+            <option [ngValue]="villeOption.id"
+                *ngFor="let villeOption of sysvilles; trackBy: trackVilleById">
+                {{villeOption.libelle}}
+            </option>
+        </select>
+    </div>
+       <div class="table-responsive" *ngIf="experts">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort>
+           <th jhiSortBy="nmaxAffiliation"><span jhiTranslate="auxiliumApp.expert.nmaxAffiliation">Nmax Affiliation</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="numEnregFtusa"><span jhiTranslate="auxiliumApp.expert.numEnregFtusa">Num Enreg Ftusa</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="diplome"><span jhiTranslate="auxiliumApp.expert.diplome">Diplome</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="specialite"><span jhiTranslate="auxiliumApp.expert.specialite">Specialite</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="dateAgrement"><span jhiTranslate="auxiliumApp.expert.dateAgrement">Date Agrement</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="debutConge"><span jhiTranslate="auxiliumApp.expert.debutConge">Debut Conge</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="dateFinConge"><span jhiTranslate="auxiliumApp.expert.dateFinConge">Date Fin Conge</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="isEng"><span jhiTranslate="auxiliumApp.expert.isEng">Is Eng</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="personneMoraleRaisonSociale"><span jhiTranslate="auxiliumApp.expert.personneMorale">Personne Morale</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let expert of experts ; let i = index" (click)="setClickedRow(i); affecteExpert(expert.id)" [class.active]="i == selectedRow">
+                <td>{{expert.nmaxAffiliation}}</td>
+                <td>{{expert.numEnregFtusa}}</td>
+                <td>{{expert.diplome}}</td>
+                <td>{{expert.specialite}}</td>
+                <td>{{expert.dateAgrement | date:'mediumDate'}}</td>
+                <td>{{expert.debutConge | date:'mediumDate'}}</td>
+                <td>{{expert.dateFinConge | date:'mediumDate'}}</td>
+                <td>{{expert.isEng}}</td>
+                <td>
+                    <div *ngIf="expert.personneMoraleId">
+                        <a [routerLink]="['../personne-morale', expert.personneMoraleId  ]" >{{expert.personneMoraleRaisonSociale}}</a>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-check" ></span>&nbsp;<span jhiTranslate="entity.action.valider">Valider</span>
+        </button>
+    </div>

@@ -1,0 +1,25 @@
+{
+    "auxiliumApp": {
+        "refMateriel" : {
+            "home": {
+                "title": "Ref Materiels",
+                "createLabel": "Create a new Ref Materiel",
+                "createOrEditLabel": "Create or edit a Ref Materiel",
+                "search": "Search for Ref Materiel"
+            },
+            "created": "A new Ref Materiel is created with identifier {{ param }}",
+            "updated": "A Ref Materiel is updated with identifier {{ param }}",
+            "deleted": "A Ref Materiel is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Ref Materiel {{ id }}?"
+            },
+            "detail": {
+                "title": "Ref Materiel"
+            },
+            "libelle": "Libelle",
+            "description": "Description",
+            "obligatoireCng": "Obligatoire Cng",
+            "reparateur": "Reparateur"
+        }
+    }
+}

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity RefZoneGeo.
+    -->
+    <changeSet id="20170912084453-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="ref_zone_geos_id"
+                                 baseTableName="ref_zone_geo_gouvernorat"
+                                 constraintName="fk_ref_zone_geo_gouvernorat_ref_zone_geos_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ref_zone_geo"/>
+        <addForeignKeyConstraint baseColumnNames="gouvernorats_id"
+                                 baseTableName="ref_zone_geo_gouvernorat"
+                                 constraintName="fk_ref_zone_geo_gouvernorat_gouvernorats_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="sys_gouvernorat"/>
+        
+    </changeSet>
+</databaseChangeLog>

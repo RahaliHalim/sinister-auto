@@ -1,0 +1,22 @@
+{
+    "auxiliumApp": {
+        "refTarif" : {
+            "home": {
+                "title": "Tarif",
+                "createLabel": "Créer",
+                "createOrEditLabel": "Créer ou modifier un tarif"
+            },
+            "created": "Un nouveau tarif a été créé",
+            "updated": "Le tarif a été mis à jour",
+            "deleted": "Le tarif a été supprimé",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer ce tarif ?"
+            },
+            "detail": {
+                "title": "Tarif"
+            },
+            "libelle": " Libellé ",
+            "montant": " Montant "
+        }
+    }
+}

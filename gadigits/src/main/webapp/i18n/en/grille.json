@@ -1,0 +1,26 @@
+{
+    "auxiliumApp": {
+        "grille" : {
+            "home": {
+                "title": "Grilles",
+                "createLabel": "Create a new Grille",
+                "createOrEditLabel": "Create or edit a Grille",
+                "search": "Search for Grille"
+            },
+            "created": "A new Grille is created with identifier {{ param }}",
+            "updated": "A Grille is updated with identifier {{ param }}",
+            "deleted": "A Grille is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Grille {{ id }}?"
+            },
+            "detail": {
+                "title": "Grille"
+            },
+            "th": "Taux horaire",
+            "remise": "Remise",
+            "tva": "Tva",
+            "reparateur": "Reparateur",
+            "typeInter": "Type Inter"
+        }
+    }
+}

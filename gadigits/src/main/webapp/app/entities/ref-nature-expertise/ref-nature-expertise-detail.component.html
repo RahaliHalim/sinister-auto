@@ -1,0 +1,29 @@
+
+<div *ngIf="refNatureExpertise">
+    <h2><span jhiTranslate="auxiliumApp.refNatureExpertise.detail.title">Ref Nature Expertise</span> {{refNatureExpertise.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="auxiliumApp.refNatureExpertise.libelle">Libelle</span></dt>
+        <dd>
+            <span>{{refNatureExpertise.libelle}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.refNatureExpertise.isActive">Is Active</span></dt>
+        <dd>
+            <span>{{refNatureExpertise.isActive}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'ref-nature-expertise/'+ refNatureExpertise.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;&nbsp;&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,26 @@
+{
+    "auxiliumApp": {
+        "upload" : {
+            "home": {
+                "title": "Referentiel",
+                "createLabel": "Create Referentiel",
+                "createOrEditLabel": " create or edit Referentiel",
+                "search": "Recherche for upload"
+            },
+            "created": "A new Upload is created with identifier {{ param }}",
+            "updated": "A Referentiel is updated with identifier {{ param }}",
+            "deleted": "A Referentiel is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Upload {{ id }}?"
+            },
+            "detail": {
+                "title": "Referentiel"
+            },
+            "reference" : "Reference",
+            "document" : "Document",
+            "date": "Date creation",
+            "user": "User"
+        }
+    }
+}
+

@@ -1,0 +1,180 @@
+<!-- Breadcrumb-->
+<div class="breadcrumb-holder">
+  <div class="container-fluid">
+    <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="/"><span class="fa fa-home"></span>&nbsp;&nbsp;<span	jhiTranslate="global.menu.home">Home</span></a></li>
+            <li class="breadcrumb-item"><span jhiTranslate="auxiliumApp.sinisterPrestation.report.title">Délai moyen Immobilisation</span></li>
+      <li class="breadcrumb-item"><span jhiTranslate="auxiliumApp.rapport.Delai_moyen.title"></span></a></li>
+    </ul>
+  </div>
+</div>
+<section class="forms">
+    <div class="container-fluid">
+          <!-- Page Header-->
+         
+          <div class="row">
+              <div class="col-lg-12">
+                  <form>
+                      <div class="card-header d-flex align-items-center no-padding" >
+                          <div class="notice notice-info"><span class="fa fa-search" style="color: #45ABCD"></span>&nbsp;&nbsp;<strong jhiTranslate="auxiliumApp.contratAssurance.filter">filter</strong></div>
+                      </div>
+  
+  
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-sm-3">
+                              <label jhiTranslate="auxiliumApp.rapport.suiviAnnulation.compagnie" for="field_partner">Compagnie</label>
+                              <select class="form-control form-control-sm" id="field_partner" name="partner"  [(ngModel)]="search.compagnieId"  (ngModelChange)="changeMode(search.compagnieId)" >
+                                <option [ngValue]="partner.id" *ngFor="let partner of partners;">{{partner?.companyName}}</option>
+                            </select>
+                          </div>
+                          <div class="col-sm-3">
+                            <label jhiTranslate="auxiliumApp.rapport.suiviAnnulation.mode-de-gestion" for="field_partner">Mode de gestion</label>
+                            <select class="form-control form-control-sm" id="field_partner" name="refService"  [(ngModel)]="search.modeGestionId" >
+                                    <option >------ Séléctionner un mode de gestion --------</option>
+                                <option [ngValue]="mode.id" *ngFor="let mode of modeGestion;">{{mode?.libelle}}</option>
+  
+                            </select>
+
+                          
+                        </div>
+							<div class="col-sm-3">
+                          <label jhiTranslate="auxiliumApp.rapport.Delai_moyen.type_choc" for="field_partner">Type de choc</label>
+                          <select class="form-control form-control-sm" id="field_cng" name="cng" [(ngModel)]="search.typeChoc">
+                            <option [ngValue]="true">Choc léger</option>
+                            <option [ngValue]="false">Choc non léger</option>
+                            </select>    
+                      </div>     
+                    
+                       
+                      <div class="col-sm-3">
+                          <label jhiTranslate="auxiliumApp.rapport.suiviAnnulation.charge" for="field_partner">Charge</label>
+                          <select class="form-control form-control-sm"  name="charge"  [(ngModel)]="search.chargeId">
+                            <option [ngValue]="list.id" *ngFor="let list of listCharge;">{{list?.nomCharge}} {{list?.prenomCharge}}</option>
+
+                        </select>     
+                      </div>     
+    
+                    </div>
+  
+                      
+                                                   
+                         
+                          <div class="row">
+                            <div class="col-sm-3">
+                    <label jhiTranslate="auxiliumApp.rapport.suiviAnnulation.zoneAgent" for="field_partner">Zone </label>
+                    <select class="form-control form-control-sm"  name="statut"  [(ngModel)]="search.zoneId"  >
+                        <option [ngValue]="gov.id" *ngFor="let gov of governorate;">{{gov?.label}}</option>
+
+                    </select>   
+                </div>  
+                              <div class="col-lg-3">
+
+                              <div class="form-group">
+                                  <label class="form-control-label" jhiTranslate="auxiliumApp.sinisterPrestation.report.startDate" for="field_startDate">startDate</label>
+                                  <div class="input-group">
+                                      <input id="field_startDate" type="text" class="form-control form-control-sm" name="startDate" ngbDatepicker #startDate="ngbDatepicker"
+                                             [(ngModel)]="search.startDate" [maxDate]="search.endDate" />
+                                             <span class="input-group-btn">
+                                          <button type="button" class="btn btn-sm btn-default" (click)="startDate.toggle()"><i class="fa fa-sm fa-calendar"></i></button>
+                                      </span>
+                                  </div>
+                              </div>
+                              </div>
+                              <div class="col-lg-3">
+                                      <div class="form-group">
+                                              <label class="form-control-label" jhiTranslate="auxiliumApp.sinisterPrestation.report.endDate" for="field_endDate">endDate</label>
+                                              <div class="input-group">
+                                                  <input id="field_endDate" type="text" class="form-control form-control-sm" name="endDate" ngbDatepicker  #endDate="ngbDatepicker" [(ngModel)]="search.endDate"
+                                                         [minDate]="search.startDate"/>
+                                                         <span class="input-group-btn">
+                                                      <button type="button" class="btn btn-sm btn-default" (click)="endDate.toggle()"><i class="fa fa-sm fa-calendar"></i></button>
+                                                  </span>
+                                              </div>
+                                          </div>
+                              </div>
+                              <div class="col-lg-3">
+                                  <div class="form-group">
+                                      <label class="form-control-label" style="width: 100%">&nbsp;</label>
+                                      <button type="button" (click)="filter()"
+                                          class="btn btn-sm btn-primary margin-right-5">
+                                          <span class="fa fa-search"></span>&nbsp; <span jhiTranslate="auxiliumApp.sinisterPrestation.report.doFilter">Filtrer</span>
+                                      </button>&nbsp;
+                                      <button type="button" (click)="clear(search)"
+                                          class="btn btn-sm btn-primary margin-right-5">
+                                          <span class="fa fa-minus"></span>&nbsp; <span>Ré-initialiser</span>
+                                      </button>
+  
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+  
+                    </form>
+  
+                    <div class="card">
+                      <div class="card-header d-flex align-items-center no-padding" >
+                          <div class="notice notice-info">
+                              <span class="fa fa-area-chart" style="color: #45ABCD"></span>&nbsp;&nbsp;
+                              <strong jhiTranslate="auxiliumApp.sinisterPrestation.report.services">services</strong>
+                          </div>
+                      </div>
+                   
+
+
+
+                      <div class="card-body">
+                          <div class="table-responsive">
+                              <table datatable  [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-sm table-hover table-bordered" style="width:100%">
+                                  <thead style="color:white;background-color:#11859b">
+                                      <tr>
+                                      <th><span jhiTranslate="auxiliumApp.rapport.Delai_moyen.referenceGa">gaReference</span></th>
+                                      <th><span jhiTranslate="auxiliumApp.sinisterPec.companyName">companyName</span></th>
+                                      <th><span jhiTranslate="auxiliumApp.rapport.Delai_moyen.date_bon_de_sortie">registrationNumber</span></th>
+                                      <th><span jhiTranslate="auxiliumApp.rapport.Delai_moyen.date_demande_ouverture">insured</span></th>
+                                      <th><span jhiTranslate="auxiliumApp.rapport.Delai_moyen.nbre_jour">partner</span></th>
+                                      <th><span jhiTranslate="auxiliumApp.rapport.Delai_moyen.type_choc">gaReference</span></th>
+                                      <th><span jhiTranslate="auxiliumApp.rapport.Delai_moyen.Mode_de_gestion">registrationNumber</span></th>
+                                      <th><span jhiTranslate="auxiliumApp.sinisterPec.reparateur">reparateur</span></th>
+                                      <th><span jhiTranslate="auxiliumApp.sinisterPec.expert">expert</span></th>
+                                      <th><span jhiTranslate="auxiliumApp.rapport.Delai_moyen.zone">insured</span></th>
+                                      <th><span jhiTranslate="auxiliumApp.rapport.Delai_moyen.dateAccord">dateAccord</span></th>
+                                      <th><span jhiTranslate="auxiliumApp.rapport.Delai_moyen.vehicleReceiptDate">vehicleReceiptDate</span></th>
+
+                                      
+
+                                  </tr>
+                                  </thead>
+                                  <tbody>
+                                      <tr *ngFor = "let delaiMoy of delaiMoyImmobilisation" >
+                                             <td>{{delaiMoy.referenceGa}}</td>
+                                             <td>{{delaiMoy.compagnie}}</td>
+                                             <td>{{delaiMoy.dateBonDeSortie}}</td>
+                                             <td>{{delaiMoy.dateOuverture}}</td>
+                                             <td>{{delaiMoy.nbreDeJour}}</td>
+                                             <td>{{delaiMoy.typeChoc}}</td>
+                                             <td>{{delaiMoy.modeGestion}}</td>
+                                             <td>{{delaiMoy.reparateur}}</td>
+                                             <td>{{delaiMoy.expert}}</td>
+                                             <td>{{delaiMoy.zone}}</td>
+                                             <td>{{delaiMoy.dateAccord  | date: "dd/MM/yyyy HH:mm:ss"}}</td>
+                                             <td>{{delaiMoy.vehicleReceiptDate  | date: "dd/MM/yyyy HH:mm:ss"}}</td>
+
+                                       
+                                      </tr>
+                                  </tbody>
+                              </table>
+                          </div>
+                      </div>
+
+
+
+
+
+
+
+                  </div>
+              </div>
+          </div>
+    </div>
+  </section>

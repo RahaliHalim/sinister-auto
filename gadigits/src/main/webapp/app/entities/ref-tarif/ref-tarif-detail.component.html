@@ -1,0 +1,31 @@
+
+<div *ngIf="refTarif">
+    <h2><span jhiTranslate="auxiliumApp.refTarif.detail.title">Tarif</span> {{refTarif.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+       
+         <dt><span jhiTranslate="auxiliumApp.refTarif.libelle">Libelle</span></dt>
+        <dd>
+            <span>{{refTarif.libelle}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.refTarif.montant">Montant</span></dt>
+        <dd>
+            <span>{{refTarif.montant}}</span>
+        </dd>
+        
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'refTarif/'+ refTarif.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;&nbsp;&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

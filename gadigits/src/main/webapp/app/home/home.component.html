@@ -1,0 +1,611 @@
+<section class="forms">
+    <div class="container-fluid home-bg-image1">
+        <!-- Page Header-->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <ng-progress [positionUsing]="'marginLeft'" [direction]="'leftToRightIncreased'" [color]="'#11859b'"
+                    [trickleSpeed]="500" [thick]="true" [ease]="'easeInSine'"></ng-progress>
+                <header style="padding-top: 1rem; padding-bottom: 1rem;">
+                    <h1 class="h3 display">
+                        <jhi-alert-error></jhi-alert-error>
+                        <jhi-alert></jhi-alert>
+                    </h1>
+                </header>
+                <form name="editForm" role="form" novalidate #editForm="ngForm">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-2" *ngIf="reparateurConnecte">
+                                <br>
+                                <input type="radio" [value]="1" name="option" [(ngModel)]="searc.types" [value]="true"
+                                    (click)="dossierClick()" /> Dossier Global
+                            </div>
+                            <div class="col-sm-2" *ngIf="reparateurConnecte">
+                                <br>
+                                <input type="radio" value="2" name="option" [(ngModel)]="searc.types"
+                                    (click)="assistanceClick()" /> Service Assistance
+                            </div>
+                            <div class="col-sm-2">
+                                <br>
+                                <input type="radio" value="3" name="option" [(ngModel)]="searc.types"
+                                    (click)="reparationClick()" /> Service Réparation
+
+                                <!-- <br> Etape <input type="radio" value="4" name="option" [(ngModel)]="recherche.types" />-->
+
+
+                            </div>
+                            <!-- <div class="col-sm-2" *ngIf="reparateurConnecte">
+                                <br>
+                                <input type="radio" value="4" name="option" [(ngModel)]="searc.types"
+                                    (click)="VRClick()" /> Service VR
+                            </div> -->
+                            <div class="col-sm-2" *ngIf="reparationCondition">
+                                <label for="singleSelect"> Étape de service : </label><br>
+
+                                <select class="form-control form-control-sm" id="field_zone" name="refStep"
+                                    [(ngModel)]="searc.idEtapePrestation">
+                                    <option [ngValue]="ref.id" *ngFor="let ref of RefStep;">{{ref?.label}}</option>
+                                </select>
+
+                            </div>
+                            <div class="col-sm-2" *ngIf="assistanceCondition">
+                                <label for="singleSelect"> État de service</label><br>
+
+                                <select class="form-control form-control-sm" id="field_zone" name="statusPec"
+                                    [(ngModel)]="searc.statusId">
+                                    <option [ngValue]="status.id" *ngFor="let status of statusAss;">{{status?.label}}
+                                    </option>
+                                </select> </div>
+
+                        </div>
+                        <br>
+                        <div class="row">
+
+                            <div class="col-sm-2">
+                                <input type="text" [(ngModel)]="searc.immatriculation"
+                                    class="form-control form-control-sm" name="immatriculation" id="immatriculationId"
+                                    placeholder="Immatriculation" oninput="this.value = this.value.toUpperCase()" />
+                            </div>
+                            <div class="col-sm-2">
+                                <input type="text" [(ngModel)]="searc.reference" class="form-control form-control-sm"
+                                    name="reference" id="referenceId" placeholder="Référence"
+                                    oninput="this.value = this.value.toUpperCase()" />
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="input-group">
+                                    <input id="field_debutValidite" #startDate type="text"
+                                        class="form-control form-control-sm" name="debutValidite" ngbDatepicker
+                                        #debutValiditeDp="ngbDatepicker" [(ngModel)]="searc.startDateNC"
+                                        [maxDate]="searc.endDateNC" placeholder="Date de début" />
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-sm btn-default"
+                                            (click)="debutValiditeDp.toggle()"><i class="fa fa-calendar"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="input-group">
+                                    <input id="field_finValidite" type="text" #endDate
+                                        class="form-control form-control-sm" name="finValidite" ngbDatepicker
+                                        #finValiditeDp="ngbDatepicker" [(ngModel)]="searc.endDateNC"
+                                        [minDate]="searc.startDateNC" placeholder="Date de fin" />
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-sm btn-default"
+                                            (click)="finValiditeDp.toggle()"><i class="fa fa-calendar"></i></button>
+                                    </span>
+
+                                </div>
+                            </div>
+
+                            <div style="display:flex;justify-content:space-around;">
+                                <div class="col-sm-1">
+                                    <button type="button" class="btn btn-sm btn-info" style=" background-image: linear-gradient(to top, rgba(255,119,0,0.8), rgba(240,170,135,1))!important;
+                                            border-radius:5px;color:white" (click)="search()"> <i
+                                            class="fa fa-search"></i> Rechercher </button>
+                                </div>
+
+                                <div class="col-sm-1">
+                                    <button type="button" class="btn btn-sm btn-info" style="border-radius:5px;background-image: linear-gradient(to top, rgba(255,119,0,0.8), rgba(240,170,135,1))!important;color:white
+                                            " (click)="cancel(searc)"> <i class="fa fa-times"></i> Annuler </button>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+
+
+
+                    </div>
+
+                    <br>
+                    <div style="display:flex;justify-content:center;flex-wrap: wrap;">
+
+                        <button type="button" class="navleft" [routerLink]="['/reparation']"> Service
+                            Réparation</button>
+                        <div *ngIf="reparateurConnecte" style="display:inline-flex">
+                            <button type="button" class="navleft" [routerLink]="['/global']">Dossier Global</button>
+                            <button type="button" class="navleft" [routerLink]="['/assistance/assistance']">Service Assistance
+                            </button>
+                            <!-- <button type="button" class="navleft" [routerLink]="['/assistance/vr']">Service VR
+                            </button> -->
+
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+<div [hidden]="!isHiddenAcueil" class="container-fluid home-bg-image3 img-fluid" style="height: 460px;"></div>
+
+
+<div [hidden]="!isHiddenAssistance">
+    <div class="breadcrumb-holder">
+        <div class="container-fluid">
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a (click)="acueil()"><span class="fa fa-home"
+                            style="color: #45ABCD !important"></span>&nbsp;&nbsp;<span
+                            jhiTranslate="global.menu.home">Home</span></a></li>
+                <li class="breadcrumb-item"><span jhiTranslate="auxiliumApp.assitances.home.title">Dossiers</span></li>
+            </ul>
+        </div>
+    </div>
+    <section class="forms">
+        <div class="container-fluid">
+            <!-- Page Header-->
+            <header style="padding-top: 1rem; padding-bottom: 1rem;">
+                <h1 class="h3 display">
+                    <jhi-alert-error></jhi-alert-error>
+                    <jhi-alert></jhi-alert>
+                </h1>
+            </header>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header d-flex align-items-center no-padding">
+                            <div class="notice notice-info">
+                                <span class="fa fa-folder-open" style="color: #45ABCD"></span>&nbsp;&nbsp;
+                                <strong jhiTranslate="auxiliumApp.assitances.home.title">Assitances</strong>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table datatable [dtOptions]="dtOptionsAssistance"
+                                    class="table table-sm table-hover table-bordered row-border hover">
+                                    <thead style="color:white;background-color:#11859b">
+                                        <tr>
+                                            <th></th>
+                                            <th><span style="width:80px"
+                                                    jhiTranslate="auxiliumApp.assitances.reference">Référence GA</span>
+                                            </th>
+                                            <th><span style="width:140px"
+                                                    jhiTranslate="auxiliumApp.sinisterPrestation.creationDate">creationDate</span>
+                                            </th>
+                                            <th><span style="width:140px"
+                                                    jhiTranslate="auxiliumApp.assitances.dateAccident">Date
+                                                    survenance</span></th>
+                                            <th><span style="width:140px"
+                                                    jhiTranslate="auxiliumApp.assitances.nature">Nature
+                                                    Survenance</span></th>
+                                            <th><span style="width:150px"
+                                                    jhiTranslate="auxiliumApp.assitances.nomcompagnie">Nom de la
+                                                    Compagnie</span></th>
+                                            <th><span style="width:180px"
+                                                    jhiTranslate="auxiliumApp.assitances.NomAgent">Nom agent
+                                                    assurance</span></th>
+                                            <th><span style="width:130px"
+                                                    jhiTranslate="auxiliumApp.assitances.numerocontrat">Numéro du
+                                                    contrat</span></th>
+                                            <th><span style="width:70px"
+                                                    jhiTranslate="auxiliumApp.assitances.marque">Marque</span
+                                                    style="width:70px"></th>
+                                            <th><span style="width:130px"
+                                                    jhiTranslate="auxiliumApp.assitances.immatriculation">Immatriculation
+                                                    assuré</span></th>
+                                            <th><span style="width:180px"
+                                                    jhiTranslate="auxiliumApp.assitances.raisonSociale">Nom et
+                                                    Prénom-Raison Sociale </span></th>
+                                            <th><span style="width:100px"
+                                                    jhiTranslate="auxiliumApp.assitances.typeService">Type de
+                                                    service</span></th>
+                                            <th><span style="width:80px"
+                                                    jhiTranslate="auxiliumApp.assitances.remorqueur">Remorqueur</span>
+                                            </th>
+                                            <th><span style="width:140px"
+                                                    jhiTranslate="auxiliumApp.sinisterPrestation.remAffectationDate">tugAssignedDate</span>
+                                            </th>
+                                            <th><span style="width:140px"
+                                                    jhiTranslate="auxiliumApp.sinisterPrestation.remArrivalDate">remArrivalDate</span>
+                                            </th>
+                                            <th><span style="width:140px"
+                                                    jhiTranslate="auxiliumApp.sinisterPrestation.assureArrivalDate">assureArrivalDate</span>
+                                            </th>
+                                            <th><span style="width:80px"
+                                                    jhiTranslate="auxiliumApp.assitances.montant">Montant TTC </span>
+                                            </th>
+                                            <th><span style="width:150px"
+                                                    jhiTranslate="auxiliumApp.assitances.etatPrestation">Etat
+                                                    prestation</span></th>
+                                            <th><span jhiTranslate="auxiliumApp.sinisterPec.chargeName">charge</span>
+                                            </th>
+                                            <th><span style="width:70px"
+                                                    jhiTranslate="auxiliumApp.assitances.motifs">Motifs</span></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let assitant of assitances let i = index" (click)="setClickedRow(i)"
+                                            [class.active]="i == selectedRow">
+                                            <td class="text-right">
+                                                <div class="btn-group flex-btn-group-container">
+                                                    <button type="submit"
+                                                        [routerLink]="['/acueilassitances', assitant.id ]"
+                                                        replaceUrl="true" class="btn btn-info btn-sm">
+                                                        <span class="fa fa-sm fa-eye"></span>
+                                                    </button>
+
+                                                </div>
+                                            </td>
+                                            <td>{{assitant.reference}}</td>
+                                            <td>{{assitant.creationDate | date:'dd/MM/yyyy HH:mm:ss'}}</td>
+                                            <td>{{assitant.incidentDate | date:'dd/MM/yyyy'}}</td>
+                                            <td>{{assitant.incidentNature}}</td>
+                                            <td>{{assitant.companyName}}</td>
+                                            <td>{{assitant.nomAgentAssurance}}</td>
+                                            <td>{{assitant.numeroContrat}}</td>
+                                            <td>{{assitant.marque}}</td>
+                                            <td>{{assitant.immatriculationVehicule}}</td>
+                                            <td>{{assitant.nomPrenomRaison}}</td>
+                                            <td>{{assitant.typeService}}</td>
+                                            <td>{{assitant.remorqueur}}</td>
+                                            <td>{{assitant.tugAssignmentDate | date:'dd/MM/yyyy HH:mm:ss'}}</td>
+                                            <td>{{assitant.tugArrivalDate | date:'dd/MM/yyyy HH:mm:ss'}}</td>
+                                            <td>{{assitant.insuredArrivalDate | date:'dd/MM/yyyy HH:mm:ss'}}</td>
+                                            <td>{{assitant.price_ttc}}</td>
+                                            <td>{{assitant.etatPrestation}}</td>
+                                            <td>{{assitant.charge}}</td>
+                                            <td>{{assitant.motif}}</td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<div [hidden]="!isHiddenDossier">
+    <div class="breadcrumb-holder">
+        <div class="container-fluid">
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a (click)="acueil()"><span class="fa fa-home"
+                            style="color: #45ABCD"></span>&nbsp;&nbsp;<span
+                            jhiTranslate="global.menu.home">Home</span></a></li>
+                <li class="breadcrumb-item"><span jhiTranslate="auxiliumApp.dossiers.home.title">Dossiers</span></li>
+            </ul>
+        </div>
+    </div>
+    <section class="forms">
+        <div class="container-fluid">
+            <!-- Page Header-->
+            <header style="padding-top: 1rem; padding-bottom: 1rem;">
+                <h1 class="h3 display">
+                    <jhi-alert-error></jhi-alert-error>
+                    <jhi-alert></jhi-alert>
+                </h1>
+            </header>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header d-flex align-items-center no-padding">
+                            <div class="notice notice-info">
+                                <span class="fa fa-area-chart" style="color: #45ABCD"></span>&nbsp;&nbsp;
+                                <strong jhiTranslate="auxiliumApp.dossiers.home.title">services</strong>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+
+                                <table datatable [dtOptions]="dtOptions[1]" [dtTrigger]="dtTrigger2"
+                                    class="table table-sm table-hover table-bordered row-border hover">
+                                    <thead style="color:white;background-color:#11859b">
+                                        <tr>
+                                            <th></th>
+
+                                            <th><span style="width:90px"
+                                                    jhiTranslate="auxiliumApp.dossiers.reference">Référence GA</span>
+                                            </th>
+                                            <th><span style="width:120px"
+                                                    jhiTranslate="auxiliumApp.dossiers.dateAccident">Date
+                                                    survenance</span></th>
+                                            <th><span style="width:120px" jhiTranslate="auxiliumApp.dossiers.mois">Mois
+                                                    de la survenance</span></th>
+                                            <th><span style="width:130px"
+                                                    jhiTranslate="auxiliumApp.dossiers.nature">Nature Survenance</span>
+                                            </th>
+                                            <th><span style="width:130px"
+                                                    jhiTranslate="auxiliumApp.dossiers.nomcompagnie">Nom de la
+                                                    Compagnie</span></th>
+                                            <th><span style="width:160px"
+                                                    jhiTranslate="auxiliumApp.dossiers.NomAgent">Nom agent
+                                                    assurance</span></th>
+                                            <th><span style="width:110px"
+                                                    jhiTranslate="auxiliumApp.dossiers.numerocontrat">Numéro du
+                                                    contrat</span></th>
+                                            <th><span style="width:50px"
+                                                    jhiTranslate="auxiliumApp.dossiers.pack">Pack</span></th>
+                                            <th><span style="width:50px"
+                                                    jhiTranslate="auxiliumApp.dossiers.marque">Marque</span></th>
+                                            <th><span style="width:150px"
+                                                    jhiTranslate="auxiliumApp.dossiers.immatriculation">Immatriculation
+                                                    assuré</span></th>
+                                            <th><span style="width:180px"
+                                                    jhiTranslate="auxiliumApp.dossiers.raisonSociale">Nom et Prénom /
+                                                    Raison Sociale </span></th>
+                                            <th><span style="width:90px"
+                                                    jhiTranslate="auxiliumApp.dossiers.typeService">Type de
+                                                    service</span></th>
+                                            <th><span style="width:120px"
+                                                    jhiTranslate="auxiliumApp.dossiers.nombreService">Nombre de services
+                                                </span></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let dossier of dossiers let i = index" (click)="setClickedRow(i)"
+                                            [class.active]="i == selectedRow">
+                                            <td class="text-right">
+                                                <div class="btn-group flex-btn-group-container">
+                                                    <button type="submit"
+                                                        [routerLink]="['/acueildossiers', dossier.id ]"
+                                                        replaceUrl="true" class="btn btn-info btn-sm">
+                                                        <span class="fa fa-sm fa-eye"></span>
+                                                    </button>
+
+                                                </div>
+                                            </td>
+                                            <td>{{dossier.reference}}</td>
+                                            <td>{{dossier.incidentDate | date:'dd/MM/yyyy'}}</td>
+                                            <td>{{dossier.incidentMois}}</td>
+                                            <td>{{dossier.incidentNature}}</td>
+                                            <td>{{dossier.companyName}}</td>
+                                            <td>{{dossier.nomAgentAssurance}}</td>
+                                            <td>{{dossier.numeroContrat}}</td>
+                                            <td>{{dossier.pack}}</td>
+                                            <td>{{dossier.marque}}</td>
+                                            <td>{{dossier.immatriculationVehicule}}</td>
+                                            <td>{{dossier.nomPrenomRaison}}</td>
+                                            <td>{{dossier.typeService}}</td>
+                                            <td>{{dossier.serviceCount}}</td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div [hidden]="!isHiddenPriseEnCharge">
+    <div class="breadcrumb-holder">
+        <div class="container-fluid">
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a (click)="acueil()"><span class="fa fa-home"
+                            style="color: #45ABCD"></span>&nbsp;&nbsp;<span
+                            jhiTranslate="global.menu.home">Home</span></a></li>
+                <li class="breadcrumb-item"><span jhiTranslate="auxiliumApp.priseEnCharge.home.title">prise en
+                        charge</span></li>
+            </ul>
+        </div>
+    </div>
+    <section class="forms">
+        <div class="container-fluid">
+            <!-- Page Header-->
+            <header style="padding-top: 1rem; padding-bottom: 1rem;">
+                <h1 class="h3 display">
+                    <jhi-alert-error></jhi-alert-error>
+                    <jhi-alert></jhi-alert>
+                </h1>
+            </header>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header d-flex align-items-center no-padding">
+                            <div class="notice notice-info">
+                                <span class="fa fa-folder-open" style="color: #45ABCD"></span>&nbsp;&nbsp;
+                                <strong jhiTranslate="auxiliumApp.priseEnCharge.home.title">prise en charge</strong>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table datatable [dtOptions]="dtOptions[2]" [dtTrigger]="dtTrigger3"
+                                    class="table table-sm table-hover table-bordered row-border hover">
+                                    <thead style="color:white;background-color:#11859b">
+                                        <tr>
+                                            <th></th>
+                                            <th><span style="width:120px"
+                                                    jhiTranslate="auxiliumApp.priseEnCharge.reference">Référence
+                                                    GA</span></th>
+                                            <th><span style="width:120px"
+                                                    jhiTranslate="auxiliumApp.priseEnCharge.referencesinister">Référence
+                                                    du sinistre</span></th>
+                                            <th><span style="width:150px"
+                                                    jhiTranslate="auxiliumApp.priseEnCharge.dateAccident">Date de
+                                                    survenance</span></th>
+                                            <th><span style="width:120px"
+                                                    jhiTranslate="auxiliumApp.priseEnCharge.dateDeclaration">Date de
+                                                    déclaration</span></th>
+                                            <th><span style="width:120px"
+                                                    jhiTranslate="auxiliumApp.priseEnCharge.nomcompagnie">Nom de la
+                                                    Compagnie</span></th>
+                                            <th><span style="width:180px"
+                                                    jhiTranslate="auxiliumApp.priseEnCharge.NomAgent">Nom de l'agent
+                                                    assurance</span></th>
+                                            <th><span style="width:120px"
+                                                    jhiTranslate="auxiliumApp.priseEnCharge.numerocontrat">Numéro du
+                                                    contrat</span></th>
+                                            <th><span style="width:150px"
+                                                    jhiTranslate="auxiliumApp.priseEnCharge.immatriculation">Immatriculation
+                                                    assuré</span></th>
+                                            <th><span style="width:180px"
+                                                    jhiTranslate="auxiliumApp.priseEnCharge.raisonSociale"> </span></th>
+                                            <th><span style="width:80px"
+                                                    jhiTranslate="auxiliumApp.priseEnCharge.marque">Marque</span></th>
+                                            <th><span style="width:160px"
+                                                    jhiTranslate="auxiliumApp.priseEnCharge.NomCompagnieadverse">Nom de
+                                                    la Compagnie adverse</span></th>
+                                            <th><span style="width:120px"
+                                                    jhiTranslate="auxiliumApp.priseEnCharge.ImmatriculationTiers">Immatriculation
+                                                    Tiers</span></th>
+                                            <th><span style="width:210px"
+                                                    jhiTranslate="auxiliumApp.priseEnCharge.raisonSocialeTiers">Nom et
+                                                    Prénom-Raison Sociale (Tiers)</span></th>
+                                            <th><span style="width:100px"
+                                                    jhiTranslate="auxiliumApp.priseEnCharge.DateCreation">Date de
+                                                    création </span></th>
+                                            <th><span style="width:95px"
+                                                    jhiTranslate="auxiliumApp.priseEnCharge.ModeDeGestion">Mode de
+                                                    gestion</span></th>
+                                            <th><span style="width:85px"
+                                                    jhiTranslate="auxiliumApp.priseEnCharge.CasdeBareme">Cas de
+                                                    barème</span></th>
+                                            <th><span style="width:80px"
+                                                    jhiTranslate="auxiliumApp.priseEnCharge.PositionGA">Position
+                                                    GA</span></th>
+                                            <th><span style="width:80px"
+                                                    jhiTranslate="auxiliumApp.priseEnCharge.PointChoc">Point de
+                                                    choc</span></th>
+                                            <th><span style="width:90px"
+                                                    jhiTranslate="auxiliumApp.priseEnCharge.Naturedechoc">Nature du
+                                                    choc</span></th>
+                                            <th><span style="width:110px"
+                                                    jhiTranslate="auxiliumApp.priseEnCharge.Montanttotaldevis">Montant
+                                                    total devis</span></th>
+                                            <th><span style="width:120px"
+                                                    jhiTranslate="auxiliumApp.priseEnCharge.DateAPEC">Date de génération
+                                                    APEC</span></th>
+                                            <th><span style="width:90px"
+                                                    jhiTranslate="auxiliumApp.priseEnCharge.Datebonsortie">Date de bon
+                                                    de sortie</span></th>
+                                            <th><span style="width:80px"
+                                                    jhiTranslate="auxiliumApp.priseEnCharge.Chargeclient">Chargé
+                                                    client</span></th>
+                                            <th><span style="width:70px"
+                                                    jhiTranslate="auxiliumApp.priseEnCharge.Reparateur">Réparateur</span>
+                                            </th>
+                                            <th><span style="width:50px"
+                                                    jhiTranslate="auxiliumApp.priseEnCharge.Expert">Expert </span></th>
+                                            <th><span style="width:100px"
+                                                    jhiTranslate="auxiliumApp.priseEnCharge.ResponsablePec">Responsable
+                                                    PEC</span></th>
+                                            <th><span style="width:180px"
+                                                    jhiTranslate="auxiliumApp.priseEnCharge.ResponsableContrôleTechnique">Responsable
+                                                    contrôle technique </span></th>
+                                            <th><span style="width:85px"
+                                                    jhiTranslate="auxiliumApp.priseEnCharge.etatPrestation">État
+                                                    préstation</span></th>
+                                            <th><span style="width:50px"
+                                                    jhiTranslate="auxiliumApp.priseEnCharge.motifs">Motifs</span></th>
+                                            <th><span style="width:100px"
+                                                    jhiTranslate="auxiliumApp.priseEnCharge.EtatApprobation">État
+                                                    d'approbation</span></th>
+                                            <th><span style="width:100px"
+                                                    jhiTranslate="auxiliumApp.priseEnCharge.EtapePrestation">Étape de la
+                                                    Prestation</span></th>
+                                                    <th>
+                                                        <span style="width: 130px" jhiTranslate="auxiliumApp.priseEnCharge.DateReprise">Date
+                                                            Reprise</span>
+                                                    </th>
+                                                    <th>
+                                                        <span style="width: 130px"
+                                                            jhiTranslate="auxiliumApp.priseEnCharge.totalMo">totalMo</span>
+                                                    </th>
+                                                    <th>
+                                                        <span style="width: 130px"
+                                                            jhiTranslate="auxiliumApp.priseEnCharge.dateEnvoiDemandePec">dateEnvoiDemandePec</span>
+                                                    </th>
+                                                    <th>
+                                                        <span style="width: 130px"
+                                                            jhiTranslate="auxiliumApp.priseEnCharge.dateAcceptationDeForme">dateAcceptationDeForme</span>
+                                                    </th>
+                                                </tr>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let priseencharge of priseencharges let i = index"
+                                            (click)="setClickedRow(i)" [class.active]="i == selectedRow">
+                                            <td class="text-right">
+                                                <div class="btn-group flex-btn-group-container">
+                                                    <button type="submit"
+                                                        [routerLink]="['/acueilpriseencharge', priseencharge.id ]"
+                                                        replaceUrl="true" class="btn btn-info btn-sm">
+                                                        <span class="fa fa-sm fa-eye"></span>
+                                                    </button>
+
+                                                </div>
+                                            </td>
+                                            <td>{{priseencharge.reference}}</td>
+                                            <td>{{priseencharge.refSinister}}</td>
+                                            <td>{{priseencharge.incidentDate | date:'dd/MM/yyyy'}}</td>
+                                            <td>{{priseencharge.declarationDate | date:'dd/MM/yyyy'}}</td>
+                                            <td>{{priseencharge.companyName}}</td>
+                                            <td>{{priseencharge.nomAgentAssurance}}</td>
+                                            <td>{{priseencharge.numeroContrat}}</td>
+                                            <td>{{priseencharge.immatriculationVehicule}}</td>
+                                            <td>{{priseencharge.raisonSocialeAssure}}</td>
+                                            <td>{{priseencharge.marque}}</td>
+                                            <td>{{priseencharge.compagnieAdverse}}</td>
+                                            <td>{{priseencharge.immatriculationTiers}}</td>
+                                            <td>{{priseencharge.raisonSocialTiers}}</td>
+                                            <td>{{priseencharge.creationDate | date:'dd/MM/yyyy'}}</td>
+                                            <td>{{priseencharge.modeGestion}}</td>
+                                            <td>{{priseencharge.casbareme}}</td>
+                                            <td>{{priseencharge.positionGa}}</td>
+                                            <td>{{priseencharge.pointChock}}</td>
+                                            <td>{{priseencharge.lightShock}}</td>
+                                            <td>{{priseencharge.montantTotalDevis}}</td>
+                                            <td>{{priseencharge.imprimDate}}</td>
+                                            <td>{{priseencharge.bonDeSortie}}</td>
+                                            <td>{{priseencharge.chargeNom}} {{priseencharge.chargePrenom}}</td>
+                                            <td>{{priseencharge.reparateur}}</td>
+                                            <td>{{priseencharge.expert}}</td>
+                                            <td>{{priseencharge.bossNom}} {{priseencharge.bossPrenom}}</td>
+                                            <td>{{priseencharge.responsableNom}} {{priseencharge.responsablePrenom}}
+                                            </td>
+                                            <td>{{priseencharge.etatPrestation}}</td>
+                                            <td>{{priseencharge.motifGeneral}}</td>
+                                            <td>{{priseencharge.approvPec}}</td>
+                                            <td>{{priseencharge.etapePrestation}}</td>
+                                            <td>
+                                                {{
+                                                    priseencharge.dateReprise
+                                                        | date: "dd/MM/yyyy HH:mm:ss"
+                                                }}
+                                            </td>
+                                            <td>{{ priseencharge.signatureDate | date: "dd/MM/yyyy"}}</td>
+                                            <td>{{ priseencharge.dateEnvoiDemandePec | date: "dd/MM/yyyy HH:mm:ss"}}</td>
+                                            <td>{{ priseencharge.dateAcceptationDeForme | date: "dd/MM/yyyy HH:mm:ss"}}</td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+</div>

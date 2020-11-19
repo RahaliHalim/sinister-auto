@@ -1,0 +1,101 @@
+<div>
+    <h2>
+        <span jhiTranslate="auxiliumApp.personneMorale.home.title">Personne Morales</span>
+        <button class="btn btn-primary float-right jh-create-entity create-personne-morale" [routerLink]="['/', { outlets: { popup: ['personne-morale-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down"  jhiTranslate="auxiliumApp.personneMorale.home.createLabel">
+            Create new Personne Morale
+            </span>
+        </button>
+    </h2>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'auxiliumApp.personneMorale.home.search' | translate }}">
+                    <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-addon btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-sm fa-remove"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="personneMorales">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="raisonSociale"><span jhiTranslate="auxiliumApp.personneMorale.raisonSociale">Raison Sociale</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="registreCommerce"><span jhiTranslate="auxiliumApp.personneMorale.registreCommerce">Registre Commerce</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="numEtablissement"><span jhiTranslate="auxiliumApp.personneMorale.numEtablissement">Num Etablissement</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="codeCategorie"><span jhiTranslate="auxiliumApp.personneMorale.codeCategorie">Code Categorie</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="codeTVA"><span jhiTranslate="auxiliumApp.personneMorale.codeTVA">Code TVA</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="matriculeFiscale"><span jhiTranslate="auxiliumApp.personneMorale.matriculeFiscale">Matricule Fiscale</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="adresse"><span jhiTranslate="auxiliumApp.personneMorale.adresse">Adresse</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="latitude"><span jhiTranslate="auxiliumApp.personneMorale.latitude">Latitude</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="longitude"><span jhiTranslate="auxiliumApp.personneMorale.longitude">Longitude</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="banque"><span jhiTranslate="auxiliumApp.personneMorale.banque">Banque</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="agence"><span jhiTranslate="auxiliumApp.personneMorale.agence">Agence</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="rib"><span jhiTranslate="auxiliumApp.personneMorale.rib">Rib</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="isAssujettieTva"><span jhiTranslate="auxiliumApp.personneMorale.isAssujettieTva">Is Assujettie Tva</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="villeLibelle"><span jhiTranslate="auxiliumApp.personneMorale.ville">Ville</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let personneMorale of personneMorales ;trackBy: trackId">
+                <td><a [routerLink]="['../personne-morale', personneMorale.id ]">{{personneMorale.id}}</a></td>
+                <td>{{personneMorale.raisonSociale}}</td>
+                <td>{{personneMorale.registreCommerce}}</td>
+                <td>{{personneMorale.numEtablissement}}</td>
+                <td>{{personneMorale.codeCategorie}}</td>
+                <td>{{personneMorale.codeTVA}}</td>
+                <td>{{personneMorale.matriculeFiscale}}</td>
+                <td>{{personneMorale.adresse}}</td>
+                <td>{{personneMorale.latitude}}</td>
+                <td>{{personneMorale.longitude}}</td>
+                <td>{{personneMorale.banque}}</td>
+                <td>{{personneMorale.agence}}</td>
+                <td>{{personneMorale.rib}}</td>
+                <td>{{personneMorale.isAssujettieTva}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../personne-morale', personneMorale.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'personne-morale/'+ personneMorale.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'personne-morale/'+ personneMorale.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+        <div *ngIf="personneMorales && personneMorales.length">
+            <div class="row justify-content-center">
+                <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+            </div>
+            <div class="row justify-content-center">
+                <ngb-pagination [collectionSize]="totalItems" [(page)]="page" (pageChange)="loadPage(page)"></ngb-pagination>
+            </div>
+        </div>
+</div>

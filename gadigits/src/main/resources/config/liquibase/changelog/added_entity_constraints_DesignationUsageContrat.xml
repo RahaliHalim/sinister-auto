@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity DesignationUsageContrat.
+    -->
+    <changeSet id="20170912084546-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="compagnie_id"
+                                 baseTableName="designation_usage_contrat"
+                                 constraintName="fk_designation_usage_contrat_compagnie_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ref_compagnie"/>
+
+        <addForeignKeyConstraint baseColumnNames="ref_usage_contrat_id"
+                                 baseTableName="designation_usage_contrat"
+                                 constraintName="fk_designation_usage_contrat_ref_usage_contrat_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ref_usage_contrat"/>
+
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,45 @@
+{
+    "auxiliumApp": {
+        "dossierSinistre" : {
+            "home": {
+                "title": "DossierSinistres",
+                "createLabel": "Créer un nouveau dossier sinistre",
+                "createOrEditLabel": "Créer ou modifier un dossier sinistre",
+                "search": "Recherche pour dossier sinistre"
+            },
+            "created": "Un nouveau dossier sinistre a été créé avec l'identifiant {{ param }}",
+            "updated": "Le dossier sinistre avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le dossier sinistre avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer le dossier sinistre {{ id }} ?"
+            },
+            "detail": {
+                "title": "dossier sinistre"
+            },
+            "reference": "Référence",
+            "prenomConducteur": "Prénom du conducteur",
+            "nomConducteur": "Nom du conducteur",
+            "permisConduc": "Permis du conducteur",
+            "prenomTiersConduc": "Prénom tiers du conducteur",
+            "nomTiersConduc": "Nom tiers du conducteur",
+            "permisTiersConduc": "Permis tiers du conducteur",
+            "dateAccident": "Date de l'accident",
+            "descPtsChoc": "Desc Pts Choc",
+            "nbrVehicules": "Nbre véhicules",
+            "dateCreation": "Date de création",
+            "isSupprime": "Is Supprime",
+            "commentaire": "Commentaire",
+            "pointChoc": "Points chocs",
+            "ville": "Ville",
+            "mode": "Mode",
+            "contrat": "Contrat",
+            "posGa": "Pos GA",
+            "tiers": "Tiers",
+            "agentGenerale": "Agent général",
+            "expert": "Expert",
+            "pieceJointe": "Pièce jointe",
+            "affetctExpert": "Affetct expert",
+            "affectReparateur": "Affect réparateur"
+        }
+    }
+}

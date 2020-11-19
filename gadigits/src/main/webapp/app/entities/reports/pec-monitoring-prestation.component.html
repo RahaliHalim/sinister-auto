@@ -1,0 +1,373 @@
+<!-- Breadcrumb-->
+<div class="breadcrumb-holder">
+    <div class="container-fluid">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="/"><span class="fa fa-home"></span>&nbsp;&nbsp;<span
+                        jhiTranslate="global.menu.home">Home</span></a></li>
+            <li class="breadcrumb-item"><span
+                    jhiTranslate="auxiliumApp.sinisterPrestation.report.title">Reporting</span></li>
+            <li class="breadcrumb-item"><span jhiTranslate="auxiliumApp.reports.home.pecMonitoringPrestation">SUIVI
+                    PRESTATION</span></a></li>
+        </ul>
+    </div>
+</div>
+<section class="forms">
+    <div class="container-fluid">
+        <!-- Page Header-->
+        <header style="padding-top: 1rem; padding-bottom: 1rem;">
+            <h1 class="h3 display">
+                <jhi-alert-error></jhi-alert-error>
+                <jhi-alert></jhi-alert>
+            </h1>
+        </header>
+        <div class="row">
+            <div class="col-lg-12">
+                <form #cnvForm="ngForm" novalidate>
+                    <div class="card">
+                        <div class="card-header d-flex align-items-center no-padding">
+                            <div class="notice notice-info"><span class="fa fa-search"
+                                    style="color: #45ABCD"></span>&nbsp;&nbsp;<strong
+                                    jhiTranslate="auxiliumApp.sinisterPrestation.report.filter">filter</strong></div>
+                        </div>
+
+                        <div class="card-body">
+
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <label jhiTranslate="auxiliumApp.refPartner.detail.title"
+                                        for="field_partner">company</label>
+                                    <select class="form-control form-control-sm" id="field_partner" name="partner"
+                                        [(ngModel)]="search.partnerId" (ngModelChange)="changeMode(search.partnerId)">
+                                        <option [ngValue]="partner.id" *ngFor="let partner of partners;">
+                                            {{partner?.companyName}}</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label class="form-control-label"
+                                            jhiTranslate="auxiliumApp.sinisterPrestation.report.startDate"
+                                            for="field_startDate">startDate</label>
+                                        <div class="input-group">
+                                            <input id="field_startDate" type="text" class="form-control form-control-sm"
+                                                name="startDate" ngbDatepicker #startDate="ngbDatepicker"
+                                                [(ngModel)]="search.startDate" [maxDate]="search.endDate" />
+                                            <span class="input-group-btn">
+                                                <button type="button" class="btn btn-sm btn-default"
+                                                    (click)="startDate.toggle()"><i
+                                                        class="fa fa-sm fa-calendar"></i></button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label class="form-control-label"
+                                            jhiTranslate="auxiliumApp.sinisterPrestation.report.endDate"
+                                            for="field_endDate">endDate</label>
+                                        <div class="input-group">
+                                            <input id="field_endDate" type="text" class="form-control form-control-sm"
+                                                name="endDate" ngbDatepicker #endDate="ngbDatepicker"
+                                                [(ngModel)]="search.endDate" [minDate]="search.startDate" />
+                                            <span class="input-group-btn">
+                                                <button type="button" class="btn btn-sm btn-default"
+                                                    (click)="endDate.toggle()"><i
+                                                        class="fa fa-sm fa-calendar"></i></button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label class="form-control-label" style="width: 100%">&nbsp;</label>
+                                        <button type="button" (click)="filter()"
+                                            class="btn btn-sm btn-primary margin-right-5">
+                                            <span class="fa fa-search"></span>&nbsp; <span
+                                                jhiTranslate="auxiliumApp.sinisterPrestation.report.doFilter">Filtrer</span>
+                                        </button>&nbsp;
+                                        <button type="button" (click)="clear()"
+                                            class="btn btn-sm btn-primary margin-right-5">
+                                            <span class="fa fa-minus"></span>&nbsp; <span>Ré-initialiser</span>
+                                        </button>
+
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <label jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.mgrMode"
+                                        for="field_mgrMode">mgrMode</label>
+                                    <select class="form-control form-control-sm" id="field_mgrMode" name="mgrMode"
+                                        [(ngModel)]="search.managmentModeId">
+                                        <option>------ Séléctionner un mode de gestion --------</option>
+                                        <option [ngValue]="managmentMode.id"
+                                            *ngFor="let managmentMode of managmentModes;">{{managmentMode?.libelle}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-3">
+                                    <label jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.zone"
+                                        for="field_zone">zone</label>
+                                    <select class="form-control form-control-sm" id="field_zone" name="zone"
+                                        [(ngModel)]="search.zoneId">
+                                        <option [ngValue]="governorate.id" *ngFor="let governorate of governorates;">
+                                            {{governorate?.label}}</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-3">
+                                    <label jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.reparator"
+                                        for="field_cng">cng</label>
+                                    <select class="form-control form-control-sm" id="field_cng" name="cng"
+                                        [(ngModel)]="search.cng">
+                                        <option [ngValue]="true"><span
+                                                jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.cng">cng</span>
+                                        </option>
+                                        <option [ngValue]="false">NON</option>
+                                    </select>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="card">
+                    <div class="card-header d-flex align-items-center no-padding">
+                        <div class="notice notice-info">
+                            <span class="fa fa-area-chart" style="color: #45ABCD"></span>&nbsp;&nbsp;
+                            <strong
+                                jhiTranslate="auxiliumApp.sinisterPrestation.report.prestations">prestations</strong>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+                                class="table table-sm table-hover table-bordered">
+                                <thead style="color:white;background-color:#11859b">
+                                    <tr>
+                                        <th><span style="width:80px"
+                                                jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.gaReference">gaReference</span>
+                                        </th>
+                                        <th><span style="width:130px"
+                                                jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.cmpReference">cmpReference</span>
+                                        </th>
+                                        <th><span style="width:80px"
+                                                jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.registrationNumber">registrationNumber</span>
+                                        </th>
+                                        <th><span style="width:60px"
+                                                jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.brand">brand</span>
+                                        </th>
+                                        <th><span jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.marqueCode">marqueCode</span>
+                                        </th>
+                                        <th><span style="width:60px"
+                                                jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.usage">usage</span>
+                                        </th>
+                                        <th><span style="width:70px"
+                                                jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.company">company</span>
+                                        </th>
+                                        <th><span style="width:50px"
+                                                jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.agent">agent</span>
+                                        </th>
+                                        <th><span style="width:100px"
+                                                jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.agentCode">agentCode</span>
+                                        </th>
+                                        <th><span style="width:70px"
+                                                jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.insured">insured</span>
+                                        </th>
+                                        <th><span style="width:130px"
+                                                jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.reparator">reparator</span>
+                                        </th>
+                                        <th><span
+                                            jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.reparateurCode">reparateurCode</span>
+                                    </th>
+                                        <th><span style="width:130px"
+                                            jhiTranslate="auxiliumApp.sinisterPec.dateAffectReparateur">date affectation reparateur</span>
+                                         </th>
+                                        <th><span style="width:50px"
+                                                jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.cng">cng</span>
+                                        </th>
+                                        <th><span style="width:50px"
+                                               jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.expert">expert</span>
+                                        </th> 
+                                        <th><span style="width:50px"
+                                            jhiTranslate="auxiliumApp.sinisterPec.dateAffectExpert">date affectation expert</span>
+                                     </th> 
+                                        <th><span style="width:90px"
+                                                jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.subscriptionPack">subscriptionPack</span>
+                                        </th>
+
+                                        <th><span style="width:50px"
+                                                jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.zone">Zone</span>
+                                        </th>
+                                        <th><span style="width:150px"
+                                                jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.survenanceDate">survenanceDate</span>
+                                        </th>
+                                        <th><span style="width:100px"
+                                                jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.sendingDate">sendingDate</span>
+                                        </th>
+                                        <th><span style="width:100px"
+                                                jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.mgrMode">mgrMode</span>
+                                        </th>
+                                        <th><span style="width:100px"
+                                                jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.gaPosition">gaPosition</span>
+                                        </th>
+                                        <th><span style="width:100px"
+                                                jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.tierseCompany">tierseCompany</span>
+                                        </th>
+                                        <th><span style="width:100px"
+                                                jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.sinisterManager">sinisterManager</span>
+                                        </th>
+                                        <th><span style="width:150px"
+                                                jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.responsabilityRate">responsabilityRate</span>
+                                        </th>
+
+                                        <th><span style="width:180px"
+                                                jhiTranslate="auxiliumApp.sinisterPec.dateRdvReparateur">date rdv
+                                                reparateur </span></th>
+                                        <th><span style="width:180px"
+                                                jhiTranslate="auxiliumApp.vehiculeAssure.datePCirculation">date P
+                                                circulation </span></th>
+                                        <th><span style="width:180px"
+                                                jhiTranslate="auxiliumApp.sinisterPec.dateReceptionVehicule">date
+                                                reception vehicule </span></th>
+                                        <th><span style="width:180px"
+                                                jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.delai_moyen_decision">Délai
+                                                moyen décision </span></th>
+                                        <th><span style="width:100px"
+                                                jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.typeDecision">Type
+                                                Décision</span></th>
+                                        <th><span style="width:305px"
+                                                jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.delai_moyen_levee">Délai
+                                                moyen de levée de réserve Ou changement statut</span></th>
+                                        <th><span style="width:60px"
+                                                jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.vr">VR</span>
+                                        </th>
+                                        <th><span style="width:100px"
+                                                jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.nbre_de_jourVR">Nombre
+                                                de jour VR</span></th>
+                                        <th><span style="width:220px"
+                                                jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.delai_moyen_affectation_reparateur">Délai
+                                                moyen affectation réparateur</span></th>
+                                        <th><span style="width:230px"
+                                                jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.delai_moyen_disponibilite_assure">Délai
+                                                moyen disponibilité assuré</span></th>
+                                        <th><span style="width:80px"
+                                                jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.type_choc">Type
+                                                de choc</span></th>
+                                        <th><span style="width:150px"
+                                                jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.delai_envoi_estimation">Délai
+                                                envoi estimation</span></th>
+                                        <th><span style="width:150px"
+                                                jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.delai_affectation_expert">Délai
+                                                affectation expert</span></th>
+                                        <th><span style="width:150px"
+                                                jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.delai_avis_expert">Délai
+                                                avis expert</span></th>
+                                        <th><span style="width:150px"
+                                                jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.delai_etablissement_devis">Délai
+                                                établissement devis</span></th>
+                                        <th><span style="width:150px"
+                                                jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.delai_administratif">Délai
+                                                administratif</span></th>
+                                        <th><span style="width:120px"
+                                                jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.delai_reparation">Délai
+                                                Réparation</span></th>
+                                        <th><span style="width:120px"
+                                                jhiTranslate="auxiliumApp.sinisterPec.etapePrestation">etapePrestation</span>
+                                        </th>
+                                        <th><span style="width:120px"
+                                            jhiTranslate="auxiliumApp.apec.participationAssure">Part Assuré</span>
+
+                                    </th>
+                                    <th><span style="width:120px"
+                                        jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.delaiVerificationDevis">delaiVerificationDevis</span>
+                                </th>
+                                <th><span style="width:120px"
+                                    jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.dateFacturation">dateFacturation</span>
+                            </th>
+                            <th><span style="width:120px"
+                                jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.delaiBonSortie">delaiBonSortie</span>
+                                </th>
+                                <th><span style="width:120px"
+                                    jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.delaiApec">delaiApec</span>
+                            </th>
+                      
+                        <th><span style="width:120px"
+                            jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.ecartReparation">ecartReparation</span>
+                    </th>
+                    <th><span style="width:120px"
+                        jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.ecartAcceptationFond">ecartAcceptationFond</span>
+                </th>
+                <!-- <th><span style="width:120px"
+                    jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.ecartAcceptationForme">ecartAcceptationForme</span>
+                  </th>    -->
+                                        <!-- <th><span style="width:150px" jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.delai_commande_fermee">Délai commande fermée</span></th> -->
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let sinisterPrestation of sinisterPrestations">
+                                        <td>{{sinisterPrestation.referenceGa}}</td>
+                                        <td>{{sinisterPrestation.referenceCmp}}</td>
+                                        <td>{{sinisterPrestation.immatriculation}}</td>
+                                        <td>{{sinisterPrestation.brandLabel}}</td>
+                                        <td>{{sinisterPrestation.marqueCode}}</td>
+
+                                        <td>{{sinisterPrestation.usageLabel}}</td>
+                                        <td>{{sinisterPrestation.partnerName}}</td>
+                                        <td>{{sinisterPrestation.agencyName}}</td>
+                                        <td>{{sinisterPrestation.agencyCode}}</td>
+                                        <td>{{sinisterPrestation.insuredName}}</td>
+                                        <td>{{sinisterPrestation.reparatorRs}}</td>
+                                        <td>{{sinisterPrestation.reparateurCode}}</td>
+
+                                        <td>{{sinisterPrestation.dateAffectReparateur | date:'dd/MM/yyyy HH:mm'}}</td>
+                                        <td>{{sinisterPrestation.cngFr}}</td>
+                                        <td>{{sinisterPrestation.expertRs}}</td>
+                                        <td>{{sinisterPrestation.dateAffectExpert | date:'dd/MM/yyyy HH:mm'}}</td>
+                                        <td>{{sinisterPrestation.packName}}</td>
+                                        <td>{{sinisterPrestation.agencyGovernorateLabel}}</td>
+                                        <td>{{sinisterPrestation.incidentDate | date:'dd/MM/yyyy'}}</td>
+                                        <td>{{sinisterPrestation.sendingDate | date:'dd/MM/yyyy HH:mm'}}</td>
+                                        <td>{{sinisterPrestation.managmentModeLabel}}</td>
+                                        <td>{{sinisterPrestation.gaPositionLabel}}</td>
+                                        <td>{{sinisterPrestation.tiersePartnerName}}</td>
+                                        <td>{{sinisterPrestation.assignedToName}}</td>
+                                        <td>{{sinisterPrestation.baremeRate}}</td>
+                                        <td>{{sinisterPrestation.rdvReparateurDate | date:'dd/MM/yyyy HH:mm'}}</td>
+                                        <td>{{sinisterPrestation.datePCirculation | date:'dd/MM/yyyy'}}</td>
+                                        <td>{{sinisterPrestation.receiptVehicleDate | date:'dd/MM/yyyy HH:mm'}}</td>
+                                        <td>{{sinisterPrestation.delaiMoyenDecision}}</td>
+                                        <td>{{sinisterPrestation.decision}}</td>
+                                        <td>{{sinisterPrestation.dateInter}}</td>
+                                        <td>{{sinisterPrestation.vr}}</td>
+                                        <td>{{sinisterPrestation.vrDays}}</td>
+                                        <td>{{sinisterPrestation.delaiMoyenAffectationRep}}</td>
+                                        <td>{{sinisterPrestation.delaiMoyenDispoAssure}}</td>
+                                        <td>{{sinisterPrestation.typeShock}}</td>
+                                        <td>{{sinisterPrestation.delaiEnvoiEstimation}}</td>
+                                        <td>{{sinisterPrestation.delaiAffectationExpert}}</td>
+                                        <td>{{sinisterPrestation.delaiAvisExpert}}</td>
+                                        <td>{{sinisterPrestation.delaiEtablissementDevis}}</td>
+                                        <td>{{sinisterPrestation.delaiAdministratif}}</td>
+                                        <td>{{sinisterPrestation.delaiReparation}}</td>
+                                        <td>{{sinisterPrestation.stepName}}</td>
+                                        <td>{{sinisterPrestation.partAssure}}</td>
+                                        <td>{{sinisterPrestation.delaiVerificationDevis}}</td>
+                                        <td>{{sinisterPrestation.dateFacturation | date:'dd/MM/yyyy HH:mm'}}</td>
+                                        <td>{{sinisterPrestation.delaiBonSortie}}</td>
+                                        <td>{{sinisterPrestation.delaiApec}}</td>
+                                        <td>{{sinisterPrestation.ecartReparation}}</td>
+                                        <td>{{sinisterPrestation.ecartAcceptationFond}}</td>
+                                        <!-- <td>{{sinisterPrestation.ecartAcceptationForme}}</td> -->
+                                        <!-- <td></td> -->
+
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

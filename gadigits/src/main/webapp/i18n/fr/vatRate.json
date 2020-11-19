@@ -1,0 +1,24 @@
+{
+    "auxiliumApp": {
+        "vatRate" : {
+            "home": {
+                "title": "Taux TVA",
+                "createLabel": "Créer un nouveau taux",
+                "createOrEditLabel": "Créer ou modifier un taux TVA",
+                "search": "Recherche Taux TVA"
+            },
+            "created": "Un nouveau taux TVA a été créé",
+            "updated": "Le taux de TVA a été mis à jour",
+            "deleted": "Le taux de TVA a été supprimé",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer ce taux de TVA ?"
+            },
+            "detail": {
+                "title": "Taux TVA"
+            },
+            "vatRate": "Taux TVA",
+            "active": "Actif",
+            "exist": "Le taux de TVA doit être unique"
+        }
+    }
+}

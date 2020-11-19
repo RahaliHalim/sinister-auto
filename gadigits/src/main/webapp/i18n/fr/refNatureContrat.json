@@ -1,0 +1,26 @@
+{
+    "auxiliumApp": {
+        "refNatureContrat" : {
+            "home": {
+                "title": "Nature contrats",
+                "createLabel": "Créer une nouvelle réf. nature contrat",
+                "createOrEditLabel": "Créer ou modifier une réf. nature contrat",
+                "search": "Recherche pour réf. nature contrat"
+            },
+            "created": "Une nouvelle réf. nature contrat a été créé avec l'identifiant {{ param }}",
+            "updated": "La réf. nature contrat avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "La réf. nature contrat avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer la réf. nature contrat {{ id }} ?"
+            },
+            "detail": {
+                "title": "Réf. nature Contrat",
+                "natureContrat": "Nature Contrat"
+            },
+            "code": "Code",
+            "libelle": "Libellé",
+            "isActif": "Is Actif",
+            "compagnie": "Compagnie"
+        }
+    }
+}

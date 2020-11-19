@@ -1,0 +1,90 @@
+<!-- Breadcrumb-->
+<div class="breadcrumb-holder">
+    <div class="container-fluid">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="/"><span jhiTranslate="global.menu.home">Home</span></a></li>
+            <li class="breadcrumb-item"><a routerLink="/reparateur"><span
+                        jhiTranslate="auxiliumApp.reparateur.home.title">reparateur</span></a></li>
+        </ul>
+    </div>
+</div>
+<section class="forms">
+    <div class="container-fluid">
+        <!-- Page Header-->
+        <header style="padding-top: 1rem; padding-bottom: 1rem;">
+            <h1 class="h3 display">
+                <jhi-alert-error></jhi-alert-error>
+                <jhi-alert></jhi-alert>
+            </h1>
+        </header>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header d-flex align-items-center no-padding">
+                        <div class="notice notice-info">
+                            <strong jhiTranslate="auxiliumApp.reparateur.home.title"> Create new Reparateur</strong>
+                            <button class="btn btn-sm btn-primary float-right" *ngIf="permissionToAccess.canCreate" [routerLink]="['../reparateur-new']">
+                                <span class="fa fa-sm fa-plus"></span>
+                                <span class="hidden-sm-down" jhiTranslate="auxiliumApp.reparateur.home.createLabel">Create new Contrat Reparateurr</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="table-responsive" *ngIf="reparateurs">
+                            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-sm table-hover table-bordered" style="width: 100%">
+                                <thead style="color:white;background-color:#11859b">
+                                    <tr>
+                                        <th><span jhiTranslate="auxiliumApp.reparateur.raisonSociale">raison Sociale</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.reparateur.nomPrenom">Nom et Prénom</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.reparateur.telPremierVisAVis">Tel de premier vis à vis</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.reparateur.emailPerVisVis">Email de Premier Vis à Vis</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.reparateur.gouvernorat">Gouvernorat</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.reparateur.ville">Ville</span></th>
+                                        <th class="no-sort"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let reparateur of reparateurs">
+                                        <td>{{reparateur.raisonSociale}}</td>
+                                        <td>{{reparateur.fullName}}</td>
+                                        <td>{{reparateur.phone}}</td>
+                                        <td>{{reparateur.email}}</td>
+                                        <td>{{reparateur.governorateLabel}}</td>
+                                        <td>{{reparateur.delegationLabel}}</td>
+                                        <td class="text-right">
+                                            <div class="btn-group flex-btn-group-container">
+                                                <button type="submit" [hidden]="!reparateur.activated" *ngIf="permissionToAccess.canActive"
+                                                    (click)="activerReparateur(reparateur);"
+                                                    class="btn btn-warning btn-sm">        
+                                                    désactiver
+                                                </button>
+                                                <button type="submit" [hidden]="reparateur.activated" *ngIf="permissionToAccess.canDesactive"
+                                                    (click)="desactiverReparateur(reparateur);"
+                                                    class="btn btn-success btn-sm">
+                                                    Activer
+                                                 
+                                                </button>
+                                                <button type="submit" [routerLink]="['../reparateur/'+ reparateur.id ]" *ngIf="permissionToAccess.canConsult"
+                                                    replaceUrl="true" class="btn btn-info btn-sm">
+                                                    <span class="fa fa-eye"></span>
+                                                </button>
+
+                                                <button type="submit"
+                                                    [routerLink]="['/reparateur/'+ reparateur.id + '/edit']" *ngIf="permissionToAccess.canUpdate" 
+                                                    replaceUrl="true" class="btn btn-primary btn-sm">
+                                                    <span class="fa fa-pencil"></span>
+                                                </button>
+
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

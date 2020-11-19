@@ -1,0 +1,29 @@
+{
+    "auxiliumApp": {
+        "userAccess" : {
+            "home": {
+                "title": "User Accesses",
+                "createLabel": "Create a new User Access",
+                "createOrEditLabel": "Create or edit a User Access",
+                "search": "Search for User Access"
+            },
+            "created": "A new User Access is created with identifier {{ param }}",
+            "updated": "A User Access is updated with identifier {{ param }}",
+            "deleted": "A User Access is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete User Access {{ id }}?"
+            },
+            "detail": {
+                "title": "User Access"
+            },
+            "label": "Label",
+            "code": "Code",
+            "url": "Url",
+            "leaf": "Leaf",
+            "businessEntity": "Business Entity",
+            "functionality": "Functionality",
+            "elementMenu": "Element Menu",
+            "user": "User"
+        }
+    }
+}

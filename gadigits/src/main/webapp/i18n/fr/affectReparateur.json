@@ -1,0 +1,28 @@
+{
+    "auxiliumApp": {
+        "affectReparateur" : {
+            "home": {
+                "title": "AffectReparateurs",
+                "createLabel": "Créer une nouvelle affectation réparateur",
+                "createOrEditLabel": "Créer ou modifier une affectation réparateur",
+                "search": "Recherche pour affectation réparateur"
+            },
+            "created": "Une nouvelle affectation réparateur a été créée avec l'identifiant {{ param }}",
+            "updated": "L'affectation réparateur avec l'identifiant {{ param }} a été mise à jour",
+            "deleted": "L'affectation réparateur avec l'identifiant {{ param }} a été supprimée",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer l'affectation réparateur {{ id }} ?"
+            },
+            "detail": {
+                "title": "Affectation réparateur"
+            },
+            "dateEffet": "Date d'Effet",
+            "dateModif": "Date de Modification",
+            "commentaire": "Commentaire",
+            "devis": "Devis",
+            "prestation": "Prestation",
+            "apec": "Apec",
+            "reparateur": "Réparateur"
+        }
+    }
+}

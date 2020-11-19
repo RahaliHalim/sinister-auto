@@ -1,0 +1,25 @@
+{
+    "auxiliumApp": {
+        "refBareme" : {
+            "home": {
+                "title": "Ref Baremes",
+                "createLabel": "Create a new Ref Bareme",
+                "createOrEditLabel": "Create or edit a Ref Bareme",
+                "search": "Search for Ref Bareme"
+            },
+            "created": "A new Ref Bareme is created with identifier {{ param }}",
+            "updated": "A Ref Bareme is updated with identifier {{ param }}",
+            "deleted": "A Ref Bareme is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Ref Bareme {{ id }}?"
+            },
+            "detail": {
+                "title": "Ref Bareme"
+            },
+            "code": "Code",
+            "responsabiliteX": "Responsabilite X",
+            "responsabiliteY": "Responsabilite Y",
+            "description": "Description"
+        }
+    }
+}

@@ -1,0 +1,24 @@
+{
+    "auxiliumApp": {
+        "designationTypeContrat" : {
+            "home": {
+                "title": "Désignation type contrats",
+                "createLabel": "Créer une nouvelle désignation type de contrat",
+                "createOrEditLabel": "Créer ou modifier une désignation type de contrat",
+                "search": "Recherche pour désignation type de contrat"
+            },
+            "created": "Une nouvelle désignation type de contrat a été créée avec l'identifiant {{ param }}",
+            "updated": "La désignation type de contrat avec l'identifiant {{ param }} a été mise à jour",
+            "deleted": "La désignation type de contrat avec l'identifiant {{ param }} a été supprimée",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer la designation type de contrat {{ id }} ?"
+            },
+            "detail": {
+                "title": "Désignation type de contrat"
+            },
+            "libelle": "Libellé",
+            "compagnie": "Compagnie",
+            "refTypeContrat": "Réf. type de contrat"
+        }
+    }
+}

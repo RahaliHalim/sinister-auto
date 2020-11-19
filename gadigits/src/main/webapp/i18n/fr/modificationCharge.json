@@ -1,0 +1,18 @@
+{
+    "auxiliumApp": {
+        "modificationCharge" : {
+            "home": {
+                "title": "Modification Chargé"
+            },
+            "detail": {
+                "title": "Modification Chargé"
+
+            },
+                "label" : "label",
+                " company" : "Compagnie",
+                " declarationDate" : "Date de décalaration",
+                " vehicleNumber" : "Numéro du véhicule"
+              
+        }
+    }
+}

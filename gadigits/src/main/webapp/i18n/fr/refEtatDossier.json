@@ -1,0 +1,22 @@
+{
+    "auxiliumApp": {
+        "refEtatDossier" : {
+            "home": {
+                "title": "RefEtatDossiers",
+                "createLabel": "Créer une nouvelle réf. état dossier",
+                "createOrEditLabel": "Créer ou modifier une réf. état dossier",
+                "search": "Recherche pour réf. état dossier"
+            },
+            "created": "Une nouvelle réf. état dossier a été créé avec l'identifiant {{ param }}",
+            "updated": "La réf. état dossier avec l'identifiant {{ param }} a été mise à jour",
+            "deleted": "La réf. état dossier avec l'identifiant {{ param }} a été supprimée",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer la réf. état dossier {{ id }} ?"
+            },
+            "detail": {
+                "title": "Réf. état dossier"
+            },
+            "libelle": "Libelle"
+        }
+    }
+}

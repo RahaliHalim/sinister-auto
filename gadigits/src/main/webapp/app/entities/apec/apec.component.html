@@ -1,0 +1,80 @@
+<div>
+    <h2>
+        <span jhiTranslate="auxiliumApp.apec.home.title">Apecs</span>
+        <button class="btn btn-primary float-right jh-create-entity create-apec" [routerLink]="['/', { outlets: { popup: ['apec-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down"  jhiTranslate="auxiliumApp.apec.home.createLabel">
+            Create new Apec
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'auxiliumApp.apec.home.search' | translate }}">
+                    <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-addon btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-sm fa-remove"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="apecs">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="dateGeneration"><span jhiTranslate="auxiliumApp.apec.dateGeneration">Date Generation</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="isComplementaire"><span jhiTranslate="auxiliumApp.apec.isComplementaire">Is Complementaire</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="participationGa"><span jhiTranslate="auxiliumApp.apec.participationGa">Participation Ga</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="participationAssure"><span jhiTranslate="auxiliumApp.apec.participationAssure">Participation Assure</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="participationVetuste"><span jhiTranslate="auxiliumApp.apec.participationVetuste">Participation Vetuste</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="participationRpc"><span jhiTranslate="auxiliumApp.apec.participationRpc">Participation Rpc</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="depacementPlafond"><span jhiTranslate="auxiliumApp.apec.depacementPlafond">Depacement Plafond</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="estimationFranchise"><span jhiTranslate="auxiliumApp.apec.estimationFranchise">Estimation Franchise</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="commentaire"><span jhiTranslate="auxiliumApp.apec.commentaire">Commentaire</span> <span class="fa fa-sort"></span></th>
+          <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let apec of apecs ;trackBy: trackId">
+                <td><a [routerLink]="['../apec', apec.id ]">{{apec.id}}</a></td>
+                <td>{{apec.dateGeneration | date:'mediumDate'}}</td>
+                <td>{{apec.isComplementaire}}</td>
+                <td>{{apec.participationGa}}</td>
+                <td>{{apec.participationAssure}}</td>
+                <td>{{apec.participationVetuste}}</td>
+                <td>{{apec.participationRpc}}</td>
+                <td>{{apec.depacementPlafond}}</td>
+                <td>{{apec.estimationFranchise}}</td>
+                <td>{{apec.commentaire}}</td>
+               <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/apec/'+ apec.id + '/edit/'+ 'approuv']"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down orange" jhiTranslate="entity.action.consulter">Consulter</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+        <div *ngIf="apecs && apecs.length">
+            <div class="row justify-content-center">
+                <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+            </div>
+            <div class="row justify-content-center">
+                <ngb-pagination [collectionSize]="totalItems" [(page)]="page" (pageChange)="loadPage(page)"></ngb-pagination>
+            </div>
+        </div>
+</div>

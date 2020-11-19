@@ -1,0 +1,136 @@
+<!--<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myPointChocLabel" jhiTranslate="auxiliumApp.pointChoc.home.createOrEditLabel">Create or edit a Points chocs</h4>
+       
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" hidden>
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="pointChoc.id" readonly />
+        </div>
+
+        <div class="row top-buffer">
+
+            <div class="col-sm-3">
+            <input type="checkbox" class="check-input" name="faceAv" id="field_faceAv"
+                [(ngModel)]="pointChoc.faceAv"  />
+            <label class="form-control-label" jhiTranslate="auxiliumApp.pointChoc.faceAv" for="field_faceAv">Face Av</label>
+        </div>
+       <div class="col-sm-3">
+            <input type="checkbox" class="check-input" name="tiersAvD" id="field_tiersAvD"
+                [(ngModel)]="pointChoc.tiersAvD"  />
+        <label class="form-control-label" jhiTranslate="auxiliumApp.pointChoc.tiersAvD" for="field_tiersAvD">Tiers Av D</label>
+        </div>
+       <div class="col-sm-3">
+            <input type="checkbox" class="check-input" name="tiersLatD" id="field_tiersLatD"
+                [(ngModel)]="pointChoc.tiersLatD"  />
+            <label class="form-control-label" jhiTranslate="auxiliumApp.pointChoc.tiersLatD" for="field_tiersLatD">Tiers Lat D</label>
+        </div>
+       <div class="col-sm-3">
+            <input type="checkbox" class="check-input" name="latD" id="field_latD"
+                [(ngModel)]="pointChoc.latD"  />
+        <label class="form-control-label" jhiTranslate="auxiliumApp.pointChoc.latD" for="field_latD">Lat D</label>
+        </div></div>
+
+        <div class="row top-buffer">
+
+            <div class="col-sm-3">
+            <input type="checkbox" class="check-input" name="tiersArD" id="field_tiersArD"
+                [(ngModel)]="pointChoc.tiersArD"  />
+            <label class="form-control-label" jhiTranslate="auxiliumApp.pointChoc.tiersArD" for="field_tiersArD">Tiers Ar D</label>
+        </div>
+       <div class="col-sm-3">
+            <input type="checkbox" class="check-input" name="tiersLatG" id="field_tiersLatG"
+                [(ngModel)]="pointChoc.tiersLatG"  />
+            <label class="form-control-label" jhiTranslate="auxiliumApp.pointChoc.tiersLatG" for="field_tiersLatG">Tiers Lat G</label>
+        </div>
+        <div class="col-sm-3">
+            <input type="checkbox" class="check-input" name="tiersArG" id="field_tiersArG"
+                [(ngModel)]="pointChoc.tiersArG"  />
+            <label class="form-control-label" jhiTranslate="auxiliumApp.pointChoc.tiersArG" for="field_tiersArG">Tiers Ar G</label>
+        </div>
+        <div class="col-sm-3">
+            <input type="checkbox" class="check-input" name="latG" id="field_latG"
+                [(ngModel)]="pointChoc.latG"  />
+            <label class="form-control-label" jhiTranslate="auxiliumApp.pointChoc.latG" for="field_latG">Lat G</label>
+        </div></div>
+        <div class="row top-buffer">
+
+            <div class="col-sm-3">
+            <input type="checkbox" class="check-input" name="faceAr" id="field_faceAr"
+                [(ngModel)]="pointChoc.faceAr"  />
+            <label class="form-control-label" jhiTranslate="auxiliumApp.pointChoc.faceAr" for="field_faceAr">Face Ar</label>
+        </div>
+        <div class="col-sm-3">
+            <input type="checkbox" class="check-input" name="diversChoc" id="field_diversChoc"
+                [(ngModel)]="pointChoc.diversChoc"  />
+            <label class="form-control-label" jhiTranslate="auxiliumApp.pointChoc.diversChoc" for="field_diversChoc">Divers Choc</label>
+        </div>
+        <div class="col-sm-3">
+            <input type="checkbox" class="check-input" name="pareBrise" id="field_pareBrise"
+                [(ngModel)]="pointChoc.pareBrise"  />
+            <label class="form-control-label" jhiTranslate="auxiliumApp.pointChoc.pareBrise" for="field_pareBrise">Pare Brise</label>
+        </div>
+        <div class="col-sm-3">
+            <input type="checkbox" class="check-input" name="triangleAvD" id="field_triangleAvD"
+                [(ngModel)]="pointChoc.triangleAvD"  />
+            <label class="form-control-label" jhiTranslate="auxiliumApp.pointChoc.triangleAvD" for="field_triangleAvD">Triangle Av D</label>
+        </div></div>
+        <div class="row top-buffer">
+
+            <div class="col-sm-3">
+            <input type="checkbox" class="check-input" name="triangleArD" id="field_triangleArD"
+                [(ngModel)]="pointChoc.triangleArD"  />
+            <label class="form-control-label" jhiTranslate="auxiliumApp.pointChoc.triangleArD" for="field_triangleArD">Triangle Ar D</label>
+        </div>
+         <div class="col-sm-3">
+            <input type="checkbox" class="check-input" name="triangleAvG" id="field_triangleAvG"
+                [(ngModel)]="pointChoc.triangleAvG"  />
+            <label class="form-control-label" jhiTranslate="auxiliumApp.pointChoc.triangleAvG" for="field_triangleAvG">Triangle Av G</label>               
+        </div>
+          <div class="col-sm-3">
+            <input type="checkbox" class="check-input" name="triangleArG" id="field_triangleArG"
+                [(ngModel)]="pointChoc.triangleArG"  />
+            <label class="form-control-label" jhiTranslate="auxiliumApp.pointChoc.triangleArG" for="field_triangleArG">Triangle Ar G</label>               
+        </div>
+          <div class="col-sm-3">
+            <input type="checkbox" class="check-input" name="vitreAvD" id="field_vitreAvD"
+                [(ngModel)]="pointChoc.vitreAvD"  />
+            <label class="form-control-label" jhiTranslate="auxiliumApp.pointChoc.vitreAvD" for="field_vitreAvD">Vitre Av D</label>               
+        </div></div>
+        <div class="row top-buffer">
+
+            <div class="col-sm-3">
+            <input type="checkbox" class="check-input" name="vitreArD" id="field_vitreArD"
+                [(ngModel)]="pointChoc.vitreArD"  />
+            <label class="form-control-label" jhiTranslate="auxiliumApp.pointChoc.vitreArD" for="field_vitreArD">Vitre Ar D</label>
+        </div>
+        <div class="col-sm-3">
+            <input type="checkbox" class="check-input" name="vitreAvG" id="field_vitreAvG"
+                [(ngModel)]="pointChoc.vitreAvG"  />
+            <label class="form-control-label" jhiTranslate="auxiliumApp.pointChoc.vitreAvG" for="field_vitreAvG">Vitre Av G</label>                
+        </div>
+        <div class="col-sm-3">
+            <input type="checkbox" class="check-input" name="vitreArG" id="field_vitreArG"
+                [(ngModel)]="pointChoc.vitreArG"  />
+            <label class="form-control-label" jhiTranslate="auxiliumApp.pointChoc.vitreArG" for="field_vitreArG">Vitre Ar G</label>              
+        </div>
+        <div class="col-sm-3">
+            <input type="checkbox" class="check-input" name="lunetteAr" id="field_lunetteAr"
+                [(ngModel)]="pointChoc.lunetteAr"  />
+            <label class="form-control-label" jhiTranslate="auxiliumApp.pointChoc.lunetteAr" for="field_lunetteAr">Lunette Ar</label>
+        </div></div>
+        <div class="row top-buffer">
+
+            <div class="col-sm-3">
+            <input type="checkbox" class="check-input" name="tiersAvG" id="field_tiersAvG"
+                [(ngModel)]="pointChoc.tiersAvG"  />
+            <label class="form-control-label" jhiTranslate="auxiliumApp.pointChoc.tiersAvG" for="field_tiersAvG">Tiers Av G</label>
+        </div></div>
+
+    </div>
+   
+</form>-->

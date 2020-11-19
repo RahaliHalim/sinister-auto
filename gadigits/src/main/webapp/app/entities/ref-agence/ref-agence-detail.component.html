@@ -1,0 +1,49 @@
+
+<div *ngIf="refAgence">
+    <h2><span jhiTranslate="auxiliumApp.refAgence.detail.title">Ref Agence</span> {{refAgence.nom}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+    	<dt><span jhiTranslate="auxiliumApp.refAgence.code">Code</span></dt>
+        <dd>
+            <span>{{refAgence.code}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.refAgence.nom">Nom</span></dt>
+        <dd>
+            <span>{{refAgence.nom}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.refAgence.telephone">Telephone</span></dt>
+        <dd>
+            <span>{{refAgence.telephone}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.refAgence.adresse">Adresse</span></dt>
+        <dd>
+            <span>{{refAgence.adresse}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.refAgence.compagnie">Compagnie</span></dt>
+        <dd>
+            <div *ngIf="refAgence.compagnieId">
+                <a [routerLink]="['/ref-compagnie', refAgence.compagnieId]">{{refAgence.compagnieNom}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.refAgence.ville">Ville</span></dt>
+        <dd>
+            <div *ngIf="refAgence.villeId">
+                <a [routerLink]="['/sys-ville', refAgence.villeId]">{{refAgence.villeLibelle}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'ref-agence/'+ refAgence.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;&nbsp;&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

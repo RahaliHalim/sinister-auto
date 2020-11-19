@@ -1,0 +1,26 @@
+{
+    "auxiliumApp": {
+        "refTypeContrat" : {
+            "home": {
+                "title": "Type contrats",
+                "createLabel": "Créer une nouvelle réf. type de contrat",
+                "createOrEditLabel": "Créer ou Modifier une réf. type de contrat",
+                "search": "Recherche pour réf. type de contrat"
+            },
+            "created": "Une nouvelle réf. type de contrat a été créée avec l'identifiant {{ param }}",
+            "updated": "La réf. type de contrat avec l'identifiant {{ param }} a été mise à jour",
+            "deleted": "La réf. type de contrat avec l'identifiant {{ param }} a été supprimée",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer la réf. type de contrat {{ id }} ?"
+            },
+            "detail": {
+                "title": "Réf. type de contrat",
+                "typeContrat": "type  de contrat"
+            },
+            "code": "Code",
+            "libelle": "Libellé",
+            "isActif": "Is Actif",
+            "compagnie": "Compagnie"
+        }
+    }
+}

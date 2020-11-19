@@ -1,0 +1,148 @@
+<!-- Breadcrumb-->
+<div class="breadcrumb-holder">
+	<div class="container-fluid">
+		<ul class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="/"><span class="fa fa-home"></span>&nbsp;&nbsp;<span	jhiTranslate="global.menu.home">Home</span></a></li>
+            <li class="breadcrumb-item"><span jhiTranslate="auxiliumApp.sinisterPrestation.report.title">Reporting</span></li>
+			<li class="breadcrumb-item"><span jhiTranslate="auxiliumApp.contratAssurance.souscription.title">Souscription</span></a></li>
+		</ul>
+	</div>
+</div>
+<section class="forms">
+	<div class="container-fluid">
+        <!-- Page Header-->
+       
+        <div class="row">
+            <div class="col-lg-12">
+                <form>
+                    <div class="card-header d-flex align-items-center no-padding" >
+                        <div class="notice notice-info"><span class="fa fa-search" style="color: #45ABCD"></span>&nbsp;&nbsp;<strong jhiTranslate="auxiliumApp.contratAssurance.filter">filter</strong></div>
+                    </div>
+
+
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-sm-3">
+                            <label jhiTranslate="auxiliumApp.contratAssurance.compagnie" for="field_partner">Compagnie</label>
+                            <select class="form-control form-control-sm" id="field_partner" name="partner" [(ngModel)]="search.compagnieId">
+                                <option [ngValue]="partner.id" *ngFor="let partner of partners;">{{partner?.companyName}}</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-3">
+                          <label jhiTranslate="auxiliumApp.contratAssurance.service" for="field_partner">Service</label>
+                          <select class="form-control form-control-sm" id="field_partner" name="refService" [(ngModel)]="search.serviceId">
+                              <option [ngValue]="ref.id" *ngFor="let ref of refService;">{{ref?.nom}}</option>
+                          </select>
+                      </div>
+                     <!--  <div class="col-sm-3">
+                        <label jhiTranslate="auxiliumApp.contratAssurance.souscription.charge" for="field_partner">Chargé</label>
+                        <select class="form-control form-control-sm"  name="charge">
+                            <option [ngValue]="list.id" *ngFor="let list of listCharge;">{{list.nomCharge}} {{list.prenomCharge}}</option>
+                        </select>     
+                    </div> -->
+                    <div class="col-sm-3">
+                        <label jhiTranslate="auxiliumApp.contratAssurance.zone" ></label>
+                        <select class="form-control form-control-sm"  name="statut"  [(ngModel)]="search.zoneId"  >
+                            <option [ngValue]="gov.id" *ngFor="let gov of governorate;">{{gov?.label}}</option>
+  
+                        </select>         
+                                                 
+                    </div>
+                    <div class="col-sm-3">
+                        <label jhiTranslate="auxiliumApp.rapport.suiviAnnulation.charge" for="field_partner">Charge</label>
+                        <select class="form-control form-control-sm"  name="charge"  [(ngModel)]="search.chargeId">
+                          <option [ngValue]="list.id" *ngFor="let list of listCharge;">{{list?.nomCharge}} {{list?.prenomCharge}}</option>
+
+                      </select>     
+                    </div>     
+  
+                      </div>
+                       
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label class="form-control-label" jhiTranslate="auxiliumApp.sinisterPrestation.report.startDate" for="field_startDate">startDate</label>
+                                    <div class="input-group">
+                                        <input id="field_startDate" type="text" class="form-control form-control-sm" name="startDate" ngbDatepicker #startDate="ngbDatepicker"
+                                               [(ngModel)]="search.startDate" [maxDate]="search.endDate" />
+                                               <span class="input-group-btn">
+                                            <button type="button" class="btn btn-sm btn-default" (click)="startDate.toggle()"><i class="fa fa-sm fa-calendar"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label class="form-control-label" jhiTranslate="auxiliumApp.sinisterPrestation.report.endDate" for="field_endDate">endDate</label>
+                                    <div class="input-group">
+                                        <input id="field_endDate" type="text" class="form-control form-control-sm" name="endDate" ngbDatepicker  #endDate="ngbDatepicker" [(ngModel)]="search.endDate"
+                                               [minDate]="search.startDate"/>
+                                               <span class="input-group-btn">
+                                            <button type="button" class="btn btn-sm btn-default" (click)="endDate.toggle()"><i class="fa fa-sm fa-calendar"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label class="form-control-label" style="width: 100%">&nbsp;</label>
+                                    <button type="button"  
+                                        class="btn btn-sm btn-primary margin-right-5">
+                                        <span class="fa fa-search"></span>&nbsp; <span jhiTranslate="auxiliumApp.sinisterPrestation.report.doFilter">Filtrer</span>
+                                    </button>&nbsp;
+                                    <button type="button" (click)="clear()"
+                                        class="btn btn-sm btn-primary margin-right-5">
+                                        <span class="fa fa-minus"></span>&nbsp; <span>Ré-initialiser</span>
+                                    </button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                  </form>
+
+                  <div class="card">
+                    <div class="card-header d-flex align-items-center no-padding" >
+                        <div class="notice notice-info">
+                            <span class="fa fa-area-chart" style="color: #45ABCD"></span>&nbsp;&nbsp;
+                            <strong jhiTranslate="auxiliumApp.sinisterPrestation.report.services">services</strong>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table datatable [dtOptions]="dtOptions"  class="table table-sm table-hover table-bordered" style="width:100%">
+                                <thead style="color:white;background-color:#11859b">
+                                    <tr>
+                                    <th><span jhiTranslate="auxiliumApp.contratAssurance.souscription.compagnie">gaReference</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.contratAssurance.souscription.contrat">registrationNumber</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.contratAssurance.souscription.zone">insured</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.contratAssurance.souscription.pack">partner</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.contratAssurance.souscription.primeht">gaReference</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.contratAssurance.souscription.primettc">registrationNumber</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.contratAssurance.souscription.partre">insured</span></th>
+       
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let s of souscription">
+                                        <td>{{s.compagnie}}</td>
+                                        <td>{{s.numeroContrat}}</td>
+                                        <td>{{s.zone}}</td>
+                                        <td>{{s.pack}}</td>
+                                        <td>{{s.primeHt}}</td>
+                                        <td>{{s.primeTtc}}</td>
+                                        <td>{{s.partRea}}</td>
+                                     
+                                     
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+</section>

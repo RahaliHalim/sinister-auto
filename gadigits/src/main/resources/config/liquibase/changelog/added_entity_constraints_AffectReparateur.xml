@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity AffectReparateur.
+    -->
+    <changeSet id="20170912084511-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="devis_id"
+                                 baseTableName="affect_reparateur"
+                                 constraintName="fk_affect_reparateur_devis_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="devis"/>
+
+       <addForeignKeyConstraint baseColumnNames="prestation_id"
+                                 baseTableName="affect_reparateur"
+                                 constraintName="fk_affect_reparateur_prestation_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="prestation_pec"/>
+
+        <addForeignKeyConstraint baseColumnNames="reparateur_id"
+                                 baseTableName="affect_reparateur"
+                                 constraintName="fk_affect_reparateur_reparateur_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="reparateur"/>
+
+    </changeSet>
+</databaseChangeLog>

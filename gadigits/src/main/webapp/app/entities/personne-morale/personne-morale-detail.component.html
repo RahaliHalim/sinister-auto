@@ -1,0 +1,79 @@
+
+<div *ngIf="personneMorale">
+    <h2><span jhiTranslate="auxiliumApp.personneMorale.detail.title">Personne Morale</span> {{personneMorale.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="auxiliumApp.personneMorale.raisonSociale">Raison Sociale</span></dt>
+        <dd>
+            <span>{{personneMorale.raisonSociale}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.personneMorale.registreCommerce">Registre Commerce</span></dt>
+        <dd>
+            <span>{{personneMorale.registreCommerce}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.personneMorale.numEtablissement">Num Etablissement</span></dt>
+        <dd>
+            <span>{{personneMorale.numEtablissement}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.personneMorale.codeCategorie">Code Categorie</span></dt>
+        <dd>
+            <span>{{personneMorale.codeCategorie}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.personneMorale.codeTVA">Code TVA</span></dt>
+        <dd>
+            <span>{{personneMorale.codeTVA}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.personneMorale.matriculeFiscale">Matricule Fiscale</span></dt>
+        <dd>
+            <span>{{personneMorale.matriculeFiscale}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.personneMorale.adresse">Adresse</span></dt>
+        <dd>
+            <span>{{personneMorale.adresse}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.personneMorale.latitude">Latitude</span></dt>
+        <dd>
+            <span>{{personneMorale.latitude}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.personneMorale.longitude">Longitude</span></dt>
+        <dd>
+            <span>{{personneMorale.longitude}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.personneMorale.banque">Banque</span></dt>
+        <dd>
+            <span>{{personneMorale.banque}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.personneMorale.agence">Agence</span></dt>
+        <dd>
+            <span>{{personneMorale.agence}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.personneMorale.rib">Rib</span></dt>
+        <dd>
+            <span>{{personneMorale.rib}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.personneMorale.ville">Ville</span></dt>
+        <dd>
+            <div *ngIf="personneMorale.villeId">
+                <a [routerLink]="['/sys-ville', personneMorale.villeId]">{{personneMorale.villeLibelle}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.personneMorale.isAssujettieTva">Is Assujettie Tva</span></dt>
+        <dd>
+            <span>{{personneMorale.isAssujettieTva}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'personne-morale/'+ personneMorale.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;&nbsp;&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

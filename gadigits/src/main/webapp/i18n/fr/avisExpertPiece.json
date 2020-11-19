@@ -1,0 +1,26 @@
+{
+    "auxiliumApp": {
+        "avisExpertPiece" : {
+            "home": {
+                "title": "AvisExpertPieces",
+                "createLabel": "Créer un nouvel avis expert pièce",
+                "createOrEditLabel": "Créer ou modifier un avis expert pièce",
+                "search": "Recherche pour avis expert pièce"
+            },
+            "created": "Un nouvel avis expert piéce a été créé avec l'identifiant {{ param }}",
+            "updated": "L'avis expert pièce avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "L'avis expert piéce avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer l'avis expert pièce {{ id }} ?"
+            },
+            "detail": {
+                "title": "Avis expert pièce"
+            },
+            "motif": "Motif",
+            "commentaire": "Commentaire",
+            "quantite": "Quantité",
+            "detailsPieces": "Détails pièces",
+            "validationDevis": "Validation devis"
+        }
+    }
+}

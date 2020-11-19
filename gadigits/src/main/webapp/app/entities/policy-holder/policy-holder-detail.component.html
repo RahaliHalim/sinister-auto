@@ -1,0 +1,105 @@
+
+<div *ngIf="policyHolder">
+    <h2><span jhiTranslate="auxiliumApp.policyHolder.detail.title">Policy Holder</span> {{policyHolder.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="auxiliumApp.policyHolder.company">Company</span></dt>
+        <dd>
+            <span>{{policyHolder.company}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.policyHolder.title">Title</span></dt>
+        <dd>
+            <span>{{policyHolder.title}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.policyHolder.firstName">First Name</span></dt>
+        <dd>
+            <span>{{policyHolder.firstName}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.policyHolder.lastName">Last Name</span></dt>
+        <dd>
+            <span>{{policyHolder.lastName}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.policyHolder.companyName">Company Name</span></dt>
+        <dd>
+            <span>{{policyHolder.companyName}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.policyHolder.firstPhone">First Phone</span></dt>
+        <dd>
+            <span>{{policyHolder.firstPhone}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.policyHolder.secondPhone">Second Phone</span></dt>
+        <dd>
+            <span>{{policyHolder.secondPhone}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.policyHolder.fax">Fax</span></dt>
+        <dd>
+            <span>{{policyHolder.fax}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.policyHolder.firstEmail">First Email</span></dt>
+        <dd>
+            <span>{{policyHolder.firstEmail}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.policyHolder.secondEmail">Second Email</span></dt>
+        <dd>
+            <span>{{policyHolder.secondEmail}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.policyHolder.address">Address</span></dt>
+        <dd>
+            <span>{{policyHolder.address}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.policyHolder.identifier">Identifier</span></dt>
+        <dd>
+            <span>{{policyHolder.identifier}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.policyHolder.vatRegistered">Vat Registered</span></dt>
+        <dd>
+            <span>{{policyHolder.vatRegistered}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.policyHolder.tradeRegister">Trade Register</span></dt>
+        <dd>
+            <span>{{policyHolder.tradeRegister}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.policyHolder.creationDate">Creation Date</span></dt>
+        <dd>
+            <span>{{policyHolder.creationDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.policyHolder.updateDate">Update Date</span></dt>
+        <dd>
+            <span>{{policyHolder.updateDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.policyHolder.governorate">Governorate</span></dt>
+        <dd>
+            <div *ngIf="policyHolder.governorateId">
+                <a [routerLink]="['/governorate', policyHolder.governorateId]">{{policyHolder.governorateLabel}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.policyHolder.delegation">Delegation</span></dt>
+        <dd>
+            <div *ngIf="policyHolder.delegationId">
+                <a [routerLink]="['/delegation', policyHolder.delegationId]">{{policyHolder.delegationLabel}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.policyHolder.creationUser">Creation User</span></dt>
+        <dd>
+            {{policyHolder.creationUserLogin}}
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.policyHolder.updateUser">Update User</span></dt>
+        <dd>
+            {{policyHolder.updateUserLogin}}
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'policy-holder/'+ policyHolder.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;&nbsp;&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

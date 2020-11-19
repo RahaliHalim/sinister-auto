@@ -1,0 +1,23 @@
+{
+    "auxiliumApp": {
+        "refZoneGeo" : {
+            "home": {
+                "title": "Zone géographique",
+                "createLabel": "Créer une nouvelle zone géographique",
+                "createOrEditLabel": "Créer ou modifier une zone géographique",
+                "search": "Recherche pour zone géographique"
+            },
+            "created": "Une nouvelle zone géographique a été créée avec l'identifiant {{ param }}",
+            "updated": "La zone géographique avec l'identifiant {{ param }} a été mise à jour",
+            "deleted": "La zone géographique avec l'identifiant {{ param }} a été supprimée",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer la zone géographique {{ id }} ?"
+            },
+            "detail": {
+                "title": "Zone géographique"
+            },
+            "libelle": "Libellé",
+            "gouvernorat": "Gouvernorat"
+        }
+    }
+}

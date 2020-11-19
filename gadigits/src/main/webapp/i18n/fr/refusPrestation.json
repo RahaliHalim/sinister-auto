@@ -1,0 +1,18 @@
+{
+    "auxiliumApp": {
+        "refusPrestation" : {
+            "home": {
+                "title": "Refus prestation"
+            },
+            "detail": {
+                "title": "Refus prestation"
+
+            },
+                "label" : "label",
+                " company" : "Compagnie",
+                " declarationDate" : "Date de décalaration",
+                " vehicleNumber" : "Numéro de véhicule"
+              
+        }
+    }
+}

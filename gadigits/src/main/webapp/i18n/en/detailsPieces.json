@@ -1,0 +1,36 @@
+{
+    "auxiliumApp": {
+        "detailsPieces" : {
+            "homeRechange":"Piéces",
+            "homePeinture":"Ingrédient de peinture",
+            "homeFourniture":"Petite fourniture",
+            "home": {
+                "title": "Details Pieces",
+                "createLabel": "Create a new Details Pieces",
+                "createOrEditLabel": "Create or edit a Details Pieces",
+                "search": "Search for Details Pieces"
+            },
+            "created": "A new Details Pieces is created with identifier {{ param }}",
+            "updated": "A Details Pieces is updated with identifier {{ param }}",
+            "deleted": "A Details Pieces is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Details Pieces {{ id }}?"
+            },
+            "detail": {
+                "title": "Details Pieces"
+            },
+            "quantite": "Quantite",
+            "designation": "Designation",
+            "prixUnit": "Prix Unit",
+            "tva": "Tva",
+            "facturePiece": "Facture Piece",
+            "fournisseur": "Fournisseur",
+            "devis": "Devis",
+            "piece": "Piece",
+            "vetuste": "Vetuste",
+            "mvht": "MVHT",
+            "mvttc": "MVTTC"
+
+        }
+    }
+}

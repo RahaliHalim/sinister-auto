@@ -1,0 +1,22 @@
+{
+    "auxiliumApp": {
+        "refTypePj" : {
+            "home": {
+                "title": "Ref Type Pjs",
+                "createLabel": "Create a new Ref Type Pj",
+                "createOrEditLabel": "Create or edit a Ref Type Pj",
+                "search": "Search for Ref Type Pj"
+            },
+            "created": "A new Ref Type Pj is created with identifier {{ param }}",
+            "updated": "A Ref Type Pj is updated with identifier {{ param }}",
+            "deleted": "A Ref Type Pj is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Ref Type Pj {{ id }}?"
+            },
+            "detail": {
+                "title": "Ref Type Pj"
+            },
+            "libelle": "Libelle"
+        }
+    }
+}

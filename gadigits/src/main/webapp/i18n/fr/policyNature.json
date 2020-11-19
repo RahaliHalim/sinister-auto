@@ -1,0 +1,24 @@
+{
+    "auxiliumApp": {
+        "policyNature" : {
+            "home": {
+                "title": "PolicyNatures",
+                "createLabel": "Créer un nouveau Policy Nature",
+                "createOrEditLabel": "Créer ou modifier un Policy Nature",
+                "search": "Recherche pour Policy Nature"
+            },
+            "created": "Un nouveau Policy Nature a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Policy Nature avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Policy Nature avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Êtes-vous sûrs de vouloir supprimer le Policy Nature {{ id }} ?"
+            },
+            "detail": {
+                "title": "Policy Nature"
+            },
+            "code": "Code",
+            "label": "Label",
+            "active": "Active"
+        }
+    }
+}

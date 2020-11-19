@@ -1,0 +1,29 @@
+{
+    "auxiliumApp": {
+        "validationDevis" : {
+            "home": {
+                "title": "ValidationDevis",
+                "createLabel": "Créer une nouvelle validation devis",
+                "createOrEditLabel": "Créer ou modifier une validation devis",
+                "search": "Recherche pour validation devis"
+            },
+            "created": "Une nouvelle validation devis a été créée avec l'identifiant {{ param }}",
+            "updated": "La validation devis avec l'Identifiant {{ param }} a été mise à jour",
+            "deleted": "La validation devis avec l'Identifiant {{ param }} a été supprimée",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer la validation devis {{ id }} ?"
+            },
+            "detail": {
+                "title": "Validation devis"
+            },
+            "isValide": "Is Valide",
+            "isAnnule": "Is Annule",
+            "commentaire": "Commentaire",
+            "dateValidation": "Date de Validation",
+            "affectExpert": "Affect Expert",
+            "devis": "Devis",
+            "avisExpPiece": "Avis Exp Pièce",
+            "avisExpMo": "Avis Exp Mo"
+        }
+    }
+}

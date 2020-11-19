@@ -1,0 +1,31 @@
+{
+    "auxiliumApp": {
+        "refBareme" : {
+            "home": {
+                "title": "Cas de barème",
+                "createLabel": "Créer un nouveau réf. barème",
+                "loop": "Rech barème",
+                "createOrEditLabel": "Créer ou modifier une réf. barème",
+                "search": "Recherche pour réf. barème"
+            },
+            "created": "Une nouvelle réf. barème a été créée avec l'identifiant {{ param }}",
+            "updated": "La réf. barème avec l'identifiant {{ param }} a été mise à jour",
+            "deleted": "La réf. barème avec l'identifiant {{ param }} a été supprimée",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer la réf. barème {{ id }} ?"
+            },
+            "detail": {
+                "title": "Réf barème",
+                "bareme": "Barème"
+            },
+            "id":"Id",
+            "code": "Code",
+            "responsabiliteX": "Responsabilité X",
+            "responsabiliteY": "Responsabilité Y",
+            "description": "Description",
+            "croquis":"Croquis",
+            "titre":"Titre",
+            "tauxR": "Taux de responsabilté"
+        }
+    }
+}

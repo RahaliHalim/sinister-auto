@@ -1,0 +1,107 @@
+<!-- Breadcrumb-->
+<div class="breadcrumb-holder">
+    <div class="container-fluid">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="/"><span class="fa fa-home"></span>&nbsp;&nbsp;<span jhiTranslate="global.menu.home">Home</span></a></li>
+            <li class="breadcrumb-item"><a routerLink="/vehicle-piece"><span jhiTranslate="auxiliumApp.vehiclePiece.home.title">Vehicle Pieces</span></a></li>
+        </ul>
+    </div>
+</div>
+<section class="forms">
+    <div class="container-fluid">
+        <!-- Page Header-->
+        <header style="padding-top: 1rem; padding-bottom: 1rem;">
+            <h1 class="h3 display">
+                <jhi-alert-error></jhi-alert-error>
+                <jhi-alert></jhi-alert>
+            </h1>
+        </header>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header d-flex align-items-center no-padding" >
+                        <div class="notice notice-info">
+                            <span class="fa fa-bandcamp" style="color: #45ABCD"></span>&nbsp;&nbsp;<strong jhiTranslate="auxiliumApp.vehiclePiece.home.createOrEditLabel">VehiclePiece</strong>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <form #myform="ngForm" novalidate>
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label class="form-control-label" jhiTranslate="auxiliumApp.vehiclePiece.label" for="field_label">Label</label>
+                                        <input type="text" class="form-control form-control-sm" name="label" id="field_label" [(ngModel)]="vehiclePiece.label" (blur)="trimLabel();" [pattern]="textPattern" required />
+                                        <small class="form-text text-danger" [hidden]="!myform.controls.label?.errors?.pattern" jhiTranslate="entity.validation.pattern" translateValues="{ pattern: 'label' }">
+                                            This field should follow pattern for "label".
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <label jhiTranslate="auxiliumApp.vehiclePiece.type" for="field_type">Brand</label>
+                                    <select class="form-control form-control-sm" id="field_type" name="type" [(ngModel)]="vehiclePiece.type" required>
+                                        <option [ngValue]="vehiclePieceTypeOption.id" *ngFor="let vehiclePieceTypeOption of vehiclePieceTypes">{{vehiclePieceTypeOption.label}}</option>
+                                    </select>
+                                </div>                               
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label style="width: 100%">&nbsp;</label>
+                                        <button *ngIf="!vehiclePiece.id" type="button" [disabled]=" myform.invalid"  (click)="save()" class="btn btn-sm btn-primary margin-right-5">
+                                            <span class="fa fa-save"></span>&nbsp; <span jhiTranslate="entity.action.save">Save</span>
+                                        </button>
+                                        <button *ngIf="vehiclePiece.id" type="button" [disabled]=" myform.invalid" (click)="save()" class="btn btn-sm btn-primary margin-right-5">
+                                            <span jhiTranslate="entity.action.aJour">update</span>
+                                        </button>
+                                        <button type="button" (click)="cancel()" class="btn btn-sm btn-default margin-right-5">
+                                        <span jhiTranslate="entity.action.cancel">cancel</span>
+                                        </button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header d-flex align-items-center no-padding" >
+                        <div class="notice notice-info">
+                            <strong jhiTranslate="auxiliumApp.vehiclePiece.home.title">Vehicle piece</strong>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-sm table-hover table-bordered" style="width: 100%">
+                                <thead style="color:white;background-color:#11859b">
+                                <tr>
+                                    <th><span jhiTranslate="auxiliumApp.vehiclePiece.label">Label</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.vehiclePiece.type">Type</span></th>
+                                    <th class="no-sort"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr *ngFor="let vehiclePiece of vehiclePieces">
+                                    <td>{{vehiclePiece.label}} </td>
+                                    <td>{{vehiclePiece.typeLabel}} </td>
+                                    <td class="text-right">
+                                        <div class="btn-group flex-btn-group-container">
+                                            <button type="button" (click)="edit(vehiclePiece.id)" class="btn btn-primary btn-sm">
+                                                <span class="fa fa-sm fa-pencil"></span>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity ProfileAccess.
+    -->
+    <changeSet id="20190622164402-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="business_entity_id"
+                                 baseTableName="profile_access"
+                                 constraintName="fk_profile_access_business_entity_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="business_entity"/>
+
+        <addForeignKeyConstraint baseColumnNames="functionality_id"
+                                 baseTableName="profile_access"
+                                 constraintName="fk_profile_access_functionality_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="functionality"/>
+
+        <addForeignKeyConstraint baseColumnNames="element_menu_id"
+                                 baseTableName="profile_access"
+                                 constraintName="fk_profile_access_element_menu_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="element_menu"/>
+
+        <addForeignKeyConstraint baseColumnNames="profile_id"
+                                 baseTableName="profile_access"
+                                 constraintName="fk_profile_access_profile_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="user_profile"/>
+
+    </changeSet>
+</databaseChangeLog>

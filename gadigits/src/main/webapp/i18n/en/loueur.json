@@ -1,0 +1,32 @@
+{
+    "auxiliumApp": {
+        "loueur" : {
+            "home": {
+                "title": "Loueurs",
+                "createLabel": "Create a new Loueur",
+                "createOrEditLabel": "Create or edit a Loueur",
+                "search": "Search for Loueur"
+            },
+            "created": "A new Loueur is created with identifier {{ param }}",
+            "updated": "A Loueur is updated with identifier {{ param }}",
+            "deleted": "A Loueur is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Loueur {{ id }}?"
+            },
+            "detail": {
+                "title": "Loueur"
+            },
+            "code": "Code",
+            "raisonSociale": "Raison Sociale",
+            "matriculeFiscale": "Matricule Fiscale",
+            "registreCommerce": "Registre Commerce",
+            "conventionne": "Conventionne",
+            "dateEffetConvention": "Date Effet Convention",
+            "dateFinConvention": "Date Fin Convention",
+            "nbrVehicules": "Nbr Vehicules",
+            "address": "Address",
+            "blocage": "Blocage",
+            "rib": "Rib"
+        }
+    }
+}

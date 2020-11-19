@@ -1,0 +1,31 @@
+{
+    "auxiliumApp": {
+        "apec" : {
+            "home": {
+                "title": "Apecs",
+                "createLabel": "Create a new Apec",
+                "createOrEditLabel": "Create or edit a Apec",
+                "search": "Search for Apec"
+            },
+            "created": "A new Apec is created with identifier {{ param }}",
+            "updated": "A Apec is updated with identifier {{ param }}",
+            "deleted": "A Apec is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Apec {{ id }}?"
+            },
+            "detail": {
+                "title": "Apec"
+            },
+            "dateGeneration": "Date Generation",
+            "isComplementaire": "Is Complementaire",
+            "participationGa": "Participation Ga",
+            "participationAssure": "Participation Assure",
+            "participationVetuste": "Participation Vetuste",
+            "participationRpc": "Participation Rpc",
+            "depacementPlafond": "Depacement Plafond",
+            "estimationFranchise": "Estimation Franchise",
+            "commentaire": "Commentaire",
+            "affectReparateur": "Affect Reparateur"
+        }
+    }
+}

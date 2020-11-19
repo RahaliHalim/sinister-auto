@@ -1,0 +1,126 @@
+<!-- Breadcrumb-->
+<div class="breadcrumb-holder">
+    <div class="container-fluid">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="/"><span class="fa fa-home"></span>&nbsp;&nbsp;<span jhiTranslate="global.menu.home">Home</span></a></li>
+            <li class="breadcrumb-item"><a routerLink="/vehicle-brand-model"><span jhiTranslate="auxiliumApp.reason.home.title">Reason</span></a></li>
+        </ul>
+    </div>
+</div>
+<section class="forms">
+    <div class="container-fluid">
+        <!-- Page Header-->
+        <header style="padding-top: 1rem; padding-bottom: 1rem;">
+            <h1 class="h3 display">
+                <jhi-alert-error></jhi-alert-error>
+                <jhi-alert></jhi-alert>
+            </h1>
+        </header>
+
+        <div class="row">
+            <div class="col-lg-12" *ngIf="permissionToAccess.canCreate">
+                <div class="card">
+                    <div class="card-header d-flex align-items-center no-padding" >
+                        <div class="notice notice-info">
+                            <span class="fa fa-bandcamp" style="color: #45ABCD"></span>&nbsp;&nbsp;<strong jhiTranslate="auxiliumApp.reason.home.createOrEditLabel">VehicleBrandModel</strong>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <form #myform="ngForm" novalidate>
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label class="form-control-label" jhiTranslate="auxiliumApp.reason.label" for="field_label">label</label>
+                                        <input type="text" class="form-control form-control-sm" name="label" id="field_label" required [(ngModel)]="reason.label" [pattern]="textPattern"/>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">    
+                                    <div class="form-group">
+                                        <label class="form-control-label" jhiTranslate="auxiliumApp.reason.responsible" for="field_responsible">Responsible</label>
+                                        <select class="form-control form-control-sm" name="responsible" [(ngModel)]="reason.responsible" id="field_responsible" required>
+                                            <option value="ga" jhiTranslate="auxiliumApp.ResponsibleEnum.ga">ga</option>
+                                            <option value="agent" jhiTranslate="auxiliumApp.ResponsibleEnum.agent">agent</option>
+                                            <option value="company" jhiTranslate="auxiliumApp.ResponsibleEnum.company">company</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label jhiTranslate="auxiliumApp.reason.step" for="field_step">Step</label>
+                                        <select class="form-control form-control-sm" id="field_step" name="step" [(ngModel)]="reason.stepId" required>
+                                            <option [ngValue]="stepOption.id" *ngFor="let stepOption of steps; trackBy: trackStepById">{{stepOption.label}}</option>
+                                        </select>
+                                    </div>
+                                </div>                               
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label style="width: 100%">&nbsp;</label>
+                                        <button  *ngIf="!reason.id" type="button" [disabled]=" myform.invalid || existLabel"  (click)="save()" class="btn btn-sm btn-primary margin-right-5">
+                                            <span class="fa fa-save"></span>&nbsp; <span jhiTranslate="entity.action.save">Save</span>
+                                        </button>
+                                        <button *ngIf="reason.id" type="button" [disabled]=" myform.invalid || existLabel" (click)="save()" class="btn btn-sm btn-primary margin-right-5">
+                                           <span jhiTranslate="entity.action.aJour">update</span>
+                                        </button>
+                                        <button type="button" (click)="cancel()" class="btn btn-sm btn-default margin-right-5">
+                                            <span jhiTranslate="entity.action.cancel">cancel</span>
+                                        </button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header d-flex align-items-center no-padding" >
+                        <div class="notice notice-info">
+                           
+                            <strong jhiTranslate="auxiliumApp.reason.home.title">Vehicle brand</strong>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <br/>
+                        <div class="table-responsive">
+                            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-sm table-hover table-bordered" style="width: 100%">
+                                <thead style="color:white;background-color:#11859b">
+                                <tr>
+                                <th><span jhiTranslate="auxiliumApp.reason.label">Label</span></th>
+                                <th><span jhiTranslate="auxiliumApp.reason.responsible">Responsible</span></th>
+                                <th><span jhiTranslate="auxiliumApp.reason.step">Step</span></th>
+                                <th class="no-sort"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr *ngFor="let reason of reasons;trackBy: trackId">
+                                    <td>{{reason.label}}</td>
+                                    <td jhiTranslate="{{'auxiliumApp.ResponsibleEnum.' + reason.responsible}}">{{reason.responsible}}</td>
+                                    <td>{{reason.stepLabel}}</td>
+                                    <td class="text-right">
+                                        <div class="btn-group flex-btn-group-container">
+                                            <button type="button" (click)="edit(reason.id)" class="btn btn-primary btn-sm" *ngIf="permissionToAccess.canUpdate">
+                                                <span class="fa fa-sm fa-pencil"></span>
+                                            </button>
+                                            <button type="button" *ngIf="reason.active" (click)="disable(reason.id)" class="btn btn-default btn-sm">
+                                                <span class="fa fa-thumbs-down" style="color: red"></span>
+                                            </button>
+                                            <button type="button" *ngIf="!reason.active" (click)="enable(reason.id)" class="btn btn-default btn-sm">
+                                                <span class="fa fa-thumbs-up" style="color: green"></span>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

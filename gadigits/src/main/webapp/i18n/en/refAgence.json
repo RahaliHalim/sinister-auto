@@ -1,0 +1,28 @@
+{
+    "auxiliumApp": {
+        "refAgence" : {
+            "home": {
+                "title": "Ref Agences",
+                "createLabel": "Create a new Ref Agence",
+                "createOrEditLabel": "Create or edit a Ref Agence",
+                "search": "Search for Ref Agence"
+            },
+            "created": "A new Ref Agence is created with identifier {{ param }}",
+            "updated": "A Ref Agence is updated with identifier {{ param }}",
+            "deleted": "A Ref Agence is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Ref Agence {{ id }}?"
+            },
+            "detail": {
+                "title": "Ref Agence"
+            },
+            "nom": "Nom",
+            "code": "Code",
+            "telephone": "Telephone",
+            "adresse": "Adresse",
+            "compagnie": "Compagnie",
+            "gouvernorat": "Gouvernorat",
+            "ville": "Ville"
+        }
+    }
+}

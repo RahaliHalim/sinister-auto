@@ -1,0 +1,27 @@
+{
+    "auxiliumApp": {
+        "tiers" : {
+            "home": {
+                "title": "Tiers",
+                "createLabel": "Tiers",
+                "createOrEditLabel": "Create or edit a Tiers",
+                "search": "Search for Tiers"
+            },
+            "created": "A new Tiers is created with identifier {{ param }}",
+            "updated": "A Tiers is updated with identifier {{ param }}",
+            "deleted": "A Tiers is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Tiers {{ id }}?"
+            },
+            "detail": {
+                "title": "Tiers"
+            },
+            "prenom": "Prenom",
+            "nom": "Nom",
+            "debutValidite": "Debut Validite",
+            "finValidite": "Fin Validite",
+            "compagnieAssurance": "Compagnie Assurance",
+            "immatriculation": "Immatriculation"
+        }
+    }
+}

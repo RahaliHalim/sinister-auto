@@ -1,0 +1,1133 @@
+<form name="editForm" role="form" novalidate #editForm="ngForm">
+    <!-- Breadcrumb-->
+    <div class="breadcrumb-holder">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-10">
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a routerLink="/"><span class="fa fa-home"></span>&nbsp;&nbsp;<span	jhiTranslate="global.menu.home">Home</span></a></li>
+                <li class="breadcrumb-item" active><span jhiTranslate="auxiliumApp.devis.home.createOrEditLabel">Create or edit a Devis</span></li>
+            </ul>
+        </div>
+                <div class="col-sm-2">
+                    <button type="button" class="btn btn-primary btn-sm pull-right" (click)="getGAEstimateCreationUrl();addListenerToIframe($event);" style="margin-top:15px" >
+                    <span class="fa fa-edit"></span> <span>GA Estimate</span>
+                </button></div>
+            </div>
+    </div>
+    </div>
+
+	<iframe *ngIf="useGtEstimate" id="theIframe" [src]="gaestimateUrl" width="100%" height="2000px" frameBorder="0"></iframe>
+    <section class="forms" *ngIf="!useGtEstimate">
+        <div class="container-fluid">
+            <!-- Page Header-->
+            <header>
+                <h1 class="h3 display"><jhi-alert-error></jhi-alert-error></h1>
+            </header>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        
+                        <form name="editForm" role="form" novalidate #editForm="ngForm">
+                            <div class="modal-body">
+                                    <div class="card-header d-flex align-items-center no-padding" >
+                                        <div class="notice notice-info"><strong jhiTranslate="auxiliumApp.prestationPEC.home.title">Prestation PECS</strong>      
+                                            </div>
+                                    </div>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <label class="form-control-label" jhiTranslate="auxiliumApp.dossier.dateAccident" for="field_dateAccident">Date Accident</label>
+                                        <div class="input-group">
+                                            <input id="field_dateAccident" type="text" class="form-control form-control-sm" name="dateAccident" [(ngModel)]="dossier.dateAccident" readonly/>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <label class="form-control-label" jhiTranslate="auxiliumApp.prestationPEC.referencePrestation" for="field_reference">Reference</label>
+                                        <input type="text" class="form-control form-control-sm" name="referencePrestation" id="field_reference" [(ngModel)]="prestationpec.prestationReference" readonly />                
+                                    </div> 
+                                    <div class="col-sm-4">
+                                        <label jhiTranslate="auxiliumApp.prestationPEC.mode" for="field_mode">Mode</label>
+                                        
+                                        <input class="form-control form-control-sm" name="mode" id="field_mode" [(ngModel)]="prestationpec.modeLibelle" readonly>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <label jhiTranslate="auxiliumApp.contratAssurance.numeroContrat" for="field_numeroContrat">numero Contrat
+                                        </label>
+                                        <input type="number" class="form-control form-control-sm" name="numeroContrat" id="field_numeroContrat" [(ngModel)]="contratAssurance.numeroContrat" readonly/>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <label jhiTranslate="auxiliumApp.contratAssurance.compagnie" for="field_CompagnieNom">Compagnie
+                                        </label>
+                                        <input type="text" class="form-control form-control-sm" name="compagnieNom" id="field_compagnieNom" [(ngModel)]="compagnie" maxlength="100"
+                                            readonly />
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <label jhiTranslate="auxiliumApp.contratAssurance.agence" for="field_agence">Agence</label>
+                                        <input id="field_agence" type="text" class="form-control form-control-sm" name="agence" [(ngModel)]="contratAssurance.agenceNom" readonly />      
+                                    </div>
+                                    <div class="form-group col-sm-4">
+                                        <label jhiTranslate="auxiliumApp.vehiculeAssure.immatriculationVehicule" for="field_immatriculationVehicule">Immatriculation Vehicule</label>
+                                        <input type="text" class="form-control form-control-sm" name="vehiculeImmatriculationVehicule" id="field_immatriculationVehicule" [(ngModel)]="contratAssurance.vehiculeImmatriculationVehicule" readonly  />
+                                    </div>    
+                                    <div class="form-group col-sm-4">
+                                        <label jhiTranslate="auxiliumApp.contratAssurance.modele" for="field_modeleLibelle">Modele</label>
+                                        <input id="field_modeleLibelle" type="text" class="form-control form-control-sm" name="modeleLibelle" [(ngModel)]="contratAssurance.modeleLibelle" readonly />
+                                    </div>
+                                    <div class="form-group col-sm-4">
+                                        <label jhiTranslate="auxiliumApp.contratAssurance.marque" for="field_marqueLibelle">Marque</label>
+                                        <input type="text" class="form-control form-control-sm" name="marqueLibelle" id="field_marqueLibelle" [(ngModel)]="contratAssurance.marqueLibelle" readonly/>
+                                    </div>
+                                    <div class="form-group col-sm-4">
+                                        <label jhiTranslate="auxiliumApp.vehiculeAssure.numeroChassis" for="field_numeroChassis">Numero Chassis</label>
+                                        <input type="text" class="form-control form-control-sm" name="numeroChassis" id="field_numeroChassis" [(ngModel)]="vehicule.numeroChassis" readonly />
+                                    </div>    
+                                    <div class="col-sm-4">
+                                        <label jhiTranslate="auxiliumApp.contratAssurance.usage" for="field_usage"> Usage </label>
+                                        <select class="form-control form-control-sm" id="field_usage" name="usage" [(ngModel)]="contratAssurance.usageId" disabled>
+                                            <option [ngValue]="refUsageContratOption.id" *ngFor="let refUsageContratOption of refusagecontrats; trackBy: trackVehicleUsageById">{{refUsageContratOption.label}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-sm-4" >
+                                        <label for="field_usage"> </label>
+                                        <div *ngFor="let pieceJointe of piecesJointesConstat;">
+                                            <div *ngIf="pieceJointe.typeId">
+                                                <a (click)="generatePJ(pieceJointe)" style="color:dodgerblue"> {{pieceJointe.libelle}} </a>
+                                            </div>
+                                            <br>
+    
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group col-sm-4" >
+                                        
+                                        
+                                        <button type="submit" class="btn btn-primary btn-sm"
+                                        [routerLink]="['/', { outlets: { popup: 'prestation-pec/' + prestationpec.id + '/show'}}]" replaceUrl="true">
+                                        
+                                            <span>Visualiser Prestation PEC</span>
+                                        </button> 
+                                    </div>
+                                </div>
+
+                                <div class="row top-buffer">
+                                    </div>
+                                    <br/>
+
+                                <div *ngIf="expert == true">
+                                <div class="card-header d-flex align-items-center no-padding" >
+                                    <div class="notice notice-info"><strong>Expertise à distance</strong>      
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                    <label class="form-control-label" for="field_dateAccident">Date d'expertise</label>
+                                    <div class="input-group"> 
+                                        <input id="field_dateExpertise" type="text" class="form-control form-control-sm" name="dateExpertise" ngbDatepicker #dateExpertiseDp="ngbDatepicker" [(ngModel)]="devis.dateExpertise"/>
+                                        <span class="input-group-btn">
+                                            <button type="button" class="input-group-addon btn btn-sm btn-default" (click)="dateExpertiseDp.toggle()"><i class="fa fa-calendar"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                                    
+                                    <div class="col-sm-4">
+                                        <label class="form-control-label" for="field_reference">Valeur à neuf</label>
+                                        <input type="number" class="form-control form-control-sm" name="valeurNeuf" id="field_reference" [(ngModel)]="devis.valeurNeuf" />                
+                                    </div> 
+                                    <div class="col-sm-4">
+                                        <label for="field_mode">Valeur vénale</label>
+                                        
+                                        <input type="number" class="form-control form-control-sm" name="valeurVenale" id="field_mode" [(ngModel)]="devis.valeurVenale" >
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <label for="field_numeroContrat">Kilométrage
+                                        </label>
+                                        <input type="number" class="form-control form-control-sm" name="klm" id="field_numeroContrat" [(ngModel)]="devis.klm" />
+                                    </div>
+
+                                    <div class="col-sm-4">
+                                        <label for="field_CompagnieNom">Etat véhicule
+                                        </label>
+                                        <select class="form-control form-control-sm" name="etatVehicule" [(ngModel)]="devis.etatVehicule" id="field_natureIncident">
+                                            <option value="bonne">Bonne</option>
+                                            <option value="moyenne">Moyenne</option>
+                                            <option value="mauvaise">Mauvaise</option>
+                                        </select>
+                                    </div>
+                                    <!--div class="col-sm-4">
+                                        <input type="radio" class="form-control form-control-sm" value="bonne" name="etatVehicule" id="field_compagnieNom" [(ngModel)]="devis.etatVehicule" maxlength="100"
+                                             />Bonne
+                                        
+                                        <br>
+                                        <input type="radio" class="form-control form-control-sm" value="moyenne" name="moyenne" id="field_compagnieNom" [(ngModel)]="devis.etatVehicule" maxlength="100"
+                                        />Moyenne
+                                        <input type="radio" class="form-control form-control-sm" value="mauvaise" name="mauvaise" id="field_compagnieNom" [(ngModel)]="devis.etatVehicule" maxlength="100"
+                                        />Mauvaise
+                                    
+                                    
+                                          
+                                    </div-->
+                                    <div class="form-group col-sm-10" style="float: left;"> 
+                                        <label for="field_immatriculationVehicule" >Véhicule réparable</label>
+                                        <label for="" class="radio-inline">
+                                                <input type="radio" class="form-control form-control-sm" name="isVehiculeReparable" id="field_immatriculationVehicule" [(ngModel)]="devis.isVehiculeReparable" [value]="true"   />Oui
+                                        </label>
+                                        <label class="radio-inline">
+                                                <input type="radio" class="form-control form-control-sm" name="isVehiculeReparable" id="field_immatriculationVehicule" [(ngModel)]="devis.isVehiculeReparable" [value]="false"   />Non
+                                        </label>
+                                        
+                                        
+                                    </div>    
+                                    <div class="form-group col-sm-10" style="float: left;">
+                                        <label for="field_modeleLibelle">La concordance des circonstances de l'accidents avec les dégâts déclarés</label>
+                                        <input id="field_modeleLibelle" type="radio" class="form-control form-control-sm" name="isCia" [(ngModel)]="devis.isCia" [value]="true" />Oui
+                                        <input id="field_modeleLibelle" type="radio" class="form-control form-control-sm" name="isCia" [(ngModel)]="devis.isCia" [value]="false" />Non
+                                    </div>
+                                    <div class="form-group col-sm-10" style="float: left;">
+                                        <label for="field_marqueLibelle">Constat préliminaire</label>
+                                        <input type="radio" class="form-control form-control-sm" name="isConstatPre" id="field_marqueLibelle" [(ngModel)]="devis.isConstatPre" [value]="true" />Oui
+                                        <input type="radio" class="form-control form-control-sm" name="isConstatPre" id="field_marqueLibelle" [(ngModel)]="devis.isConstatPre" [value]="false" />Non
+                                    </div>
+                                    
+                                    
+                                    
+                                </div>
+                                </div>
+    
+    
+    
+                                <div class="row top-buffer">
+                                    </div>
+                                    <br/>
+                                    <div class="row" *ngIf=" reparateur == true">
+                                            <div class="col-lg-12">
+                                                <span class="anchor" id="formUserEdit"></span>
+                                                <div class="card">                                       
+                                                    <div class=" collapsible-card card-header align-items-center collapsed notice notice-info" data-toggle="collapse" href="#AssurDetails">
+                                                            <strong jhiTranslate="auxiliumApp.contratAssurance.assure">Détails assure</strong>
+                                                    </div>
+                                                    <div id="AssurDetails" class="card-body collapse">
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <div class="form-group">
+                                                                    <div class="row">
+                                                                        <div class="form-group col-sm-3">
+                                                                            <label jhiTranslate="auxiliumApp.assure.assure" for="field_assurePrenom">Assure</label>
+                                                                            <input type="text" class="form-control form-control-sm" name="assurePrenom" id="field_assurePrenom" [(ngModel)]="assureNom" readonly />
+                                                                        </div>
+                                                                        <div class="form-group col-sm-3">
+                                                                            <label jhiTranslate="auxiliumApp.assure.tel" for="field_assureTel">Assure phone</label>
+                                                                            <input type="text" class="form-control form-control-sm" name="assureTel" id="field_assureTel" [(ngModel)]="assureTel" readonly />
+                                                                        </div>
+                                                                        <div class="form-group col-sm-3">
+                                                                            <label jhiTranslate="auxiliumApp.assure.address" for="field_assureTel">Assure Adresse</label>
+                                                                            <input type="text" class="form-control form-control-sm" name="assureAddress" id="field_assureTel" [(ngModel)]="assureAdresse" readonly />
+                                                                        </div>
+                                                                        <div class="form-group col-sm-3">
+                                                                            <label jhiTranslate="auxiliumApp.assure.ville" for="field_assureTel">Assure ville</label>
+                                                                            <input type="text" class="form-control form-control-sm" name="assureVille" id="field_assureTel" [(ngModel)]="assureVille" readonly />
+                                                                        </div>
+    
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </div>
+
+
+                                    <div class="row top-buffer">
+                                    </div>
+                                    <br/>
+                                    <div class="row" >
+                                            <div class="col-lg-12">
+                                                <span class="anchor" id="formUserEdit"></span>
+                                                <div class="card">                                       
+                                                    <div class=" collapsible-card card-header align-items-center collapsed notice notice-info" data-toggle="collapse" href="#reparateurDetails">
+                                                            <strong>Détails Réparateur</strong>
+                                                    </div>
+                                                    <div id="reparateurDetails" class="card-body collapse">
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <div class="form-group">
+                                                                    <div class="row">
+                                                                        <div class="form-group col-sm-3">
+                                                                            <label class="form-control-label" for="field_reparateur">Nom et Prénom/Raison Sociale </label>
+                                                                            <input class="form-control form-control-sm" name="reparateur" id="field_reparateur" readonly [(ngModel)]="reparateurAffiche.personneMoraleRaisonSociale" />
+                                                    
+                                                                        </div>
+                                                                        
+    
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </div>
+    
+    
+                                    <div class="row top-buffer">
+                                    </div>
+                                    <br/>
+                                    <div class="row" *ngIf="expert != true">
+                                        <div class="col-lg-12">
+                                            <span class="anchor" id="formUserEdit"></span>
+                                            <div class="card">                                       
+                                                <div class=" collapsible-card card-header align-items-center collapsed notice notice-info" >
+                                                        <strong>Date Réception Véhicule</strong>
+                                                </div>                                           
+                                                <div class="card-body">
+                                                    <div class="row">                                                                                                               
+                                                        <div class="form-group col-sm-6">
+                                                            <label for="id" jhiTranslate="auxiliumApp.prestationPEC.dateReceptionVehicule">dateReceptionVehicule</label>
+                                                            <input id="field_dateReceptionVehicule" type="datetime-local" class="input input-sm" name="dateReceptionVehicule" [(ngModel)]="prestationpec.dateReceptionVehicule" *ngIf ="reparateur == true"/>
+                                                            <input id="field_dateReceptionVehicule" class="form-control input input-sm" name="dateReceptionVehicule" [(ngModel)]="prestationpec.dateReceptionVehicule" *ngIf ="expert == true" readonly />
+                                                            <input id="field_dateReceptionVehicule" class="form-control input input-sm" name="dateReceptionVehicule" [(ngModel)]="prestationpec.dateReceptionVehicule" *ngIf ="isResponsable == true && isGestionnaire == true"  readonly />
+                                                        </div>   
+                                                        <!--div class="form-group col-sm-6">
+                                                            <ngb-timepicker name="time" [(ngModel)]="time" class="bfh-timepicker" data-time="now"></ngb-timepicker>
+                                                        </div-->                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+    
+    
+                                    <div class="row top-buffer"></div>
+                                    <br/>
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <span class="anchor" id="formUserEdit"></span>
+                                                <div class="card">                                       
+                                                    <div class=" collapsible-card card-header align-items-center collapsed notice notice-info" >
+                                                        <strong>Photos avant réparation</strong>
+                                                    </div>                                              
+                                                    <div class="card-body">
+                                                        <div class="row">                                                                                                                    
+                                                           
+                                                            <div class="col-sm-3">
+                                                                <label for="field_assurePrenom">Face Avant</label>
+                                                            </div>
+                                                            <div class="col-sm-5">
+                                                                <input type="file" name="chemin" (change)="onFileChange($event)"  jhiTranslate="entity.action.addblob" (ngModelChange)="affichePieceFaceAvant() "/> 
+                                                            </div>
+                                                            
+                                                            <div class="col-sm-4">
+                                                                
+                                                                <div *ngFor="let pieceJointe of piecesJointesFaceAvant;">
+                                                                    <div *ngIf="pieceJointe.typeId">
+                                                                        <a (click)="generatePJ(pieceJointe)" style="color:dodgerblue"> {{pieceJointe.libelle}} </a>
+                                                                    </div>
+                                                                    <br>
+                            
+                                                                </div>
+                                                            </div>
+                                                            <br/><br/><br/>
+                                                            <div class="col-sm-3">
+                                                                <label for="field_assurePrenom">Latéral Gauche</label>
+                                                            </div>
+                                                            <div class="col-sm-5">
+                                                                <input type="file" name="chemin" (change)="onFileChangeLatGauche($event)"  jhiTranslate="entity.action.addblob"/> 
+                                                            </div>
+                                                            <div class="col-sm-4">
+                                                                <div *ngFor="let pieceJointe of piecesJointesLatGauche;">
+                                                                    <div *ngIf="pieceJointe.typeId">
+                                                                        <a (click)="generatePJ(pieceJointe)" style="color:dodgerblue"> {{pieceJointe.libelle}} </a>
+                                                                    </div>
+                                                                    <br>
+                            
+                                                                </div>
+                                                            </div>
+    
+                                                            <br/><br/><br/>
+                                                            <div class="col-sm-3">
+                                                                <label for="field_assurePrenom">Latéral Droit</label>
+                                                            </div>
+                                                            <div class="col-sm-5">
+                                                                <input type="file" name="chemin" (change)="onFileChangeLatDroit($event)"  jhiTranslate="entity.action.addblob"/> 
+                                                            </div>
+                                                            <div class="col-sm-4">
+                                                                <div *ngFor="let pieceJointe of piecesJointesLatDroit;">
+                                                                    <div *ngIf="pieceJointe.typeId">
+                                                                        <a (click)="generatePJ(pieceJointe)" style="color:dodgerblue"> {{pieceJointe.libelle}} </a>
+                                                                    </div>
+                                                                    <br>
+                            
+                                                                </div>
+                                                            </div>
+    
+                                                            <br/><br/><br/>
+                                                            <div class="col-sm-3">
+                                                                <label for="field_assurePrenom">N° Série</label>
+                                                            </div>
+                                                            <div class="col-sm-5">
+                                                                <input type="file" name="chemin" (change)="onFileChangeNumSerie($event)"  jhiTranslate="entity.action.addblob"/> 
+                                                            </div>
+                                                            <div class="col-sm-4">
+                                                                <div *ngFor="let pieceJointe of piecesJointesNumSerie;">
+                                                                    <div *ngIf="pieceJointe.typeId">
+                                                                        <a (click)="generatePJ(pieceJointe)" style="color:dodgerblue"> {{pieceJointe.libelle}} </a>
+                                                                    </div>
+                                                                    <br>
+                            
+                                                                </div>
+                                                            </div>
+    
+                                                            <br/><br/><br/>
+                                                            <div class="col-sm-3">
+                                                                <label for="field_assurePrenom">Immatriculation</label>
+                                                            </div>
+                                                            <div class="col-sm-5">
+                                                                <input type="file" name="chemin" (change)="onFileChangeImmatriculation($event)"  jhiTranslate="entity.action.addblob"/> 
+                                                            </div>
+                                                            <div class="col-sm-4">
+                                                                <div *ngFor="let pieceJointe of piecesJointesImmatriculation;">
+                                                                    <div *ngIf="pieceJointe.typeId">
+                                                                        <a (click)="generatePJ(pieceJointe)" style="color:dodgerblue"> {{pieceJointe.libelle}} </a>
+                                                                    </div>
+                                                                    <br>
+                            
+                                                                </div>
+                                                            </div>
+    
+                                                            <br/><br/><br/>
+                                                            <div class="col-sm-3">
+                                                                <label for="field_assurePrenom">Compteur</label>
+                                                            </div>
+                                                            <div class="col-sm-5">
+                                                                <input type="file" name="chemin" (change)="onFileChangeCompteur($event)"  jhiTranslate="entity.action.addblob"/> 
+                                                            </div>
+                                                            <div class="col-sm-4">
+                                                                <div *ngFor="let pieceJointe of piecesJointesCompteur;">
+                                                                    <div *ngIf="pieceJointe.typeId">
+                                                                        <a (click)="generatePJ(pieceJointe)" style="color:dodgerblue"> {{pieceJointe.libelle}} </a>
+                                                                    </div>
+                                                                    <br>
+                            
+                                                                </div>
+                                                            </div>
+                                                                                                              
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+    
+    
+                                   
+                                    <br/>
+                                   
+                                        
+    
+                                    <div class="row top-buffer"></div>
+                                    <br/>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <span class="anchor" id="formUserEdit"></span>
+                                            <div class="card">                                       
+                                                <div class=" collapsible-card card-header align-items-center collapsed notice notice-info" >
+                                                    <strong>Devis</strong>
+                                                </div>                                              
+                                                <div class="card-body">
+                                                    <div class="row"> 
+                                                        <!-- MO details list -->
+                                                        <div class="col-lg-12">
+                                                            <div class="card">
+                                                                <div class=" collapsible-card card-header align-items-center collapsed" data-toggle="collapse" href="#collapseDetailsMo">
+                                                                    <h4 jhiTranslate="auxiliumApp.detailsMo.home.title">Details mo</h4>
+                                                                </div>
+                                                                <div id="collapseDetailsMo" class="card-body collapse">
+                                                                    <div class="row">
+                                                                        <div class="col-sm-12">
+                                                                            <label *ngIf="!moPieces || moPieces.length == 0" style="color: red">Vous devez paramètrer des types de pièce !</label>
+                                                                            <input class="btn btn-sm btn-primary addnew float-sm-right" style="margin-bottom: 10px;" (click)="addNewMoLine()" value="Ajouter main d'oeuvre"  [disabled]="reparateur != true || etat == 'Refuse_Apres_Facture' || !moPieces || moPieces.length == 0">
+                                                                        </div>
+                                                                        <div class="col-sm-12">
+                                                                            <div class="table-responsive" *ngIf="detailsPiecesMO && detailsPiecesMO.length > 0">
+                                                                                <table class="table table-striped">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                            <th *ngIf = "expert == true"><span>Observation</span></th>
+                                                                                            <th *ngIf = "reparateur == true || isGestionnaire == true || isResponsable == true"><span>Observation</span></th>
+                                                                                            <th><span jhiTranslate="auxiliumApp.detailsMo.designation">Designation</span></th>
+                                                                                            <th><span jhiTranslate="auxiliumApp.detailsMo.typeIntervention">Type Intervention</span></th>
+                                                                                            <th><span jhiTranslate="auxiliumApp.grille.th">th</span></th>
+                                                                                            <th><span jhiTranslate="auxiliumApp.detailsMo.nombreHeures">Nombre Heures</span></th>
+                                                                                            <th><span jhiTranslate="auxiliumApp.detailsMo.totalHt">totalHt</span></th>
+    
+                                                                                            <th><span jhiTranslate="auxiliumApp.grille.tva">tva</span></th>
+                                                                                            <th><span jhiTranslate="auxiliumApp.grille.remise">remise</span></th>
+                                                                                            <th><span jhiTranslate="auxiliumApp.detailsMo.totalTtc">totalttc</span></th>
+                                                                                            <th></th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody>
+                                                                                        <tr *ngFor="let detailsPieceMo of detailsPiecesMO; let i=index">
+                                                                                            <td *ngIf = "expert == true">
+                                                                                                <select class="form-control form-control-sm" [(ngModel)]="detailsPieceMo.observation"  name ="moObservation[{{i}}]">
+                                                                                                    <option value="accordé">accordé</option>
+                                                                                                    <option value="non accordé">non accordé</option>
+                                                                                                    <option value="à réparer">à réparer </option>
+                                                                                                    <option value="à remplacer">à remplacer</option>
+                                                                                                </select>
+                                                                                            </td>
+                                                                                            <td *ngIf = "reparateur == true || isGestionnaireTechnique == true">
+                                                                                                <input type="text" class="input input-sm" [(ngModel)]="detailsPieceMo.observation" name="moObservation[{{i}}]" readonly/>
+                                                                                            </td>
+                                                                                            
+                                                                                            <td>
+                                                                                                <select class="btn-default btn-sm" style="background-color: white" name ="moDesignation[{{i}}]"  [(ngModel)]="detailsPieceMo.designationId" >
+                                                                                                    <option [ngValue]="designationOption.id" *ngFor="let designationOption of moPieces;  trackBy: trackPieceById">{{designationOption.reference}}</option>
+                                                                                                </select>
+                                                                                            </td>
+                                                                                            <td>
+                                                                                                <select class="btn-default btn-sm" style="background-color: white" [(ngModel)]="detailsPieceMo.typeInterventionId" name ="intervention[{{i}}]" (ngModelChange)="loadDetailsMo(detailsPieceMo)">
+                                                                                                    <option [ngValue]="reftypeinterventionOption.id" *ngFor="let reftypeinterventionOption of refOperationTypes">{{reftypeinterventionOption.libelle}}</option>
+                                                                                                </select>
+                                                                                            </td>
+                                                                                            <td><input type="number" class="input input-sm" style="width: 100px" [(ngModel)]="detailsPieceMo.prixUnit" name ="pu[{{i}}]" readonly/></td>
+                                                                                            <td><input type="text" class="input input-sm" style="width: 100px" [(ngModel)]="detailsPieceMo.nombreHeures" (ngModelChange)="changeHourCount(detailsPieceMo)"  name ="nombreHeures[{{i}}]" /></td>
+                                                                                            <td><input type="number" class="input input-sm" style="width: 100px" [(ngModel)]="detailsPieceMo.totalHt" name ="moTht[{{i}}]" readonly /></td>
+    
+                                                                                            <td><input type="number" class="input input-sm" style="width: 100px" [(ngModel)]="detailsPieceMo.tva" name ="tva[{{i}}]" readonly /></td>
+                                                                                            <td><input type="number" class="input input-sm" style="width: 100px" [(ngModel)]="detailsPieceMo.discount" name ="discount[{{i}}]" /></td>
+                                                                                            <td><input type="number" class="input input-sm" style="width: 100px" [(ngModel)]="detailsPieceMo.totalTtc" name ="moTtc[{{i}}]" /></td>
+                                                                                            <td><div class="btn-group flex-btn-group-container"><a (click)="removeMoLine(detailsPieceMo, i)" class="btn btn-sm btn-default"><span class="fa fa-remove" style="color: red"></span></a></div></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td></td>
+                                                                                            <td></td>
+                                                                                            <td></td>
+                                                                                            <td></td>
+                                                                                            <td>{{ getSum4() }}</td>
+                                                                                            <td></td>
+                                                                                            <td></td>
+                                                                                            <td>{{ getSum7() }}</td>
+                                                                                            <td></td>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                                <div class="row justify-content-center"></div>
+                                                                            </div>
+    
+                                                                        </div>
+                                                                    </div>
+    
+    
+    
+                                                                </div>
+                                                            </div>
+                                                        </div>
+    
+                                                        <!-- home peinture list -->
+                                                        <div class="col-lg-12">
+                                                            <div class="card">
+                                                                <div class=" collapsible-card card-header align-items-center collapsed" data-toggle="collapse" href="#collapseHomePaint">
+                                                                    <h4 jhiTranslate="auxiliumApp.detailsPieces.homePeinture">Home Peinture</h4>
+                                                                </div>
+                                                                <div id="collapseHomePaint" class="card-body collapse">
+                                                                    <div class="row">
+                                                                        <div class="col-sm-12">
+                                                                            <label *ngIf="!ingredientPieces || ingredientPieces.length == 0" style="color: red">Vous devez paramètrer des types de pièce !</label>
+                                                                            <input class="btn btn-sm btn-primary addnew float-sm-right" style="margin-bottom: 10px;" (click)="addNewPieceLine(detailsPiecesIngredient)" value="Ajouter ingrédient de peinture"  [disabled]="reparateur != true || etat == 'Refuse_Apres_Facture' || !ingredientPieces || ingredientPieces.length == 0">
+                                                                        </div>
+                                                                        <div class="col-sm-12">
+                                                                            <div class="table-responsive" *ngIf="detailsPiecesIngredient && detailsPiecesIngredient.length > 0">
+                                                                                <table class="table table-striped">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                            <th *ngIf = "expert == true"><span>Observation</span></th>
+                                                                                            <th *ngIf = "reparateur == true || isResponsable == true || isGestionnaire == true"><span>Observation</span></th>
+                                                                                            <th><span jhiTranslate="auxiliumApp.detailsPieces.designation">Designation</span></th>
+                                                                                            <th><span jhiTranslate="auxiliumApp.detailsPieces.prixUnit">Prix Unit</span></th>
+                                                                                            <th><span jhiTranslate="auxiliumApp.detailsPieces.quantite">Quantite</span></th>
+                                                                                            <th><span jhiTranslate="auxiliumApp.detailsMo.totalHt">totalHt</span></th>
+                                                                                            <th><span jhiTranslate="auxiliumApp.detailsPieces.tva">Tva</span></th>
+                                                                                            <th><span jhiTranslate="auxiliumApp.grille.remise">remise</span></th>
+                                                                                            <th><span jhiTranslate="auxiliumApp.detailsMo.totalTtc">totalttc</span></th>
+                                                                                            <th></th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody>
+                                                                                        <tr *ngFor="let dpIngredient of detailsPiecesIngredient ; let i=index">
+                                                                                            <td *ngIf = "expert == true">
+                                                                                                <select class="form-control form-control-sm" [(ngModel)]="dpIngredient.observation" name ="dpIngredientObservation[{{i}}]">
+                                                                                                    <option value="accordé">accordé</option>
+                                                                                                    <option value="non accordé">non accordé</option>
+                                                                                                    <option value="à réparer">à réparer </option>
+                                                                                                    <option value="à remplacer">à remplacer</option>
+                                                                                                </select>      
+                                                                                            </td>  
+                                                                                            <td *ngIf = "reparateur == true || isGestionnaire == true || isResponsable == true">
+                                                                                                <input type="text" class="input input-sm" [(ngModel)]="dpIngredient.observation" name="dpIngredientObservation[{{i}}]" readonly/>
+                                                                                            </td>                                     
+                                                                                            <td>
+                                                                                                <select class="btn-default btn-sm" style="background-color: white" name="ingrDesignation[{{i}}]" [(ngModel)]="dpIngredient.designationId" *ngIf = "reparateur == true" style="width: 100px">
+                                                                                                    <option [ngValue]="designationOption.id" *ngFor="let designationOption of ingredientPieces;  trackBy: trackPieceById">{{designationOption.reference}}</option>
+                                                                                                </select>
+                                                                                                <input type="number" class="input input-sm" [(ngModel)]="dpIngredient.designationId" name="ingrDesignation[{{i}}]" readonly *ngIf = "reparateur != true" style="width: 100px"/>
+                                                                                            </td>
+                                                                                            <td>
+                                                                                                <input type="number" class="input input-sm" [(ngModel)]="dpIngredient.prixUnit" (ngModelChange)="calculateTotalHt(dpIngredient, 1)" name="prixUnit[{{i}}]"  *ngIf = "reparateur == true" style="width: 100px"/>
+                                                                                                <input type="number" class="input input-sm" [(ngModel)]="dpIngredient.prixUnit" name="prixUnit[{{i}}]" readonly *ngIf = "reparateur != true" style="width: 100px"/>
+                                                                                            </td>
+                                                                                            <td>
+                                                                                                <input type="number" class="input input-sm" [(ngModel)]="dpIngredient.quantite" (ngModelChange)="calculateTotalHt(dpIngredient, 1)" name="quantite[{{i}}]" *ngIf = "reparateur == true" style="width: 100px"/>
+                                                                                                <input type="number" class="input input-sm" [(ngModel)]="dpIngredient.quantite" name="quantite[{{i}}]" *ngIf = "reparateur != true" readonly style="width: 100px"/>
+                                                                                            </td>
+                                                                                            <td><input type="number" class="input input-sm"  [value]="dpIngredient.totalHt"  name="ingrTht[{{i}}]" readonly style="width: 100px"/></td>
+                                                                                            <td>
+                                                                                                <input type="number" class="input input-sm" [(ngModel)]="dpIngredient.tva" (ngModelChange)="calculateTotalTtc(dpIngredient, 1)" name="tva[{{i}}]"  *ngIf = "reparateur == true" style="width: 100px"/>
+                                                                                                <input type="number" class="input input-sm" [(ngModel)]="dpIngredient.tva" name="tva[{{i}}]" readonly *ngIf = "reparateur != true" style="width: 100px"/>
+                                                                                            </td>
+                                                                                            <td><input type="text" class="input input-sm"  [(ngModel)]="dpIngredient.discount"  (ngModelChange)="changeDiscountCount(dpIngredient, 1)" name ="discountIng[{{i}}]" *ngIf ="reparateur == true || expert == true || isGestionnaire == true || isResponsable == true " style="width: 100px"/></td>
+                                            
+                                                                                            <td><input type="number" class="input input-sm" [(ngModel)]="dpIngredient.totalTtc"  name="ingrTtc[{{i}}]" readonly *ngIf = "reparateur == true || expert == true || isGestionnaireTechnique == true " style="width: 100px"/></td>
+                                                                                            <td><div class="btn-group flex-btn-group-container"><a (click)="removeIngredientLine(dpIngredient, i)" class="btn btn-sm btn-default"><span class="fa fa-remove" style="color: red"></span></a></div></td>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                                <div class="row justify-content-center"></div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+    
+                                                        <!-- home fourniture list -->      
+                                                        <div class="col-lg-12">
+                                                            <div class="card">
+                                                                <div class=" collapsible-card card-header align-items-center collapsed" data-toggle="collapse" href="#collapseHomeFourniture">
+                                                                    <h4 jhiTranslate="auxiliumApp.detailsPieces.homeFourniture">Home fourniture</h4>
+                                                                </div>
+                                                                <div id="collapseHomeFourniture" class="card-body collapse">
+                                                                    <div class="row">
+                                                                        <div class="col-sm-12">
+                                                                            <label *ngIf="!fourniturePieces || fourniturePieces.length == 0" style="color: red">Vous devez paramètrer des types de pièce !</label>
+                                                                            <input class="btn btn-sm btn-primary addnew float-sm-right" style="margin-bottom: 10px;" (click)="addNewPieceLine(detailsPiecesFourniture)" value="Ajouter petite fourniture"  [disabled]="reparateur != true || etat == 'Refuse_Apres_Facture' || !fourniturePieces || fourniturePieces.length == 0">
+                                                                        </div>
+                                                                        <div class="col-sm-12">
+                                                                            <div class="table-responsive" *ngIf="detailsPiecesFourniture && detailsPiecesFourniture.length > 0">
+                                                                                <table class="table table-striped">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                            <th *ngIf = "expert == true"><span>Observation</span></th>
+                                                                                            <th *ngIf = "reparateur == true || isGestionnaire == true || isResponsable == true"><span>Observation</span></th>
+                                                                                            <th><span jhiTranslate="auxiliumApp.detailsPieces.designation">Designation</span></th>
+                                                                                            <th><span jhiTranslate="auxiliumApp.detailsPieces.prixUnit">Prix Unit</span></th>
+                                                                                            <th><span jhiTranslate="auxiliumApp.detailsPieces.quantite">Quantite</span></th>
+                                                                                            <th><span jhiTranslate="auxiliumApp.detailsMo.totalHt">totalHt</span></th>
+                                            
+                                                                                            <th><span jhiTranslate="auxiliumApp.detailsPieces.tva">Tva</span></th>
+                                                                                            <th><span jhiTranslate="auxiliumApp.grille.remise">remise</span></th>
+                                                                                            <th><span jhiTranslate="auxiliumApp.detailsMo.totalTtc">totalttc</span></th>
+                                                                                            <th></th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody>
+                                                                                        <tr *ngFor="let fourniture of detailsPiecesFourniture ; let i=index">
+                                                                                            <td *ngIf = "expert == true">
+                                                                                                <select class="form-control form-control-sm" [(ngModel)]="fourniture.observation" name ="fournObservation[{{i}}]">
+                                                                                                    <option value="accordé">accordé</option>
+                                                                                                    <option value="non accordé">non accordé</option>
+                                                                                                    <option value="à réparer">à réparer </option>
+                                                                                                    <option value="à remplacer">à remplacer</option>
+                                                                                                </select>  
+                                                                                            </td>
+                                                                                            <td *ngIf = "reparateur == true || isGestionnaireTechnique == true">
+                                                                                                <input type="text" class="input input-sm" [(ngModel)]="fourniture.observation" name="fournObservation[{{i}}]" readonly/>
+                                                                                            </td>
+                                                                                            <td>
+                                                                                                <select class="btn-default btn-sm" style="background-color: white" name="fournDesignation[{{i}}]" [(ngModel)]="fourniture.designationId" *ngIf = "reparateur == true" style="width: 100px">
+                                                                                                    <option [ngValue]="designationOption.id" *ngFor="let designationOption of fourniturePieces;  trackBy: trackPieceById">{{designationOption.reference}}</option>
+                                                                                                </select>
+                                                                                                <input type="number" class="input input-sm" [(ngModel)]="fourniture.designationId" name="fournDesignation[{{i}}]" readonly *ngIf = "reparateur != true" style="width: 100px"/>
+                                                                                            </td>
+                                                                                            <td>
+                                                                                                <input type="number" class="input input-sm" [(ngModel)]="fourniture.prixUnit" (ngModelChange)="calculateTotalHt(fourniture, 2)" name="fournPrixUnit[{{i}}]"  *ngIf = "reparateur == true" style="width: 100px"/>
+                                                                                                <input type="number" class="input input-sm" [(ngModel)]="fourniture.prixUnit" name="fournPrixUnit[{{i}}]" readonly *ngIf = "reparateur != true" style="width: 100px"/>
+                                                                                            </td>
+                                                                                            <td>
+                                                                                                <input type="number" class="input input-sm" [(ngModel)]="fourniture.quantite" (ngModelChange)="calculateTotalHt(fourniture, 2)" name="fournQuantite[{{i}}]" *ngIf = "reparateur == true" style="width: 100px"/>
+                                                                                                <input type="number" class="input input-sm" [(ngModel)]="fourniture.quantite" name="fournQuantite[{{i}}]" *ngIf = "reparateur != true" readonly style="width: 100px"/>
+                                                                                            </td>
+                                                                                            <td><input type="number" class="input input-sm"  [value]="fourniture.totalHt"  name="fournTht[{{i}}]" readonly style="width: 100px"/></td>
+                                            
+                                                                                            <td>
+                                                                                                <input type="number" class="input input-sm" [(ngModel)]="fourniture.tva" (ngModelChange)="calculateTotalTtc(fourniture, 2)" name="fournTva[{{i}}]"  *ngIf = "reparateur == true" style="width: 100px"/>
+                                                                                                <input type="number" class="input input-sm" [(ngModel)]="fourniture.tva" name="fournTva[{{i}}]" readonly *ngIf = "reparateur != true" style="width: 100px"/>
+                                                                                            </td>
+                                                                                            <td><input type="text" class="input input-sm"  [(ngModel)]="fourniture.discount"  (ngModelChange)="changeDiscountCount(fourniture, 2)" name ="discountFourn[{{i}}]" *ngIf ="reparateur == true || expert == true || isGestionnaire == true || isResponsable == true" style="width: 100px"/></td>
+                                                                                            <td><input type="number" class="input input-sm" [(ngModel)]="fourniture.totalTtc"  name="fournTtc[{{i}}]" readonly *ngIf = "reparateur == true || expert == true || isGestionnaireTechnique == true" style="width: 100px"/></td>
+                                                                                            <td><div class="btn-group flex-btn-group-container"><a (click)="removeFournitureLine(fourniture, i)" class="btn btn-sm btn-default"><span class="fa fa-remove" style="color: red"></span></a></div></td>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                                <div class="row justify-content-center"></div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+    
+                                                        <!-- home pieces list -->       
+                                                        <div class="col-lg-12">
+                                                            <div class="card">
+                                                                <div class=" collapsible-card card-header align-items-center collapsed" data-toggle="collapse" href="#collapseHomePieces">
+                                                                    <h4 jhiTranslate="auxiliumApp.detailsPieces.homeRechange">Home pieces</h4>
+                                                                </div>
+                                                                <div id="collapseHomePieces" class="card-body collapse">
+                                                                    <div class="row">
+                                                                        <div class="col-sm-12">
+                                                                            <label *ngIf="!moPieces || moPieces.length == 0" style="color: red">Vous devez paramètrer des types de pièce !</label>
+                                                                            <input class="btn btn-sm btn-primary addnew float-sm-right" style="margin-bottom: 10px;" (click)="addNewPieceLine(detailsPieces)" value="Ajouter pièce de rechange"  [disabled]="reparateur != true || etat == 'Refuse_Apres_Facture' || !moPieces || moPieces.length == 0">
+                                                                        </div>
+                                                                        <div class="col-sm-12">
+                                                                            <div class="table-responsive" *ngIf="detailsPieces && detailsPieces.length > 0">
+                                                                                <table class="table table-striped">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                            <th *ngIf = "expert == true"><span>Observation</span></th>
+                                                                                            <th *ngIf = "reparateur == true || isGestionnaire == true || isResponsable == true"><span>Observation</span></th>
+                                                                                            <th><span>Référence</span></th>
+                                                                                            <th *ngIf = "expert == true"><span jhiTranslate="auxiliumApp.detailsPieces.vetuste">vetuste</span></th>
+                                                                                            <th *ngIf = "expert == true"><span jhiTranslate="auxiliumApp.detailsPieces.mvht">MVHT</span></th>
+                                                                                            <th *ngIf = "expert == true"><span jhiTranslate="auxiliumApp.detailsPieces.mvttc">MVTTC</span></th>
+                                                                                            <th><span jhiTranslate="auxiliumApp.detailsPieces.designation">Designation</span></th>
+                                                                                            <th><span jhiTranslate="auxiliumApp.detailsPieces.prixUnit">Prix Unit</span></th>
+                                                                                            <th><span>Nature Pièce</span></th>
+                                                                                            <th><span jhiTranslate="auxiliumApp.detailsPieces.quantite">Quantite</span></th>
+                                                                                            <th><span jhiTranslate="auxiliumApp.detailsMo.totalHt">totalHt</span></th>
+                                            
+                                                                                            <th><span jhiTranslate="auxiliumApp.detailsPieces.tva">Tva</span></th>
+                                                                                            <th><span jhiTranslate="auxiliumApp.grille.remise">remise</span></th>
+                                                                                            <th><span jhiTranslate="auxiliumApp.detailsMo.totalTtc">totalttc</span></th>
+                                                                                            <th></th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody>
+                                                                                        <tr *ngFor="let pieces of detailsPieces ; let i=index">
+                                                                                            <td *ngIf = "expert == true">
+                                                                                                <select class="form-control form-control-sm" [(ngModel)]="pieces.observation" name ="piecesObservation[{{i}}]">
+                                                                                                    <option value="accordé">accordé</option>
+                                                                                                    <option value="non accordé">non accordé</option>
+                                                                                                    <option value="à réparer">à réparer </option>
+                                                                                                    <option value="à remplacer">à remplacer</option>
+                                                                                                </select>  
+                                                                                            </td>
+                                                                                            <td *ngIf = "reparateur == true || isGestionnaire == true || isResponsable == true">
+                                                                                                <input type="text" class="input input-sm" [(ngModel)]="pieces.observation" name="piecesObservation[{{i}}]" readonly/>
+                                                                                            </td>
+                                                                                            <td><input type="number" class="input input-sm" style="width: 100px" [(ngModel)]="pieces.reference" name ="reference[{{i}}]" min="0"/></td>
+                                                                                            <td *ngIf = "expert == true"><input type="number" class="input input-sm" [(ngModel)]="pieces.vetuste" name="vetuste" style="width: 100px" (ngModelChange)="calculateVetuste(pieces)"/></td>
+                                            
+                                                                                            <td *ngIf = "expert == true"><input type="number" class="input input-sm" [value]="resTotalHt"   name="vetusteHt[{{i}}]" readonly style="width: 100px"/></td>
+                                            
+                                                                                            <td *ngIf = "expert == true"><input type="number" class="input input-sm" [value]="pieces.vetuste*pieces.totalTtc/100 | number"  name="vetusteTtc[{{i}}]" readonly style="width: 100px"/></td>
+                                            
+                                                                                            <td>
+                                                                                                <select class="btn-default btn-sm" style="background-color: white" name="piecDesignation[{{i}}]" [(ngModel)]="pieces.designationId" *ngIf = "reparateur == true" style="width: 100px">
+                                                                                                    <option [ngValue]="designationOption.id" *ngFor="let designationOption of moPieces;  trackBy: trackPieceById">{{designationOption.reference}}</option>
+                                                                                                </select>
+                                                                                                <input type="number" class="input input-sm" [(ngModel)]="pieces.designationId" name="piecDesignation[{{i}}]" readonly *ngIf = "reparateur != true" style="width: 100px"/>
+                                                                                            </td>
+                                                                                            <td>
+                                                                                                <input type="number" class="input input-sm" [(ngModel)]="pieces.prixUnit" (ngModelChange)="calculateTotalHt(pieces, 3)" name="piecPrixUnit[{{i}}]"  *ngIf = "reparateur == true" style="width: 100px"/>
+                                                                                                <input type="number" class="input input-sm" [(ngModel)]="pieces.prixUnit" name="piecPrixUnit[{{i}}]" readonly *ngIf = "reparateur != true" style="width: 100px"/>
+                                                                                            </td>
+                                                                                            <td>
+                                                                                                <select class="btn-default btn-sm" style="background-color: white" name="naturePiece[{{i}}]" [(ngModel)]="pieces.naturePiece" id="field_naturePiece" style="width: 100px">
+                                                                                                    <option value="ORIGINE">Origine</option>
+                                                                                                    <option value="GENERIQUE">Générique</option>
+                                                                                                    <option value="CASSE">Casse</option>
+                                                                                                </select>
+                                                                                            </td>
+                                                                                            <td>
+                                                                                                <input type="number" class="input input-sm" [(ngModel)]="pieces.quantite" (ngModelChange)="calculateTotalHt(pieces, 3)" name="piecQuantite[{{i}}]" *ngIf = "reparateur == true" style="width: 100px" min="0"/>
+                                                                                                <input type="number" class="input input-sm" [(ngModel)]="pieces.quantite" name="piecQuantite[{{i}}]" *ngIf = "reparateur != true" readonly style="width: 100px"/>
+                                                                                            </td>
+                                                                                            <td><input type="number" class="input input-sm"  [value]="pieces.totalHt"  name="piecTht[{{i}}]" readonly style="width: 100px"/></td>
+                                            
+                                                                                            <td>
+                                                                                                <input type="number" class="input input-sm" [(ngModel)]="pieces.tva" (ngModelChange)="calculateTotalTtc(pieces, 3)" name="piecTva[{{i}}]"  *ngIf = "reparateur == true" style="width: 100px"/>
+                                                                                                <input type="number" class="input input-sm" [(ngModel)]="pieces.tva" name="piecTva[{{i}}]" readonly *ngIf = "reparateur != true" style="width: 100px"/>
+                                                                                            </td>
+                                                                                            <td><input type="text" class="input input-sm"  [(ngModel)]="pieces.discount"  (ngModelChange)="changeDiscountCount(pieces, 3)" name ="discountPiece[{{i}}]" *ngIf ="reparateur == true || expert == true || isGestionnaire == true || isResponsable == true " style="width: 100px"/></td>
+                                                                                            <td><input type="number" class="input input-sm" [(ngModel)]="pieces.totalTtc"  name="piecTtc[{{i}}]" readonly *ngIf = "reparateur == true || expert == true || isGestionnaireTechnique == true " style="width: 100px"/></td>
+                                                                                            <td><div class="btn-group flex-btn-group-container"><a (click)="removePieceLine(pieces, i)" class="btn btn-sm btn-default"><span class="fa fa-remove" style="color: red"></span></a></div></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td></td>
+                                                                                            <td></td>
+                                                                                            <td></td>
+                                                                                            <td></td>
+                                                                                            <td></td>
+                                                                                            <td>{{ getSumPieceHT() }}</td>
+                                                                                            <td></td>
+                                                                                            <td></td>
+                                                                                            <td>{{ getSumPieceTTC() }}</td>
+                                                                                            <td></td>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                                <div class="row justify-content-center"></div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+    
+                                                        <div class="row top-buffer"></div>
+                                                        <br/>
+    
+                                                        
+                                                            <div class="col-lg-2">
+    
+                                                            </div>
+                                                            <div class="col-lg-8">
+                                                                <span class="anchor" id="formUserEdit"></span>
+                                                                <div class="card">                                       
+                                                                    <div class="card-header align-items-center notice-info" >
+                                                                        <strong>Total Réparation</strong> 
+                                                                                                                                      
+                                                                    </div>  
+                                                                    
+                                                                    <div class="card-body">
+                                                                        <div class="row">
+                                                                            <div class="form-group col-sm-3" *ngIf="devis.expertId">
+                                                                                <label jhiTranslate="auxiliumApp.devis.expert" for="expertId">Expert</label>
+                                                                                <input id="expertId" type="text" class="form-control input input-sm" name="expert" [(ngModel)]="morale.raisonSociale" readonly/>
+                                                                            </div>
+                                                                            <div class="form-group col-sm-3">
+                                                                                <label jhiTranslate="auxiliumApp.devis.droitTimbre">droitTimbre</label>
+                                                                                <input id="field_droitTimbre" type="number" class="form-control input input-sm" name="droitTimbre" [(ngModel)]="primaryQuotation.stampDuty" (ngModelChange)="changeDroitTimbre()" />
+                                                                                <input id="field_droitTimbre" type="number" class="form-control input input-sm" name="droitTimbre" [(ngModel)]="primaryQuotation.stampDuty" *ngIf ="isGestionnaire == true || isResponsable == true || expert ==true || etat == 'Refuse_Apres_Facture'" readonly/>
+                                                                            </div>
+                                                                            <div class="form-group col-sm-3">
+                                                                                <label jhiTranslate="auxiliumApp.devis.totalTtc">totalTtc</label>
+                                                                                <input id="field_totalTtc" type="text" class="form-control input input-sm" name="totalTtc" [(ngModel)]="primaryQuotation.totalTtc" readonly/>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                       
+                                                        
+                                                        
+                                                            
+                                                       
+    
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+    
+    
+    
+    
+    
+                                   
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <span class="anchor" id="formUserEdit"></span>
+                                            <div class="card">                                       
+                                                <div class=" collapsible-card card-header align-items-center collapsed notice notice-info" data-toggle="collapse" href="#observationDetails">
+                                                    <strong jhiTranslate="auxiliumApp.observation.home.title">Observations</strong>
+                                                </div>                                                       
+                                                    <div id="observationDetails" class="card-body collapse">
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <button class="btn btn-sm btn-primary addnew float-sm-right" [routerLink]="['/', { outlets: { popup: ['new-observation'] } }]">
+                                                                    <span class="fa fa-plus"></span>
+                                                                    <span  jhiTranslate="auxiliumApp.observation.home.createLabel">Create new Observation</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="col-sm-12">
+                                                                <div class="table-responsive" *ngIf="observations && observations.length > 0">
+                                                                    <table class="table table-striped">
+                                                                        <thead>
+                                                                            <tr jhiSort >
+                                                                                <th jhiSortBy="date"><span jhiTranslate="auxiliumApp.observation.date">Date</span> <span class="fa fa-sort"></span></th>
+                                                                                <th jhiSortBy="prive"><span jhiTranslate="auxiliumApp.observation.prive">Prive</span> <span class="fa fa-sort"></span></th>
+                                                                                <th jhiSortBy="type"><span jhiTranslate="auxiliumApp.observation.type">Type</span> <span class="fa fa-sort"></span></th>
+                                                                                <th jhiSortBy="commentaire"><span jhiTranslate="auxiliumApp.observation.commentaire">Commentaire</span> <span class="fa fa-sort"></span></th>
+                                                                                <th jhiSortBy="userLogin"><span jhiTranslate="auxiliumApp.observation.user">Utilisateur</span> <span class="fa fa-sort"></span></th>
+                                                                                <!--<th></th>-->
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <ng-container *ngFor="let observation of observations ;trackBy: trackId">
+                                                                            <tr *ngIf ="(result && observation.prive) || (!observation.prive)">
+                            
+                                                                                <td>{{observation.date | date:'yyyy-MM-dd'}}</td>
+                                                                                <td><div *ngIf="observation.prive" >
+                                                                                                <button class="btn btn-success btn-sm">
+                                                                                                    <span class="fa fa-check"></span>
+                                                                                                </button>
+                                                                                    </div>
+                                                                                        <div *ngIf="!observation.prive">
+                                                                                                <button class="btn btn-danger btn-sm">
+                                                                                                    <span class="fa fa-times-circle"></span>
+                                                                                                </button>
+                                                                                    </div></td>
+                                                                                <td>{{observation.type}}</td>
+                                                                                <td>{{observation.commentaire}}</td>
+                                                                                <td>{{observation.userLogin}}</td>
+                                                                                <!--<td class="text-right">
+                                                                                    <div class="btn-group flex-btn-group-container">
+                                                                                        <button type="submit"
+                                                                                                [routerLink]="['/', { outlets: { popup: 'prestation-pec/observation/'+ observation.id + '/edit'} }]"
+                                                                                                replaceUrl="true"
+                                                                                                class="btn btn-primary btn-sm">
+                                                                                            <span class="fa fa-pencil"></span>
+                                                                                        </button>
+                                                                                        <button type="submit"
+                                                                                                [routerLink]="['/', { outlets: { popup: 'observation/'+ observation.id + '/delete'} }]"
+                                                                                                replaceUrl="true"
+                                                                                                class="btn btn-danger btn-sm">
+                                                                                            <span class="fa fa-trash"></span>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                </td>-->
+                                                                            </tr></ng-container>
+                                                                        </tbody>
+                            
+                                                                    </table>
+                                                                    <div class="row justify-content-center"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                   
+                                            </div>
+                                        </div>
+                                    </div>      
+
+                                   
+                                    <div class="col-lg-12" *ngIf="expert && etat == 'ValideGestionnaire'">
+                                    
+                                    <div class="form-group">
+                                     <div class="row">
+                                        <div *ngFor="let option of options" class="form-check col-sm-3">
+                                            <label class="form-check-label">
+                                                <input type="radio" 
+                                                        name="options"
+                                                        class="form-check-input"
+                                                        value="{{option.value}}"
+                                                        [(ngModel)]="option.checked" (change)="onClickedByExpert(option, $event)"/>
+                                                        {{option.name}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+
+                                <div class="col-lg-12" *ngIf="expert && etat == 'Expertise'">
+                                    
+                                    <div class="form-group">
+                                     <div class="row">
+                                        <div *ngFor="let option of optionsExpertiseTerrain" class="form-check col-sm-3">
+                                            <label class="form-check-label">
+                                                <input type="radio" 
+                                                        name="options"
+                                                        class="form-check-input"
+                                                        value="{{option.value}}"
+                                                        [(ngModel)]="option.checked" (change)="onClickedExpertiseTerrainByExpert(option, $event)"/>
+                                                        {{option.name}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                                    
+                                    
+                                    
+                                    <div class="row" *ngIf="isGestionnaire == true || isResponsable == true && devis.dateExpertise != null"  >
+                                            <div class="col-lg-12">
+                                                <span class="anchor" id="formUserEdit"></span>
+                                                <div class="card">                                       
+                                                    <div class=" collapsible-card card-header align-items-center collapsed notice notice-info" data-toggle="collapse" href="#expertiseDetails">
+                                                        <strong>Expertise</strong>
+                                                    </div>                                                       
+                                                        <div id="expertiseDetails" class="card-body collapse">
+                                                            <div class="row">
+                                                                <div class="col-sm-4">
+                                                                <label class="form-control-label" for="field_dateAccident">Date d'expertise</label>
+                                                                <div class="input-group"> 
+                                                                    <input id="field_dateExpertise" type="text" class="form-control form-control-sm" name="dateExpertise" ngbDatepicker #dateExpertiseDp="ngbDatepicker" [(ngModel)]="devis.dateExpertise" readonly />
+                                                                    
+                                                                </div>
+                                                            </div>
+                                                                
+                                                                <div class="col-sm-4">
+                                                                    <label class="form-control-label" for="field_reference">Valeur à neuf</label>
+                                                                    <input type="number" class="form-control form-control-sm" name="valeurNeuf" id="field_reference" [(ngModel)]="devis.valeurNeuf" readonly />                
+                                                                </div> 
+                                                                <div class="col-sm-4">
+                                                                    <label for="field_mode">Valeur vénale</label>
+                                                                    
+                                                                    <input type="number" class="form-control form-control-sm" name="valeurVenale" id="field_mode" [(ngModel)]="devis.valeurVenale" readonly />
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                    <label for="field_numeroContrat">Kilométrage
+                                                                    </label>
+                                                                    <input type="number" class="form-control form-control-sm" name="klm" id="field_numeroContrat" [(ngModel)]="devis.klm" readonly />
+                                                                </div>
+                            
+                                                                <div class="col-sm-4">
+                                                                    <label for="field_CompagnieNom">Etat véhicule
+                                                                    </label>
+                                                                    <input readonly type="text" class="form-control form-control-sm" name="etatVehicule" id="field_etatVehicule"
+                                                                     [(ngModel)]="devis.etatVehicule"   />
+                                                                    
+                                                                </div>
+                                                                <!--div class="col-sm-4">
+                                                                    <input type="radio" class="form-control form-control-sm" value="bonne" name="etatVehicule" id="field_compagnieNom" [(ngModel)]="devis.etatVehicule" maxlength="100"
+                                                                         />Bonne
+                                                                    
+                                                                    <br>
+                                                                    <input type="radio" class="form-control form-control-sm" value="moyenne" name="moyenne" id="field_compagnieNom" [(ngModel)]="devis.etatVehicule" maxlength="100"
+                                                                    />Moyenne
+                                                                    <input type="radio" class="form-control form-control-sm" value="mauvaise" name="mauvaise" id="field_compagnieNom" [(ngModel)]="devis.etatVehicule" maxlength="100"
+                                                                    />Mauvaise
+                                                                
+                                                                
+                                                                      
+                                                                </div-->
+                                                                <div class="form-group col-sm-10" style="float: left;"> 
+                                                                    <label for="field_immatriculationVehicule" >Véhicule réparable</label>
+                                                                    <label for="" class="radio-inline">
+                                                                            <input readonly type="radio" class="form-control form-control-sm" name="isVehiculeReparable" id="field_immatriculationVehicule" [(ngModel)]="devis.isVehiculeReparable" [value]="true"   />Oui
+                                                                    </label>
+                                                                    <label class="radio-inline">
+                                                                            <input readonly type="radio" class="form-control form-control-sm" name="isVehiculeReparable" id="field_immatriculationVehicule" [(ngModel)]="devis.isVehiculeReparable" [value]="false"   />Non
+                                                                    </label>
+                                                                    
+                                                                    
+                                                                </div>    
+                                                                <div class="form-group col-sm-10" style="float: left;">
+                                                                    <label for="field_modeleLibelle">La concordance des circonstances de l'accidents avec les dégâts déclarés</label>
+                                                                    <input readonly id="field_modeleLibelle" type="radio" class="form-control form-control-sm" name="isCia" [(ngModel)]="devis.isCia" [value]="true" />Oui
+                                                                    <input readonly id="field_modeleLibelle" type="radio" class="form-control form-control-sm" name="isCia" [(ngModel)]="devis.isCia" [value]="false" />Non
+                                                                </div>
+                                                                <div class="form-group col-sm-10" style="float: left;">
+                                                                    <label for="field_marqueLibelle">Constat préliminaire</label>
+                                                                    <input readonly type="radio" class="form-control form-control-sm" name="isConstatPre" id="field_marqueLibelle" [(ngModel)]="devis.isConstatPre" [value]="true" />Oui
+                                                                    <input readonly type="radio" class="form-control form-control-sm" name="isConstatPre" id="field_marqueLibelle" [(ngModel)]="devis.isConstatPre" [value]="false" />Non
+                                                                </div>
+                                                                
+                                                                
+                                                                
+                                                            </div>
+                                                            </div>
+                                                        </div>
+                                                       
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    </form>
+    
+    
+    
+    
+            
+            <div class="modal-footer">
+    
+    
+    
+        <button  type="submit" class="btn btn-danger" (click)="refuserDevis(devis.id)" *ngIf ="(isGestionnaire == true || isResponsable == true && (etat == 2))">
+            <span jhiTranslate="entity.action.rectifier">rectifier</span>
+        </button>
+            <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary" (click)="save()" >
+            <span class="fa fa-save"></span> <span jhiTranslate="entity.action.save">Save</span>
+          </button>
+    
+          <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary"  (click)="soumettre(devis)" *ngIf ="reparateur == true &&  (etat == 1  || etat == 7 || etat == 'Demontage' || etat == null )">
+    
+              <span jhiTranslate="entity.action.soumettre">Soumettre</span>
+          </button>
+          <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary" (click)="corrigerDevisFacture(devis)" *ngIf ="reparateur == true && etat == 'Refuse_Apres_Facture'">
+               <span jhiTranslate="entity.action.resoumettre">resoumettre</span>
+          </button>
+    
+           <button type="submit" class="btn btn-primary" (click)="reparatorFacturation(devis)"      *ngIf="reparateur == true && etat == 8 ">
+                   <span  jhiTranslate="entity.action.facturation">Facturation</span>
+           </button>
+    
+           <button  type="submit" class="btn btn-primary" (click)="accepterFacture(devis)"      *ngIf="isGestionnaire == true || isResponsable == true && etat == 10 ">
+              <span  jhiTranslate="entity.action.AccordBonSortie">Confirmer Acceptation Facture</span>
+          </button>
+    
+    
+    
+          <button hidden type="submit" class="btn btn-danger" (click)="refuserDevis(devis.id)" *ngIf ="(isGestionnaire == true || isResponsable == true && (etat == 2))">
+              <span jhiTranslate="entity.action.rectifier">rectifier</span>
+          </button>
+          <!--<button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-info"
+          [routerLink]="['/', { outlets: { popup: 'devis/'+ devis.id + '/affecteExpert'} }]" *ngIf ="isGestionnaireTechnique == true  && (etat == 'Soumis' || etat == 'Valide')">
+              <span class="fa fa-save"></span> <span jhiTranslate="entity.action.affectExpert">affectExpert</span>
+          </button>-->
+    
+          <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary"
+          (click)="genererAccord(devis)" *ngIf ="(reparateur == true && (etat == 6))">
+              <span jhiTranslate="entity.action.GenerationAccord">Generer Accord</span>
+          </button>
+          <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary"
+          (click)="genererAccord(devis)" *ngIf ="(isGestionnaire == true || isResponsable == true  && (etat == 'Valide')) || (isCompany == true  && (etat == 'AccordCmp'))">
+              <span jhiTranslate="entity.action.VoirAccord">Voir Accord</span>
+          </button>
+          <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary"
+          (click)="accordDevisParGesTech(devis)" *ngIf ="(isGestionnaire == true || isResponsable == true  && (etat == 'Valide')) || (isCompany == true  && (etat == 'AccordCmp'))">
+              <span jhiTranslate="entity.action.Accord">Accord</span>
+          </button>
+          <!--<button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary" (click)="previewDevis(devis.id)" *ngIf ="isGestionnaireTechnique == true && etat == 'Soumis'">
+              <span class="fa fa-save"></span> <span jhiTranslate="entity.action.PreviewAccord">Preview Accord</span>
+          </button>-->
+          <button hidden  type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary"
+          (click)="accepterGenerationBonSortie(devis)" *ngIf ="isGestionnaire == true || isResponsable == true  && etat == 'Facture'">
+              <span jhiTranslate="entity.action.AccordBonSortie">Valider Facturation</span>
+          </button>
+          <button hidden type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-danger" (click)="RectifierApresFacture(devis)"
+           *ngIf ="isGestionnaire == true || isResponsable == true  && etat == 'Facture'">
+             </span> <span jhiTranslate="entity.action.rectifier">rectifier</span>
+          </button>
+    
+          <!--button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary"
+           (click)="validerDevis(devis)"
+           *ngIf ="etat == 'ValideGestionnaire'" >
+              <span class="fa fa-save"></span> <span jhiTranslate="entity.action.Valid">Valider Expert </span>
+          </button-->
+          <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary"
+           (click)="validerDevisParGestTech(devis)" *ngIf ="isGestionnaire == true || isResponsable ==  true && (etat == 2)">
+              <span jhiTranslate="entity.action.Valid">Valider Devis Gest Technique</span>
+          </button>
+          <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary"
+           (click)="decisionDevisParExpert(devis)" *ngIf ="expert == true && (etat == 'ValideGestionnaire')">
+              <span class="fa fa-save"></span> <span>Sauvegarder</span>
+          </button>
+          <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary"
+           (click)="decisionExpertiseTerrain(devis)" *ngIf ="expert == true && (etat == 'Expertise')">
+             <span>Sauvegarder</span>
+          </button>
+    
+      </div>
+    </section>
+    </form>

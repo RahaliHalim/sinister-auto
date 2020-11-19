@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity ValidationDevis.
+    -->
+    <changeSet id="20170912084534-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="affect_expert_id"
+                                 baseTableName="validation_devis"
+                                 constraintName="fk_validation_devis_affect_expert_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="affect_expert"/>
+
+        <addForeignKeyConstraint baseColumnNames="devis_id"
+                                 baseTableName="validation_devis"
+                                 constraintName="fk_validation_devis_devis_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="devis"/>
+
+    </changeSet>
+</databaseChangeLog>

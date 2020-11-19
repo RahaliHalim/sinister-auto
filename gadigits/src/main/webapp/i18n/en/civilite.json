@@ -1,0 +1,9 @@
+{
+    "auxiliumApp": {
+        "Civilite" : {
+            "null": "",
+            "MONSIEUR": "MONSIEUR",
+            "MADAME": "MADAME"
+        }
+    }
+}

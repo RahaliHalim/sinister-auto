@@ -1,0 +1,25 @@
+{
+    "auxiliumApp": {
+        "piece" : {
+            "home": {
+                "title": "Pieces",
+                "createLabel": "Create a new Piece",
+                "createOrEditLabel": "Create or edit a Piece",
+                "search": "Search for Piece"
+            },
+            "created": "A new Piece is created with identifier {{ param }}",
+            "updated": "A Piece is updated with identifier {{ param }}",
+            "deleted": "A Piece is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Piece {{ id }}?"
+            },
+            "detail": {
+                "title": "Piece"
+            },
+            "reference": "Reference",
+            "isVetuste": "Is Vetuste",
+            "typePiece": "Type Piece",
+            "modelVoiture": "Model Voiture"
+        }
+    }
+}

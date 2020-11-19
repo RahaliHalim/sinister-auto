@@ -1,0 +1,24 @@
+{
+    "auxiliumApp": {
+        "refTypeService" : {
+            "home": {
+                "title": "Ref Type Services",
+                "createLabel": "Create a new Ref Type Service",
+                "createOrEditLabel": "Create or edit a Ref Type Service",
+                "search": "Search for Ref Type Service"
+            },
+            "created": "A new service type is created",
+            "updated": "The service type was updated",
+            "deleted": "The service type was deleted",
+            "unique": " The service type must be unique",
+            "delete": {
+                "question": "Are you sure you want to delete this service type ?"
+            },
+            "detail": {
+                "title": "Service Type"
+            },
+            "nom": "Nom",
+            "pack": "Pack"
+        }
+    }
+}

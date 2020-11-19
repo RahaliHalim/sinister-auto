@@ -1,0 +1,24 @@
+{
+    "auxiliumApp": {
+        "vehicleEnergy" : {
+            "home": {
+                "title": "Énergies",
+                "createLabel": "Créer une nouvelle énergie",
+                "createOrEditLabel": "Créer ou modifier une énergie",
+                "search": "Rechercher une énergie"
+            },
+            "created": "Une nouvelle énergie a été créée",
+            "updated": "L'énergie a été mise à jour",
+            "deleted": "L'énergie a été supprimée",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer cette énergie ?"
+            },
+            "detail": {
+                "title": "Ênergie"
+            },
+            "label": "Libellé",
+            "active": "Active",
+            "exist": "L'énergie doit être unique"
+        }
+    }
+}

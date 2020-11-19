@@ -1,0 +1,29 @@
+{
+    "auxiliumApp": {
+        "grille" : {
+            "home": {
+                "title": "Grilles",
+                "createLabel": "Créer une nouvelle Grille",
+                "createOrEditLabel": "Créer ou modifier une Grille",
+                "search": "Recherche pour grille"
+            },
+            "created": "Une nouvelle grille a été créée avec l'identifiant {{ param }}",
+            "updated": "La grille avec l'identifiant {{ param }} a été mise à jour",
+            "deleted": "La grille avec l'identifiant {{ param }} a été supprimée",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer la grille {{ id }} ?"
+            },
+            "detail": {
+                "title": "Grille"
+            },
+            "th": "Taux horaire",
+            "remise": "Remise",
+            "totalRemise": "Total remise",
+            "totalApresRemise": "Total après remise",
+            "tva": "TVA",
+            "totalTva": "Total TVA",
+            "reparateur": "Réparateur",
+            "typeInter": "Type intervention"
+        }
+    }
+}

@@ -1,0 +1,61 @@
+<form name="editForm" role="form" novalidate #editForm="ngForm">
+    <div>
+        <div class="row  top-buffer"> 
+        	<div class="col-sm-3">
+                <label class="form-control-label" jhiTranslate="auxiliumApp.personnePhysique.civilite" for="field_civilite">Civilite</label>
+                <select disabled class="form-control form-control-sm" name="civilite" [(ngModel)]="personnePhysique.civilite" id="field_civilite" >
+                    <option value="MONSIEUR" jhiTranslate="auxiliumApp.Civilite.MONSIEUR">MONSIEUR</option>
+                    <option value="MADAME" jhiTranslate="auxiliumApp.Civilite.MADAME">MADAME</option>
+                </select>
+            </div>
+            <div class="col-sm-3">
+                <label class="form-control-label" jhiTranslate="auxiliumApp.personnePhysique.prenom" for="field_prenom">Prenom</label>
+                <input readonly type="text" class="form-control form-control-sm" name="prenom" id="field_prenom" [(ngModel)]="personnePhysique.prenom"/>
+            </div>
+            <div class="col-sm-3">
+                <label class="form-control-label" jhiTranslate="auxiliumApp.personnePhysique.nom" for="field_nom">Nom</label>
+                <input readonly type="text" class="form-control form-control-sm" name="nom" id="field_nom" [(ngModel)]="personnePhysique.nom"/>
+            </div>
+	        <div class="col-sm-3">
+                <label class="form-control-label" jhiTranslate="auxiliumApp.personnePhysique.cin" for="field_cin">Cin</label>
+                <input readonly type="number" class="form-control form-control-sm" name="cin" id="field_cin" [(ngModel)]="personnePhysique.cin"/>
+            </div>
+        </div>
+        <div class="row top-buffer" >
+            <div class="col-sm-3">
+                <label class="form-control-label" jhiTranslate="auxiliumApp.personnePhysique.premTelephone" for="field_premTelephone">Prem Telephone</label>
+                <input readonly type="text" class="form-control form-control-sm" name="premTelephone" id="field_premTelephone" [(ngModel)]="personnePhysique.premTelephone"/>
+            </div>
+            <div class="col-sm-3">
+                <label class="form-control-label" jhiTranslate="auxiliumApp.personnePhysique.deuxTelephone" for="field_deuxTelephone">Deux Telephone</label>
+                <input readonly type="text" class="form-control form-control-sm" name="deuxTelephone" id="field_deuxTelephone" [(ngModel)]="personnePhysique.deuxTelephone" pattern="([0-9]{8})" />
+            </div>
+            <div class="col-sm-3">
+                <label class="form-control-label" jhiTranslate="auxiliumApp.personnePhysique.premMail" for="field_premMail">Prem Mail</label>
+                <input readonly type="text" class="form-control form-control-sm" name="premMail" id="field_premMail" [(ngModel)]="personnePhysique.premMail" pattern="^(.+)@(.+)$" />
+            </div>
+            <div class="col-sm-3">
+                <label class="form-control-label" jhiTranslate="auxiliumApp.personnePhysique.deuxMail" for="field_deuxMail">Deux Mail</label>
+                <input readonly type="text" class="form-control form-control-sm" name="deuxMail" id="field_deuxMail" [(ngModel)]="personnePhysique.deuxMail" pattern="^(.+)@(.+)$" />
+            </div>
+        </div>
+        <div class="row  top-buffer">
+            <div class="col-sm-6">
+                <label class="form-control-label" jhiTranslate="auxiliumApp.personnePhysique.adresse" for="field_adresse">Adresse</label>
+                <input readonly type="text" class="form-control form-control-sm" name="adresse" id="field_adresse" [(ngModel)]="personnePhysique.adresse" maxlength="256" />
+            </div>
+            <div class="col-sm-3">
+                <label jhiTranslate="auxiliumApp.assure.gouvernorat">gouvernorat</label>
+                <select disabled class="form-control form-control-sm" id="field_lieu" name="lieu" [(ngModel)]="personnePhysique && personnePhysique.gouvernorat && personnePhysique.gouvernorat.id">
+                    <option [ngValue]="gouvernoratOption.id" *ngFor="let gouvernoratOption of sysgouvernorats; trackBy: trackGouvernoratById">{{gouvernoratOption.libelle}}</option>
+                </select>
+            </div>
+            <div class="col-sm-3">
+                <label jhiTranslate="auxiliumApp.personnePhysique.ville" for="field_ville">Ville</label>
+                <select disabled class="form-control form-control-sm" id="field_ville" name="ville" [(ngModel)]="personnePhysique.villeId">
+                    <option [ngValue]="sysVilleOption.id" *ngFor="let sysVilleOption of sysvilles; trackBy: trackSysVilleById">{{sysVilleOption.libelle}}</option>
+                </select>
+            </div>
+        </div>
+    </div>    
+</form>

@@ -1,0 +1,772 @@
+
+<!-- Breadcrumb-->
+<div class="breadcrumb-holder">
+    <div class="container-fluid">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#"><span class="fa fa-home"></span>&nbsp;&nbsp;<span jhiTranslate="global.menu.home">Home</span></a></li>
+            <li class="breadcrumb-item"><a routerLink="/drools"><span jhiTranslate="auxiliumApp.drools.home.title.title">Drools</span></a></li>
+            <li class="breadcrumb-item"><span jhiTranslate="auxiliumApp.drools.home.details">Prametrages Drools</span></li>
+        </ul>
+    </div>
+</div>
+<section class="forms">
+    <div class="container-fluid">
+        <!-- Page Header-->
+        <header>
+            <h1 class="h3 display">
+                <jhi-alert-error></jhi-alert-error>
+                <jhi-alert></jhi-alert>
+            </h1>
+        </header>
+
+
+<form name="form" (ngSubmit)="save()">
+
+
+  <!--   COMPAGNIE D'ASSURANCES   -->
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">  
+                        
+                        <div class=" collapsible-card card-header align-items-center collapsed notice notice-info" data-toggle="collapse" href="#collapseCompagnie">
+                                <strong jhiTranslate="auxiliumApp.drools.home.title.compagnie">Compagnie</strong>
+                        </div>
+                
+    <div id="collapseCompagnie" class="card-body collapse">
+
+        <div class="row"> 
+             <div class="col-sm-6">
+                <div class="col-sm-6">
+                    <label jhiTranslate="auxiliumApp.drools.details.client" for="field_client">Compagnie d'assurance</label>
+                    <select class="form-control form-control-sm" id="field_client" name="client" [(ngModel)]="paramsValueDrools.compagnieId" required>
+                        <option [ngValue]="clientOption.id" *ngFor="let clientOption of clients;">{{clientOption?.nom}}</option>
+                    </select>
+                </div>
+                <div class="col-sm-6">
+                        <div class="form-group">
+                            <label jhiTranslate="auxiliumApp.drools.details.garantie" for="field_garanties">Garantie Contractuelle</label>
+                            <select  class="form-control form-control-sm" id="field_garanties" name="garanties" [(ngModel)]="garantieId" >
+                                <option [ngValue]="garantieOption.id" *ngFor="let garantieOption of listGarantiesForModeGestion; ">{{garantieOption.libelle}}</option>
+                            </select>
+                            
+                        </div>
+                </div>
+            
+                
+            </div>
+            <div class="col-sm-6">
+               
+                <div class="col-sm-6">
+                        <div class="form-group">
+                            <label jhiTranslate="auxiliumApp.drools.details.mode" for="field_mode">Mode de Gestion</label>
+                            <select class="form-control form-control-sm" id="field_mode" name="mode" [(ngModel)]="modeId" (ngModelChange)="listeGarantiesByModeId(modeId)" required >
+                                <option value="1" jhiTranslate="auxiliumApp.drools.details.ida">IDA</option>
+                                <option value="2" jhiTranslate="auxiliumApp.drools.details.hida">HIDA</option>
+                                <option value="3" jhiTranslate="auxiliumApp.drools.details.dommage">DOMMAGE</option>
+                                <option value="4" jhiTranslate="auxiliumApp.drools.details.connexe">CONNEXE</option>
+                            </select>
+                        </div>
+                </div>
+           </div>
+    
+   
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+
+
+  <!--   FRAIS DE PARTICIPATION   -->
+
+  <div class="row">
+    <div class="col-lg-12">
+        <div class="card">  
+                    
+                    <div class=" collapsible-card card-header align-items-center collapsed notice notice-info" data-toggle="collapse" href="#collapseFraisParticipation">
+                            <strong jhiTranslate="auxiliumApp.drools.home.title.fraisparticipation">Frais de Participation</strong>
+                    </div>
+            
+            <div id="collapseFraisParticipation" class="card-body collapse">
+
+               <div class="row"> 
+                <div class="col-sm-6">
+                
+                <div class="col-sm-6">
+                <div *ngFor="let participation of participations; let i=index; " >
+                        <label class="form-control-label" >{{participation}}</label>
+                        <input type="checkbox" [value]="participation" (change)="fieldsChange($event,participation)"  name="participation[{{i}}]" style="float:right;">
+                </div>
+                </div>
+                </div>
+                <div class="col-sm-6">
+                        <br>
+                        <label class="form-control-label" jhiTranslate="auxiliumApp.drools.details.typepieces" style="margin-right:100px">Par type Piéces</label>
+                        <input type="checkbox" class="check-input" id="field_vetuste"  />
+                        <label class="form-control-label" jhiTranslate="auxiliumApp.drools.details.pneumatique" >Pneumatique</label>
+    
+                        <input type="checkbox" class="check-input" id="field_vetuste" />
+                        <label class="form-control-label" jhiTranslate="auxiliumApp.drools.details.mecanique" >Mécaniques</label>
+    
+                        <input type="checkbox" class="check-input" id="field_vetuste" />
+                        <label class="form-control-label" jhiTranslate="auxiliumApp.drools.details.electrique" >Electrique</label>
+    
+    
+                </div>
+            </div>    
+
+            
+
+        </div>
+
+       </div>
+     </div>
+    </div>
+
+
+
+<!--   IDA OR HIDA -->
+
+<div class="row" *ngIf="rachatGarantie" >
+    <div class="col-lg-12">
+        <div class="card">  
+                    
+                    <div class=" collapsible-card card-header align-items-center collapsed notice notice-info" data-toggle="collapse" href="#collapseRachat">
+                            <strong jhiTranslate="auxiliumApp.drools.home.title.rachat">Rachat Garantie</strong>
+                    </div>
+            
+            <div id="collapseRachat" class="card-body collapse">
+                <div class="row">
+                        <div class="col-sm-3">
+                               
+                                <input type="text" class="form-control form-control-sm" name="montantafixee" id="field_montantfixee" value="X%*TRTTC avec (min TTC=)" readonly/>
+                               
+                        </div>
+                        <div class="col-sm-2" >
+                                
+                                <input type="number" class="form-control form-control-sm" name="montantfixe" id="field_montantfixe"  placeholder="X% = "/>
+                        </div>
+                        <div class="col-sm-2" >
+                                
+                                        <input type="number" class="form-control form-control-sm" name="montantfixe" id="field_montantfixe" placeholder="Minimum = " />
+                        </div>
+                </div>
+                 <br>
+                <div class="row">
+                        <div class="col-sm-3">
+                                        
+                                <input type="text" class="form-control form-control-sm" name="montantarajouterp" id="field_montantarajouterp" value="Montant fixe TTC = " readonly/>
+                                       
+                        </div>
+                        <div class="col-sm-2" >
+                                        
+                                <input type="number" class="form-control form-control-sm" name="montantpourcentage" id="field_montantpourcentage" placeholder="Montant Fixe ="  />
+                        </div>
+                </div>
+                   
+                   
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--  HIDA Montant à Rajouter -->
+
+<div class="row" *ngIf="fraishida">
+        <div class="col-lg-12">
+            <div class="card">  
+                        
+                        <div class=" collapsible-card card-header align-items-center collapsed notice notice-info" data-toggle="collapse" href="#collapseMontantARajouter">
+                                <strong jhiTranslate="auxiliumApp.drools.home.title.fraishida">Frais de Dossier HIDA</strong>
+                        </div>
+                
+                <div id="collapseMontantARajouter" class="card-body collapse">
+
+                        <div class="row">
+                        <div class="col-sm-3">
+                               
+                                <input type="text" class="form-control form-control-sm" name="montantafixee" id="field_montantfixee" value="si  TRTTC &#8826;5000-->Montant Fixe TTC =" readonly/>
+                               
+                        </div>
+                        <div class="col-sm-2" >
+                                
+                                <input type="number" class="form-control form-control-sm" name="montantfixe" id="field_montantfixe"  />
+                        </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                                <div class="col-sm-3">
+                                        
+                                        <input type="text" class="form-control form-control-sm" name="montantarajouterp" id="field_montantarajouterp" value="si  TRTTC > 5000 ;X% TRTTC   avec X% = " readonly/>
+                                       
+                                </div>
+                                <div class="col-sm-2" >
+                                        
+                                        <input type="number" class="form-control form-control-sm" name="montantpourcentage" id="field_montantpourcentage"   />
+                                </div>
+                        </div>
+                       
+                        
+                </div>
+            </div>
+        </div>
+</div>
+
+
+    <!--  HIDA  Avance sur Facture -->
+
+<div class="row" *ngIf="avancefacture">
+        <div class="col-lg-12">
+            <div class="card">  
+                        
+                        <div class=" collapsible-card card-header align-items-center collapsed notice notice-info" data-toggle="collapse" href="#collapseAvanceFacture">
+                                <strong jhiTranslate="auxiliumApp.drools.home.title.avancesurfacture">Avance Sur Facture</strong>
+                        </div>
+                
+                <div id="collapseAvanceFacture" class="card-body collapse">
+                        <div class="row">
+                                <div class="col-sm-4">
+                                        
+                                        <input type="text" class="form-control form-control-sm" name="montantarajouterp" id="field_montantarajouterp" value="si  TRTTC >5000-->avance = X% *TRTTC avec X%= avance " readonly/>
+                                       
+                                </div>
+                                <div class="col-sm-2" >
+                                        
+                                        <input type="number" class="form-control form-control-sm" name="montantpourcentage" id="field_montantpourcentage"   />
+                                </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+</div>
+
+
+<!-- Franchise -->
+
+<div class="row" *ngIf="franchise">
+    <div class="col-lg-12">
+        <div class="card">  
+                    
+                    <div class=" collapsible-card card-header align-items-center collapsed notice notice-info" data-toggle="collapse" href="#collapseFranchise">
+                            <strong jhiTranslate="auxiliumApp.drools.home.title.franchise">Franchise</strong>
+                    </div>
+            
+            <div id="collapseFranchise" class="card-body collapse">
+                    <div class="row">
+
+                            <div class="col-sm-2">
+                                    <div class="form-group">
+                                        
+                                        <select class="form-control form-control-sm" id="field_formulefranchise" name="formulefranchise" [(ngModel)]="franchiseValue">
+                                        
+                                            <option value="f1" >F%*VA</option>
+                                            <option value="f2" >F%*TR</option>
+                                            <option value="f3" >F%*VA si TR >VA ; F%*TR si TR=&#8826;VA avec min XDTTC </option>
+                                            <option value="f4" >Un Montant fixe= XDT</option>
+                                            <option value="f5" >F%*VA si TR >=VA ; F%*TR si TR&#8826;VA ou  montant fixe = XDTTC </option>
+                                            
+                                        </select>
+                                        
+                                    </div>
+                            </div>
+                           
+                            <div class="col-sm-2" *ngIf="(franchiseValue == 'f1') || (franchiseValue == 'f2') || (franchiseValue == 'f3') || (franchiseValue == 'f5')">
+                                       
+                                        <input type="number" class="form-control form-control-sm" name="montantpourcentage" id="field_montantpourcentage"  placeholder="F% fixée à =" />
+                            </div>
+                            <div class="col-sm-2" *ngIf="franchiseValue == 'f4' || franchiseValue == 'f5'">
+                                        
+                                        <input type="number" class="form-control form-control-sm" name="montantpourcentage" id="field_montantpourcentage" placeholder="Montant Fixe ="  />
+                            </div>
+                            <div class="col-sm-2" *ngIf="franchiseValue == 'f3'">
+                                       
+                                        <input type="number" class="form-control form-control-sm" name="montantpourcentage" id="field_montantpourcentage" placeholder="Minimum = "  />
+                            </div>
+                    </div>
+               
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!--  Engagement GA -->
+
+
+<!--<div class="row" *ngIf="partresponsabilite">
+        <div class="col-lg-6">
+            <div class="card">  
+                        
+                        <div class=" collapsible-card card-header align-items-center collapsed notice notice-info" data-toggle="collapse" href="#collapsePartTva">
+                                <strong jhiTranslate="auxiliumApp.drools.home.title.partresptva">Part.Resp Assujettie TVA</strong>
+                        </div>
+                
+                <div id="collapsePartTva" class="card-body collapse">
+                        <div class="row">
+
+                                <div class="col-sm-6">
+                                        <div class="form-group">
+                                           
+                                            <select class="form-control form-control-sm" id="field_engagementga" name="engagementga" >
+                                                <option value="Montant" >[MO (HTVA) + PR (HTVA)+ IPPF (HTVA) – V- Autre participation] X R%</option>
+                                                
+                                            </select>
+                                            
+                                        </div>
+                                </div>
+                        </div>
+
+                       
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+                <div class="card">  
+                            
+                            <div class=" collapsible-card card-header align-items-center collapsed notice notice-info" data-toggle="collapse" href="#collapsePartNonTva">
+                                    <strong jhiTranslate="auxiliumApp.drools.home.title.partrespnontva">Part.Resp Non Assujettie TVA</strong>
+                            </div>
+                    
+                    <div id="collapsePartNonTva" class="card-body collapse">
+                            <div class="row">
+    
+                                    <div class="col-sm-6">
+                                            <div class="form-group">
+                                                
+                                                <select class="form-control form-control-sm" id="field_engagementga" name="engagementga" >
+                                                    <option value="Montant" >[MO (TTC) + PR (TTC)+IPPF (TTC) – V1- Autre participation] X R%</option>
+                                                                                                      
+                                                </select>
+                                                
+                                            </div>
+                                    </div>
+                            </div>
+    
+                           
+                    </div>
+                </div>
+            </div>
+    </div>-->
+
+    <!-- DEPASSEMENT PLAFOND-->
+
+<!--<div class="row" *ngIf="depassplafond">
+        <div class="col-lg-6">
+            <div class="card">  
+                        
+                        <div class=" collapsible-card card-header align-items-center collapsed notice notice-info" data-toggle="collapse" href="#collapseDPTva">
+                                <strong jhiTranslate="auxiliumApp.drools.home.title.depassplafondptva">Dépass.Plafond Assujettie TVA</strong>
+                        </div>
+                
+                <div id="collapseDPTva" class="card-body collapse">
+                        <div class="row">
+
+                                <div class="col-sm-6">
+                                        <div class="form-group">
+                                           
+                                            <select class="form-control form-control-sm" id="field_depassplafondptva" name="depassplafondptva" >
+                                                <option value="Montant" >[A – (VA –F)] si &#60; 0 &#8594;0 /  si > 0 Résultat<br>avec : A= MO (HTVA) + PR (HTVA) + IPPF (HTVA)– V-F</option>
+                                                <option value="Montant" >[A – (VA –F)] si &#60; 0 &#8594;0 /  si > 0 Résultat<br>avec : MO (HTVA) + PR (HTVA)+ IPPF (HTVA) -F</option>
+                                            </select>
+                                            
+                                        </div>
+                                </div>
+                        </div>
+
+                       
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+                <div class="card">  
+                            
+                            <div class=" collapsible-card card-header align-items-center collapsed notice notice-info" data-toggle="collapse" href="#collapseDPNonTva">
+                                    <strong jhiTranslate="auxiliumApp.drools.home.title.depassplafondpnontva">Dépass.Plafond Non Assujettie TVA</strong>
+                            </div>
+                    
+                    <div id="collapseDPNonTva" class="card-body collapse<div">
+                            <div class="row">
+                                
+                                    <div class="col-sm-6">
+                                            <div class="form-group">
+                                                
+                                                <select class="form-control form-control-sm" id="field_depassplafondpnontva" name="depassplafondpnontva" >
+                                                        <option value="Montant" >[A – (VA –F)] si &#60; 0 &#8594;0 /  si > 0 Résultat<br>avec : A= MO (TTC) + PR (TTC) + +IPPF (TTC)– V1-F</option>
+                                                        <option value="Montant" >[A – (VA –F)] si &#60; 0 &#8594;0 /  si > 0 Résultat<br>avec : A= MO (TTC) + PR (TTC) +IPPF( TTC) - F</option>
+                                                                                                      
+                                                </select>
+                                                
+                                            </div>
+                                    </div>
+                            </div>
+    
+                           
+                    </div>
+                </div>
+            </div>
+    </div>-->
+
+
+       <!-- REGLE PROPORTIONNEL -->
+
+<!--<div class="row" *ngIf="regleproportionnel">
+        <div class="col-lg-6">
+            <div class="card">  
+                        
+                        <div class=" collapsible-card card-header align-items-center collapsed notice notice-info" data-toggle="collapse" href="#collapseReglePropTva">
+                                <strong jhiTranslate="auxiliumApp.drools.home.title.regleproptva">Régle.Prop Assujettie TVA</strong>
+                        </div>
+                
+                <div id="collapseReglePropTva" class="card-body collapse">
+                        <div class="row">
+
+                                <div class="col-sm-6">
+                                        <div class="form-group">
+                                           
+                                            <select class="form-control form-control-sm" id="field_regleproptva" name="regleproptva" >
+                                                <option value="Montant" >(1-VA/VR) x [MO (HTVA) + PR (HTVA)+ IPPF (HTVA) – V -Autre participation]</option>
+                                                
+                                            </select>
+                                            
+                                        </div>
+                                </div>
+                        </div>
+
+                       
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+                <div class="card">  
+                            
+                            <div class=" collapsible-card card-header align-items-center collapsed notice notice-info" data-toggle="collapse" href="#collapseReglePropNTva">
+                                    <strong jhiTranslate="auxiliumApp.drools.home.title.reglepropnontva">Régle.Prop Non Assujettie TVA</strong>
+                            </div>
+                    
+                    <div id="collapseReglePropNTva" class="card-body collapse">
+                            <div class="row">
+                             
+                                    <div class="col-sm-6">
+                                            <div class="form-group">
+                                                
+                                                <select class="form-control form-control-sm" id="field_reglepropnontva" name="reglepropnontva" >
+                                                        <option value="Montant" >(1-VA/VR) x [MO (TTC) + PR (TTC) +IPPF (TTC)– V1 -Autre participation]</option>
+                                                       
+                                                                                                   
+                                                </select>
+                                                
+                                            </div>
+                                    </div>
+                            </div>
+    
+                           
+                    </div>
+                </div>
+            </div>
+    </div>-->
+
+<!--  Engagement GA IDA && HIDA && CONNEXE -->
+
+<div class="row" *ngIf="(modeId == 1) || (modeId == 2) || (modeId == 4)">
+    <div class="col-lg-6">
+        <div class="card">  
+                    
+                    <div class=" collapsible-card card-header align-items-center collapsed notice notice-info" data-toggle="collapse" href="#collapseEngagementGAIHTVA">
+                            <strong jhiTranslate="auxiliumApp.drools.home.title.engagementgatva">En.GA Assujettie TVA</strong>
+                    </div>
+            
+            <div id="collapseEngagementGAIHTVA" class="card-body collapse">
+
+                  
+                    <div class="row">
+
+                            <div class="col-sm-6">
+                                    <div class="form-group">
+                                       
+                                        <select class="form-control form-control-sm" id="field_engagementgatva" name="engagementgatva" >
+                                            <option value="Montant" >[MO (HTVA) + PR (HTVA)+IPPF (HTVA) – V - Autre participation] x (1-R%)</option>
+                                            
+                                           
+                                        </select>
+                                        
+                                    </div>
+                            </div>
+                    </div>
+
+
+                  
+                    
+                    
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+            <div class="card">  
+                        
+                        <div class=" collapsible-card card-header align-items-center collapsed notice notice-info" data-toggle="collapse" href="#collapseEngagementGAIHNONTVA">
+                                <strong jhiTranslate="auxiliumApp.drools.home.title.engagementganontva">En.GA Non Assujettie TVA</strong>
+                        </div>
+                
+                <div id="collapseEngagementGAIHNONTVA" class="card-body collapse">
+    
+                       
+                        <div class="row">
+    
+                                <div class="col-sm-6">
+                                        <div class="form-group">
+                                            
+                                            <select class="form-control form-control-sm" id="field_engagementganontva" name="engagementganontva" >
+                                                <option value="Montant" >[MO (TTC) + PR (TTC)+IPPF (TTC) – V1 -Autre participation] x (1- R%)</option>
+                                               
+                                            </select>
+                                            
+                                        </div>
+                                </div>
+                        </div>
+                      
+                </div>
+            </div>
+        </div>
+</div>
+
+
+<!--  OTHER Engagement GA -->
+ <!-- CONDITION WITH RP -->
+
+<div class="row" *ngIf="(modeId == 3 && garantieId == 8) || (modeId == 3 && garantieId == 1) || (modeId == 3 && garantieId == 3)">
+        <div class="col-lg-6">
+            <div class="card">  
+                        
+                        <div class=" collapsible-card card-header align-items-center collapsed notice notice-info" data-toggle="collapse" href="#collapseEngagementGAOTVA">
+                                <strong jhiTranslate="auxiliumApp.drools.home.title.engagementgatva">Engagement GA</strong>
+                        </div>
+                
+                <div id="collapseEngagementGAOTVA" class="card-body collapse">
+    
+                        
+                        <div class="row">
+    
+                                <div class="col-sm-3">
+                                        
+                                                <label jhiTranslate="auxiliumApp.drools.details.sansrp" for="field_assujettietva">Sans la RP (si VA=VR):</label>
+                                </div>
+                        <br><br>
+                                        <div class="col-sm-6">         
+                                                <select class="form-control form-control-sm" id="field_engagementga" name="engagementga" >
+                                                <option value="Montant" >[TR(HTVA)-V]-F-Autre participation</option>
+                                                <option value="Montant" >TR(HTVA)-V]-Autre participation</option>
+                                              
+                                            </select>
+                                            
+                                        </div>
+                                
+                        </div>
+    
+    
+                        
+                        <div class="row">
+    
+                                <div class="col-sm-3">
+                                        <label jhiTranslate="auxiliumApp.drools.details.avecrp" for="field_assujettietva">Avec la RP (si VA&#60;VR):</label>
+                                </div> 
+                                <br><br>       
+                                <div class="col-sm-6">         
+                                            <select class="form-control form-control-sm" id="field_engagementga" name="engagementga" >
+                                                <option value="Montant" >[(TR(HTVA)-V)*(VA/VR)]-F-Autre participation</option>
+                                                <option value="Montant" >[TR(HTVA)-V- F]*(VA/VR)-Autre participation</option>
+                                                <option value="Montant" >[(TR (HTVA)-V)*(VA/VR)]-Autre participation</option>
+                                                
+                                            </select>
+                                            
+                                        
+                                </div>
+                        </div>
+                        
+                </div>
+            </div>
+        </div>
+    
+        <div class="col-lg-6">
+                <div class="card">  
+                            
+                            <div class=" collapsible-card card-header align-items-center collapsed notice notice-info" data-toggle="collapse" href="#collapseEngagementGAONonTVA">
+                                    <strong jhiTranslate="auxiliumApp.drools.home.title.engagementganontva">En.GA Non Assujettie TVA</strong>
+                            </div>
+                    
+                    <div id="collapseEngagementGAONonTVA" class="card-body collapse">
+        
+                       
+                        <div class="row">
+    
+                                <div class="col-sm-3">
+                                                <label jhiTranslate="auxiliumApp.drools.details.sansrp" for="field_assujettietva">Sans la RP (si VA=VR):</label>
+                                </div>
+                                <br><br>
+                                        <div class="col-sm-6">
+                                           
+                                            <select class="form-control form-control-sm" id="field_engagementga" name="engagementga" >
+                                                <option value="Montant" >[TR(TTC)-V1]-F-Autre participation</option>
+                                                <option value="Montant" >[TR(TTC)-V1]-Autre participation</option>
+                                                
+                                            </select>
+                                            
+                                </div>
+                                
+                        </div>
+    
+    
+                        
+                        <div class="row">
+    
+                                <div class="col-sm-3">
+                                                <label jhiTranslate="auxiliumApp.drools.details.avecrp" for="field_assujettietva">Avec la RP (si VA&#60;VR):</label>
+                                        </div>
+                                        <br><br>
+                                        <div class="col-sm-6">
+                                            
+                                            <select class="form-control form-control-sm" id="field_engagementga" name="engagementga" >
+                                                <option value="Montant" >[TR(TTC)-V1]*(VA/VR)]-F-Autre participation</option>
+                                                <option value="Montant" >[TR(TTC)-V1- F]*(VA/VR)-Autre participation</option>
+                                                <option value="Montant" >[(TR(TTC)-V1)*(VA/VR)]-Autre participation</option>
+                                            </select>
+                                            
+                                        </div>
+                                
+                        </div>
+                          
+                    </div>
+                </div>
+            </div>
+    </div>
+
+   <!-- CONDITION WITHOUT RP -->
+
+    <div class="row" *ngIf="(modeId == 3 && garantieId == 7) || (modeId == 3 && garantieId == 22) || (modeId == 3 && garantieId == 4)">
+        <div class="col-lg-6">
+            <div class="card">  
+                        
+                        <div class=" collapsible-card card-header align-items-center collapsed notice notice-info" data-toggle="collapse" href="#collapseEngagementGAOTVA">
+                                <strong jhiTranslate="auxiliumApp.drools.home.title.engagementgatva">Engagement GA</strong>
+                        </div>
+                
+                <div id="collapseEngagementGAOTVA" class="card-body collapse">
+    
+                        
+                        <div class="row">
+    
+                                <div class="col-sm-3">
+                                                <label jhiTranslate="auxiliumApp.drools.details.htvainf" for="field_assujettietva">Si TR(HTVA)&#60;VA:</label>
+                                </div>
+                                <br><br>
+                                <div class="col-sm-6">
+                                           
+                                            <select class="form-control form-control-sm" id="field_engagementga" name="engagementga" >
+                                                <option value="Montant" >TR(HTVA)-V-F-Autre participation</option>
+                                                <option value="Montant" >TR(HTVA)-V-Autre participation</option>
+                                                <option value="Montant" >TR(HTVA)-F-Autre participation</option>
+                                                
+                                            </select>
+                                            
+                                </div>
+                                
+                        </div>
+    
+    
+                        
+                        <div class="row">
+    
+                                <div class="col-sm-3">
+                                                <label jhiTranslate="auxiliumApp.drools.details.htvasup" for="field_assujettietva">Si TR(HTVA)>VA</label>
+                                </div>
+                                <br><br>
+                                <div class="col-sm-6">
+                                            
+                                            <select class="form-control form-control-sm" id="field_engagementga" name="engagementga" >
+                                                <option value="Montant" >VA-V-F-Autre participation</option>
+                                                <option value="Montant" >VA-F-Autre participation</option>
+                                                <option value="Montant" >VA-V-Autre participation</option>
+                                                <option value="Montant" >VA-Autre participation</option>
+                                                
+                                            </select>
+                                            
+                                </div>
+                               
+                        </div>
+                        
+                </div>
+            </div>
+        </div>
+    
+        <div class="col-lg-6">
+                <div class="card">  
+                            
+                            <div class=" collapsible-card card-header align-items-center collapsed notice notice-info" data-toggle="collapse" href="#collapseEngagementGAONonTVA">
+                                    <strong jhiTranslate="auxiliumApp.drools.home.title.engagementganontva">En.GA Non Assujettie TVA</strong>
+                            </div>
+                    
+                    <div id="collapseEngagementGAONonTVA" class="card-body collapse">
+        
+                       
+                        <div class="row">
+    
+                                <div class="col-sm-3">
+                                                <label jhiTranslate="auxiliumApp.drools.details.ttcinf" for="field_ttcinf">Si TR(TTC)&#60;VA</label>
+                                </div>
+                                <br><br>
+                                <div class="col-sm-6">
+                                           
+                                            <select class="form-control form-control-sm" id="field_engagementga" name="engagementga" >
+                                                <option value="Montant" >TR(TTC)-V1-F-Autre participation</option>
+                                                <option value="Montant" >TR(TTC)-V1-Autre participation</option>
+                                                <option value="Montant" >TR(TTC)-F-Autre participation</option>
+                                                
+                                            </select>
+                                            
+                                </div>
+                                
+                        </div>
+    
+    
+                        
+                        <div class="row">
+    
+                                <div class="col-sm-3">
+                                                <label jhiTranslate="auxiliumApp.drools.details.ttcsup" for="field_ttcsup">Si TR(TTC)>VA</label>
+                                </div>
+                                <br><br>
+                                <div class="col-sm-6">
+                                            
+                                            <select class="form-control form-control-sm" id="field_engagementga" name="engagementga" >
+                                                <option value="Montant" >VA-V1-F-Autre participation</option>
+                                                <option value="Montant" >VA-F-Autre participation</option>
+                                                <option value="Montant" >VA-V1-Autre participation</option>
+                                                <option value="Montant" >VA-Autre participation</option>
+                                                
+                                            </select>
+                                            
+                                </div>
+                                
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+
+        <div class="modal-footer">
+        
+            <button type="submit" class="btn btn-primary" disabled>
+                <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+            </button>
+        </div>
+
+</form>
+
+</div>
+</section>

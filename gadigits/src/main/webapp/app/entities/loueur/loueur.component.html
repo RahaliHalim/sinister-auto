@@ -1,0 +1,218 @@
+<div class="breadcrumb-holder">
+    <div class="container-fluid">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="/"><span class="fa fa-home"></span>&nbsp;&nbsp;<span
+                        jhiTranslate="global.menu.home">Home</span></a></li>
+            <li class="breadcrumb-item"><a routerLink="/loueur"><span
+                        jhiTranslate="auxiliumApp.loueur.home.title">Loueurs</span></a></li>
+        </ul>
+    </div>
+</div>
+
+
+<section class="forms">
+    <div class="container-fluid">
+        <!-- Page Header-->
+        <header style="padding-top: 1rem; padding-bottom: 1rem;">
+            <h1 class="h3 display">
+                <jhi-alert-error></jhi-alert-error>
+                <jhi-alert></jhi-alert>
+            </h1>
+        </header>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header d-flex align-items-center no-padding">
+                        <div class="notice notice-info">
+                            <strong jhiTranslate="auxiliumApp.loueur.home.title"> Create new loueur</strong>
+                            <button class="btn btn-sm btn-primary float-right" *ngIf="permissionToAccess.canCreate"
+                            [hidden]="principal.selectedValue=='ROLE_RESPONSABLE'" [routerLink]="['../loueur-new']">
+                                <span class="fa fa-sm fa-plus"></span>
+                                <span class="hidden-sm-down" jhiTranslate="auxiliumApp.loueur.home.createLabel">Create
+                                    new loueur</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+                                class="table table-sm table-hover table-bordered" style="width: 100%">
+                                <thead style="color:white;background-color:#11859b">
+                                    <tr>
+                                        <th><span jhiTranslate="auxiliumApp.loueur.raisonSociale">Raison Sociale</span>
+                                            </span></th>
+                                        <th><span jhiTranslate="auxiliumApp.loueur.nbrVehicules">Nbr Vehicules</span>
+                                            </span></th>
+                                        <th><span jhiTranslate="auxiliumApp.loueur.gouvernorat">gouvernorat</span> </th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let loueur of loueurs">
+                                        <td>{{loueur.raisonSociale}}</td>
+                                        <td>{{loueur.nbrVehicules}}</td>
+                                        <td>{{loueur.governorateLabel}}</td>
+                                        <td class="text-right">
+
+                                            <div class="btn-group flex-btn-group-container">
+                                                <button type="submit" [hidden]="loueur.blocage" *ngIf="permissionToAccess.canActive"
+                                                (click)="BloquerLoueur(loueur.id)"
+                                                     class="btn btn-success btn-sm">
+                                                    Bloquer
+                                                </button>
+                                                <!-- [routerLink]="['/', { outlets: { popup: 'loueur/'+ loueur.id + '/bloque'} }]"
+                                                    replaceUrl="true" -->
+                                                <button type="submit" [hidden]="!loueur.blocage" *ngIf="permissionToAccess.canActive"
+                                                (click)="BloquerLoueur(loueur.id)"
+                                                    class="btn btn-warning btn-sm">
+                                                    Débloquer
+                                                </button>
+                                                <!-- [routerLink]="['/', { outlets: { popup: 'loueur/'+ loueur.id + '/bloque'} }]"
+                                                replaceUrl="true" -->
+
+                                                <button type="submit" [routerLink]="['../loueur', loueur.id ]" *ngIf="permissionToAccess.canConsult"
+                                                    class="btn btn-info btn-sm">
+                                                    <span class="fa fa-eye"></span>
+                                                </button>
+                                                <button type="submit" *ngIf="permissionToAccess.canUpdate"
+                                                    [routerLink]="['../loueur/'+ loueur.id+'/edit']"
+                                                    replaceUrl="true" class="btn btn-primary btn-sm">
+                                                    <span class="fa fa-pencil"></span>
+                                                </button>
+                                                <!-- <button type="submit"
+                                                    [routerLink]="['/', { outlets: { popup: 'loueur/'+ loueur.id + '/delete'} }]"
+                                                    replaceUrl="true" class="btn btn-danger btn-sm">
+                                                    <span class="fa fa-sm fa-remove"></span>
+                                                </button> -->
+                                            </div>
+                                        </td>
+
+
+
+
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+<div>
+    <h2>
+        <span jhiTranslate="auxiliumApp.loueur.home.title">Loueurs</span>
+        <button class="btn btn-primary float-right jh-create-entity create-loueur" [routerLink]="['../loueur-new']">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down" jhiTranslate="auxiliumApp.loueur.home.createLabel">
+                Create new Loueur
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch"
+                        name="currentSearch" placeholder="{{ 'auxiliumApp.loueur.home.search' | translate }}">
+                    <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-addon btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-trash-o"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br />
+    <div class="table-responsive" *ngIf="loueurs">
+        <table class="table table-striped">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+                    <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span>
+                    </th>
+                    <th jhiSortBy="code"><span jhiTranslate="auxiliumApp.loueur.code">Code</span> <span
+                            class="fa fa-sort"></span></th>
+                    <th jhiSortBy="raisonSociale"><span jhiTranslate="auxiliumApp.loueur.raisonSociale">Raison
+                            Sociale</span> <span class="fa fa-sort"></span></th>
+                    <th jhiSortBy="matriculeFiscale"><span jhiTranslate="auxiliumApp.loueur.matriculeFiscale">Matricule
+                            Fiscale</span> <span class="fa fa-sort"></span></th>
+                    <th jhiSortBy="registreCommerce"><span jhiTranslate="auxiliumApp.loueur.registreCommerce">Registre
+                            Commerce</span> <span class="fa fa-sort"></span></th>
+                    <th jhiSortBy="conventionne"><span
+                            jhiTranslate="auxiliumApp.loueur.conventionne">Conventionne</span> <span
+                            class="fa fa-sort"></span></th>
+                    <th jhiSortBy="dateEffetConvention"><span jhiTranslate="auxiliumApp.loueur.dateEffetConvention">Date
+                            Effet Convention</span> <span class="fa fa-sort"></span></th>
+                    <th jhiSortBy="dateFinConvention"><span jhiTranslate="auxiliumApp.loueur.dateFinConvention">Date Fin
+                            Convention</span> <span class="fa fa-sort"></span></th>
+                    <th jhiSortBy="nbrVehicules"><span jhiTranslate="auxiliumApp.loueur.nbrVehicules">Nbr
+                            Vehicules</span> <span class="fa fa-sort"></span></th>
+                    <th jhiSortBy="address"><span jhiTranslate="auxiliumApp.loueur.address">Address</span> <span
+                            class="fa fa-sort"></span></th>
+                    <th jhiSortBy="blocage"><span jhiTranslate="auxiliumApp.loueur.blocage">Blocage</span> <span
+                            class="fa fa-sort"></span></th>
+                    <th jhiSortBy="rib"><span jhiTranslate="auxiliumApp.loueur.rib">Rib</span> <span
+                            class="fa fa-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']"
+                [infiniteScrollDistance]="0">
+                <tr *ngFor="let loueur of loueurs ;trackBy: trackId">
+                    <td><a [routerLink]="['../loueur', loueur.id ]">{{loueur.id}}</a></td>
+                    <td>{{loueur.code}}</td>
+                    <td>{{loueur.raisonSociale}}</td>
+                    <td>{{loueur.matriculeFiscale}}</td>
+                    <td>{{loueur.registreCommerce}}</td>
+                    <td>{{loueur.conventionne}}</td>
+                    <td>{{loueur.dateEffetConvention | date:'mediumDate'}}</td>
+                    <td>{{loueur.dateFinConvention | date:'mediumDate'}}</td>
+                    <td>{{loueur.nbrVehicules}}</td>
+                    <td>{{loueur.address}}</td>
+                    <td>{{loueur.blocage}}</td>
+                    <td>{{loueur.rib}}</td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit" [routerLink]="['../loueur', loueur.id ]" class="btn btn-info btn-sm">
+                                <span class="fa fa-eye"></span>
+                                <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                            </button>
+                            <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'loueur/'+ loueur.id + '/edit'} }]"
+                                replaceUrl="true" class="btn btn-primary btn-sm">
+                                <span class="fa fa-pencil"></span>
+                                <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+                            <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'loueur/'+ loueur.id + '/delete'} }]"
+                                replaceUrl="true" class="btn btn-danger btn-sm">
+                                <span class="fa fa-remove"></span>
+                                <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div> -->

@@ -1,0 +1,112 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    
+        <div class="modal-body">
+            <jhi-alert-error></jhi-alert-error>
+            <div class="form-group" hidden>
+                <label for="id" jhiTranslate="global.field.id">ID</label>
+                <input  readonly   type="text" class="form-control" id="id" name="id"
+                       [(ngModel)]="tiers.id" readonly />
+            </div>
+           <div class="row top-buffer">
+                            <div class="col-sm-6">
+                <label class="form-control-label" jhiTranslate="auxiliumApp.tiers.prenom" for="field_prenom">Prenom</label>
+                <input  readonly   type="text" class="form-control" name="prenom" id="field_prenom"
+                    [(ngModel)]="tiers.prenom"   maxlength="100" />
+                <div [hidden]="!(editForm.controls.prenom?.dirty && editForm.controls.prenom?.invalid)">
+                    <small class="form-text text-danger"
+                       [hidden]="!editForm.controls.prenom?.errors?.required" jhiTranslate="entity.validation.required">
+                       This field is required.
+                    </small>
+                    <small class="form-text text-danger"
+                       [hidden]="!editForm.controls.prenom?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 100 }">
+                       This field cannot be longer than 100 characters.
+                    </small>
+                </div>
+            </div>
+               <div class="col-sm-6">
+                <label class="form-control-label" jhiTranslate="auxiliumApp.tiers.nom" for="field_nom">Nom</label>
+                <input  readonly   type="text" class="form-control" name="nom" id="field_nom"
+                    [(ngModel)]="tiers.nom"   maxlength="100" />
+                <div [hidden]="!(editForm.controls.nom?.dirty && editForm.controls.nom?.invalid)">
+                    <small class="form-text text-danger"
+                       [hidden]="!editForm.controls.nom?.errors?.required" jhiTranslate="entity.validation.required">
+                       This field is required.
+                    </small>
+                    <small class="form-text text-danger"
+                       [hidden]="!editForm.controls.nom?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 100 }">
+                       This field cannot be longer than 100 characters.
+                    </small>
+                </div>
+            </div></div>
+           <div class="row top-buffer">
+                            <div class="col-sm-6">
+                <label class="form-control-label" jhiTranslate="auxiliumApp.tiers.debutValidite" for="field_debutValidite">Debut Validite</label>
+                <div class="input-group">
+                    <input  readonly   id="field_debutValidite" type="text" class="form-control" name="debutValidite" ngbDatepicker  #debutValiditeDp="ngbDatepicker" [(ngModel)]="tiers.debutValidite"
+                     />
+                    <span class="input-group-btn">
+                        <button disabled type="button" class="btn btn-default" (click)="debutValiditeDp.toggle()"><i class="fa fa-calendar"></i></button>
+                    </span>
+                </div>
+                <div [hidden]="!(editForm.controls.debutValidite?.dirty && editForm.controls.debutValidite?.invalid)">
+                    <small class="form-text text-danger"
+                       [hidden]="!editForm.controls.debutValidite?.errors?.required" jhiTranslate="entity.validation.required">
+                       This field is required.
+                    </small>
+                </div>
+            </div>
+           <div class="col-sm-6">
+                <label class="form-control-label" jhiTranslate="auxiliumApp.tiers.finValidite" for="field_finValidite">Fin Validite</label>
+                <div class="input-group">
+                    <input  readonly   id="field_finValidite" type="text" class="form-control" name="finValidite" ngbDatepicker  #finValiditeDp="ngbDatepicker" [(ngModel)]="tiers.finValidite"
+                    />
+                    <span class="input-group-btn">
+                        <button disabled type="button" class="btn btn-default" (click)="finValiditeDp.toggle()"><i class="fa fa-calendar"></i></button>
+                    </span>
+                </div>
+                <div [hidden]="!(editForm.controls.finValidite?.dirty && editForm.controls.finValidite?.invalid)">
+                    <small class="form-text text-danger"
+                       [hidden]="!editForm.controls.finValidite?.errors?.required" jhiTranslate="entity.validation.required">
+                       This field is required.
+                    </small>
+                </div>
+            </div></div>
+            <div class="row top-buffer">
+                            <div class="col-sm-6">
+                <label class="form-control-label" jhiTranslate="auxiliumApp.tiers.compagnieAssurance" for="field_compagnieAssurance">Compagnie Assurance</label>
+                <select disabled class="form-control" id="field_compagnieAssurance" name="compagnieAssurance" [(ngModel)]="tiers.compagnieId">
+                        <option [ngValue]="compagnieOption.id" *ngFor="let compagnieOption of compagnies; trackBy: trackcompagnieOptionById">
+                        {{compagnieOption.nom}}
+                        </option>
+                </select>
+                <div [hidden]="!(editForm.controls.compagnieAssurance?.dirty && editForm.controls.compagnieAssurance?.invalid)">
+                    <small class="form-text text-danger"
+                       [hidden]="!editForm.controls.compagnieAssurance?.errors?.required" jhiTranslate="entity.validation.required">
+                       This field is required.
+                    </small>
+                    <small class="form-text text-danger"
+                       [hidden]="!editForm.controls.compagnieAssurance?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 100 }">
+                       This field cannot be longer than 100 characters.
+                    </small>
+                </div>
+            </div>
+                <div class="col-sm-6">
+                <label class="form-control-label" jhiTranslate="auxiliumApp.tiers.immatriculation" for="field_immatriculation">Immatriculation</label>
+                <input  readonly   type="text" class="form-control" name="immatriculation" id="field_immatriculation"
+                    [(ngModel)]="tiers.immatriculation"   pattern="([0-9]{4})TU([0-9]{3})" />
+                <div [hidden]="!(editForm.controls.immatriculation?.dirty && editForm.controls.immatriculation?.invalid)">
+                    <small class="form-text text-danger"
+                       [hidden]="!editForm.controls.immatriculation?.errors?.required" jhiTranslate="entity.validation.required">
+                       This field is required.
+                    </small>
+                    <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.immatriculation?.errors?.pattern" jhiTranslate="entity.validation.pattern" translateValues="{ pattern: 'Immatriculation' }">
+                        This field should follow pattern for "Immatriculation".
+                    </small>
+                </div>
+            </div></div>
+    
+        </div>
+    </form>
+    

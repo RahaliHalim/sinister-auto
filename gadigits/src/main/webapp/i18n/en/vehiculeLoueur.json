@@ -1,0 +1,23 @@
+{
+    "auxiliumApp": {
+        "vehiculeLoueur" : {
+            "home": {
+                "title": "Vehicule Loueurs",
+                "createLabel": "Create a new Vehicule Loueur",
+                "createOrEditLabel": "Create or edit a Vehicule Loueur",
+                "search": "Search for Vehicule Loueur"
+            },
+            "created": "A new Vehicule Loueur is created with identifier {{ param }}",
+            "updated": "A Vehicule Loueur is updated with identifier {{ param }}",
+            "deleted": "A Vehicule Loueur is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Vehicule Loueur {{ id }}?"
+            },
+            "detail": {
+                "title": "Vehicule Loueur"
+            },
+            "immatriculation": "Immatriculation",
+            "totalPrix": "Total Prix"
+        }
+    }
+}

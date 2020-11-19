@@ -1,0 +1,509 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.9.0.final using JasperReports Library version 6.9.0-cb8f9004be492ccc537180b49c026951f4220bf3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="bonSortie" language="groovy" pageWidth="680" pageHeight="900" whenNoDataType="NoPages" columnWidth="640" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="aff47105-8fb0-445c-9785-bcd4f7d16b73">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="bonSortie" class="com.gaconnecte.auxilium.service.dto.ReceiptDTO"/>
+	<parameter name="logoSlogon" class="java.io.InputStream"/>
+	<parameter name="footer" class="java.io.InputStream"/>
+	<title>
+		<band height="860" splitType="Stretch">
+			<image>
+				<reportElement stretchType="RelativeToBandHeight" x="283" y="0" width="54" height="50" uuid="2247ec3f-d614-40e8-b254-657c189f4346"/>
+				<imageExpression><![CDATA[$P{logoSlogon}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="230" y="60" width="154" height="20" uuid="00e89290-15f6-44a8-bed4-1902c1bf9a66"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[BON DE SORTIE]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="-3" y="81" width="653" height="140" uuid="fbe10a9a-918b-4703-ae80-a1b31263329a"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="2" y="91" width="87" height="20" uuid="e1acd83a-1ef6-44d4-9064-25b94ccb2562"/>
+				<text><![CDATA[N° dossier GA :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="111" width="68" height="20" uuid="9b72499a-b04c-48ff-957a-3bb259d20d9b"/>
+				<text><![CDATA[N° Sinistre :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="131" width="87" height="20" uuid="d3c2949a-3f35-4f86-bf9a-c12ffe4540c7"/>
+				<text><![CDATA[Immat :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="151" width="87" height="20" uuid="66f2772d-8baf-464f-9988-c4241673f0f8"/>
+				<text><![CDATA[Assuré :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="171" width="87" height="20" uuid="8c941984-fe4c-4129-8844-23dc79bf8e37"/>
+				<text><![CDATA[Expert :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="233" y="91" width="100" height="20" uuid="e56293e3-66a5-4c30-a903-5b24ce0c58a0"/>
+				<text><![CDATA[Cie  :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="233" y="111" width="88" height="20" uuid="9b74beb7-2761-4b69-bf55-a6bedf0d0cf4"/>
+				<text><![CDATA[Date d'accident :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="233" y="131" width="100" height="20" uuid="3e97fd07-694a-48b9-9e84-cd1a599b95fc"/>
+				<text><![CDATA[Marque :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="233" y="151" width="100" height="20" uuid="62ec3787-6bfe-4742-a75b-a3e78af2fc59"/>
+				<text><![CDATA[N° contrat :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="233" y="171" width="100" height="20" uuid="d237a723-b0e6-4c72-9c01-9dc7ade1e5ed"/>
+				<text><![CDATA[Réparateur :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="410" y="91" width="62" height="20" uuid="bc5e4fe2-216f-490b-bc4a-1d9885868dc2"/>
+				<text><![CDATA[Agence :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="410" y="131" width="62" height="20" uuid="211d6a13-6dcb-448d-a6fe-fe0ebc884efa"/>
+				<text><![CDATA[Usage :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="410" y="151" width="62" height="20" uuid="4e46bd9f-18c1-423a-9353-daccd35574a1"/>
+				<text><![CDATA[GSM :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="191" width="77" height="20" uuid="aaebd743-ff33-4751-bbb3-1722d855b8ce"/>
+				<text><![CDATA[Date Entrée :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="233" y="191" width="68" height="20" uuid="055a7724-3116-4c4e-8fb0-2781f8b34a14"/>
+				<text><![CDATA[Date Sortie :]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="225" width="296" height="123" uuid="d5d2d6cb-9b90-44f9-a07e-471dd3e42ff1"/>
+			</rectangle>
+			<line>
+				<reportElement x="0" y="246" width="296" height="1" uuid="8ebf2b94-2e52-427c-bc3d-aafe5e2d46b7"/>
+			</line>
+			<line>
+				<reportElement x="0" y="266" width="296" height="1" uuid="a8fd9cd3-e92f-47bc-8227-db0618feaccd"/>
+			</line>
+			<line>
+				<reportElement x="0" y="287" width="296" height="1" uuid="200ee104-2198-4ab1-aa2c-0e71cac8414a"/>
+			</line>
+			<line>
+				<reportElement x="0" y="307" width="296" height="1" uuid="0896e537-1e8c-49bf-8427-e1d146a3509e"/>
+			</line>
+			<line>
+				<reportElement x="0" y="327" width="296" height="1" uuid="e14519ff-9a89-4e77-9e2b-f2f7b8d9b3a5"/>
+			</line>
+			<line>
+				<reportElement x="128" y="246" width="1" height="102" uuid="7c9433ef-253c-401d-9584-de5df4f1b64d"/>
+			</line>
+			<staticText>
+				<reportElement x="4" y="226" width="277" height="20" uuid="49d9c6b9-0094-4e21-a1e2-59c14c010fc9"/>
+				<text><![CDATA[Facture Réparateur]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="246" width="100" height="20" uuid="9006a989-8995-43f0-97c2-95859aecb415"/>
+				<text><![CDATA[MO TTC]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="267" width="100" height="20" uuid="5aad5697-e04b-4fc5-8c5c-a2ca49151cdd"/>
+				<text><![CDATA[PR TTC]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="287" width="100" height="20" uuid="586b344e-67e8-42a5-af5e-ab6cd9536c91"/>
+				<text><![CDATA[IP et PF TTC]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="307" width="100" height="20" uuid="2a6f573e-c4f9-4318-8578-cf6e2e718c51"/>
+				<text><![CDATA[D.Timbre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="328" width="124" height="20" uuid="046ab444-0542-47bc-809d-0f8efd76f592"/>
+				<text><![CDATA[Total Facture Rép TTC]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="1" y="356" width="295" height="102" uuid="6764101d-2f56-44d3-8dbe-a4753f66868e"/>
+			</rectangle>
+			<line>
+				<reportElement x="1" y="377" width="295" height="1" uuid="fde1f0ca-09f2-4776-994f-f90edc8cd7ca"/>
+			</line>
+			<line>
+				<reportElement x="1" y="397" width="295" height="1" uuid="9457a935-3e3e-4e1f-abd2-4a29a0446649"/>
+			</line>
+			<line>
+				<reportElement x="1" y="418" width="295" height="1" uuid="0aa39ef3-8ea8-4894-9e5a-d0f53503da66"/>
+			</line>
+			<line>
+				<reportElement x="1" y="438" width="295" height="1" uuid="51a25579-a99d-40bb-87ac-52621c1823ca"/>
+			</line>
+			<line>
+				<reportElement x="1" y="458" width="277" height="1" uuid="081e4a49-d8ea-4820-8ece-5ca5ad9bae0c"/>
+			</line>
+			<line>
+				<reportElement x="129" y="356" width="1" height="103" uuid="8e15a066-b05c-4291-b15b-f7c90bd2547f"/>
+			</line>
+			<staticText>
+				<reportElement x="5" y="357" width="125" height="20" uuid="0d8eefc9-8eec-49ab-933b-74bb62115495"/>
+				<text><![CDATA[Total Facture(s)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="377" width="123" height="20" uuid="d5479e8f-0971-4063-ad7b-26dbb370a876"/>
+				<text><![CDATA[Engagement Assuré]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="398" width="100" height="20" uuid="a2faf716-47c6-43a9-b68d-459b658181e8"/>
+				<text><![CDATA[Enagagement GA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="418" width="100" height="20" uuid="9dc48e64-31e1-441f-b372-5fdcc7309cb9"/>
+				<text><![CDATA[Surplus Encaissé]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="438" width="100" height="20" uuid="aef17437-27c8-4c27-af8f-da1a48555636"/>
+				<text><![CDATA[Solde Réparateur]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="360" y="225" width="290" height="229" uuid="889c3d6a-1c7a-4649-af9d-6bbe9eab97cb"/>
+			</rectangle>
+			<line>
+				<reportElement x="360" y="246" width="290" height="1" uuid="856a2197-ced3-4d2f-8abd-b4835ca4f0bc"/>
+			</line>
+			<line>
+				<reportElement x="360" y="266" width="290" height="2" uuid="b10027ee-151b-45a9-89d8-257c7aa1924b"/>
+			</line>
+			<line>
+				<reportElement x="360" y="287" width="290" height="1" uuid="dc18e794-78b8-406b-bf57-83176d21bbe2"/>
+			</line>
+			<line>
+				<reportElement x="360" y="308" width="290" height="1" uuid="2b3ec598-eca1-45ae-9ef5-ba30b2683174"/>
+			</line>
+			<line>
+				<reportElement x="360" y="329" width="290" height="1" uuid="b1275d2b-ada6-4ee8-8647-e0159b1525d8"/>
+			</line>
+			<line>
+				<reportElement x="360" y="350" width="290" height="1" uuid="6522f343-2d34-41e1-b12d-959d14014a6b"/>
+			</line>
+			<line>
+				<reportElement x="360" y="371" width="290" height="1" uuid="2832139a-d9b9-49a6-9b51-7cccc6d6c688"/>
+			</line>
+			<line>
+				<reportElement x="360" y="391" width="290" height="2" uuid="6f9aa154-995e-49cb-9b15-8988053dee8e"/>
+			</line>
+			<line>
+				<reportElement x="360" y="412" width="290" height="1" uuid="06f7bf91-2cc9-4344-b81c-58825c91293a"/>
+			</line>
+			<line>
+				<reportElement x="360" y="433" width="290" height="1" uuid="f8caff19-a7d3-4853-86f7-5d43b0d069ab"/>
+			</line>
+			<line>
+				<reportElement x="477" y="246" width="1" height="208" uuid="9f3773c9-e3df-4d52-b9cf-be5776eae821"/>
+			</line>
+			<staticText>
+				<reportElement x="365" y="226" width="261" height="20" uuid="2ebbed06-e4e7-4c00-abc0-65b7084cffc2"/>
+				<text><![CDATA[Estimation Participation de l'assuré]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="365" y="247" width="100" height="20" uuid="8fb4f8b5-45e7-4572-b6ad-c137028539b5"/>
+				<text><![CDATA[Droit de Timbre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="365" y="267" width="100" height="20" uuid="d02b4ef3-0d68-480a-8dc1-fa3b66d56eb5"/>
+				<text><![CDATA[TVA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="365" y="288" width="119" height="20" uuid="d6eb5b8e-3094-453a-8b4b-398fce859008"/>
+				<text><![CDATA[Régle proportionnelle]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="365" y="309" width="100" height="20" uuid="8b6070e0-61f9-4c57-9866-5be7335d6950"/>
+				<text><![CDATA[Franchise]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="365" y="329" width="119" height="20" uuid="d3810e4d-6fa1-4dff-8085-f7bf619cdfe5"/>
+				<text><![CDATA[Dépassement Plafond]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="365" y="350" width="100" height="20" uuid="0c51c325-e15d-49ff-83f0-db6751b56e90"/>
+				<text><![CDATA[Vétusté]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="365" y="371" width="100" height="20" uuid="6821763b-ad4a-4d26-a302-ab42c4998c27"/>
+				<text><![CDATA[Part Responsabilité]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="365" y="393" width="100" height="20" uuid="74c91765-3d5b-4aec-8d46-ff1064f1db6f"/>
+				<text><![CDATA[Frais de dossier]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="365" y="412" width="100" height="20" uuid="1a9072b5-3cff-4076-b636-0f388198b39f"/>
+				<text><![CDATA[Avance]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="365" y="433" width="133" height="20" uuid="ade6b362-1566-4620-8f9f-fe9050fe2dab"/>
+				<text><![CDATA[Total Part de l'assuré]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement mode="Transparent" x="2" y="461" width="648" height="132" uuid="df46817d-a4b1-458f-a3c0-a8add1b50c14"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="5" y="463" width="703" height="257" uuid="379fca20-5ef7-4e6a-b105-0ec89e7d3b66"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top" markup="none">
+					<font size="10" isBold="false" isPdfEmbedded="false"/>
+				</textElement>
+				<text><![CDATA[En référence au Bon d'affectation du réparateur et au formulaire d'avis technique, la société GÉNÉRALE ASSISTANCE s'engage à prendre en 
+charge les frais de réparation résultants de l'accident survenu au véhicule ci-dessus référencé et ce, dans la limite du montant fixé par l'expert, 
+déduction faite de la participation aux frais qui restera à la charge de l'assuré. Le montant de cette participation sera indiqué sur le bon de 
+sortie établi par GÉNÉRALE ASSISTANCE à la fin des réparations, et sera réglé par l'assuré, directement au réparateur, avant réception de son 
+véhicule. 
+Un accord de prise en charge complémentaire est exigé s'il s’avère en cours des réparations que des pièces (autres que celles figurant sur
+ le devis initial) sont touchées par l'accident et doivent  être remplacées. Un devis complémentaire signé par l'expert est nécessaire dans ce cas. 
+GÉNÉRALE ASSISTANCE s'engage à régler la facture de réparation, déduction faite de la participation de l'assuré selon les conditions arrêtées 
+d'un commun accord.
+(*) Estimation Engagement GA: il s'agit du montant estimatif des réparations qui sera à la charge de GA et dans la limite arrêtée]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="4" y="595" width="272" height="90" uuid="3ca466c5-5fe7-4178-b7c7-246234b0b353"/>
+			</rectangle>
+			<line>
+				<reportElement x="4" y="616" width="272" height="1" uuid="f3c54758-878f-44b9-9507-566546cc1ef9"/>
+			</line>
+			<staticText>
+				<reportElement x="4" y="596" width="272" height="20" uuid="563a48ee-86fb-449b-b91f-d7e364c2c9c7"/>
+				<textElement textAlignment="Center">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[LE REPARATEUR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="7" y="618" width="294" height="35" uuid="9a966133-8452-4c10-9417-5bd7f9c6adb4"/>
+				<text><![CDATA[La signature du réparateur sur le bon de sortie a pour but le paiement 
+de la participation de l'assuré aux frais.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="7" y="659" width="134" height="20" uuid="22cbe49e-93ca-4556-bb97-1c7194ae673c"/>
+				<text><![CDATA[Date. Cachet et signature]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="359" y="595" width="292" height="90" uuid="7bb336eb-cb06-4615-896f-811568cd44ae"/>
+			</rectangle>
+			<line>
+				<reportElement x="359" y="616" width="292" height="1" uuid="10ec90ea-80d2-4137-bc85-e7440c342a47"/>
+			</line>
+			<staticText>
+				<reportElement x="359" y="596" width="272" height="20" uuid="08255e2b-15da-4d5d-80fc-99f934de7a90"/>
+				<textElement textAlignment="Center">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[L'EXPERT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="361" y="618" width="321" height="35" uuid="9e044992-1ebe-4e86-933a-74a0a75fb4ad"/>
+				<text><![CDATA[Avis de l'expert sur la qualité des réparations et la conformité des factures.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="362" y="659" width="134" height="20" uuid="b27e409a-292d-4ec7-ab5a-0cd180364252"/>
+				<text><![CDATA[Date. Cachet et signature]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="4" y="689" width="646" height="126" uuid="60073175-36ea-4b8b-aefd-1ebbb8061b37"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="7" y="690" width="643" height="20" uuid="0ac54b44-0e3f-47f3-8a31-79f5a689dbe1"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[L'Assuré]]></text>
+			</staticText>
+			<line>
+				<reportElement x="4" y="711" width="646" height="1" uuid="a5b54d71-b0c8-4e6b-9139-d7073ae0b9b2"/>
+			</line>
+			<staticText>
+				<reportElement x="11" y="714" width="80" height="20" uuid="0c279f65-f08a-460e-86f0-e9844819ccaa"/>
+				<text><![CDATA[Je soussigné]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="167" y="714" width="97" height="20" uuid="13f7908d-0a6a-4f32-9427-671db61a8405"/>
+				<text><![CDATA[pour le compte de]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="347" y="714" width="314" height="20" uuid="1b8dbd1b-5656-43d7-8a5b-4fa4e0e7f7c7"/>
+				<text><![CDATA[atteste avoir récupéré mon véhicule en bon état, je reconnais avoir]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="740" width="683" height="20" uuid="493bce69-c0ce-4ad8-a199-518d1f720e9a"/>
+				<text><![CDATA[été informé que je dispose d'un délai de 3 jours pour réclamer tout défaut constaté dans les réparations ou résultant de ces réparations]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="301" y="760" width="214" height="20" uuid="4055faa5-fe11-4221-ade6-780cea675383"/>
+				<text><![CDATA[Date et signature de l’assuré]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="795" width="623" height="20" uuid="cef9615a-cc44-4114-82c5-c243c0b7947c"/>
+				<text><![CDATA[Afin de nous permettre d’apporter des améliorations continues à nos services, veuillez remplir le questionnaire ci-joint]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="49" y="151" width="159" height="20" uuid="b6668e06-c688-46c2-ae43-cfac0e646f0b"/>
+				<textFieldExpression><![CDATA[$P{bonSortie}.getInsuredName()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="86" y="91" width="113" height="20" uuid="eb325d45-13e9-45eb-96fb-f71bc76d6476"/>
+				<textFieldExpression><![CDATA[$P{bonSortie}.getReferenceSinister()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="50" y="171" width="161" height="20" uuid="bf2bb229-3db4-45c9-b932-ac247476a5fd"/>
+				<textFieldExpression><![CDATA[$P{bonSortie}.getExpertName()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="264" y="91" width="160" height="20" uuid="887a31c8-201c-4d9e-8fe4-611cc258b474"/>
+				<textFieldExpression><![CDATA[$P{bonSortie}.getCompanyInsurance()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="458" y="131" width="202" height="20" uuid="ac3d3b52-e262-4f02-b703-2e126a5356bb"/>
+				<textFieldExpression><![CDATA[$P{bonSortie}.getUsage()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="278" y="131" width="114" height="20" uuid="d8a5cda9-48ac-4aa0-91b6-6d38e41750ab"/>
+				<textFieldExpression><![CDATA[$P{bonSortie}.getMarque()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="60" y="131" width="100" height="20" uuid="58dc20c2-7a95-4f0d-a0e7-94d2fb9a7bf5"/>
+				<textFieldExpression><![CDATA[$P{bonSortie}.getInsuredImmatriculation()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="453" y="91" width="152" height="20" uuid="52189dac-aa18-4c22-8369-dc40be27e353"/>
+				<textFieldExpression><![CDATA[$P{bonSortie}.getAgenceName()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="296" y="171" width="162" height="20" uuid="bb1ee64c-cd18-4bff-a412-7b7aab2ed001"/>
+				<textFieldExpression><![CDATA[$P{bonSortie}.getRepairerName()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="60" y="111" width="90" height="20" uuid="2a54cc6e-4e63-4483-a724-6fa64740c1ed"/>
+				<textFieldExpression><![CDATA[$P{bonSortie}.getNumSinister()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="287" y="151" width="123" height="20" uuid="7db6070f-7bfe-478e-ade4-ad579ea2ae4d"/>
+				<textFieldExpression><![CDATA[$P{bonSortie}.getNumContract()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="320" y="111" width="100" height="20" uuid="45506fdc-67ba-4838-a281-1e46b0a7a09b"/>
+				<textFieldExpression><![CDATA[$P{bonSortie}.getIncidentDate()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="148" y="249" width="100" height="20" uuid="227d62f3-5fa6-4cb7-b47b-49048e96a6bc"/>
+				<textFieldExpression><![CDATA[$P{bonSortie}.getTtcDetailsMo()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="148" y="271" width="100" height="20" uuid="0fc8d917-c2fc-4341-816f-5ced96b82ee2"/>
+				<textFieldExpression><![CDATA[$P{bonSortie}.getTtcPieceR()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="148" y="290" width="100" height="20" uuid="47b505de-147e-439b-8fb5-f0d68288e974"/>
+				<textFieldExpression><![CDATA[$P{bonSortie}.getTtcPieceIP()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="148" y="311" width="100" height="20" uuid="12a3d8b0-c244-4f5a-80c0-ece497e5abdc"/>
+				<textFieldExpression><![CDATA[$P{bonSortie}.getDroitDeTimbreReparateur()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="148" y="332" width="100" height="20" uuid="80f50902-a855-4c8d-b5ac-a6c1cbd5f7ee"/>
+				<textFieldExpression><![CDATA[$P{bonSortie}.getTotalFactureRepTtc()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="526" y="248" width="100" height="20" uuid="4b0ad0ce-d09d-455a-b39f-bed5f085024d"/>
+				<textFieldExpression><![CDATA[$P{bonSortie}.getDroitTimbre()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="526" y="268" width="100" height="20" uuid="a7f8921b-94c1-4d15-b1be-819f55a65db1"/>
+				<textFieldExpression><![CDATA[$P{bonSortie}.getTva()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="526" y="288" width="100" height="20" uuid="27ac67e8-9c42-4ce7-946c-2ca782dde64d"/>
+				<textFieldExpression><![CDATA[$P{bonSortie}.getReglepropor()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="526" y="310" width="100" height="20" uuid="e09faf9b-746b-40d7-a51f-05478ac8ae62"/>
+				<textFieldExpression><![CDATA[$P{bonSortie}.getFranchise()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="526" y="328" width="100" height="20" uuid="714181f0-44a3-46df-b0a0-dc891ed19c4a"/>
+				<textFieldExpression><![CDATA[$P{bonSortie}.getDepassplafond()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="526" y="350" width="100" height="20" uuid="2dd66a2a-bc0f-4170-9c9e-716d8ffacc89"/>
+				<textFieldExpression><![CDATA[$P{bonSortie}.getVetuste()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="526" y="371" width="100" height="20" uuid="73c2ccb3-4606-4073-b23a-7d1db6d4a03e"/>
+				<textFieldExpression><![CDATA[$P{bonSortie}.getPartResponsabilite()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="526" y="393" width="100" height="20" uuid="084b2420-b523-4f41-9865-579ec08c590d"/>
+				<textFieldExpression><![CDATA[$P{bonSortie}.getFraisdossier()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="526" y="414" width="100" height="20" uuid="ce942bd4-9457-4dce-857c-ed4208c1e75a"/>
+				<textFieldExpression><![CDATA[$P{bonSortie}.getAutre()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="491" y="435" width="100" height="20" uuid="b028769c-9b70-4a7b-bf88-1f09deac29cb"/>
+				<textFieldExpression><![CDATA[$P{bonSortie}.getTotalPartAssure()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="148" y="361" width="100" height="20" uuid="d8d4e25f-ebec-4324-9bb3-8cb17f911264"/>
+				<textFieldExpression><![CDATA[$P{bonSortie}.getTtc()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="148" y="381" width="100" height="20" uuid="ce148607-1131-4713-85c6-b29f2c84092c"/>
+				<textFieldExpression><![CDATA[$P{bonSortie}.getEngagementAssure()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="148" y="401" width="100" height="20" uuid="705b21bb-67a9-414a-8889-a01cfd33206b"/>
+				<textFieldExpression><![CDATA[$P{bonSortie}.getEngagementga()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="148" y="421" width="100" height="20" uuid="552b2358-e380-4a86-b60b-42dfffd30dde"/>
+				<textFieldExpression><![CDATA[$P{bonSortie}.getSurplusEncaisse()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="148" y="441" width="100" height="20" uuid="b97a2012-d7f1-4c57-9739-ee911acc43c4"/>
+				<textFieldExpression><![CDATA[$P{bonSortie}.getSoldeReparateur()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="470" y="151" width="132" height="20" uuid="e6e29f6c-d4c4-475c-a61a-43cdc60ea048"/>
+				<textFieldExpression><![CDATA[$P{bonSortie}.getTelephoneAssure()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="80" y="191" width="100" height="20" uuid="911c8b6a-5f9c-4f3d-9622-1c0045d31de2"/>
+				<textFieldExpression><![CDATA[$P{bonSortie}.getDateReceiptionVehicule()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="300" y="191" width="100" height="20" uuid="99214393-deeb-4417-b23d-d3d74d6df540"/>
+				<textFieldExpression><![CDATA[$P{bonSortie}.getDateGenerationBonSortie()]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="285" y="810" width="160" height="50" uuid="c5db7bf5-8003-4584-9cc5-bdcbbd4c9e30"/>
+				<imageExpression><![CDATA[$P{footer}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="486" y="49" width="22" height="20" uuid="7439d4f5-5edd-42df-ad19-e3ac10a599f5"/>
+				<textElement>
+					<font size="12" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[N°:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="508" y="49" width="102" height="16" uuid="1e21b668-89c2-46d3-a66b-35bb43907d78"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{bonSortie}.getBonSortieNumber()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+</jasperReport>

@@ -1,0 +1,18 @@
+{
+    "auxiliumApp": {
+        "ConfirmationRefusPrestation" : {
+            "home": {
+                "title": "Confirmation refus prestation"
+            },
+            "detail": {
+                "title": "Confirmation refus prestation"
+
+            },
+                "label" : "Label",
+                " company" : "Compagnie",
+                " declarationDate" : "Date de décalaration",
+                " vehicleNumber" : "Numéro du véhicule"
+              
+        }
+    }
+}

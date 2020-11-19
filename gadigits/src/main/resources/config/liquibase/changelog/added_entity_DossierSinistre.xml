@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <property name="now" value="now()" dbms="h2"/>
+
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+
+    <property name="floatType" value="float4" dbms="postgresql, h2"/>
+    <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
+
+    <!--
+        Added the entity DossierSinistre.
+    -->
+    <changeSet id="20170912084508-1" author="jhipster">
+        <createTable tableName="dossier_sinistre">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="reference" type="varchar(100)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="prenom_conducteur" type="varchar(100)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="nom_conducteur" type="varchar(100)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="permis_conduc" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="prenom_tiers_conduc" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="nom_tiers_conduc" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="permis_tiers_conduc" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="date_accident" type="timestamp">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="desc_pts_choc" type="varchar(256)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="nbr_vehicules" type="integer">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="date_creation" type="date">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="is_supprime" type="boolean">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="commentaire" type="varchar(2000)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="ville_id" type="bigint">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="mode_id" type="bigint">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="contrat_id" type="bigint">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="pos_ga_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="tiers_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+        </createTable>
+        <dropDefaultValue tableName="dossier_sinistre" columnName="date_accident" columnDataType="datetime"/>
+        
+        <createTable tableName="dossier_sinistre_agent_generale">
+            <column name="agent_generales_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="dossier_sinistres_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="dossier_sinistres_id, agent_generales_id" tableName="dossier_sinistre_agent_generale"/>
+        
+        <createTable tableName="dossier_sinistre_expert">
+            <column name="experts_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="dossier_sinistres_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="dossier_sinistres_id, experts_id" tableName="dossier_sinistre_expert"/>
+        
+        <createTable tableName="dossier_sinistre_piece_jointe">
+            <column name="piece_jointes_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="dossier_sinistres_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="dossier_sinistres_id, piece_jointes_id" tableName="dossier_sinistre_piece_jointe"/>
+        
+    </changeSet>
+</databaseChangeLog>

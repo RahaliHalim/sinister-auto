@@ -1,0 +1,12 @@
+{
+    "auxiliumApp": {
+        "motifsSinisterPec" : {
+            "home": {
+              
+            },
+            "created": "Un nouveau motif a été créé ",
+            "updated": "Le motif pec a été mis à jour"
+            
+        }
+    }
+}

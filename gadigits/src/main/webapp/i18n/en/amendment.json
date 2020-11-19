@@ -1,0 +1,26 @@
+{
+    "auxiliumApp": {
+        "conventionAmendment": {
+            "home": {
+                "title": "Conventions",
+                "createLabel": "Create a new convention",
+                "createOrEditLabel": "Create or edit a convention"
+            },
+            "created": "A new convention is created with identifier {{ param }}",
+            "updated": "A  convention is updated with identifier {{ param }}",
+            "deleted": "A convention is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete convention {{ id }}?"
+            },
+            "detail": {
+                "title": "Convention"
+            },
+            "label": "Label",
+            "startDate": "Start date",
+            "endDate": "End date",
+            "company": "Company",
+            "pack": "Pack",
+            "signedAgreement": "signed agreement"
+        }
+    }
+}

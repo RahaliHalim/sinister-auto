@@ -1,0 +1,24 @@
+{
+    "auxiliumApp": {
+        "policyType" : {
+            "home": {
+                "title": "PolicyTypes",
+                "createLabel": "Créer un nouveau Policy Type",
+                "createOrEditLabel": "Créer ou modifier un Policy Type",
+                "search": "Recherche pour Policy Type"
+            },
+            "created": "Un nouveau Policy Type a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Policy Type avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Policy Type avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Êtes-vous sûrs de vouloir supprimer le Policy Type {{ id }} ?"
+            },
+            "detail": {
+                "title": "Policy Type"
+            },
+            "code": "Code",
+            "label": "Label",
+            "active": "Active"
+        }
+    }
+}

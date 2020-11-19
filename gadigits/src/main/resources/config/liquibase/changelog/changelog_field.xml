@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <property name="floatType" value="float4" dbms="postgresql, h2"/>
+    <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
+
+
+	<changeSet id="20170912084527-2" author="jhipster">
+		<addColumn tableName="details_mo">
+			<column name="designation_id" type="bigint" />
+		</addColumn>
+		<addColumn tableName="details_pieces">
+			<column name="designation_id" type="bigint" />
+		</addColumn>
+		<dropColumn columnName="fournisseur_id" tableName="details_pieces" />
+		<addColumn tableName="details_pieces">
+			<column name="fournisseur_id" type="bigint" />
+		</addColumn>
+		<addColumn tableName="details_pieces">
+			<column name="vetuste" type="${floatType}" />
+		</addColumn>
+
+		<addColumn tableName="devis">
+			<column name="version" type="integer" />
+		</addColumn>
+		<addColumn tableName="devis">
+			<column name="etat_devis" type="varchar(255)" />
+		</addColumn>
+
+		<addColumn tableName="prestation_pec">
+			<column name="date_reception_vehicule" type="timestamp" />
+		</addColumn>
+
+		<addColumn tableName="prestation_pec">
+			<column name="reparateur_id" type="bigint" />
+		</addColumn>
+		<addColumn tableName="grille_reparateur">
+			<column name="ref_type_intervention_id" type="bigint" />
+		</addColumn>
+		<addColumn tableName="grille_reparateur">
+			<column name="date" type="date" />
+		</addColumn>
+		<addColumn tableName="devis">
+			<column name="expert_id" type="bigint" />
+		</addColumn>
+
+		<modifyDataType columnName="date_generation"
+			newDataType="timestamp" tableName="devis" />
+
+		<addNotNullConstraint columnDataType="integer"
+			columnName="version" tableName="devis" />
+		<addNotNullConstraint columnDataType="varchar(255)"
+			columnName="etat_devis" tableName="devis" />
+
+
+		<dropColumn columnName="designation" tableName="details_mo" />
+		<dropColumn columnName="designation" tableName="details_pieces" />
+		<dropColumn columnName="piece_id" tableName="details_pieces" />
+		<dropColumn columnName="vetuste" tableName="devis" />
+		<dropColumn columnName="date_creation" tableName="grille_reparateur" />
+		<dropTable cascadeConstraints="true" tableName="ref_type_intervention_grille" />
+		<dropTable cascadeConstraints="true" tableName="reparateur_grille" />
+
+
+
+
+	</changeSet>
+	<changeSet id="20170912084527-3" author="sinda">
+	<addColumn tableName="observation">
+			<column name="devis_id" type="bigint" />
+		</addColumn>
+		<addColumn tableName="piece_jointe">
+			<column name="devis_id" type="bigint" />
+		</addColumn>
+	</changeSet>
+	<changeSet id="20170912084527-4" author="sinda">
+	<addColumn tableName="lien">
+			<column name="parent_id" type="bigint" />
+	</addColumn>
+	</changeSet>
+	<changeSet id="20170912084527-5" author="sinda">
+		<addColumn tableName="prestation_pec">
+			<column name="reference_sinistre" type="varchar(255)" />
+		</addColumn>
+	</changeSet>
+    <changeSet id="20170912084527-6" author="sinda">
+	<dropColumn columnName="compagnie_assurance" tableName="tiers" />
+	<addColumn tableName="tiers">
+			<column name="compagnie_id" type="bigint" />
+	</addColumn>
+	</changeSet>
+	<!--<changeSet id="20170912084527-7" author="jhipster">
+		 <dropColumn columnName="code" tableName="agent_general" />
+		<addColumn tableName="ref_agence">
+			<column name="code" type="double" />
+		</addColumn>
+	</changeSet>-->
+	<changeSet id="20170912084527-9" author="sinda">
+		<dropColumn columnName="nature_expertise_id" tableName="affect_expert" />
+	</changeSet>
+	<changeSet id="20170912084527-10" author="sinda">
+	<addColumn tableName="affect_expert">
+			<column name="nature_expertise_id" type="bigint" />
+	</addColumn>
+	</changeSet>
+	<changeSet id="20170912084527-11" author="Issam">
+	<addColumn tableName="contrat_assurance">
+			<column name="is_assujettie_tva" type="boolean" />
+		</addColumn>
+	</changeSet>
+
+    <changeSet id="20170912084527-12" author="Sofien">
+      <addForeignKeyConstraint baseColumnNames="expert_id"
+            baseTableName="prestation_pec"
+            constraintName="fk_prestation_pec_expert_id"
+            deferrable="true"
+            initiallyDeferred="true"
+            onDelete="CASCADE"
+            onUpdate="RESTRICT"
+            referencedColumnNames="id"
+            referencedTableName="expert"/>
+     </changeSet>
+
+	<changeSet id="20170912084527-13" author="Issam">
+		<addColumn tableName="details_mo">
+			<column name="th" type="${floatType}" />
+		</addColumn>
+	</changeSet>
+	<changeSet id="20170912084527-14" author="Issam">
+		<addColumn tableName="details_mo">
+			<column name="vat" type="${floatType}" />
+		</addColumn>
+	</changeSet>
+	<changeSet id="20170912084527-15" author="Issam">
+		<addColumn tableName="details_mo">
+			<column name="discount" type="${floatType}" />
+		</addColumn>
+	</changeSet>
+	<changeSet id="20170912084527-16" author="Issam">
+		<addColumn tableName="details_mo">
+			<column name="total_ht" type="${floatType}" />
+		</addColumn>
+	</changeSet>
+	<changeSet id="20170912084527-17" author="Issam">
+		<addColumn tableName="details_mo">
+			<column name="total_ttc" type="${floatType}" />
+		</addColumn>
+	</changeSet>
+	<changeSet id="20170912084527-18" author="Issam">
+		<addColumn tableName="details_pieces">
+			<column name="total_ht" type="${floatType}" />
+		</addColumn>
+	</changeSet>
+	<changeSet id="20170912084527-19" author="Issam">
+		<addColumn tableName="details_pieces">
+			<column name="total_ttc" type="${floatType}" />
+		</addColumn>
+	</changeSet>
+	<changeSet id="20170912084527-21" author="Ridha">
+		<addColumn tableName="details_pieces">
+			<column name="discount" type="${floatType}" />
+		</addColumn>
+	</changeSet>
+	<changeSet id="20170912084527-20" author="Salwa">
+		<addColumn tableName="assure">
+			<column name="date_creation" type="timestamp" />
+		</addColumn>
+	</changeSet>
+    <changeSet id="20170912084527-21" author="Sofien">
+		<addColumn tableName="prestation_pec">
+			<column name="reparator_facturation" type="boolean" />
+		</addColumn>
+	</changeSet>
+    <changeSet id="20170912084527-23" author="Ridha">
+		<addColumn tableName="contrat_assurance">
+			<column name="is_rachat" type="boolean" />
+		</addColumn>
+	</changeSet>
+	<changeSet id="20170912084527-224" author="Salwa">
+		<addColumn tableName="devis">
+			<column name="parent_id" type="integer" />
+		</addColumn>
+	</changeSet>
+	<changeSet id="20170912084527-225" author="Salwa">
+		<addColumn tableName="details_mo">
+			<column name="observation" type="varchar(255)" />
+		</addColumn>
+	</changeSet>
+
+	<changeSet id="20170912084527-226" author="Salwa">
+		<addColumn tableName="details_pieces">
+			<column name="observation" type="varchar(255)" />
+		</addColumn>
+	</changeSet>
+
+	<changeSet id="20170912084527-227" author="Salwa">
+		<addColumn tableName="prestation_pec">
+			<column name="valeur_neuf" type="double" />
+		</addColumn>
+	</changeSet>
+
+	<changeSet id="20170912084527-228" author="Salwa">
+		<addColumn tableName="prestation_pec">
+			<column name="franchise" type="double" />
+		</addColumn>
+	</changeSet>
+
+	<changeSet id="20170912084527-229" author="Salwa">
+		<addColumn tableName="prestation_pec">
+			<column name="capital_dc" type="double" />
+		</addColumn>
+	</changeSet>
+
+	<changeSet id="20170912084527-230" author="Salwa">
+		<addColumn tableName="prestation_pec">
+			<column name="valeur_venale" type="double" />
+		</addColumn>
+	</changeSet>
+
+	<changeSet id="20170912084527-231" author="Salwa">
+		<addColumn tableName="prestation_pec">
+			<column name="type_franchise" type="varchar(255)" />
+		</addColumn>
+	</changeSet>
+	<changeSet id="20170912084527-233" author="Salwa">
+		<addColumn tableName="prestation_pec">
+			<column name="tiers_id" type="integer" />
+		</addColumn>
+	</changeSet>
+</databaseChangeLog>

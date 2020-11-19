@@ -1,0 +1,59 @@
+
+<div *ngIf="userAccess">
+    <h2><span jhiTranslate="auxiliumApp.userAccess.detail.title">User Access</span> {{userAccess.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="auxiliumApp.userAccess.label">Label</span></dt>
+        <dd>
+            <span>{{userAccess.label}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.userAccess.code">Code</span></dt>
+        <dd>
+            <span>{{userAccess.code}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.userAccess.url">Url</span></dt>
+        <dd>
+            <span>{{userAccess.url}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.userAccess.leaf">Leaf</span></dt>
+        <dd>
+            <span>{{userAccess.leaf}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.userAccess.businessEntity">Business Entity</span></dt>
+        <dd>
+            <div *ngIf="userAccess.businessEntityId">
+                <a [routerLink]="['/business-entity', userAccess.businessEntityId]">{{userAccess.businessEntityId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.userAccess.functionality">Functionality</span></dt>
+        <dd>
+            <div *ngIf="userAccess.functionalityId">
+                <a [routerLink]="['/functionality', userAccess.functionalityId]">{{userAccess.functionalityId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.userAccess.elementMenu">Element Menu</span></dt>
+        <dd>
+            <div *ngIf="userAccess.elementMenuId">
+                <a [routerLink]="['/element-menu', userAccess.elementMenuId]">{{userAccess.elementMenuId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.userAccess.user">User</span></dt>
+        <dd>
+            {{userAccess.userLogin}}
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'user-access/'+ userAccess.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

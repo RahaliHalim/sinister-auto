@@ -1,0 +1,23 @@
+{
+    "auxiliumApp": {
+        "refEtatBs" : {
+            "home": {
+                "title": "Ref Etat Bs",
+                "createLabel": "Create a new Ref Etat Bs",
+                "createOrEditLabel": "Create or edit a Ref Etat Bs",
+                "search": "Search for Ref Etat Bs"
+            },
+            "created": "A new Ref Etat Bs is created with identifier {{ param }}",
+            "updated": "A Ref Etat Bs is updated with identifier {{ param }}",
+            "deleted": "A Ref Etat Bs is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Ref Etat Bs {{ id }}?"
+            },
+            "detail": {
+                "title": "Ref Etat Bs"
+            },
+            "libelle": "Libelle",
+            "bonSortie": "Bon Sortie"
+        }
+    }
+}

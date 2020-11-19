@@ -1,0 +1,19 @@
+{
+    "auxiliumApp": {
+        "imprime" : {
+            "home": {
+                "title": "Imprimé"
+            },
+            "detail": {
+                "title": "Imprimé"
+
+            },
+                "label" : "label",
+                " company" : "Compagnie",
+                " declarationDate" : "Date de décalaration",
+                " vehicleNumber" : "Numéro du véhicule",
+                "dateArrive " : "Date d'arrivée"
+              
+        }
+    }
+}

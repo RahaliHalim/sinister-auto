@@ -1,0 +1,24 @@
+{
+    "auxiliumApp": {
+        "pecStatusChangeMatrix" : {
+            "home": {
+                "title": "Pec Status Change Matrices",
+                "createLabel": "Create a new Pec Status Change Matrix",
+                "createOrEditLabel": "Create or edit a Pec Status Change Matrix",
+                "search": "Search for Pec Status Change Matrix"
+            },
+            "created": "A new Pec Status Change Matrix is created with identifier {{ param }}",
+            "updated": "A Pec Status Change Matrix is updated with identifier {{ param }}",
+            "deleted": "A Pec Status Change Matrix is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Pec Status Change Matrix {{ id }}?"
+            },
+            "detail": {
+                "title": "Pec Status Change Matrix"
+            },
+            "code": "Code",
+            "label": "Label",
+            "active": "Active"
+        }
+    }
+}

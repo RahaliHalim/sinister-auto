@@ -1,0 +1,54 @@
+{
+    "auxiliumApp": {
+        "agency" : {
+            "home": {
+                "title": "Agents d'assurance",
+                "titleConcess": "Agences concessionnaire",
+                "createLabel": "Créer",
+                "History": "Historique",
+                "HistoryAgence": "Agence",
+                "createOrEditLabel": "Créer ou modifier un agent",
+                "createOrEditLabelConsess": "Créer ou modifier une agence",
+                "search": "Recherche pour agent"
+            },
+            "created": "Un nouveau agent a été créé",
+            "updated": "L'agent a été mis à jour",
+            "deleted": "L'agent a été supprimé",
+            "createdConcess": "Une nouvelle agence a été créée",
+            "updatedConcess": "L'agence a été mise à jour",
+            "deletedConcess": "L'agence a été supprimée",
+            "uniqueName": "Le nom de l'agence doit être unique",
+            "uniqueCodeAgency": "Le code agence de l'agent doit être unique",
+            "emailUnique": "L'email doit être unique",
+            "delete": {
+                "question": "Êtes-vous sûrs de vouloir supprimer cet agent ?",
+                "questionConcess": "Êtes-vous sûrs de vouloir supprimer cette agence ?"
+            },
+            "detail": {
+                "title": "Agent",
+                "titleConcess": "Agence concessionnaire"
+            },
+            "code": "Code agence",
+            "name": "Nom de l’agent",
+            "nom": "Nom",
+            "prenom": "Prénom",
+            "address": "Adresse",
+            "zipcode": "Code postal",
+            "phone": "Téléphone",
+            "mobile": "Mobile",
+            "fax": "Fax",
+            "email": "Email",
+            "PremierEmail": "Premier email",
+            "DeuxiemeEmail": "Deuxième email",
+            "type": "Type",
+            "typeAgence": "Type agence",
+            "category": "Catégorie",
+            "partner": "Compagnie d'assurance",
+            "concessionnaire": "Concessionnaire",
+            "governorate": "Gouvernorat",
+            "delegation": "Ville",
+            "region": "Région",
+            "details": "Détails"
+        }
+    }
+}

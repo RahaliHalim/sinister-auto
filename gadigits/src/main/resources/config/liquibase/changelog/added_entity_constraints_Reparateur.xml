@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity Reparateur.
+    -->
+    <changeSet id="20170912084445-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="personne_morale_id"
+                                 baseTableName="reparateur"
+                                 constraintName="fk_reparateur_personne_morale_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="personne_morale"/>
+
+
+        <addForeignKeyConstraint baseColumnNames="agent_officiel_id"
+                                 baseTableName="reparateur"
+                                 constraintName="fk_reparateur_agent_officiel_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ref_marque"/>
+
+        <addForeignKeyConstraint baseColumnNames="reparateurs_id"
+                                 baseTableName="reparateur_marque_principale"
+                                 constraintName="fk_reparateur_marque_principale_reparateurs_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="reparateur"/>
+        <addForeignKeyConstraint baseColumnNames="marque_principales_id"
+                                 baseTableName="reparateur_marque_principale"
+                                 constraintName="fk_reparateur_marque_principale_marque_principales_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ref_marque"/>
+        
+        <addForeignKeyConstraint baseColumnNames="reparateurs_id"
+                                 baseTableName="reparateur_autre_marque"
+                                 constraintName="fk_reparateur_autre_marque_reparateurs_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="reparateur"/>
+        <addForeignKeyConstraint baseColumnNames="autre_marques_id"
+                                 baseTableName="reparateur_autre_marque"
+                                 constraintName="fk_reparateur_autre_marque_autre_marques_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ref_marque"/>
+        
+        <addForeignKeyConstraint baseColumnNames="reparateurs_id"
+                                 baseTableName="reparateur_materiel"
+                                 constraintName="fk_reparateur_materiel_reparateurs_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="reparateur"/>
+        <addForeignKeyConstraint baseColumnNames="materiels_id"
+                                 baseTableName="reparateur_materiel"
+                                 constraintName="fk_reparateur_materiel_materiels_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ref_materiel"/>
+        
+        <addForeignKeyConstraint baseColumnNames="reparateurs_id"
+                                 baseTableName="reparateur_grille"
+                                 constraintName="fk_reparateur_grille_reparateurs_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="reparateur"/>
+        <addForeignKeyConstraint baseColumnNames="grilles_id"
+                                 baseTableName="reparateur_grille"
+                                 constraintName="fk_reparateur_grille_grilles_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="grille"/>
+        
+        <addForeignKeyConstraint baseColumnNames="reglement_id"
+                                 baseTableName="reparateur"
+                                 constraintName="fk_reparateur_reglement_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="reglement"/>
+
+    </changeSet>
+    <changeSet author="sinda" id="20170912084445-3">
+    <dropForeignKeyConstraint baseTableName="reparateur_grille" constraintName="fk_reparateur_grille_reparateurs_id"/>
+    <dropForeignKeyConstraint baseTableName="reparateur_grille" constraintName="fk_reparateur_grille_grilles_id"/>
+</changeSet>
+</databaseChangeLog>

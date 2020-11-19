@@ -1,0 +1,48 @@
+{
+    "auxiliumApp": {
+        "contratAssurance" : {
+            "home": {
+                "title": "Contrat Assurances",
+                "createLabel": "Create a new Contrat Assurance",
+                "createOrEditLabel": "Create or edit a Contrat Assurance",
+                "search": "Search for Contrat Assurance"
+            },
+            "created": "A new Contrat Assurance is created",
+            "updated": "A Contrat Assurance is updated",
+            "deleted": "A Contrat Assurance is deleted with identifier {{ param }}",
+            "unique": "Le numéro du contrat d'assurance doit être unique",
+            "uniqueVin": "L'immatriculation doit être unique",
+            "delete": {
+                "question": "Are you sure you want to delete Contrat Assurance {{ id }}?"
+            },
+            "detail": {
+                "title": "Contrat Assurance"
+            },
+            "numeroContrat": "Numero Contrat",
+            "debutValidite": "Debut Validite",
+            "finValidite": "Fin Validite",
+            "isSuspendu": "Is Suspendu",
+            "isDelete": "Is Delete",
+            "valeurNeuf": "Valeur Neuf",
+            "franchise": "Franchise",
+            "capitalDc": "Capital Dc",
+            "valeurVenale": "Valeur Venale",
+            "souscripteur": "Souscripteur",
+            "commentaire": "Commentaire",
+            "type": "Type",
+            "typeFranchise": "Franchise Type",
+            "nature": "Nature",
+            "agence": "Agence",
+            "usage": "Usage",
+            "vehicule": "Vehicule",
+            "assure": "Assure",
+            "garantie": "Garantie",
+            "fractionnement": "Fractionnement",
+            "pack": "Pack",
+            "client": "Client",
+            "compagnie": "Compagnie",
+            "isAssujettieTva": "Assujettie à la TVA",
+            "isRachat": "Have a Rachat"
+        }
+    }
+}

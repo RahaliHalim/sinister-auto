@@ -1,0 +1,34 @@
+{
+    "auxiliumApp": {
+        "visAVis" : {
+            "home": {
+                "title": "Vis-à-vis",
+                "createLabel": "Créer un nouveau vis-à-vis",
+                "createOrEditLabel": "Créer ou modifier un vis-à-vis",
+                "search": "Recherche pour vis-à-vis"
+            },
+            "created": "",
+            "updated": "",
+            "deleted": "",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer ce vis-à-vis ?"
+            },
+            "detail": {
+                "title": "Vis-à-vis"
+            },
+            "isGerant": "Gérant",
+            "personnePhysique": "Personne physique",
+            "ville": "Ville",
+            "nom": "Nom",
+            "prenom": "Prénom",
+            "email": "Email",
+            "tel": "Téléphone",
+            "premTel": "Téléphone 1",
+            "deuxTel": "Téléphone 2",
+            "premEmail": "Email 1",
+            "deuxEmail": "Email 2",
+            "fax": "Fax"
+       
+        }
+    }
+}

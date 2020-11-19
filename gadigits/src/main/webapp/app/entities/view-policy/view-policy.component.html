@@ -1,0 +1,89 @@
+<div>
+    <h2>
+        <span jhiTranslate="auxiliumApp.viewPolicy.home.title">View Policies</span>
+        <button class="btn btn-primary float-right jh-create-entity create-view-policy" [routerLink]="['/', { outlets: { popup: ['view-policy-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down"  jhiTranslate="auxiliumApp.viewPolicy.home.createLabel">
+            Create new View Policy
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'auxiliumApp.viewPolicy.home.search' | translate }}">
+                    <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-addon btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-sm fa-remove"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="viewPolicies">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="auxiliumApp.viewPolicy.policyNumber">Policy Number</span></th>
+            <th><span jhiTranslate="auxiliumApp.viewPolicy.companyId">Company Id</span></th>
+            <th><span jhiTranslate="auxiliumApp.viewPolicy.companyName">Company Name</span></th>
+            <th><span jhiTranslate="auxiliumApp.viewPolicy.agencyId">Agency Id</span></th>
+            <th><span jhiTranslate="auxiliumApp.viewPolicy.agencyName">Agency Name</span></th>
+            <th><span jhiTranslate="auxiliumApp.viewPolicy.vehicleId">Vehicle Id</span></th>
+            <th><span jhiTranslate="auxiliumApp.viewPolicy.registrationNumber">Registration Number</span></th>
+            <th><span jhiTranslate="auxiliumApp.viewPolicy.policyHolderId">Policy Holder Id</span></th>
+            <th><span jhiTranslate="auxiliumApp.viewPolicy.policyHolderName">Policy Holder Name</span></th>
+            <th><span jhiTranslate="auxiliumApp.viewPolicy.startDate">Start Date</span></th>
+            <th><span jhiTranslate="auxiliumApp.viewPolicy.endDate">End Date</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let viewPolicy of viewPolicies ;trackBy: trackId">
+                <td><a [routerLink]="['../view-policy', viewPolicy.id ]">{{viewPolicy.id}}</a></td>
+                <td>{{viewPolicy.policyNumber}}</td>
+                <td>{{viewPolicy.companyId}}</td>
+                <td>{{viewPolicy.companyName}}</td>
+                <td>{{viewPolicy.agencyId}}</td>
+                <td>{{viewPolicy.agencyName}}</td>
+                <td>{{viewPolicy.vehicleId}}</td>
+                <td>{{viewPolicy.registrationNumber}}</td>
+                <td>{{viewPolicy.policyHolderId}}</td>
+                <td>{{viewPolicy.policyHolderName}}</td>
+                <td>{{viewPolicy.startDate | date:'mediumDate'}}</td>
+                <td>{{viewPolicy.endDate | date:'mediumDate'}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../view-policy', viewPolicy.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'view-policy/'+ viewPolicy.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'view-policy/'+ viewPolicy.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

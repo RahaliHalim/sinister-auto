@@ -1,0 +1,26 @@
+{
+    "auxiliumApp": {
+        "avisExpertMo" : {
+            "home": {
+                "title": "AvisExpertMos",
+                "createLabel": "Créer un nouvel avis expert Mo",
+                "createOrEditLabel": "Créer ou modifier un avis expert Mo",
+                "search": "Recherche pour avis expert Mo"
+            },
+            "created": "Un nouvel avis expert Mo a été créé avec l'identifiant {{ param }}",
+            "updated": "L'avis expert Mo avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "L'Avis expert Mo avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer l'avis expert Mo {{ id }} ?"
+            },
+            "detail": {
+                "title": "Avis expert Mo"
+            },
+            "motif": "Motif",
+            "commentaire": "Commentaire",
+            "quantite": "Quantité",
+            "detailsMo": "Details Mo",
+            "validationDevis": "Validation devis"
+        }
+    }
+}

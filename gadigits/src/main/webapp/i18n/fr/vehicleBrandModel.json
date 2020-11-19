@@ -1,0 +1,25 @@
+{
+    "auxiliumApp": {
+        "vehicleBrandModel" : {
+            "home": {
+                "title": "Modèles de véhicule",
+                "createLabel": "Créer un nouveau modèle",
+                "createOrEditLabel": "Créer ou modifier un modèle",
+                "search": "Recherche d'un modèle"
+            },
+            "created": "Un nouveau modèle de véhicule a été créé",
+            "updated": "Le modèle de véhicule a été mis à jour",
+            "deleted": "Le modèle de véhicule a été supprimé",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer ce modèle de véhicule ?"
+            },
+            "detail": {
+                "title": "Modèle de véhicule"
+            },
+            "label": "Libellé",
+            "active": "Actif",
+            "brand": "Marque",
+            "exist": "Le Model doit être unique"
+        }
+    }
+}

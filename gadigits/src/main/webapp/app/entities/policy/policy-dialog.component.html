@@ -1,0 +1,99 @@
+<!-- Breadcrumb-->
+<div class="breadcrumb-holder">
+	<div class="container-fluid">
+		<ul class="breadcrumb">
+			<li class="breadcrumb-item"><span class="fa fa-home"></span>&nbsp;&nbsp;<a routerLink="/"><span	jhiTranslate="global.menu.home">Home</span></a></li>
+			<li class="breadcrumb-item"><a routerLink="/policy"><span jhiTranslate="auxiliumApp.policy.home.title">Policies</span></a></li>
+			<li class="breadcrumb-item"><a><span jhiTranslate="auxiliumApp.policy.home.edit">Create or edit a Policy</span></a></li>
+		</ul>
+	</div>
+</div>
+<section class="forms">
+	<div class="container-fluid">
+		<!-- Page Header-->
+		<header>
+			<h1 class="h3 display">
+				<jhi-alert-error></jhi-alert-error>
+				<jhi-alert></jhi-alert>
+			</h1>
+		</header>
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="card">
+					<div class="card-header d-flex align-items-center no-padding" >
+						<div class="notice notice-info"><strong jhiTranslate="auxiliumApp.policy.home.title">Détails contrat</strong></div>
+					</div>
+					<div class="card-body">
+						<form name="editGlobalForm" role="form" novalidate (ngSubmit)="save()" #editGlobalForm="ngForm">
+							<div class="row">
+								<div class="col-sm-3">
+									<label jhiTranslate="auxiliumApp.policy.company" for="field_company">company</label>
+									<select class="form-control form-control-sm" id="field_company" name="company" [(ngModel)]="policy.partnerId" (ngModelChange)="selectPartner(policy.partnerId)" required [disabled]="isEditMode">
+										<option [ngValue]="partner.id" *ngFor="let partner of partners">{{partner?.companyName}}</option>
+									</select>
+								</div>
+								<div class="col-sm-3">
+									<label jhiTranslate="auxiliumApp.policy.agency" for="field_agency"> agency </label>
+									<select class="form-control form-control-sm" id="field_agency" name="agency" [(ngModel)]="policy.agencyId" required [disabled]="isEditMode">
+										<option [ngValue]="agency.id" *ngFor="let agency of agencies">{{agency.name}}</option>
+									</select>
+								</div>
+								<div class="col-sm-3">
+									<label class="form-control-label" jhiTranslate="auxiliumApp.policy.reference" for="field_reference"> Numero Contrat </label>
+									<input type="text" class="form-control form-control-sm" name="reference" id="field_reference"  required [(ngModel)]="policy.reference" />
+								</div>
+								<div class="col-sm-3">
+									<label jhiTranslate="auxiliumApp.policy.type" for="field_type"> Type </label>
+									<select class="form-control form-control-sm" id="field_type" name="type" [(ngModel)]="policy.typeId" [disabled]="isEditMode">
+										<option [ngValue]="policytype.id" *ngFor="let policytype of policytypes">{{policytype.label}}</option>
+									</select>
+								</div>
+								<div class="col-sm-3">
+									<label jhiTranslate="auxiliumApp.policy.nature" for="field_nature"> Nature </label>
+									<select class="form-control form-control-sm" id="field_nature" name="nature" [(ngModel)]="policy.natureId" [disabled]="isEditMode">
+										<option [ngValue]="policynature.id" *ngFor="let policynature of policynatures">{{policynature.label}}</option>
+									</select>
+								</div>
+								<div class="col-sm-3">
+									<label jhiTranslate="auxiliumApp.policy.periodicity" for="field_periodicity"> periodicity </label>
+									<select class="form-control form-control-sm" id="field_periodicity" name="periodicity" [(ngModel)]="policy.periodicityId" [disabled]="isEditMode">
+										<option [ngValue]="periodicity.id" *ngFor="let periodicity of periodicities">{{periodicity.label}}</option>
+									</select>
+								</div>
+								<div class="col-sm-3">
+									<label jhiTranslate="auxiliumApp.policy.pack" for="field_pack"> Pack </label>  <i class="fa fa-info-circle" title="Description du pack !"></i>
+									<select  required class="form-control form-control-sm" id="field_pack" name="pack" [(ngModel)]="policy.packId">
+										<option [ngValue]="pack.id" *ngFor="let pack of packs">{{pack.label}}</option>
+									</select>
+								</div>
+								<div class="col-sm-3">
+									<label class="form-control-label" jhiTranslate="auxiliumApp.policy.startDate" for="field_startDate"> startDate </label>
+									<div class="input-group">
+										<input id="field_startDate" type="text" class="form-control form-control-sm" name="startDate" ngbDatepicker #startDateDp="ngbDatepicker" [(ngModel)]="policy.startDate" [maxDate]="policy.endDate" required/>
+										<span class="input-group-btn">
+											<button type="button" class="btn btn-sm btn-default" (click)="startDateDp.toggle()"><i class="fa fa-calendar"></i></button>
+										</span>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<label class="form-control-label" jhiTranslate="auxiliumApp.policy.endDate" for="field_endDate"> endDate </label>
+									<div class="input-group">
+										<input id="field_endDate" type="text" class="form-control form-control-sm" name="endDate" ngbDatepicker #endDateDp="ngbDatepicker" [(ngModel)]="policy.endDate" [minDate]="policy.startDate" required/>
+										<span class="input-group-btn">
+											<button type="button" class="btn btn-sm btn-default" (click)="endDateDp.toggle()"><i class="fa fa-calendar"></i></button>
+										</span>
+									</div>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="submit" [disabled]="editGlobalForm.form.invalid"  class="btn btn-sm btn-primary" >
+									<span class="fa fa-save"> </span>&nbsp; <span jhiTranslate="entity.action.save">Save</span>
+								</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

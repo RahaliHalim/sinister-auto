@@ -1,0 +1,240 @@
+<!-- Breadcrumb-->
+<div class="breadcrumb-holder">
+    <div class="container-fluid">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#"><span class="fa fa-home"></span>&nbsp;&nbsp;<span jhiTranslate="global.menu.home">Home</span></a></li>
+            <li class="breadcrumb-item"><a routerLink="/user-management"><span jhiTranslate="auxiliumApp.userManagement.home.title">Utilisateurs</span></a></li>
+        </ul>
+    </div>
+</div>
+<br>
+<section class="forms">
+    <div class="container-fluid">
+        <form name="editForm" role="form" novalidate #editForm="ngForm">
+            <jhi-alert-error></jhi-alert-error>
+            <jhi-alert></jhi-alert>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class=" collapsible-card card-header align-items-center collapsed notice notice-info">
+                            <strong jhiTranslate="global.menu.entities.userAuxilium">Utilisateurs</strong>
+                        </div>
+                        <div id="addUsers" class="card-body">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <label class="form-control-label" jhiTranslate="auxiliumApp.userManagement.firstName">First Name</label>
+                                                <input type="text" class="form-control form-control-sm" name="firstName" #firstNameInput="ngModel" [(ngModel)]="user.firstName" maxlength="50" pattern="^[a-zA-Z]+( [a-zA-Z]+)*$" required  [disabled]="true">
+                                                <div *ngIf="firstNameInput.dirty && firstNameInput.invalid">
+                                                    <small class="form-text text-danger" *ngIf="firstNameInput.errors.maxlength" jhiTranslate="entity.validation.maxlength" translate-value-max="50">
+                                                            This field cannot be longer than 50 characters.
+                                                    </small>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <label jhiTranslate="auxiliumApp.userManagement.lastName">Last Name</label>
+                                                <input type="text" class="form-control form-control-sm" name="lastName" #lastNameInput="ngModel" pattern="^[a-zA-Z]+( [a-zA-Z]+)*$" [(ngModel)]="user.lastName" maxlength="50" required  [disabled]="true">
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <label class="form-control-label" jhiTranslate="auxiliumApp.userManagement.email">Email</label>
+                                                <input type="email" class="form-control form-control-sm" name="email" #emailInput="ngModel" [disabled]="user.id != null" [(ngModel)]="user.email" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$" required maxlength="100">
+                                                <div *ngIf="emailInput.dirty && emailInput.invalid">
+                                                    <small class="form-text text-danger" *ngIf="emailInput.errors.required" jhiTranslate="entity.validation.required">This field is required.</small>
+                                                    <small class="form-text text-danger" *ngIf="emailInput.errors.maxlength" jhiTranslate="entity.validation.maxlength" translate-value-max="100">This field cannot be longer than 100 characters.</small>
+                                                    <small class="form-text text-danger" *ngIf="emailInput.errors.email" jhiTranslate="global.messages.validate.email.invalid">Your email is invalid.</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <label jhiTranslate="auxiliumApp.userManagement.profiles" for="field_serviceType"> profiles </label>
+                                                <select class="form-control form-control-sm" id="field_userProfile" name="userProfile" [(ngModel)]="user && user.userExtra && user.userExtra.profileId" (ngModelChange)="onProfilSelect(user.userExtra.profileId)" required [disabled]="true">
+                                                    <option [ngValue]="userProfile.id" *ngFor="let userProfile of userProfiles;">{{userProfile.label}}</option>
+                                                </select>
+                                            </div>
+                                            <!-- Expert list -->
+                                            <div class="col-sm-3" *ngIf="selectedProfilesShow.expert && experts.length > 0">
+                                                <label jhiTranslate="auxiliumApp.expert.home.title" for="field_expert"> Liste des Experts </label>
+                                                <select  class="form-control form-control-sm" name="expert" [(ngModel)]="user && user.userExtra && user.userExtra.personId" required  [disabled]="true">
+                                                    <option *ngFor="let expert of experts" [value]="expert.id">{{expert.raisonSociale}}</option>
+                                                </select>
+                                            </div>
+                                            <!-- End Expert list -->
+
+                                            <!-- Reparators list -->
+                                            <div class="col-sm-3" *ngIf="selectedProfilesShow.reparateur && reparators.length > 0">
+                                                <label jhiTranslate="auxiliumApp.reparateur.home.title" for="field_reparateur"> Liste des Réparateurs </label>
+                                                <select  class="form-control form-control-sm" name="reparateur" [(ngModel)]="user && user.userExtra && user.userExtra.personId" required  [disabled]="true">
+                                                    <option *ngFor="let reparateur of reparators" [value]="reparateur.id">{{reparateur.raisonSociale}}</option>
+                                                </select>
+                                            </div>
+                                            <!-- End Reparators list -->
+
+                                            <!-- Companies list -->
+                                            <div class="col-sm-3" *ngIf="selectedProfilesShow.compagnie || selectedProfilesShow.expertiseCenter">
+                                                <label jhiTranslate="auxiliumApp.sysActionUtilisateur.compagnie" for="field_compagnie"> Liste des Compagnies </label>
+                                                <select  class="form-control form-control-sm" name="company" [(ngModel)]="user.userExtra.personId" required  [disabled]="true">
+                                                    <option *ngFor="let compagnie of companies" [value]="compagnie.id">{{compagnie.companyName}}</option>
+                                                </select>
+                                            </div>
+                                            <!-- End Companies list -->
+                                            
+                                            <!-- Agents profile -->
+                                            <div class="col-sm-3" *ngIf="selectedProfilesShow.agentAssurance">
+                                                <label jhiTranslate="auxiliumApp.sysActionUtilisateur.compagnie" for="field_compagnie"> Liste des Compagnies </label>
+                                                <select  class="form-control form-control-sm" name="compagnie" [(ngModel)]="compagnie.id" (ngModelChange)="onCompanySelect(compagnie.id)" required  [disabled]="true">
+                                                    <option *ngFor="let compagnie of companies" [value]="compagnie.id">{{compagnie.companyName}}</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-3" *ngIf="selectedProfilesShow.agentAssurance && generalAgents.length > 0">
+                                                <label jhiTranslate="auxiliumApp.userManagement.agentgeneraux" for="field_agentgeneraux"> Liste des Agents généraux </label>
+                                                <select  class="form-control form-control-sm" name="direct" [(ngModel)]="user && user.userExtra && user.userExtra.personId" required  [disabled]="true">
+                                                    <option *ngFor="let agent of generalAgents" [value]="agent.id">{{agent.name}}</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-3" *ngIf="selectedProfilesShow.agentAssurance && mgmtModes.length > 0">                                               
+                                                <label for="listModeGes" jhiTranslate="auxiliumApp.sysActionUtilisateur.modeGestion">Liste des modes de gestions</label>
+                                                <ng-multiselect-dropdown [placeholder]="' '" [data]="mgmtModes" [(ngModel)]="selectedMgmtModes" [settings]="DropdownSettingsMode" name="modes"
+                                                    [ngClass]="'form-control form-control-sm no-padding'" ngDefaultControl required  [disabled]="true">
+                                                </ng-multiselect-dropdown>
+                                            </div>
+                                            <!-- End Agent profile -->
+
+                                            <!-- Directeur Prestation Profile -->
+                                            <div class="col-sm-3" *ngIf="selectedProfilesShow.directeurPrestation">                                               
+                                                <label jhiTranslate="auxiliumApp.sysActionUtilisateur.compagnie" for="field_compagnies"> Liste des compagnies </label>
+                                                <ng-multiselect-dropdown [placeholder]="' '" [data]="companies"
+                                                        [(ngModel)]="selectedCompanies"
+                                                        [settings]="DropdownSettingsCompagnie" (onSelect)="onMultiCompanySelect($event)"
+                                                        (onDeSelect)="onMultiCompanySelect($event)" name="compagnies"
+                                                        [ngClass]="'form-control form-control-sm no-padding'"
+                                                        ngDefaultControl required  [disabled]="true">
+                                                </ng-multiselect-dropdown>
+                                            </div>
+                                            <div class="col-sm-3" *ngIf="selectedProfilesShow.directeurPrestation && mgmtModes.length > 0">                                               
+                                                <label for="listModeGes" jhiTranslate="auxiliumApp.sysActionUtilisateur.modeGestion">Liste des modes de gestions</label>
+                                                <ng-multiselect-dropdown [placeholder]="' '" [data]="mgmtModes" [(ngModel)]="selectedMgmtModes"
+                                                     [settings]="DropdownSettingsMode" name="modes" [ngClass]="'form-control form-control-sm no-padding'" ngDefaultControl required  [disabled]="true">
+                                                </ng-multiselect-dropdown>
+                                            </div>
+                                            <!-- Directeur Prestation Profile -->
+
+                                            <!-- Responsable PEC Profile -->
+                                            <div class="col-sm-3" *ngIf="selectedProfilesShow.responsablePEC">
+                                                <label jhiTranslate="auxiliumApp.userManagement.directeurs" for="field_directeurs"> Liste des directeurs </label>
+                                                <select  class="form-control form-control-sm" name="direct" [(ngModel)]="user && user.userExtra && user.userExtra.userBossId" (ngModelChange)="onPrestationDirectorSelect(user.userExtra.userBossId)" required  [disabled]="true">
+                                                    <option *ngFor="let directeur of prestationDirectors" [value]="directeur.userId">{{directeur.firstName}} {{directeur.lastName}}</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-3" *ngIf="selectedProfilesShow.responsablePEC && companies.length > 0">                                               
+                                                <label jhiTranslate="auxiliumApp.sysActionUtilisateur.compagnie" for="field_compagniesdirecteurs"> Liste des compagnies </label>
+                                                <ng-multiselect-dropdown [placeholder]="' '" [data]="companies"
+                                                    [(ngModel)]="selectedCompanies" required  [disabled]="true"
+                                                    [settings]="DropdownSettingsCompagnie" (onSelect)="onMultiCompanySelect($event)"
+                                                    (onDeSelect)="onMultiCompanySelect($event)" name="compagniesdirecteurs"
+                                                    [ngClass]="'form-control form-control-sm no-padding'"
+                                                    ngDefaultControl>
+                                                </ng-multiselect-dropdown>
+                                            </div>
+                                            <div class="col-sm-3" *ngIf="selectedProfilesShow.responsablePEC && mgmtModes.length > 0">                                               
+                                                <label for="listModeGes" jhiTranslate="auxiliumApp.sysActionUtilisateur.modeGestion">Liste des modes de gestions</label>
+                                                <ng-multiselect-dropdown [placeholder]="' '" [data]="mgmtModes"
+                                                        [(ngModel)]="selectedMgmtModes" required  [disabled]="true"
+                                                        [settings]="DropdownSettingsMode" name="modes"
+                                                        [ngClass]="'form-control form-control-sm no-padding'"
+                                                        ngDefaultControl>
+                                                </ng-multiselect-dropdown>
+                                            </div>
+                                            <!-- End Responsable PEC Profile -->
+
+                                            <!-- Charge Profile -->
+                                            <div class="col-sm-3" *ngIf="selectedProfilesShow.chargeClient">
+                                                <label jhiTranslate="auxiliumApp.userManagement.responsablepec" for="field_directeurs"> Liste des responsables PEC </label>
+                                                <select  class="form-control form-control-sm" name="direct" [(ngModel)]="user && user.userExtra && user.userExtra.userBossId" (ngModelChange)="onPecResponsible(user.userExtra.userBossId)" required  [disabled]="true">
+                                                    <option *ngFor="let responsable of pecResponsibles" [value]="responsable.userId">{{responsable.firstName}} {{responsable.lastName}}</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-3" *ngIf="selectedProfilesShow.chargeClient && companies.length > 0">                                               
+                                                <label jhiTranslate="auxiliumApp.sysActionUtilisateur.compagnie" for="field_compagniescharge"> Liste des compagnies </label>
+                                                <ng-multiselect-dropdown [placeholder]="' '" [data]="companies"
+                                                        [(ngModel)]="selectedCompanies" required  [disabled]="true"
+                                                        [settings]="DropdownSettingsCompagnie" (onSelect)="onMultiCompanySelect($event)"
+                                                        (onDeSelect)="onMultiCompanySelect($event)" name="compagniesharge"
+                                                        [ngClass]="'form-control form-control-sm no-padding'"
+                                                        ngDefaultControl>
+                                                </ng-multiselect-dropdown>
+                                            </div>
+                                            <div class="col-sm-3" *ngIf="selectedProfilesShow.chargeClient && mgmtModes.length > 0">                                               
+                                                <label for="listModeGes" jhiTranslate="auxiliumApp.sysActionUtilisateur.modeGestion">Liste des modes de gestions</label>
+                                                <ng-multiselect-dropdown [placeholder]="' '" [data]="mgmtModes"
+                                                    [(ngModel)]="selectedMgmtModes"
+                                                    [settings]="DropdownSettingsMode" name="modes"
+                                                    [ngClass]="'form-control form-control-sm no-padding'" ngDefaultControl required  [disabled]="true">
+                                                    </ng-multiselect-dropdown>
+                                            </div>
+                                            <!-- End Charge Profile -->
+
+                                            <!-- Courtier Profile -->
+                                            <div class="col-sm-3" *ngIf="selectedProfilesShow.courtier">                                               
+                                                <label jhiTranslate="auxiliumApp.sysActionUtilisateur.compagnie" for="field_compagnies"> Liste des compagnies </label>
+                                                <ng-multiselect-dropdown [placeholder]="' '" [data]="companies"
+                                                    [(ngModel)]="selectedCompanies" required  [disabled]="true"
+                                                    [settings]="DropdownSettingsCompagnie" (onSelect)="onMultiCompanySelect($event)"
+                                                    (onDeSelect)="onMultiCompanySelect($event)" name="compagnies"
+                                                    [ngClass]="'form-control form-control-sm no-padding'" ngDefaultControl>
+                                                </ng-multiselect-dropdown>
+                                            </div>
+                                            <div class="col-sm-3" *ngIf="selectedProfilesShow.courtier && brokers.length > 0">
+                                                <label jhiTranslate="auxiliumApp.userManagement.courtiers" for="field_courtiers"> Liste des Courtiers </label>
+                                                <select  class="form-control form-control-sm" name="direct" [(ngModel)]="user && user.userExtra && user.userExtra.personId" required  [disabled]="true">
+                                                    <option [value]=""></option>
+                                                    <option *ngFor="let broker of brokers" [value]="broker.id">{{broker.name}}</option>
+                                                </select>
+                                            </div>                                            
+                                            <div class="col-sm-3" *ngIf="selectedProfilesShow.courtier && mgmtModes.length > 0">                                               
+                                                <label for="listModeGes" jhiTranslate="auxiliumApp.sysActionUtilisateur.modeGestion">Liste des modes de gestions</label>
+                                                <ng-multiselect-dropdown [placeholder]="' '" [data]="mgmtModes"
+                                                            [(ngModel)]="selectedMgmtModes" required  [disabled]="true"
+                                                            [settings]="DropdownSettingsMode" name="modes"
+                                                            [ngClass]="'form-control form-control-sm no-padding'"
+                                                            ngDefaultControl>
+                                                    </ng-multiselect-dropdown>
+                                            </div>
+                                            <!-- End Courtier Profile -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="collapsible-card card-header align-items-center collapsed notice notice-info">
+                            <h4><span jhiTranslate="auxiliumApp.userManagement.home.listeFonctionnalite">Liste des fonctionnalité</span></h4>
+                        </div>
+                        <div class="card-body">
+                            <br/>
+                            <div class="row">
+                                <div class="col-sm-12"> 
+                                    <jhi-functionnality-access name="f1" [(accesss)]="userAccessWork.entityProfileAccesss" view="true"></jhi-functionnality-access>
+                                </div>
+                            </div>
+               
+                            <div class="modal-footer">
+                                <button type="submit"  replaceUrl="true" (click)="retour()"
+                                    class="btn btn-default btn-sm pull-right margin-right-5">
+                                <span jhiTranslate="entity.action.back">Back</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>

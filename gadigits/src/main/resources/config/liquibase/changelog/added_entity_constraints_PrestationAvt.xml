@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity PrestationAvt.
+    -->
+    <changeSet id="20171012095021-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="prestation_id"
+                                 baseTableName="prestation_avt"
+                                 constraintName="fk_prestation_avt_prestation_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="prestation"/>
+
+        <addForeignKeyConstraint baseColumnNames="type_service_id"
+                                 baseTableName="prestation_avt"
+                                 constraintName="fk_prestation_avt_type_service_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ref_type_service"/>
+
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,611 @@
+<!-- Breadcrumb-->
+<div class="breadcrumb-holder">
+    <div class="container-fluid">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="/"><span class="fa fa-home"></span>&nbsp;&nbsp;<span
+                        jhiTranslate="global.menu.home">Home</span></a></li>
+            <li class="breadcrumb-item"><a routerLink="/calculation-rules"><span
+                        jhiTranslate="auxiliumApp.partnerrules.home.title">Régles de calcul</span></a></li>
+            <li class="breadcrumb-item active"><span
+                    jhiTranslate="auxiliumApp.partnerrules.home.createOrEditLabel">Créer
+                    ou editer une régle de calcul</span></li>
+        </ul>
+    </div>
+</div>
+
+<section class="forms">
+    <div class="container-fluid">
+        <!-- Page Header-->
+        <header style="padding-top: 1rem; padding-bottom: 1rem;">
+            <h1 class="h3 display">
+                <jhi-alert-error></jhi-alert-error>
+                <jhi-alert></jhi-alert>
+            </h1>
+        </header>
+        <form #rulesForm="ngForm" novalidate>  
+        <div class="row">
+            <div class="col-lg-12">
+                
+                    <div class="card">
+                        <div class="card-header d-flex align-items-center no-padding" >
+                            <div class="notice notice-info"><span class="fa fa-calendar" style="color: #45ABCD"></span>&nbsp;&nbsp;<strong jhiTranslate="auxiliumApp.partnerrules.detail.compagnieModeGestion">Compagnies 
+                                & Mode de Gestion
+                            </strong>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-3" *ngIf="partnerrule.id == null || partnerrule.id == undefined">
+                                            <label class="form-control-label" jhiTranslate="auxiliumApp.partnerrules.detail.dateDebutConvention"
+                                            for="field_dateDebutConvention">Date debut convention</label>
+                                        <div class="input-group">
+                                            <input id="field_dateDebutConvention" type="text" class="form-control form-control-sm"
+                                                name="dateDebutConvention" ngbDatepicker #dateDebutConventionDp="ngbDatepicker"
+                                                [(ngModel)]="partnerrule.startDateConvention" 
+                                                required />
+                                            <span class="input-group-btn">
+                                                <button type="button" class="btn btn-sm btn-default"
+                                                    (click)="dateDebutConventionDp.toggle()"><i
+                                                        class="fa fa-calendar"></i></button>
+                                            </span>
+                                        </div>
+                                    </div>  
+                                    <div class="col-sm-3" *ngIf="partnerrule.id != null || partnerrule.id != undefined"> <!-- En mode Edit -->
+                                        <label class="form-control-label" jhiTranslate="auxiliumApp.partnerrules.detail.dateEffet"
+                                        for="field_dateEffet">Date d'effet</label>
+                                     <div class="input-group">
+                                        <input id="field_dateEffet" type="text" class="form-control form-control-sm"
+                                            name="dateDebutEffet" ngbDatepicker #dateDebutEffetDp="ngbDatepicker"
+                                            [(ngModel)]="partnerrule.effectiveDate" 
+                                            required />
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-sm btn-default"
+                                                (click)="dateDebutEffetDp.toggle()"><i
+                                                    class="fa fa-calendar"></i></button>
+                                        </span>
+                                     </div>
+                                    </div>                                
+                                    <div class="col-sm-3">
+                                        <label jhiTranslate="auxiliumApp.refCompagnie.home.title" for="field_client">Compagnies</label>
+                                        <select class="form-control form-control-sm" id="field_client" name="client" [(ngModel)]="partnerrule.refPartnerId"
+                                        (ngModelChange)="getGuarantee(partnerrule.refPartnerId)" required>
+                                            <option [ngValue]="clientOption.id" *ngFor="let clientOption of clients;">{{clientOption?.companyName}}</option>
+                                        </select>
+                                    </div>                                   
+                                    <div class="col-sm-3">
+                                        <label jhiTranslate="auxiliumApp.refModeGestion.home.title" for="field_guarantie">Compagnies</label>
+                                        <select class="form-control form-control-sm" id="field_guarantie" name="guarantie" [(ngModel)]="partnerrule.refModeGestionId"
+                                        (ngModelChange)="selectedGuarantee(partnerrule.refModeGestionId);selectedWhenEditGuarantee(partnerrule.refModeGestionId)" required>
+                                            <option [ngValue]="guarantie.id" *ngFor="let guarantie of guaranties;">{{guarantie?.libelle}}</option>
+                                        </select>
+                                    </div>
+                                </div>    
+                        </div>
+                    </div>
+               
+            </div>
+        </div>
+        <!-- Frais de participation -->
+        <div class="row">
+                <div class="col-lg-12">
+                    
+                        <div class="card">
+                            <div class="card-header d-flex align-items-center no-padding" >
+                                <div class="notice notice-info"><span class="fa fa-calendar" style="color: #45ABCD"></span>&nbsp;&nbsp;<strong jhiTranslate="auxiliumApp.partnerrules.detail.fraisParticipation">Frais
+                                        de participation</strong>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-lg-3">
+                                            <label class="form-control-label" for="field_droittimbre" style="width: 100%;">&nbsp;</label>
+                                            <input type="checkbox" class="check-input" name="droittimbre" id="field_droittimbre" [(ngModel)]="partnerrule.stampDuty" />
+                                            <label class="form-control-label" jhiTranslate="auxiliumApp.partnerrules.detail.droittimbre" for="field_droittimbre">Droit de Timbre</label>
+                                        </div>
+                                        <div class="col-lg-3">
+                                                <label class="form-control-label" for="field_vetuste" style="width: 100%;">&nbsp;</label>
+                                                <input type="checkbox" class="check-input" name="vetuste" id="field_vetuste" [(ngModel)]="partnerrule.vetuste" />
+                                                <label class="form-control-label" jhiTranslate="auxiliumApp.partnerrules.detail.vetuste" for="field_vetuste">Vetuste</label>
+                                        </div>
+                                        <div class="col-lg-3">
+                                                <label class="form-control-label" for="field_avanceFacture" style="width: 100%;">&nbsp;</label>
+                                                <input type="checkbox" class="check-input" name="avanceFacture" id="field_avanceFacture" [(ngModel)]="partnerrule.advanceOnInvoice" />
+                                                <label class="form-control-label" jhiTranslate="auxiliumApp.partnerrules.detail.avanceFacture" for="field_avanceFacture">Avance sur Facture</label>
+                                        </div>
+                                        <div class="col-lg-3">
+                                                <label class="form-control-label" for="field_franchise" style="width: 100%;">&nbsp;</label>
+                                                <input type="checkbox" class="check-input" name="franchise" id="field_franchise" [(ngModel)]="partnerrule.insuranceDeductible" />
+                                                <label class="form-control-label" jhiTranslate="auxiliumApp.partnerrules.detail.franchise" for="field_franchise">Franchise</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                            <div class="col-lg-3">
+                                                <label class="form-control-label" for="field_fraishida" style="width: 100%;">&nbsp;</label>
+                                                <input type="checkbox" class="check-input" name="fraishida" id="field_fraishida" [(ngModel)]="partnerrule.hidaServiceCharges" />
+                                                <label class="form-control-label" jhiTranslate="auxiliumApp.partnerrules.detail.fraishida" for="field_fraishida">Frais HIDA</label>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <label class="form-control-label" for="field_regleProp" style="width: 100%;">&nbsp;</label>
+                                                <input type="checkbox" class="check-input" name="regleProp" id="field_regleProp" [(ngModel)]="partnerrule.proportionalRule" />
+                                                <label class="form-control-label" jhiTranslate="auxiliumApp.partnerrules.detail.regleProp" for="field_regleProp">Régle Proportionnel</label>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <label class="form-control-label" for="field_depassPlafond" style="width: 100%;">&nbsp;</label>
+                                                <input type="checkbox" class="check-input" name="depassPlafond" id="field_depassPlafond" [(ngModel)]="partnerrule.ceilingOverflow" />
+                                                <label class="form-control-label" jhiTranslate="auxiliumApp.partnerrules.detail.depassPlafond" for="field_depassPlafond">Dépassement Plafond</label>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <label class="form-control-label" for="field_partRespons" style="width: 100%;">&nbsp;</label>
+                                                <input type="checkbox" class="check-input" name="partRespons" id="field_partRespons" [(ngModel)]="partnerrule.shareResponsibility" />
+                                                <label class="form-control-label" jhiTranslate="auxiliumApp.partnerrules.detail.partRespons" for="field_partRespons">Part de Résponsabilité</label>
+                                            </div>
+                                    </div>        
+                            </div>
+                        </div>
+                    
+                </div>
+            </div>
+            <!-- Assuré -->
+            <div class="row">
+                <!-- Assuré assujettis à la TVA -->
+                <div class="col-lg-6">
+                    
+                        <div class="card">
+                            <div class="card-header d-flex align-items-center no-padding" >
+                                <div class="notice notice-info"><span class="fa fa-calendar" style="color: #45ABCD"></span>&nbsp;&nbsp;<strong jhiTranslate="auxiliumApp.partnerrules.detail.assuretva">Assuré 
+                                    assujettis à la TVA
+                                </strong>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <label jhiTranslate="auxiliumApp.partnerrules.detail.tva" for="field_tva">TVA</label>
+                                        <select class="form-control form-control-sm" id="field_tva" name="tva" [(ngModel)]="partnerrule.vatSubjectVatId" required>
+                                            <option [ngValue]="tva.id" *ngFor="let tva of listtva;">{{tva?.label}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-4" *ngIf="partnerrule.stampDuty">
+                                        <label jhiTranslate="auxiliumApp.partnerrules.detail.droittimbre" for="field_droittimbretva">Droit de Timbre</label>
+                                        <select class="form-control form-control-sm" id="field_droittimbretva" name="droittimbretva" [(ngModel)]="partnerrule.stampDutySubjectVatId" required>
+                                            <option [ngValue]="timbre.id" *ngFor="let timbre of timbrerules;">{{timbre?.label}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-4" *ngIf="partnerrule.vetuste">
+                                        <label jhiTranslate="auxiliumApp.partnerrules.detail.vetuste" for="field_vetustetva">Vetuste</label>
+                                        <select class="form-control form-control-sm" id="field_vetustetva" name="vetustetva" [(ngModel)]="partnerrule.vetusteSubjectVatId" required>
+                                            <option [ngValue]="vetuste.id" *ngFor="let vetuste of vetustestva;">{{vetuste?.label}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4" *ngIf="partnerrule.shareResponsibility">
+                                        <label jhiTranslate="auxiliumApp.partnerrules.detail.partRespons" for="field_resptva">Part Responsabilité</label>
+                                        <select class="form-control form-control-sm" id="field_resptva" name="resptva" [(ngModel)]="partnerrule.shareResponsabilitySubjectvatId" required>
+                                            <option [ngValue]="part.id" *ngFor="let part of partsresponstva;">{{part?.label}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-4" *ngIf="partnerrule.ceilingOverflow">
+                                        <label jhiTranslate="auxiliumApp.partnerrules.detail.depassPlafond" for="field_depasstva">Dépassement Plafond</label>
+                                        <select class="form-control form-control-sm" id="field_depasstva" name="depasstva" [(ngModel)]="partnerrule.ceilingOverflowSubjectVatId" required>
+                                            <option [ngValue]="depass.id" *ngFor="let depass of depassplafondtva;">{{depass?.label}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-4" *ngIf="partnerrule.proportionalRule">
+                                        <label jhiTranslate="auxiliumApp.partnerrules.detail.regleProp" for="field_proptva">Régles proportionnel</label>
+                                        <select class="form-control form-control-sm" id="field_proptva" name="proptva" [(ngModel)]="partnerrule.proportionalRuleSubjectVatId" required>
+                                            <option [ngValue]="regprop.id" *ngFor="let regprop of regleproportva;">{{regprop?.label}}</option>
+                                        </select>
+                                    </div>
+                                </div>       
+                            </div>
+                        </div>
+                    
+                </div>
+                <!-- Assuré non assujettis à la TVA -->
+                <div class="col-lg-6">
+                        
+                            <div class="card">
+                                <div class="card-header d-flex align-items-center no-padding" >
+                                    <div class="notice notice-info"><span class="fa fa-calendar" style="color: #45ABCD"></span>&nbsp;&nbsp;<strong jhiTranslate="auxiliumApp.partnerrules.detail.assurenontva">Assuré 
+                                        non assujettis à la TVA
+                                    </strong>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <label jhiTranslate="auxiliumApp.partnerrules.detail.tva" for="field_nontva">TVA</label>
+                                            <select class="form-control form-control-sm" id="field_nontva" name="nontva" [(ngModel)]="partnerrule.vatNotSubjectVatId" required>
+                                                <option [ngValue]="tva.id" *ngFor="let tva of listtva;">{{tva?.label}}</option>
+                                            </select>
+                                        </div>
+                                       <div class="col-sm-4" *ngIf="partnerrule.stampDuty">
+                                            <label jhiTranslate="auxiliumApp.partnerrules.detail.droittimbre" for="field_droittimbrenontva">Droit de Timbre</label>
+                                            <select class="form-control form-control-sm" id="field_droittimbrenontva" name="droittimbrenontva" [(ngModel)]="partnerrule.stampDutyNotSubjectVatId" required>
+                                                <option [ngValue]="timbre.id" *ngFor="let timbre of timbrerules;">{{timbre?.label}}</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-4" *ngIf="partnerrule.vetuste">
+                                            <label jhiTranslate="auxiliumApp.partnerrules.detail.vetuste" for="field_vetustenontva">Vetuste</label>
+                                            <select class="form-control form-control-sm" id="field_vetustenontva" name="vetustenontva" [(ngModel)]="partnerrule.vetusteNotSubjectVatId" required>
+                                                    <option [ngValue]="vetuste.id" *ngFor="let vetuste of vetustesnontva;">{{vetuste?.label}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-4" *ngIf="partnerrule.shareResponsibility">
+                                            <label jhiTranslate="auxiliumApp.partnerrules.detail.partRespons" for="field_respnontva">Part Responsabilité</label>
+                                            <select class="form-control form-control-sm" id="field_respnontva" name="respnontva" [(ngModel)]="partnerrule.shareResponsabilityNotSubjectVatId" required>
+                                                <option [ngValue]="part.id" *ngFor="let part of partsresponsnontva;">{{part?.label}}</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-4" *ngIf="partnerrule.ceilingOverflow">
+                                            <label jhiTranslate="auxiliumApp.partnerrules.detail.depassPlafond" for="field_depassnontva">Dépassement Plafond</label>
+                                            <select class="form-control form-control-sm" id="field_depassnontva" name="depassnontva" [(ngModel)]="partnerrule.ceilingOverflowNotSubjectVatId" required>
+                                                <option [ngValue]="depass.id" *ngFor="let depass of depassplafondnontva;">{{depass?.label}}</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-4" *ngIf="partnerrule.proportionalRule">
+                                            <label jhiTranslate="auxiliumApp.partnerrules.detail.regleProp" for="field_propnontva">Régles proportionnel</label>
+                                            <select class="form-control form-control-sm" id="field_propnontva" name="propnontva" [(ngModel)]="partnerrule.proportionalRuleNotSubjectVatId" required>
+                                                <option [ngValue]="regprop.id" *ngFor="let regprop of reglepropornontva;">{{regprop?.label}}</option>
+                                            </select>
+                                        </div>
+                                    </div>       
+                                </div>
+                            </div>
+                        
+                    </div>
+            </div>
+
+            <div class="row" *ngIf="partnerrule.refModeGestionId != null">
+                    <!-- Engagement GA assujettis à la TVA -->
+                    <div class="col-lg-6">
+                        
+                            <div class="card">
+                                <div class="card-header d-flex align-items-center no-padding" >
+                                    <div class="notice notice-info"><span class="fa fa-calendar" style="color: #45ABCD"></span>&nbsp;&nbsp;<strong jhiTranslate="auxiliumApp.partnerrules.detail.engagementgatva">Engagement GA
+                                    assujettis à la Tva
+                                    </strong>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    
+                                    <div class="row" *ngIf="fieldVisibility.IDA || fieldVisibility.CONNEXE || fieldVisibility.HIDAINF || fieldVisibility.HIDASUP || partnerrule.refPartnerId != 3">
+                                            <div class="col-sm-2" >
+                                                <label for="field_reghidalower" jhiTranslate="auxiliumApp.partnerrules.detail.regidaconn">Régle IDA HIDA CONNEXE</label>
+                                            </div>
+                                            
+                                            <div class="col-sm-6">
+                                                <select class="form-control form-control-sm" id="field_engagementgatva1" name="engagementgatva1" [(ngModel)]="partnerrule.commitmentGaIhcVatId" required>
+                                                    <option [ngValue]="engagementga.id" *ngFor="let engagementga of engihctva;">{{engagementga?.label}}</option>
+                                                </select>
+                                            </div>
+                                    </div>        
+                                    <div class="row" *ngIf="!fieldVisibility.IDA && !fieldVisibility.CONNEXE && !fieldVisibility.HIDAINF && !fieldVisibility.HIDASUP && partnerrule.refPartnerId != 3">
+                                            <div class="col-sm-2" *ngIf="fieldVisibility.DOMVEHIC || fieldVisibility.TIERCE || fieldVisibility.VOLPART || fieldVisibility.INCPART">
+                                                <label for="field_reghidalower" jhiTranslate="auxiliumApp.partnerrules.detail.regrpequal">Régle 1 RP</label>
+                                            </div>
+                                            <div class="col-sm-3" *ngIf="fieldVisibility.DOMCOLLIS || fieldVisibility.TIERCECOLLIS || fieldVisibility.BRIGLACE">
+                                                <label for="field_reghidalower" jhiTranslate="auxiliumApp.partnerrules.detail.regthtelower">Régle 1 THT</label>
+                                            </div>
+                                            
+                                            <div class="col-sm-6" *ngIf="fieldVisibility.DOMVEHIC || fieldVisibility.TIERCE || fieldVisibility.VOLPART || fieldVisibility.INCPART">
+                                                <select class="form-control form-control-sm" id="field_engagementgatva2" name="engagementgatva2" [(ngModel)]="partnerrule.commitmentGaVatEquId" required>
+                                                    <option [ngValue]="engagementga.id" *ngFor="let engagementga of engtvaequ;">{{engagementga?.label}}</option>
+                                                </select>
+                                            </div>
+                                            
+                                            <div class="col-sm-6" *ngIf="fieldVisibility.DOMCOLLIS || fieldVisibility.TIERCECOLLIS || fieldVisibility.BRIGLACE">
+                                                <select class="form-control form-control-sm" id="field_engagementgatva3" name="engagementgatva3" [(ngModel)]="partnerrule.commitmentGaTdevisInfId" required>
+                                                    <option [ngValue]="engagementga.id" *ngFor="let engagementga of engtdevisinf;">{{engagementga?.label}}</option>
+                                                </select>
+                                            </div>
+                                    </div>
+                                    <div class="row" *ngIf="!fieldVisibility.IDA && !fieldVisibility.CONNEXE && !fieldVisibility.HIDAINF && !fieldVisibility.HIDASUP && partnerrule.refPartnerId != 3">
+                                            <div class="col-sm-2" *ngIf="fieldVisibility.DOMVEHIC || fieldVisibility.TIERCE || fieldVisibility.VOLPART || fieldVisibility.INCPART">
+                                                <label class="form-control-label" for="field_regleProp" style="width: 100%;">&nbsp;</label>
+                                                <label for="field_reghidalower" jhiTranslate="auxiliumApp.partnerrules.detail.regrplower">Régle 2 RP</label>
+                                            </div>
+                                            <div class="col-sm-3" *ngIf="fieldVisibility.DOMCOLLIS || fieldVisibility.TIERCECOLLIS || fieldVisibility.BRIGLACE">
+                                                <label class="form-control-label" for="field_regleProp" style="width: 100%;">&nbsp;</label>
+                                                <label for="field_reghidalower" jhiTranslate="auxiliumApp.partnerrules.detail.regthtehigher">Régle 2 THT</label>
+                                            </div>
+                                            
+                                            <div class="col-sm-6" *ngIf="fieldVisibility.DOMVEHIC || fieldVisibility.TIERCE || fieldVisibility.VOLPART || fieldVisibility.INCPART">
+                                                <label class="form-control-label" for="field_regleProp" style="width: 100%;">&nbsp;</label>
+                                                <select class="form-control form-control-sm" id="field_engagementgatva4" name="engagementgatva4" [(ngModel)]="partnerrule.commitmentGaVatInfId" required>
+                                                    <option [ngValue]="engagementga.id" *ngFor="let engagementga of engtvainf;">{{engagementga?.label}}</option>
+                                                </select>
+                                            </div>
+                                            
+                                            <div class="col-sm-6" *ngIf="fieldVisibility.DOMCOLLIS || fieldVisibility.TIERCECOLLIS || fieldVisibility.BRIGLACE">
+                                                <label class="form-control-label" for="field_regleProp" style="width: 100%;">&nbsp;</label>
+                                                <select class="form-control form-control-sm" id="field_engagementgatva" name="engagementgatva" [(ngModel)]="partnerrule.commitmentGaTdevisSupId" required>
+                                                    <option [ngValue]="engagementga.id" *ngFor="let engagementga of engtdevissup;">{{engagementga?.label}}</option>
+                                                </select>
+                                            </div>
+                                    </div>
+                                    <!-- LA CARTE ASSUJETIE-->
+                                    <div class="row" *ngIf="fieldVisibility.DOMCOLLIS && partnerrule.refPartnerId == 3">
+                                        
+                                        <div class="col-sm-10">
+                                            <label class="form-control-label" for="field_regdccarteinf" style="width: 100%;">&nbsp;</label>
+                                            <label for="field_regdccarteinf" >Si TR(HTVA) x (VA/VR) &lt; VA</label>
+                                        </div>
+                                       </br>
+                                        <div class="col-sm-3">
+                                            <label class="form-control-label" for="field_regdccarteainfneuf" style="width: 100%;">&nbsp;</label>
+                                            <label for="field_regdccarteainfneuf" > si la valeur a neuf &lt; 50000dt</label>
+                                        </div>
+                                        
+                                        <div class="col-sm-6">
+                                            <label class="form-control-label" for="field_reglePropc" style="width: 100%;">&nbsp;</label>
+                                            <select class="form-control form-control-sm" id="field_engagementgatva4c" name="engagementgatva4c" [(ngModel)]="partnerrule.commitmentGaVatInfId" required>
+                                                <option [ngValue]="engagementga.id" *ngFor="let engagementga of engtvainf;">{{engagementga?.label}}</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <label class="form-control-label" for="field_regdccarteasupneuf" style="width: 100%;">&nbsp;</label>
+                                            <label for="field_regdccarteasupneuf" > si la valeur a neuf > 50000dt</label>
+                                        </div>
+                                        
+                                        <div class="col-sm-6">
+                                            <label class="form-control-label" for="field_regleProp" style="width: 100%;">&nbsp;</label>
+                                            <select class="form-control form-control-sm" id="field_engagementgatva4sup" name="engagementgatva4sup" [(ngModel)]="partnerrule.commitmentGaVatEquId" required>
+                                                <option [ngValue]="engagementga.id" *ngFor="let engagementga of engtvaequ;">{{engagementga?.label}}</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-sm-3">
+                                            <label class="form-control-label" for="field_regdccartesup" style="width: 100%;">&nbsp;</label>
+                                            <label for="field_regdccartesup" >Si TR(HTVA) x (VA/VR)> VA</label>
+                                        </div>
+                                        
+                                        <div class="col-sm-6">
+                                            <label class="form-control-label" for="field_regleProp" style="width: 100%;">&nbsp;</label>
+                                            <select class="form-control form-control-sm" id="field_engagementgatvac" name="engagementgatvac" [(ngModel)]="partnerrule.commitmentGaTdevisSupId" required>
+                                                <option [ngValue]="engagementga.id" *ngFor="let engagementga of engtdevissup;">{{engagementga?.label}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                    </div>
+
+                    <!-- Engagement GA non assujettis à la TVA -->
+                    <div class="col-lg-6">
+                            
+                                <div class="card">
+                                    <div class="card-header d-flex align-items-center no-padding" >
+                                        <div class="notice notice-info"><span class="fa fa-calendar" style="color: #45ABCD"></span>&nbsp;&nbsp;<strong jhiTranslate="auxiliumApp.partnerrules.detail.engagementganontva">Engagement GA
+                                        non assujettis à la tva
+                                        </strong>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                    <div class="row" *ngIf="fieldVisibility.IDA || fieldVisibility.CONNEXE || fieldVisibility.HIDAINF || fieldVisibility.HIDASUP || partnerrule.refPartnerId != 3">
+                                            <div class="col-sm-2" >
+                                                <label for="field_reghidalower" jhiTranslate="auxiliumApp.partnerrules.detail.regidaconn">Régle IDA HIDA CONNEXE</label>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <select class="form-control form-control-sm" id="field_engagementgantva" name="engagementgantva" [(ngModel)]="partnerrule.commitmentGaIhcNvatId" required>
+                                                    <option [ngValue]="engagementga.id" *ngFor="let engagementga of engihcntva;">{{engagementga?.label}}</option>
+                                                </select>
+                                            </div>
+                                    </div>        
+                                    <div class="row" *ngIf="!fieldVisibility.IDA && !fieldVisibility.CONNEXE && !fieldVisibility.HIDAINF && !fieldVisibility.HIDASUP && partnerrule.refPartnerId != 3">
+                                            <div class="col-sm-2" *ngIf="fieldVisibility.DOMVEHIC || fieldVisibility.TIERCE || fieldVisibility.VOLPART || fieldVisibility.INCPART">
+                                                <label for="field_reghidalower" jhiTranslate="auxiliumApp.partnerrules.detail.regrpequal">Régle 1 RP</label>
+                                            </div>
+                                            <div class="col-sm-3" *ngIf="fieldVisibility.DOMCOLLIS || fieldVisibility.TIERCECOLLIS || fieldVisibility.BRIGLACE">
+                                                <label for="field_reghidalower" jhiTranslate="auxiliumApp.partnerrules.detail.regthtelower">Régle 1 THT</label>
+                                            </div>
+                                            <div class="col-sm-6" *ngIf="fieldVisibility.DOMVEHIC || fieldVisibility.TIERCE || fieldVisibility.VOLPART || fieldVisibility.INCPART">
+                                                <select class="form-control form-control-sm" id="field_engagementgatva" name="engagementgantva1" [(ngModel)]="partnerrule.commitmentGaNvatEquId" required>
+                                                    <option [ngValue]="engagementga.id" *ngFor="let engagementga of engntvaequ;">{{engagementga?.label}}</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-6" *ngIf="fieldVisibility.DOMCOLLIS || fieldVisibility.TIERCECOLLIS || fieldVisibility.BRIGLACE">
+                                                <select class="form-control form-control-sm" id="field_engagementgatva" name="engagementgantva2" [(ngModel)]="partnerrule.commitmentGaNdevisInfId" required>
+                                                    <option [ngValue]="engagementga.id" *ngFor="let engagementga of engndevisinf;">{{engagementga?.label}}</option>
+                                                </select>
+                                            </div>
+                                    </div>
+                                    <div class="row" *ngIf="!fieldVisibility.IDA && !fieldVisibility.CONNEXE && !fieldVisibility.HIDAINF && !fieldVisibility.HIDASUP && partnerrule.refPartnerId != 3">
+                                            <div class="col-sm-2" *ngIf="fieldVisibility.DOMVEHIC || fieldVisibility.TIERCE || fieldVisibility.VOLPART || fieldVisibility.INCPART">
+                                                <label class="form-control-label" for="field_regleProp" style="width: 100%;">&nbsp;</label>
+                                                <label for="field_reghidalower" jhiTranslate="auxiliumApp.partnerrules.detail.regrplower">Régle 2 RP</label>
+                                            </div>
+                                            <div class="col-sm-3" *ngIf="fieldVisibility.DOMCOLLIS || fieldVisibility.TIERCECOLLIS || fieldVisibility.BRIGLACE">
+                                                <label class="form-control-label" for="field_regleProp" style="width: 100%;">&nbsp;</label>
+                                                <label for="field_reghidalower" jhiTranslate="auxiliumApp.partnerrules.detail.regthtehigher">Régle 2 THT</label>
+                                            </div>
+                                            <div class="col-sm-6" *ngIf="fieldVisibility.DOMVEHIC || fieldVisibility.TIERCE || fieldVisibility.VOLPART || fieldVisibility.INCPART">
+                                                <label class="form-control-label" for="field_regleProp" style="width: 100%;">&nbsp;</label>
+                                                <select class="form-control form-control-sm" id="field_engagementgatva" name="engagementgantva3" [(ngModel)]="partnerrule.commitmentGaNvatInfId" required>
+                                                    <option [ngValue]="engagementga.id" *ngFor="let engagementga of engntvainf;">{{engagementga?.label}}</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-6" *ngIf="fieldVisibility.DOMCOLLIS || fieldVisibility.TIERCECOLLIS || fieldVisibility.BRIGLACE">
+                                                <label class="form-control-label" for="field_regleProp" style="width: 100%;">&nbsp;</label>
+                                                <select class="form-control form-control-sm" id="field_engagementgatva" name="engagementgantva4" [(ngModel)]="partnerrule.commitmentGaNdevisSupId" required>
+                                                    <option [ngValue]="engagementga.id" *ngFor="let engagementga of engndevissup;">{{engagementga?.label}}</option>
+                                                </select>
+                                            </div>
+                                    </div>
+                                     <!-- LA CARTE NON ASSUJETIE-->
+                                     <div class="row" *ngIf="fieldVisibility.DOMCOLLIS && partnerrule.refPartnerId == 3">
+                                        
+                                        <div class="col-sm-10">
+                                            <label class="form-control-label" for="field_regdccarteinf" style="width: 100%;">&nbsp;</label>
+                                            <label for="field_regdccarteinf" >Si TR(TTC) x (VA/VR) &lt; VA</label>
+                                        </div>
+                                    
+                                        <div class="col-sm-3">
+                                            <label class="form-control-label" for="field_regdccarteninfneuf" style="width: 100%;">&nbsp;</label>
+                                            <label for="field_regdccarteninfneuf" > si la valeur a neuf &lt; 50000dt</label>
+                                        </div>
+                                        
+                                        <div class="col-sm-6">
+                                            <label class="form-control-label" for="field_regleProp" style="width: 100%;">&nbsp;</label>
+                                            <select class="form-control form-control-sm" id="field_engagementgatva4" name="engagementgatva4" [(ngModel)]="partnerrule.commitmentGaNdevisInfId" required>
+                                                <option [ngValue]="engagementga.id" *ngFor="let engagementga of engntvainf;">{{engagementga?.label}}</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <label class="form-control-label" for="field_regdccartensupneuf" style="width: 100%;">&nbsp;</label>
+                                            <label for="field_regdccartensupneuf" > si la valeur a neuf > 50000dt</label>
+                                        </div>
+                                        
+                                        <div class="col-sm-6">
+                                            <label class="form-control-label" for="field_regleProp" style="width: 100%;">&nbsp;</label>
+                                            <select class="form-control form-control-sm" id="field_engagementgatva4nsup" name="engagementgatva4nsup" [(ngModel)]="partnerrule.commitmentGaNvatEquId" required>
+                                                <option [ngValue]="engagementga.id" *ngFor="let engagementga of engntvaequ;">{{engagementga?.label}}</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-sm-3">
+                                            <label class="form-control-label" for="field_regdccartesup" style="width: 100%;">&nbsp;</label>
+                                            <label for="field_regdccartesup" >Si TR(TTC) x (VA/VR)> VA</label>
+                                        </div>
+                                        
+                                        <div class="col-sm-6">
+                                            <label class="form-control-label" for="field_regleProp" style="width: 100%;">&nbsp;</label>
+                                            <select class="form-control form-control-sm" id="field_engagementgatva" name="engagementgatva" [(ngModel)]="partnerrule.commitmentGaNdevisSupId" required>
+                                                <option [ngValue]="engagementga.id" *ngFor="let engagementga of engndevissup;">{{engagementga?.label}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>                            
+                    </div>
+            </div>
+
+        <!-- Frais de prestation HIDA -->
+            <div class="row" *ngIf="partnerrule.hidaServiceCharges">
+                <div class="col-lg-12">
+                    
+                        <div class="card">
+                            <div class="card-header d-flex align-items-center no-padding" >
+                                <div class="notice notice-info"><span class="fa fa-calendar" style="color: #45ABCD"></span>&nbsp;&nbsp;<strong jhiTranslate="auxiliumApp.partnerrules.detail.fraisprestationhida">Frais 
+                                    de PRESTATION HIDA
+                                </strong>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                                <label for="field_reghidalower" jhiTranslate="auxiliumApp.partnerrules.detail.reghidalower">Régle 1 HIDA</label>
+                                        </div>
+                                        <div class="col-sm-3">
+                                                <label class="form-control-label" jhiTranslate="auxiliumApp.partnerrules.detail.mntfraishida" for="field_mnthidalower">Montant Frais HIDA</label>
+                                                <input type="text" class="check-input" name="mnthidalower" id="field_mnthidalower" [(ngModel)]="partnerrule.hidaServiceChargesLower" required/>
+                                        </div>
+                                    </div>    
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                                <label for="field_reghidalower" jhiTranslate="auxiliumApp.partnerrules.detail.reghidabetween">Régle 2 HIDA</label>
+                                        </div>
+                                        <div class="col-sm-3">
+                                                <label class="form-control-label" jhiTranslate="auxiliumApp.partnerrules.detail.mntfraishida" for="field_mnthidabetween">Montant Frais HIDA</label>
+                                                <input type="text" class="check-input" name="mnthidabetween" id="field_mnthidabetween" [(ngModel)]="partnerrule.hidaServiceChargesBetween" required/>
+                                        </div>
+                                    </div>  
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                                <label for="field_reghidalower" jhiTranslate="auxiliumApp.partnerrules.detail.reghidahigher">Régle 3 HIDA</label>
+                                        </div>
+                                        <div class="col-sm-3">
+                                                <label class="form-control-label" jhiTranslate="auxiliumApp.partnerrules.detail.mntfraishida" for="field_mnthidahigher">Montant Frais HIDA</label>
+                                                <input type="text" class="check-input" name="mnthidahigher" id="field_mnthidahigher" [(ngModel)]="partnerrule.hidaServiceChargesHigher" required/>
+                                        </div>
+                                    </div> 
+                            </div>
+                        </div>
+                   
+                </div>
+            </div>
+        <!-- Avance sur Facture -->
+            <div class="row" *ngIf="partnerrule.advanceOnInvoice">
+                    <div class="col-lg-12">
+                        
+                            <div class="card">
+                                <div class="card-header d-flex align-items-center no-padding" >
+                                    <div class="notice notice-info"><span class="fa fa-calendar" style="color: #45ABCD"></span>&nbsp;&nbsp;<strong jhiTranslate="auxiliumApp.partnerrules.detail.avanceFacture">Avance
+                                    sur facture
+                                    </strong>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                    <label jhiTranslate="auxiliumApp.partnerrules.detail.regleavancefacture" for="field_avancefacture">Régle avance sur facture</label>
+                                                    <select class="form-control form-control-sm" id="field_avancefacture" name="avancefacture" [(ngModel)]="partnerrule.advanceInvoiceId" required>
+                                                        <option [ngValue]="avancefacture.id" *ngFor="let avancefacture of reglesavancefactures;">{{avancefacture?.label}}</option>
+                                                    </select>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                    <label class="form-control-label" jhiTranslate="auxiliumApp.partnerrules.detail.mntavancefacture" for="field_mntavancefacture">Montant avance sur facture</label>
+                                                    <input type="text" class="check-input" name="mntavancefacture" id="field_mntavancefacture" [(ngModel)]="partnerrule.advanceInvoiceHigher" required/>
+                                            </div>
+                                        </div>    
+                                </div>
+                            </div>
+                        
+                    </div>
+            </div>
+            <!-- Franchise -->
+            <div class="row" *ngIf="partnerrule.insuranceDeductible">
+                    <div class="col-lg-12">
+                        
+                            <div class="card">
+                                <div class="card-header d-flex align-items-center no-padding" >
+                                    <div class="notice notice-info"><span class="fa fa-calendar" style="color: #45ABCD"></span>&nbsp;&nbsp;<strong jhiTranslate="auxiliumApp.partnerrules.detail.franchise">Franchise
+                                    </strong>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                    <label jhiTranslate="auxiliumApp.partnerrules.detail.reglefranchise" for="field_reglefranchise">Régle franchise</label>
+                                                    <select class="form-control form-control-sm" id="field_reglefranchise" name="reglefranchise" [(ngModel)]="partnerrule.insuranceDeductibleRuleId" (ngModelChange)="selectedFranchise(partnerrule.insuranceDeductibleRuleId)" required>
+                                                        <option [ngValue]="franchise.id" *ngFor="let franchise of reglesfranchise;">{{franchise?.label}}</option>
+                                                    </select>
+                                            </div>
+                                            <div class="col-sm-2" *ngIf="fieldVisibility.FRANCHIS_PERCENTAGE">
+                                                    <label class="form-control-label" jhiTranslate="auxiliumApp.partnerrules.detail.pourcentagefranchise" for="field_pourcentagefranchise">F% fixé à </label>
+                                                    <input type="text" class="check-input" name="pourcentagefranchise" id="field_pourcentagefranchise" [(ngModel)]="partnerrule.insuranceDeductiblePercentage" required/>
+                                            </div>
+                                            <div class="col-sm-2" *ngIf="fieldVisibility.FRANCHIS_MIN">
+                                                    <label class="form-control-label" jhiTranslate="auxiliumApp.partnerrules.detail.mntmin" for="field_mntmin">Montant min</label>
+                                                    <input type="text" class="check-input" name="mntmin" id="field_mntmin" [(ngModel)]="partnerrule.insuranceDeductibleMin" required/>
+                                            </div>
+                                            <div class="col-sm-2" *ngIf="fieldVisibility.FRANCHIS_FIXED">
+                                                    <label class="form-control-label" jhiTranslate="auxiliumApp.partnerrules.detail.mntfix" for="field_mntmax">Montant fix</label>
+                                                    <input type="text" class="check-input" name="mntmax" id="field_mntmax" [(ngModel)]="partnerrule.insuranceDeductibleFixed" required/>
+                                            </div>
+                                        </div>    
+                                </div>
+                            </div>
+                        
+                    </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12" style="margin-bottom: 10px">
+                    <div class="form-group">
+                        <label style="width: 100%">&nbsp;</label>
+                        <button type="button" [disabled]="rulesForm.invalid || partnerModeExist" (click)="save()" class="btn btn-sm btn-primary pull-right margin-right-5">
+                         <span jhiTranslate="entity.action.save">add</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>

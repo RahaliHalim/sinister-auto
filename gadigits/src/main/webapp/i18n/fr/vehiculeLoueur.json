@@ -1,0 +1,29 @@
+{
+    "auxiliumApp": {
+        "vehiculeLoueur" : {
+            "home": {
+                "title": "Vehicules",
+                "createLabel": "Créer un nouveau Vehicule",
+                "createOrEditLabel": "Créer ou éditer un Vehicule",
+                "search": "Recherche pour Vehicule"
+            },
+            "created": "Un nouveau Vehicule Loueur a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Vehicule Loueur avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Vehicule Loueur avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Vehicule {{ id }} ?"
+            },
+            "detail": {
+                "title": "Vehicule"
+            },
+            "immatriculation": "Immatriculation",
+            "totalPrix": "Total Prix",
+            "marque": "Marque",
+            "modele":"Modèle",
+            "loueur":"Loueur",
+
+            "prixJour":"Prix/Jour"
+
+        }
+    }
+}

@@ -1,0 +1,64 @@
+
+<div *ngIf="personnePhysique">
+    <h2><span jhiTranslate="auxiliumApp.personnePhysique.detail.title">Personne Physique</span> {{personnePhysique.prenom}} {{personnePhysique.nom}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="auxiliumApp.personnePhysique.prenom">Prenom</span></dt>
+        <dd>
+            <span>{{personnePhysique.prenom}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.personnePhysique.nom">Nom</span></dt>
+        <dd>
+            <span>{{personnePhysique.nom}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.personnePhysique.premTelephone">Prem Telephone</span></dt>
+        <dd>
+            <span>{{personnePhysique.premTelephone}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.personnePhysique.deuxTelephone">Deux Telephone</span></dt>
+        <dd>
+            <span>{{personnePhysique.deuxTelephone}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.personnePhysique.premMail">Prem Mail</span></dt>
+        <dd>
+            <span>{{personnePhysique.premMail}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.personnePhysique.deuxMail">Deux Mail</span></dt>
+        <dd>
+            <span>{{personnePhysique.deuxMail}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.personnePhysique.adresse">Adresse</span></dt>
+        <dd>
+            <span>{{personnePhysique.adresse}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.personnePhysique.isUtilisateur">Is Utilisateur</span></dt>
+        <dd>
+            <span>{{personnePhysique.isUtilisateur}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.personnePhysique.cin">Cin</span></dt>
+        <dd>
+            <span>{{personnePhysique.cin}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.personnePhysique.civilite">Civilite</span></dt>
+        <dd>
+            <span jhiTranslate="{{'auxiliumApp.Civilite.' + personnePhysique.civilite}}">{{personnePhysique.civilite}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.personnePhysique.user">User</span></dt>
+        <dd>
+            {{personnePhysique.userId}}
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.personnePhysique.ville">Ville</span></dt>
+        <dd>
+            <div *ngIf="personnePhysique.villeId">
+                <a [routerLink]="['/sys-ville', personnePhysique.villeId]">{{personnePhysique.villeLibelle}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+</div>

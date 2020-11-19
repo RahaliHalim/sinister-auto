@@ -1,0 +1,61 @@
+
+<div *ngIf="profileAccess">
+    <h2><span jhiTranslate="auxiliumApp.profileAccess.detail.title">Profile Access</span> {{profileAccess.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="auxiliumApp.profileAccess.label">Label</span></dt>
+        <dd>
+            <span>{{profileAccess.label}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.profileAccess.code">Code</span></dt>
+        <dd>
+            <span>{{profileAccess.code}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.profileAccess.url">Url</span></dt>
+        <dd>
+            <span>{{profileAccess.url}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.profileAccess.leaf">Leaf</span></dt>
+        <dd>
+            <span>{{profileAccess.leaf}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.profileAccess.businessEntity">Business Entity</span></dt>
+        <dd>
+            <div *ngIf="profileAccess.businessEntityId">
+                <a [routerLink]="['/business-entity', profileAccess.businessEntityId]">{{profileAccess.businessEntityLabel}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.profileAccess.functionality">Functionality</span></dt>
+        <dd>
+            <div *ngIf="profileAccess.functionalityId">
+                <a [routerLink]="['/functionality', profileAccess.functionalityId]">{{profileAccess.functionalityLabel}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.profileAccess.elementMenu">Element Menu</span></dt>
+        <dd>
+            <div *ngIf="profileAccess.elementMenuId">
+                <a [routerLink]="['/element-menu', profileAccess.elementMenuId]">{{profileAccess.elementMenuLabel}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.profileAccess.profile">Profile</span></dt>
+        <dd>
+            <div *ngIf="profileAccess.profileId">
+                <a [routerLink]="['/user-profile', profileAccess.profileId]">{{profileAccess.profileLabel}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'profile-access/'+ profileAccess.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;&nbsp;&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

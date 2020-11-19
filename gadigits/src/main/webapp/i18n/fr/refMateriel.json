@@ -1,0 +1,25 @@
+{
+    "auxiliumApp": {
+        "refMateriel" : {
+            "home": {
+                "title": "RefMateriels",
+                "createLabel": "Créer une nouvelle réf. matériel",
+                "createOrEditLabel": "Créer ou modifier une réf. matériel",
+                "search": "Recherche pour réf. matériel"
+            },
+            "created": "Une nouvelle réf. matériel a été créée avec l'identifiant {{ param }}",
+            "updated": "La réf. matériel avec l'identifiant {{ param }} a été mise à jour",
+            "deleted": "La réf. matériel avec l'identifiant {{ param }} a été supprimée",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer la réf. matériel {{ id }} ?"
+            },
+            "detail": {
+                "title": "Réf. matériel"
+            },
+            "libelle": "Libellé",
+            "description": "Description",
+            "obligatoireCng": "Obligatoire Cng",
+            "reparateur": "Réparateur"
+        }
+    }
+}

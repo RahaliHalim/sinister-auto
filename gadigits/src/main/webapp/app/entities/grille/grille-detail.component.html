@@ -1,0 +1,33 @@
+
+<div *ngIf="grille">
+    <h2><span jhiTranslate="auxiliumApp.grille.detail.title">Grille</span> {{grille.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="auxiliumApp.grille.th">Th</span></dt>
+        <dd>
+            <span>{{grille.th}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.grille.remise">Remise</span></dt>
+        <dd>
+            <span>{{grille.remise}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.grille.tva">Tva</span></dt>
+        <dd>
+            <span>{{grille.tva}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'grille/'+ grille.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;&nbsp;&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

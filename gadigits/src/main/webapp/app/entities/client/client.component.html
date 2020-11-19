@@ -1,0 +1,128 @@
+
+
+
+    <section class="forms">
+            <div class="container-fluid">
+                <!-- Page Header-->
+                <header>
+                    <h1 class="h3 display">
+                        <jhi-alert-error></jhi-alert-error>
+                    </h1>
+                </header>
+                <div class="row">
+
+                    <div class="col-lg-12">
+                            <div class="card">
+                                    <div class="card-header d-flex align-items-center no-padding" >
+                                        <div class="notice notice-info"><strong jhiTranslate="auxiliumApp.client.home.title">Clients </strong></div>
+                                    </div>
+                                    <div>
+
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <form name="searchForm" class="form-inline">
+                                        <div class="input-group w-100 mt-3">
+                                                <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch"
+                                                 name="currentSearch" placeholder="{{ 'auxiliumApp.client.home.search' | translate }}">
+                                                <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
+                                                    <span class="fa fa-search"></span>
+                                                </button>
+                                                <button class="input-group-addon btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                                                    <span class="fa fa-sm fa-remove"></span>
+                                                </button>
+                                        </div>
+                                    </form>
+
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <br>
+         <button class="btn btn-primary float-right jh-create-entity create-client" [routerLink]="['/', { outlets: { popup: ['client-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down"  jhiTranslate="auxiliumApp.client.home.createLabel">
+            Create new Client
+            </span>
+        </button>
+                                </div>
+                            </div>
+
+                            <br />
+                            <div class="table-responsive" *ngIf="clients">
+                                    <table class="table table-striped">
+                                        <thead>
+                                        <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+                                        <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+                                        <th jhiSortBy="code"><span jhiTranslate="auxiliumApp.client.code">Code</span> <span class="fa fa-sort"></span></th>
+                                        <th jhiSortBy="compagnieNom"><span jhiTranslate="auxiliumApp.client.compagnie">Compagnie</span> <span class="fa fa-sort"></span></th>
+                                        <th jhiSortBy="concessionnaireLibelle"><span jhiTranslate="auxiliumApp.client.concessionnaire">Concessionnaire</span> <span class="fa fa-sort"></span></th>
+                                        <th></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr *ngFor="let client of clients ;trackBy: trackId">
+                                            <td><a [routerLink]="['../client', client.id ]">{{client.id}}</a></td>
+                                            <td>{{client.code}}</td>
+                                            <td>
+                                                <div *ngIf="client.compagnieId">
+                                                    <a [routerLink]="['../ref-compagnie', client.compagnieId  ]" >{{client.compagnieNom}}</a>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div *ngIf="client.concessionnaireId">
+                                                    <a [routerLink]="['../concessionnaire', client.concessionnaireId  ]" >{{client.concessionnaireLibelle}}</a>
+                                                </div>
+                                            </td>
+
+                                            <td class="text-right">
+                                                <div class="btn-group flex-btn-group-container">
+                                                    <button type="submit"
+                                                            [routerLink]="['../client', client.id ]"
+                                                            class="btn btn-info btn-sm">
+                                                        <span class="fa fa-eye"></span>
+
+                                                    </button>
+                                                    <button type="submit"
+                                                            [routerLink]="['/', { outlets: { popup: 'client/'+ client.id + '/edit'} }]"
+                                                            replaceUrl="true"
+                                                            class="btn btn-primary btn-sm">
+                                                        <span class="fa fa-pencil"></span>
+
+                                                    </button>
+                                                    <button type="submit"
+                                                     [hidden]="principal.selectedValue !='ROLE_ADMIN'"
+                                                            [routerLink]="['/', { outlets: { popup: 'client/'+ client.id + '/delete'} }]"
+                                                            replaceUrl="true"
+                                                            class="btn btn-danger btn-sm">
+                                                        <span class="fa fa-sm fa-remove"></span>
+
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+
+
+
+                            <div class="modal-footer row justify-content-center">
+
+                                    <div *ngIf="clients && clients.length">
+                                            <div class="row justify-content-center">
+                                                <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+                                            </div>
+                                            <div class="row justify-content-center">
+                                                <ngb-pagination [collectionSize]="totalItems" [(page)]="page" (pageChange)="loadPage(page)"></ngb-pagination>
+                                            </div>
+                                        </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>

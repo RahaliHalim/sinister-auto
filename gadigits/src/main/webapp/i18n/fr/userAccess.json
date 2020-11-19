@@ -1,0 +1,29 @@
+{
+    "auxiliumApp": {
+        "userAccess" : {
+            "home": {
+                "title": "UserAccesses",
+                "createLabel": "Créer un nouveau accés utilisateur",
+                "createOrEditLabel": "Créer ou modifier un accés utilisateur",
+                "search": "Recherche pour accés utilisateur"
+            },
+            "created": "Un nouveau accés utilisateur a été créé avec l'identifiant {{ param }}",
+            "updated": "L'accés utilisateur avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "L'accés utilisateur l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer l'accés utilisateur {{ id }} ?"
+            },
+            "detail": {
+                "title": "Accés utilisateur"
+            },
+            "label": "Label",
+            "code": "Code",
+            "url": "Url",
+            "leaf": "Leaf",
+            "businessEntity": "Entité commerciale",
+            "functionality": "Fonctionanalité",
+            "elementMenu": "Element Menu",
+            "user": "User"
+        }
+    }
+}

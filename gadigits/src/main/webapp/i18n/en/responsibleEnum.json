@@ -1,0 +1,10 @@
+{
+    "auxiliumApp": {
+        "ResponsibleEnum" : {
+            "null": "",
+            "ga": "ga",
+            "agent": "agent",
+            "company": "company"
+        }
+    }
+}

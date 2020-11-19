@@ -1,0 +1,25 @@
+{
+    "auxiliumApp": {
+        "stampDuty" : {
+            "home": {
+                "title": "Droit de timbre",
+                "createLabel": "Créer un nouveau droit de timbre",
+                "createOrEditLabel": "Créer ou modifier un droit de timbre",
+                "search": "Recherche pour droit de timbre"
+            },
+            "created": "Un nouveau droit de timbre a été créé",
+            "updated": "Le droit de timbre a été mis à jour",
+            "deleted": "Le droit de timbre a été supprimé",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer ce droit de timbre ?"
+            },
+            "detail": {
+                "title": "Droit de timbre"
+            },
+            "amount": "Droit de timbre",
+            "startDate": "Date début",
+            "endDate": "Date fin",
+            "active": "Active"
+        }
+    }
+}

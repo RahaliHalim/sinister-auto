@@ -1,0 +1,351 @@
+<!-- Breadcrumb-->
+<div class="breadcrumb-holder">
+    <div class="container-fluid">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="/"><span class="fa fa-home"></span>&nbsp;&nbsp;<span jhiTranslate="global.menu.home">Home</span></a></li>
+            <li class="breadcrumb-item"><a routerLink="/convention"><span jhiTranslate="auxiliumApp.convention.home.title">Ref Pack</span></a></li>
+            <li class="breadcrumb-item active"><span jhiTranslate="auxiliumApp.convention.home.createOrEditLabel">Create or edit a ref-pack</span></li>
+        </ul>
+    </div>
+</div>
+<section class="forms">
+    <div class="container-fluid">
+        <!-- Page Header-->
+        <header style="padding-top: 1rem; padding-bottom: 1rem;">
+            <h1 class="h3 display">
+                <jhi-alert-error></jhi-alert-error>
+                <jhi-alert></jhi-alert>
+            </h1>
+        </header>
+        <div class="row">
+            <div class="col-lg-12">
+                <form #cnvForm="ngForm" novalidate>
+                    <div class="card">
+                        <div class="card-header d-flex align-items-center no-padding" >
+                            <div class="notice notice-info"><span class="fa fa-calendar" style="color: #45ABCD"></span>&nbsp;&nbsp;<strong jhiTranslate="auxiliumApp.convention.home.createOrEditLabel">create edit convention</strong></div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <label jhiTranslate="auxiliumApp.refPartner.detail.title" for="field_client">company</label>
+                                    <select class="form-control form-control-sm" id="field_client" name="client" [(ngModel)]="convention.clientId" required>
+                                        <option [ngValue]="clientOption.id" *ngFor="let clientOption of partners;">{{clientOption?.companyName}}</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label class="form-control-label" jhiTranslate="auxiliumApp.convention.startDate" for="field_startDate">startDate</label>
+                                        <div class="input-group">
+                                            <input id="field_startDate" type="text" class="form-control form-control-sm" name="startDate" ngbDatepicker #startDate="ngbDatepicker" [(ngModel)]="convention.startDate" [maxDate]="convention.endDate" required />
+                                            <span class="input-group-btn">
+                                            	<button type="button" class="btn btn-sm btn-default" (click)="startDate.toggle()"><i class="fa fa-sm fa-calendar"></i></button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label class="form-control-label" jhiTranslate="auxiliumApp.convention.endDate" for="field_endDate">endDate</label>
+                                        <div class="input-group">
+                                            <input id="field_endDate" type="text" class="form-control form-control-sm" name="endDate" ngbDatepicker  #endDate="ngbDatepicker" [(ngModel)]="convention.endDate" [minDate]="convention.startDate" required/>
+                                            <span class="input-group-btn">
+                                                <button type="button" class="btn btn-sm btn-default" (click)="endDate.toggle()"><i class="fa fa-sm fa-calendar"></i></button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label class="form-control-label" jhiTranslate="auxiliumApp.convention.signedAgreement" for="field_signedAgreement">convention signée</label>
+                                        <div class="input-group">
+                                            <input id="field_signedAgreement" required type="file" class="form-control form-control-sm" name="signedAgreement" (change)="selectFile($event)" accept=".pdf,.jpg,.jpeg,.png"/>
+                                            <span class="input-group-btn" *ngIf="signedAgreementPreview">
+                                                <button type="button" class="btn btn-sm btn-default" (click)="downloadFile()"><i class="fa fa-sm fa-download"></i></button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div *ngIf ="this.disabledForm1">
+                    <form #pacForm="ngForm" novalidate>
+                    <div class="card">
+                        <div class="card-header d-flex align-items-center no-padding" >
+                            <div class="notice notice-info"><span class="fa fa-clone" style="color: #45ABCD"></span>&nbsp;&nbsp;<strong jhiTranslate="auxiliumApp.refPack.home.createOrEditLabel">Create ref-pack</strong></div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <label jhiTranslate="auxiliumApp.refPack.serviceType" for="field_serviceType"> type de service </label>
+                                    <ng-multiselect-dropdown [placeholder]="' '" [data]="typeServices" [(ngModel)]="refPack.serviceTypes" required [settings]="serviceTypeDropdownSettings"
+                                        (onSelect)="onItemSelect($event)" (onDeSelect)="onItemDeSelect($event)" name="serviceTypes" [ngClass]="'form-control form-control-sm no-padding'">
+                                    </ng-multiselect-dropdown>
+                                </div>
+                                <div  *ngIf="refPack.serviceTypes !== undefined && refPack.serviceTypes.length > 0"class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" jhiTranslate="auxiliumApp.refPack.label" for="field_label">Label</label>
+                                        <input type="text" class="form-control form-control-sm" name="label" id="field_label" [(ngModel)]="refPack.label" required />
+                                    </div>
+                                </div>
+                                <div  *ngIf="packSettings.usages" class="col-sm-3">
+                                    <label jhiTranslate="auxiliumApp.refPack.usages" for="field_usages"> usages </label>
+                                    <ng-multiselect-dropdown [placeholder]="' '" [data]="usages" [(ngModel)]="refPack.usages" required [settings]="dropdownSettingsUsages" name="usages" [ngClass]="'form-control form-control-sm no-padding'"></ng-multiselect-dropdown>
+                                </div>
+
+                                <div *ngIf="packSettings.exclusions" class="col-sm-12">
+                                    <div class="form-group">
+                                        <label jhiTranslate="auxiliumApp.refPack.exclusionList" for="field_exclusionList"> exclusionList </label>
+                                        <div class="input-group">
+                                            <select class="form-control form-control-sm" id="field_exclusions" name="exclusions" [(ngModel)]="currentExclusion">
+                                                <option [ngValue]="exclusion" *ngFor="let exclusion of refExclusions">{{exclusion.libelle}}</option>
+                                            </select>
+                                            <span class="input-group-btn">
+                                                <button type="button" class="btn btn-sm btn-default" (click)="addExclusion()"><i class="fa fa-sm fa-plus"></i></button>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    
+                                </div>
+                                    <div *ngIf="packSettings.exclusions" class="col-sm-12">
+                                        <div class="table-responsive" *ngIf="refPack.exclusions && refPack.exclusions.length > 0">
+                                            <table class="table table-sm table-hover table-bordered">
+                                                <thead>
+                                                <tr jhiSort  style="color: white; background-color: #167F92">
+                                                    <th style="width:90%"><span jhiTranslate="auxiliumApp.refPack.label">label</span></th>
+                                                    <th></th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <ng-container *ngFor="let excl of refPack.exclusions">
+                                                    <tr *ngIf="!excl.deleted">
+                                                        <td>{{excl.libelle}}</td>
+                                                        <td class="text-right">
+                                                            <div class="btn-group flex-btn-group-container">
+                                                                <button type="button" (click)="deleteExclusion(excl)" class="btn btn-danger btn-sm">
+                                                                    <span class="fa fa-sm fa-remove"></span>
+                                                                </button>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </ng-container>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                <div  *ngIf="packSettings.modeGestions" class="col-sm-3">
+                                    <label jhiTranslate="auxiliumApp.refPack.sinisterType" for="field_sinisterType"> sinisterType </label>
+                                    <ng-multiselect-dropdown [placeholder]="' '" [data]="sinisterTypes" [(ngModel)]="refPack.modeGestions" required [settings]="dropdownSettings" (onSelect)="onSinisterTypeSelect($event)" (onDeSelect)="onSinisterTypeDeSelect($event)" name="sinisterType" [ngClass]="'form-control form-control-sm no-padding'"></ng-multiselect-dropdown>
+                                </div>
+                                <div *ngIf="packSettings.grantTimingList" class="col-sm-3">
+                                    <label jhiTranslate="auxiliumApp.refPack.grantTiming" for="field_grantTiming"> grantTiming </label>
+                                    <select class="form-control form-control-sm" id="field_grantTiming" name="grantTiming" [(ngModel)]="refPack.grantTimingList" required>
+                                        <option [ngValue]="grantTimingLis.id" *ngFor="let grantTimingLis of grantTimingList">{{grantTimingLis.libelle}}</option>
+                                    </select>
+                                </div>
+                                <div *ngIf="packSettings.interventionNumber" class="col-lg-3">
+                                    <div class="form-group">
+                                        <label class="form-control-label" jhiTranslate="auxiliumApp.refPack.interventionNumber" for="field_interventionNumber">interventionNumber</label>
+                                        <input  type="text" class="form-control form-control-sm" name="interventionNumber" id="field_interventionNumber" [(ngModel)]="refPack.interventionNumber" required  pattern="^[0-9]+(\.[0-9]{1,3})?"/>
+                                    </div>
+                                </div>
+                                <div *ngIf="packSettings.vrDaysNumber" class="col-lg-3">
+                                    <div class="form-group">
+                                        <label class="form-control-label" jhiTranslate="auxiliumApp.refPack.vrDaysNumber" for="field_vrDaysNumber">nbrMaxDaysVr</label> <i class="fa fa-info-circle" title="{{'auxiliumApp.refPack.vrDaysNumberTitle' | translate}}"></i>
+                                        <input type="text" class="form-control form-control-sm" name="vrDaysNumber" id="field_vrDaysNumber" [(ngModel)]="refPack.vrDaysNumber" required  pattern="^[0-9]+(\.[0-9]{1,3})?"/>
+                                    </div>
+                                </div>
+                                <div *ngIf="packSettings.ceilingToConsume" class="col-lg-3">
+                                    <div class="form-group">
+                                        <label class="form-control-label" jhiTranslate="auxiliumApp.refPack.ceilingToConsume" for="field_ceilingToConsume">ceilingToConsume</label>
+                                        <input   type="text" class="form-control form-control-sm" name="ceilingToConsume" id="field_ceilingToConsume" [(ngModel)]="refPack.ceilingToConsume" required pattern="^[0-9]+(\.[0-9]{1,3})?" />
+                                    </div>
+                                </div>
+                                <div *ngIf="packSettings.mileage" class="col-lg-3">
+                                    <div class="form-group">
+                                        <label class="form-control-label" jhiTranslate="auxiliumApp.refPack.mileage" for="field_mileage">mileage</label>
+                                        <input  type="text" class="form-control form-control-sm" name="mileage" id="field_mileage" [(ngModel)]="refPack.mileage" required pattern="^[0-9]+(\.[0-9]{1,3})?" />
+                                    </div>
+                                </div>
+                                <div *ngIf="packSettings.price" class="col-lg-3">
+                                    <div class="form-group">
+                                        <label class="form-control-label" jhiTranslate="auxiliumApp.refPack.price" for="field_price">price</label>
+                                        <input  type="text" class="form-control form-control-sm" name="price" id="field_price" [(ngModel)]="refPack.price" required pattern="^[0-9]+(\.[0-9]{1,3})?" />
+                                    </div>
+                                </div>
+                                <div *ngIf="packSettings.companyPart" class="col-lg-3">
+                                    <div class="form-group">
+                                        <label class="form-control-label" jhiTranslate="auxiliumApp.refPack.companyPart" for="field_companyPart">companyPart</label>
+                                        <input type="number" class="form-control form-control-sm" name="companyPart" id="field_companyPart"
+                                            [(ngModel)]="refPack.companyPart" required pattern="^[0-9]+(\.[0-9]{1,3})?" min="0"/>
+                                    </div>
+                                </div>
+                                <div *ngIf="packSettings.reinsurerPart" class="col-lg-3">
+                                    <div class="form-group">
+                                        <label class="form-control-label" jhiTranslate="auxiliumApp.refPack.reinsurerPart" for="field_reinsurerPart">reinsurerPart</label>
+                                        <input type="number" class="form-control form-control-sm" name="reinsurerPart" id="field_reinsurerPart"
+                                            [(ngModel)]="refPack.reinsurerPart" (ngModelChange)="onChangeReinsurerPart()" required pattern="^[0-9]+(\.[0-9]{1,3})?" min="0"/>
+                                    </div>
+                                </div>
+                                <div *ngIf="packSettings.reinsurer" class="col-lg-3">
+                                    <div class="form-group">
+                                        <label class="form-control-label" jhiTranslate="auxiliumApp.refPack.reinsurer" for="field_reinsurer">reinsurer</label>
+                                        <select class="form-control form-control-sm" id="field_reinsurer" name="reinsurer" [(ngModel)]="refPack.reinsurerId" required>
+                                            <option [ngValue]="reinsurer.id" *ngFor="let reinsurer of reinsurers">{{reinsurer?.companyName}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div *ngIf="packSettings.partnerPart" class="col-lg-3">
+                                    <div class="form-group">
+                                        <label class="form-control-label" jhiTranslate="auxiliumApp.refPack.partnerPart" for="field_partnerPart">partnerPart</label>
+                                        <input type="number" class="form-control form-control-sm" name="partnerPart" id="field_partnerPart"
+                                            [(ngModel)]="refPack.partnerPart" required pattern="^[0-9]+(\.[0-9]{1,3})?" min="0"/>
+                                    </div>
+                                </div>
+
+                                <div *ngIf="packSettings.combinable" class="col-lg-3">
+                                    <label class="form-control-label" for="field_combinable" style="width: 100%;">&nbsp;</label>
+                                    <input   type="checkbox" class="check-input" name="combinable" id="field_combinable" [(ngModel)]="refPack.combinable" />
+                                    <label class="form-control-label" jhiTranslate="auxiliumApp.refPack.combinable" for="field_combinable">combinable</label>
+                                </div>
+                                <div *ngIf="packSettings.homeService" class="col-lg-3">
+                                    <label class="form-control-label" for="field_homeService" style="width: 100%;">&nbsp;</label>
+                                    <input  type="checkbox" class="check-input" name="homeService" id="field_homeService" [(ngModel)]="refPack.homeService" />
+                                    <label class="form-control-label" jhiTranslate="auxiliumApp.refPack.homeService" for="field_homeService">homeService</label>
+                                </div>
+                                <div *ngIf="refPack.serviceTypes !== undefined && refPack.serviceTypes.length > 0" class="col-lg-3">
+                                    <label class="form-control-label" for="field_blocked" style="width: 100%;">&nbsp;</label>
+                                    <input type="checkbox" class="check-input" name="blocked" id="field_blocked" [(ngModel)]="refPack.blocked" />
+                                    <label class="form-control-label" jhiTranslate="auxiliumApp.refPack.blocked" for="field_blocked">Blocked</label>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 15px;" *ngIf="refPack.modeGestions && refPack.modeGestions.length > 0">
+                                <div class="col-lg-1" style="max-height: 25px;"><hr class="my-4"></div>
+                                <div class="col-lg-3 text-center"  style="max-height: 25px;"><span class="fa fa-sm fa-clone" style="color: #45ABCD"></span>&nbsp;&nbsp;<span jhiTranslate="auxiliumApp.refPack.serviceTypeCeiling" style="color: #45ABCD">serviceTypeCeiling</span></div>
+                                <div class="col-lg-8"  style="max-height: 25px;"><hr class="my-4"></div>
+                                <div *ngFor="let sinisterType of refPack.sinisterTypeSettings" class="col-lg-3">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="field_{{sinisterType.sinisterTypeId}}">{{sinisterType.label}}</label>
+                                        <input type="text" class="form-control form-control-sm" name="ceiling{{sinisterType.sinisterTypeId}}" id="field_{{sinisterType.sinisterTypeId}}" [(ngModel)]="sinisterType.ceiling" required pattern="^[0-9]+(\.[0-9]{1,3})?" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 15px;" *ngIf="refPack.modeGestions && refPack.modeGestions.length > 0">
+                                <div class="col-lg-1" style="max-height: 25px;"><hr class="my-4"></div>
+                                <div class="col-lg-3 text-center"  style="max-height: 25px;">
+                                	<span class="fa fa-sm fa-clone" style="color: #45ABCD"></span>&nbsp;&nbsp;
+                                	<span jhiTranslate="auxiliumApp.refPack.apecCeiling" style="color: #45ABCD">apecCeiling</span>
+                                </div>
+                                <div class="col-lg-8"  style="max-height: 25px;"><hr class="my-4"></div>
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <input type="checkbox" class="check-input" name="apecValidation" id="field_apecValidation" [(ngModel)]="refPack.apecValidation" />
+                                        <label class="form-control-label" jhiTranslate="auxiliumApp.refPack.apecValidation" for="field_apecValidation">apecValidation</label>
+                                    </div>
+                                </div>                                
+                                <div *ngFor="let apecSetting of refPack.apecSettings" class="col-lg-3">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="field_apecCeiling{{apecSetting.mgntModeId}}">{{apecSetting.mgntModeLabel}}</label>
+                                        <div class="input-group">
+                                            <span class="input-group-btn">
+		                                        <select class="form-control form-control-sm" id="field_operator{{apecSetting.mgntModeId}}" name="operator{{apecSetting.mgntModeId}}" [(ngModel)]="apecSetting.operator" required>
+		                                            <option value="GREATER">&gt;</option>
+		                                            <option value="LOWER">&lt;=</option>
+		                                        </select>
+                                            </span>
+                                            <input type="text" class="form-control form-control-sm" name="apecCeiling{{apecSetting.mgntModeId}}" id="field_apecCeiling{{apecSetting.mgntModeId}}" [(ngModel)]="apecSetting.ceiling" required pattern="^[0-9]+(\.[0-9]{1,3})?" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>                            
+                            <div class="row">
+                                <div class="col-lg-12" style="margin-top: 10px">
+                                    <div class="form-group">
+                                        <label style="width: 100%">&nbsp;</label>
+                                        <button *ngIf="isCreateMode" type="button" [disabled]="pacForm.invalid" (click)="saveRefPack()" class=" margin-right-5">
+                                            <span class="fa fa-save"></span>&nbsp; <span jhiTranslate="entity.action.add">add</span>
+                                        </button>
+                                        <button *ngIf="!isCreateMode" type="button" [disabled]="pacForm.invalid" (click)="saveRefPack()" class=" margin-right-5">
+                                            <span class="fa fa-save"></span>&nbsp; <span jhiTranslate="entity.action.aJour">update</span>
+                                        </button>
+                                        <button type="button" (click)="cancelPack()" class=" margin-right-5">
+                                            <span class="fa fa-save"></span>&nbsp; <span jhiTranslate="entity.action.cancel">cancel</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="card">
+                <div class="card-header d-flex align-items-center no-padding" >
+                    <div class="notice notice-info">
+                        <span class="fa fa-clone" style="color: #45ABCD"></span>&nbsp;&nbsp;
+                        <strong jhiTranslate="auxiliumApp.refPack.home.title"> Pack</strong>
+                        <button  class="btn btn-sm btn-primary float-right jh-create-entity createPack" (click)="addForm1();">
+                            <span class="fa fa-plus"></span>
+                            <span class="hidden-sm-down" jhiTranslate="auxiliumApp.refPack.home.createLabel">Packs</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                	<div class="table-responsive">
+                    	<table table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-sm table-hover table-bordered" style="width: 100%">
+                        	<thead style="color:white;background-color:#11859b">
+                        		<tr>
+                        			<th><span jhiTranslate="auxiliumApp.refPack.label">Label</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.refPack.interventionNumber">Max interventions</span></th>
+                        			<th><span jhiTranslate="auxiliumApp.refPack.vrDaysNumber">Nombre des jours du VR</span> <i class="fa fa-info-circle" title="{{'auxiliumApp.refPack.vrDaysNumberTitle' | translate}}"></i></th>
+                                    <th><span jhiTranslate="auxiliumApp.refPack.mileage">mileage</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.refPack.price">price</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.refPack.blocked">blocked</span></th>
+                        			<th class="no-sort"></th>
+                        		</tr>
+                        	</thead>
+                        	<tbody>
+            					<tr *ngFor="let refPack of convention.packs">
+                                    <td>{{refPack.label}}</td>
+						            <td>{{refPack.interventionNumber}}</td>
+						            <td>{{refPack.vrDaysNumber}}</td>
+						            <td>{{refPack.mileage}}</td>
+						            <td>{{refPack.price}}</td>
+									<td>
+                                        <button type="submit" class="fa fa-hand-paper-o" aria-hidden="true" style="color: red;" *ngIf="refPack.blocked" (click)="bloquePack(refPack)"></button>
+                                        <button type="submit" class="fa fa-thumbs-o-up" aria-hidden="true" style="color: green;" *ngIf="!refPack.blocked" (click)="bloquePack(refPack)"></button>
+									</td>
+	                                <td class="text-right">
+	                                    <div class="btn-group flex-btn-group-container">
+	                                        <button type="button"  (click)="edit(refPack)" class="btn btn-primary btn-sm"><span class="fa fa-sm fa-pencil"></span></button>
+                                            <button type="button" (click)="deletePack(refPack)" class="btn btn-danger btn-sm"><span class="fa fa-sm fa-remove"></span></button>
+	                                    </div>
+	                                </td>
+            					</tr>
+            				</tbody>
+                  		</table>
+                	</div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12" style="margin-top: 10px">
+                        <div class="form-group">
+                            &nbsp;&nbsp;
+                            <button type="button" [disabled]="cnvForm.invalid || !convention.packs || convention.packs.length <= 0" (click)="save()" class="btn btn-sm btn-primary pull-right margin-right-5">
+                                <span class="fa fa-save"></span>&nbsp; <span jhiTranslate="entity.action.save">Save</span>
+                            </button>
+                            &nbsp;&nbsp;
+                            <button type="submit" [routerLink]="['/convention']" replaceUrl="true" class="btn btn-default btn-sm pull-right margin-right-5">
+                               <span jhiTranslate="entity.action.back">Back</span>
+                            </button>
+                            &nbsp;&nbsp;
+                        </div>
+                    </div>
+                </div>
+               <br/> <br/>    <br/> <br/>
+            </div>
+        </div>
+    </div>
+</div>
+</section>

@@ -1,0 +1,24 @@
+{
+    "auxiliumApp": {
+        "step" : {
+            "home": {
+                "title": "Steps",
+                "createLabel": "Créer une nouvelle étape",
+                "createOrEditLabel": "Créer ou modifier une Étape",
+                "search": "Recherche pour étape"
+            },
+            "created": "Un nouvelle étape a été créée avec l'identifiant {{ param }}",
+            "updated": "L'étape avec l'identifiant {{ param }} a été mise à jour",
+            "deleted": "L'étape avec l'identifiant {{ param }} a été supprimée",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer l'étape{{ id }} ?"
+            },
+            "detail": {
+                "title": "Étape"
+            },
+            "code": "Code",
+            "label": "Label",
+            "active": "Active"
+        }
+    }
+}

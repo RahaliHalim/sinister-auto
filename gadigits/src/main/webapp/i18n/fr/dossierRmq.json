@@ -1,0 +1,52 @@
+{
+    "auxiliumApp": {
+        "dossierRmq" : {
+            "home": {
+                "successRmq":"Le Remorqueur est affecté avec succès",
+                "success": "<strong>Le Dossier a été créé !</strong>",
+                "title": "Dossier assistance",
+                "createLabel": "Créer",
+                "créationDossier": "Création d'un nouveau dossier",
+                "createOrEditLabel": "Dossier",
+                 "details": "Détails du contrat",
+                "search": "Recherche pour dossier assistance",
+                "searchImmatriculation" :"Immatriculation véhicule"
+            },
+            "contrat": "Cette immatriculation n'existe pas",
+            "created": "Un nouveau dossier a été créé avec l'identifiant {{ param }}",
+            "updated": "Le dossier avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le dossier avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer ce dossier ?"
+            },
+            "detail": {
+                "title": "Dossier assistance"
+            },
+            "reference": "Référence",
+            "distance": "Distance",
+            "observation": "Observation",
+            "isDelete": "Supprimé",
+            "etat": "État",
+            "lieu": "Lieu",
+            "destination": "Destination",
+            "remorqueur": "Remorqueur",
+            "gouvernorat": "Gouvernorat",
+            "ville": "Ville",
+            "immatriculation": "Immatriculation",
+            "motif": "Motif",
+            "typeService": "Type de service",
+            "vehicule": "Véhicule",
+            "immatriculationVehicule": "Immatriculation",
+            "dateCreation": "Date de la création",
+            "dateCloture": "Date de clôture",
+            "telephone": "Téléphone",
+            "nbrPassagers": "Nombre de passagers",
+           "isFerier": "Majoration férié",
+            "isNuit": "Majoration nuit",
+            "natureIncident": "Nature de l'incident",
+            "btnAnnuler": "Annuler",
+            "btnClourer": "Clôturer",
+            "btnAffecter": "Affecter un remorqueur"
+        }
+    }
+}

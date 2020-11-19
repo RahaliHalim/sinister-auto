@@ -1,0 +1,26 @@
+{
+    "auxiliumApp": {
+        "avisExpertMo" : {
+            "home": {
+                "title": "Avis Expert Mos",
+                "createLabel": "Create a new Avis Expert Mo",
+                "createOrEditLabel": "Create or edit a Avis Expert Mo",
+                "search": "Search for Avis Expert Mo"
+            },
+            "created": "A new Avis Expert Mo is created with identifier {{ param }}",
+            "updated": "A Avis Expert Mo is updated with identifier {{ param }}",
+            "deleted": "A Avis Expert Mo is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Avis Expert Mo {{ id }}?"
+            },
+            "detail": {
+                "title": "Avis Expert Mo"
+            },
+            "motif": "Motif",
+            "commentaire": "Commentaire",
+            "quantite": "Quantite",
+            "detailsMo": "Details Mo",
+            "validationDevis": "Validation Devis"
+        }
+    }
+}

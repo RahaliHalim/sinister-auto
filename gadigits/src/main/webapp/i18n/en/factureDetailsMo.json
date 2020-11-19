@@ -1,0 +1,24 @@
+{
+    "auxiliumApp": {
+        "factureDetailsMo" : {
+            "home": {
+                "title": "Facture Details Mos",
+                "createLabel": "Create a new Facture Details Mo",
+                "createOrEditLabel": "Create or edit a Facture Details Mo",
+                "search": "Search for Facture Details Mo"
+            },
+            "created": "A new Facture Details Mo is created with identifier {{ param }}",
+            "updated": "A Facture Details Mo is updated with identifier {{ param }}",
+            "deleted": "A Facture Details Mo is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Facture Details Mo {{ id }}?"
+            },
+            "detail": {
+                "title": "Facture Details Mo"
+            },
+            "dateGeneration": "Date Generation",
+            "detailsMo": "Details Mo",
+            "facture": "Facture"
+        }
+    }
+}

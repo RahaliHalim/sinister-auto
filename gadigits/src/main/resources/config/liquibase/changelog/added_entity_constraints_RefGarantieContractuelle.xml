@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity RefGarantieContractuelle.
+    -->
+    <changeSet id="20170915105507-2" author="jhipster">
+        
+       
+
+        <addForeignKeyConstraint baseColumnNames="ref_mode_gestion_id"
+                                 baseTableName="ref_garantie_contractuelle"
+                                 constraintName="fk_ref_garantie_contractuelle_ref_mode_gestion_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ref_mode_gestion"/>
+
+        <addForeignKeyConstraint baseColumnNames="ref_garantie_contractuelles_id"
+                                 baseTableName="ref_garantie_contractuelle_expert"
+                                 constraintName="fk_ref_garantie_contractuelle_expert_ref_garantie_contractuelles_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ref_garantie_contractuelle"/>
+        <addForeignKeyConstraint baseColumnNames="experts_id"
+                                 baseTableName="ref_garantie_contractuelle_expert"
+                                 constraintName="fk_ref_garantie_contractuelle_expert_experts_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="expert"/>
+     
+                                 
+        
+    </changeSet>
+</databaseChangeLog>

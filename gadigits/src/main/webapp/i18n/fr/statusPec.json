@@ -1,0 +1,25 @@
+{
+    "auxiliumApp": {
+        "statusPec" : {
+            "home": {
+                "title": "StatusPecs",
+                "createLabel": "Créer un nouveau statut Pec",
+                "createOrEditLabel": "Créer ou modifier un statut Pec",
+                "search": "Recherche pour statut Pec"
+            },
+            "created": "Un nouveau statut Pec a été créé avec l'identifiant {{ param }}",
+            "updated": "Le statut Pec avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le statut Pec avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer le statut Pec {{ id }} ?"
+            },
+            "detail": {
+                "title": "Statut Pec"
+            },
+            "code": "Code",
+            "label": "Label",
+            "hasReason": "Has Reason",
+            "active": "Active"
+        }
+    }
+}

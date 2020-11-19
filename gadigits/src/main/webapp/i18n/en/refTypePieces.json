@@ -1,0 +1,22 @@
+{
+    "auxiliumApp": {
+        "refTypePieces" : {
+            "home": {
+                "title": "Ref Type Pieces",
+                "createLabel": "Create a new Ref Type Pieces",
+                "createOrEditLabel": "Create or edit a Ref Type Pieces",
+                "search": "Search for Ref Type Pieces"
+            },
+            "created": "A new Ref Type Pieces is created with identifier {{ param }}",
+            "updated": "A Ref Type Pieces is updated with identifier {{ param }}",
+            "deleted": "A Ref Type Pieces is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Ref Type Pieces {{ id }}?"
+            },
+            "detail": {
+                "title": "Ref Type Pieces"
+            },
+            "libelle": "Libelle"
+        }
+    }
+}

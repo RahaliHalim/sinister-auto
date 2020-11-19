@@ -1,0 +1,13 @@
+{
+    "auxiliumApp": {
+        "group_details" : {
+            "home": {
+               
+            },
+            "created": "Un nouveau détail groupe a été créé avec l'identifiant {{ param }}",
+            "updated": "Le détail groupe avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le détail groupe avec l'identifiant {{ param }} a été supprimé"
+            
+        }
+    }
+}

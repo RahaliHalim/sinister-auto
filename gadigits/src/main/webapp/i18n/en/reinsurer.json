@@ -1,0 +1,26 @@
+{
+    "auxiliumApp": {
+        "reinsurer" : {
+            "home": {
+                "title": "Reinsurers",
+                "createLabel": "Create a new Reinsurer",
+                "createOrEditLabel": "Create or edit a Reinsurer",
+                "search": "Search for Reinsurer"
+            },
+            "created": "A new Reinsurer is created with identifier {{ param }}",
+            "updated": "A Reinsurer is updated with identifier {{ param }}",
+            "deleted": "A Reinsurer is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Reinsurer {{ id }}?"
+            },
+            "detail": {
+                "title": "Reinsurer"
+            },
+            "companyName": "Company Name",
+            "taxIdentificationNumber": "Tax Identification Number",
+            "tradeRegister": "Trade Register",
+            "address": "Address",
+            "phone": "Phone"
+        }
+    }
+}

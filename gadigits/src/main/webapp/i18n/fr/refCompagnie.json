@@ -1,0 +1,50 @@
+{
+    "auxiliumApp": {
+        "refCompagnie" : {
+            "home": {
+                "title": "Compagnies",
+                "createLabel": "Créer",
+                "createOrEditLabel": "Créer ou modifier une compagnie",
+                "search": "Recherche pour compagnie",
+                "bloquer":"La compagnie {{ id }} a été bloquée",
+                "debloquer":"La compagnie {{ id }} a été débloquée"
+            },
+            "created": "Une nouvelle compagnie a été créée",
+            "updated": "La compagnie a été mise à jour",
+            "deleted": "La compagnie a été supprimée",
+            "bloqued": "La compagnie a été bloquée",
+            "debloqued": "La compagnie a été débloquée",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer cette compagnie?"
+            },
+            "detail": {
+                "title": "Compagnie"
+            },
+            "nom": "Nom",
+            "reference": "Référence",
+            "isEtrangere": "Compagnie étrangère",
+            "dateCreation": "Date de création",
+            "logo": "Logo",
+            "isBloque": "Bloqué",
+            "isDelete": "Supprimé",
+            "isClient": "Client",
+            "personneMorale": "Personne morale",
+            "pack": "Pack",
+            "nature": "Nature",
+            "type": "Type",
+            "usage": "Usage",
+            "garanties": "Garanties",
+            "bloquer": "Bloquer",
+            "debloquer": "Débloquer",
+            "confirm": "Confirmer",
+            "bloque": {
+            	"title": "Confirmer le blocage de la compagnie",
+                "question": "Êtes-vous certain de vouloir bloquer cette compagnie ?"
+            },
+            "debloque": {
+            	"title": "Confirmer le déblocage de la compagnie",
+                "question": "Êtes-vous certain de vouloir débloquer cette compagnie ?"
+            }
+        }
+    }
+}

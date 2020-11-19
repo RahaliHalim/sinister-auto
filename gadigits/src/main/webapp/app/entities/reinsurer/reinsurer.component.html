@@ -1,0 +1,133 @@
+<!-- Breadcrumb-->
+<div class="breadcrumb-holder">
+    <div class="container-fluid">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="/"><span class="fa fa-home"></span>&nbsp;&nbsp;<span jhiTranslate="global.menu.home">Home</span></a></li>
+            <li class="breadcrumb-item active"><span jhiTranslate="auxiliumApp.reinsurer.home.title">Reinsurers</span></li>
+        </ul>
+    </div>
+</div>
+<section class="forms">
+    <div class="container-fluid">
+        <!-- Page Header-->
+        <header style="padding-top: 1rem; padding-bottom: 1rem;">
+            <h1 class="h3 display">
+                <jhi-alert-error></jhi-alert-error>
+                <jhi-alert></jhi-alert>
+            </h1>
+        </header>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header d-flex align-items-center no-padding" >
+                        <div class="notice notice-info"><span class="fa fa-calendar" style="color: #45ABCD"></span>&nbsp;&nbsp;<strong jhiTranslate="auxiliumApp.reinsurer.home.createLabel">create edit reassureur</strong></div>
+                    </div>
+
+                    <div class="card-body">
+                        <form #myform="ngForm" novalidate>
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label class="form-control-label" jhiTranslate="auxiliumApp.reinsurer.companyName" for="field_companyName">Company Name</label>
+                                        <input type="text" class="form-control form-control-sm" name="companyName" id="field_companyName" [(ngModel)]="reinsurer.companyName" required />
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label class="form-control-label" jhiTranslate="auxiliumApp.reinsurer.taxIdentificationNumber" for="field_taxIdentificationNumber">Tax Identification Number</label>
+                                        <input type="text" class="form-control form-control-sm" name="taxIdentificationNumber" id="field_taxIdentificationNumber"
+                                            [(ngModel)]="reinsurer.taxIdentificationNumber"  />
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label class="form-control-label" jhiTranslate="auxiliumApp.reinsurer.tradeRegister" for="field_tradeRegister">Trade Register</label>
+                                        <input type="text" class="form-control form-control-sm" name="tradeRegister" id="field_tradeRegister"
+                                            [(ngModel)]="reinsurer.tradeRegister"  />
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label class="form-control-label" jhiTranslate="auxiliumApp.reinsurer.phone" for="field_phone">Phone</label>
+                                        <input type="text" class="form-control form-control-sm" name="phone" id="field_phone"
+                                            [(ngModel)]="reinsurer.phone"  />
+                                    </div>
+                                </div>
+                                <div class="col-lg-9">
+                                    <div class="form-group">
+                                        <label class="form-control-label" jhiTranslate="auxiliumApp.reinsurer.address" for="field_address">Address</label>
+                                        <input type="text" class="form-control form-control-sm" name="address" id="field_address"
+                                            [(ngModel)]="reinsurer.address"  />
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label style="width: 100%">&nbsp;</label>
+                                        <button  *ngIf="!reinsurer.id" type="button" [disabled]="myform.invalid" (click)="save()" class="btn btn-sm btn-primary margin-right-5">
+                                            <span class="fa fa-save"></span>&nbsp; <span jhiTranslate="entity.action.save">Save</span>
+                                        </button>
+                                        <button *ngIf="reinsurer.id" type="button" [disabled]="myform.invalid" (click)="save()" class="btn btn-sm btn-primary margin-right-5">
+                                             <span jhiTranslate="entity.action.aJour">update</span>
+                                        </button>
+                                        <button type="button" (click)="cancel()" class="btn btn-sm btn-default margin-right-5">
+                                           <span jhiTranslate="entity.action.cancel">cancel</span>
+                                        </button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header  d-flex align-items-center no-padding" >
+                        <div class="notice notice-info">
+                            <span class="fa fa-calendar" style="color: #45ABCD"></span>&nbsp;&nbsp;
+                            <strong jhiTranslate="auxiliumApp.reinsurer.home.title">Reassureur</strong>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-sm table-hover table-bordered" style="width: 100%">
+                                <thead style="color:white;background-color:#11859b">
+                                <tr>
+                                    <th><span jhiTranslate="auxiliumApp.reinsurer.companyName">Company Name</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.reinsurer.taxIdentificationNumber">Tax Identification Number</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.reinsurer.tradeRegister">Trade Register</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.reinsurer.phone">Phone</span></th>
+                                    <th class="no-sort"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr *ngFor="let reinsurer of reinsurers">
+                                    <td>{{reinsurer.companyName}}</td>
+                                    <td>{{reinsurer.taxIdentificationNumber}}</td>
+                                    <td>{{reinsurer.tradeRegister}}</td>
+                                    <td>{{reinsurer.phone}}</td>
+                                    <td class="text-right">
+                                        <div class="btn-group flex-btn-group-container">
+                                            <button type="button" (click)="edit(reinsurer.id)" class="btn btn-primary btn-sm">
+                                                <span class="fa fa-sm fa-pencil"></span>
+                                            </button>
+                                            <button type="button" (click)="delete(reinsurer.id)" class="btn btn-danger btn-sm">
+                                                <span class="fa fa-sm fa-remove"></span>
+                                            </button>
+
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

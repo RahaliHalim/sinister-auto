@@ -1,0 +1,27 @@
+{
+    "auxiliumApp": {
+        "agentGeneral" : {
+            "home": {
+                "title": "Agent Generals",
+                "createLabel": "Create",
+                "createOrEditLabel": "Create or edit a Agent General",
+                "search": "Search for Agent General"
+            },
+            "created": "A new Agent General is created with identifier {{ param }}",
+            "updated": "A Agent General is updated with identifier {{ param }}",
+            "deleted": "A Agent General is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Agent General {{ id }}?"
+            },
+            "detail": {
+                "title": "Agent General"
+            },
+            "isBloque": "Is Bloque",
+            "personnePhysique": "Personne Physique",
+            "agence": "Agence",
+            "ville": "Ville",
+            "serviceAssurance": "Service Assurance",
+            "dossier": "Dossier"
+        }
+    }
+}

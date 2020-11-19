@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="bonAffectation" language="groovy" pageWidth="612" pageHeight="792" whenNoDataType="NoPages" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="cc977343-2ee7-4e4e-ad3b-d343c8254f6b">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="logoCampanyPath" class="java.io.InputStream"/>
+	<parameter name="lettreOuverture" class="com.gaconnecte.auxilium.service.dto.LettreOuvertureDTO"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<variable name="field2_1" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="752" splitType="Stretch">
+			<staticText>
+				<reportElement x="15" y="190" width="113" height="20" uuid="32b01c28-5ce1-47ba-804e-136df08f02a8"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Messieurs,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="102" width="51" height="20" uuid="702f5262-d280-4abe-b8e5-5b33f2edba81"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[N/Réf :]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="363" y="105" width="207" height="20" uuid="0188d228-5b4b-42cf-9e03-8929f48e78be"/>
+				<textElement textAlignment="Left">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{lettreOuverture}.getAssuranceName()]]></textFieldExpression>
+			</textField>
+			<textField pattern="MMMMM dd, yyyy" isBlankWhenNull="true">
+				<reportElement x="429" y="83" width="151" height="20" uuid="21149a73-d70a-48a5-b80e-657876876748"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + new SimpleDateFormat("dd.MM.yyyy").format(new Date())]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="11" y="124" width="51" height="20" uuid="ae97d371-4da2-4eb1-8bda-7a941733218c"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[V/Réf :]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="363" y="127" width="217" height="63" isPrintWhenDetailOverflows="true" uuid="06e6976c-d39e-4abc-8043-dcbd49a74259"/>
+				<textElement textAlignment="Left">
+					<font size="12"/>
+					<paragraph lineSpacing="Proportional"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{lettreOuverture}.getAssuranceAdresse()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="363" y="83" width="59" height="20" uuid="89b5a521-27f4-4c61-bdb3-6fabdaf6d10d"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Tunis le:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="63" y="125" width="300" height="20" uuid="99902b80-1e78-48ad-adb6-bdc49fc40858"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{lettreOuverture}.getContratAssuranceNum()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="63" y="102" width="287" height="20" forecolor="#000000" uuid="5537e2cd-5660-420f-bd8c-d3a7c2653436">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{lettreOuverture}.getReferenceSinister()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="380" y="527" width="20" height="20" uuid="b4317faf-aa6e-424c-b45b-4249c7987888"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[P/ ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="60" y="465" width="502" height="20" uuid="9160ae72-8fa4-40df-9f63-2ad4d9746887"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Veuillez agréer, Messieurs, l'expression de nos salutations distinguées.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="316" width="562" height="40" uuid="7b2349eb-b835-4752-9fa9-19f828885b73"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Pour vous permettre de constituer un dossier et de provoquer la déclaration de votre assuré(e), nous adressons ci-joint une copie du constat amiable signé par les parties.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="362" width="560" height="42" uuid="7f68c66c-3c45-4b53-b0c1-43e58929808a"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Nous vous prions de bien vouloir nous communiquer dans les meilleurs délais les références de votre dossier, que vous auriez constitué.]]></text>
+			</staticText>
+			<textField isBlankWhenNull="false">
+				<reportElement x="6" y="220" width="556" height="80" uuid="6f5e0d6c-c7be-423a-84b3-8180e697993d"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font size="12"/>
+					<paragraph lineSpacing="Double"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Nous avons l'honneur de vous rappeler l'accident de la circulation survenu le, "+  ( (  $P{lettreOuverture}.getDateAccident() != null )? $P{lettreOuverture}.getDateAccident(): "  ..........  " )+" à "+ ( (  $P{lettreOuverture}.getAdresseSinistre() != null )? $P{lettreOuverture}.getAdresseSinistre(): "  ..........  " )  + " opposant le véhicule N° " +  ( (  $P{lettreOuverture}.getImmatriculation() != null )? $P{lettreOuverture}.getImmatriculation(): "  ..........  " )    + " appartenant à notre assuré  "+  ( (  $P{lettreOuverture}.getAssureFullName() != null )? $P{lettreOuverture}.getAssureFullName(): "  ..........  " )    +" et celui N°: " + ( (  $P{lettreOuverture}.getTiersImmatriculation() != null )? $P{lettreOuverture}.getTiersImmatriculation(): "  ..........  " ) + " appartenant à " + ( (  $P{lettreOuverture}.getTiersName() != null )? $P{lettreOuverture}.getTiersName(): "  ..........  " )   + " assuré(e) par vos soins    ."]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="240" y="10" width="50" height="50" uuid="8dc0b859-5b89-4d6e-98f1-821f4baabbab">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<imageExpression><![CDATA[$P{logoCampanyPath}]]></imageExpression>
+			</image>
+			<textField isBlankWhenNull="true">
+				<reportElement x="400" y="527" width="162" height="63" uuid="c724560b-b93f-4d54-a8a5-e1d30b966b62"/>
+				<textElement textAlignment="Left">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{lettreOuverture}.getAssuranceAssureName()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+</jasperReport>

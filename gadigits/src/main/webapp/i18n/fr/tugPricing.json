@@ -1,0 +1,32 @@
+{
+    "auxiliumApp": {
+        "tugPricing" : {
+            "home": {
+                "title": "Tarifs remorqueur",
+                "createLabel": "Créer",
+                "createOrEditLabel": "Créer ou modifier un tarif remorqueur"
+            },
+            "created": "",
+            "updated": "",
+            "deleted": "",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer ce tarif remorqueur ?"
+            },
+            "detail": {
+                "title": "Tarif remorqueur"
+            },
+            
+            "priceUrbanPlanService": "Service forfait urbain",
+        	"priceKlmShortDistance": "Prix KLM parcourus courte distance",
+	        "priceKlmLongDistance": "Prix KLM parcourus longue distance",
+	        "priceExtraction": "Extraction",
+	        "priceReparation": "Dépannage",
+	        "priceUrbanMobility": "Déplacement urbain",
+	        "priceUrbanPlanServicePl": "Service forfait urbain PL",
+	        "priceKlmShortDistancePl": "Prix KLM parcourus courte distance PL",
+            "priceKlmLongDistancePl": "Prix KLM parcourus Longue distance PL",
+            "dateEffectiveAgreement":"Date d’effet de la convention",
+            "dateEndAgreement":"Date de la fin de la convention"
+        }
+    }
+}

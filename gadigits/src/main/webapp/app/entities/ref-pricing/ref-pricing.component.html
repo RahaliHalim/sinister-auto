@@ -1,0 +1,91 @@
+<!-- Breadcrumb-->
+<div class="breadcrumb-holder">
+	<div class="container-fluid">
+		<ul class="breadcrumb">
+			<li class="breadcrumb-item"><a routerLink="/"><span class="fa fa-home"></span>&nbsp;&nbsp;<span	jhiTranslate="global.menu.home">Home</span></a></li>
+			<li class="breadcrumb-item"><a routerLink="/ref-pricing"><span jhiTranslate="auxiliumApp.refPricing.home.title">Ref Pricing</span></a></li>
+		</ul>
+	</div>
+</div>
+<section class="forms">
+	<div class="container-fluid">
+        <!-- Page Header-->
+        <header style="padding-top: 1rem; padding-bottom: 1rem;">
+            <h1 class="h3 display">
+                <jhi-alert-error></jhi-alert-error>
+                <jhi-alert></jhi-alert>
+            </h1>
+        </header>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header d-flex align-items-center no-padding" >
+                        <div class="notice notice-info">
+                            <span class="fa fa-money" style="color: #45ABCD"></span>&nbsp;&nbsp;
+                            <strong jhiTranslate="auxiliumApp.refPricing.home.title">Ref Pricing</strong>
+                            <button class="btn btn-sm btn-primary float-right" [hidden]="principal.selectedValue=='ROLE_RESPONSABLE'" [routerLink]="['/ref-pricing-new']">
+                                <span class="fa fa-sm fa-plus"></span>
+                                <span class="hidden-sm-down"  jhiTranslate="auxiliumApp.refPricing.home.createLabel">Create new Ref Pricing</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-sm table-hover table-bordered" style="width: 100%">
+                                <thead style="color:white;background-color:#11859b">
+                                <tr>
+                                    <th><span jhiTranslate="auxiliumApp.refPricing.label">Label</span></th>
+									<th><span jhiTranslate="auxiliumApp.refPricing.priceUrbanPlanService">priceUrbanPlanService</span></th>
+									<th><span jhiTranslate="auxiliumApp.refPricing.priceKlmShortDistance">priceKlmShortDistance</span></th>
+									<th><span jhiTranslate="auxiliumApp.refPricing.priceKlmLongDistance">priceKlmLongDistance</span></th>
+									<th><span jhiTranslate="auxiliumApp.refPricing.priceExtraction">priceExtraction</span></th>
+									<th><span jhiTranslate="auxiliumApp.refPricing.priceReparation">priceReparation</span></th>
+									<th><span jhiTranslate="auxiliumApp.refPricing.priceUrbanMobility">priceUrbanMobility</span></th>
+									<th><span jhiTranslate="auxiliumApp.refPricing.priceIncrease">priceIncrease</span></th>
+									<th><span jhiTranslate="auxiliumApp.refPricing.priceUrbanPlanServicePl">priceUrbanPlanServicePl</span></th>
+									<th><span jhiTranslate="auxiliumApp.refPricing.priceKlmShortDistancePl">priceKlmShortDistancePl</span></th>
+									<th><span jhiTranslate="auxiliumApp.refPricing.priceKlmLongDistancePl">priceKlmLongDistancePl</span></th>
+                                    <th class="no-sort"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr *ngFor="let refPricing of refPricings">
+                                    <td>{{refPricing.label}}</td>
+                                    <td>{{refPricing.priceUrbanPlanService}}</td>
+									<td>{{refPricing.priceKlmShortDistance}}</td>
+									<td>{{refPricing.priceKlmLongDistance}}</td>
+									<td>{{refPricing.priceExtraction}}</td>
+									<td>{{refPricing.priceReparation}}</td>
+									<td>{{refPricing.priceUrbanMobility}}</td>
+									<td>{{refPricing.priceIncrease}}</td>
+									<td>{{refPricing.priceUrbanPlanServicePl}}</td>
+									<td>{{refPricing.priceKlmShortDistancePl}}</td>
+									<td>{{refPricing.priceKlmLongDistancePl}}</td>
+                                    <td class="text-right">
+                                        <div class="btn-group flex-btn-group-container">
+                                            <button type="submit" [routerLink]="['/ref-pricing/'+ refPricing.id ]" replaceUrl="true"
+                                                    class="btn btn-info btn-sm">
+                                                <span class="fa fa-sm fa-eye"></span>
+                                            </button>
+                                            <button type="submit" [routerLink]="['/ref-pricing/'+ refPricing.id + '/edit']" 
+                                                    [hidden]="principal.selectedValue=='ROLE_RESPONSABLE' "
+                                                    replaceUrl="true"
+                                                    class="btn btn-primary btn-sm">
+                                                <span class="fa fa-sm fa-pencil"></span>
+
+                                            </button>
+                                            <button type="button" class="btn btn-danger btn-sm" (click)="deleteRefPricing(refPricing.id)">
+                                                <span class="fa fa-sm fa-remove"></span>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+</section>

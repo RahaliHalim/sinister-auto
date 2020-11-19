@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity RaisonPec.
+    -->
+    <changeSet id="20190809023427-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="operation_id"
+                                 baseTableName="ref_raison_pec"
+                                 constraintName="fk_raison_pec_operation_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ref_operation"/>
+
+        <addForeignKeyConstraint baseColumnNames="pec_status_change_matrix_id"
+                                 baseTableName="ref_raison_pec"
+                                 constraintName="fk_raison_pec_pec_status_change_matrix_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ref_pec_status_change_matrix"/>
+
+    </changeSet>
+</databaseChangeLog>

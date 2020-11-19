@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <property name="now" value="now()" dbms="h2"/>
+
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+
+    <property name="floatType" value="float4" dbms="postgresql, h2"/>
+    <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
+
+    <!--
+        Added the entity Dossier.
+    -->
+    <changeSet id="20171012095019-1" author="jhipster">
+        <createTable tableName="dossier">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="reference" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="is_delete" type="boolean">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="date_creation" type="timestamp">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="date_cloture" type="timestamp">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="date_derniere_maj" type="timestamp">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="telephone" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="nbr_passagers" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="date_accident" type="date">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="prenom_conducteur" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="nom_conducteur" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="permis_conduc" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="prenom_tiers_conduc" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="nom_tiers_conduc" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="permis_tiers_conduc" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="lieu_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="tiers_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="vehicule_id" type="bigint">
+                <constraints nullable="false" />
+            </column>
+
+             <column name="nature_incident" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="etat" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+        </createTable>
+        <dropDefaultValue tableName="dossier" columnName="date_creation" columnDataType="datetime"/>
+        <dropDefaultValue tableName="dossier" columnName="date_cloture" columnDataType="datetime"/>
+        <dropDefaultValue tableName="dossier" columnName="date_derniere_maj" columnDataType="datetime"/>
+        <dropDefaultValue tableName="dossier" columnName="date_accident" columnDataType="datetime"/>
+        
+    </changeSet>
+</databaseChangeLog>

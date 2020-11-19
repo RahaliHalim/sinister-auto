@@ -1,0 +1,31 @@
+{
+    "auxiliumApp": {
+        "contact" : {
+            "home": {
+                "title": "Contacts",
+                "createLabel": "Créer un nouveau contact",
+                "createOrEditLabel": "Créer ou modifier un contact",
+                "search": "Recherche pour contact"
+            },
+            "created": "",
+            "updated": "",
+            "deleted": "",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer le contact {{ id }} ?"
+            },
+            "detail": {
+                "title": "Contact"
+            },
+            "isGerant": "Gérant",
+            "personnePhysique": "Personne physique",
+            "ville": "Ville",
+            "nom": "Nom",
+            "prenom": "Prénom",
+            "email": "Email",
+            "tel": "Téléphone",
+            "fax": "Fax",
+            "gouvernorat": "Gouvernorat",
+            "personneMorale": "Personne morale"
+        }
+    }
+}

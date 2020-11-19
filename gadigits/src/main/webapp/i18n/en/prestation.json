@@ -1,0 +1,32 @@
+{
+    "auxiliumApp": {
+        "prestation" : {
+            "home": {
+                "title": "Prestations",
+                "createLabel": "Create ",
+                "createOrEditLabel": "Create or edit a Prestation"
+            },
+            "created": "A new Prestation is created with identifier {{ param }}",
+            "updated": "A Prestation is updated with identifier {{ param }}",
+            "deleted": "A Prestation is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Prestation {{ id }}?"
+            },
+            "detail": {
+                "title": "Prestation"
+            },
+            "reference": "Reference",
+            "isDelete": "Is Delete",
+             "service": "Type de service",
+            "dateCreation": "Date Creation",
+            "dateCloture": "Date Cloture",
+            "dateDerniereMaj": "Date Derniere Maj",
+            "isFerier": "Is holiday ?",
+            "isNuit": "Is Nuit",
+            "commentaire": "Commentaire",
+            "dossier": "Dossier",
+            "pieceJointe": "Piece Jointe",
+            "action": "Action"
+        }
+    }
+}

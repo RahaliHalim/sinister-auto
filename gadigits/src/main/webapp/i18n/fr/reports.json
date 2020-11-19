@@ -1,0 +1,23 @@
+{
+    "auxiliumApp": {
+        "reports": {
+            "home": {
+                "assistanceMonitoringCompany": "Suivi assistance (CIE)",
+                "pecMonitoringPrestation": "Suivi prestation",
+                "pecMonitoringPrestationStep": "Étapes des sinistres ",
+                "createLabel": "Créer un nouveau élément menu",
+                "createOrEditLabel": "Créer ou modifier un élément menu",
+                "search": "Recherche pour élément Menu"
+            },
+            "created": "Un nouveau élément menu a été créé avec l'identifiant {{ param }}",
+            "updated": "L'élément menu avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "L'élément menu avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer l'élément menu {{ id }} ?"
+            },
+            "detail": {
+                "title": "Élément Menu"
+            }
+        }
+    }
+}

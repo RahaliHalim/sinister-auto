@@ -1,0 +1,22 @@
+{
+    "auxiliumApp": {
+        "serviceAssurance" : {
+            "home": {
+                "title": "ServiceAssurances",
+                "createLabel": "Créer un nouveau service assurance",
+                "createOrEditLabel": "Créer ou modifier un service assurance",
+                "search": "Recherche pour service assurance"
+            },
+            "created": "Un nouveau service assurance a été créé avec l'identifiant {{ param }}",
+            "updated": "Le service assurance avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le service assurance avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer le service assurance {{ id }} ?"
+            },
+            "detail": {
+                "title": "Service assurance"
+            },
+            "libelle": "Libellé"
+        }
+    }
+}

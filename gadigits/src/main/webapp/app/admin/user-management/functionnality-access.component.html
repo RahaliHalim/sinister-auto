@@ -1,0 +1,17 @@
+<div class="row">
+    <div class="col-sm-4" *ngFor="let entityProfileAccess of accesss;">
+        <div class="card">
+            <div class="collapsible-card card-header align-items-center collapsed notice-func notice-func-info">
+                <h4>
+                    <span jhiTranslate="global.menu.entities.{{entityProfileAccess.label}}">entity name</span>
+                </h4>
+            </div>
+            <div class="card-body">
+                <div class="col-sm-12" *ngFor="let profileAccess of entityProfileAccess.profileAccesss;">
+                    <input type="checkbox" class="check-input" name="functionnality{{profileAccess.id}}" id="field_functionnality{{profileAccess.id}}" [(ngModel)]="profileAccess.active" [disabled]="view"/>
+                    <label class="form-control-label" for="field_functionnality{{profileAccess.id}}">{{profileAccess.label}}</label>
+                </div>                    
+            </div>
+        </div>
+    </div>
+</div>

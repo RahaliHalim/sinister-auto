@@ -1,0 +1,24 @@
+{
+    "auxiliumApp": {
+        "refHolidays" : {
+            "home": {
+                "title": "Sys Jours Feriers",
+                "createLabel": "Create a new Sys Jours Ferier",
+                "createOrEditLabel": "Create or edit a Sys Jours Ferier"
+            },
+            "created": "A new Sys Jours Ferier is created with identifier {{ param }}",
+            "updated": "A  Jours Ferier is updated with identifier {{ param }}",
+            "deleted": "A Sys Jours Ferier is deleted with identifier {{ param }}",
+            "duplicate": "An other holidays with the same name or the same date existe",
+            "delete": {
+                "question": "Are you sure you want to delete Sys Jours Ferier {{ id }}?"
+            },
+            "detail": {
+                "title": "Sys Jours Ferier"
+            },
+            "libelle": "Libelle",
+            "annee": "Annee",
+            "date": "Date"
+        }
+    }
+}

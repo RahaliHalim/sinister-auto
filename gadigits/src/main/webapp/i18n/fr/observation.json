@@ -1,0 +1,28 @@
+{
+    "auxiliumApp": {
+        "observation" : {
+            "home": {
+                "title": "Observations",
+                "createLabel": "Créer",
+                "history": "Historique",
+                "editLabel": "Modifier",
+                "createOrEditLabel": "Créer ou modifier une observation"
+            },
+            "created": "Une nouvelle observation a été créée avec l'identifiant {{ param }}",
+            "updated": "L'observation avec l'identifiant {{ param }} a été mise à jour",
+            "deleted": "L'observation avec l'identifiant {{ param }} a été supprimée",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer l'observation {{ id }} ?"
+            },
+            "detail": {
+                "title": "Observation"
+            },
+            "commentMandatory": "Le texte de l'observation est obligatoire !",
+            "commentaire": "Commentaire",
+            "date": "Date",
+            "prive": "Privé?",
+            "type": "Type",
+            "user": "Utilisateur"
+        }
+    }
+}

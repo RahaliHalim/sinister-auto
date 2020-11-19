@@ -1,0 +1,24 @@
+{
+    "auxiliumApp": {
+        "facturePieces" : {
+            "home": {
+                "title": "FacturePieces",
+                "createLabel": "Créer une nouvelle facture pièces",
+                "createOrEditLabel": "Créer ou modifier une facture pièces",
+                "search": "Recherche pour facture pièces"
+            },
+            "created": "Une nouvelle facture pièces a été créée avec l'identifiant {{ param }}",
+            "updated": "La facture pièces avec l'identifiant {{ param }} a été mise à jour",
+            "deleted": "La facture pièces avec l'identifiant {{ param }} a été supprimée",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer la facture pièces {{ id }} ?"
+            },
+            "detail": {
+                "title": "Facture pièces"
+            },
+            "dateGeneration": "Date de génération",
+            "detailsPieces": "Détails pièces",
+            "facture": "Facture"
+        }
+    }
+}

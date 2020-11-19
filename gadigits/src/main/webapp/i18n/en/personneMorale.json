@@ -1,0 +1,35 @@
+{
+    "auxiliumApp": {
+        "personneMorale" : {
+            "home": {
+                "title": "Personne Morales",
+                "createLabel": "Create a new Personne Morale",
+                "createOrEditLabel": "Create or edit a Personne Morale",
+                "search": "Search for Personne Morale"
+            },
+            "created": "A new Personne Morale is created with identifier {{ param }}",
+            "updated": "A Personne Morale is updated with identifier {{ param }}",
+            "deleted": "A Personne Morale is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Personne Morale {{ id }}?"
+            },
+            "detail": {
+                "title": "Personne Morale"
+            },
+            "raisonSociale": "Raison Sociale",
+            "registreCommerce": "Registre Commerce",
+            "numEtablissement": "Num Etablissement",
+            "codeCategorie": "Code Categorie",
+            "codeTVA": "Code TVA",
+            "matriculeFiscale": "Matricule Fiscale",
+            "adresse": "Adresse",
+            "latitude": "Latitude",
+            "longitude": "Longitude",
+            "isAssujettieTva": "AssujettieTva",
+            "banque": "Banque",
+            "agence": "Agence",
+            "rib": "Rib", 
+            "contact": "Contacts"
+        }
+    }
+}

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <property name="now" value="now()" dbms="h2"/>
+
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+
+    <property name="floatType" value="float4" dbms="postgresql, h2"/>
+    <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
+
+    <!--
+        Added the entity UserAccess.
+    -->
+    <changeSet id="20190616022140-1" author="jhipster">
+        <createTable tableName="auth_user_access">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" primaryKeyName="pk_auth_user_access"/>
+            </column>
+            <column name="label" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="code" type="varchar(50)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="url" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="leaf" type="boolean">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="business_entity_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="functionality_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="element_menu_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="user_extra_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+        </createTable>
+        
+    </changeSet>
+</databaseChangeLog>

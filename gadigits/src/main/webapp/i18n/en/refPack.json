@@ -1,0 +1,47 @@
+{
+    "auxiliumApp": {
+        "refPack" : {
+            "home": {
+                "title": "Service / Pack",
+                "createLabel": "Create",
+                "createOrEditLabel": "Create or edit a Service / Pack",
+                "search": "Search for Ref Pack"
+            },
+            "created": "A new Ref Pack is created ",
+            "updated": "A Ref Pack is updated ",
+            "deleted": "A Ref Pack is deleted",
+            "delete": {
+                "question": "Are you sure you want to delete this Ref Pack?"
+            },
+            "detail": {
+                "title": "Service / Pack"
+            },
+            "nom": "Nom",
+            "label": "Label",
+            "restInterventionNumber": "Intervention number",
+            "interventionNumber": "Intervention number",
+            "mileage": "Mileage",
+            "blocked": "Blocked",
+            "description": "Description",
+            "vrDaysNumber": "VR days number",
+            "contractNature": "Contract Nature",
+            "price": "Price",
+            "ceilingToConsume": "Ceiling to consume",
+            "combinable": "Combinable",
+            "homeService": "Home service",
+            "exclusionList": "Exclusion list",
+            "sinisterType": "Sinistre types",
+            "grantTiming": "Grant timing",
+            "isBloque": "Is Bloque?",
+            "contrat": "Contrat",
+            "serviceType": "Type Service",
+            "serviceTypeCeiling": "Sinister Type Ceiling",
+            "company": "Company",
+            "usages": "Usages",
+            "companyPart": "GA Part",
+            "reinsurer": "Reinsurer",
+            "reinsurerPart": "Reinsurer Part",
+            "partnerPart": "Partner Part"
+        }
+    }
+}

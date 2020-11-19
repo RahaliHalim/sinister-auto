@@ -1,0 +1,55 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "code",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "raisonSociale",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "matriculeFiscale",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "registreCommerce",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "conventionne",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "dateEffetConvention",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "dateFinConvention",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "nbrVehicules",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "address",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "blocage",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "rib",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20201005111043",
+    "dto": "mapstruct",
+    "service": "serviceImpl",
+    "entityTableName": "loueur",
+    "pagination": "infinite-scroll"
+}

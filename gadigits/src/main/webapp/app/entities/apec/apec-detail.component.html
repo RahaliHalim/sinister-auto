@@ -1,0 +1,58 @@
+
+<div *ngIf="apec">
+    <h2><span jhiTranslate="auxiliumApp.apec.detail.title">APEC</span> {{apec.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="auxiliumApp.apec.dateGeneration">Date Generation</span></dt>
+        <dd>
+            <span>{{apec.dateGeneration | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.apec.isComplementaire">Is Complementaire</span></dt>
+        <dd>
+            <span>{{apec.isComplementaire}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.apec.participationGa">Participation Ga</span></dt>
+        <dd>
+            <span>{{apec.participationGa}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.apec.participationAssure">Participation Assure</span></dt>
+        <dd>
+            <span>{{apec.participationAssure}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.apec.participationVetuste">Participation Vetuste</span></dt>
+        <dd>
+            <span>{{apec.participationVetuste}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.apec.participationRpc">Participation Rpc</span></dt>
+        <dd>
+            <span>{{apec.participationRpc}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.apec.depacementPlafond">Depacement Plafond</span></dt>
+        <dd>
+            <span>{{apec.depacementPlafond}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.apec.estimationFranchise">Estimation Franchise</span></dt>
+        <dd>
+            <span>{{apec.estimationFranchise}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.apec.commentaire">Commentaire</span></dt>
+        <dd>
+            <span>{{apec.commentaire}}</span>
+        </dd>
+       
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'apec/'+ apec.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;&nbsp;&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

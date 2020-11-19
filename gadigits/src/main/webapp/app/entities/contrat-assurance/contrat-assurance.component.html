@@ -1,0 +1,94 @@
+<!-- Breadcrumb-->
+<div class="breadcrumb-holder">
+    <div class="container-fluid">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="/"><span class="fa fa-home"></span>&nbsp;&nbsp;<span
+                        jhiTranslate="global.menu.home">Home</span></a></li>
+            <li class="breadcrumb-item"><a routerLink="/contrat-assurance"><span
+                        jhiTranslate="auxiliumApp.contratAssurance.home.title">Dossiers</span></a></li>
+        </ul>
+    </div>
+</div>
+<section class="forms">
+    <div class="container-fluid">
+        <!-- Page Header-->
+        <header style="padding-top: 1rem; padding-bottom: 1rem;">
+            <h1 class="h3 display">
+                <jhi-alert-error></jhi-alert-error>
+                <jhi-alert></jhi-alert>
+            </h1>
+        </header>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header d-flex align-items-center no-padding">
+                        <div class="notice notice-info">
+                            <strong jhiTranslate="auxiliumApp.contratAssurance.home.title"> Create new Contrat
+                                Assurance</strong>
+                            <button class="btn btn-sm btn-primary float-right" *ngIf="permissionToAccess.canCreate"
+                                [routerLink]="['../contrat-assurance-new']">
+                                <span class="fa fa-sm fa-plus"></span>
+                                <span class="hidden-sm-down"
+                                    jhiTranslate="auxiliumApp.contratAssurance.home.createLabel">Create new Contrat
+                                    Assurance</span>
+                            </button>
+
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table datatable [dtOptions]="dtOptions" class="table table-sm table-hover table-bordered"
+                                style="width: 100%;">
+                                <thead style="color:white;background-color:#11859b;">
+                                    <tr>
+                                        <th><span jhiTranslate="auxiliumApp.contratAssurance.numeroContrat">Numero
+                                                Contrat</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.contratAssurance.compagnie">Compagnie</span>
+                                        </th>
+                                        <th><span jhiTranslate="auxiliumApp.contratAssurance.agence">Agent</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.contratAssurance.vehicule">Vehicule</span>
+                                        </th>
+                                        <th><span jhiTranslate="auxiliumApp.contratAssurance.assure">Assure</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.contratAssurance.debutValidite">Debut
+                                                Validite</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.contratAssurance.finValidite">Fin
+                                                Validite</span></th>
+
+
+                                        <th class="no-sort"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let policy of policies">
+                                        <td>{{policy.policyNumber}} </td>
+                                        <td>{{policy.companyName}} </td>
+                                        <td>{{policy.agencyName}} </td>
+                                        <td>{{policy.registrationNumber}} </td>
+                                        <td>{{policy.policyHolderName}} </td>
+                                        <td>{{policy.startDate | date:'dd/MM/yyyy'}}</td>
+                                        <td>{{policy.endDate | date:'dd/MM/yyyy'}}</td>
+                                        <td class="text-right">
+                                            <div class="btn-group flex-btn-group-container">
+                                                <button type="submit" [routerLink]="['/contrat-assurance/', policy.id ]"
+                                                    *ngIf="permissionToAccess.canConsult" class="btn btn-info btn-sm">
+                                                    <span class="fa fa-eye"></span>
+                                                </button>
+                                                <button type="submit" *ngIf="permissionToAccess.canUpdate"
+                                                    [routerLink]="['/contrat-assurance/' + policy.id + '/edit']"
+                                                    replaceUrl="true" class="btn btn-primary btn-sm">
+                                                    <span class="fa fa-sm fa-pencil"></span>
+                                                </button>
+
+
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

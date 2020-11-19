@@ -1,0 +1,73 @@
+<!-- Breadcrumb-->
+<div class="breadcrumb-holder">
+    <div class="container-fluid">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="/"><span class="fa fa-home"></span>&nbsp;&nbsp;<span jhiTranslate="global.menu.home">Home</span></a></li>
+            <li class="breadcrumb-item"><a routerLink="/invoice"><span jhiTranslate="auxiliumApp.statement.home.invoices">Bordereau</span></a></li>
+        </ul>
+    </div>
+</div>
+<section class="forms">
+    <div class="container-fluid">
+        <!-- Page Header-->
+        <header style="padding-top: 1rem; padding-bottom: 1rem;">
+            <h1 class="h3 display">
+                <jhi-alert-error></jhi-alert-error>
+                <jhi-alert></jhi-alert>
+            </h1>
+        </header>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header d-flex align-items-center no-padding" >
+                        <div class="notice notice-info">
+                           
+                            <strong jhiTranslate="auxiliumApp.statement.home.invoices">invoices</strong>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-sm table-hover table-bordered" style="width: 100%">
+                                <thead style="color:white;background-color:#11859b">
+                                <tr>
+                                    <th><span jhiTranslate="auxiliumApp.statement.tugLabel">Tug Label</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.statement.creationDate">Creation Date</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.statement.notes">Notes</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.statement.action">Action</span></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr *ngFor="let statement of statements">
+                                    <td>{{statement.tugLabel}}</td>
+                                    <td>{{statement.creationDate | date:'dd/MM/yyyy'}}</td>
+                                    <td>{{statement.notes}}</td>
+                                    <td class="text-right">
+                                        <div class="btn-group flex-btn-group-container">
+                                            <button *ngIf="statement.step === 0" (click)="getStatementPdf(statement)" replaceUrl="true" class="btn btn-primary btn-sm" style="margin-right: 5px;">
+                                                <span class="fa fa-sm fa-download"></span>
+                                                <i title="Télecharger"></i></button>
+                                            <button *ngIf="statement.step === 1" (click)="validate(statement)" replaceUrl="true" class="btn btn-primary btn-sm" style="margin-right: 5px;">
+                                                <span class="fa fa-sm fa-check-square-o"></span>
+                                                <i title="Valider"></i>
+                                            </button>
+                                            <button *ngIf="statement.step === 1" (click)="invalidate(statement)" replaceUrl="true" class="btn btn-primary btn-sm" style="margin-right: 5px;">
+                                                <span class="fa fa-sm fa-ban"></span>
+                                                <i title="Non Valider"></i>
+                                            </button>
+                                            <button *ngIf="statement.step === 3" (click)="generateStatementPdf(statement)" replaceUrl="true" class="btn btn-primary btn-sm" style="margin-right: 5px;">
+                                                <span class="fa fa-sm fa-repeat"></span>
+                                                <i title="Re-génerer"></i>
+                                            </button>
+
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

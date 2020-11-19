@@ -1,0 +1,25 @@
+{
+    "auxiliumApp": {
+        "piece" : {
+            "home": {
+                "title": "Pièces",
+                "createLabel": "Créer une nouvelle pièce",
+                "createOrEditLabel": "Créer ou modifier une pièce",
+                "search": "Recherche pour pièce"
+            },
+            "created": "Une nouvelle pièce a été créée avec l'identifiant {{ param }}",
+            "updated": "La pièce avec l'identifiant {{ param }} a été mise à jour",
+            "deleted": "La pièce avec l'identifiant {{ param }} a été supprimée",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer la pièce {{ id }} ?"
+            },
+            "detail": {
+                "title": "pièce"
+            },
+            "reference": "Reference",
+            "isVetuste": "Is Vetuste",
+            "typePiece": "Type pièce",
+            "modelVoiture": "Model voiture"
+        }
+    }
+}

@@ -1,0 +1,38 @@
+{
+    "auxiliumApp": {
+        "prestation" : {
+            "home": {
+                "title": "Prestations",
+                "createPECLabel": "Créer PEC",
+                "createAVTLabel": "Créer AVT",
+                "createLabel": "Créer",
+                "createOrEditLabel": "Créer ou modifier une prestation"
+            },
+            "created": "Une nouvelle prestation a été créée avec l'identifiant {{ param }}",
+            "updated": "La prestation avec l'identifiant {{ param }} a été mise à jour",
+            "deleted": "La prestation avec l'identifiant {{ param }} a été supprimée",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer la prestation {{ id }} ?"
+            },
+            "detail": {
+                "title": "Prestation"
+            },
+            "reference": "Référence",
+            "isDelete": "Is Delete",
+            "service": "Type de service",
+            "typePrestation": "Type prestation",
+            "dateCreation": "Date Création",
+            "dateCloture": "Date clôture",
+            "dateDerniereMaj": "Date dernière Maj",
+            "isFerier": "Est Ferié ?",
+            "isNuit": "Est Nuit ?",
+            "commentaire": "Commentaire",
+            "dossier": "Dossier",
+            "pieceJointe": "Pièce jointe",
+            "action": "Action",
+            "etatPrestation": "État",
+            "dateDeclaration" : "Date Déclaration",
+            "etapePrestation":"Étape "
+        }
+    }
+}

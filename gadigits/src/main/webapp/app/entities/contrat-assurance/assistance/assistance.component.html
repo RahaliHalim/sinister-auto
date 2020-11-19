@@ -1,0 +1,104 @@
+<head>
+
+
+  
+</head> 
+ 
+ <div class="breadcrumb-holder">
+    <div class="container-fluid">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a  [routerLink]="['']"><span class="fa fa-home" style="color: #45ABCD !important"></span>&nbsp;&nbsp;<span	jhiTranslate="global.menu.home">Home</span></a></li>
+            <li class="breadcrumb-item"><span jhiTranslate="auxiliumApp.assitances.home.title">Dossiers</span></li>
+        </ul>
+    </div>
+</div>
+<section class="forms">
+  <div class="container-fluid">
+    <!-- Page Header-->
+    <header style="padding-top: 1rem; padding-bottom: 1rem;">
+        <h1 class="h3 display">
+            <jhi-alert-error></jhi-alert-error>
+            <jhi-alert></jhi-alert>
+        </h1>
+    </header>
+      
+      <div class="card">
+        <div class="card-header d-flex align-items-center no-padding" >
+            <div class="notice notice-info">
+                <span class="fa fa-area-chart" style="color: #45ABCD"></span>&nbsp;&nbsp;
+                <strong jhiTranslate="auxiliumApp.assitances.home.title">services</strong>
+            </div>
+
+
+        </div>
+        
+
+        <div class="card-body">
+            <div class="table-responsive">
+                    <table datatable [dtOptions]="dtOptions" class="table table-sm table-hover table-bordered row-border hover" >
+                    <thead style="color:white;background-color:#11859b">
+                    <tr>
+                        <th></th>
+                      <th><span style="width:80px" jhiTranslate="auxiliumApp.assitances.reference">Référence GA</span></th>
+                      <th><span style="width:140px" jhiTranslate="auxiliumApp.sinisterPrestation.creationDate">creationDate</span></th>
+                      <th><span style="width:140px" jhiTranslate="auxiliumApp.assitances.dateAccident">Date survenance</span></th>
+                      <th><span style="width:140px" jhiTranslate="auxiliumApp.assitances.nature">Nature Survenance</span></th>
+                      <th><span style="width:140px" jhiTranslate="auxiliumApp.assitances.villeincident">Ville incident</span></th>
+                      <th><span style="width:140px" jhiTranslate="auxiliumApp.assitances.villedestination">ville destination</span></th>
+                      <th><span style="width:150px" jhiTranslate="auxiliumApp.assitances.nomcompagnie">Nom de la Compagnie</span></th>
+                      <th><span style="width:180px" jhiTranslate="auxiliumApp.assitances.NomAgent">Nom agent assurance</span></th>
+                      <th><span style="width:130px" jhiTranslate="auxiliumApp.assitances.numerocontrat">Numéro du contrat</span></th>
+                      <th><span style="width:70px" jhiTranslate="auxiliumApp.assitances.marque">Marque</span style="width:70px"></th>
+                      <th><span style="width:130px" jhiTranslate="auxiliumApp.assitances.immatriculation">Immatriculation assuré</span></th>
+                      <th><span style="width:180px" jhiTranslate="auxiliumApp.assitances.raisonSociale">Nom et Prénom-Raison Sociale </span></th>
+                      <th><span style="width:100px" jhiTranslate="auxiliumApp.assitances.typeService">Type de service</span></th>
+                      <th><span style="width:80px" jhiTranslate="auxiliumApp.assitances.remorqueur">Remorqueur</span></th>
+                      <th><span style="width:140px" jhiTranslate="auxiliumApp.sinisterPrestation.remAffectationDate">tugAssignedDate</span></th>
+                      <th><span style="width:140px" jhiTranslate="auxiliumApp.sinisterPrestation.remArrivalDate">remArrivalDate</span></th>
+                      <th><span style="width:140px" jhiTranslate="auxiliumApp.sinisterPrestation.assureArrivalDate">assureArrivalDate</span></th>
+                      <th><span style="width:80px" jhiTranslate="auxiliumApp.assitances.kilometrage">kilometrage </span></th>
+                      <th><span style="width:80px" jhiTranslate="auxiliumApp.assitances.montant">Montant TTC </span></th>
+                      <th><span style="width:150px" jhiTranslate="auxiliumApp.assitances.etatPrestation">Etat prestation</span></th>
+                      <th><span jhiTranslate="auxiliumApp.sinisterPec.chargeName">charge</span></th>
+                      <th><span style="width:70px" jhiTranslate="auxiliumApp.assitances.motifs">Motifs</span></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let assitant of assitances let i = index" (click)="setClickedRow(i)" [class.active]="i == selectedRow">
+                            <td class="text-right">
+                                    <div class="btn-group flex-btn-group-container">
+                                      <button type="submit"  [routerLink]="['/acueilassitances', assitant.id ]" replaceUrl="true" class="btn btn-info btn-sm">
+                                              <span class="fa fa-sm fa-eye"></span>
+                                      </button>  
+                                  </div>
+                              </td>
+                        <td>{{assitant.reference}}</td>
+                        <td>{{assitant.creationDate | date:'dd/MM/yyyy HH:mm:ss'}}</td>
+                        <td>{{assitant.incidentDate | date:'dd/MM/yyyy'}}</td>
+                        <td>{{assitant.incidentNature}}</td>
+                        <td>{{assitant.villeSinister}}</td>
+                        <td>{{assitant.villeDestination}}</td>
+                        <td >{{assitant.companyName}}</td>
+                        <td>{{assitant.nomAgentAssurance}}</td>
+                        <td >{{assitant.numeroContrat}}</td>
+                        <td>{{assitant.marque}}</td>
+                        <td >{{assitant.immatriculationVehicule}}</td>            
+                        <td>{{assitant.nomPrenomRaison}}</td>
+                        <td>{{assitant.typeService}}</td>
+                       <td>{{assitant.remorqueur}}</td>
+                       <td>{{assitant.tugAssignmentDate | date:'dd/MM/yyyy HH:mm:ss'}}</td>
+                        <td>{{assitant.tugArrivalDate | date:'dd/MM/yyyy HH:mm:ss'}}</td>
+                        <td>{{assitant.insuredArrivalDate | date:'dd/MM/yyyy HH:mm:ss'}}</td>
+                        <td>{{assitant.kilometrage}}</td>
+                        <td>{{assitant.price_ttc}}</td>
+                        <td>{{assitant.etatPrestation}}</td>
+                        <td>{{assitant.charge}}</td>
+                        <td>{{assitant.motif}}</td>                     
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    </div>
+    </section>

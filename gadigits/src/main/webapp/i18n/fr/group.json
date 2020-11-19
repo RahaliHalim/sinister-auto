@@ -1,0 +1,27 @@
+{
+    "auxiliumApp": {
+        "group" : {
+            "home": {
+                "title": "Groupes",
+                "createLabel": "Créer un nouveau Groupe",
+                "createOrEditLabel": "Créer ou modifier un Groupe",
+                "search": "Recherche pour groupe",
+                "liste": "Liste des groupes"
+            },
+            "created": "Un nouveau groupe a été créé avec l'identifiant {{ param }}",
+            "updated": "Le groupe avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le groupe avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer le détails groupe  ?"
+            },
+            "detail": {
+                "title": "Groupe",
+                "id":"ID",
+                "name":"Nom du groupe",
+                "client":"Client",
+                "modegestion":"Mode de gestion"
+            }
+            
+        }
+    }
+}

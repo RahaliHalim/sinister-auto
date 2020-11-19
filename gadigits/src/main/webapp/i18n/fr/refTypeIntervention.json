@@ -1,0 +1,25 @@
+{
+    "auxiliumApp": {
+        "refTypeIntervention" : {
+            "home": {
+                "title": "RefTypeInterventions",
+                "createLabel": "Créer une nouvelle réf. type d'intervention",
+                "createOrEditLabel": "Créer ou modifier une Réf. type d'intervention",
+                "search": "Recherche pour réf. type intervention"
+            },
+            "created": "Une nouvelle réf. type d'intervention a été créée avec l'identifiant {{ param }}",
+            "updated": "La réf. type d'intervention avec l'identifiant {{ param }} a été mise à jour",
+            "deleted": "La réf. type d'intervention avec l'identifiant {{ param }} a été supprimée",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer la réf. type d'intervention {{ id }} ?"
+            },
+            "detail": {
+                "title": "Réf. type d'intervention",
+                "typeIntervention": "Type d'intervention"
+            },
+            "libelle": "Libellé",
+            "grille": "Grille",
+            "detailMo": "Detail Mo"
+        }
+    }
+}

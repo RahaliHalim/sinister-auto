@@ -1,0 +1,24 @@
+{
+    "auxiliumApp": {
+        "factureDetailsMo" : {
+            "home": {
+                "title": "FactureDetailsMos",
+                "createLabel": "Créer une nouvelle facture details Mo",
+                "createOrEditLabel": "Créer ou modifier une facture détails Mo",
+                "search": "Recherche pour facture détails Mo"
+            },
+            "created": "Une nouvelle facture détails Mo a été créée avec l'identifiant {{ param }}",
+            "updated": "La facture détails Mo avec l'identifiant {{ param }} a été mise à jour",
+            "deleted": "La facture détails Mo avec l'identifiant {{ param }} a été supprimée",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer la facture détails Mo {{ id }} ?"
+            },
+            "detail": {
+                "title": "Facture détails Mo"
+            },
+            "dateGeneration": "Date de génération",
+            "detailsMo": "Détails Mo",
+            "facture": "Facture"
+        }
+    }
+}

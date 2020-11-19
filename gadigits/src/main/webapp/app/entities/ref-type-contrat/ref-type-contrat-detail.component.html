@@ -1,0 +1,39 @@
+
+<div *ngIf="refTypeContrat">
+    <h2><span jhiTranslate="auxiliumApp.refTypeContrat.detail.title">Ref Type Contrat</span> {{refTypeContrat.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="auxiliumApp.refTypeContrat.code">Code</span></dt>
+        <dd>
+            <span>{{refTypeContrat.code}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.refTypeContrat.libelle">Libelle</span></dt>
+        <dd>
+            <span>{{refTypeContrat.libelle}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.refTypeContrat.isActif">Is Actif</span></dt>
+        <dd>
+            <span>{{refTypeContrat.isActif}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.refTypeContrat.compagnie">Compagnie</span></dt>
+        <dd>
+            <span *ngFor="let compagnie of refTypeContrat.compagnies; let last = last">
+                <a [routerLink]="['/ref-compagnie', compagnie?.id ]">{{compagnie.nom}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'ref-type-contrat/'+ refTypeContrat.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;&nbsp;&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,26 @@
+{
+    "auxiliumApp": {
+        "assure" : {
+            "home": {
+                "title": "Assures",
+                "createLabel": "Create a new Assure",
+                "createOrEditLabel": "Create or edit a Assure",
+                "search": "Search for Assure"
+            },
+            "created": "A new Assure is created with identifier {{ param }}",
+            "updated": "A Assure is updated with identifier {{ param }}",
+            "deleted": "A Assure is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Assure {{ id }}?"
+            },
+            "detail": {
+                "title": "Assure"
+            },
+            "dossier": "Dossier",
+            "ville": "Ville",
+            "gouvernorat": "Gouvernorat",
+            "assure":"Nom et Prénom/Raison Sociale de l'assuré",
+            "tel": "Tel assuré"
+        }
+    }
+}

@@ -1,0 +1,86 @@
+
+
+
+<!-- Breadcrumb-->
+<div class="breadcrumb-holder">
+	<div class="container-fluid">
+		<ul class="breadcrumb">
+			<li class="breadcrumb-item"><a routerLink="/"><span	jhiTranslate="global.menu.home">Home</span></a></li>
+			<li class="breadcrumb-item"><a routerLink="/prestation-pec"><span jhiTranslate="auxiliumApp.prestationPEC.home.title">Prestation PECS</span></a></li>
+		</ul>
+	</div>
+</div>
+<section class="forms">
+	<div class="container-fluid">
+			<!-- Page Header-->
+			<header>
+				<h1 class="h3 display">
+					<jhi-alert-error></jhi-alert-error>
+				</h1>
+			</header>
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="card">
+                        <div class="card-header d-flex align-items-center no-padding" >
+                            <div class="notice notice-info">
+                                <strong jhiTranslate="auxiliumApp.prestationPEC.home.title">Prestation PECS</strong>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                        <div>
+    <jhi-alert></jhi-alert>
+   
+    <div class="table-responsive" >
+        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-sm table-hover table-bordered" style="width: 100%">
+            <thead style="color:white;background-color:#11859b">
+            <tr>
+            <th><span jhiTranslate="auxiliumApp.prestationPEC.descPtsChoc">Desc Pts Choc</span> <span class="fa fa-sort"></span></th>
+            <th><span jhiTranslate="auxiliumApp.prestationPEC.nbrVehicules">Nbr Vehicules</span> <span class="fa fa-sort"></span></th>
+            <th><span jhiTranslate="auxiliumApp.prestationPEC.prestation">Prestation</span> <span class="fa fa-sort"></span></th>
+            <th><span jhiTranslate="auxiliumApp.prestationPEC.mode">Mode</span> <span class="fa fa-sort"></span></th>
+            <th><span jhiTranslate="auxiliumApp.prestationPEC.posGa">Pos Ga</span> <span class="fa fa-sort"></span></th>
+            <th><span jhiTranslate="auxiliumApp.prestationPEC.agentAffecte">agent</span> <span class="fa fa-sort"></span></th>
+            <th><span jhiTranslate="auxiliumApp.prestationPEC.etat">decision</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let prestationPEC of listePrestation ;trackBy: trackId">
+                <td>{{prestationPEC.descPtsChoc}}</td>
+                <td>{{prestationPEC.nbrVehicules}}</td>
+                <td>{{prestationPEC.prestationReference}}</td>
+                <td>{{prestationPEC.modeLibelle}}</td>
+                <td>{{prestationPEC.posGaLibelle}}</td>
+                <td>{{prestationPEC.userFirstName}} {{prestationPEC.userLastName}}</td>
+                <td *ngIf="prestationPEC.decision == 'Accepted'">Accepté</td>
+                <td *ngIf="prestationPEC.decision == 'Canceled'">Annulé</td>
+                <td *ngIf="prestationPEC.decision == 'Refused'">Refusé</td>
+                <td *ngIf="prestationPEC.decision == 'Accepted_With_Reserv'">Accepté avec réserves</td>
+                <td *ngIf="prestationPEC.decision == null"></td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+
+                        
+                        <button type="submit" class="btn btn-primary btn-sm"
+                            (click)="exportInvoice(prestationPEC.devisId)"
+                            *ngIf="reparateur == true ">
+                           <span jhiTranslate="entity.action.genererBonSortie">Générer bon de sortie</span>
+
+                        </button> 
+
+                        
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+   
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+</section>

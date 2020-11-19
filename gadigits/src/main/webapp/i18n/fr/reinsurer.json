@@ -1,0 +1,26 @@
+{
+    "auxiliumApp": {
+        "reinsurer" : {
+            "home": {
+                "title": "Réassureurs",
+                "createLabel": "Créer un nouveau réassureur",
+                "createOrEditLabel": "Créer ou modifier un réassureur",
+                "search": "Recherche pour réassureur"
+            },
+            "created": "Un nouveau réassureur a été créé",
+            "updated": "Le réassureur a été mis à jour",
+            "deleted": "Le réassureur a été supprimé",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer le réassureur ?"
+            },
+            "detail": {
+                "title": "Réassureur"
+            },
+            "companyName": "Raison sociale",
+            "taxIdentificationNumber": "Matricule fiscale",
+            "tradeRegister": "Registre de commerce",
+            "address": "Adresse",
+            "phone": "Téléphone"
+        }
+    }
+}

@@ -1,0 +1,40 @@
+{
+    "auxiliumApp": {
+        "refRemorqueur" : {
+            "home": {
+                "title": "Remorqueurs",
+                "createLabel": "Create",
+                "createOrEditLabel": "Create or edit a Ref Remorqueur",
+                "search": "Search for Ref Remorqueur"
+            },
+            "created": "A new Remorqueur is created",
+            "updated": "A Remorqueur is updated",
+            "deleted": "A Remorqueur is deleted",
+             "bloqued": "A Remorqueur is bloqued",
+            "debloqued":"A Remorqueur is debloqued",
+            "unique": "Le nom du remorqueur doit être unique",
+            "delete": {
+                "question": "Are you sure you want to delete this Remorqueur?"
+            },
+            "detail": {
+                "title": "Remorqueur"
+            },
+            "hasHabillage": "Has Habillage",
+            "isDelete": "Is Delete",
+            "isBloque": "Is Bloque",
+            "isMotif": "Is Motif",
+            "companyLabel": "Company name",
+            "telephone": "Telephone",
+            "nombreCamion": "Nombre Camion",
+            "societe": "Societe",
+            "bloquer": "Bloquer",
+            "debloquer": "Debloquer",
+             "tarif": "Tarif",
+            "contact": "Contact",
+            "bloque": {
+            	"title": "Confirm blocage/débloage remorqueur",
+                "question": "Êtes-vous sûrs de vouloir bloquer/débloquer ce Remorqueur ?"
+            }
+        }
+    }
+}

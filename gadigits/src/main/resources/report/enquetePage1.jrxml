@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.9.0.final using JasperReports Library version 6.9.0-cb8f9004be492ccc537180b49c026951f4220bf3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="bonSortie" language="groovy" pageWidth="680" pageHeight="900" whenNoDataType="NoPages" columnWidth="640" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="aff47105-8fb0-445c-9785-bcd4f7d16b73">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<parameter name="numDossierGa" class="java.lang.String"/>
+	<parameter name="cieAssurance" class="java.lang.String"/>
+	<parameter name="agence" class="java.lang.String"/>
+	<parameter name="numSinistre" class="java.lang.String"/>
+	<parameter name="dateAccident" class="java.lang.String"/>
+	<parameter name="immat" class="java.lang.String"/>
+	<parameter name="marque" class="java.lang.String"/>
+	<parameter name="usage" class="java.lang.String"/>
+	<parameter name="assure" class="java.lang.String"/>
+	<parameter name="numContart" class="java.lang.String"/>
+	<parameter name="gsm" class="java.lang.String"/>
+	<parameter name="expert" class="java.lang.String"/>
+	<parameter name="reparateur" class="java.lang.String"/>
+	<parameter name="bonSortie" class="com.gaconnecte.auxilium.service.dto.ReceiptDTO"/>
+	<parameter name="logoSlogonEnquete" class="java.io.InputStream"/>
+	<parameter name="footerEnquete" class="java.io.InputStream"/>
+	<parameter name="enquete" class="java.io.InputStream"/>
+	<title>
+		<band height="860" splitType="Stretch">
+			<staticText>
+				<reportElement x="200" y="80" width="252" height="20" uuid="00e89290-15f6-44a8-bed4-1902c1bf9a66"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[QUESTIONNAIRE DE SATISFACTION]]></text>
+			</staticText>
+			<image>
+				<reportElement x="61" y="261" width="539" height="540" uuid="ca0ae1a1-5bf3-4b38-a436-62c7d5d47025">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<imageExpression><![CDATA[$P{enquete}]]></imageExpression>
+			</image>
+			<rectangle>
+				<reportElement x="61" y="110" width="539" height="140" uuid="51b54c41-ef36-4daa-a485-a1d654c6affc"/>
+			</rectangle>
+			<line>
+				<reportElement x="61" y="150" width="539" height="1" uuid="bca9571a-ad55-443d-bf0a-4513d5cbe5a2"/>
+			</line>
+			<line>
+				<reportElement x="61" y="190" width="539" height="1" uuid="8b013f1b-5efd-4a36-88dc-c8b5a4d60c72"/>
+			</line>
+			<line>
+				<reportElement x="61" y="220" width="539" height="1" uuid="ba59fa10-16c5-4fb0-8a97-aef0199cc62c"/>
+			</line>
+			<line>
+				<reportElement x="250" y="110" width="1" height="80" uuid="ed187070-01c6-46aa-ae76-612301df59d8"/>
+			</line>
+			<line>
+				<reportElement x="419" y="110" width="1" height="80" uuid="642c63d3-af52-4b57-bb8d-fab9eab611e9"/>
+			</line>
+			<line>
+				<reportElement x="323" y="190" width="1" height="30" uuid="b916cbdc-5d75-4a77-a3ac-c3922738d1ff"/>
+			</line>
+			<staticText>
+				<reportElement x="67" y="120" width="106" height="20" uuid="fd107e0a-5ab6-449b-b47b-e989cf8deab6"/>
+				<text><![CDATA[Référence dossier :]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="155" y="120" width="100" height="20" uuid="25ae6cd4-ba0f-4de2-a297-a4e82999d01d"/>
+				<textFieldExpression><![CDATA[$P{bonSortie}.getReferenceSinister()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="258" y="120" width="62" height="20" uuid="fabd0b92-9474-452f-8755-ce94af83b15b"/>
+				<text><![CDATA[Compagnie :]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="320" y="120" width="120" height="20" uuid="12510472-3384-409f-b2a7-67a1209b78d1"/>
+				<textFieldExpression><![CDATA[$P{bonSortie}.getCompanyInsurance()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="432" y="120" width="53" height="20" uuid="a3d7a8f3-b9ef-451f-ad4f-4e1bc1075564"/>
+				<text><![CDATA[Agence :]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="477" y="120" width="119" height="20" uuid="199ea7f6-5d3c-495a-85e6-f5ca8be6d3db"/>
+				<textFieldExpression><![CDATA[$P{bonSortie}.getAgenceName()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="69" y="195" width="87" height="20" uuid="b3d875d5-67da-4693-b9a0-67e6824eb8f6"/>
+				<text><![CDATA[Expert :]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="110" y="195" width="149" height="20" uuid="2f6a17c2-a0a9-4a30-b343-67f2b8fb961a"/>
+				<textFieldExpression><![CDATA[$P{bonSortie}.getExpertName()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="341" y="195" width="100" height="20" uuid="77fcbd8f-6cea-4d20-bfa3-d54546e5d806"/>
+				<text><![CDATA[Réparateur :]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="407" y="195" width="170" height="20" uuid="bbe143d2-d6d8-45e4-b024-4fe9a6066c95"/>
+				<textFieldExpression><![CDATA[$P{bonSortie}.getRepairerName()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="69" y="160" width="56" height="20" uuid="7d42467c-e77f-4df0-b283-f761cded56ea"/>
+				<text><![CDATA[Client :]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="110" y="160" width="140" height="20" uuid="b875ba47-db0b-412b-9a1b-d8c634915d34"/>
+				<textFieldExpression><![CDATA[$P{bonSortie}.getInsuredName()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="260" y="160" width="29" height="20" uuid="b09ca2f6-6c14-4356-a4c4-7fc169e31433"/>
+				<text><![CDATA[Tél :]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="300" y="160" width="130" height="20" uuid="7eae70a2-46f0-42e6-a754-bb687ce1d7c9"/>
+				<textFieldExpression><![CDATA[$P{bonSortie}.getTelephoneAssure()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="61" y="220" width="539" height="30" uuid="4e536717-968e-4259-acc7-90abf3083746"/>
+				<text><![CDATA[                                  
+                                   Veuillez nous faire part de vos appréciations concernant les critères suivants : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="435" y="160" width="29" height="20" uuid="a0a65548-d392-4f9f-bb47-263930c15a17"/>
+				<text><![CDATA[Mail:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="463" y="160" width="120" height="20" uuid="0da189b5-37d2-460f-89ab-cf64edbf56f9"/>
+				<textFieldExpression><![CDATA[$P{bonSortie}.getMail()]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement stretchType="RelativeToBandHeight" x="287" y="10" width="54" height="50" uuid="70d15eee-df65-4e49-a5cc-8f717812a769"/>
+				<imageExpression><![CDATA[$P{logoSlogonEnquete}]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="225" y="810" width="160" height="50" uuid="1376e18a-8bba-4a71-8800-382eb8edf4e3"/>
+				<imageExpression><![CDATA[$P{footerEnquete}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+</jasperReport>

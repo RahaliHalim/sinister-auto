@@ -1,0 +1,11 @@
+{
+    "auxiliumApp": {
+        "Decision" : {
+            "null": "",
+            "Accepted": "Accepté",
+            "Canceled": "Annulé",
+            "Refused": "Refusé",
+            "Accepted_With_Reserv": " Accepté avec réserves"
+        }
+    }
+}

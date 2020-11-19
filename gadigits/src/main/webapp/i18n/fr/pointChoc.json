@@ -1,0 +1,42 @@
+{
+    "auxiliumApp": {
+        "pointChoc" : {
+            "home": {
+                "title": "PointChocs",
+                "createLabel": "Créer un nouveau points de choc",
+                "createOrEditLabel": "Point de choc",
+                "search": "Recherche pour point de choc"
+            },
+            "created": "Un nouveau points chocs a été créé avec l'identifiant {{ param }}",
+            "updated": "Le point  de choc avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le point de choc avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer le point de choc {{ id }} ?"
+            },
+            "detail": {
+                "title": "Point de choc"
+            },
+            "faceAv": "Face Av",
+            "tiersAvD": "Tiers Av D",
+            "tiersLatD": "Tiers Lat D",
+            "latD": "Lat D",
+            "tiersArD": "Tiers Ar D",
+            "tiersLatG": "Tiers Lat G",
+            "tiersArG": "Tiers Ar G",
+            "latG": "Lat G",
+            "faceAr": "Face Ar",
+            "diversChoc": "Divers choc",
+            "pareBrise": "Pare brise",
+            "triangleAvD": "Triangle Av D",
+            "triangleArD": "Triangle Ar D",
+            "triangleAvG": "Triangle Av G",
+            "triangleArG": "Triangle Ar G",
+            "vitreAvD": "Vitre Av D",
+            "vitreArD": "Vitre Ar D",
+            "vitreAvG": "Vitre Av G",
+            "vitreArG": "Vitre Ar G",
+            "lunetteAr": "Lunette Ar",
+            "tiersAvG": "Tiers Av G"
+        }
+    }
+}

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity PrestationPEC.
+    -->
+    <changeSet id="20171012095050-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="prestation_id"
+                                 baseTableName="prestation_pec"
+                                 constraintName="fk_prestationpec_prestation_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="prestation"/>
+
+        <addForeignKeyConstraint baseColumnNames="mode_id"
+                                 baseTableName="prestation_pec"
+                                 constraintName="fk_prestationpec_mode_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ref_mode_gestion"/>
+
+        <addForeignKeyConstraint baseColumnNames="bareme_id"
+                                 baseTableName="prestation_pec"
+                                 constraintName="fk_prestationpec_bareme_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ref_bareme"/>
+
+        <addForeignKeyConstraint baseColumnNames="garantie_id"
+                                 baseTableName="prestation_pec"
+                                 constraintName="fk_prestationpec_garantie_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ref_garantie_contractuelle"/>
+
+        <addForeignKeyConstraint baseColumnNames="pos_ga_id"
+                                 baseTableName="prestation_pec"
+                                 constraintName="fk_prestationpec_pos_ga_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ref_position_ga"/>
+
+        <addForeignKeyConstraint baseColumnNames="prestationpecs_id"
+                                 baseTableName="prestationpec_agent_generale"
+                                 constraintName="fk_prestationpec_agent_generale_prestationpecs_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="prestation_pec"/>
+        <addForeignKeyConstraint baseColumnNames="agent_generales_id"
+                                 baseTableName="prestationpec_agent_generale"
+                                 constraintName="fk_prestationpec_agent_generale_agent_generales_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="agent_general"/>
+
+        <addForeignKeyConstraint baseColumnNames="point_choc_id"
+                                 baseTableName="prestation_pec"
+                                 constraintName="fk_prestation_pec_point_choc_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="point_choc"/>
+
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="prestation_pec"
+                                 constraintName="fk_prestation_pec_user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+        
+    </changeSet>
+
+   
+</databaseChangeLog>

@@ -1,0 +1,48 @@
+{
+    "auxiliumApp": {
+        "sinisterPec" : {
+            "home": {
+                "title": "Sinister Pecs",
+                "createLabel": "Create a new Sinister Pec",
+                "createOrEditLabel": "Create or edit a Sinister Pec",
+                "search": "Search for Sinister Pec"
+            },
+            "created": "A new Sinister Pec is created with identifier {{ param }}",
+            "updated": "A Sinister Pec is updated with identifier {{ param }}",
+            "deleted": "A Sinister Pec is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Sinister Pec {{ id }}?"
+            },
+            "detail": {
+                "title": "Sinister Pec"
+            },
+            "reference": "Reference",
+            "companyReference": "Company Reference",
+            "declarationDate": "Declaration Date",
+            "vehicleNumber": "Vehicle Number",
+            "responsabilityRate": "Responsability Rate",
+            "insuredCapital": "Insured Capital",
+            "remainingCapital": "Remaining Capital",
+            "franchise": "Franchise",
+            "driverOrInsured": "Driver Or Insured",
+            "driverName": "Driver Name",
+            "driverLicenseNumber": "Driver License Number",
+            "governorate": "Governorate",
+            "delegation": "Delegation",
+            "companyName": "Compagnie Name",
+            "agentName": "Agent",
+            "contractNumber": "Contract Number",
+            "insuredImmatriculation": "Insured.immat",
+            "tiersImmatriculation": "Tiers.immat",
+            "modeGestion": "Garentee",
+            "responsabilite": "Responsibility Rate",
+            "casBareme": "Barem",
+            "incidentDate": "Incident Date",
+            "creationDate": "Creation Date",
+            "chargeName": "Charge Name",
+            "decisions": "List of Decision",
+            "decision": "Décision"
+
+        }
+    }
+}

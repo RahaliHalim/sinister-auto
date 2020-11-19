@@ -1,0 +1,24 @@
+{
+    "auxiliumApp": {
+        "reglement" : {
+            "home": {
+                "title": "Règlements",
+                "createLabel": "Créer un nouveau règlement",
+                "createOrEditLabel": "Créer ou modifier un règlement",
+                "search": "Recherche pour règlement"
+            },
+            "created": "Un nouveau règlement a été créé avec l'identifiant {{ param }}",
+            "updated": "Le règlement avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le règlement avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer le règlement {{ id }} ?"
+            },
+            "detail": {
+                "title": "Règlement"
+            },
+            "echeanceJours": "Echéance jours",
+            "reparateur": "Réparateur",
+            "modeReglement": "Mode règlement"
+        }
+    }
+}

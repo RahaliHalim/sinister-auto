@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity Client.
+    -->
+    <changeSet id="20170915105428-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="compagnie_id"
+                                 baseTableName="client"
+                                 constraintName="fk_client_compagnie_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ref_compagnie"/>
+
+        <addForeignKeyConstraint baseColumnNames="concessionnaire_id"
+                                 baseTableName="client"
+                                 constraintName="fk_client_concessionnaire_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="concessionnaire"/>
+
+        <addForeignKeyConstraint baseColumnNames="clients_id"
+                                 baseTableName="client_produit"
+                                 constraintName="fk_client_produit_clients_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="client"/>
+        <addForeignKeyConstraint baseColumnNames="produits_id"
+                                 baseTableName="client_produit"
+                                 constraintName="fk_client_produit_produits_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="produit"/>
+        
+        <addForeignKeyConstraint baseColumnNames="clients_id"
+                                 baseTableName="client_pack"
+                                 constraintName="fk_client_pack_clients_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="client"/>
+        <addForeignKeyConstraint baseColumnNames="packs_id"
+                                 baseTableName="client_pack"
+                                 constraintName="fk_client_pack_packs_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ref_pack"/>
+        
+    </changeSet>
+</databaseChangeLog>

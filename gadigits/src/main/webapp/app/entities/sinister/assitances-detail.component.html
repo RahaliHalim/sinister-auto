@@ -1,0 +1,794 @@
+<!-- Breadcrumb-->
+<div class="breadcrumb-holder">
+    <div class="container-fluid">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#"><span class="fa fa-home"></span>&nbsp;&nbsp;<span
+                        jhiTranslate="global.menu.home">Home</span></a></li>
+            <li class="breadcrumb-item"><a routerLink="/assistance"><span
+                        jhiTranslate="auxiliumApp.assitances.home.title">Dossiers</span></a></li>
+            <li class="breadcrumb-item"><span jhiTranslate="auxiliumApp.assitances.home.details">details dossier</span>
+            </li>
+        </ul>
+    </div>
+</div>
+<section class="forms">
+    </br>
+    <div class="col-lg-11">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img
+            class="imageGauche hipster img-fluid img-rounded" src="../../../content/images/search.png"
+            style="width:50px;" (click)="history()">
+        </br>
+        &nbsp;&nbsp;&nbsp;&nbsp; <span class="imageGauche">Historique &nbsp; </span>
+        <style type="text/css">
+            .imageGauche {
+                float: right;
+            }
+        </style>
+    </div>
+
+    <div class="container-fluid">
+        <!-- Page Header-->
+        <header style="padding-top: 1rem; padding-bottom: 1rem;">
+            <h1 class="h3 display">
+                <jhi-alert-error></jhi-alert-error>
+                <jhi-alert></jhi-alert>
+            </h1>
+        </header>
+        <div class="row">
+            <div class="col-lg-12">
+                <form name="editForm" role="form" novalidate #editForm="ngForm">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="card">
+                                <div class="card-header d-flex align-items-center no-padding">
+                                    <div class="notice notice-info">
+                                        <span class="fa fa-folder-open" style="color: #45ABCD"></span>&nbsp;&nbsp;
+                                        <strong jhiTranslate="auxiliumApp.assitances.home.details">Détails
+                                            dossier</strong> {{sinister.reference}}
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label jhiTranslate="auxiliumApp.dossier.immatriculation"
+                                                    for="currentSearch">Immatriculation</label>
+                                                <div class="input-group">
+                                                    <input type="text" [(ngModel)]="sinister.vehicleRegistration"
+                                                        class="form-control form-control-sm" name="currentSearch"
+                                                        id="currentSearch" [readonly]="sinister.id" />
+                                                    <span class="input-group-btn">
+                                                        <button class="input-group-addon btn btn-sm btn-info"
+                                                            [hidden]="sinister.id">
+                                                            <span class="fa fa-search"></span>
+                                                        </button>
+                                                        <button class="input-group-addon btn btn-sm btn-info"
+                                                            [hidden]="sinister.id"
+                                                            [disabled]="contratAssurance !== null"
+                                                            [routerLink]="['../contrat-assurance-new', sinister.vehicleRegistration]">
+                                                            <span class="fa fa-plus"></span>
+                                                        </button>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label jhiTranslate="auxiliumApp.dossier.natureIncident"
+                                                    for="field_natureIncident">Nature Incident</label>
+                                                <select class="form-control form-control-sm" name="natureIncident"
+                                                    [(ngModel)]="sinister.nature" id="field_natureIncident" disabled>
+                                                    <option value="PANNE"
+                                                        jhiTranslate="auxiliumApp.NatureIncident.PANNE">PANNE</option>
+                                                    <option value="ACCIDENT"
+                                                        jhiTranslate="auxiliumApp.NatureIncident.ACCIDENT">ACCIDENT
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4" *ngIf="sinister.nature == 'PANNE'">
+                                            <div class="form-group">
+                                                <label jhiTranslate="auxiliumApp.sinister.naturePanne"
+                                                    for="field_naturePanne">naturePanne</label>
+                                                    <select class="form-control form-control-sm" id="field_naturePanne"
+                                                    name="naturePanne"
+                                                    [(ngModel)]="sinister.naturePanneId"
+                                                    disabled
+                                                    >
+                                                    <option [ngValue]="naturePanne.id"
+                                                        *ngFor="let naturePanne of naturePannes">
+                                                        {{naturePanne.label}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <label class="form-control-label"
+                                                jhiTranslate="auxiliumApp.dossier.dateAccident"
+                                                for="field_dateAccident">Date Accident</label>
+                                            <div class="input-group">
+                                                <input id="field_dateAccident" type="text"
+                                                    class="form-control form-control-sm" name="dateAccident"
+                                                    ngbDatepicker #dateAccidentDp="ngbDatepicker"
+                                                    [(ngModel)]="sinister.incidentDate"
+                                                    (ngModelChange)="checkDateAccident();" readonly />
+                                                <span class="input-group-btn">
+                                                    <button type="button" class="btn btn-sm btn-default" disabled><i
+                                                            class="fa fa-calendar"></i></button>
+                                                </span>
+                                            </div>
+                                            <div
+                                                [hidden]="!(editForm.controls.dateAccident?.dirty && editForm.controls.dateAccident?.invalid)">
+                                                <small class="form-text text-danger"
+                                                    [hidden]="!editForm.controls.dateAccident?.errors?.required"
+                                                    jhiTranslate="entity.validation.required">This field is
+                                                    required.</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class="form-control-label"
+                                                    jhiTranslate="auxiliumApp.dossier.nbrPassagers"
+                                                    for="field_nbrPassagers">Nbr Passagers</label>
+                                                <input type="number" class="form-control form-control-sm"
+                                                    name="nbrPassagers" id="field_nbrPassagers"
+                                                    [(ngModel)]="sinister.passengerCount" [pattern]="nbrVehPattern"
+                                                    min="0" max="99999999" readonly />
+                                                <div
+                                                    [hidden]="!(editForm.controls.nbrPassagers?.dirty && editForm.controls.nbrPassagers?.invalid)">
+                                                    <small class="form-text text-danger"
+                                                        [hidden]="!editForm.controls.nbrPassagers?.errors?.max"
+                                                        jhiTranslate="entity.validation.max"
+                                                        translateValues="{ max: 99999999 }">This field cannot be more
+                                                        than 99999999.</small>
+                                                    <small class="form-text text-danger"
+                                                        [hidden]="!editForm.controls.nbrPassagers?.errors?.number"
+                                                        jhiTranslate="entity.validation.number">This field should be a
+                                                        number.</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class="form-control-label"
+                                                    jhiTranslate="auxiliumApp.dossier.telephone"
+                                                    for="field_telephone">Telephone</label>
+                                                <input type="number" class="form-control form-control-sm"
+                                                    name="telephone" id="field_telephone" [(ngModel)]="sinister.phone"
+                                                    readonly />
+                                                <div
+                                                    [hidden]="!(editForm.controls.telephone?.dirty && editForm.controls.telephone?.invalid)">
+                                                    <small class="form-text text-danger"
+                                                        [hidden]="!editForm.controls.telephone?.errors?.pattern"
+                                                        jhiTranslate="entity.validation.pattern"
+                                                        translateValues="{ pattern: 'Telephone' }">This field should
+                                                        follow pattern for "Telephone".</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <label class="form-control-label"
+                                                jhiTranslate="auxiliumApp.dossier.dateCreation"
+                                                for="field_dateCreation">Date Creation</label>
+                                            <div class="input-group">
+                                                <input id="field_dateCreation" class="form-control form-control-sm"
+                                                    name="dateCreation"
+                                                    value="{{sinister.creationDate | date:'dd/MM/yyyy HH:mm:ss'}}"
+                                                    readonly />
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class="form-control-label"
+                                                    jhiTranslate="auxiliumApp.dossier.prenomConducteur"
+                                                    for="field_prenomConducteur">Prenom Conducteur</label>
+                                                <input type="text" class="form-control form-control-sm"
+                                                    name="prenomConducteur" id="field_prenomConducteur"
+                                                    [(ngModel)]="sinister.conductorFirstName" maxlength="100"
+                                                    readonly />
+                                                <div
+                                                    [hidden]="!(editForm.controls.prenomConducteur?.dirty && editForm.controls.prenomConducteur?.invalid)">
+                                                    <small class="form-text text-danger"
+                                                        [hidden]="!editForm.controls.prenomConducteur?.errors?.maxlength"
+                                                        jhiTranslate="entity.validation.maxlength"
+                                                        translateValues="{ max: 100 }">
+                                                        This field cannot be longer than 100 characters.
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class="form-control-label"
+                                                    jhiTranslate="auxiliumApp.dossier.nomConducteur"
+                                                    for="field_nomConducteur">Nom Conducteur</label>
+                                                <input type="text" class="form-control form-control-sm"
+                                                    name="nomConducteur" id="field_nomConducteur"
+                                                    [(ngModel)]="sinister.conductorLastName" maxlength="100" readonly />
+                                                <div
+                                                    [hidden]="!(editForm.controls.nomConducteur?.dirty && editForm.controls.nomConducteur?.invalid)">
+                                                    <small class="form-text text-danger"
+                                                        [hidden]="!editForm.controls.nomConducteur?.errors?.maxlength"
+                                                        jhiTranslate="entity.validation.maxlength"
+                                                        translateValues="{ max: 100 }">
+                                                        This field cannot be longer than 100 characters.
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label
+                                                    jhiTranslate="auxiliumApp.refTypeService.detail.title">Servicetype</label>
+                                                <select class="form-control form-control-sm" id="field_lieu" name="lieu"
+                                                    disabled [(ngModel)]="sinisterPrestation.serviceTypeId"
+                                                    (ngModelChange)="selectServiceType()">
+                                                    <option [ngValue]="serviceType.id"
+                                                        *ngFor="let serviceType of serviceTypes">
+                                                        {{serviceType.nom}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="card">
+                                <div class="card-header d-flex align-items-center no-padding">
+                                    <div class="notice notice-info">
+                                        <span class="fa fa-file-text-o" style="color: #45ABCD"></span>&nbsp;&nbsp;
+                                        <strong jhiTranslate="auxiliumApp.contratAssurance.home.details">Détails
+                                            contrat</strong>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="alert alert-danger" *ngIf="contratAssurance == null"
+                                        jhiTranslate="auxiliumApp.dossier.contrat">
+                                        <strong>Matricule inexistante</strong>
+                                    </div>
+                                    <!-- Begin sinister and contract -->
+                                    <form name="editForm" role="form" *ngIf="contratAssurance !== null">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label jhiTranslate="auxiliumApp.contratAssurance.numeroContrat"
+                                                        for="field_immatriculationVehicule">numero Contrat</label>
+                                                    <input type="text" class="form-control form-control-sm"
+                                                        name="numeroContrat" id="field_numeroContrat"
+                                                        [(ngModel)]="contratAssurance.numeroContrat" readonly />
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label jhiTranslate="auxiliumApp.contratAssurance.compagnie"
+                                                        for="field_company">company</label>
+                                                    <input type="text" class="form-control form-control-sm"
+                                                        name="company" id="field_company"
+                                                        [(ngModel)]="contratAssurance.nomCompagnie" readonly />
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label jhiTranslate="auxiliumApp.contratAssurance.agence"
+                                                        for="field_agency">agency</label>
+                                                    <input type="text" class="form-control form-control-sm"
+                                                        name="agency" id="field_agency"
+                                                        [(ngModel)]="contratAssurance.agenceNom" readonly />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label jhiTranslate="auxiliumApp.contratAssurance.assure"
+                                                        for="field_assurePrenom">Assure</label>
+                                                    <input type="text" class="form-control form-control-sm"
+                                                        name="assurePrenom" id="field_assurePrenom"
+                                                        [(ngModel)]="insured.fullName" maxlength="100" readonly />
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label jhiTranslate="auxiliumApp.contratAssurance.debutValidite"
+                                                        for="field_debutValidite">debutValidite</label>
+                                                    <input type="text" class="form-control form-control-sm"
+                                                        name="debutValidite" id="field_debutValidite"
+                                                        value="{{contratAssurance.debutValidite | date:'dd/MM/yyyy'}}"
+                                                        readonly />
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label jhiTranslate="auxiliumApp.contratAssurance.finValidite"
+                                                        for="field_finValidite">finValidite</label>
+                                                    <input type="text" class="form-control form-control-sm"
+                                                        name="finValidite" id="field_finValidite"
+                                                        value="{{contratAssurance.finValidite | date:'dd/MM/yyyy'}}"
+                                                        readonly />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label jhiTranslate="auxiliumApp.contratAssurance.marque"
+                                                        for="field_marqueLibelle">Marque</label>
+                                                    <input type="text" class="form-control form-control-sm"
+                                                        name="marqueLibelle" id="field_marqueLibelle"
+                                                        [(ngModel)]="contratAssurance.marqueLibelle" readonly />
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label jhiTranslate="auxiliumApp.vehiculeAssure.datePCirculation"
+                                                        for="field_datePCirculation">datePCirculation</label>
+                                                    <input type="text" class="form-control form-control-sm"
+                                                        name="datePCirculation" id="field_datePCirculation"
+                                                        value="{{contratAssurance.datePCirculation | date:'dd/MM/yyyy'}}"
+                                                        readonly />
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label jhiTranslate="auxiliumApp.contratAssurance.ville"
+                                                        for="field_ville">Ville</label>
+                                                    <input type="text" class="form-control form-control-sm"
+                                                        name="villeLibelle" id="field_ville"
+                                                        [(ngModel)]="insured.villeLibelle" readonly />
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4" *ngIf="insured.company">
+                                                <div class="form-group">
+                                                    <label class="form-control-label" for="field_isAssujettieTva"
+                                                        style="width: 100%;">&nbsp;</label>
+                                                    <input type="checkbox" class="check-input" name="isAssujettieTva"
+                                                        id="field_isAssujettieTva" [(ngModel)]="insured.isAssujettieTva"
+                                                        readonly />
+                                                    <label class="form-control-label"
+                                                        jhiTranslate="auxiliumApp.personneMorale.isAssujettieTva"
+                                                        for="field_isAssujettieTva">Is Assujettie Tva</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label jhiTranslate="auxiliumApp.contratAssurance.pack"
+                                                        for="field_pack">Pack</label>
+                                                    <input type="text" class="form-control form-control-sm" name="pack"
+                                                        id="field_pack" [(ngModel)]="vehiculeContrat.packLabel"
+                                                        readonly />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <!-- End contract details -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End sinister and contract details -->
+                    </div>
+                </form>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <span class="anchor" id="formUserEdit"></span>
+                            <div class="card-header d-flex align-items-center no-padding">
+                                <div class="notice notice-info">
+                                    <span class="fa fa-list" style="color: #45ABCD"></span>&nbsp;&nbsp;<strong
+                                        jhiTranslate="auxiliumApp.sinister.home.createOrEditServiceLabel">Service</strong>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-5">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label
+                                                        jhiTranslate="auxiliumApp.serviceRmq.gouvernorat">gouvernorat</label>
+                                                    <select class="form-control form-control-sm" id="field_lieu"
+                                                        name="lieu"
+                                                        [(ngModel)]="sinisterPrestation.incidentGovernorateId" disabled>
+                                                        <option [ngValue]="gouvernoratOption.id"
+                                                            *ngFor="let gouvernoratOption of governorates">
+                                                            {{gouvernoratOption.label}}
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label jhiTranslate="auxiliumApp.serviceRmq.ville"
+                                                        for="field_ville">lieu</label>
+                                                    <select class="form-control form-control-sm" id="field_ville"
+                                                        name="ville" [(ngModel)]="sinisterPrestation.incidentLocationId"
+                                                        disabled>
+                                                        <option [ngValue]="sysVilleOption.id"
+                                                            *ngFor="let sysVilleOption of cities">
+                                                            {{sysVilleOption.label}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label
+                                                        jhiTranslate="auxiliumApp.sinisterPrestation.gouvernorat">gouvernorat</label>
+                                                    <select class="form-control form-control-sm"
+                                                        id="field_destGovernorate" name="destGovernorate"
+                                                        [(ngModel)]="sinisterPrestation.destinationGovernorateId"
+                                                        disabled>
+                                                        <option [ngValue]="gouvernoratOption.id"
+                                                            *ngFor="let gouvernoratOption of governorates">
+                                                            {{gouvernoratOption.label}}
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label jhiTranslate="auxiliumApp.sinisterPrestation.ville"
+                                                        for="field_destCity">lieu</label>
+                                                    <select class="form-control form-control-sm" id="field_destCity"
+                                                        name="destCity"
+                                                        [(ngModel)]="sinisterPrestation.destinationLocationId" disabled>
+                                                        <option [ngValue]="sysVilleOption.id"
+                                                            *ngFor="let sysVilleOption of citiesDest">
+                                                            {{sysVilleOption.label}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="form-group">
+                                            <label class="form-control-label"
+                                                jhiTranslate="auxiliumApp.sinisterPrestation.distance"
+                                                for="field_distance">distance</label>
+                                            <input type="number" class="form-control form-control-sm" name="distance"
+                                                id="field_distance" [(ngModel)]="sinisterPrestation.mileage" min="0"
+                                                readonly />
+                                        </div>
+                                    </div>
+
+
+
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label class="form-control-label"
+                                                jhiTranslate="auxiliumApp.sinisterPrestation.remorqueur"
+                                                for="field_affectedTugLabel">remorqueur</label> <i
+                                                class="fa fa-sm fa-info-circle"
+                                                title="{{sinisterPrestation.affectedTruckLabel}}"></i>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control form-control-sm"
+                                                    name="affectedTugLabel" id="field_affectedTugLabel"
+                                                    [(ngModel)]="sinisterPrestation.affectedTugLabel" readonly />
+                                                <span class="input-group-btn">
+                                                    <button type="button" class="btn btn-sm btn-default"
+                                                        (click)="selectTug()"><i class="fa fa-sm fa-truck"></i></button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="form-group">
+                                            <label class="form-control-label"
+                                                jhiTranslate="auxiliumApp.sinisterPrestation.amountHt"
+                                                for="field_amountHt">amountHt</label>
+                                            <input type="text" class="form-control form-control-sm" name="amountHt"
+                                                id="field_amountHt" [(ngModel)]="sinisterPrestation.priceHt"
+                                                pattern="^[0-9]+(\.[0-9]{1,3})?" readonly />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="form-group">
+                                            <label class="form-control-label"
+                                                jhiTranslate="auxiliumApp.sinisterPrestation.amountTtc"
+                                                for="field_amountTtc">amountTtc</label>
+                                            <input type="text" class="form-control form-control-sm" name="amountTtc"
+                                                id="field_amountTtc" [(ngModel)]="sinisterPrestation.priceTtc"
+                                                pattern="^[0-9]+(\.[0-9]{1,3})?" readonly />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <div class="row">
+                                            <div class="col-lg-3" *ngIf="sinisterSettings.heavyWeights">
+                                                <label class="form-control-label" for="field_heavyWeights"
+                                                    style="width: 100%;">&nbsp;</label>
+                                                <input type="checkbox" class="check-input" name="heavyWeights"
+                                                    id="field_heavyWeights"
+                                                    [(ngModel)]="sinisterPrestation.heavyWeights" disabled />
+                                                <label class="form-control-label"
+                                                    jhiTranslate="auxiliumApp.sinisterPrestation.heavyWeights"
+                                                    for="field_heavyWeights">heavyWeights</label>
+                                            </div>
+                                            <div class="col-lg-3" *ngIf="sinisterSettings.holidays">
+                                                <label class="form-control-label" for="field_holidays"
+                                                    style="width: 100%;">&nbsp;</label>
+                                                <input type="checkbox" class="check-input" name="holidays"
+                                                    id="field_holidays" [(ngModel)]="sinisterPrestation.holidays"
+                                                    disabled />
+                                                <label class="form-control-label"
+                                                    jhiTranslate="auxiliumApp.sinisterPrestation.holidays"
+                                                    for="field_holidays">holidays</label>
+                                            </div>
+                                            <div class="col-lg-3" *ngIf="sinisterSettings.night">
+                                                <label class="form-control-label" for="field_night"
+                                                    style="width: 100%;">&nbsp;</label>
+                                                <input type="checkbox" class="check-input" name="night" id="field_night"
+                                                    [(ngModel)]="sinisterPrestation.night" disabled />
+                                                <label class="form-control-label"
+                                                    jhiTranslate="auxiliumApp.sinisterPrestation.night"
+                                                    for="field_night">night</label>
+                                            </div>
+                                            <div class="col-lg-3" *ngIf="sinisterSettings.halfPremium">
+                                                <label class="form-control-label" for="field_halfPremium"
+                                                    style="width: 100%;">&nbsp;</label>
+                                                <input type="checkbox" class="check-input" name="halfPremium"
+                                                    id="field_halfPremium" [(ngModel)]="sinisterPrestation.halfPremium"
+                                                    disabled />
+                                                <label class="form-control-label"
+                                                    jhiTranslate="auxiliumApp.sinisterPrestation.halfPremium"
+                                                    for="field_halfPremium">halfPremium</label>
+                                            </div>
+                                            <div class="col-lg-3" *ngIf="sinisterSettings.fourPorteF">
+                                                <label class="form-control-label" for="field_fourPorteF"
+                                                    style="width: 100%;">&nbsp;</label>
+                                                <input type="checkbox" class="check-input" name="fourPorteF"
+                                                    id="field_fourPorteF" [(ngModel)]="sinisterPrestation.fourPorteF"
+                                                    disabled />
+                                                <label class="form-control-label"
+                                                    jhiTranslate="auxiliumApp.sinisterPrestation.fourPorteF"
+                                                    for="field_fourPorteF">fourPorteF</label>
+                                            </div>
+                                            <div class="col-lg-3" *ngIf="sinisterSettings.fourPorteK">
+                                                <label class="form-control-label" for="field_fourPorteK"
+                                                    style="width: 100%;">&nbsp;</label>
+                                                <input type="checkbox" class="check-input" name="fourPorteK"
+                                                    id="field_fourPorteK" [(ngModel)]="sinisterPrestation.fourPorteK"
+                                                    disabled />
+                                                <label class="form-control-label"
+                                                    jhiTranslate="auxiliumApp.sinisterPrestation.fourPorteK"
+                                                    for="field_fourPorteK">fourPorteK</label>
+                                            </div>
+                                            <div class="col-lg-3" *ngIf="sinisterSettings.isR">
+                                                <label class="form-control-label" for="field_R" style="width: 100%;">&nbsp;</label>
+                                                <input type="checkbox" class="check-input" name="R" id="field_R"
+                                                    [(ngModel)]="sinisterPrestation.isR" (ngModelChange)="mileageMinMax();"
+                                                    disabled />
+
+                                                <label class="form-control-label" jhiTranslate="auxiliumApp.sinisterPrestation.R"
+                                                    for="field_R">R</label>
+                                            </div>
+                                            <div class="col-lg-3" *ngIf="sinisterSettings.isU">
+                                                <label class="form-control-label" for="field_U" style="width: 100%;">&nbsp;</label>
+                                                <input type="checkbox" class="check-input" name="U" id="field_U"
+                                                    [(ngModel)]="sinisterPrestation.isU" (ngModelChange)="mileageMinMax();"
+                                                    disabled/>
+                                                <label class="form-control-label" jhiTranslate="auxiliumApp.sinisterPrestation.U"
+                                                    for="field_U">U</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-5">
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label class="form-control-label"
+                                                        jhiTranslate="auxiliumApp.sinisterPrestation.tugArrivalDate"
+                                                        for="field_tugArrivalDate">tugArrivalDate</label>
+                                                    <div class="input-group">
+                                                        <input id="field_tugArrivalDate" type="text"
+                                                            class="form-control form-control-sm" name="tugArrivalDate"
+                                                            ngbDatepicker #tugArrivalDate="ngbDatepicker"
+                                                            [(ngModel)]="sinisterPrestation.tugArrivalDate" readonly />
+                                                        <span class="input-group-btn">
+                                                            <button type="button" class="btn btn-sm btn-default"
+                                                                disabled><i class="fa fa-sm fa-calendar"></i></button>
+                                                        </span>&nbsp;&nbsp;
+                                                        <ngb-timepicker size="small" [(ngModel)]="tugArrivalTime"
+                                                            [spinners]="false" name="tugArrivalTime"
+                                                            [readonlyInputs]="true">
+                                                        </ngb-timepicker>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label class="form-control-label"
+                                                        jhiTranslate="auxiliumApp.sinisterPrestation.insuredArrivalDate"
+                                                        for="field_insuredArrivalDate">insuredArrivalDate</label>
+                                                    <div class="input-group">
+                                                        <input id="field_insuredArrivalDate" type="text"
+                                                            class="form-control form-control-sm"
+                                                            name="insuredArrivalDate" ngbDatepicker
+                                                            #insuredArrivalDate="ngbDatepicker"
+                                                            [(ngModel)]="sinisterPrestation.insuredArrivalDate"
+                                                            readonly />
+                                                        <span class="input-group-btn">
+                                                            <button type="button" class="btn btn-sm btn-default"
+                                                                disabled><i class="fa fa-sm fa-calendar"></i></button>
+                                                        </span>&nbsp;&nbsp;
+                                                        <ngb-timepicker size="small" [(ngModel)]="insuredArrivalTime"
+                                                            [spinners]="false" name="insuredArrivalTime"
+                                                            [readonlyInputs]="true"></ngb-timepicker>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <div class="row">
+                                            <div class="col-lg-10">
+                                                <div class="form-group" *ngIf="sinisterSettings.showCancelGrounds">
+                                                    <label
+                                                        jhiTranslate="auxiliumApp.sinisterPrestation.cancelGrounds">cancelGrounds</label>
+                                                    <select class="form-control form-control-sm"
+                                                        id="field_cancelGrounds" name="cancelGrounds"
+                                                        [(ngModel)]="sinisterPrestation.cancelGroundsId" disabled>
+                                                        <option [ngValue]="option.id"
+                                                            *ngFor="let option of cancelGrounds">
+                                                            {{option.label}}
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group" *ngIf="sinisterSettings.showReopenGrounds">
+                                                    <label
+                                                        jhiTranslate="auxiliumApp.sinisterPrestation.reopenGrounds">reopenGrounds</label>
+                                                    <select class="form-control form-control-sm"
+                                                        id="field_reopenGrounds" name="reopenGrounds"
+                                                        [(ngModel)]="sinisterPrestation.reopenGroundsId" disabled>
+                                                        <option [ngValue]="option.id"
+                                                            *ngFor="let option of reopenGrounds">
+                                                            {{option.label}}
+                                                        </option>
+                                                    </select>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!--<div class="card">
+                            <div class="card-footer">
+                                <button type="submit" *ngIf="sinisterSettings.canCancel" class="btn btn-sm btn-primary float-right"
+                                    [routerLink]="['/prestation/' + sinisterPrestation.id + '/cancel']" replaceUrl="false">
+                                    <span class="fa fa-close"></span>&nbsp;
+                                    <span jhiTranslate="entity.action.cancel">cancel</span>
+                                </button>&nbsp;&nbsp;
+                                <button type="submit" *ngIf="sinisterSettings.canReopen" class="btn btn-sm btn-primary float-right"
+                                     [routerLink]="['/prestation/' + sinisterPrestation.id + '/reopen']" replaceUrl="false">
+                                    <span class="fa fa-window-restore"></span>&nbsp;
+                                    <span jhiTranslate="entity.action.reopen">reopen</span>
+                                </button>
+                            </div>
+                        </div>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!----------------------------------------------------------------------------------Observation---------------------------------------------------------------------------->
+
+
+        <div class="row">
+            <div class="col-lg-12">
+
+                <div class="card">
+                    <div class=" collapsible-card card-header align-items-center collapsed notice notice-info"
+                        data-toggle="collapse" href="#collapseOb">
+                        <strong>Observations </strong>
+                    </div>
+                </div>
+                <div id="collapseOb" class="card-body collapse">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control form-control-sm" name="observation"
+                                id="observationId" [(ngModel)]="observation.commentaire" />
+                            <div [hidden]="!isCommentError">
+                                <small class="form-text text-danger" [hidden]="!isCommentError"
+                                    jhiTranslate="entity.validation.required">This
+                                    field is required.</small>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <button *ngIf="!isObsModeEdit" class="btn btn-sm btn-primary addnew"
+                                (click)="addObservation();">
+                                <span class="fa fa-plus"></span>
+                                <span jhiTranslate="auxiliumApp.observation.home.createLabel">Create new
+                                    Observation
+                                </span>
+                            </button>
+                            <button *ngIf="isObsModeEdit" class="btn btn-sm btn-primary addnew"
+                                (click)="editObservation();">
+                                <span class="fa fa-pencil"></span>
+                                <span jhiTranslate="auxiliumApp.observation.home.editLabel">Edit
+                                    Observation
+                                </span>
+                            </button>
+
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 15px;">
+                        <div class="col-sm-12">
+                            <div class="table-responsive" *ngIf="observationss && observationss.length > 0">
+                                <table class="table table-sm table-hover table-bordered" style="width: 100%">
+                                    <thead>
+                                        <tr jhiSort style="color: white; background-color: #167F92">
+                                            <th jhiSortBy="date"><span
+                                                    jhiTranslate="auxiliumApp.observation.date">Date</span>
+                                                <span class="fa fa-sort"></span></th>
+                                            <th><span
+                                                    jhiTranslate="auxiliumApp.observation.commentaire">Commentaire</span>
+                                                <span class="fa fa-sort"></span></th>
+                                            <th jhiSortBy="userLogin"><span
+                                                    jhiTranslate="auxiliumApp.observation.user">Utilisateur</span>
+                                                <span class="fa fa-sort"></span></th>
+                                            <!--<th></th>-->
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <ng-container *ngFor="let observation of observationss">
+                                            <tr *ngIf="!observation.deleted">
+                                                <td>{{observation.date | date:'dd/MM/yy h:mm a'}}</td>
+                                                <td>{{observation.commentaire}}</td>
+                                                <td>{{observation.firstName}}
+                                                    {{observation.lastName}}</td>
+                                                <!--<td class="text-right">
+                                                                    <div class="btn-group flex-btn-group-container">
+                                                                        <button  type="button"
+                                                                        (click)="prepareEditObservation(observation)"
+                                                                        class="btn btn-primary btn-sm">
+                                                                            <span class="fa fa-pencil"></span>
+                                                                        </button>
+                                                                        <button type="button"
+                                                                            (click)="deleteObservation(observation)"
+                                                                            class="btn btn-danger btn-sm">
+                                                                            <span class="fa fa-trash"></span>
+                                                                        </button>
+                                                                    </div>
+                                                                </td>-->
+                                            </tr>
+                                        </ng-container>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!------------------------------------------------------- fin observation ----------------------------------------------------------->
+    </div>
+
+</section>

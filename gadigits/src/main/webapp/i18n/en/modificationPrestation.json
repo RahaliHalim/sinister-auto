@@ -1,0 +1,18 @@
+{
+    "auxiliumApp": {
+        "modificationPrestation" : {
+            "home": {
+                "title": "Modification Prestation"
+            },
+            "detail": {
+                "title": "Modification Prestation"
+
+            },
+                "label" : "label",
+                " company" : "Compagnie",
+                " declarationDate" : "Date de decalaration",
+                " vehicleNumber" : "Numéro de véhicule"
+              
+        }
+    }
+}

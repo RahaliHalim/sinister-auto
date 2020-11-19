@@ -1,0 +1,175 @@
+
+<!-- Breadcrumb-->
+<div class="breadcrumb-holder">
+	<div class="container-fluid">
+		<ul class="breadcrumb">
+			<li class="breadcrumb-item"><a routerLink="/"><span class="fa fa-home"></span>&nbsp;&nbsp;<span
+					jhiTranslate="global.menu.home">Home</span></a></li>
+			<li class="breadcrumb-item"><a routerLink="/ref-pricing"><span
+					jhiTranslate="auxiliumApp.refPricing.home.title">Ref Pricing</span></a></li>
+			<li class="breadcrumb-item active"><span
+				jhiTranslate="auxiliumApp.refPricing.detail.title">Tarif</span></li>
+		</ul>
+	</div>
+</div>
+<section class="forms">
+	<div class="container-fluid">
+		<!-- Page Header-->
+		<header>
+			<h1 class="h3 display">
+				<jhi-alert-error></jhi-alert-error>
+			</h1>
+		</header>
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="card">
+					<div class="card-header d-flex align-items-center no-padding" >
+						<div class="notice notice-info"><span class="fa fa-money" style="color: #45ABCD">&nbsp;&nbsp;<strong jhiTranslate="auxiliumApp.refPricing.detail.title">Tarif</strong></div>
+					</div>
+
+					<div class="card-body">
+						<form #myform="ngForm" novalidate>
+							<div class="row">
+								<div class="col-lg-6">
+									<div class="form-group">
+										<label class="form-control-label"
+											jhiTranslate="auxiliumApp.refPricing.label" for="field_label">Label</label>
+										<input type="text" class="form-control form-control-sm"
+											name="label" id="field_label" [(ngModel)]="refPricing.label" readonly/>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-3">
+									<div class="form-group">
+										<label class="form-control-label"
+											jhiTranslate="auxiliumApp.refPricing.priceUrbanPlanService"
+											for="field_priceUrbanPlanService">priceUrbanPlanService</label>
+										<input type="text" class="form-control form-control-sm"
+											name="priceUrbanPlanService" id="field_priceUrbanPlanService"
+											[(ngModel)]="refPricing.priceUrbanPlanService" readonly/>
+									</div>
+								</div>
+								<div class="col-lg-3">
+									<div class="form-group">
+										<label class="form-control-label"
+											jhiTranslate="auxiliumApp.refPricing.priceKlmShortDistance"
+											for="field_priceKlmShortDistance">priceKlmShortDistance</label>
+										<input type="text" class="form-control form-control-sm"
+											name="priceKlmShortDistance" id="field_priceKlmShortDistance"
+											[(ngModel)]="refPricing.priceKlmShortDistance" readonly/>
+									</div>
+								</div>
+								<div class="col-lg-3">
+									<div class="form-group">
+										<label class="form-control-label"
+											jhiTranslate="auxiliumApp.refPricing.priceKlmLongDistance"
+											for="field_priceKlmLongDistance">priceKlmLongDistance</label>
+										<input type="text" class="form-control form-control-sm"
+											name="priceKlmLongDistance" id="field_priceKlmLongDistance"
+											[(ngModel)]="refPricing.priceKlmLongDistance" readonly/>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-3">
+									<div class="form-group">
+										<label class="form-control-label"
+											jhiTranslate="auxiliumApp.refPricing.priceUrbanPlanServicePl"
+											for="field_priceUrbanPlanServicePl">priceUrbanPlanServicePl</label>
+										<input type="text" class="form-control form-control-sm"
+											name="priceUrbanPlanServicePl"
+											id="field_priceUrbanPlanServicePl"
+											[(ngModel)]="refPricing.priceUrbanPlanServicePl" readonly/>
+									</div>
+								</div>
+								<div class="col-lg-3">
+									<div class="form-group">
+										<label class="form-control-label"
+											jhiTranslate="auxiliumApp.refPricing.priceKlmShortDistancePl"
+											for="field_priceKlmShortDistancePl">priceKlmShortDistancePl</label>
+										<input type="text" class="form-control form-control-sm"
+											name="priceKlmShortDistancePl"
+											id="field_priceKlmShortDistancePl"
+											[(ngModel)]="refPricing.priceKlmShortDistancePl" readonly/>
+									</div>
+								</div>
+								<div class="col-lg-3">
+									<div class="form-group">
+										<label class="form-control-label"
+											jhiTranslate="auxiliumApp.refPricing.priceKlmLongDistancePl"
+											for="field_priceKlmLongDistancePl">priceKlmLongDistancePl</label>
+										<input type="text" class="form-control form-control-sm"
+											name="priceKlmLongDistancePl"
+											id="field_priceKlmLongDistancePl"
+											[(ngModel)]="refPricing.priceKlmLongDistancePl" readonly/>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-3">
+									<div class="form-group">
+										<label class="form-control-label"
+											jhiTranslate="auxiliumApp.refPricing.priceExtraction"
+											for="field_priceExtraction">priceExtraction</label> <input
+											type="text" class="form-control form-control-sm"
+											name="priceExtraction" id="field_priceExtraction"
+											[(ngModel)]="refPricing.priceExtraction" readonly/>
+									</div>
+								</div>
+								<div class="col-lg-3">
+									<div class="form-group">
+										<label class="form-control-label"
+											jhiTranslate="auxiliumApp.refPricing.priceReparation"
+											for="field_priceReparation">priceReparation</label> <input
+											type="text" class="form-control form-control-sm"
+											name="priceReparation" id="field_priceReparation"
+											[(ngModel)]="refPricing.priceReparation" readonly/>
+									</div>
+								</div>
+								<div class="col-lg-3">
+									<div class="form-group">
+										<label class="form-control-label"
+											jhiTranslate="auxiliumApp.refPricing.priceUrbanMobility"
+											for="field_priceUrbanMobility">priceUrbanMobility</label> <input
+											type="text" class="form-control form-control-sm"
+											name="priceUrbanMobility" id="field_priceUrbanMobility"
+											[(ngModel)]="refPricing.priceUrbanMobility" readonly/>
+									</div>
+								</div>
+								<div class="col-lg-3">
+									<div class="form-group">
+										<label class="form-control-label"
+											jhiTranslate="auxiliumApp.refPricing.priceIncrease"
+											for="field_priceIncrease">priceIncrease</label> <input
+											type="text" class="form-control form-control-sm"
+											name="priceIncrease" id="field_priceIncrease"
+											[(ngModel)]="refPricing.priceIncrease" readonly/>
+									</div>
+								</div>
+
+							</div>
+
+							<div class="row">
+								<div class="col-lg-12" style="margin-top: 10px">
+									<div class="form-group">
+
+										<button type="button" [routerLink]="['/ref-pricing/'+ refPricing.id + '/edit']" class=" margin-right-5">
+											<span jhiTranslate="entity.action.edit">Edit</span>
+										</button>
+
+                                         <button type="submit" [routerLink]="['/ref-pricing']" replaceUrl="true" class="btn btn-default btn-sm pull-right margin-right-5">
+                                          <span jhiTranslate="entity.action.back">Back</span>
+                                         </button>
+
+									</div>
+								</div>
+							</div>
+						</form>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

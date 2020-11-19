@@ -1,0 +1,166 @@
+<!-- Breadcrumb-->
+<div class="breadcrumb-holder">
+  <div class="container-fluid">
+    <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="/"><span class="fa fa-home"></span>&nbsp;&nbsp;<span	jhiTranslate="global.menu.home">Home</span></a></li>
+            <li class="breadcrumb-item"><span jhiTranslate="auxiliumApp.sinisterPrestation.report.title">Reporting</span></li>
+      <li class="breadcrumb-item"><span jhiTranslate="auxiliumApp.rapport.performanceRemorqueur.title">Souscription</span></a></li>
+    </ul>
+  </div>
+</div>
+<section class="forms">
+    <div class="container-fluid">
+          <!-- Page Header-->
+         
+          <div class="row">
+              <div class="col-lg-12">
+                  <form>
+                      <div class="card-header d-flex align-items-center no-padding" >
+                          <div class="notice notice-info"><span class="fa fa-search" style="color: #45ABCD"></span>&nbsp;&nbsp;<strong jhiTranslate="auxiliumApp.contratAssurance.filter">filter</strong></div>
+                      </div>
+  
+  
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-sm-3">
+                              <label jhiTranslate="auxiliumApp.rapport.suiviAnnulation.compagnie" for="field_partner">Compagnie</label>
+                              <select class="form-control form-control-sm" id="field_partner" name="partner"  [(ngModel)]="search.compagnieId"  >
+                                <option [ngValue]="partner.id" *ngFor="let partner of partners;">{{partner?.companyName}}</option>
+                            </select>
+                          </div>
+                          <div class="col-sm-3">
+                            <label jhiTranslate="auxiliumApp.rapport.performanceRemorqueur.delai_moyen" for="field_partner">Délai Moyen</label>
+                            <select class="form-control form-control-sm"  >
+  
+                            </select>
+
+                          
+                        </div>
+
+                         <div class="col-sm-3">
+                    <label jhiTranslate="auxiliumApp.rapport.performanceRemorqueur.zone" for="field_partner">Zone </label>
+                    <select class="form-control form-control-sm"  name="statut"  [(ngModel)]="search.zoneId"  >
+                        <option [ngValue]="gov.id" *ngFor="let gov of governorate;">{{gov?.label}}</option>
+
+                    </select>   
+                </div> 
+                       
+                      <div class="col-sm-3">
+                          <label jhiTranslate="auxiliumApp.rapport.performanceRemorqueur.remorqueur" for="field_partner">Remorqueur</label>
+                          <select class="form-control form-control-sm"  name="charge" [(ngModel)]="search.tugId">
+                            <option [ngValue]="tug.id" *ngFor="let tug of tugs;">{{tug?.societeRaisonSociale}}</option>
+
+                        </select>     
+                      </div>     
+    
+                    </div>
+  
+                                            
+                         
+                          <div class="row">
+                             
+                              <div class="col-lg-3">
+
+                              <div class="form-group">
+                                  <label class="form-control-label" jhiTranslate="auxiliumApp.sinisterPrestation.report.startDate" for="field_startDate">startDate</label>
+                                  <div class="input-group">
+                                      <input id="field_startDate" type="text" class="form-control form-control-sm" name="startDate" ngbDatepicker #startDate="ngbDatepicker"
+                                             [(ngModel)]="search.startDate" [maxDate]="search.endDate" />
+                                             <span class="input-group-btn">
+                                          <button type="button" class="btn btn-sm btn-default" (click)="startDate.toggle()"><i class="fa fa-sm fa-calendar"></i></button>
+                                      </span>
+                                  </div>
+                              </div>
+                              </div>
+                              <div class="col-lg-3">
+                                      <div class="form-group">
+                                              <label class="form-control-label" jhiTranslate="auxiliumApp.sinisterPrestation.report.endDate" for="field_endDate">endDate</label>
+                                              <div class="input-group">
+                                                  <input id="field_endDate" type="text" class="form-control form-control-sm" name="endDate" ngbDatepicker  #endDate="ngbDatepicker" [(ngModel)]="search.endDate"
+                                                         [minDate]="search.startDate"/>
+                                                         <span class="input-group-btn">
+                                                      <button type="button" class="btn btn-sm btn-default" (click)="endDate.toggle()"><i class="fa fa-sm fa-calendar"></i></button>
+                                                  </span>
+                                              </div>
+                                          </div>
+                              </div>
+                              <div class="col-lg-3">
+                                  <div class="form-group">
+                                      <label class="form-control-label" style="width: 100%">&nbsp;</label>
+                                      <button type="button" (click)="filter()"
+                                          class="btn btn-sm btn-primary margin-right-5">
+                                          <span class="fa fa-search"></span>&nbsp; <span jhiTranslate="auxiliumApp.sinisterPrestation.report.doFilter">Filtrer</span>
+                                      </button>&nbsp;
+                                      <button type="button" (click)="clear()"
+                                          class="btn btn-sm btn-primary margin-right-5">
+                                          <span class="fa fa-minus"></span>&nbsp; <span>Ré-initialiser</span>
+                                      </button>
+  
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+  
+                    </form>
+  
+                    <div class="card">
+                      <div class="card-header d-flex align-items-center no-padding" >
+                          <div class="notice notice-info">
+                              <span class="fa fa-area-chart" style="color: #45ABCD"></span>&nbsp;&nbsp;
+                              <strong jhiTranslate="auxiliumApp.sinisterPrestation.report.services">services</strong>
+                          </div>
+                      </div>
+                   
+
+
+
+                      <div class="card-body">
+                          <div class="table-responsive">
+                              <table datatable  [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-sm table-hover table-bordered" style="width: 100%">
+                                  <thead style="color:white;background-color:#11859b">
+                                      <tr>
+                                      <th><span jhiTranslate="auxiliumApp.rapport.performanceRemorqueur.remorqueur">gaReference</span></th>
+                                      <th><span jhiTranslate="auxiliumApp.rapport.performanceRemorqueur.referenceGa">registrationNumber</span></th>
+                                      <th><span jhiTranslate="auxiliumApp.rapport.performanceRemorqueur.immatriculation">insured</span></th>
+                                      <th><span jhiTranslate="auxiliumApp.rapport.performanceRemorqueur.compagnie">partner</span></th>
+                                      <th><span jhiTranslate="auxiliumApp.rapport.performanceRemorqueur.type_service">gaReference</span></th>
+                                      <th><span jhiTranslate="auxiliumApp.rapport.performanceRemorqueur.usage">registrationNumber</span></th>
+                                      <th><span jhiTranslate="auxiliumApp.rapport.performanceRemorqueur.delai_moyen">insured</span></th>
+                                      <th><span jhiTranslate="auxiliumApp.rapport.performanceRemorqueur.habillage">insured</span></th>
+                                      <th><span jhiTranslate="auxiliumApp.rapport.performanceRemorqueur.lieu-sinistre">insured</span></th>
+                                      <th><span jhiTranslate="auxiliumApp.rapport.performanceRemorqueur.cout">insured</span></th>
+                                 
+
+
+                                  </tr>
+                                  </thead>
+                                  <tbody>
+                                      <tr *ngFor = "let per of performance" >
+                                        <td>{{per.remorqueur}}</td>
+                                        <td>{{per.referenceGa}}</td>
+										 <td>{{per.immatriculationVehicule}}</td>
+                                        <td>{{per.compagnie}}</td>
+										<td>{{per.typeService}}</td>
+                                        <td>{{per.usage}}</td>
+										    	<td></td>
+                                            <td></td>
+										     <td>{{per.zone}}</td>
+                                            <td></td>
+                                       
+                                      </tr>
+                                  </tbody>
+                              </table>
+                          </div>
+                      </div>
+
+
+
+
+
+
+
+                  </div>
+              </div>
+          </div>
+    </div>
+  </section>

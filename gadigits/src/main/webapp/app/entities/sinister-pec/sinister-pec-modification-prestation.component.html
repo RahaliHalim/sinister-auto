@@ -1,0 +1,180 @@
+<!-- Breadcrumb-->
+<div class="breadcrumb-holder">
+    <div class="container-fluid">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="/"><span class="fa fa-home"></span>&nbsp;&nbsp;<span
+                        jhiTranslate="global.menu.home">Home</span></a></li>
+            <li class="breadcrumb-item"><a routerLink="/modification-prestation"><span
+                        jhiTranslate="auxiliumApp.sinisterPec.home.modificationPrestation">modificationPrestation</span></a>
+            </li>
+        </ul>
+    </div>
+</div>
+<section class="forms">
+    <div class="container-fluid">
+        <!-- Page Header-->
+        <header style="padding-top: 1rem; padding-bottom: 1rem;">
+            <h1 class="h3 display">
+                <jhi-alert-error></jhi-alert-error>
+                <jhi-alert></jhi-alert>
+            </h1>
+        </header>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+
+                    <div class=" collapsible-card card-header align-items-center collapsed notice notice-info"
+                        data-toggle="collapse" href="#etape">
+                        <strong> Étapes </strong>
+                    </div>
+                    <div id="etape" class="card-body collapse">
+                        <div class="row">
+
+                            <div class="col-lg-12">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-sm-2">
+                                            <label class="form-control-label"
+                                                jhiTranslate="auxiliumApp.sinisterPec.etapes">Étapes</label>
+                                            <span style="color: #FA2F03">*</span>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <input type="checkbox" class="check-input" name="changementStatusMP"
+                                                id="field_changement_status" (change)="changeEtape()"
+                                                [(ngModel)]="newStepChangementStatus" />
+                                            <label class="form-control-label"
+                                                jhiTranslate="auxiliumApp.sinisterPec.changementStatusMP"
+                                                for="field_changement_status">Changement de statut</label>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <input type="checkbox" class="check-input" name="receptionVehiculeMP"
+                                                id="field_reception_Vehicule" (change)="changeEtape()"
+                                                [(ngModel)]="newStepReceptionVehicle" />
+                                            <label class="form-control-label"
+                                                jhiTranslate="auxiliumApp.sinisterPec.receptionVehiculeMP"
+                                                for="field_reception_Vehicule">Réception du véhicule</label>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <input type="checkbox" class="check-input" name="imprimeAPEC"
+                                                id="field_imprime_apec" (change)="changeEtape()"
+                                                [(ngModel)]="newStepImprimeAPEC" />
+                                            <label class="form-control-label"
+                                                jhiTranslate="auxiliumApp.sinisterPec.imprimeAPECMP"
+                                                for="field_imprime_apec">Imprimer APEC</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-2">
+                                        </div>
+                                        <!--<div class="col-sm-3">
+                                            <input type="checkbox" class="check-input" name="avisExpert"
+                                                id="field_avis_expert" (change)="changeEtape()"
+                                                [(ngModel)]="newStepAvisExpert" />
+                                            <label class="form-control-label"
+                                                jhiTranslate="auxiliumApp.sinisterPec.avisExpert"
+                                                for="field_avis_expert">Avis Expert</label>
+                                        </div>-->
+                                        <div class="col-sm-3">
+                                            <input type="checkbox" class="check-input" name="miseAjour"
+                                                id="field_miseAjour" (change)="changeEtape()"
+                                                [(ngModel)]="newStepMiseAJour" />
+                                            <label class="form-control-label"
+                                                jhiTranslate="auxiliumApp.sinisterPec.miseAJour"
+                                                for="field_miseAjour">Mise à jour</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+
+                    <div class="card-header d-flex align-items-center no-padding">
+                        <div class="notice notice-info">
+                            <strong jhiTranslate="auxiliumApp.sinisterPec.prestations"> Prestations </strong>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+                                class="table table-sm table-hover table-bordered" style="width: 100%">
+                                <thead style="color:white;background-color:#11859b">
+                                    <tr>
+                                        <th><span jhiTranslate="auxiliumApp.sinisterPec.reference">Reference</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.sinisterPec.companyName">Company Name</span>
+                                        </th>
+                                        <th><span jhiTranslate="auxiliumApp.sinisterPec.agentName">Agent Name</span>
+                                        </th>
+                                        <th><span jhiTranslate="auxiliumApp.sinisterPec.contractNumber">Contract
+                                                Number</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.sinisterPec.insuredImmatriculation">Insured
+                                                Immatriculation </span></th>
+                                        <th><span jhiTranslate="auxiliumApp.sinisterPec.tiersImmatriculation">Tiers
+                                                Immatriculation </span></th>
+                                        <th><span jhiTranslate="auxiliumApp.sinisterPec.modeGestion">Mode de
+                                                gestion</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.sinisterPec.responsabilite">Responsabilité
+                                            </span></th>
+                                        <th><span jhiTranslate="auxiliumApp.sinisterPec.casBareme">Étape
+                                            </span></th>
+                                        <th><span jhiTranslate="auxiliumApp.sinisterPec.incidentDate">date d'incident
+                                            </span></th>
+                                        <!--<th><span jhiTranslate="auxiliumApp.sinisterPec.chargeName">Nom chargé
+                                                    </span></th>-->
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let sinisterPec of sinisterPecsBeingProcessed ; let i = index"
+                                        (click)="setClickedRow(i, sinisterPec.id)" [class.active]="i == selectedRow">
+
+                                        <td>{{sinisterPec.gaReference}}</td>
+                                        <td>{{sinisterPec.companyName}}</td>
+                                        <td>{{sinisterPec.agencyName}}</td>
+                                        <td>{{sinisterPec.contractNumber}}</td>
+                                        <td>{{sinisterPec.immatriculation}}</td>
+                                        <td>{{sinisterPec.immatriculationTier}}</td>
+                                        <td>{{sinisterPec.modeLabel}}</td>
+                                        <td>{{sinisterPec.responsabiliteX}}</td>
+                                        <td>{{sinisterPec.codeBareme}}</td>
+                                        <td>{{sinisterPec.incidentDate | date:'dd/MM/yyyy hh:mm'}}</td>
+                                        <!--<td>{{sinisterPec.agentName}} {{sinisterPec.agentLastName}}</td>-->
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="alert alert-danger" *ngIf="showAlert"
+                                jhiTranslate="auxiliumApp.sinisterPec.alertmodifSinPec">
+                                <strong>Merci de sélectionner une autre étape</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-11"></div>
+                        <div class="col-sm-1">
+                            <button type="submit" class="btn btn-sm btn-primary"
+                                [disabled]="!selectOneEtape || !selectSinisterPec" (click)="save()">
+                                <span jhiTranslate="entity.action.save">Save</span>
+                            </button>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

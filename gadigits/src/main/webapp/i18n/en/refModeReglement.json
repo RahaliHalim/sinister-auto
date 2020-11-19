@@ -1,0 +1,23 @@
+{
+    "auxiliumApp": {
+        "refModeReglement" : {
+            "home": {
+                "title": "Ref Mode Reglements",
+                "createLabel": "Create a new Ref Mode Reglement",
+                "createOrEditLabel": "Create or edit a Ref Mode Reglement",
+                "search": "Search for Ref Mode Reglement"
+            },
+            "created": "A new Ref Mode Reglement is created with identifier {{ param }}",
+            "updated": "A Ref Mode Reglement is updated with identifier {{ param }}",
+            "deleted": "A Ref Mode Reglement is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Ref Mode Reglement {{ id }}?"
+            },
+            "detail": {
+                "title": "Ref Mode Reglement"
+            },
+            "nom": "Nom",
+            "isBloque": "Is Bloque"
+        }
+    }
+}

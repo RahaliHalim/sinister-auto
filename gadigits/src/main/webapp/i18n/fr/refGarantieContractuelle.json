@@ -1,0 +1,28 @@
+{
+    "auxiliumApp": {
+        "refGarantieContractuelle" : {
+            "home": {
+                "title": "Garanties contractuelles",
+                "createLabel": "Créer ",
+                "createOrEditLabel": "Créer ou modifier une garantie contractuelle",
+                "search": "Recherche pour garantie contractuelle",
+                "garanties":"Garanties"
+            },
+            "created": "Une nouvelle garantie contractuelle a été créée ",
+            "updated": "La garantie contractuelle a été mise à jour",
+            "deleted": "La garantie contractuelle a été supprimée",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer cette garantie contractuelle ?"
+            },
+            "detail": {
+                "title": "Garantie contractuelle"
+            },
+            "code": "Code",
+            "libelle": "Libellé",
+            "isActive": "Active?",
+            "refModeGestion": "Mode gestion",
+            "contrat": "Contrat",
+            "expert": "Expert"
+        }
+    }
+}

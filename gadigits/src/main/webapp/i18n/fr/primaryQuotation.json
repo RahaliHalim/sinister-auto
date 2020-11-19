@@ -1,0 +1,24 @@
+{
+    "auxiliumApp": {
+        "primaryQuotation" : {
+            "home": {
+                "title": "Devis",
+                "liste": "Liste des devis"
+            },
+            "created": "Un nouveau devis a été créé avec l'identifiant {{ param }}",
+            "updated": "Le devis avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le devis avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer ce devis  ?"
+            },
+            "detail": {
+                "title": "Devis",
+                "id":"ID",
+                "name":"Nom du devis",
+                "type": "Nature"
+               
+            }
+            
+        }
+    }
+}

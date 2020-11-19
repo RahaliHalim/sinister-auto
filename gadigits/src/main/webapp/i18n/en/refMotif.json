@@ -1,0 +1,25 @@
+{
+    "auxiliumApp": {
+        "refMotif" : {
+            "home": {
+                "title": "Ref Motifs",
+                "createLabel": "Create a new Ref Motif",
+                "createOrEditLabel": "Create or edit a Ref Motif",
+                "search": "Search for Ref Motif"
+            },
+            "created": "A new Ref Motif is created with identifier {{ param }}",
+            "updated": "A Ref Motif is updated with identifier {{ param }}",
+            "deleted": "A Ref Motif is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Ref Motif {{ id }}?"
+            },
+            "detail": {
+                "title": "Ref Motif"
+            },
+            "libelle": "Libelle",
+            "journal": "Journal",
+            "responsable": "Responsble",
+            "actionUtilisateur": "Action Utilisateur"
+        }
+    }
+}

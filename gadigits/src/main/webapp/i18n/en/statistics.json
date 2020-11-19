@@ -1,0 +1,14 @@
+{
+    "statistics": {
+        "title": "Statistiques",
+        "refresh.button": "Rafraîchir",
+        "updating": "Mise à jour...",
+        "menu": {
+            "commercial": "Commercial",
+            "reseaux": "Réseaux",
+            "operationnel": "Opérationnel",
+            "generation-rapport": "Repports Generation"
+        }
+    }
+
+}

@@ -1,0 +1,85 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myTarifLabel" jhiTranslate="auxiliumApp.tarif.home.createOrEditLabel">Create or edit a Tarif</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!tarif.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="tarif.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="auxiliumApp.tarif.libelle" for="field_libelle">Libelle</label>
+            <input type="text" class="form-control" name="libelle" id="field_libelle"
+                [(ngModel)]="tarif.libelle" required maxlength="100" />
+            <div [hidden]="!(editForm.controls.libelle?.dirty && editForm.controls.libelle?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.libelle?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.libelle?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 100 }">
+                   This field cannot be longer than 100 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="auxiliumApp.tarif.majorationFerier" for="field_majorationFerier">Majoration Ferier</label>
+            <input type="number" class="form-control" name="majorationFerier" id="field_majorationFerier"
+                [(ngModel)]="tarif.majorationFerier" required />
+            <div [hidden]="!(editForm.controls.majorationFerier?.dirty && editForm.controls.majorationFerier?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.majorationFerier?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.majorationFerier?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="auxiliumApp.tarif.majorationNuit" for="field_majorationNuit">Majoration Nuit</label>
+            <input type="number" class="form-control" name="majorationNuit" id="field_majorationNuit"
+                [(ngModel)]="tarif.majorationNuit" required />
+            <div [hidden]="!(editForm.controls.majorationNuit?.dirty && editForm.controls.majorationNuit?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.majorationNuit?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.majorationNuit?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="auxiliumApp.tarif.tauxTarif" for="field_tauxTarif">Taux Tarif</label>
+            <input type="number" class="form-control" name="tauxTarif" id="field_tauxTarif"
+                [(ngModel)]="tarif.tauxTarif" required />
+            <div [hidden]="!(editForm.controls.tauxTarif?.dirty && editForm.controls.tauxTarif?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.tauxTarif?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.tauxTarif?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

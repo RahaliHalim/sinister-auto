@@ -1,0 +1,68 @@
+<!-- Side Navbar -->
+<nav class="side-navbar" *ngIf="isAuthenticated() && isActiveSession">
+    <div class="side-navbar-wrapper" [ngSwitch]="isAuthenticated()">
+        <!-- Sidebar Header    -->
+        <div class="sidenav-header d-flex align-items-center justify-content-center">
+            <!-- User Info-->
+            <div class="sidenav-header-inner text-center">
+                <img src="../../../content/images/logo-ga-1.png" alt="Générale Assistance" style="width: 190px; height:unset">
+                <!--<h2 class="h5" style="text-align:center">Générale Assistance</h2>-->
+            </div>
+            <!-- Small Brand information, appears on minimized sidebar-->
+            <div class="sidenav-header-logo">
+                <a [routerLink]="['../']" class="brand-small text-center">
+                    <img src="../../../content/images/logo-mini.png" alt="GA" class="img-fluid" style="width: unset; height:unset">
+                </a>
+            </div>
+        </div>
+        <!-- Sidebar Navigation Menus-->
+        <div class="main-menu" *ngSwitchCase="true">
+            <!-- h5 class="sidenav-heading">Main</h5 -->
+            <ul id="side-main-menu" class="side-menu list-unstyled">
+                <li class="home">
+                    <a [routerLink]="['']">
+                        <i class="icon-home"></i>
+                        <span class="title" jhiTranslate="global.menu.home"> acceuil </span>
+                    </a>
+                </li>
+                <li class="home" *jhiHasAnyAuthority="'ROLE_ADMIN'">
+                    <a [routerLink]="['user-management']">
+                        <i class="icon-user"></i>
+                        <span jhiTranslate="auxiliumApp.userManagement.home.title"> User Managment</span>
+                    </a>
+                </li>
+                <!-- menu -->
+                <div *ngSwitchCase="true" id="accordionExample">
+                    <ng-container *ngFor="let eltMenu of principal.menu">
+                        <li *ngIf="eltMenu.subMenus?.length !== 0" class="main-menu">
+                            <a class="balisea"  href="#link{{eltMenu.id}}" role="button" aria-expanded="false" data-toggle="collapse">
+                                    <span> {{eltMenu.label}} </span>  </a>
+                            <ul id="link{{eltMenu.id}}" class="collapse list-unstyled " data-parent="#accordionExample">
+                                <li *ngFor="let l of eltMenu.subMenus">
+                                    <a [routerLink]="[l.url]" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"><span jhiTranslate="auxiliumApp.elementMenu.subMenu.{{l.label}}">  </span></a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ng-container>
+                </div>                
+                <!-- end menu -->
+            </ul>
+        </div>
+    </div>
+</nav>
+<div *ngIf="!isAuthenticated()" style="min-height: 100vh;background: #f5f5f5;"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

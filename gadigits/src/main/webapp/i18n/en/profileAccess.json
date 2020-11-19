@@ -1,0 +1,29 @@
+{
+    "auxiliumApp": {
+        "profileAccess" : {
+            "home": {
+                "title": "Profile Accesses",
+                "createLabel": "Create a new Profile Access",
+                "createOrEditLabel": "Create or edit a Profile Access",
+                "search": "Search for Profile Access"
+            },
+            "created": "A new Profile Access is created with identifier {{ param }}",
+            "updated": "A Profile Access is updated with identifier {{ param }}",
+            "deleted": "A Profile Access is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Profile Access {{ id }}?"
+            },
+            "detail": {
+                "title": "Profile Access"
+            },
+            "label": "Label",
+            "code": "Code",
+            "url": "Url",
+            "leaf": "Leaf",
+            "businessEntity": "Business Entity",
+            "functionality": "Functionality",
+            "elementMenu": "Element Menu",
+            "profile": "Profile"
+        }
+    }
+}

@@ -1,0 +1,74 @@
+{
+    "auxiliumApp": {
+        "priseEnCharge": {
+            "home": {
+                "success": "<strong>La Prise en charge a été créée !</strong>",
+                "title": "Service réparation",
+                "createLabel": "Créer",
+                "créationDossier": "Création d'une nouvelle prise en charge",
+                "createOrEditLabel": "Prise en charge",
+                "createOrEditServiceLabel": "Service",
+                "details": "Détails prise en charge",
+                "detailsAgent": "Demande PEC",
+                "search": "Recherche pour dossier prise en charge",
+                "searchImmatriculation": "Immatriculation véhicule",
+                "type": "Type de demande",
+                "edit": "Modifier",
+                "prestationsHisto": "Historique des prestations"
+            },
+            "contrat": "Cette immatriculation n'existe pas",
+            "created": "Une nouvelle prise en charge a été créée",
+            "updated": "La prise en charge a été mise à jour",
+            "deleted": "Le dossier de la prise en charge a été supprimé",
+            "notEligible": "Vous n'êtes pas éligible à ce type de service !",
+            "delete": {
+                "question": "Êtes-vous sûrs de vouloir supprimer la prise en charge {{ id }} ?"
+            },
+            "detail": {
+                "title": "Service réparation"
+            },
+            "demand": {
+                "detail": "Détails demande",
+                "home": "Demandes PEC"
+            },
+            "reference": "Référence GA",
+            "referencesinister":"Référence du sinistre",
+            "dateAccident":"Date de survenance",
+            "dateDeclaration":"Date de déclaration",
+            "nomcompagnie":"Nom de la compagnie",
+            "NomAgent":"Nom de l'agent assurance",
+            "numerocontrat":"Numéro du contrat",
+            "immatriculation":"Immatriculation assurée",
+            "raisonSociale":"Nom et Prénom-Raison Sociale" ,
+            "marque":"Marque",
+            "NomCompagnieadverse":"Nom de la compagnie adverse",
+            "ImmatriculationTiers":"Immatriculation tiers",
+            "raisonSocialeTiers":"Nom et Prénom-Raison Sociale (Tiers)",
+            "DateCreation":"Date de création ",
+            "ModeDeGestion":"Mode de gestion",
+            "CasdeBareme":"Cas de barème",
+            "PositionGA":"Position GA",
+            "PointChoc":"Points chocs",
+            "Naturedechoc":"Nature du choc",
+            "Montanttotaldevis":"Montant total devis",
+            "DateAPEC":"Date génération APEC",
+            "Datebonsortie":"Date bon sortie",
+            "Chargeclient":"Chargé client",
+            "Reparateur":"Réparateur",
+            "Expert":"Expert" ,
+            "ResponsablePec":"Responsable Pec",
+            "ResponsableContrôleTechnique":"Responsable contrôle technique" ,
+            "etatPrestation":"État de la prestation",
+            "motifs":"Motifs",
+            "EtatApprobation":"État d'approbation",
+            "EtapePrestation":"Étape de la prestation" ,
+            "DateReprise":"Date de la reprise" ,
+            "totalMo": "Date prévue sortie"   ,
+            "dateEnvoiDemandePec": "Date de l'envoi de la demande",
+            "dateAcceptationDeForme": "Date d'acceptation du forme"         
+     
+         
+            
+        }
+    }
+}

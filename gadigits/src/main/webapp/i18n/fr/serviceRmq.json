@@ -1,0 +1,43 @@
+{
+    "auxiliumApp": {
+        "serviceRmq" : {
+            "home": {
+                "title": "Services de remorquage",
+                "acceuil": "Page d'accueil",
+                "createLabel": "Créer ",
+                "createOrEditLabel": "Créer ou modifier un service de remorquage",
+                "details":"Détails du service remorquage"
+            },
+            "created": "Un nouveau service de remorquage a été créé ",
+            "updated": "Le service de remorquage a été mis à jour",
+            "deleted": "Le service de remorquage a été supprimé",
+            "reopened":"Réouverture du service de remorquage avec succés",
+            "canceled": "Annulation du service de remorquage avec succés",
+            "closed": "Clôture du service de remorquage avec succés",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer ce service de remorquage?"
+            },
+            "detail": {
+                "title" : "Service de remorquage"
+            },
+            "btnClourer": "Clôturer",
+            "btnAnnuler": "Annuler",
+            "etat": "État",
+            "distance": "Kilométrage",
+            "prestation": "Réf. prestation",
+            "incidentNature": "Nature",
+            "services": "Services",
+            "vin": "Immatriculation",
+            "incidentLocation": "Lieu de l'incident",
+            "destination": "Destination",
+            "remorqueur": "Remorqueur",
+            "btnAffecter": "Affecter remorqueur",
+            "gouvernorat": "Gouvernorat",
+            "ville": "Ville",
+            "isAffected": "Affecté",
+            "tugArrivalDate": "Date d'arrivée du remorqueur",
+            "insuredArrivalDate": "Date d'arrivée de l'assuré"
+
+        }
+    }
+}

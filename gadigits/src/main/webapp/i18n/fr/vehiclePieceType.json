@@ -1,0 +1,23 @@
+{
+    "auxiliumApp": {
+        "vehiclePieceType" : {
+            "home": {
+                "title": "VehiclePieceTypes",
+                "createLabel": "Créer un nouveau type de pièce véhicule",
+                "createOrEditLabel": "Créer ou Modifier un type de pièce véhicule",
+                "search": "Recherche pour type de pièce véhicule"
+            },
+            "created": "Un nouveau type de pièce véhicule a été créé avec l'identifiant {{ param }}",
+            "updated": "Le type de pièce véhicule avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le type de pièce véhicule avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer le type de pièce véhicule {{ id }} ?"
+            },
+            "detail": {
+                "title": "Type de pièce véhicule"
+            },
+            "code": "Code",
+            "label": "Label"
+        }
+    }
+}

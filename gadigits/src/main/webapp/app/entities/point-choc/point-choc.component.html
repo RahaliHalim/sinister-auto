@@ -1,0 +1,117 @@
+<div>
+    <h2>
+        <span jhiTranslate="auxiliumApp.pointChoc.home.title">Point de choc</span>
+        <button class="btn btn-primary float-right jh-create-entity create-point-choc" [routerLink]="['/point-choc-new']">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down"  jhiTranslate="auxiliumApp.pointChoc.home.createLabel">
+            Create new Points de chocs
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'auxiliumApp.pointChoc.home.search' | translate }}">
+                    <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-addon btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-sm fa-remove"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="pointChocs">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="faceAv"><span jhiTranslate="auxiliumApp.pointChoc.faceAv">Face Av</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="tiersAvD"><span jhiTranslate="auxiliumApp.pointChoc.tiersAvD">Tiers Av D</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="tiersLatD"><span jhiTranslate="auxiliumApp.pointChoc.tiersLatD">Tiers Lat D</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="latD"><span jhiTranslate="auxiliumApp.pointChoc.latD">Lat D</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="tiersArD"><span jhiTranslate="auxiliumApp.pointChoc.tiersArD">Tiers Ar D</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="tiersLatG"><span jhiTranslate="auxiliumApp.pointChoc.tiersLatG">Tiers Lat G</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="tiersArG"><span jhiTranslate="auxiliumApp.pointChoc.tiersArG">Tiers Ar G</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="latG"><span jhiTranslate="auxiliumApp.pointChoc.latG">Lat G</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="faceAr"><span jhiTranslate="auxiliumApp.pointChoc.faceAr">Face Ar</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="diversChoc"><span jhiTranslate="auxiliumApp.pointChoc.diversChoc">Divers Choc</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="pareBrise"><span jhiTranslate="auxiliumApp.pointChoc.pareBrise">Pare Brise</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="triangleAvD"><span jhiTranslate="auxiliumApp.pointChoc.triangleAvD">Triangle Av D</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="triangleArD"><span jhiTranslate="auxiliumApp.pointChoc.triangleArD">Triangle Ar D</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="triangleAvG"><span jhiTranslate="auxiliumApp.pointChoc.triangleAvG">Triangle Av G</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="triangleArG"><span jhiTranslate="auxiliumApp.pointChoc.triangleArG">Triangle Ar G</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="vitreAvD"><span jhiTranslate="auxiliumApp.pointChoc.vitreAvD">Vitre Av D</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="vitreArD"><span jhiTranslate="auxiliumApp.pointChoc.vitreArD">Vitre Ar D</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="vitreAvG"><span jhiTranslate="auxiliumApp.pointChoc.vitreAvG">Vitre Av G</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="vitreArG"><span jhiTranslate="auxiliumApp.pointChoc.vitreArG">Vitre Ar G</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="lunetteAr"><span jhiTranslate="auxiliumApp.pointChoc.lunetteAr">Lunette Ar</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="tiersAvG"><span jhiTranslate="auxiliumApp.pointChoc.tiersAvG">Tiers Av G</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let pointChoc of pointChocs ;trackBy: trackId">
+                <td><a [routerLink]="['../point-choc', pointChoc.id ]">{{pointChoc.id}}</a></td>
+                <td>{{pointChoc.faceAv}}</td>
+                <td>{{pointChoc.tiersAvD}}</td>
+                <td>{{pointChoc.tiersLatD}}</td>
+                <td>{{pointChoc.latD}}</td>
+                <td>{{pointChoc.tiersArD}}</td>
+                <td>{{pointChoc.tiersLatG}}</td>
+                <td>{{pointChoc.tiersArG}}</td>
+                <td>{{pointChoc.latG}}</td>
+                <td>{{pointChoc.faceAr}}</td>
+                <td>{{pointChoc.diversChoc}}</td>
+                <td>{{pointChoc.pareBrise}}</td>
+                <td>{{pointChoc.triangleAvD}}</td>
+                <td>{{pointChoc.triangleArD}}</td>
+                <td>{{pointChoc.triangleAvG}}</td>
+                <td>{{pointChoc.triangleArG}}</td>
+                <td>{{pointChoc.vitreAvD}}</td>
+                <td>{{pointChoc.vitreArD}}</td>
+                <td>{{pointChoc.vitreAvG}}</td>
+                <td>{{pointChoc.vitreArG}}</td>
+                <td>{{pointChoc.lunetteAr}}</td>
+                <td>{{pointChoc.tiersAvG}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../point-choc', pointChoc.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/point-choc/'+ pointChoc.id + '/edit']"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'point-choc/'+ pointChoc.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+        <div *ngIf="pointChocs && pointChocs.length">
+            <div class="row justify-content-center">
+                <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+            </div>
+            <div class="row justify-content-center">
+                <ngb-pagination [collectionSize]="totalItems" [(page)]="page" (pageChange)="loadPage(page)"></ngb-pagination>
+            </div>
+        </div>
+</div>

@@ -1,0 +1,24 @@
+{
+    "auxiliumApp": {
+        "refTypeService" : {
+            "home": {
+                "title": "Types de services",
+                "createLabel": "Créer un nouveau type de service",
+                "createOrEditLabel": "Créer ou modifier un type de service",
+                "search": "Recherche pour type de service"
+            },
+            "created": "Un nouveau type de service a été créé",
+            "updated": "Le type de service a été mis à jour",
+            "deleted": "Le type de service a été supprimé",
+            "unique": "Le nom du type de service doit être unique",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer ce type de service ?"
+            },
+            "detail": {
+                "title": "Type de service"
+            },
+            "nom": "Libellé",
+            "pack": "Tarif"
+        }
+    }
+}

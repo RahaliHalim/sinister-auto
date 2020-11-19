@@ -1,0 +1,53 @@
+<div>
+    <h2>
+        <span jhiTranslate="auxiliumApp.journal.home.title">Journals</span>
+
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'auxiliumApp.journal.home.search' | translate }}">
+                    <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-addon btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-sm fa-remove"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="journals">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+                <th jhiSortBy="utilisateur"><span jhiTranslate="auxiliumApp.journal.utilisateur">Utilisateur</span> <span class="fa fa-sort"></span></th>
+                <th jhiSortBy="commentaire"><span jhiTranslate="auxiliumApp.journal.commentaire">Commentaire</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="timestamp"><span jhiTranslate="auxiliumApp.journal.timestamp">Timestamp</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="sysActionUtilisateur"><span jhiTranslate="auxiliumApp.journal.sysActionUtilisateur">Sys Action Utilisateur</span> <span class="fa fa-sort"></span></th>
+                <th jhiSortBy="motif"><span jhiTranslate="auxiliumApp.journal.motif">Motif</span> <span class="fa fa-sort"></span></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let journal of journals ;trackBy: trackId">
+                <td>{{journal.utilisateur}}</td>
+                <td>{{journal.commentaire}}</td>
+                <td>{{journal.timestamp | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                <td>{{journal.sysActionUtilisateurNom}}</td>
+                <td ><div *ngFor= "let motif of journal.motifs">{{motif.libelle}}</div></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+        <div *ngIf="journals && journals.length">
+            <div class="row justify-content-center">
+                <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+            </div>
+            <div class="row justify-content-center">
+                <ngb-pagination [collectionSize]="totalItems" [(page)]="page" (pageChange)="loadPage(page)"></ngb-pagination>
+            </div>
+        </div>
+</div>

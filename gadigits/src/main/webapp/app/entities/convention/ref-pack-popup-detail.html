@@ -1,0 +1,214 @@
+<form #pacForm="ngForm" novalidate>
+    <div class="card">
+        <div class="card-header d-flex align-items-center no-padding">
+            <div class="notice notice-info">
+                <span class="fa fa-clone" style="color: #45ABCD"></span>
+                &nbsp;&nbsp;<strong jhiTranslate="auxiliumApp.refPack.home.title"> Ref Pack / title ref-pack</strong>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div *ngIf="refPack.serviceTypes !== undefined && refPack.serviceTypes.length > 0" class="col-lg-4">
+                    <div class="form-group">
+                        <label class="form-control-label" jhiTranslate="auxiliumApp.refPack.label" for="field_label">Label</label>
+                        <input type="text" class="form-control form-control-sm" name="label" id="field_label" [(ngModel)]="refPack.label" required readonly />
+                    </div>
+                </div>
+                <div *ngIf="packSettings.usages" class="col-sm-4">
+                    <label jhiTranslate="auxiliumApp.refPack.usages" for="field_usages"> usages</label>
+                    <ng-multiselect-dropdown [placeholder]="' '" [data]="refPack.usages" 
+                        [(ngModel)]="refPack.usages" 
+                        [settings]="usageSettings" name="usages"
+                        [ngClass]="'form-control form-control-sm no-padding'" disabled>
+                    </ng-multiselect-dropdown>
+                </div>
+                <div class="col-sm-4">
+                    <label jhiTranslate="auxiliumApp.refPack.serviceType" for="field_serviceType"> type de service </label>
+                    <ng-multiselect-dropdown [placeholder]="' '" [data]="refPack.serviceTypes"
+                        [(ngModel)]="refPack.serviceTypes"  
+                        [settings]="serviceTypeDropdownSettings" name="serviceTypes"
+                        [ngClass]="'form-control form-control-sm no-padding'" disabled>
+                    </ng-multiselect-dropdown>
+                </div>
+                <div *ngIf="packSettings.exclusions" class="col-sm-12">
+                    <label jhiTranslate="auxiliumApp.refPack.exclusionList" for="field_exclusionList"> exclusionList </label>
+                    <ng-multiselect-dropdown [placeholder]="' '" [data]="refPack.exclusions"
+                        [(ngModel)]="refPack.exclusions"  
+                        [settings]="dropdownSettings" name="exclusionList" 
+                        [ngClass]="'form-control form-control-sm no-padding'" disabled>
+                    </ng-multiselect-dropdown>
+                </div>
+                <div *ngIf="packSettings.modeGestions" class="col-sm-3">
+                    <label jhiTranslate="auxiliumApp.refPack.sinisterType" for="field_sinisterType"> sinisterType </label>
+                    <ng-multiselect-dropdown [placeholder]="' '" [data]="refPack.modeGestions"
+                        [(ngModel)]="refPack.modeGestions" 
+                        [settings]="dropdownSettings" (onSelect)="onSinisterTypeSelect($event)" (onDeSelect)="onSinisterTypeDeSelect($event)" name="sinisterType"
+                        [ngClass]="'form-control form-control-sm no-padding'" disabled>
+                    </ng-multiselect-dropdown>
+                </div>
+                <div *ngIf="packSettings.grantTimingList" class="col-sm-3">
+                    <label jhiTranslate="auxiliumApp.refPack.grantTiming" for="field_grantTiming"> grantTiming </label>
+                    <select class="form-control form-control-sm" id="field_grantTiming" name="grantTiming" [(ngModel)]="refPack.grantTimingList" disabled>
+                        <option [ngValue]="grantTimingLis.id" *ngFor="let grantTimingLis of grantTimingList">{{grantTimingLis.libelle}}</option>
+                    </select>
+                </div>
+                <div *ngIf="packSettings.interventionNumber" class="col-lg-3">
+                    <div class="form-group">
+                        <label class="form-control-label" jhiTranslate="auxiliumApp.refPack.interventionNumber" for="field_interventionNumber">interventionNumber</label>
+                        <input type="text" class="form-control form-control-sm" name="interventionNumber" id="field_interventionNumber" [(ngModel)]="refPack.interventionNumber" pattern="^[0-9]+(\.[0-9]{1,3})?" disabled />
+                    </div>
+                </div>
+                <div *ngIf="packSettings.vrDaysNumber" class="col-lg-3">
+                    <div class="form-group">
+                        <label class="form-control-label" jhiTranslate="auxiliumApp.refPack.vrDaysNumber" for="field_vrDaysNumber">nbrMaxDaysVr</label>
+                        <i class="fa fa-info-circle" title="{{'auxiliumApp.refPack.vrDaysNumberTitle' | translate}}"></i>
+                        <input type="text" class="form-control form-control-sm" name="vrDaysNumber" id="field_vrDaysNumber" [(ngModel)]="refPack.vrDaysNumber" pattern="^[0-9]+(\.[0-9]{1,3})?" readonly/>
+                    </div>
+                </div>
+                <div *ngIf="packSettings.ceilingToConsume" class="col-lg-3">
+                    <div class="form-group">
+                        <label class="form-control-label" jhiTranslate="auxiliumApp.refPack.ceilingToConsume" for="field_ceilingToConsume">ceilingToConsume</label>
+                        <input type="text" class="form-control form-control-sm" name="ceilingToConsume" id="field_ceilingToConsume" [(ngModel)]="refPack.ceilingToConsume" pattern="^[0-9]+(\.[0-9]{1,3})?" readonly />
+                    </div>
+                </div>
+                <div *ngIf="packSettings.mileage" class="col-lg-3">
+                    <div class="form-group">
+                        <label class="form-control-label" jhiTranslate="auxiliumApp.refPack.mileage" for="field_mileage">mileage</label>
+                        <input type="text" class="form-control form-control-sm" name="mileage" id="field_mileage" [(ngModel)]="refPack.mileage" pattern="^[0-9]+(\.[0-9]{1,3})?" readonly />
+                    </div>
+                </div>
+                <div *ngIf="packSettings.price" class="col-lg-3">
+                    <div class="form-group">
+                        <label class="form-control-label" jhiTranslate="auxiliumApp.refPack.price" for="field_price">price</label>
+                        <input type="text" class="form-control form-control-sm" name="price" id="field_price" [(ngModel)]="refPack.price" pattern="^[0-9]+(\.[0-9]{1,3})?" readonly />
+                    </div>
+                </div>
+                <div *ngIf="packSettings.companyPart" class="col-lg-3">
+                    <div class="form-group">
+                        <label class="form-control-label" jhiTranslate="auxiliumApp.refPack.companyPart" for="field_companyPart">companyPart</label>
+                        <input type="number" class="form-control form-control-sm" name="companyPart" id="field_companyPart" [(ngModel)]="refPack.companyPart" pattern="^[0-9]+(\.[0-9]{1,3})?" min="0"  readonly/>
+                    </div>
+                </div>
+                    <div *ngIf="packSettings.reinsurerPart" class="col-lg-3">
+                        <div class="form-group">
+                            <label class="form-control-label"
+                                jhiTranslate="auxiliumApp.refPack.reinsurerPart"
+                                for="field_reinsurerPart">reinsurerPart</label>
+                            <input type="number" class="form-control form-control-sm"
+                                name="reinsurerPart" id="field_reinsurerPart"
+                                [(ngModel)]="refPack.reinsurerPart"
+                                (ngModelChange)="onChangeReinsurerPart()" required
+                                pattern="^[0-9]+(\.[0-9]{1,3})?" min="0"  readonly/>
+                        </div>
+                    </div>
+                    <div *ngIf="packSettings.reinsurer" class="col-lg-3">
+                        <div class="form-group">
+                            <label class="form-control-label"
+                                jhiTranslate="auxiliumApp.refPack.reinsurer"
+                                for="field_reinsurer">reinsurer</label>
+                            <select class="form-control form-control-sm" id="field_reinsurer"
+                                name="reinsurer" [(ngModel)]="refPack.reinsurerId" required readonly disabled >
+                                <option [ngValue]="reinsurer.id" *ngFor="let reinsurer of reinsurers">
+                                    {{reinsurer?.companyName}}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div *ngIf="packSettings.partnerPart" class="col-lg-3">
+                        <div class="form-group">
+                            <label class="form-control-label"
+                                jhiTranslate="auxiliumApp.refPack.partnerPart"
+                                for="field_partnerPart">partnerPart</label>
+                            <input type="number" class="form-control form-control-sm" name="partnerPart"
+                                id="field_partnerPart" [(ngModel)]="refPack.partnerPart" required
+                                pattern="^[0-9]+(\.[0-9]{1,3})?" min="0" readonly />
+                        </div>
+                    </div>
+
+                    <div *ngIf="packSettings.combinable" class="col-lg-3">
+                        <label class="form-control-label" for="field_combinable"
+                            style="width: 100%;">&nbsp;</label>
+                        <input type="checkbox" class="check-input" name="combinable"
+                            id="field_combinable" [(ngModel)]="refPack.combinable"  readonly/>
+                        <label class="form-control-label" jhiTranslate="auxiliumApp.refPack.combinable"
+                            for="field_combinable">combinable</label>
+                    </div>
+                    <div *ngIf="packSettings.homeService" class="col-lg-3">
+                        <label class="form-control-label" for="field_homeService"
+                            style="width: 100%;">&nbsp;</label>
+                        <input type="checkbox" class="check-input" name="homeService"
+                            id="field_homeService" [(ngModel)]="refPack.homeService" readonly />
+                        <label class="form-control-label" jhiTranslate="auxiliumApp.refPack.homeService"
+                            for="field_homeService">homeService</label>
+                    </div>
+                    <div *ngIf="refPack.serviceTypes !== undefined && refPack.serviceTypes.length > 0" class="col-lg-3">
+                        <label class="form-control-label" for="field_blocked" style="width: 100%;">&nbsp;</label>
+                        <input type="checkbox" class="check-input" name="blocked" id="field_blocked" [(ngModel)]="refPack.blocked"  [disabled]="true"/>
+                        <label class="form-control-label" jhiTranslate="auxiliumApp.refPack.blocked" for="field_blocked">Blocked</label>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 15px;" *ngIf="refPack.modeGestions && refPack.modeGestions.length > 0">
+                    <div class="col-lg-1" style="max-height: 25px;">
+                        <hr class="my-4">
+                    </div>
+                    </br> </br>   </br> </br>
+                    <div class="col-lg-3 text-center" style="max-height: 25px;">
+                        <span class="fa fa-sm fa-clone" style="color: #45ABCD"></span>&nbsp;&nbsp;
+                        <span jhiTranslate="auxiliumApp.refPack.serviceTypeCeiling" style="color: #45ABCD">serviceTypeCeiling</span>
+                    </div>
+                    <div class="col-lg-8" style="max-height: 25px;">
+                        <hr class="my-4">
+                    </div>
+                    <div *ngFor="let sinisterType of refPack.sinisterTypeSettings" class="col-lg-3">
+                        <div class="form-group">
+                            <label class="form-control-label" for="field_{{sinisterType.sinisterTypeId}}">{{sinisterType.label}}</label>
+                            <input type="text" class="form-control form-control-sm"
+                                name="ceiling{{sinisterType.sinisterTypeId}}" id="field_{{sinisterType.sinisterTypeId}}"
+                                [(ngModel)]="sinisterType.ceiling" pattern="^[0-9]+(\.[0-9]{1,3})?"  readonly/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 15px;" *ngIf="refPack.modeGestions && refPack.modeGestions.length > 0">
+                    <div class="col-lg-1" style="max-height: 25px;"><hr class="my-4"></div>
+                    <div class="col-lg-3 text-center"  style="max-height: 25px;">
+                        <span class="fa fa-sm fa-clone" style="color: #45ABCD"></span>&nbsp;&nbsp;
+                        <span jhiTranslate="auxiliumApp.refPack.apecCeiling" style="color: #45ABCD">apecCeiling</span>
+                    </div>
+                    <div class="col-lg-8"  style="max-height: 25px;"><hr class="my-4"></div>
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <input type="checkbox" class="check-input" name="apecValidation" id="field_apecValidation" [(ngModel)]="refPack.apecValidation" [disabled]="true"/>
+                            <label class="form-control-label" jhiTranslate="auxiliumApp.refPack.apecValidation" for="field_apecValidation">apecValidation</label>
+                        </div>
+                    </div>                                
+                    <div *ngFor="let apecSetting of refPack.apecSettings" class="col-lg-3">
+                        <div class="form-group">
+                            <label class="form-control-label" for="field_apecCeiling{{apecSetting.mgntModeId}}">{{apecSetting.mgntModeLabel}}</label>
+                            <div class="input-group">
+                                <span class="input-group-btn">
+                                    <select class="form-control form-control-sm" id="field_operator{{apecSetting.mgntModeId}}" name="operator{{apecSetting.mgntModeId}}" [(ngModel)]="apecSetting.operator" disabled>
+                                        <option value="GREATER">&gt;</option>
+                                        <option value="LOWER">&lt;=</option>
+                                    </select>
+                                </span>
+                                <input type="text" class="form-control form-control-sm" name="apecCeiling{{apecSetting.mgntModeId}}" id="field_apecCeiling{{apecSetting.mgntModeId}}" [(ngModel)]="apecSetting.ceiling" pattern="^[0-9]+(\.[0-9]{1,3})?" readonly/>
+                            </div>
+                        </div>
+                    </div>
+                </div>                            
+
+                <div class="row">
+                    <div class="col-lg-12" style="margin-top: 10px">
+                        <div class="form-group">
+                            <label style="width: 100%">&nbsp;</label>
+                            <div class="btn-group flex-btn-group-container">
+                                <button type="button" class="btn btn-info btn-sm" (click)="activeModal.close()">
+                                    <span >Retour</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>

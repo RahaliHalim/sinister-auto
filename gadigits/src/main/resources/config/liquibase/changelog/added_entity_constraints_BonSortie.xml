@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity BonSortie.
+    -->
+    <changeSet id="20170912084531-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="ref_etat_bs_id"
+                                 baseTableName="bon_sortie"
+                                 constraintName="fk_bon_sortie_ref_etat_bs_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ref_etat_bs"/>
+
+    </changeSet>
+</databaseChangeLog>

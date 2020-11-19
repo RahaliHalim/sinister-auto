@@ -1,0 +1,68 @@
+<!-- Breadcrumb-->
+<div class="breadcrumb-holder">
+    <div class="container-fluid">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="/"><span jhiTranslate="global.menu.home">Home</span></a></li>
+            <li class="breadcrumb-item"><a routerLink="/expert"><span
+                        jhiTranslate="auxiliumApp.expert.home.title">expert</span></a></li>
+        </ul>
+    </div>
+</div>
+<section class="forms">
+    <div class="container-fluid">
+        <!-- Page Header-->
+        <header style="padding-top: 1rem; padding-bottom: 1rem;">
+            <h1 class="h3 display">
+                <jhi-alert-error></jhi-alert-error>
+                <jhi-alert></jhi-alert>
+            </h1>
+        </header>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header d-flex align-items-center no-padding">
+                        <div class="notice notice-info">
+                            <strong jhiTranslate="auxiliumApp.expert.home.title"> Create new Expert</strong>
+                            <button class="btn btn-sm btn-primary float-right" *ngIf="permissionToAccess.canCreate" [routerLink]="['../expert-new']">
+                                <span class="fa fa-sm fa-plus"></span>
+                                <span class="hidden-sm-down" jhiTranslate="auxiliumApp.expert.home.createLabel">Create new Contrat Reparateur</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+                                class="table table-sm table-hover table-bordered" style="width: 100%;" >
+                                <thead style="color:white;background-color:#11859b">
+                                    <tr>
+                                        <th><span jhiTranslate="auxiliumApp.expert.raisonSociale">raison
+                                                Sociale</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.expert.email"> Email</span>
+                                        </th>
+                                        <th><span jhiTranslate="auxiliumApp.expert.nomPrenom">Nom et Prénom
+                                            </span></th>
+                                        
+
+                                        <th class="no-sort"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let expert of experts">
+                                        <td>{{expert.raisonSociale}}</td>
+                                        <td>{{expert.email}}</td>
+                                        <td>{{expert.fullName}}</td>
+                                        <td class="text-right">
+                                            <div class="btn-group flex-btn-group-container">
+                                                <button type="submit" [hidden]="!expert.activated" *ngIf="permissionToAccess.canActive" (click)="desactiveExpert(expert);" class="btn btn-warning btn-sm">désactiver</button>
+                                                <button type="submit" [hidden]="expert.activated" *ngIf="permissionToAccess.canDesactive" (click)="activeExpert(expert);" class="btn btn-success btn-sm">Activer</button>
+                                                <button type="submit" *ngIf="permissionToAccess.canConsult" [routerLink]="['../expert/'+ expert.id ]" class="btn btn-info btn-sm"><span class="fa fa-eye"></span></button>
+                                                <button type="submit" *ngIf="permissionToAccess.canUpdate" [routerLink]="['/expert/'+ expert.id + '/edit']" replaceUrl="true" class="btn btn-primary btn-sm"><span class="fa fa-pencil"></span></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>

@@ -1,0 +1,42 @@
+{
+    "auxiliumApp": {
+        "serviceRmq" : {
+            "home": {
+                "title": "Services de remorquage",
+                "acceuil": "Page d'acceuil",
+                "createLabel": "Create ",
+                "createOrEditLabel": "Create or edit a Service de remorquage"
+            },
+            "created": "A new Service remorquage is created ",
+            "updated": "A Service remorquage is updated",
+            "deleted": "A Service remorquage is deleted",
+            "reopened":"A Service remorquage is reopened",
+            "canceled": "A Service remorquage is canceled",
+            "closed": "A Service remorquage is closed",
+            "delete": {
+                "question": "Are you sure you want to delete this Service remorquage?"
+            },
+            "detail": {
+                "title": "Service remorquage"
+            },
+            "btnClourer": "Cloturer",
+            "btnAnnuler": "Annuler",
+            "etat": "Etat",
+            "distance": "Distance",
+            "prestation": "Ref. Prestation",
+            "incidentNature": "Nature",
+            "services": "services",
+            "vin": "Vin",
+            "incidentLocation": "Incident location",
+            "destination": "Destination",
+            "remorqueur": "Remorqueur",
+            "btnAffecter": "Affecter Remorqueur",
+            "gouvernorat": "Gouvernorat",
+            "ville": "Ville",
+            "isAffected": "Affected ?",
+            "tugArrivalDate": "Tug arrival date",
+            "insuredArrivalDate": "Insured arrival date"
+
+        }
+    }
+}

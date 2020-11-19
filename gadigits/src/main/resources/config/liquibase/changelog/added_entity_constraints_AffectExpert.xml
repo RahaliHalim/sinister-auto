@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity AffectExpert.
+    -->
+    <changeSet id="20170912084510-2" author="jhipster">
+        
+         <addForeignKeyConstraint baseColumnNames="prestation_id"
+                                 baseTableName="affect_expert"
+                                 constraintName="fk_affect_expert_prestation_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="prestation_pec"/>
+
+        <addForeignKeyConstraint baseColumnNames="nature_expertise_id"
+                                 baseTableName="affect_expert"
+                                 constraintName="fk_affect_expert_nature_expertise_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ref_nature_expertise"/>
+
+        <addForeignKeyConstraint baseColumnNames="expert_id"
+                                 baseTableName="affect_expert"
+                                 constraintName="fk_affect_expert_expert_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="expert"/>
+
+    </changeSet>
+</databaseChangeLog>

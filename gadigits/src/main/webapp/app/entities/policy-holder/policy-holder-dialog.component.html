@@ -1,0 +1,148 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myPolicyHolderLabel" jhiTranslate="auxiliumApp.policyHolder.home.createOrEditLabel">Create or edit a Policy Holder</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!policyHolder.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="policyHolder.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="auxiliumApp.policyHolder.company" for="field_company">Company</label>
+            <input type="checkbox" class="form-control" name="company" id="field_company"
+                [(ngModel)]="policyHolder.company"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="auxiliumApp.policyHolder.title" for="field_title">Title</label>
+            <input type="text" class="form-control" name="title" id="field_title"
+                [(ngModel)]="policyHolder.title"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="auxiliumApp.policyHolder.firstName" for="field_firstName">First Name</label>
+            <input type="text" class="form-control" name="firstName" id="field_firstName"
+                [(ngModel)]="policyHolder.firstName"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="auxiliumApp.policyHolder.lastName" for="field_lastName">Last Name</label>
+            <input type="text" class="form-control" name="lastName" id="field_lastName"
+                [(ngModel)]="policyHolder.lastName"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="auxiliumApp.policyHolder.companyName" for="field_companyName">Company Name</label>
+            <input type="text" class="form-control" name="companyName" id="field_companyName"
+                [(ngModel)]="policyHolder.companyName"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="auxiliumApp.policyHolder.firstPhone" for="field_firstPhone">First Phone</label>
+            <input type="text" class="form-control" name="firstPhone" id="field_firstPhone"
+                [(ngModel)]="policyHolder.firstPhone"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="auxiliumApp.policyHolder.secondPhone" for="field_secondPhone">Second Phone</label>
+            <input type="text" class="form-control" name="secondPhone" id="field_secondPhone"
+                [(ngModel)]="policyHolder.secondPhone"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="auxiliumApp.policyHolder.fax" for="field_fax">Fax</label>
+            <input type="text" class="form-control" name="fax" id="field_fax"
+                [(ngModel)]="policyHolder.fax"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="auxiliumApp.policyHolder.firstEmail" for="field_firstEmail">First Email</label>
+            <input type="text" class="form-control" name="firstEmail" id="field_firstEmail"
+                [(ngModel)]="policyHolder.firstEmail"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="auxiliumApp.policyHolder.secondEmail" for="field_secondEmail">Second Email</label>
+            <input type="text" class="form-control" name="secondEmail" id="field_secondEmail"
+                [(ngModel)]="policyHolder.secondEmail"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="auxiliumApp.policyHolder.address" for="field_address">Address</label>
+            <input type="text" class="form-control" name="address" id="field_address"
+                [(ngModel)]="policyHolder.address"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="auxiliumApp.policyHolder.identifier" for="field_identifier">Identifier</label>
+            <input type="number" class="form-control" name="identifier" id="field_identifier"
+                [(ngModel)]="policyHolder.identifier"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="auxiliumApp.policyHolder.vatRegistered" for="field_vatRegistered">Vat Registered</label>
+            <input type="checkbox" class="form-control" name="vatRegistered" id="field_vatRegistered"
+                [(ngModel)]="policyHolder.vatRegistered"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="auxiliumApp.policyHolder.tradeRegister" for="field_tradeRegister">Trade Register</label>
+            <input type="text" class="form-control" name="tradeRegister" id="field_tradeRegister"
+                [(ngModel)]="policyHolder.tradeRegister"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="auxiliumApp.policyHolder.creationDate" for="field_creationDate">Creation Date</label>
+            <div class="input-group">
+                <input id="field_creationDate" type="text" class="form-control" name="creationDate" ngbDatepicker  #creationDateDp="ngbDatepicker" [(ngModel)]="policyHolder.creationDate"
+                />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" (click)="creationDateDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="auxiliumApp.policyHolder.updateDate" for="field_updateDate">Update Date</label>
+            <div class="input-group">
+                <input id="field_updateDate" type="text" class="form-control" name="updateDate" ngbDatepicker  #updateDateDp="ngbDatepicker" [(ngModel)]="policyHolder.updateDate"
+                />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" (click)="updateDateDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label jhiTranslate="auxiliumApp.policyHolder.governorate" for="field_governorate">Governorate</label>
+            <select class="form-control" id="field_governorate" name="governorate" [(ngModel)]="policyHolder.governorateId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="governorateOption.id" *ngFor="let governorateOption of governorates; trackBy: trackGovernorateById">{{governorateOption.label}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="auxiliumApp.policyHolder.delegation" for="field_delegation">Delegation</label>
+            <select class="form-control" id="field_delegation" name="delegation" [(ngModel)]="policyHolder.delegationId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="delegationOption.id" *ngFor="let delegationOption of delegations; trackBy: trackDelegationById">{{delegationOption.label}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="auxiliumApp.policyHolder.creationUser" for="field_creationUser">Creation User</label>
+            <select class="form-control" id="field_creationUser" name="creationUser" [(ngModel)]="policyHolder.creationUserId"  required>
+                <option [ngValue]="userOption.id" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</option>
+            </select>
+        </div>
+        <div [hidden]="!(editForm.controls.creationUser?.dirty && editForm.controls.creationUser?.invalid)">
+            <small class="form-text text-danger"
+                [hidden]="!editForm.controls.creationUser?.errors?.required" jhiTranslate="entity.validation.required">
+                This field is required.
+            </small>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="auxiliumApp.policyHolder.updateUser" for="field_updateUser">Update User</label>
+            <select class="form-control" id="field_updateUser" name="updateUser" [(ngModel)]="policyHolder.updateUserId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="userOption.id" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

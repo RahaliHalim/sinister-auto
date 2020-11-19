@@ -1,0 +1,37 @@
+{
+    "auxiliumApp": {
+        "viewSinisterPec" : {
+            "home": {
+                "title": "ViewSinisterPecs",
+                "createLabel": "Créer un nouveau View Sinister Pec",
+                "createOrEditLabel": "Créer ou éditer un View Sinister Pec",
+                "search": "Recherche pour View Sinister Pec"
+            },
+            "created": "Un nouveau View Sinister Pec a été créé avec l'identifiant {{ param }}",
+            "updated": "Le View Sinister Pec avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le View Sinister Pec avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Êtes-vous sûrs de vouloir supprimer le View Sinister Pec {{ id }} ?"
+            },
+            "detail": {
+                "title": "View Sinister Pec"
+            },
+            "gaReference": "Ga Reference",
+            "companyReference": "Company Reference",
+            "companyName": "Company Name",
+            "agencyName": "Agency Name",
+            "contractNumber": "Contract Number",
+            "immatriculation": "Immatriculation",
+            "modeLabel": "Mode Label",
+            "declarationDate": "Declaration Date",
+            "incidentDate": "Incident Date",
+            "decision": "Decision",
+            "step": "Step",
+            "approvPec": "Approv Pec",
+            "expertId": "Expert Id",
+            "reparateurId": "Reparateur Id",
+            "userId": "User Id",
+            "assignedToId": "Assigned To Id"
+        }
+    }
+}

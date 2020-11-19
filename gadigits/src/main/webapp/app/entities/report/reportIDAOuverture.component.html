@@ -1,0 +1,82 @@
+<!-- Breadcrumb-->
+<div class="breadcrumb-holder">
+    <div class="container-fluid">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="/"><span class="fa fa-home"></span>&nbsp;&nbsp;<span
+                        jhiTranslate="global.menu.home">Home</span></a></li>
+            <li class="breadcrumb-item"><a routerLink="/generation-ida-ouverture"><span
+                        jhiTranslate="auxiliumApp.sinisterPec.home.titleIdaOuverture">IDAOuverture</span></a>
+            </li>
+        </ul>
+    </div>
+</div>
+<section class="forms">
+    <div class="container-fluid">
+        <!-- Page Header-->
+        <header style="padding-top: 1rem; padding-bottom: 1rem;">
+            <h1 class="h3 display">
+                <jhi-alert-error></jhi-alert-error>
+                <jhi-alert></jhi-alert>
+            </h1>
+        </header>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header d-flex align-items-center no-padding">
+                        <div class="notice notice-info">
+                            <strong jhiTranslate="auxiliumApp.sinisterPec.home.titleIdaOuverture">IDAOuverture</strong>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+                                class="table table-sm table-hover table-bordered" style="width: 100%">
+                                <thead style="color:white;background-color:#11859b">
+                                    <tr>
+                                        <th><span jhiTranslate="auxiliumApp.sinisterPec.reference">reference</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.sinisterPec.companyName">Company Name</span>
+                                        </th>
+                                        <th><span jhiTranslate="auxiliumApp.sinisterPec.agentName">Agent Name</span>
+                                        </th>
+                                        <th><span jhiTranslate="auxiliumApp.sinisterPec.insuredImmatriculation">Insured
+                                                Immatriculation </span></th>
+                                        <th><span jhiTranslate="auxiliumApp.sinisterPec.tiersImmatriculation">Tiers
+                                                Immatriculation </span></th>
+                                        <th><span jhiTranslate="auxiliumApp.sinisterPec.modeGestion">Mode de
+                                                gestion</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.prestationPEC.posGa">Pos Ga</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.sinisterPec.decision">decision</span></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let sinisterPec of sinisterPecsIdaOuverture ;">
+                                        <td>{{sinisterPec.gaReference}}</td>
+                                        <td>{{sinisterPec.companyName}}</td>
+                                        <td>{{sinisterPec.agencyName}}</td>
+                                        <td>{{sinisterPec.immatriculation}}</td>
+                                        <td>{{sinisterPec.immatriculationTier}}</td>
+                                        <td>{{sinisterPec.modeLabel}}</td>
+                                        <td>{{sinisterPec.posGaLabel}}</td>
+                                        <td>{{sinisterPec.decisionIda}}</td>
+                                        <td>
+                                            <button type="submit" *ngIf="permissionToAccess.canGenerate" class="btn btn-info btn-sm  center-block"
+                                                (click)="printlettreIDAAndOuverture(sinisterPec) ">
+                                                <span class="fa fa-print"></span>&nbsp;
+                                                <span jhiTranslate="entity.action.generation-lettre-ida">Lettre IDA
+                                                    Ouverture</span>
+                                            </button>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,26 @@
+{
+    "auxiliumApp": {
+        "statement" : {
+            "home": {
+                "title": "Statements",
+                "createLabel": "Create a new Statement",
+                "createOrEditLabel": "Create or edit a Statement",
+                "search": "Search for Statement"
+            },
+            "created": "A new Statement is created with identifier {{ param }}",
+            "updated": "A Statement is updated with identifier {{ param }}",
+            "deleted": "A Statement is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Statement {{ id }}?"
+            },
+            "detail": {
+                "title": "Statement"
+            },
+            "name": "Name",
+            "path": "Path",
+            "tugId": "Tug Id",
+            "creationDate": "Creation Date",
+            "notes": "Notes"
+        }
+    }
+}

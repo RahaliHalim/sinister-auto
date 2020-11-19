@@ -1,0 +1,29 @@
+{
+    "auxiliumApp": {
+        "raisonPec" : {
+            "home": {
+                "title": "Raison Pecs",
+                "createLabel": "Create a new Raison Pec",
+                "createOrEditLabel": "Create or edit a Raison Pec",
+                "search": "Search for Raison Pec"
+            },
+            "created": "A new Raison Pec is created with identifier {{ param }}",
+            "updated": "A Raison Pec is updated with identifier {{ param }}",
+            "deleted": "A Raison Pec is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Raison Pec {{ id }}?"
+            },
+            "detail": {
+                "title": "Raison Pec"
+            },
+            "code": "Code",
+            "label": "Label",
+            "active": "Active",
+            "creationDate": "Creation Date",
+            "creationUserId": "Creation User Id",
+            "responsible": "Responsible",
+            "operation": "Operation",
+            "pecStatusChangeMatrix": "Pec Status Change Matrix"
+        }
+    }
+}

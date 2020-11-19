@@ -1,0 +1,9 @@
+{
+    "auxiliumApp": {
+        "TypePrestation" : {
+            "null": "",
+            "AVT": "AVT",
+            "PEC": "PEC"
+        }
+    }
+}

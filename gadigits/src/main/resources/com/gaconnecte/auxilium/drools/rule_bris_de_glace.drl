@@ -1,0 +1,290 @@
+package com.gaconnecte.auxilium.drools
+
+
+import com.gaconnecte.auxilium.drools.FactDevis
+
+rule "Assujettie for  TVA BRIS DE GLACE" 
+
+ when 
+     devisObject: FactDevis(isAssujettie.equals(true)) && FactDevis(modeId == 7) 
+ then
+ 
+    Float tva = 0.19F;
+    Float vetuse = 0F;
+	Float franchise = 0F;
+ 
+/********************** ALL ******************/
+
+   if(devisObject.getCompagnieId() == 1 || devisObject.getCompagnieId() == 6 
+	 || devisObject.getCompagnieId() == 8 || devisObject.getCompagnieId() == 5
+	 || devisObject.getCompagnieId() == 3 || devisObject.getCompagnieId() == 7){
+   
+         
+	       devisObject.setVetuste(Float.valueOf(devisObject.getVetuste().toString()));
+	       devisObject.setFranchise(Float.valueOf(devisObject.getFranchiseInput().toString()));
+		  
+	     
+	     devisObject.setDroitTimbre(Float.valueOf(devisObject.getDroitTimbre().toString()));
+	     devisObject.setTva(Double.valueOf(devisObject.getTva()));
+	     
+	 // Engagement GA
+	 
+	  if(Float.valueOf(devisObject.getTotHt().toString()) < Float.valueOf(devisObject.getCapitalRestant().toString())){
+	      
+	      devisObject.setEngagementGa(Float.valueOf(devisObject.getTotHt().toString()) 
+	      - Float.valueOf(devisObject.getFranchiseInput().toString()));
+	    }else{
+	    
+	      devisObject.setEngagementGa(Float.valueOf(devisObject.getCapitalRestant().toString())
+				- 
+					Float.valueOf(devisObject.getFranchiseInput().toString()));
+	    }
+	    
+	 // End engagemnt GA
+	
+		  if(devisObject.getDepassplafondInput() < 0){
+		    
+		    devisObject.setDepassplafond(0F);
+		    devisObject.setTotalPartAssuree(Float.valueOf(devisObject.getTva().toString())
+		    + Float.valueOf(devisObject.getFranchiseInput().toString())
+		    + Float.valueOf(devisObject.getDroitTimbre().toString())
+		    );
+
+					if((Float.valueOf(devisObject.getTotalTtc().toString()) 
+				- Float.valueOf(devisObject.getTva().toString())
+				- Float.valueOf(devisObject.getFranchiseInput().toString())
+		    - Float.valueOf(devisObject.getDroitTimbre().toString())) < 0){
+
+
+					devisObject.setSurplusEncaisse(-Float.valueOf(devisObject.getTotalTtc().toString()) 
+				+ Float.valueOf(devisObject.getTva().toString())
+				+ Float.valueOf(devisObject.getFranchiseInput().toString())
+		    + Float.valueOf(devisObject.getDroitTimbre().toString()));
+				  devisObject.setSoldeReparateur(0F);
+				}else{
+         devisObject.setSoldeReparateur(Float.valueOf(devisObject.getTotalTtc().toString()) 
+				- Float.valueOf(devisObject.getTva().toString())
+				- Float.valueOf(devisObject.getFranchiseInput().toString())
+		    - Float.valueOf(devisObject.getDroitTimbre().toString()));
+				  devisObject.setSurplusEncaisse(0F);
+
+				}
+		    
+		    }else{
+		    
+		    devisObject.setDepassplafond(devisObject.getDepassplafondInput());
+		    
+		    devisObject.setTotalPartAssuree(devisObject.getDepassplafondInput()
+		    + Float.valueOf(devisObject.getTva().toString())
+		    + Float.valueOf(devisObject.getFranchiseInput().toString())
+		    + Float.valueOf(devisObject.getDroitTimbre().toString())
+		    );
+
+        if((Float.valueOf(devisObject.getTotalTtc().toString())
+				- devisObject.getDepassplafondInput() 
+				- Float.valueOf(devisObject.getTva().toString())
+				- Float.valueOf(devisObject.getFranchiseInput().toString())
+		    - Float.valueOf(devisObject.getDroitTimbre().toString())) < 0){
+
+
+					devisObject.setSurplusEncaisse(-Float.valueOf(devisObject.getTotalTtc().toString()) 
+				+	devisObject.getDepassplafondInput()
+				+ Float.valueOf(devisObject.getTva().toString())
+				+ Float.valueOf(devisObject.getFranchiseInput().toString())
+		    + Float.valueOf(devisObject.getDroitTimbre().toString()));
+				  devisObject.setSoldeReparateur(0F);
+				}else{
+         devisObject.setSoldeReparateur(Float.valueOf(devisObject.getTotalTtc().toString())
+				- devisObject.getDepassplafondInput() 
+				- Float.valueOf(devisObject.getTva().toString())
+				- Float.valueOf(devisObject.getFranchiseInput().toString())
+		    - Float.valueOf(devisObject.getDroitTimbre().toString()));
+				  devisObject.setSurplusEncaisse(0F);
+
+				}
+
+		    }
+
+	
+ }
+
+  end
+ 
+ 
+ rule "NON Assujettie for  TVA BRIS DE GLACE" 
+
+ when 
+     devisObject: FactDevis(!isAssujettie.equals(true)) && FactDevis(modeId == 7) 
+ then
+ 
+ /************************* ALL ************************/
+
+   if(devisObject.getCompagnieId() == 1 || devisObject.getCompagnieId() == 6 
+	 || devisObject.getCompagnieId() == 8 || devisObject.getCompagnieId() == 3 
+	 || devisObject.getCompagnieId() == 7 || devisObject.getCompagnieId() == 5){
+         
+	       devisObject.setVetuste(Float.valueOf(devisObject.getVetuste().toString()));
+         devisObject.setFranchise(Float.valueOf(devisObject.getFranchiseInput().toString()));
+		  
+	     
+	     devisObject.setDroitTimbre(Float.valueOf(devisObject.getDroitTimbre().toString()));
+	     devisObject.setTva(0D);
+	     
+	 // Engagement GA
+	 
+	  if(Float.valueOf(devisObject.getTotalTtc().toString()) < Float.valueOf(devisObject.getCapitalRestant().toString())){
+	      
+	      devisObject.setEngagementGa(Float.valueOf(devisObject.getTotalTtc().toString())
+				- Float.valueOf(devisObject.getDroitTimbre().toString()) 
+	      - Float.valueOf(devisObject.getFranchiseInput().toString()));
+	    }else{
+	    
+	      devisObject.setEngagementGa(Float.valueOf(devisObject.getCapitalRestant().toString())
+				- 
+					Float.valueOf(devisObject.getFranchiseInput().toString()));
+	    }
+	    
+	 // End engagemnt GA
+	
+		  if(devisObject.getDepassplafondInputNonAssujettie() < 0){
+		    
+		    devisObject.setDepassplafond(0F);
+		    devisObject.setTotalPartAssuree(
+		    Float.valueOf(devisObject.getFranchiseInput().toString())
+		    + Float.valueOf(devisObject.getDroitTimbre().toString())
+		    );
+
+				if((Float.valueOf(devisObject.getTotalTtc().toString()) 
+				- Float.valueOf(devisObject.getFranchiseInput().toString())
+		    - Float.valueOf(devisObject.getDroitTimbre().toString())) < 0){
+
+
+					devisObject.setSurplusEncaisse(-Float.valueOf(devisObject.getTotalTtc().toString()) 
+				+ Float.valueOf(devisObject.getFranchiseInput().toString())
+		    + Float.valueOf(devisObject.getDroitTimbre().toString()));
+				  devisObject.setSoldeReparateur(0F);
+				}else{
+         devisObject.setSoldeReparateur(Float.valueOf(devisObject.getTotalTtc().toString()) 
+				- Float.valueOf(devisObject.getFranchiseInput().toString())
+		    - Float.valueOf(devisObject.getDroitTimbre().toString()));
+				  devisObject.setSurplusEncaisse(0F);
+
+				}
+		    
+		    }else{
+		    
+		    devisObject.setDepassplafond(devisObject.getDepassplafondInputNonAssujettie());
+		    
+		    devisObject.setTotalPartAssuree(devisObject.getDepassplafondInputNonAssujettie()
+		    + Float.valueOf(devisObject.getFranchiseInput().toString())
+		    + Float.valueOf(devisObject.getDroitTimbre().toString())
+		    );
+
+				if((Float.valueOf(devisObject.getTotalTtc().toString())
+				- devisObject.getDepassplafondInputNonAssujettie() 
+				- Float.valueOf(devisObject.getFranchiseInput().toString())
+		    - Float.valueOf(devisObject.getDroitTimbre().toString())) < 0){
+
+
+					devisObject.setSurplusEncaisse(-Float.valueOf(devisObject.getTotalTtc().toString()) 
+				+	devisObject.getDepassplafondInputNonAssujettie()
+				+ Float.valueOf(devisObject.getFranchiseInput().toString())
+		    + Float.valueOf(devisObject.getDroitTimbre().toString()));
+				  devisObject.setSoldeReparateur(0F);
+				}else{
+         devisObject.setSoldeReparateur(Float.valueOf(devisObject.getTotalTtc().toString())
+				- devisObject.getDepassplafondInputNonAssujettie() 
+				- Float.valueOf(devisObject.getFranchiseInput().toString())
+		    - Float.valueOf(devisObject.getDroitTimbre().toString()));
+				  devisObject.setSurplusEncaisse(0F);
+
+				}
+		    }
+	
+ }
+
+
+  /************************* BIAT ************************/
+
+   if(devisObject.getCompagnieId() == 35){
+   
+    devisObject.setVetuste(Float.valueOf(devisObject.getVetuste().toString()));
+         devisObject.setFranchise(Float.valueOf(devisObject.getFranchiseInput().toString()));
+		  
+	     
+	     devisObject.setDroitTimbre(Float.valueOf(devisObject.getDroitTimbre().toString()));
+	     devisObject.setTva(0D);
+	     
+	 // Engagement GA
+	 
+	  if(Float.valueOf(devisObject.getTotalTtc().toString()) < Float.valueOf(devisObject.getCapitalRestant().toString())){
+	      
+	      devisObject.setEngagementGa(Float.valueOf(devisObject.getTotalTtc().toString()) 
+	      - Float.valueOf(devisObject.getFranchiseInput().toString()));
+	    }else{
+	    
+	      devisObject.setEngagementGa(Float.valueOf(devisObject.getCapitalRestant().toString())
+				- Float.valueOf(devisObject.getVetuste().toString())
+	      - Float.valueOf(devisObject.getFranchiseInput().toString()));
+	    }
+	    
+	 // End engagemnt GA
+	
+		  if(devisObject.getDepassplafondInputNonAssujettie() < 0){
+		    
+		    devisObject.setDepassplafond(0F);
+		    devisObject.setTotalPartAssuree(
+		    Float.valueOf(devisObject.getFranchiseInput().toString())
+		    + Float.valueOf(devisObject.getDroitTimbre().toString())
+		    );
+
+				if((Float.valueOf(devisObject.getTotalTtc().toString()) 
+				- Float.valueOf(devisObject.getFranchiseInput().toString())
+		    - Float.valueOf(devisObject.getDroitTimbre().toString())) < 0){
+
+
+					devisObject.setSurplusEncaisse(-Float.valueOf(devisObject.getTotalTtc().toString()) 
+				+ Float.valueOf(devisObject.getFranchiseInput().toString())
+		    + Float.valueOf(devisObject.getDroitTimbre().toString()));
+				  devisObject.setSoldeReparateur(0F);
+				}else{
+         devisObject.setSoldeReparateur(Float.valueOf(devisObject.getTotalTtc().toString()) 
+				- Float.valueOf(devisObject.getFranchiseInput().toString())
+		    - Float.valueOf(devisObject.getDroitTimbre().toString()));
+				  devisObject.setSurplusEncaisse(0F);
+
+				}
+		    
+		    }else{
+		    
+		    devisObject.setDepassplafond(devisObject.getDepassplafondInputNonAssujettie());
+		    
+		    devisObject.setTotalPartAssuree(devisObject.getDepassplafondInputNonAssujettie()
+		    + Float.valueOf(devisObject.getFranchiseInput().toString())
+		    + Float.valueOf(devisObject.getDroitTimbre().toString())
+		    );
+
+					if((Float.valueOf(devisObject.getTotalTtc().toString())
+				- devisObject.getDepassplafondInputNonAssujettie() 
+				- Float.valueOf(devisObject.getFranchiseInput().toString())
+		    - Float.valueOf(devisObject.getDroitTimbre().toString())) < 0){
+
+
+					devisObject.setSurplusEncaisse(-Float.valueOf(devisObject.getTotalTtc().toString()) 
+				+	devisObject.getDepassplafondInputNonAssujettie()
+				+ Float.valueOf(devisObject.getFranchiseInput().toString())
+		    + Float.valueOf(devisObject.getDroitTimbre().toString()));
+				  devisObject.setSoldeReparateur(0F);
+				}else{
+         devisObject.setSoldeReparateur(Float.valueOf(devisObject.getTotalTtc().toString())
+				- devisObject.getDepassplafondInputNonAssujettie() 
+				- Float.valueOf(devisObject.getFranchiseInput().toString())
+		    - Float.valueOf(devisObject.getDroitTimbre().toString()));
+				  devisObject.setSurplusEncaisse(0F);
+
+				}
+		    }
+ }
+
+ 
+ end

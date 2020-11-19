@@ -1,0 +1,24 @@
+{
+    "auxiliumApp": {
+        "businessEntity" : {
+            "home": {
+                "title": "Business Entities",
+                "createLabel": "Create a new Business Entity",
+                "createOrEditLabel": "Create or edit a Business Entity",
+                "search": "Search for Business Entity"
+            },
+            "created": "A new Business Entity is created with identifier {{ param }}",
+            "updated": "A Business Entity is updated with identifier {{ param }}",
+            "deleted": "A Business Entity is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Business Entity {{ id }}?"
+            },
+            "detail": {
+                "title": "Business Entity"
+            },
+            "label": "Label",
+            "code": "Code",
+            "functionalities": "Functionalities"
+        }
+    }
+}

@@ -1,0 +1,28 @@
+{
+    "auxiliumApp": {
+        "journal" : {
+            "home": {
+                "title": "Journals",
+                "createLabel": "Créer un nouveau Journal",
+                "createOrEditLabel": "Créer ou modifier un journal",
+                "search": "Recherche pour journal"
+            },
+            "created": "Un nouveau journal a été créé avec l'identifiant {{ param }}",
+            "updated": "Le journal avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le journal avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer le journal {{ id }} ?"
+            },
+            "detail": {
+                "title": "Journal"
+            },
+            "commentaire": "Commentaire",
+            "utilisateur" : "Utilisateur",
+            "timestamp": "Timestamp",
+            "dossier": "Dossier",
+            "prestation": "Prestation",
+            "sysActionUtilisateur": "Sys Action Utilisateur",
+            "motif": "Motif"
+        }
+    }
+}

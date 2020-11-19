@@ -1,0 +1,53 @@
+
+<div *ngIf="journal">
+    <h2><span jhiTranslate="auxiliumApp.journal.detail.title">Journal</span> {{journal.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="auxiliumApp.journal.commentaire">Commentaire</span></dt>
+        <dd>
+            <span>{{journal.commentaire}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.journal.timestamp">Timestamp</span></dt>
+        <dd>
+            <span>{{journal.timestamp | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.journal.sysActionUtilisateur">Sys Action Utilisateur</span></dt>
+        <dd>
+            <div *ngIf="journal.sysActionUtilisateurId">
+                <a [routerLink]="['/sys-action-utilisateur', journal.sysActionUtilisateurId]">{{journal.sysActionUtilisateurId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="AuxiliumApp.journal.dossier">Dossier</span></dt>
+        <dd>
+            <div *ngIf="journal.dossierId">
+                <a [routerLink]="['/dossier', journal.dossierId]">{{journal.dossierId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="AuxiliumApp.journal.prestation">Prestation</span></dt>
+        <dd>
+            <div *ngIf="journal.prestationId">
+                <a [routerLink]="['/prestation', journal.prestationId]">{{journal.prestationId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.journal.motif">Motif</span></dt>
+        <dd>
+            <span *ngFor="let motif of journal.motifs; let last = last">
+                <a [routerLink]="['/ref-motif', motif?.id ]">{{motif.libelle}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'journal/'+ journal.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;&nbsp;&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,53 @@
+{
+    "auxiliumApp": {
+        "dossier" : {
+            "home": {
+                "success": "<strong>Le dossier a été créé !</strong>",
+                "title": "Dossier",
+                "createLabel": "Créer",
+                "créationDossier": "Création d'un nouveau dossier",
+                "createOrEditLabel": "Dossier",
+                "details": "Détails dossier",
+                "detailsAgent": "Demande PEC",
+                "search": "Recherche pour dossier assistance",
+                "searchImmatriculation" :"Immatriculation véhicule",
+                "type": "Type de demande",
+                "edit": "Modifier"
+            },
+            "contrat": "Cette immatriculation n'existe pas",
+            "created": "Un nouveau dossier a été créé avec l'identifiant {{ param }}",
+            "updated": "Le dossier avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le dossier avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer le dossier {{ id }} ?"
+            },
+            "detail": {
+                "title": "Dossier"
+            },
+            "demand": {
+                "detail": "Détails demande",
+                "home": "Demandes PEC"
+            },
+            "reference": "Référence",
+            "isDelete": "Is Delete",
+            "dateCreation": "Date de création",
+            "dateCloture": "Date de clôture",
+            "dateDerniereMaj": "Date de dernière Maj",
+            "telephone": "Téléphone",
+            "nbrPassagers": "Nbre passagers",
+            "dateAccident": "Date de survenance",
+            "dateDeclaration":"Date de déclaration",
+            "natureIncident": "Nature de l'événement",
+            "immatriculation": "Immatriculation",
+            "prenomConducteur": "Prénom du conducteur",
+            "nomConducteur": "Nom du conducteur",
+            "permisConduc": "Permis du conducteur",
+            "prenomTiersConduc": "Prénom Tiers Conducteur",
+            "nomTiersConduc": "Nom Tiers Conducteur",
+            "permisTiersConduc": "Permis Tiers Conducteur",
+            "lieu": "Lieu",
+            "vehicule": "Véhicule",
+            "assure": "Assuré"
+        }
+    }
+}

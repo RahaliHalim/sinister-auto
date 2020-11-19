@@ -1,0 +1,28 @@
+{
+    "auxiliumApp": {
+        "client" : {
+            "home": {
+                "title": "Clients",
+                "createLabel": "Créer",
+                "createOrEditLabel": "Créer ou modifier un client",
+                "search": "Recherche pour client"
+            },
+            "created": "Un nouveau client a été créé",
+            "updated": "Le client a été mis à jour",
+            "deleted": "Le client a été supprimé",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer ce client ?"
+            },
+            "detail": {
+                "title": "Client"
+            },
+            "code": "Code",
+            "compagnie": "Compagnie",
+            "concessionnaire": "Concessionnaire",
+            "contrat": "Contrat",
+            "pack":"Packs",
+            "produit":"Produits",
+            "garanties":"Garanties"
+        }
+    }
+}

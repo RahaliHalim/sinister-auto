@@ -1,0 +1,24 @@
+{
+    "auxiliumApp": {
+        "refFractionnement" : {
+            "home": {
+                "title": "Fractionnements",
+                "createLabel": "Créer une nouvelle Réf. fractionnement",
+                "createOrEditLabel": "Créer ou Modifier une réf. fractionnement",
+                "search": "Recherche pour réf. fractionnement"
+            },
+            "created": "Une nouvelle réf. fractionnement a été créée avec l'identifiant {{ param }}",
+            "updated": "La réf. fractionnement avec l'identifiant {{ param }} a été mise à jour",
+            "deleted": "La réf. fractionnement avec l'identifiant {{ param }} a été supprimée",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer la réf. fractionnement {{ id }} ?"
+            },
+            "detail": {
+                "title": "Réf. Fractionnement",
+                "fractionnement": "Fractionnement"
+            },
+            "code": "Code",
+            "libelle": "Libellé"
+        }
+    }
+}

@@ -1,0 +1,1171 @@
+<!-- Breadcrumb-->
+<div class="breadcrumb-holder">
+    <div class="container-fluid">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><span class="fa fa-home"></span>&nbsp;&nbsp;<a routerLink="/"><span
+                        jhiTranslate="global.menu.home">Home</span></a></li>
+            <li class="breadcrumb-item"><a routerLink="/ref-remorqueur"><span
+                        jhiTranslate="auxiliumApp.refRemorqueur.home.title">Remorqueur</span></a></li>
+            <li class="breadcrumb-item"><span
+                        jhiTranslate="auxiliumApp.refRemorqueur.home.createOrEditLabel">créer</span></li>
+        </ul>
+    </div>
+</div>
+<section class="forms">
+    <div class="container-fluid">
+        <!-- Page Header-->
+        <header style="padding-top: 1rem; padding-bottom: 1rem;">
+            <h1 class="h3 display">
+                <jhi-alert-error></jhi-alert-error>
+                <jhi-alert></jhi-alert>
+            </h1>
+        </header>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header d-flex align-items-center no-padding">
+                        <div class="notice notice-info"><strong>Général</strong></div>
+                    </div>
+                    <form name="editForm" role="form" novalidate #editForm="ngForm">
+                        <div class="modal-body" *ngIf="isCompanyLoaded">
+                            <div class="row top-buffer">
+                                <div class="col-sm-3">
+                                    <label class="form-control-label"
+                                        jhiTranslate="auxiliumApp.personneMorale.codeCategorie"
+                                        for="field_codeCategorie">codeCategorie</label>
+                                    <input type="text" class="form-control form-control-sm" name="codeCategorie"
+                                        id="field_codeCategorie" [(ngModel)]="personneMorale.codeCategorie"
+                                        pattern="[0-9]{1,50}" required />
+                                    <small class="form-text text-danger"
+                                        [hidden]="!editForm.controls.codeCategorie?.errors?.pattern"
+                                        jhiTranslate="entity.validation.pattern" translateValues="{ pattern: ' Code ' }"
+                                        jhiTranslate="entity.validation.number">
+                                        This field should follow pattern for "Mail".
+                                    </small>
+                                    <div
+                                        [hidden]="!(editForm.controls.codeCategorie?.dirty && editForm.controls.codeCategorie?.invalid)">
+                                        <small class="form-text text-danger"
+                                            [hidden]="!editForm.controls.codeCategorie?.errors?.pattern"
+                                            jhiTranslate="entity.validation.pattern"
+                                            translateValues="{ pattern: ' Code ' }"
+                                            jhiTranslate="entity.validation.number">
+                                            This field should follow pattern for "Mail".
+                                        </small>
+                                        <small class="form-text text-danger"
+                                            [hidden]="!editForm.controls.codeCategorie?.errors?.max"
+                                            jhiTranslate="entity.validation.max"
+                                            translateValues="{ max: 100000000000000000 }">
+                                            This field cannot be more than 100000000000000000.
+                                        </small>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <label class="form-control-label"
+                                        jhiTranslate="auxiliumApp.personneMorale.raisonSociale"
+                                        for="field_raisonSociale">Raison Sociale</label>
+                                    <input type="text" class="form-control form-control-sm" name="raisonSociale"
+                                        id="field_raisonSociale" [(ngModel)]="personneMorale.raisonSociale"
+                                        (ngModelChange)="findTugByName()" [pattern]="textPattern" required />
+                                    <small class="form-text text-danger"
+                                        [hidden]="!editForm.controls.raisonSociale?.errors?.pattern"
+                                        jhiTranslate="entity.validation.pattern"
+                                        translateValues="{ pattern: 'Raison Sociale' }">
+                                        This field should follow pattern for "Mail".
+                                    </small>
+                                    <div
+                                        [hidden]="!(editForm.controls.raisonSociale?.dirty && editForm.controls.raisonSociale?.invalid)">
+                                        <small class="form-text text-danger"
+                                            [hidden]="!editForm.controls.raisonSociale?.errors?.required"
+                                            jhiTranslate="entity.validation.required">
+                                            This field is required.
+                                        </small>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <label class="form-control-label"
+                                        jhiTranslate="auxiliumApp.personneMorale.matriculeFiscale"
+                                        for="field_matriculeFiscale">Matricule Fiscale</label>
+                                    <input type="text" class="form-control form-control-sm" name="matriculeFiscale"
+                                        id="field_matriculeFiscale" [(ngModel)]="personneMorale.matriculeFiscale"
+                                        (ngModelChange)="findTugByName()" required />
+                                    <div
+                                        [hidden]="!(editForm.controls.matriculeFiscale?.dirty && editForm.controls.matriculeFiscale?.invalid)">
+                                        <small class="form-txt text-danger"
+                                            [hidden]="!editForm.controls.matriculeFiscale?.errors?.required"
+                                            jhiTranslate="entity.validation.required">
+                                            This field is required.
+                                        </small>
+
+
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <label jhiTranslate="auxiliumApp.personneMorale.codeTVA" for="field_tva">Code
+                                        TVA</label>
+                                    <select class="form-control form-control-sm" id="field_tva" name="tva"
+                                        [(ngModel)]="personneMorale.tvaId" required>
+                                        <option [ngValue]="refTvaOption.id" *ngFor="let refTvaOption of refTvas;">
+                                            {{refTvaOption.vatRate}}</option>
+                                    </select>
+
+                                    <div
+                                        [hidden]="!(editForm.controls.codeTVA?.dirty && editForm.controls.codeTVA?.invalid)">
+                                        <small class="form-text text-danger"
+                                            [hidden]="!editForm.controls.codeTVA?.errors?.required"
+                                            jhiTranslate="entity.validation.required">
+                                            This field is required.
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row top-buffer">
+                                <div class="col-sm-3">
+                                    <label class="form-control-label"
+                                        jhiTranslate="auxiliumApp.personneMorale.registreCommerce"
+                                        for="field_registreCommerce">Registre Commerce</label>
+                                    <input type="text" class="form-control form-control-sm" name="registreCommerce"
+                                        id="field_registreCommerce" [(ngModel)]="personneMorale.registreCommerce"
+                                        (ngModelChange)="findTugByName()" required maxlength="100" />
+                                    <div
+                                        [hidden]="!(editForm.controls.registreCommerce?.dirty && editForm.controls.registreCommerce?.invalid)">
+                                        <small class="form-text text-danger"
+                                            [hidden]="!editForm.controls.registreCommerce?.errors?.required"
+                                            jhiTranslate="entity.validation.required">
+                                            This field is required.
+                                        </small>
+                                        <small class="form-text text-danger"
+                                            [hidden]="!editForm.controls.registreCommerce?.errors?.maxlength"
+                                            jhiTranslate="entity.validation.maxlength" translateValues="{ max: 100 }">
+                                            This field cannot be longer than 100 characters.
+                                        </small>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <label jhiTranslate="auxiliumApp.personneMorale.reglement">Mode de règlement</label>
+                                    <select class="form-control form-control-sm" id="field_mode" name="reglement"
+                                        [(ngModel)]=" personneMorale.reglementId"
+                                        (ngModelChange)="etatRib(personneMorale.reglementId)" required>
+                                        <option [ngValue]="modeReglementOption.id"
+                                            *ngFor="let modeReglementOption of refModeReglements; trackBy: trackModeById">
+                                            {{modeReglementOption.nom}}</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-3">
+                                    <label class="form-control-label" jhiTranslate="auxiliumApp.personneMorale.rib"
+                                        for="field_rib">Rib</label> <i class="fa fa-info-circle"
+                                        title="Ce champ est numérique (0-9)"></i>
+                                    <input *ngIf="mandatoryRibFlag" type="number" class="form-control form-control-sm"
+                                        name="rib" id="field_rib" [(ngModel)]="personneMorale.rib" pattern="^[0-9]*$"
+                                        required />
+                                    <input *ngIf="!mandatoryRibFlag" type="number" class="form-control form-control-sm"
+                                        name="rib" id="field_rib" [(ngModel)]="personneMorale.rib" pattern="^[0-9]*$" />
+
+                                    <small class="form-text text-danger"
+                                        [hidden]="!editForm.controls.codeCategorie?.errors?.pattern"
+                                        jhiTranslate="entity.validation.pattern" translateValues="{ pattern: ' Code ' }"
+                                        jhiTranslate="entity.validation.number">
+                                        This field should follow pattern for "Mail".
+                                    </small>
+                                    <div [hidden]="!(editForm.controls.rib?.dirty && editForm.controls.rib?.invalid)">
+                                        <small class="form-text text-danger"
+                                            [hidden]="!editForm.controls.rib?.errors?.max"
+                                            jhiTranslate="entity.validation.max"
+                                            translateValues="{ max: 100000000000000000 }">
+                                            This field cannot be more than 100000000000000000.
+                                        </small>
+                                        <small class="form-text text-danger"
+                                            [hidden]="!editForm.controls.rib?.errors?.number"
+                                            jhiTranslate="entity.validation.number">
+                                            This field should be a number.
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <label class="form-control-label" for="field_isConventionne"
+                                        style="width: 100%;">&nbsp;</label>
+                                    <input type="checkbox" class="check-input" name="isConventionne"
+                                        id="field_isConventionne" [(ngModel)]="refRemorqueur.isConventionne" />
+                                    <label class="form-control-label"
+                                        jhiTranslate="auxiliumApp.refRemorqueur.isConventionne"
+                                        for="field_isConventionne">Is Conventionne</label>
+                                </div>
+
+
+                            </div>
+
+
+
+
+
+                        </div>
+
+                        <!-- debut Vis à Vis -->
+                        <header style="padding-top: 1rem; padding-bottom: 1rem;">
+                            <h1 class="h3 display"></h1>
+                        </header>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-header d-flex align-items-center no-padding">
+                                        <div class="notice notice-info"><strong> Vis à Vis :
+                                            </strong></div>
+                                        <button *ngIf="creervisavis == true"
+                                            class="btn btn-sm btn-primary float-right jh-create-entity create-Vis-a vis "
+                                            (click)="addForm1();">
+                                            <span class="fa fa-plus"></span>
+                                            <span class="hidden-sm-down"
+                                                jhiTranslate="auxiliumApp.contact.home.createLabel"> Contacts</span>
+                                        </button>
+                                    </div>
+                                    <div *ngIf="this.disabledForm1">
+                                        <form name="editFormVav" role="form" novalidate #editFormVav="ngForm">
+                                            <div class="card-body">
+                                                <div class="row top-buffer">
+                                                    <div class="col-sm-3">
+                                                        <label class="form-control-label"
+                                                            jhiTranslate="auxiliumApp.personnePhysique.nom"
+                                                            for="field_nom">Nom</label>
+                                                        <input type="text" class="form-control form-control-sm"
+                                                            name="nom" id="field_nom"
+                                                            [(ngModel)]="visAVis.nom"
+                                                            pattern="[A-Za-z ]{1,50}" required />
+                                                        <small class="form-text text-danger"
+                                                            [hidden]="!editFormVav.controls.nom?.errors?.pattern"
+                                                            jhiTranslate="entity.validation.pattern"
+                                                            translateValues="{ pattern: 'Nom' }">This field should
+                                                            follow pattern for "Mail".</small>
+                                                        <div
+                                                            [hidden]="!(editFormVav.controls.nom?.dirty && editFormVav.controls.nom?.invalid)">
+                                                            <small class="form-text text-danger"
+                                                                [hidden]="!editFormVav.controls.nom?.errors?.required"
+                                                                jhiTranslate="entity.validation.required">This field is
+                                                                required.personnePhysique</small>
+                                                            <small class="form-text text-danger" personnePhysique
+                                                                [hidden]="!editFormVav.controls.nom?.errors?.maxlength"
+                                                                jhiTranslate="entitypersonnePhysique.validation.maxlength"
+                                                                translateValues="{ max: 100 }">This field cannot be
+                                                                longer than 100 characters.</small>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-3">
+                                                        <label class="form-control-label"
+                                                            jhiTranslate="auxiliumApp.personnePhysique.prenom"
+                                                            for="field_prenom">Prenom</label>
+                                                        <input type="text" class="form-control form-control-sm"
+                                                            name="prenom" id="field_prenom"
+                                                            [(ngModel)]="visAVis.prenom"
+                                                            pattern="[A-Za-z ]{1,50}" required />
+                                                        <small class="form-text text-danger"
+                                                            [hidden]="!editFormVav.controls.prenom?.errors?.pattern"
+                                                            jhiTranslate="entity.validation.pattern"
+                                                            translateValues="{ pattern: 'prénom' }">This field should
+                                                            follow pattern for "Mail".</small>
+                                                        <div
+                                                            [hidden]="!(editFormVav.controls.prenom?.dirty && editFormVav.controls.prenom?.invalid)">
+                                                            <small class="form-text text-danger"
+                                                                [hidden]="!editFormVav.controls.prenom?.errors?.required"
+                                                                jhiTranslate="entity.validation.required">This field is
+                                                                required.</small>
+                                                            <small class="form-text text-danger"
+                                                                [hidden]="!editFormVav.controls.prenom?.errors?.maxlength"
+                                                                jhiTranslate="entity.validation.maxlength"
+                                                                translateValues="{ max: 100 }">This field cannot be
+                                                                longer than 100 characters.</small>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-3">
+                                                        <label class="form-control-label"
+                                                            jhiTranslate="auxiliumApp.personnePhysique.premTelephone"
+                                                            for="field_premTelephone">Prem Telephone</label>
+                                                        <input type="text" class="form-control form-control-sm"
+                                                            name="premTelephone" id="field_premTelephone"
+                                                            [(ngModel)]="visAVis.premTelephone"
+                                                            pattern="([0-9]{1,50})" required />
+                                                        <div
+                                                            [hidden]="!(editFormVav.controls.premTelephone?.dirty && editFormVav.controls.premTelephone?.invalid)">
+                                                            <small class="form-text text-danger"
+                                                                [hidden]="!editFormVav.controls.premTelephone?.errors?.required"
+                                                                jhiTranslate="entity.validation.required">This field is
+                                                                required.</small>
+                                                            <small class="form-text text-danger"
+                                                                [hidden]="!editFormVav.controls.premTelephone?.errors?.pattern"
+                                                                jhiTranslate="entity.validation.pattern"
+                                                                translateValues="{ pattern: 'Prem Telephone' }">This
+                                                                field should follow pattern for "Prem
+                                                                Telephone".</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row top-buffer">
+                                                    <div class="col-sm-3">
+                                                        <label class="form-control-label"
+                                                            jhiTranslate="auxiliumApp.personnePhysique.fax"
+                                                            for="field_fax">Fax</label>
+                                                        <input type="text" class="form-control form-control-sm"
+                                                            name="fax" id="field_fax"
+                                                            [(ngModel)]="visAVis.fax"
+                                                            pattern="([0-9]{1,50})" />
+                                                        <div
+                                                            [hidden]="!(editFormVav.controls.fax?.dirty && editFormVav.controls.fax?.invalid)">
+                                                            <small class="form-text text-danger"
+                                                                [hidden]="!editFormVav.controls.fax?.errors?.required"
+                                                                jhiTranslate="entity.validation.required">This field is
+                                                                required.</small>
+                                                            <small class="form-text text-danger"
+                                                                [hidden]="!editFormVav.controls.fax?.errors?.pattern"
+                                                                jhiTranslate="entity.validation.pattern"
+                                                                translateValues="{ pattern: 'Fax' }">This field should
+                                                                follow pattern for "Prem Telephone".</small>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-3">
+                                                        <label class="form-control-label"
+                                                            jhiTranslate="auxiliumApp.personnePhysique.premMail"
+                                                            for="field_premMail">Prem Mail</label>
+                                                        <input type="email" class="form-control form-control-sm"
+                                                            name="premMail" id="field_premMail"
+                                                            [(ngModel)]="visAVis.premMail"
+                                                            pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" />
+                                                        <div
+                                                            [hidden]="!(editFormVav.controls.premMail?.dirty && editFormVav.controls.premMail?.invalid)">
+                                                            <small class="form-text text-danger"
+                                                                [hidden]="!editFormVav.controls.premMail?.errors?.pattern"
+                                                                jhiTranslate="entity.validation.pattern"
+                                                                translateValues="{ pattern: 'Prem Mail' }">This field
+                                                                should follow pattern for "Mail".</small>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <div *ngIf="this.ajout1">
+                                                            <label class="form-control-label"
+                                                                style="width: 100%">&nbsp;</label>
+                                                            <button type="button"
+                                                                [disabled]="editFormVav.form.invalid || isSaving"
+                                                                class="btn btn-sm btn-primary" (click)="addContact();">
+                                                                <span class="fa fa-plus"> Ajouter </span>
+                                                            </button>
+                                                        </div>
+
+                                                        <div *ngIf="!this.ajout1">
+                                                            <label class="form-control-label"
+                                                                style="width: 100%">&nbsp;</label>
+                                                            <button type="button"
+                                                                [disabled]="editFormVav.form.invalid || isSaving"
+                                                                class="btn btn-sm btn-primary" (click)="modifContact();">
+                                                                <span class="fa fa-plus"> Modifier </span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div>
+                                        <div class="card-body">
+                                            <div class="table-responsive"
+                                                *ngIf="listContacts && listContacts.length > 0">
+                                                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+                                                    class="table table-sm table-hover table-bordered" style="width: 100%">
+                                                    <thead style="color:white;background-color:#11859b">
+                                                        <tr>
+                                                            <th><span jhiTranslate="auxiliumApp.contact.nom">nom</span>
+                                                            </th>
+                                                            <th><span
+                                                                    jhiTranslate="auxiliumApp.contact.prenom">Prenom</span>
+                                                            </th>
+                                                            <th><span jhiTranslate="auxiliumApp.contact.tel">tel</span>
+                                                            </th>
+                                                            <th><span jhiTranslate="auxiliumApp.contact.fax">Fax</span>
+                                                            </th>
+                                                            <th><span
+                                                                    jhiTranslate="auxiliumApp.contact.email">Email</span>
+                                                            </th>
+                                                            <th class="no-sort"></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr
+                                                            *ngFor="let contact of listContacts ;trackBy: trackContactsId">
+                                                            <td>{{contact.nom}}</td>
+                                                            <td>{{contact.prenom}}</td>
+                                                            <td>{{contact.premTelephone}}</td>
+                                                            <td>{{contact.fax}}</td>
+                                                            <td>{{contact.premMail}}</td>
+                                                            <td class="text-right">
+                                                                <div class="btn-group flex-btn-group-container">
+                                                                    <button type="button" (click)="editContact(contact)"
+                                                                        class="btn btn-primary btn-sm">
+                                                                        <span class="fa fa-pencil"></span>
+                                                                    </button>
+                                                                    <button type="button"
+                                                                        (click)="deleteContact(contact)"
+                                                                        class="btn btn-danger btn-sm">
+                                                                        <span class="fa fa-sm fa-remove"></span>
+                                                                    </button>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- fin Vis à Vis -->
+
+                        <!-- debut Gérant-->
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card-header d-flex align-items-center no-padding">
+                                    <div class="notice notice-info"><strong> Gérant: </strong></div>
+                                </div>
+
+                                <div class="card-body">
+                                    <div class="row top-buffer">
+
+                                        <div class="col-sm-3">
+                                            <label class="form-control-label"
+                                                jhiTranslate="auxiliumApp.personnePhysique.nom"
+                                                for="field_nom">Nom</label>
+                                            <input type="text" class="form-control form-control-sm" name="nom"
+                                                id="field_nom" [(ngModel)]="visAVisGeneral.nom"
+                                                pattern="[A-Za-z ]{1,50}" required />
+                                            <small class="form-text text-danger"
+                                                [hidden]="!editForm.controls.nom?.errors?.pattern"
+                                                jhiTranslate="entity.validation.pattern"
+                                                translateValues="{ pattern: 'nom' }">
+                                                This field should follow pattern for "Mail".
+                                            </small>
+                                            <div
+                                                [hidden]="!(editForm.controls.nom?.dirty && editForm.controls.nom?.invalid)">
+                                                <small class="form-text text-danger"
+                                                    [hidden]="!editForm.controls.nom?.errors?.required"
+                                                    jhiTranslate="entity.validation.required">
+                                                    This field is required.personnePhysique
+                                                </small>
+                                                <small class="form-text text-danger"
+                                                    [hidden]="!editForm.controls.nom?.errors?.maxlength"
+                                                    jhiTranslate="entitypersonnePhysique.validation.maxlength"
+                                                    translateValues="{ max: 100 }">
+                                                    This field cannot be longer than 100 characters.
+                                                </small>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-3">
+                                            <label class="form-control-label"
+                                                jhiTranslate="auxiliumApp.personnePhysique.prenom"
+                                                for="field_prenom">Prenom</label>
+                                            <input type="text" class="form-control form-control-sm" name="prenom"
+                                                id="field_prenom" [(ngModel)]="visAVisGeneral.prenom"
+                                                pattern="[A-Za-z ]{1,50}" required />
+                                            <small class="form-text text-danger"
+                                                [hidden]="!editForm.controls.prenom?.errors?.pattern"
+                                                jhiTranslate="entity.validation.pattern"
+                                                translateValues="{ pattern: 'prénom' }">
+                                                This field should follow pattern for "Mail".
+                                            </small>
+                                            <div
+                                                [hidden]="!(editForm.controls.prenom?.dirty && editForm.controls.prenom?.invalid)">
+                                                <small class="form-text text-danger"
+                                                    [hidden]="!editForm.controls.prenom?.errors?.required"
+                                                    jhiTranslate="entity.validation.required">
+                                                    This field is required.
+                                                </small>
+                                                <small class="form-text text-danger"
+                                                    [hidden]="!editForm.controls.prenom?.errors?.maxlength"
+                                                    jhiTranslate="entity.validation.maxlength"
+                                                    translateValues="{ max: 100 }">
+                                                    This field cannot be longer than 100 characters.
+                                                </small>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="col-sm-3">
+                                            <label class="form-control-label"
+                                                jhiTranslate="auxiliumApp.personnePhysique.premTelephone"
+                                                for="field_premTelephone">Prem Telephone</label>
+                                            <input type="text" class="form-control form-control-sm" name="premTelephone"
+                                                id="field_premTelephone"
+                                                [(ngModel)]="visAVisGeneral.premTelephone"
+                                                pattern="([0-9]{1,50})" required />
+                                            <div
+                                                [hidden]="!(editForm.controls.premTelephone?.dirty && editForm.controls.premTelephone?.invalid)">
+                                                <small class="form-text text-danger"
+                                                    [hidden]="!editForm.controls.premTelephone?.errors?.required"
+                                                    jhiTranslate="entity.validation.required">
+                                                    This field is required.
+                                                </small>
+                                                <small class="form-text text-danger"
+                                                    [hidden]="!editForm.controls.premTelephone?.errors?.pattern"
+                                                    jhiTranslate="entity.validation.pattern"
+                                                    translateValues="{ pattern: 'Prem Telephone' }">
+                                                    This field should follow pattern for "Prem Telephone".
+                                                </small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row top-buffer">
+                                        <div class="col-sm-3">
+                                            <label class="form-control-label"
+                                                jhiTranslate="auxiliumApp.personnePhysique.deuxTelephone"
+                                                for="field_deuxTelephone">Deux Telephone</label>
+                                            <input type="text" class="form-control form-control-sm" name="deuxTelephone"
+                                                id="field_deuxTelephone"
+                                                [(ngModel)]="visAVisGeneral.deuxTelephone"
+                                                pattern="([0-9]{1,50})" required />
+                                            <div
+                                                [hidden]="!(editForm.controls.deuxTelephone?.dirty && editForm.controls.deuxTelephone?.invalid)">
+                                                <small class="form-text text-danger"
+                                                    [hidden]="!editForm.controls.deuxTelephone?.errors?.pattern"
+                                                    jhiTranslate="entity.validation.pattern"
+                                                    translateValues="{ pattern: 'Deux Telephone' }">
+                                                    This field should follow pattern for "Deux Telephone".
+                                                </small>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <label class="form-control-label"
+                                                jhiTranslate="auxiliumApp.personnePhysique.fax"
+                                                for="field_fax">Fax</label>
+                                            <input type="text" class="form-control form-control-sm" name="fax"
+                                                id="field_fax" [(ngModel)]="visAVisGeneral.fax"
+                                                pattern="([0-9]{1,50})" />
+                                            <div
+                                                [hidden]="!(editForm.controls.fax?.dirty && editForm.controls.fax?.invalid)">
+                                                <small class="form-text text-danger"
+                                                    [hidden]="!editForm.controls.fax?.errors?.required"
+                                                    jhiTranslate="entity.validation.required">
+                                                    This field is required.
+                                                </small>
+                                                <small class="form-text text-danger"
+                                                    [hidden]="!editForm.controls.fax?.errors?.pattern"
+                                                    jhiTranslate="entity.validation.pattern"
+                                                    translateValues="{ pattern: 'Fax' }">
+                                                    This field should follow pattern for "Prem Telephone".
+                                                </small>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <label class="form-control-label"
+                                                jhiTranslate="auxiliumApp.personnePhysique.premMail"
+                                                for="field_premMail">Prem Mail</label>
+                                            <input type="email" class="form-control form-control-sm" name="premMail"
+                                                id="field_premMail" [(ngModel)]="visAVisGeneral.premMail"
+                                                pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" />
+                                            <div
+                                                [hidden]="!(editForm.controls.premMail?.dirty && editForm.controls.premMail?.invalid)">
+                                                <small class="form-text text-danger"
+                                                    [hidden]="!editForm.controls.premMail?.errors?.pattern"
+                                                    jhiTranslate="entity.validation.pattern"
+                                                    translateValues="{ pattern: 'Prem Mail' }">
+                                                    This field should follow pattern for "Mail".
+                                                </small>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- fin Gérant-->
+                        <!-- debut Camion-->
+                        <header style="padding-top: 1rem; padding-bottom: 1rem;">
+                            <h1 class="h3 display">
+                            </h1>
+                        </header>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card-header d-flex align-items-center no-padding">
+                                    <div class="notice notice-info"><strong
+                                            jhiTranslate="auxiliumApp.camion.home.title">Camions /
+                                            refRemorqueur:{{ personneMorale.raisonSociale}}</strong></div>
+                                    <div *ngIf="refRemorqueur.nombreCamion != undefined ">
+                                        <div *ngIf="refRemorqueur.nombreCamion > listCamions.length ">
+                                            <button
+                                                class="btn btn-sm btn-primary float-right jh-create-entity create-camion"
+                                                (click)="addForm();">
+                                                <span class="fa fa-plus"></span>
+                                                <span class="hidden-sm-down"
+                                                    jhiTranslate="auxiliumApp.camion.home.createLabel">Camions</span>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="card-body">
+                                    <div class="row top-buffer">
+                                        <div class="col-sm-3">
+                                            <label class="form-control-label"
+                                                jhiTranslate="auxiliumApp.refRemorqueur.nombreCamion"
+                                                for="nombreCamion"> Nombre Camion </label>
+                                            <input type="text" [disabled]="ajoutCamion"
+                                                class="form-control form-control-sm" name="nombreCamion"
+                                                id="nombreCamion" [(ngModel)]="refRemorqueur.nombreCamion"
+                                                pattern="[0-9]{1,50}" required />
+                                            <small class="form-text text-danger"
+                                                [hidden]="!editForm.controls.nombreCamion?.errors?.pattern"
+                                                jhiTranslate="entity.validation.pattern"
+                                                translateValues="{ pattern: ' Code ' }"
+                                                jhiTranslate="entity.validation.number">
+                                                This field should follow pattern for "Mail".
+                                            </small>
+                                            <div
+                                                [hidden]="!(editForm.controls.nombreCamion?.dirty && editForm.controls.nombreCamion?.invalid)">
+                                                <small class="form-text text-danger"
+                                                    [hidden]="!editForm.controls.nombreCamion?.errors?.pattern"
+                                                    jhiTranslate="entity.validation.pattern"
+                                                    translateValues="{ pattern: ' Code ' }"
+                                                    jhiTranslate="entity.validation.number">
+                                                    This field should follow pattern for "Mail".
+                                                </small>
+                                                <small class="form-text text-danger"
+                                                    [hidden]="!editForm.controls.nombreCamion?.errors?.max"
+                                                    jhiTranslate="entity.validation.max"
+                                                    translateValues="{ max: 100000000000000000 }">
+                                                    This field cannot be more than 100000000000000000.
+                                                </small>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3" *ngIf="errorMessage !== ''">
+                                            <label class="form-control-label" style="width: 100%"> &nbsp; </label>
+                                            <span style="color: red">{{errorMessage}}</span></div>
+                                    </div>
+                                    <div *ngIf="this.disabledForm">
+                                        <form name="editFormCam" role="form" novalidate #editFormCam="ngForm">
+                                            <div class="row top-buffer">
+                                                <div class="col-sm-3">
+                                                    <label class="form-control-label"
+                                                        jhiTranslate="auxiliumApp.camion.immatriculation"
+                                                        for="field_immatriculation">Immatriculation</label>
+                                                    <input type="text" class="form-control form-control-sm"
+                                                        name="immatriculation" id="field_immatriculation"
+                                                        [(ngModel)]="camion.immatriculation"
+                                                        (ngModelChange)="trimRegistrationNumber();" minlength="1"
+                                                        maxlength="25" required />
+                                                    <div
+                                                        [hidden]="!(editFormCam.controls.immatriculation?.dirty && editFormCam.controls.immatriculation?.invalid)">
+                                                        <small class="form-txt text-danger"
+                                                            [hidden]="!editFormCam.controls.immatriculation?.errors?.required"
+                                                            jhiTranslate="entity.validation.required">
+                                                            This field is required.
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label jhiTranslate="auxiliumApp.camion.besoin"></label>
+                                                    <ng-multiselect-dropdown [placeholder]="'Services Camion'"
+                                                        [data]="reftypeservices" name="first"
+                                                        [(ngModel)]="camion.serviceTypes" [settings]="dropdownSettings"
+                                                        [ngClass]="'form-control form-control-sm no-padding'" required>
+                                                    </ng-multiselect-dropdown>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <label class="form-control-label" for="field_hasHabillage"
+                                                        style="width: 100%;">&nbsp;</label>
+                                                    <input type="checkbox" class="check-input" name="hasHabillage"
+                                                        id="field_hasHabillage" [(ngModel)]="camion.hasHabillage" />
+                                                    <label class="form-control-label"
+                                                        jhiTranslate="auxiliumApp.camion.hasHabillage"
+                                                        for="field_hasHabillage">Has Habillage</label>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <div *ngIf="ajout == true">
+                                                        <label class="form-control-label"
+                                                            style="width: 100%">&nbsp;</label>
+                                                        <button type="button"
+                                                            [disabled]="editFormCam.form.invalid || isSaving"
+                                                            class="btn btn-sm btn-primary" (click)="addCamion();">
+                                                            <span class="fa fa-plus"> Ajouter</span>
+                                                        </button>
+                                                    </div>
+                                                    <div *ngIf="edit == true">
+                                                        <label class="form-control-label"
+                                                            style="width: 100%">&nbsp;</label>
+                                                        <button type="button"
+                                                            [disabled]="editFormCam.form.invalid || isSaving"
+                                                            class="btn btn-sm btn-primary" (click)="ModifCamion();">
+                                                            <span class="fa fa-plus"> Modifier</span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="card-body">
+                                    <div class="table-responsive" *ngIf="listCamions && listCamions.length > 0">
+                                        <table class="table table-sm table-hover table-bordered" style="width: 100%">
+                                            <thead style="color:white;background-color:#11859b">
+                                                <tr>
+                                                    <th><span
+                                                            jhiTranslate="auxiliumApp.camion.immatriculation">Immatriculation</span>
+                                                    </th>
+                                                    <th><span
+                                                            jhiTranslate="auxiliumApp.camion.hasHabillage">hasHabillage</span>
+                                                    </th>
+                                                    <th><span jhiTranslate="auxiliumApp.camion.besoin">Besoin</span>
+                                                    </th>
+                                                    <th class="no-sort"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let camion of listCamions ;trackBy: trackCamionsId">
+                                                    <td> <a> {{camion.immatriculation}}</a></td>
+                                                    <td>
+                                                        <div *ngIf="camion.hasHabillage">
+                                                            <button class="btn btn-success btn-sm">
+                                                                <span class="fa fa-check"></span>
+                                                            </button>
+                                                        </div>
+                                                        <div *ngIf="!camion.hasHabillage">
+                                                            <button class="btn btn-danger btn-sm">
+                                                                <span class="fa fa-times-circle"></span>
+                                                            </button>
+                                                        </div>
+                                                    </td>
+                                                    <td> <a>{{camion.serviceTypesStr}}</a></td>
+                                                    <td class="text-right">
+                                                        <div class="btn-group flex-btn-group-container">
+                                                            <button type="button" (click)="editCamion(camion)"
+                                                                class="btn btn-primary btn-sm">
+                                                                <span class="fa fa-pencil"></span>
+                                                            </button>
+                                                            <button type="button" (click)="deleteCamion(camion)"
+                                                                class="btn btn-danger btn-sm">
+                                                                <span class="fa fa-sm fa-remove"></span>
+                                                            </button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+
+
+
+                            </div>
+                        </div>
+                        <!--  fin camion-->
+
+                        <!--  fin Terme de blocage-->
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card-header d-flex align-items-center no-padding">
+                                    <div class="notice notice-info"><strong> Terme de blocage:
+                                        </strong></div>
+                                </div>
+                                <div class="card-body">
+                                        <div class="row top-buffer">
+                                        <div class="col-sm-2">
+                                            <label class="form-control-label" for="field_isBloque"
+                                                style="width: 100%;">&nbsp;</label>
+                                            <input type="checkbox" class="check-input" name="isBloque"
+                                                id="field_isBloque" [value]="refMotifOption"
+                                                [(ngModel)]="refRemorqueur.isBloque" />
+                                            <label class="form-control-label"
+                                                jhiTranslate="auxiliumApp.refRemorqueur.isBloque"
+                                                for="field_isBloque">Is Bloque</label>
+                                        </div>
+                                   
+                            
+                                             
+                                                <div  *ngIf="refRemorqueur.isBloque" class=" col-sm-3">
+                                                        <label class="form-control-label" for="field_button"
+                                                        style="width: 100%;">&nbsp;</label>
+                                                    <button (click)="handleClickMotif()" type="button">Motifs</button>
+                                                </div>
+                                                &nbsp;
+
+                                                <div *ngIf="refRemorqueur.isBloque" class="col-sm-3">
+                                                        <label class="form-control-label" for="field_button"
+                                                        style="width: 100%;">&nbsp;</label>
+                                                    <button (click)="handleClickReclamation()" type="button">Reclamation</button>
+                                                </div>
+                                            
+                                     
+                                        <div class="col-sm-4">
+                                                <div *ngIf="refRemorqueur.isBloque">
+                                                    <div *ngIf="this.disabledMotif == true ">
+                                                        
+                                                            <label class="form-control-label"
+                                                                jhiTranslate="auxiliumApp.refRemorqueur.motifs">sélectionnez
+                                                                un motif</label>
+                                                            <select class="form-control form-control-sm" id="field_motif"
+                                                                name="motif" [(ngModel)]="idMotif" required>
+                                                                <option [ngValue]="refMotifOption.id"
+                                                                    *ngFor="let refMotifOption of motifs; trackBy: trackMotifsById">
+                                                                    {{refMotifOption.label}}</option>
+                                                            </select>
+                                                   
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        <div class="col-sm-6">
+                                            <div *ngIf="refRemorqueur.isBloque">
+                                                <div *ngIf="this.disabledReclamation == true">
+                                                    <label class="form-control-label"
+                                                        jhiTranslate="auxiliumApp.refRemorqueur.reclamation"
+                                                        for="field_reclamation"> reclamation </label>
+                                                    <input type="text" class="form-control form-control-sm"
+                                                        name="reclamation" id="field_reclamation"
+                                                        [(ngModel)]="refRemorqueur.reclamation" required />
+                                                    <div
+                                                        [hidden]="!(editForm.controls.reclamation?.dirty && editForm.controls.reclamation?.invalid)">
+                                                        <small class="form-txt text-danger"
+                                                            [hidden]="!editForm.controls.reclamation?.errors?.required"
+                                                            jhiTranslate="entity.validation.required">
+                                                            This field is required.
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--  fin Terme de blocage-->
+
+                        <!--convention-->
+
+                        <header style="padding-top: 1rem; padding-bottom: 1rem;">
+                            <h1 class="h3 display">
+
+                            </h1>
+                        </header>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-header d-flex align-items-center no-padding">
+                                        <div class="notice notice-info"> <strong> Terme de Convention
+                                                :</strong></div>
+                                    </div>
+
+                                    <div class="card-body">
+
+                                        <div class="row">
+                                            <div class="col-lg-3">
+                                                <div class="form-group">
+                                                    <label class="form-control-label"
+                                                        jhiTranslate="auxiliumApp.tugPricing.priceUrbanPlanService"
+                                                        for="field_priceUrthis.refRemorqueur.societeIdanPlanService">priceUrbanPlanService</label>
+                                                    <select class="form-control form-control-sm"
+                                                        id="field_priceUrbanPlanService" name="priceUrbanPlanService"
+                                                        [(ngModel)]="tugPricing.priceUrbanPlanService" required>
+                                                        <option [ngValue]="priceUrbanPlanServiceOption.montant"
+                                                            *ngFor="let priceUrbanPlanServiceOption of priceUrbanPlanServiceOptions">
+                                                            {{priceUrbanPlanServiceOption.montant}}</option>
+                                                    </select>
+                                                    <div
+                                                        [hidden]="!(editForm.controls.priceUrbanPlanService?.dirty && editForm.controls.priceUrbanPlanService?.invalid)">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <div class="form-group">
+                                                    <label class="form-control-label"
+                                                        jhiTranslate="auxiliumApp.tugPricing.priceKlmShortDistance"
+                                                        for="field_priceKlmShortDistance">priceKlmShortDistance</label>
+                                                    <select class="form-control form-control-sm"
+                                                        id="field_priceKlmShortDistance" name="priceKlmShortDistance"
+                                                        [(ngModel)]="tugPricing.priceKlmShortDistance" required>
+                                                        <option [ngValue]="priceKlmShortDistanceOption.montant"
+                                                            *ngFor="let priceKlmShortDistanceOption of priceKlmShortDistanceOptions">
+                                                            {{priceKlmShortDistanceOption.montant}}</option>
+                                                    </select>
+                                                    <div
+                                                        [hidden]="!(editForm.controls.priceKlmShortDistance?.dirty && editForm.controls.priceKlmShortDistance?.invalid)">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <div class="form-group">
+                                                    <label class="form-control-label"
+                                                        jhiTranslate="auxiliumApp.tugPricing.priceKlmLongDistance"
+                                                        for="field_priceKlmLongDistance">priceKlmLongDistance</label>
+                                                    <select class="form-control form-control-sm"
+                                                        id="field_priceKlmLongDistance" name="priceKlmLongDistance"
+                                                        [(ngModel)]="tugPricing.priceKlmLongDistance" required>
+                                                        <option [ngValue]="priceKlmLongDistanceOption.montant"
+                                                            *ngFor="let priceKlmLongDistanceOption of priceKlmLongDistanceOption">
+                                                            {{priceKlmLongDistanceOption.montant}}</option>
+                                                    </select>
+                                                    <div
+                                                        [hidden]="!(editForm.controls.priceKlmLongDistance?.dirty && editForm.controls.priceKlmLongDistance?.invalid)">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-3">
+                                                <div class="form-group">
+                                                    <label class="form-control-label"
+                                                        jhiTranslate="auxiliumApp.tugPricing.priceUrbanPlanServicePl"
+                                                        for="field_priceUrbanPlanServicePl">priceUrbanPlanServicePl</label>
+                                                    <select class="form-control form-control-sm"
+                                                        id="field_priceKlmLongDistance" name="priceUrbanPlanServicePl"
+                                                        [(ngModel)]="tugPricing.priceUrbanPlanServicePl" required>
+                                                        <option [ngValue]="priceUrbanPlanServicePlOption.montant"
+                                                            *ngFor="let priceUrbanPlanServicePlOption of priceUrbanPlanServicePlOptions">
+                                                            {{priceUrbanPlanServicePlOption.montant}}</option>
+                                                    </select>
+                                                    <div
+                                                        [hidden]="!(editForm.controls.priceUrbanPlanServicePl?.dirty && editForm.controls.priceUrbanPlanServicePl?.invalid)">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <div class="form-group">
+                                                    <label class="form-control-label"
+                                                        jhiTranslate="auxiliumApp.tugPricing.priceKlmShortDistancePl"
+                                                        for="field_priceKlmShortDistancePl">priceKlmShortDistancePl</label>
+                                                    <select class="form-control form-control-sm"
+                                                        id="field_priceKlmShortDistancePl"
+                                                        name="priceKlmShortDistancePl"
+                                                        [(ngModel)]="tugPricing.priceKlmShortDistancePl" required>
+                                                        <option [ngValue]="priceKlmShortDistancePlOption.montant"
+                                                            *ngFor="let priceKlmShortDistancePlOption of priceKlmShortDistancePlOptions">
+                                                            {{priceKlmShortDistancePlOption.montant}}</option>
+                                                    </select>
+                                                    <div
+                                                        [hidden]="!(editForm.controls.priceKlmShortDistancePl?.dirty && editForm.controls.priceKlmShortDistancePl?.invalid)">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <div class="form-group">
+                                                    <label class="form-control-label"
+                                                        jhiTranslate="auxiliumApp.tugPricing.priceKlmLongDistancePl"
+                                                        for="field_priceKlmLongDistancePl">priceKlmLongDistancePl</label>
+                                                    <select class="form-control form-control-sm"
+                                                        id="field_priceKlmLongDistancePl" name="priceKlmLongDistancePl"
+                                                        [(ngModel)]="tugPricing.priceKlmLongDistancePl" required>
+                                                        <option [ngValue]="priceKlmLongDistancePlOption.montant"
+                                                            *ngFor="let priceKlmLongDistancePlOption of priceKlmLongDistancePlOptions">
+                                                            {{priceKlmLongDistancePlOption.montant}}</option>
+                                                    </select>
+                                                    <div
+                                                        [hidden]="!(editForm.controls.priceKlmLongDistancePl?.dirty && editForm.controls.priceKlmLongDistancePl?.invalid)">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <div class="form-group">
+                                                    <label class="form-control-label"
+                                                        jhiTranslate="auxiliumApp.tugPricing.priceExtraction"
+                                                        for="field_priceExtraction">priceExtraction</label>
+                                                    <select class="form-control form-control-sm"
+                                                        id="field_priceExtraction" name="priceExtraction"
+                                                        [(ngModel)]="tugPricing.priceExtraction" required>
+                                                        <option [ngValue]="priceExtractionOption.montant"
+                                                            *ngFor="let priceExtractionOption of priceExtractionOptions">
+                                                            {{priceExtractionOption.montant}}</option>
+                                                    </select>
+                                                    <div
+                                                        [hidden]="!(editForm.controls.priceExtraction?.dirty && editForm.controls.priceExtraction?.invalid)">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+
+                                            <div class="col-lg-3">
+                                                <div class="form-group">
+                                                    <label class="form-control-label"
+                                                        jhiTranslate="auxiliumApp.tugPricing.priceReparation"
+                                                        for="field_priceReparation">priceReparation</label>
+                                                    <select class="form-control form-control-sm"
+                                                        id="field_priceReparation" name="priceReparation"
+                                                        [(ngModel)]="tugPricing.priceReparation" required>
+                                                        <option [ngValue]="priceReparationOption.montant"
+                                                            *ngFor="let priceReparationOption of priceReparationOptions">
+                                                            {{priceReparationOption.montant}}</option>
+                                                    </select>
+                                                    <div
+                                                        [hidden]="!(editForm.controls.priceReparation?.dirty && editForm.controls.priceReparation?.invalid)">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <div class="form-group">
+                                                    <label class="form-control-label"
+                                                        jhiTranslate="auxiliumApp.tugPricing.priceUrbanMobility"
+                                                        for="field_priceUrbanMobility">priceUrbanMobility</label>
+                                                    <select class="form-control form-control-sm"
+                                                        id="field_priceUrbanMobility" name="priceUrbanMobility"
+                                                        [(ngModel)]="tugPricing.priceUrbanMobility" required>
+                                                        <option [ngValue]="priceUrbanMobilityOption.montant"
+                                                            *ngFor="let priceUrbanMobilityOption of priceUrbanMobilityOptions">
+                                                            {{priceUrbanMobilityOption.montant}}</option>
+                                                    </select>
+                                                    <div
+                                                        [hidden]="!(editForm.controls.priceUrbanMobility?.dirty && editForm.controls.priceUrbanMobility?.invalid)">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-3">
+                                                <div class="form-group">
+                                                    <label class="form-control-label"
+                                                        jhiTranslate="auxiliumApp.tugPricing.dateEffectiveAgreement"
+                                                        for="field_debutValidite"> Date d'effet de la convention
+                                                    </label>
+                                                    <div class="input-group">
+                                                        <input id="field_debutValidite" type="text"
+                                                            class="form-control form-control-sm"
+                                                            [maxDate]="tugPricing.dateEndAgreement"
+                                                            name="dateEffectiveAgreement" ngbDatepicker
+                                                            #debutValiditeDp="ngbDatepicker"
+                                                            [(ngModel)]="tugPricing.dateEffectiveAgreement" required />
+                                                        <span class="input-group-btn">
+                                                            <button type="button" class="btn btn-sm btn-default"
+                                                                (click)="debutValiditeDp.toggle()"><i
+                                                                    class="fa fa-sm fa-calendar"></i></button>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <div class="form-group">
+                                                    <label class="form-control-label"
+                                                        jhiTranslate="auxiliumApp.tugPricing.dateEndAgreement"
+                                                        for="field_finValidite"> Fin date de la convention </label>
+                                                    <div class="input-group">
+                                                        <input id="field_finValidite" type="text"
+                                                            class="form-control form-control-sm"
+                                                            [minDate]="tugPricing.dateEffectiveAgreement"
+                                                            name="dateEndAgreement" ngbDatepicker
+                                                            #finValiditeDp="ngbDatepicker"
+                                                            [(ngModel)]="tugPricing.dateEndAgreement" required />
+
+                                                        <div
+                                                            [hidden]="!(editForm.controls.dateEndAgreement?.dirty && editForm.controls.dateEndAgreement?.invalid)">
+                                                        </div> <span class="input-group-btn">
+                                                            <button type="button" class="btn btn-sm btn-default"
+                                                                (click)="finValiditeDp.toggle()"><i
+                                                                    class="fa fa-sm fa-calendar"></i></button>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- fin Convention-->
+
+                                    <!-- debut  Localisation Géographique-->
+                                    <header style="padding-top: 1rem; padding-bottom: 1rem;">
+                                        <h1 class="h3 display">
+
+                                        </h1>
+                                    </header>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="card">
+                                                <div class="card-header d-flex align-items-center no-padding">
+                                                    <div class="notice notice-info"><strong>
+                                                            Localisation Géographique :</strong></div>
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="col-sm-3">
+                                                            <label class="form-control-label"
+                                                                jhiTranslate="auxiliumApp.personneMorale.adresse"
+                                                                for="field_adresse">Adresse</label>
+                                                            <input required type="text"
+                                                                class="form-control form-control-sm" name="adresse"
+                                                                id="field_adresse" [(ngModel)]="personneMorale.adresse"
+                                                                required maxlength="256" />
+                                                            <div
+                                                                [hidden]="!(editForm.controls.adresse?.dirty && editForm.controls.adresse?.invalid)">
+                                                                <small class="form-text text-danger"
+                                                                    [hidden]="!editForm.controls.adresse?.errors?.required"
+                                                                    jhiTranslate="entity.validation.required">
+                                                                    This field is required.
+                                                                </small>
+                                                                <small class="form-text text-danger"
+                                                                    [hidden]="!editForm.controls.adresse?.errors?.maxlength"
+                                                                    jhiTranslate="entity.validation.maxlength"
+                                                                    translateValues="{ max: 256 }">
+                                                                    This field cannot be longer than 256 characters.
+                                                                </small>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-sm-3">
+                                                            <label jhiTranslate="auxiliumApp.assure.gouvernorat">
+                                                            </label>
+                                                            <select class="form-control form-control-sm" id="field_lieu"
+                                                                name="lieu"
+                                                                [(ngModel)]="personneMorale && personneMorale.gouvernorat && personneMorale.gouvernorat.id"
+                                                                (ngModelChange)="listVillesByGouvernoratLieu(personneMorale.gouvernorat.id)"
+                                                                required>
+                                                                <option [ngValue]="gouvernoratOption.id"
+                                                                    *ngFor="let gouvernoratOption of sysgouvernorats; trackBy: trackGouvernoratById">
+                                                                    {{gouvernoratOption.label}}
+                                                                </option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-sm-3">
+                                                            <label jhiTranslate="auxiliumApp.personneMorale.ville"
+                                                                for="field_ville">Ville</label>
+                                                            <select class="form-control form-control-sm"
+                                                                id="field_ville" name="ville"
+                                                                [(ngModel)]="personneMorale.villeId" required>
+                                                                <option [ngValue]="sysVilleOption.id"
+                                                                    *ngFor="let sysVilleOption of sysvilles; trackBy: trackSysVilleById">
+                                                                    {{sysVilleOption.label}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- fin Localisation Géographique-->
+
+                                    <div class="modal-footer">
+                                        <button type="button"
+                                            [disabled]="editForm.form.invalid || isSaving || listCamions.length === 0 || refRemorqueur.nombreCamion != listCamions.length || !isTugNameUnique"
+                                            (click)="save()" class="btn btn-primary btn-sm">
+                                            <span class="fa fa-save"></span>&nbsp;<span
+                                                jhiTranslate="entity.action.save">Save</span>
+                                        </button>
+                                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+</section>

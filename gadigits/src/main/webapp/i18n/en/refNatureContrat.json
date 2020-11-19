@@ -1,0 +1,25 @@
+{
+    "auxiliumApp": {
+        "refNatureContrat" : {
+            "home": {
+                "title": "Ref Nature Contrats",
+                "createLabel": "Create a new Ref Nature Contrat",
+                "createOrEditLabel": "Create or edit a Ref Nature Contrat",
+                "search": "Search for Ref Nature Contrat"
+            },
+            "created": "A new Ref Nature Contrat is created with identifier {{ param }}",
+            "updated": "A Ref Nature Contrat is updated with identifier {{ param }}",
+            "deleted": "A Ref Nature Contrat is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Ref Nature Contrat {{ id }}?"
+            },
+            "detail": {
+                "title": "Ref Nature Contrat"
+            },
+            "code": "Code",
+            "libelle": "Libelle",
+            "isActif": "Is Actif",
+            "compagnie": "Compagnie"
+        }
+    }
+}

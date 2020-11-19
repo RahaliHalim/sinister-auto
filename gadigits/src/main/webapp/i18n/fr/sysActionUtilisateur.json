@@ -1,0 +1,35 @@
+{
+    "auxiliumApp": {
+        "sysActionUtilisateur" : {
+            "home": {
+                "title": "Actions utilisateurs",
+                "createLabel": "Créer",
+                "createOrEditLabel": "Créer ou modifier une action utilisateur",
+                "search": "Recherche pour action utilisateur"
+            },
+            "created": "Une nouvelle action utilisateur a été créée avec l'identifiant {{ param }}",
+            "updated": "L'action utilisateur avec l'identifiant {{ param }} a été mise à jour",
+            "deleted": "L'action utilisateur avec l'identifiant {{ param }} a été supprimée",
+            "delete": {
+                "question": "Êtes-vous certain de bien vouloir supprimer l'action utilisateur {{ id }} ?"
+            },
+            "detail": {
+                "title": "Action utilisateur"
+            },
+            "nom": "Nom",
+            "journal": "Journal",
+            "motif": "Motif",
+            "activated":"Activer",
+            "desactivated":"Désactiver",
+
+            "charge":"Chargé client",
+            "responsble":"Responsable Pec",
+            "directeur":"Directeur prestation",
+            "expert":"Expert",
+            "reparateur":"Réparateur",
+            "agent": "Agent",
+            "compagnie":"Compangie",
+            "modeGestion":"Mode de gestion"
+        }
+    }
+}

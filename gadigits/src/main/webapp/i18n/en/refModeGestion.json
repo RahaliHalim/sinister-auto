@@ -1,0 +1,24 @@
+{
+    "auxiliumApp": {
+        "refModeGestion" : {
+            "home": {
+                "title": "Ref Mode Gestions",
+                "createLabel": "Create a new Ref Mode Gestion",
+                "createOrEditLabel": "Create or edit a Ref Mode Gestion",
+                "search": "Search for Ref Mode Gestion"
+            },
+            "created": "A new Ref Mode Gestion is created with identifier {{ param }}",
+            "updated": "A Ref Mode Gestion is updated with identifier {{ param }}",
+            "deleted": "A Ref Mode Gestion is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Ref Mode Gestion {{ id }}?"
+            },
+            "detail": {
+                "title": "Ref Mode Gestion"
+            },
+            "libelle": "Libelle",
+            "description": "Description",
+            "garantie": "Garantie"
+        }
+    }
+}

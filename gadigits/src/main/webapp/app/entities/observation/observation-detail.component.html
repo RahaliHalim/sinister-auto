@@ -1,0 +1,37 @@
+
+<div *ngIf="observation">
+    <h2><span jhiTranslate="auxiliumApp.observation.detail.title">Observation</span> {{observation.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="auxiliumApp.observation.commentaire">Commentaire</span></dt>
+        <dd>
+            <span>{{observation.commentaire}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.observation.date">Date</span></dt>
+        <dd>
+            <span>{{observation.date | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.observation.prive">Prive</span></dt>
+        <dd>
+            <span>{{observation.prive}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.observation.type">Type</span></dt>
+        <dd>
+            <span>{{observation.type}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'observation/'+ observation.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;&nbsp;&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

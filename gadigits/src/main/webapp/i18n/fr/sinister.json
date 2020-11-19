@@ -1,0 +1,61 @@
+{
+    "auxiliumApp": {
+        "sinister": {
+            "home": {
+                "success": "<strong>Le dossier a été créé !</strong>",
+                "title": "Dossier / Service",
+                "createLabel": "Créer",
+                "créationDossier": "Création d'un nouveau dossier",
+                "createOrEditLabel": "Dossier",
+                "createOrEditServiceLabel": "Service",
+                "details": "Détails dossier",
+                "detailsAgent": "Demande PEC",
+                "search": "Recherche pour dossier assistance",
+                "searchImmatriculation": "Immatriculation véhicule",
+                "type": "Type demande",
+                "edit": "Modifier",
+                "prestationsHisto": "Historique des prestations Assistances",
+                "prestationsHistoPec": "Historique des prestations PEC"
+
+            },
+            "contrat": "Cette immatriculation n'existe pas",
+            "contratForAnotherAgent": "Cette immatriculation est affectée à un autre agent",
+            "created": "Un nouveau dossier a été créé",
+            "updated": "Le dossier a été mis à jour",
+            "deleted": "Le dossier a été supprimé",
+            "notEligible": "Vous n'êtes pas elligible à ce type de service !",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer le dossier {{ id }} ?"
+            },
+            "detail": {
+                "title": "Dossier"
+            },
+            "demand": {
+                "detail": "Détails demande",
+                "home": "Demandes PEC",
+                "sinisterPec": "sinisterPec"
+            },
+            "reference": "Référence",
+            "isDelete": "Is Delete",
+            "dateCreation": "Date de création",
+            "dateCloture": "Date de la clôture",
+            "dateDerniereMaj": "Date dernière Maj",
+            "telephone": "Téléphone",
+            "nbrPassagers": "Nbre de passagers",
+            "dateAccident": "Date de survenances",
+            "natureIncident": "Nature de l'événement",
+            "immatriculation": "Immatriculation",
+            "prenomConducteur": "Prénom conducteur",
+            "conducteur": "Conducteur",
+            "nomConducteur": "Nom du conducteur",
+            "permisConduc": "Permis du conducteur",
+            "prenomTiersConduc": "Prénom tiers du conducteur",
+            "nomTiersConduc": "Nom tiers du conducteur",
+            "permisTiersConduc": "Permis tiers du conducteur",
+            "lieu": "Lieu",
+            "vehicule": "Véhicule",
+            "assure": "Conducteur/Assuré",
+            "naturePanne":"Nature Panne"
+        }
+    }
+}

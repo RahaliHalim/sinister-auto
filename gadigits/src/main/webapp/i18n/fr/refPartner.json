@@ -1,0 +1,54 @@
+{
+    "auxiliumApp": {
+        "refPartner": {
+            "home": {
+                "title": "Partenaire",
+                "createLabel": "Créer un partenaire",
+                "createOrEditLabel": "Créer ou modifier un partenaire",
+                "search": "Rechercher un partenaire"
+            },
+            "created": "Un nouveau partenaire a été créé ",
+            "updated": "Le partenaire a été mis à jour",
+            "deleted": "Le partenaire a été supprimé",
+            "bloqued": "Le partenaire a été bloqué",
+            "debloqued": "Le partenaire a été débloqué",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer ce partenaire  ?"
+            },
+            "detail": {
+                "title": "Partenaire"
+            },
+            "nom": "Nom",
+            "label": "Libellé",
+            "interventionNumber": "Nombre d'intervention",
+            "mileage": "Kilomètrage",
+            "blocked": "Bloqué",
+            "description": "Description",
+            "vrDaysNumberTitle": "Nombre de jours pour le véhicule de remplacement",
+            "vrDaysNumber": "Jours VR",
+            "contractNature": "Nature contrat",
+            "ceilingToConsume": "Plafond à consommer",
+            "combinable": "Cumul. nombre",
+            "homeService": "SAD",
+            "price": "Tarif",
+            "exclusionList": "Liste des exclusions",
+            "sinisterType": "Type de dossier sinistre",
+            "grantTiming": "Timing d'octroi",
+            "isBloque": "Bloqué?",
+            "contrat": "Contrat",
+            "serviceType": "Type de service",
+            "company": "Compagnie",
+            "usages": "Usages",
+            "bloquer": "Bloquer",
+            "debloquer": "Débloquer",
+            "bloque": {
+                "title": "Confirmation du blocage du partenaire",
+                "question": "Êtes-vous sûrs de vouloir bloquer ce partenaire ?"
+            },
+            "debloque": {
+                "title": "Confirmation du déblocage du partenaire",
+                "question": "Êtes-vous sûrs de vouloir débloquer ce partenaire ?"
+            }
+        }
+    }
+}

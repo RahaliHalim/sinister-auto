@@ -1,0 +1,29 @@
+
+<div *ngIf="camion">
+    <h2><span jhiTranslate="auxiliumApp.camion.detail.title">Camion</span> {{camion.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dd>
+            <div >
+                <a >{{camion.immatriculation}}</a>
+            </div>
+            <div >
+                <a >{{camion.serviceTypesStr}}</a>
+            </div>
+        </dd>
+
+    </dl>
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'camion/'+ camion.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;&nbsp;&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

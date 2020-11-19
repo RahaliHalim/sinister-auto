@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity DossierSinistre.
+    -->
+    <changeSet id="20170912084508-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="ville_id"
+                                 baseTableName="dossier_sinistre"
+                                 constraintName="fk_dossier_sinistre_ville_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="sys_ville"/>
+
+        <addForeignKeyConstraint baseColumnNames="mode_id"
+                                 baseTableName="dossier_sinistre"
+                                 constraintName="fk_dossier_sinistre_mode_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ref_mode_gestion"/>
+
+        <addForeignKeyConstraint baseColumnNames="contrat_id"
+                                 baseTableName="dossier_sinistre"
+                                 constraintName="fk_dossier_sinistre_contrat_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="contrat_assurance"/>
+
+        <addForeignKeyConstraint baseColumnNames="pos_ga_id"
+                                 baseTableName="dossier_sinistre"
+                                 constraintName="fk_dossier_sinistre_pos_ga_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ref_position_ga"/>
+
+        <addForeignKeyConstraint baseColumnNames="tiers_id"
+                                 baseTableName="dossier_sinistre"
+                                 constraintName="fk_dossier_sinistre_tiers_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tiers"/>
+
+        <addForeignKeyConstraint baseColumnNames="dossier_sinistres_id"
+                                 baseTableName="dossier_sinistre_agent_generale"
+                                 constraintName="fk_dossier_sinistre_agent_generale_dossier_sinistres_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="dossier_sinistre"/>
+        <addForeignKeyConstraint baseColumnNames="agent_generales_id"
+                                 baseTableName="dossier_sinistre_agent_generale"
+                                 constraintName="fk_dossier_sinistre_agent_generale_agent_generales_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="agent_general"/>
+        
+        <addForeignKeyConstraint baseColumnNames="dossier_sinistres_id"
+                                 baseTableName="dossier_sinistre_expert"
+                                 constraintName="fk_dossier_sinistre_expert_dossier_sinistres_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="dossier_sinistre"/>
+        <addForeignKeyConstraint baseColumnNames="experts_id"
+                                 baseTableName="dossier_sinistre_expert"
+                                 constraintName="fk_dossier_sinistre_expert_experts_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="expert"/>
+        
+        <addForeignKeyConstraint baseColumnNames="dossier_sinistres_id"
+                                 baseTableName="dossier_sinistre_piece_jointe"
+                                 constraintName="fk_dossier_sinistre_piece_jointe_dossier_sinistres_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="dossier_sinistre"/>
+        <addForeignKeyConstraint baseColumnNames="piece_jointes_id"
+                                 baseTableName="dossier_sinistre_piece_jointe"
+                                 constraintName="fk_dossier_sinistre_piece_jointe_piece_jointes_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="piece_jointe"/>
+        
+    </changeSet>
+</databaseChangeLog>

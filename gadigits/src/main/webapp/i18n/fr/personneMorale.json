@@ -1,0 +1,54 @@
+{
+    "auxiliumApp": {
+        "personneMoraleDTO" : {
+            "raisonSociale": "Raison sociale",
+            "registreCommerce": "Registre de commerce",
+            "numEtablissement": "Numéro d'établissement",
+            "codeCategorie": "Code catégorie",
+            "codeTVA": "Code TVA",
+            "matriculeFiscale": "Matricule fiscale",
+            "adresse": "Adresse",
+            "ville": "Ville",
+            "latitude": "Latitude",
+            "longitude": "Longitude",
+            "banque": "Banque",
+            "isAssujettieTva": "Assujettie à la TVA",
+            "agence": "Agence",
+            "rib": "RIB",
+            "contact": "Contacts"
+        },
+        "personneMorale" : {
+            "home": {
+                "title": "Personne morale",
+                "createLabel": "Créer",
+                "createOrEditLabel": "Créer ou modifier une personne morale",
+                "search": "Recherche pour personne morale"
+            },
+            "created": "",
+            "updated": "",
+            "deleted": "",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer la personne morale {{ id }} ?"
+            },
+            "detail": {
+                "title": "Personne morale"
+            },
+            "raisonSociale": "Raison sociale",
+            "registreCommerce": "Registre de commerce",
+            "numEtablissement": "Numéro de l'établissement",
+            "codeCategorie": "Code",
+            "codeTVA": "Code TVA",
+            "matriculeFiscale": "Matricule fiscale",
+            "adresse": "Adresse",
+            "ville": "Ville",
+            "reglement":" Mode de règlement",
+            "latitude": "Latitude",
+            "longitude": "Longitude",
+            "banque": "Banque",
+            "isAssujettieTva": "Assujettie à la TVA",
+            "agence": "Agence",
+            "rib": "RIB",
+            "contact": "Contacts"
+        }
+    }
+}

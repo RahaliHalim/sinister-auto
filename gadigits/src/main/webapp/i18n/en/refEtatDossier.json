@@ -1,0 +1,22 @@
+{
+    "auxiliumApp": {
+        "refEtatDossier" : {
+            "home": {
+                "title": "Ref Etat Dossiers",
+                "createLabel": "Create a new Ref Etat Dossier",
+                "createOrEditLabel": "Create or edit a Ref Etat Dossier",
+                "search": "Search for Ref Etat Dossier"
+            },
+            "created": "A new Ref Etat Dossier is created with identifier {{ param }}",
+            "updated": "A Ref Etat Dossier is updated with identifier {{ param }}",
+            "deleted": "A Ref Etat Dossier is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Ref Etat Dossier {{ id }}?"
+            },
+            "detail": {
+                "title": "Ref Etat Dossier"
+            },
+            "libelle": "Libelle"
+        }
+    }
+}

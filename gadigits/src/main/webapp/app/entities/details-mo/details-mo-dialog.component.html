@@ -1,0 +1,120 @@
+<div class="card-block" class="col-sm-12">
+    <span class="anchor" id="formUserEdit"></span>
+    <div class="card card-outline-secondary">
+<div class="card-header">
+    <h2>
+        <span jhiTranslate="auxiliumApp.detailsMo.home.title">details mo</span>
+    </h2>
+    <div class="form-group" style="margin-top: -35px;">
+        
+          <input  class="btn btn-primary addnew pull-right"  (click)="addNew()" value="Ajouter main d'oeuvre"  [disabled]="reparateur != true || etat == 'Refuse_Apres_Facture'">
+      </div>
+    </div>
+    <div class="card-block">
+    <div class="table-responsive" *ngIf="detailsMo">
+         <form id="requisition-form"  role="form">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort>
+            <th jhiSortBy="designation"><span jhiTranslate="auxiliumApp.detailsMo.designation">Designation</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="typeInterventionLibelle"><span jhiTranslate="auxiliumApp.detailsMo.typeIntervention">Type Intervention</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="tauxHoraire"><span jhiTranslate="auxiliumApp.grille.th">th</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="nombreHeures"><span jhiTranslate="auxiliumApp.detailsMo.nombreHeures">Nombre Heures</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="totalHt"><span jhiTranslate="auxiliumApp.detailsMo.totalHt">totalHt</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="remise"><span jhiTranslate="auxiliumApp.grille.remise">remise</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="tva"><span jhiTranslate="auxiliumApp.grille.tva">tva</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="totalTtc"><span jhiTranslate="auxiliumApp.detailsMo.totalTtc">totalttc</span> <span class="fa fa-sort"></span></th>
+          
+            <th></th>
+            </tr>
+            </thead>
+            <tbody *ngFor="let detailsMo of detailsMos | paginate: { itemsPerPage: 5, currentPage: p }; let i=index">
+                <td><select class="form-control" name ="designation[{{i}}]"  [(ngModel)]="detailsMo.designationId" *ngIf ="reparateur == true">
+                <option [ngValue]="designationOption.id" *ngFor="let designationOption of pieces; trackBy: trackPieceById">{{designationOption.reference}}</option>
+            </select>
+            <!--<input type="number" class="form-control" [(ngModel)]="detailsMo.designationReference" name ="designation" readonly *ngIf ="reparateur != true"
+            />-->
+        </td>
+                <td>
+            <select class="form-control" [(ngModel)]="detailsMo.typeInterventionId" name ="intervention[{{i}}]" (ngModelChange)="loadDetailsMo(detailsMo.typeInterventionId)" *ngIf ="reparateur == true">
+                <option [ngValue]="reftypeinterventionOption.id" *ngFor="let reftypeinterventionOption of reftypeinterventions">{{reftypeinterventionOption.libelle}}</option>
+            </select>
+            <!--<input type="number" class="form-control" [(ngModel)]="detailsMo.typeInterventionLibelle" name ="intervention[{{i}}]" readonly *ngIf ="reparateur != true"
+            />-->
+                </td>
+                <td>
+
+                    <input type="number" class="form-control" [(ngModel)]="detailsMo.th"  [value]="grille.th" name ="th[{{i}}]" readonly *ngIf ="reparateur == true"
+                 />
+                </td>
+                <td> <input type="text" class="form-control" [(ngModel)]="detailsMo.nombreHeures" (ngModelChange)="getRowData(detailsMo.designationId,detailsMo.typeInterventionId,detailsMo.nombreHeures,i)"  name ="nombreHeures[{{i}}]"  *ngIf ="reparateur == true"
+                 />
+                 <!--<input type="number" class="form-control" [(ngModel)]="detailsMo.nombreHeures" name ="nombreHeures[{{i}}]" readonly *ngIf ="reparateur != true"
+                 />-->
+                </td>
+                <td>
+
+                        <input type="number" class="form-control"   [value]="grille.th*detailsMo.nombreHeures" name ="tht[{{i}}]" readonly *ngIf ="reparateur == true"
+                        />
+                </td>
+                <td>
+
+                    <input type="number" class="form-control" [(ngModel)]="detailsMo.remise"  [value]="grille.remise" name ="remise[{{i}}]" readonly *ngIf ="reparateur == true"
+                    />
+
+                </td>
+                <td>
+
+                    <input type="number" class="form-control" [(ngModel)]="detailsMo.tva"  [value]="grille.tva" name ="tva[{{i}}]" readonly *ngIf ="reparateur == true"
+                    />
+                </td>
+                <td>
+
+                        <input type="number" class="form-control"   [value]="(grille.th*detailsMo.nombreHeures+grille.th*detailsMo.nombreHeures*grille.tva/100)-grille.remise" name ="ttc[{{i}}]" readonly *ngIf ="reparateur == true"
+                        />
+                </td>
+                <td >
+                        <div class="btn-group flex-btn-group-container">
+                                <a  (click)="removeRow(i)" class="btn btn-xs btn-danger">
+                                        <i class="glyphicon glyphicon-remove">X</i>
+                                      </a>
+                        <!--<button 
+                        (click) ="addNew()"
+                        class="btn btn-success btn-sm">
+                        <span class="fa fa-check"></span>
+                </button>
+                     <button *ngIf="detailsMo"
+                                [routerLink]="['/', { outlets: { popup: 'details-mo/'+ detailsMo.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-trash"></span>
+                        </button>--></div>
+                        
+                </td>
+                
+       
+            
+            </tbody>
+            
+        </table>
+        <div class="row justify-content-center">
+            <pagination-controls (pageChange)="p = $event"></pagination-controls> 
+            </div>
+        </form>
+    </div>
+       
+</div>
+
+<div >
+    <!--<div *ngIf="detailsMo && detailsMos.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+        <div class="row justify-content-center">
+                <ngb-pagination [collectionSize]="20" [page]="1" [maxSize]="5" [rotate]="true" [boundaryLinks]="true"></ngb-pagination>
+        </div>-->
+    </div></div></div>

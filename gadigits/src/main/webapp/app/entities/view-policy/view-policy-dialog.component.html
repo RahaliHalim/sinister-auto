@@ -1,0 +1,90 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myViewPolicyLabel" jhiTranslate="auxiliumApp.viewPolicy.home.createOrEditLabel">Create or edit a View Policy</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!viewPolicy.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="viewPolicy.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="auxiliumApp.viewPolicy.policyNumber" for="field_policyNumber">Policy Number</label>
+            <input type="text" class="form-control" name="policyNumber" id="field_policyNumber"
+                [(ngModel)]="viewPolicy.policyNumber"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="auxiliumApp.viewPolicy.companyId" for="field_companyId">Company Id</label>
+            <input type="number" class="form-control" name="companyId" id="field_companyId"
+                [(ngModel)]="viewPolicy.companyId"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="auxiliumApp.viewPolicy.companyName" for="field_companyName">Company Name</label>
+            <input type="text" class="form-control" name="companyName" id="field_companyName"
+                [(ngModel)]="viewPolicy.companyName"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="auxiliumApp.viewPolicy.agencyId" for="field_agencyId">Agency Id</label>
+            <input type="number" class="form-control" name="agencyId" id="field_agencyId"
+                [(ngModel)]="viewPolicy.agencyId"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="auxiliumApp.viewPolicy.agencyName" for="field_agencyName">Agency Name</label>
+            <input type="text" class="form-control" name="agencyName" id="field_agencyName"
+                [(ngModel)]="viewPolicy.agencyName"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="auxiliumApp.viewPolicy.vehicleId" for="field_vehicleId">Vehicle Id</label>
+            <input type="number" class="form-control" name="vehicleId" id="field_vehicleId"
+                [(ngModel)]="viewPolicy.vehicleId"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="auxiliumApp.viewPolicy.registrationNumber" for="field_registrationNumber">Registration Number</label>
+            <input type="text" class="form-control" name="registrationNumber" id="field_registrationNumber"
+                [(ngModel)]="viewPolicy.registrationNumber"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="auxiliumApp.viewPolicy.policyHolderId" for="field_policyHolderId">Policy Holder Id</label>
+            <input type="number" class="form-control" name="policyHolderId" id="field_policyHolderId"
+                [(ngModel)]="viewPolicy.policyHolderId"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="auxiliumApp.viewPolicy.policyHolderName" for="field_policyHolderName">Policy Holder Name</label>
+            <input type="text" class="form-control" name="policyHolderName" id="field_policyHolderName"
+                [(ngModel)]="viewPolicy.policyHolderName"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="auxiliumApp.viewPolicy.startDate" for="field_startDate">Start Date</label>
+            <div class="input-group">
+                <input id="field_startDate" type="text" class="form-control" name="startDate" ngbDatepicker  #startDateDp="ngbDatepicker" [(ngModel)]="viewPolicy.startDate"
+                />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" (click)="startDateDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="auxiliumApp.viewPolicy.endDate" for="field_endDate">End Date</label>
+            <div class="input-group">
+                <input id="field_endDate" type="text" class="form-control" name="endDate" ngbDatepicker  #endDateDp="ngbDatepicker" [(ngModel)]="viewPolicy.endDate"
+                />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" (click)="endDateDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

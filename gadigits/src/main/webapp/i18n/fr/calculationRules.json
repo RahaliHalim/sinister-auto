@@ -1,0 +1,68 @@
+{
+    "auxiliumApp": {
+        "partnerrules": {
+            "home": {
+                "title": "Règles de calcul",
+                "createLabel": "Créer une nouvelle règle de calcul",
+                "createOrEditLabel": "Créer ou modifier une règle de calcul"
+            },
+            "created": "Une nouvelle règle de calcul a été créée",
+            "updated": "La régle de calcul a été mise à jour",
+            "deleted": "La régle de calcul a été supprimée",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer la règle de calcul {{ id }} ?"
+            },
+            "detail": {
+                "title": "Règles de calcul",
+                "compagnieModeGestion": "Compagnie & mode de gestion",
+                "fraisParticipation": "Frais de participation",
+                "assuretva": "Assuré assujetti à la TVA",
+                "assurenontva": "Assuré non assujetti à la TVA",
+                "engagementgatva": "Engagement GA assujetti à la TVA",
+                "engagementganontva": "Engagement GA non assujetti à la TVA",
+                "fraisprestationhida": "Frais de prestation HIDA",
+                "droittimbre": "Droit de timbre",
+                "vetuste": "Vétusté",
+                "avanceFacture": "Avance sur facture",
+                "franchise": "Franchise",
+                "fraishida": "Frais HIDA",
+                "regleProp": "Règles proportionnelles",
+                "depassPlafond": "Dépassement plafond",
+                "partRespons": "Part de responsabilité",
+                "tva": "TVA",
+                "reglefraishida": "Règles frais HIDA",
+                "mntfraishida": "Frais",
+                "regleavancefacture": "Règles avance sur facture",
+                "reglefranchise": "Régles franchise",
+                "pourcentagefranchise": "F% fixé à ",
+                "mntmin": "Montant min",
+                "mntfix": "Montant fixe",
+                "mntavancefacture": "X% fixé à",
+                "reghidalower": "TRTTC < 5000",
+                "reghidabetween": "2000 < TRTTC < 5000 ==> Montant fixe TTC avec montant fixe",
+                "reghidahigher": "TRTTC > 5000 ==> X% TRTTC avec X%",
+                "regrpequal": "Si VA = VR",
+                "regrplower": "Si VA < VR",
+                "regthtelower": "Si TR(HTVA) < VA",
+                "regthtehigher": "Si TR(HTVA) > VA",
+                "regttcelower": "Si TR(TTC) < VA",
+                "regttcehigher": "Si TR(TTC) > VA",
+                "regidaconn": "Règle",
+                "dateDebutConvention": "Date de début de la Convention",
+
+                "dateEffet": "Date effet",
+                "rulespartnermode": "La règle éxistante pour la compagnie et le mode de gestion choisis"
+
+
+            }
+        },
+        "calculationrules": {
+            "home": {
+                "title": "Règles de calcul"
+            },
+            "detail": {
+                "title": "Règles de calcul"
+            }
+        }
+    }
+}

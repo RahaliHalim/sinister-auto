@@ -1,0 +1,114 @@
+
+ <!-- Breadcrumb-->
+<div class="breadcrumb-holder">
+    <div class="container-fluid">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="/"><span class="fa fa-home"></span>&nbsp;&nbsp;<span jhiTranslate="global.menu.home">Home</span></a></li>
+                <li class="breadcrumb-item"><a routerLink="/modification-charge"><span jhiTranslate="auxiliumApp.modificationCharge.home.title">Modification Chargé</span></a></li>
+        </ul>
+    </div>
+</div>
+   
+<section class="forms">
+    <div class="container-fluid"> 
+    <!-- Page Header-->
+        <header style="padding-top: 1rem; padding-bottom: 1rem;">
+            <h1 class="h3 display">
+                <jhi-alert-error></jhi-alert-error>
+                <jhi-alert></jhi-alert>
+            </h1>
+        </header>
+         <div class="row" >
+            <div class="col-lg-12">
+                    <div class="card">
+                <div class="card-header  d-flex align-items-center no-padding" >
+                    <div class="notice notice-info">
+                        <span class="fa fa-clone" style="color: #45ABCD"></span>&nbsp;&nbsp;                                          
+                        <strong> Modification Chargé </strong> 
+                    </div>
+                </div>
+                <div class="card-body">
+                        <div class="row">
+
+
+                                <div class="col-sm-4">
+                                        <label jhiTranslate="auxiliumApp.sinisterPec.Charge">Chargé</label>
+                                        <select  class="form-control form-control-sm" id="chargeId" name="charge"
+                                            [(ngModel)]="user.userId"
+                                            (ngModelChange)="listePrestationByUserId(user.userId)" required >
+                                            <option [ngValue]="userOption.id" *ngFor="let userOption of users;">
+                                                    {{userOption.firstName}} {{userOption.lastName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-4">
+                                            <label jhiTranslate="auxiliumApp.sinisterPec.ChargeDest">Chargé</label>
+                                            <select  class="form-control form-control-sm" id="chargeDestinataire" name="chargeDestinataire"
+                                                     [(ngModel)]="userExtra.userId"
+                                                     #chargeDestinataire="ngModel" required >
+                                                <option [ngValue]="userExtraOption.id" *ngFor="let userExtraOption of userExtras;">
+                                                        {{ userExtraOption.firstName}} {{ userExtraOption.lastName}}
+                                                </option>
+                                            </select>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <br>
+                                        <button type="submit" [disabled]="chargeDestinataire.invalid && (chargeDestinataire.dirty || !chargeDestinataire.touched)" class="btn btn-primary" (click)="save()">
+                                               <span class="fa fa-floppy-o"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                                        </button>
+                                    </div>
+                        </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="row">
+                <div class="col-lg-12">
+                        <div class="card">
+                    <div class="card-header  d-flex align-items-center no-padding" >
+                        <div class="notice notice-info">
+                            <span class="fa fa-clone" style="color: #45ABCD"></span>&nbsp;&nbsp;                                          
+                            <strong> Prestation PEC </strong> 
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 15px;" >
+                                    <div class="col-sm-12" >
+                                            <div class="table-responsive" >
+                                                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-sm table-hover table-bordered" style="width: 100%">
+                                                    <thead style="color:white;background-color:#11859b">
+                                                        <tr>
+                                                            <th><span><input type="checkbox" class="check-input" [(ngModel)]="selectedAll" (change)="selectAll();"/></span></th>
+                                                            <th><span jhiTranslate="auxiliumApp.sinisterPec.reference">Reference</span></th>
+                                                            <th><span jhiTranslate="auxiliumApp.sinisterPec.companyName">Company Name</span></th>
+                                                            <th><span jhiTranslate="auxiliumApp.sinisterPec.agentName">Agent Name</span></th>
+                                                            <th><span jhiTranslate="auxiliumApp.sinisterPec.contractNumber">Contract Number</span></th>
+                                                            <th><span jhiTranslate="auxiliumApp.sinisterPec.insuredImmatriculation">Insured Immatriculation </span></th>
+                                                            <th><span jhiTranslate="auxiliumApp.sinisterPec.tiersImmatriculation">Tiers Immatriculation</span></th>
+                                                            <th><span jhiTranslate="auxiliumApp.sinisterPec.modeGestion">Mode de gestion</span></th>
+                                                            <th><span jhiTranslate="auxiliumApp.sinisterPec.incidentDate">Incident Date</span></th>
+                                                            <th><span jhiTranslate="auxiliumApp.sinisterPec.creationDate">Creation Date</span></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr *ngFor="let sinisterPec of sinisterPecs;">
+                                                            <td><input type="checkbox"  class="check-input" [(ngModel)]="sinisterPec.isSelected" (change)="checkIfAllSelected();"/></td> 
+                                                            <td>{{sinisterPec.gaReference}}</td>
+                                                            <td>{{sinisterPec.companyName}}</td>
+                                                            <td>{{sinisterPec.agencyName}}</td>
+                                                            <td>{{sinisterPec.contractNumber}}</td>
+                                                            <td>{{sinisterPec.immatriculation}}</td>
+                                                            <td>{{sinisterPec.immatriculationTier}}</td>
+                                                            <td>{{sinisterPec.modeLabel}}</td>
+                                                            <td>{{sinisterPec.incidentDate | date:'dd/MM/yyyy'}}</td>
+                                                            <td width="13%">{{sinisterPec.declarationDate | date:'dd/MM/yyyy HH:mm:ss'}}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div> 
+                                        </div>
+                            </div>
+                  
+                </div>
+                </div>
+            </div>
+</section> 

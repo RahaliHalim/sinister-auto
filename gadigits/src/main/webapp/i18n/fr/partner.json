@@ -1,0 +1,47 @@
+{
+    "auxiliumApp": {
+        "partner" : {
+            "home": {
+                "title": "Compagnies",
+                "titlecompanies": "Compagnies",
+                "titleDealers": "Concessionnaires",
+                "createLabel": "Créer un nouveau partenaire",
+                "createcompanie": "Créer",
+                "createLabelCompagnie": "Créer",
+                "createOrEditLabel": "Créer ou modifier une compagnie",
+                "createOrEditLabelDealer": "Créer ou modifier un concessionnaire",
+                "search": "Recherche pour partenaire"
+            },
+            "created": "Une nouvelle compagnie a été créée",
+            "updated": "La compagnie a été mise à jour",
+            "deleted": "La compagnie a été supprimée",
+            "createdConcessionnaire": "Un nouveau concessionnaire a été créé",
+            "updatedConcessionnaire": "Le concessionnaire a été mis à jour",
+            "deletedConcessionnaire": "Le concessionnaire a été supprimé",
+            "uniqueCompany": "La raison sociale et Le registre de commerce de la compagnie doivent être uniques",
+            "uniqueConcess": "La raison sociale et Le registre de commerce du concessionnaire doivent être uniques",
+            "uniqueRegCompany": "Le registre de commerce de la compagnie doit être unique",
+            "uniqueRegConcess": "Le registre de commerce du concessionnaire doit être unique",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer la compagnie {{ id }} ?",
+                "questionConcessionnaire": "Êtes-vous certain de vouloir supprimer le concessionnaire {{ id }} ?"
+            },
+            "detail": {
+                "title": "Partenaire",
+                "titleConcessionnaire": "Concessionnaire",
+                "titleCompagnie": "Compagnie"
+            },
+            "companyName": "Raison Sociale",
+            "phone": "Téléphone",
+            "address": "Adresse",
+            "tradeRegister": "Registre de commerce",
+            "taxIdentificationNumber": "Matricule fiscale",
+            "foreignCompany": "Compagnie étrangère",
+            "genre": "Genre",
+            "bloque": "Bloqué",
+            "attachment": "Logo",
+            "conventionne": "Conventionné",
+            "details":"Détails"
+        }
+    }
+}

@@ -1,0 +1,57 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myAgentGeneralLabel" jhiTranslate="auxiliumApp.agentGeneral.home.createOrEditLabel">Create or edit a Agent General</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" hidden>
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id" [(ngModel)]="agentGeneral.id" readonly />
+        </div>
+        <jhi-personne-physique-dialog [personnePhysique]="personnePhysique"></jhi-personne-physique-dialog>
+        <div class="row top-buffer">
+            <!--<div class="col-sm-3">
+                <label jhiTranslate="auxiliumApp.agentGeneral.agence" for="field_agence">Agence</label>
+                <select class="form-control" id="field_agence" name="agence" [(ngModel)]="agentGeneral.agenceId" required>
+                    <option [ngValue]="refAgenceOption.id" *ngFor="let refAgenceOption of refagences; trackBy: trackRefAgenceById">{{refAgenceOption.nom}}</option>
+                </select>
+            </div>-->
+
+            <!-- agence multiple -->
+            <div class="col-sm-3">
+                <label jhiTranslate="auxiliumApp.agentGeneral.agence" for="field_agence">Agence</label>
+             <select class="form-control" multiple name="agence" [(ngModel)]="selectedAgences" required>
+                <option *ngFor="let refAgenceOption of refagences" [value]="refAgenceOption.id">{{refAgenceOption.nom}}</option>
+            </select>
+            </div>
+            <div [hidden]="!(editForm.controls.agence?.dirty && editForm.controls.agence?.invalid)">
+                <small class="form-text text-danger" [hidden]="!editForm.controls.agence?.errors?.required" jhiTranslate="entity.validation.required">
+                    This field is required.
+                </small>
+            </div>
+            <div class="col-sm-3">
+                <label jhiTranslate="auxiliumApp.agentGeneral.serviceAssurance" for="field_serviceAssurance">Service Assurance</label>
+                <select class="form-control" id="field_serviceAssurance" name="serviceAssurance" [(ngModel)]="agentGeneral.serviceAssuranceId">
+                    <option [ngValue]="null"></option>
+                    <option [ngValue]="serviceAssuranceOption.id" *ngFor="let serviceAssuranceOption of serviceassurances; trackBy: trackServiceAssuranceById">{{serviceAssuranceOption.libelle}}</option>
+                </select>
+            </div>
+            <div class="col-sm-3">
+                <input type="checkbox" class="check-input;check-boxes;top-buffer" name="isBloque" id="field_isBloque" [(ngModel)]="agentGeneral.isBloque" />
+                <label class="form-control-label" jhiTranslate="auxiliumApp.agentGeneral.isBloque" for="field_isBloque">Is Bloque</label>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;
+            <span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;
+            <span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

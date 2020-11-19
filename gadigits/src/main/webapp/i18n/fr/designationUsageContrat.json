@@ -1,0 +1,24 @@
+{
+    "auxiliumApp": {
+        "designationUsageContrat" : {
+            "home": {
+                "title": "Désignation usage contrats",
+                "createLabel": "Créer une nouvelle désignation usage du contrat",
+                "createOrEditLabel": "Créer ou modifier une désignation usage du contrat",
+                "search": "Recherche pour désignation usage du contrat"
+            },
+            "created": "Une nouvelle désignation usage du contrat a été créée avec l'identifiant {{ param }}",
+            "updated": "La désignation usage du contrat avec l'identifiant {{ param }} a été mise à jour",
+            "deleted": "La désignation usage du contrat avec l'identifiant {{ param }} a été supprimée",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer la désignation usage du contrat {{ id }} ?"
+            },
+            "detail": {
+                "title": "Désignation usage du contrat"
+            },
+            "libelle": "Libellé",
+            "compagnie": "Compagnie",
+            "refUsageContrat": "Réf. usage du contrat"
+        }
+    }
+}

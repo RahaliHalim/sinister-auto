@@ -1,0 +1,69 @@
+
+<div *ngIf="devis">
+    <h2><span jhiTranslate="auxiliumApp.devis.detail.title">Devis</span> {{devis.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="auxiliumApp.devis.totalTtc">Total Ttc</span></dt>
+        <dd>
+            <span>{{devis.totalTtc}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.devis.totHt">Tot Ht</span></dt>
+        <dd>
+            <span>{{devis.totHt}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.devis.isComplementaire">Is Complementaire</span></dt>
+        <dd>
+            <span>{{devis.isComplementaire}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.devis.isSupprime">Is Supprime</span></dt>
+        <dd>
+            <span>{{devis.isSupprime}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.devis.dateGeneration">Date Generation</span></dt>
+        <dd>
+            <span>{{devis.dateGeneration | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.devis.vetuste">Vetuste</span></dt>
+        <dd>
+            <span>{{devis.vetuste}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.devis.timbre">Timbre</span></dt>
+        <dd>
+            <span>{{devis.timbre}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.devis.commentaire">Commentaire</span></dt>
+        <dd>
+            <span>{{devis.commentaire}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.devis.droitTimbre">Droit Timbre</span></dt>
+        <dd>
+            <span>{{devis.droitTimbre}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.devis.prestation">Prestation</span></dt>
+        <dd>
+            <div *ngIf="devis.prestationId">
+                <a [routerLink]="['/prestation-pec', devis.prestationId]">{{devis.prestationId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.devis.reparateur">Reparateur</span></dt>
+        <dd>
+            <div *ngIf="devis.reparateurId">
+                <a [routerLink]="['/reparateur', devis.reparateurId]">{{devis.reparateurId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'devis/'+ devis.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;&nbsp;&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

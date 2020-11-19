@@ -1,0 +1,23 @@
+{
+    "auxiliumApp": {
+        "refFractionnement" : {
+            "home": {
+                "title": "Ref Fractionnements",
+                "createLabel": "Create a new Ref Fractionnement",
+                "createOrEditLabel": "Create or edit a Ref Fractionnement",
+                "search": "Search for Ref Fractionnement"
+            },
+            "created": "A new Ref Fractionnement is created with identifier {{ param }}",
+            "updated": "A Ref Fractionnement is updated with identifier {{ param }}",
+            "deleted": "A Ref Fractionnement is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Ref Fractionnement {{ id }}?"
+            },
+            "detail": {
+                "title": "Ref Fractionnement"
+            },
+            "code": "Code",
+            "libelle": "Libelle"
+        }
+    }
+}

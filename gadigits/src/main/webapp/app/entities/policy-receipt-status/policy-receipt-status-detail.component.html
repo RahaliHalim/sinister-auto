@@ -1,0 +1,33 @@
+
+<div *ngIf="policyReceiptStatus">
+    <h2><span jhiTranslate="auxiliumApp.policyReceiptStatus.detail.title">Policy Receipt Status</span> {{policyReceiptStatus.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="auxiliumApp.policyReceiptStatus.code">Code</span></dt>
+        <dd>
+            <span>{{policyReceiptStatus.code}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.policyReceiptStatus.label">Label</span></dt>
+        <dd>
+            <span>{{policyReceiptStatus.label}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.policyReceiptStatus.active">Active</span></dt>
+        <dd>
+            <span>{{policyReceiptStatus.active}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'policy-receipt-status/'+ policyReceiptStatus.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;&nbsp;&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

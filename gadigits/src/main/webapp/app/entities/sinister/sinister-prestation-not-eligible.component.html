@@ -1,0 +1,84 @@
+<!-- Breadcrumb-->
+<div class="breadcrumb-holder">
+	<div class="container-fluid">
+		<ul class="breadcrumb">
+			<li class="breadcrumb-item"><a routerLink="/"><span class="fa fa-home"></span>&nbsp;&nbsp;<span	jhiTranslate="global.menu.home">Home</span></a></li>
+			<li class="breadcrumb-item"><a routerLink="/prestation-not-eligible"><span jhiTranslate="auxiliumApp.sinisterPrestation.home.notEligible">notEligible</span></a></li>
+		</ul>
+	</div>
+</div>
+<section class="forms">
+	<div class="container-fluid">
+        <!-- Page Header-->
+        <header style="padding-top: 1rem; padding-bottom: 1rem;">
+            <h1 class="h3 display">
+                <jhi-alert-error></jhi-alert-error>
+                <jhi-alert></jhi-alert>
+            </h1>
+        </header>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header d-flex align-items-center no-padding" >
+                        <div class="notice notice-info">
+                            <span class="fa fa-folder-open" style="color: #45ABCD"></span>&nbsp;&nbsp;
+                            <strong jhiTranslate="auxiliumApp.sinisterPrestation.home.notEligible">notEligible</strong>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table datatable [dtOptions]="dtOptions" class="table table-sm table-hover table-bordered" style="width: 100%">
+                                <thead style="color:white;background-color:#11859b">
+                                <tr>
+                                    <th><span jhiTranslate="auxiliumApp.sinister.reference">reference</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPrestation.creationDate">creationDate</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPrestation.incidentDate">incidentDate</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPrestation.vehicleRegistration">vehicleRegistration</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPrestation.insured">insured</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.prestation.typePrestation">typePrestation</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPrestation.sinisterLocation">sinisterLocation</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPrestation.destination">destination</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPrestation.tug">tug</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPrestation.remAffectationDate">tugAssignedDate</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPrestation.remArrivalDate">remArrivalDate</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPrestation.assureArrivalDate">assureArrivalDate</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPrestation.amount">amount</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPec.chargeName">charge</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPrestation.notEligibleGrounds">notEligibleGrounds</span></th>
+                                    <th class="no-sort"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr *ngFor="let sinisterPrestation of sinisterPrestations">
+                                        <td>{{sinisterPrestation.reference}}</td>
+                                        <td>{{sinisterPrestation.creationDate | date:'dd/MM/yyyy HH:mm:ss'}}</td>
+                                        <td>{{sinisterPrestation.incidentDate | date:'dd/MM/yyyy'}}</td>
+                                        <td>{{sinisterPrestation.registrationNumber}}</td>
+                                        <td>{{sinisterPrestation.fullName}}</td>
+                                        <td>{{sinisterPrestation.serviceType}}</td>
+                                        <td>{{sinisterPrestation.incidentLocationLabel}}</td>
+                                        <td>{{sinisterPrestation.destinationLocationLabel}}</td>
+                                        <td>{{sinisterPrestation.affectedTugLabel}}</td>
+                                        <td>{{sinisterPrestation.tugAssignmentDate | date:'dd/MM/yyyy HH:mm:ss'}}</td>
+                                        <td>{{sinisterPrestation.tugArrivalDate | date:'dd/MM/yyyy HH:mm:ss'}}</td>
+                                        <td>{{sinisterPrestation.insuredArrivalDate | date:'dd/MM/yyyy HH:mm:ss'}}</td>
+                                        <td>{{sinisterPrestation.priceTtc}}</td>
+                                        <td>{{sinisterPrestation.charge}}</td>
+                                        <td>{{sinisterPrestation.notEligibleGroundsDescription}}</td>
+                                    <td class="text-right">
+                                        <div class="btn-group flex-btn-group-container">
+                                            <button type="submit" [routerLink]="['/prestation/' + sinisterPrestation.id + '/view']" replaceUrl="true" class="btn btn-info btn-sm">
+                                                <span class="fa fa-sm fa-eye"></span>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+</section>

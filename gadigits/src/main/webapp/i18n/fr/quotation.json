@@ -1,0 +1,44 @@
+{
+    "auxiliumApp": {
+        "quotation" : {
+            "home": {
+                "title": "quotation",
+                "createLabel": "Créer une nouvelle quotation",
+                "createOrEditLabel": "Créer ou modifier une quotation",
+                "search": "Recherche pour quotation",
+                "details":"Détails quotation",
+                "devisInitiale":"Devis",
+                "DevisRectification":"Devis Rectification",
+                "DevisExpert":"Devis avis expert",
+                "DevisModificationPrix":"Devis modification prix",
+                "DevisCompl":"Devis complémentaire"
+            },
+            "created": "Une nouvelle quotation a été créée avec l'identifiant {{ param }}",
+            "updated": "La quotation avec l'identifiant {{ param }} a été mise à jour",
+            "deleted": "La quotation avec l'identifiant {{ param }} a été supprimée",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer la quotation {{ id }} ?"
+            },
+            "detail": {
+                "title": "quotation"
+            },
+            "totalTtc": "Total TTC",
+            "etat": "État quotation",
+            "totHt": "Tot Ht",
+            "isComplementaire": "Is Complementaire",
+            "isSupprime": "Is Supprime",
+            "dateGeneration": "Date Génération",
+            "vetuste": "Vetuste",
+            "mvht": "MVHT",
+            "mvttc": "MVTTC",
+            "timbre": "Timbre",
+            "commentaire": "Commentaire",
+            "droitTimbre": "Droit timbre",
+            "prestation": "Prestation",
+            "reparateur": "Réparateur",
+            "expert": "Expert:",
+            "prestationReference": "Référence GA",
+            "gtRapport": "Rapport GA Estimate"
+        }
+    }
+}

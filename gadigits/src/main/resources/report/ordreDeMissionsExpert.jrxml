@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="bonAffectation" language="groovy" pageWidth="612" pageHeight="792" whenNoDataType="NoPages" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="cc977343-2ee7-4e4e-ad3b-d343c8254f6b">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.report.description" value=""/>
+	<parameter name="ordreMissionExpertDTO" class="com.gaconnecte.auxilium.service.dto.OrdreMissionExpertDTO"/>
+	<parameter name="logoSlogon" class="java.io.InputStream"/>
+	<parameter name="footer" class="java.io.InputStream"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<variable name="field2_1" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="720" splitType="Stretch">
+			<staticText>
+				<reportElement x="76" y="95" width="407" height="26" uuid="0bc1e16e-48dd-4180-8763-ce6ad128fbb0"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[ORDRE DE MISSION D'EXPERTISE AUTOMOBILE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="589" width="554" height="70" uuid="1e4bb087-52b7-4a32-bf25-fbe6c9568366"/>
+				<box>
+					<pen lineWidth="0.75" lineStyle="Dashed"/>
+				</box>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Nous comptons sur votre habituelle collaboration.
+Meilleures salutations 
+Dossiers gérer par ,
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="14" y="175" width="122" height="20" uuid="ede7447a-84e3-416d-bfbc-d3986ebbfa92"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[-Nom de l'assuré :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="14" y="200" width="136" height="20" uuid="74605eb8-64e9-4b6c-a084-276c32c57aa2"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[- Adresse de l'assuré :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="14" y="225" width="91" height="20" uuid="9df65a9e-b0eb-450a-85c9-cd9b23ac1c47"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[- GSM :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="14" y="250" width="202" height="20" uuid="ebc81696-6475-494a-9796-a2550dbda827"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[- Immatriculation du véhicule :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="14" y="275" width="88" height="20" uuid="3de2af39-48a4-4240-af7f-881bc94e9c4e"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[- Energie :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="14" y="300" width="141" height="20" uuid="1c936b41-952f-43db-a35f-5e887cc2377d"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[-Date de l'accident :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="14" y="350" width="130" height="20" uuid="347ce191-9ec9-4071-be9c-ee51b99fa981"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[- N° Châssis :]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="114" y="177" width="330" height="20" uuid="7f461fbc-0c4d-4a54-a84c-b0ac784aaaab"/>
+				<textFieldExpression><![CDATA[$P{ordreMissionExpertDTO}.getInsuredName()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="58" y="227" width="255" height="20" uuid="73c4310f-7df9-46c0-945c-e2a7608edb85"/>
+				<textFieldExpression><![CDATA[$P{ordreMissionExpertDTO}.getTelephoneAssure()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="181" y="252" width="321" height="20" uuid="eb3eeea9-6b65-47c6-b52c-d89c17240eca"/>
+				<textFieldExpression><![CDATA[$P{ordreMissionExpertDTO}.getInsuredImmatriculation()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="17" y="169" width="229" height="20" uuid="93ec5827-1055-4f4c-91c8-1434a233c32d"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="188" y="396" width="147" height="20" uuid="b0d1ae8e-66b5-43d9-b9f8-b95b770c453a"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[-Nature de la garantie :]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="316" y="398" width="118" height="20" uuid="05ebdfcb-e3ec-4b1d-8eeb-2e090a237024"/>
+				<textFieldExpression><![CDATA[$P{ordreMissionExpertDTO}.getModegestion()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="9" y="491" width="229" height="20" uuid="9bb1153c-23c0-41a3-974f-a0544aa147a8"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Lieu d'expertise du véhicule]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="540" width="112" height="18" uuid="7c4ea401-2579-4796-8350-9f5adffe6f6e"/>
+				<text><![CDATA[-Adresse du garage :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="562" width="36" height="20" uuid="79b4e329-ab33-40f2-b5d0-1cdcb84278e8"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[-Tel:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="136" y="562" width="36" height="20" uuid="15a292d9-871e-45d5-857d-5a62596d7155"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[-Fax:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="255" y="562" width="40" height="20" uuid="2642346c-81c7-4a5f-aecb-de0c0773c5f7"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[-GSM:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="356" y="562" width="46" height="20" uuid="f776e073-be11-4056-ba30-9fa616edb0ad"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[-Email:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="107" y="541" width="280" height="20" uuid="bf848f90-0307-43f2-8a12-fb22f7b7f80d"/>
+				<textFieldExpression><![CDATA[$P{ordreMissionExpertDTO}.getRepairAdress()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="35" y="564" width="87" height="20" uuid="5b0d55b3-434d-4aec-b453-30f49d3d69de"/>
+				<textFieldExpression><![CDATA[$P{ordreMissionExpertDTO}.getRepairTel()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="166" y="564" width="82" height="20" uuid="0485d3a7-6519-4a29-8814-2f16ffa5cc8e"/>
+				<textFieldExpression><![CDATA[$P{ordreMissionExpertDTO}.getRepairFax()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="292" y="564" width="60" height="20" uuid="bda8e6ae-b9b0-4d12-88f7-42425bad7a7c"/>
+				<textFieldExpression><![CDATA[$P{ordreMissionExpertDTO}.getRepairMobile()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="398" y="564" width="252" height="20" uuid="4dc0e4c7-893a-4611-bdbd-21f09e36547d"/>
+				<textFieldExpression><![CDATA[$P{ordreMissionExpertDTO}.getRepairMail()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="139" y="202" width="325" height="20" uuid="02d9c9cc-a93f-413d-88a5-c657a31bb68a"/>
+				<textFieldExpression><![CDATA[$P{ordreMissionExpertDTO}.getAssureAdress()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="90" y="352" width="178" height="20" uuid="8c4cd833-dd8d-484e-97e9-70511911cc48"/>
+				<textFieldExpression><![CDATA[$P{ordreMissionExpertDTO}.getnChassis()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="380" y="74" width="146" height="20" uuid="4bc9d5d2-b0e8-4d26-a1f2-573e0cf81372"/>
+				<textFieldExpression><![CDATA[$P{ordreMissionExpertDTO}.getExpertTel()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="351" y="72" width="69" height="20" uuid="702f5262-d280-4abe-b8e5-5b33f2edba81"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Tel :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="351" y="48" width="69" height="20" uuid="eeafdeeb-f984-449f-b207-f354a391c3d6"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Adresse:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="406" y="50" width="146" height="20" uuid="879a795b-4c2c-488f-af23-5f7c6e512072"/>
+				<textFieldExpression><![CDATA[$P{ordreMissionExpertDTO}.getExpertAdresse()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="413" y="27" width="146" height="20" uuid="0188d228-5b4b-42cf-9e03-8929f48e78be"/>
+				<textFieldExpression><![CDATA[$P{ordreMissionExpertDTO}.getExpertName()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="351" y="25" width="69" height="20" uuid="f425955c-9017-4a74-ab4d-64de70df1c57"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Monsieur:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="350" y="2" width="70" height="20" uuid="87bab0ff-7df0-43d2-9008-2e688c3761b4"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Tunis le:]]></text>
+			</staticText>
+			<textField pattern="MMMMM dd, yyyy" isBlankWhenNull="true">
+				<reportElement x="403" y="4" width="100" height="20" uuid="21149a73-d70a-48a5-b80e-657876876748"/>
+				<textFieldExpression><![CDATA[" " + new SimpleDateFormat("dd.MM.yyyy").format(new Date())]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="105" y="24" width="229" height="20" uuid="5b5c7615-ba23-4c6e-9f77-d436cb477164"/>
+				<textFieldExpression><![CDATA[$P{ordreMissionExpertDTO}.getCompanyInsurance()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="22" width="110" height="20" uuid="ef55e154-99d9-45f9-af24-4faa34b7241d"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Cie d'assurance :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="47" width="70" height="20" uuid="ae97d371-4da2-4eb1-8bda-7a941733218c"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Réf Cie :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="70" width="70" height="20" uuid="bab41952-627b-4015-bb12-c6b752a46a64"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Réf GA :]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="51" y="72" width="100" height="20" uuid="c0213673-6f93-454c-9fc2-5d9b7a357df5"/>
+				<textFieldExpression><![CDATA[$P{ordreMissionExpertDTO}.getReferenceSinister()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="53" y="49" width="100" height="20" uuid="d99bd73a-c866-4e41-ba49-3d717f5fd65c"/>
+				<textFieldExpression><![CDATA[$P{ordreMissionExpertDTO}.getNumSinister()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="9" y="516" width="71" height="20" uuid="46f2a8dd-7fb4-433d-bc13-069bebfa1fb3"/>
+				<text><![CDATA[-Garage :]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="56" y="517" width="340" height="20" uuid="16e38af3-aed0-441e-9a17-fb9ede5f5b17"/>
+				<textFieldExpression><![CDATA[$P{ordreMissionExpertDTO}.getRepairerName()]]></textFieldExpression>
+			</textField>
+			<frame>
+				<reportElement x="130" y="380" width="306" height="100" forecolor="#000000" uuid="bd0853b8-a5b2-43f5-85f9-20603cb38d3a"/>
+				<box>
+					<pen lineWidth="0.75" lineStyle="Dashed"/>
+				</box>
+				<staticText>
+					<reportElement x="32" y="1" width="229" height="20" uuid="f96da1fd-6325-46fb-b26e-9981f7a4ec40"/>
+					<textElement textAlignment="Center">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Nature de la garantie]]></text>
+				</staticText>
+			</frame>
+			<staticText>
+				<reportElement x="5" y="125" width="556" height="45" uuid="b248f8ab-cfab-4cc9-80cb-61bdd7cdcf0b"/>
+				<text><![CDATA[Messieurs,
+En référence de la convention de service signé avec                                               , nous avons l'honneur de vous confier la mission d'expertise du véhicule avec les détails ci-dessous : ]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="123" y="302" width="110" height="20" uuid="c57b11bf-0cba-4acc-a916-163e09c4e684"/>
+				<textFieldExpression><![CDATA[$P{ordreMissionExpertDTO}.getIncidentDate()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="77" y="277" width="365" height="20" uuid="93dfae23-3358-4aab-b01d-f8f3396bf4a5"/>
+				<textFieldExpression><![CDATA[$P{ordreMissionExpertDTO}.getEnergie()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="240" y="350" width="115" height="20" uuid="6f377cc0-6db2-4d79-ad0a-5ec5c1da9c31"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Type:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="393" y="350" width="115" height="20" uuid="135fb636-ba50-45f6-a038-42145d89d557"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[-Puissance :]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="466" y="352" width="110" height="20" uuid="b81887a6-66be-42ef-8885-50e69b97552a"/>
+				<textFieldExpression><![CDATA[$P{ordreMissionExpertDTO}.getPuissance()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="275" y="352" width="110" height="20" uuid="88c086ef-bcca-49d4-bdd1-e5d3776e4bdc"/>
+				<textFieldExpression><![CDATA[$P{ordreMissionExpertDTO}.getType()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="242" y="493" width="159" height="20" uuid="b5dbdffc-ea30-4b36-9666-f22f219a6cc1"/>
+				<text><![CDATA[Chez réparateur ]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="3" y="659" width="82" height="20" uuid="498f352c-98f5-4917-a1cf-98c195eda231"/>
+				<textFieldExpression><![CDATA[$P{ordreMissionExpertDTO}.getChargName()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="244" y="137" width="100" height="20" uuid="b658ad8c-6f53-42b7-9ccd-ceae1c20206a"/>
+				<textFieldExpression><![CDATA[$P{ordreMissionExpertDTO}.getCompanyInsurance()]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="201" y="670" width="160" height="50" uuid="bb00d88d-a844-403b-8d43-0968a43e0e6a"/>
+				<imageExpression><![CDATA[$P{footer}]]></imageExpression>
+			</image>
+			<image>
+				<reportElement stretchType="RelativeToBandHeight" x="243" y="2" width="54" height="50" uuid="06323e84-3d0b-4c46-b7e8-637d6b28e783"/>
+				<imageExpression><![CDATA[$P{logoSlogon}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="14" y="325" width="177" height="20" uuid="46413edd-6b20-4611-9a16-ca40b3e3b612"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[-1ére mise en circulation :]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="157" y="327" width="110" height="20" uuid="8702f67b-d982-4f30-8b39-80445b98f528"/>
+				<textFieldExpression><![CDATA[$P{ordreMissionExpertDTO}.getDatepremierCirculation()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="188" y="421" width="147" height="20" uuid="6951d573-66de-467c-a8d3-abce6a9b88be"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[-Capital Assuré :]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="287" y="423" width="118" height="20" uuid="4e478585-80e8-4188-99ff-5e62dda3e5f3"/>
+				<textFieldExpression><![CDATA[$P{ordreMissionExpertDTO}.getCapitaleAssure()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="188" y="447" width="147" height="20" uuid="d5c4fc33-f916-4270-b27b-bffa00a48b4b"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[-Franchise :]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="262" y="449" width="118" height="20" uuid="17717c1f-b99e-44e7-9359-bd1d1198c8b3"/>
+				<textFieldExpression><![CDATA[$P{ordreMissionExpertDTO}.getFranchise()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+</jasperReport>

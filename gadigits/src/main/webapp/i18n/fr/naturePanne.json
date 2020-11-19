@@ -1,0 +1,24 @@
+{
+    "auxiliumApp": {
+        "naturePanne" : {
+            "home": {
+                "title": "Nature Panne",
+                "createLabel": "Créer une Nature Panne",
+                "createOrEditLabel": "Créer ou modifier une nature Panne",
+                "search": "Rechercher une nature Panne"
+            },
+            "created": "Une nouvelle nature Panne a été créée.",
+            "updated": "La nature Panne a été mise à jour",
+            "deleted": "La nature Panne a été supprimée",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer la nature Panne ?"
+            },
+            "detail": {
+                "title": "Nature Panne"
+            },
+            "label": "Libellé",
+            "active": "Active",
+            "exist": "La nature Panne doit être unique"
+        }
+    }
+}

@@ -1,0 +1,50 @@
+{
+    "auxiliumApp": {
+    "userManagement": {
+        "home": {
+            "title": "Utilisateurs",
+            "titleExterne": "Utilisateurs externes",
+            "titleInterne": "Utilisateurs internes",
+            "createLabel": "Créer",
+            "createOrEditLabel": "Créer ou modifier un utilisateur",
+            "liste": "Liste des utilisateurs",
+            "listeFonctionnalite": "Habilitations"
+        },
+        "created": "L'Utilisateur a été créé.",
+        "updated": "L'Utilisateur a été mis à jour.",
+        "deleted": "L'Utilisateur a été supprimé.",
+        "activated": "L'Utilisateur a été activé.",
+        "disabled": "L'Utilisateur a été désactivé.",
+        "delete": {
+            "question": "Êtes-vous certain de vouloir supprimer cet utilisateur ?"
+        },
+        "detail": {
+            "title": "Utilisateur",
+            "excelExport": "Exporter"
+        },
+        "login": "Login",
+        "firstName": "Prénom",
+        "lastName": "Nom",
+        "email": "Email",
+        "active": "Activé",
+        "deactivated": "Désactivé",
+        "profiles": "Profils",
+        "langKey": "Langue",
+        "createdBy": "Créé par",
+        "createdDate": "Créé le",
+        "lastModifiedBy": "Modifié par",
+        "lastModifiedDate": "Modifié le",
+        "phone": "Téléphone",
+        "cellule": "Cellule",
+        "userType": "Type",
+        "roles": "Rôles",
+        "profil": "Profil",
+        "directeurs": "Directeurs",
+        "responsablepec": "Responsable PEC",
+        "agentgeneraux": "Agent général",
+        "courtiers": "Courtiers",
+        "agentcompagnie": "Agent compagnie",
+        "status": "État"
+    }
+}
+}

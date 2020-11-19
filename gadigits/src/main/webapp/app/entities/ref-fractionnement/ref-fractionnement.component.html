@@ -1,0 +1,114 @@
+
+
+
+    <section class="forms">
+        <div class="container-fluid">
+            <!-- Page Header-->
+            <header>
+                <h1 class="h3 display">
+                    <jhi-alert-error></jhi-alert-error>
+                </h1>
+            </header>
+            <div class="row">
+
+                <div class="col-lg-12">
+                        <div class="card">
+                                <div class="card-header d-flex align-items-center no-padding" >
+                                    <div class="notice notice-info"><strong jhiTranslate="auxiliumApp.refFractionnement.home.title">Ref Fractionnements </strong></div>
+                                </div>
+                                <div>
+
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <form name="searchForm" class="form-inline">
+                                    <div class="input-group w-100 mt-3">
+                                        <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch"
+                                        name="currentSearch" placeholder="{{ 'auxiliumApp.refFractionnement.home.search' | translate }}">
+                                        <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
+                                            <span class="fa fa-search"></span>
+                                        </button>
+                                        <button class="input-group-addon btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                                            <span class="fa fa-sm fa-remove"></span>
+                                        </button>
+                                    </div>
+                                </form>
+
+                            </div>
+
+                            <div class="col-sm-3">
+                                <br>
+
+                                <button class="btn btn-primary float-right jh-create-entity create-ref-fractionnement" [routerLink]="['/', { outlets: { popup: ['ref-fractionnement-new'] } }]">
+                                    <span class="fa fa-plus"></span>
+                                    <span class="hidden-sm-down"  jhiTranslate="auxiliumApp.refFractionnement.home.createLabel">
+                                    Create new Ref Fractionnement
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <br />
+                        <div class="table-responsive" *ngIf="refFractionnements">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+                                <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+                                <th jhiSortBy="code"><span jhiTranslate="auxiliumApp.refFractionnement.code">Code</span> <span class="fa fa-sort"></span></th>
+                                <th jhiSortBy="libelle"><span jhiTranslate="auxiliumApp.refFractionnement.libelle">Libelle</span> <span class="fa fa-sort"></span></th>
+                                <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr *ngFor="let refFractionnement of refFractionnements ;trackBy: trackId">
+                                    <td><a [routerLink]="['../ref-fractionnement', refFractionnement.id ]">{{refFractionnement.id}}</a></td>
+                                    <td>{{refFractionnement.code}}</td>
+                                    <td>{{refFractionnement.libelle}}</td>
+                                    <td class="text-right">
+                                        <div class="btn-group flex-btn-group-container">
+                                            <button type="submit"
+                                                    [routerLink]="['../ref-fractionnement', refFractionnement.id ]"
+                                                    class="btn btn-info btn-sm">
+                                                <span class="fa fa-eye"></span>
+                                                <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                                            </button>
+                                            <button type="submit"
+                                                    [routerLink]="['/', { outlets: { popup: 'ref-fractionnement/'+ refFractionnement.id + '/edit'} }]"
+                                                    replaceUrl="true"
+                                                    class="btn btn-primary btn-sm">
+                                                <span class="fa fa-pencil"></span>
+                                                <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                                            </button>
+                                            <button type="submit"
+                                             [hidden]="principal.selectedValue !='ROLE_ADMIN'"
+                                                    [routerLink]="['/', { outlets: { popup: 'ref-fractionnement/'+ refFractionnement.id + '/delete'} }]"
+                                                    replaceUrl="true"
+                                                    class="btn btn-danger btn-sm">
+                                                <span class="fa fa-remove"></span>
+                                                <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+
+                        <div class="modal-footer row justify-content-center">
+                            <div *ngIf="refFractionnements && refFractionnements.length">
+                                <div class="row justify-content-center">
+                                    <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <ngb-pagination [collectionSize]="totalItems" [(page)]="page" (pageChange)="loadPage(page)"></ngb-pagination>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>

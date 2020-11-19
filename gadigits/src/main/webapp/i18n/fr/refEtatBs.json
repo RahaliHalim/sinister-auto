@@ -1,0 +1,23 @@
+{
+    "auxiliumApp": {
+        "refEtatBs" : {
+            "home": {
+                "title": "RefEtatBs",
+                "createLabel": "Créer une nouvelle réf. état Bs",
+                "createOrEditLabel": "Créer ou modifier une réf. état Bs",
+                "search": "Recherche pour réf. état Bs"
+            },
+            "created": "Une nouvelle réf. état Bs a été créé avec l'identifiant {{ param }}",
+            "updated": "La réf. état Bs avec l'identifiant {{ param }} a été mise à jour",
+            "deleted": "La réf. état Bs avec l'identifiant {{ param }} a été supprimée",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer la réf. état Bs {{ id }} ?"
+            },
+            "detail": {
+                "title": "Réf. état Bs"
+            },
+            "libelle": "Libelle",
+            "bonSortie": "Bon Sortie"
+        }
+    }
+}

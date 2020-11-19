@@ -1,0 +1,22 @@
+{
+    "auxiliumApp": {
+        "history" : {
+            "home": {
+                "title": "Historique",
+                "History": "Historique",
+                "HistoryAgence": "Agence"
+            },
+            "detail": {
+                "title": "Historique"
+            },
+            "operationName": "Opération",
+            "operationDate": "Date de l'opération",
+            "userName": "Nom utilisateur",
+            "description" : "Déscription",
+            "PJ" : "Pièces jointes",
+            "detailsOperation": "Détails de l'opération"
+
+            
+        }
+    }
+}

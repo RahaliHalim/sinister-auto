@@ -1,0 +1,23 @@
+{
+    "auxiliumApp": {
+        "vehiclePieceType" : {
+            "home": {
+                "title": "Vehicle Piece Types",
+                "createLabel": "Create a new Vehicle Piece Type",
+                "createOrEditLabel": "Create or edit a Vehicle Piece Type",
+                "search": "Search for Vehicle Piece Type"
+            },
+            "created": "A new Vehicle Piece Type is created with identifier {{ param }}",
+            "updated": "A Vehicle Piece Type is updated with identifier {{ param }}",
+            "deleted": "A Vehicle Piece Type is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Vehicle Piece Type {{ id }}?"
+            },
+            "detail": {
+                "title": "Vehicle Piece Type"
+            },
+            "code": "Code",
+            "label": "Label"
+        }
+    }
+}

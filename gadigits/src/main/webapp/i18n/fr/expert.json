@@ -1,0 +1,59 @@
+{
+    "auxiliumApp": {
+        "expert": {
+            "home": {
+                "title": "Experts",
+                "createLabel": "Créer",
+                "createOrEditLabel": "Créer ou modifier un expert",
+                "search": "Recherche pour expert"
+            },
+
+            "created": "Un nouveau expert a été créé ",
+            "updated": "L'expert a été mis à jour ",
+            "uniqueNom": "La raison sociale de l'expert doit être unique",
+            "uniqueFTUSA": "Le FTUSA et la raison sociale de l'expert doivent être unique",
+            "deleted": "L'expert a été supprimé",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer l'expert {{ id }} ?"
+            },
+            "detail": {
+                "title": "Expert"
+            },
+            "nom": "Nom",
+            "nomPrenom":"Nom Prénom",
+            "raisonSociale": "Raison Sociale",
+            "prenom": "Prénom",
+            "email": "Email",
+            "telephone": "Téléphone",
+            "fax": "Fax",
+            "mobile": "Mobile",
+            "mobile2": "Mobile 2",
+            "numeroFTUSA": "Numéro FTUSA",
+            "centreExpertise": "Centre d'expertise ",
+            "compagnie": "Compagnie",
+            "gouvernoratsListe":"Liste des gouvernorats",
+            "villeListe":" Liste des villes",
+            "client":"Client",
+            "raisonSocialeCompagnie":"RaisonSocialeCompagnie",
+            "modeGestion/Garanties":"ModeGestion/Garanties",
+            "modeGestion":"Mode de gestion",
+            "gouvernorat":"Gouvernorat",
+            "isBloque": "Blocage",
+            "cng": "ENG",
+            "debutBlocage": "Début du blocage",
+            "dateEffetConvention": "Date d'effet de la convention",
+            "dateFinConvention": "Date de la fin de la convention",
+            "finBlocage": "Fin du blocage",
+            "adresse": "Adresse",
+            "governorate": "Gouvernorat ",
+
+            "delegation": "Ville",
+            "nbmissions":"Nombre de missions en cours",
+            "dateDebutBlocage": "Date de début du blocage",
+            "dateFinBlocage": "Date fin blocage",
+            "isActive": "Active",
+            "details":"Détails",
+            "ordreDeMission":"Ordre de mission"
+        }
+    }
+}

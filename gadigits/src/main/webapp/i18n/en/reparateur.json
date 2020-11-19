@@ -1,0 +1,40 @@
+{
+    "auxiliumApp": {
+        "reparateur" : {
+            "home": {
+                "title": "Reparateurs",
+                "createLabel": "Create a new Reparateur",
+                "createOrEditLabel": "Create or edit a Reparateur",
+                "search": "Search for Reparateur"
+            },
+            "created": "A new Reparateur is created with identifier {{ param }}",
+            "updated": "A Reparateur is updated with identifier {{ param }}",
+            "deleted": "A Reparateur is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Reparateur {{ id }}?"
+            },
+            "detail": {
+                "title": "Reparateur"
+            },
+            "raisonSociale": "Raison Sociale",
+            "NomPrenom": "nom et Prénom", 
+            "nmaxAffiliation": "Nmax Affiliation",
+            "debutConge": "Debut Conge",
+            "datFinConge": "Dat Fin Conge",
+            "dateCreation": "Date Creation",
+            "isBloque": "Is Bloque",
+            "isCng": "Is Cng",
+            "personneMorale": "Personne Morale",
+            "ville": "Ville",
+            "agentOfficiel": "Agent Officiel",
+            "marquePrincipale": "Marque Principale",
+            "autreMarque": "Autre Marque",
+            "materiel": "Materiel",
+            "grille": "Grille",
+            "reglement": "Reglement",
+            "gouvernorat": "Gouvernorat",
+            "TelPremierVisAVis": "Tél de premier vis à vis",
+            "MailPremierVisAVis": "Mail de premier vis à vis"
+        }
+    }
+}

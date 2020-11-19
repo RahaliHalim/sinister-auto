@@ -1,0 +1,23 @@
+{
+    "auxiliumApp": {
+        "refPositionGa" : {
+            "home": {
+                "title": "Position Ga",
+                "createLabel": "Créer une nouvelle réf. position Ga",
+                "createOrEditLabel": "Créer ou modifier une réf. position Ga",
+                "search": "Recherche pour réf. position Ga"
+            },
+            "created": "Une nouvelle réf. position Ga a été créeé avec l'identifiant {{ param }}",
+            "updated": "La réf. position Ga avec l'identifiant {{ param }} a été mise à jour",
+            "deleted": "La réf. position Ga avec l'identifiant {{ param }} a été supprimée",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer la réf. position Ga {{ id }} ?"
+            },
+            "detail": {
+                "title": "Réf. Position Ga",
+                "positionGa": "Position Ga"
+            },
+            "libelle": "Libellé"
+        }
+    }
+}

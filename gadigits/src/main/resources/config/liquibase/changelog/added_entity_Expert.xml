@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <property name="now" value="now()" dbms="h2"/>
+
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+
+    <property name="floatType" value="float4" dbms="postgresql, h2"/>
+    <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
+
+    <!--
+        Added the entity Expert.
+    -->
+    <changeSet id="20170912084459-1" author="jhipster">
+        <createTable tableName="expert">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="nmax_affiliation" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="num_enreg_ftusa" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="diplome" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="specialite" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="date_agrement" type="date">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="date_creation" type="date">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="debut_conge" type="date">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="date_fin_conge" type="date">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="is_bloque" type="boolean">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="is_eng" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="personne_morale_id" type="bigint">
+                <constraints unique="true" nullable="false" />
+            </column>
+
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+        </createTable>
+        
+    </changeSet>
+</databaseChangeLog>

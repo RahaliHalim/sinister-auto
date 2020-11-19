@@ -1,0 +1,220 @@
+<!-- navbar-->
+<header class="header bottom-100" *ngIf="isAuthenticated()">
+  <nav class="navbar bg-image fixed-top" [ngSwitch]="isAuthenticated()">
+    <div class="container-fluid">
+      <div class="navbar-holder d-flex align-items-center justify-content-between">
+        <div class="navbar-header" style="width: 60%">
+          <!-- A verifier si on va utiliser ou pas ce bouton !-->
+          <a id="toggle-btn" href="#" class="menu-btn" (click)="showHideSidebar($event);">
+            <i class="fa fa-bars"> </i>
+
+          </a>
+
+          <div style="width: 100%; text-align: end">
+            <a href="index.html" class="navbar-brand">
+              <div class="brand-text d-none d-md-inline-block">
+                <img src="../../../content/images/Ga-Digits.png" alt="G??n??rale Assistance"
+                  style="width: 250px; height:unset;">
+                  <br>
+                  <br>
+                 
+                <!--<h2 class="h5" style="text-align:center">G??n??rale Assistance</h2>-->
+             
+              </div>
+
+            </a></div>
+             <!-- <div style="position: absolute;flex-direction: column;justify-content: center;display: flex;width: 100%;text-align: center;align-items: center;">
+              <span style="width: 100%;font-weight:bold;font-size: 16px;color:#FA2F03;">{{connectionStatusMessage}}</span>
+              <span style="width: 100%;/* text-align: center; */font-weight:bold;font-size: 17px;color:#ff0707;">{{connectionStatusMessage1}}</span>
+
+</div> -->
+
+
+        </div>
+        <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
+          <li class="nav-item dropdown" *ngIf="principal.notifications || notifications">
+            <a id="notifications" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false" class="nav-link language dropdown-toggle">
+              <span id="notify">
+                <span class="fa-stack fa-lg has-badge"
+                  [ngClass]="{'p1': principal.notifications.length + notifications.length > 0}"
+                  [attr.data-count]="principal.notifications.length + notifications.length" style="font-size: 1.6em;">
+                  <!--<i class="fa fa-bell"></i>-->
+                  <!--<i class="fa fa-bell" aria-hidden="true"></i>-->
+                  <i class="fa fa-bell-o" aria-hidden="true"></i>
+                </span>
+              </span>
+
+            </a>
+            <ul aria-labelledby="notifications" class="dropdown-menu scrollable-menu">
+              <li *ngFor="let notif of notifications">
+                <a (click)="detailsSinistre(notif);" class="dropdown-item"
+                  *ngIf="notif.typenotification == 'notification declenchement sinistre' && (userExtra.profileId == 11 || userExtra.profileId == 12)"
+                  style="border-bottom: 1px solid rgba(0,0,0,.1);">
+                  <img src="../../../content/images/signal.png" class="profile-image img-circle" alt="signal">
+                  &nbsp;&nbsp;<span jhiTranslate="global.messages.notif.assure"
+                    translateValues="{nom: '{{notif.nom}} {{notif.prenom}}'}">Assure</span>
+                </a>
+                <a (click)="detailsSinistre(notif);" class="dropdown-item"
+                  *ngIf="notif.typenotification == 'notification affectation remorqueur' && (userExtra.profileId == 11 || userExtra.profileId == 12)"
+                  style="border-bottom: 1px solid rgba(0,0,0,.1);">
+                  <img src="../../../content/images/confirmation.svg" class="profile-image img-circle"
+                    alt="confirmation">
+                  &nbsp;&nbsp;<span jhiTranslate="global.messages.notif.remorqueur"
+                    translateValues="{nom: '{{notif.nom}} {{notif.prenom}}'}">Remorqueur</span>
+                </a>
+                <a (click)="detailsSinistre(notif);" class="dropdown-item"
+                  *ngIf="notif.typenotification == 'notification non reponse des remorqueurs ' && (userExtra.profileId == 11 || userExtra.profileId == 12)"
+                  style="border-bottom: 1px solid rgba(0,0,0,.1);">
+                  <img src="../../../content/images/no-response.png" class="profile-image img-circle" alt="noresponse">
+                  &nbsp;&nbsp;<span jhiTranslate="global.messages.notif.assurenotserved"
+                    translateValues="{nom: '{{notif.nom}} {{notif.prenom}}'}">Assure</span>
+                </a>
+                <a (click)="detailsSinistre(notif);" class="dropdown-item"
+                  *ngIf="notif.typenotification == 'notificationAfficheConfirmArriv' && (userExtra.profileId == 11 || userExtra.profileId == 12)"
+                  style="border-bottom: 1px solid rgba(0,0,0,.1);">
+                  <img src="../../../content/images/arrive-assure.png" class="profile-image img-circle"
+                    alt="arriveassure">
+                  &nbsp;&nbsp;<span jhiTranslate="global.messages.notif.assurearrive"
+                    translateValues="{nom: '{{notif.nom}} {{notif.prenom}}'}">Assure</span>
+                </a>
+                <a (click)="detailsSinistre(notif);" class="dropdown-item"
+                  *ngIf="notif.typenotification == 'notificationNonArriveeLieuSinistre' && (userExtra.profileId == 11 || userExtra.profileId == 12)"
+                  style="border-bottom: 1px solid rgba(0,0,0,.1);">
+                  <img src="../../../content/images/no-response.png" class="profile-image img-circle"
+                    alt="NonArriveeLieuSinistre">
+                  &nbsp;&nbsp;<span jhiTranslate="global.messages.notif.nonArriveLieuSinister"
+                    translateValues="{nom: '{{notif.nom}} {{notif.prenom}}'}">Remorqueur</span>
+                </a>
+                <a (click)="detailsSinistre(notif);" class="dropdown-item"
+                  *ngIf="notif.typenotification == 'notificationNonPriseEnCharge' && (userExtra.profileId == 11 || userExtra.profileId == 12)"
+                  style="border-bottom: 1px solid rgba(0,0,0,.1);">
+                  <img src="../../../content/images/no-response.png" class="profile-image img-circle"
+                    alt="NonPriseEnCharge">
+                  &nbsp;&nbsp;<span jhiTranslate="global.messages.notif.NonPriseEnCharge"
+                    translateValues="{nom: '{{notif.nom}} {{notif.prenom}}'}">Remorqueur</span>
+                </a>
+                <a (click)="notifNoTug(notif);" class="dropdown-item"
+                  *ngIf="notif.typenotification == 'pas de remorqueur' && (userExtra.profileId == 11 || userExtra.profileId == 12)"
+                  style="border-bottom: 1px solid rgba(0,0,0,.1);">
+                  <img src="../../../content/images/no-response.png" class="profile-image img-circle"
+                    alt="PasDeRemorqueur">
+                  &nbsp;&nbsp;<span jhiTranslate="global.messages.notif.PasDeRemorqueur"
+                    translateValues="{nom: '{{notif.nom}} {{notif.prenom}}'}">Assure</span>
+                </a>
+
+
+
+
+
+                <!-- fin notif reparation -->
+
+                <!-- Accord Notifications-->
+              </li>
+              <li (click)="routeNotif(notif);" *ngFor="let notif of principal.notifications">
+                <a class="dropdown-item" *ngIf="notif.type == 'N'"
+                  style="border-bottom: 1px solid rgba(0,0,0,.1);">
+                  <img src="../../../content/images/signal.png" class="profile-image img-circle" alt="rep">
+                  &nbsp;&nbsp;<span jhiTranslate="global.messages.notif.{{notif.translationCode}}"
+                    translateValues="{refSinister: '{{parseJson(notif.settings).refSinister}}', etatPrestation: '{{parseJson(notif.settings).etatPrestation}}'}">Notifications</span>
+                </a>
+
+
+              </li>
+
+            </ul>
+
+          </li>
+          <!-- Alerts -->
+          <li class="nav-item dropdown">
+            <a id="alerts" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false" class="nav-link language dropdown-toggle">
+              <span id="alert">
+                <span class="fa-stack fa-lg has-badge" [ngClass]="{'p1': principal.alerts.length > 0}"
+                  [attr.data-count]="principal.alerts.length + alerts.length" style="font-size: 1.6em;">
+
+                  <!--<i class="fa fa-bell fa-stack-1x" style="color: red"></i>-->
+                  <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+
+                </span>
+              </span>
+              </span>
+            </a>
+
+
+
+            <ul aria-labelledby="alerts" class="dropdown-menu">
+              <li *ngFor="let alert of principal.alerts">
+                <a (click)="alertClick(alert);" class="dropdown-item" style="border-bottom: 1px solid rgba(0,0,0,.1);">
+                  <img src="../../../content/images/signal.png" class="profile-image img-circle" alt="signal">
+                  &nbsp;&nbsp;<span>{{alert.notification.label}}</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <!-- End alerts -->
+          <!-- Languages dropdown    
+          <li class="nav-item dropdown" *ngIf="languages"><a id="languages" rel="nofollow" data-target="#" href="#"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+              class="nav-link language dropdown-toggle">
+              <span>
+                <i class="fa fa-flag" aria-hidden="true"></i>
+                <span jhiTranslate="global.menu.language">Language</span>
+              </span>
+
+            </a>
+            <ul aria-labelledby="languages" class="dropdown-menu" *ngIf="languages.length > 1">
+              <li *ngFor="let language of languages">
+                <a rel="nofollow" [jhiActiveMenu]="language" href="javascript:void(0);" class="dropdown-item"
+                  (click)="changeLanguage(language);">
+                  {{language | findLanguageFromKey}}
+                </a>
+              </li>
+            </ul>
+          </li>
+-->
+          <li class="nav-item dropdown" *ngSwitchCase="true"><a id="account" rel="nofollow" data-target="#" href="#"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+              class="nav-link language dropdown-toggle">
+
+              <span>
+                <img src="../../../content/images/avatar.png" class="profile-image img-circle"
+                  title="{{account && account.firstName}} {{account && account.lastName}}"
+                  style="width:30px;position:relative;bottom:6px">
+              </span>
+            </a>
+            <ul aria-labelledby="languages" class="dropdown-menu">
+
+              <!-- <li><a rel="nofollow" href="#" class="dropdown-item" routerLink="admin/jhi-metrics">
+                  <i class="fa fa-book fa-fw" aria-hidden="true"></i>
+                  <span>Metrics</span>
+                </a></li> -->
+              <li><a rel="nofollow" href="#" class="dropdown-item" routerLink="settings">
+                  <i class="fa fa-cog fa-fw" aria-hidden="true"></i>
+                  <span jhiTranslate="global.menu.account.settings">Settings</span>
+                </a></li>
+
+              <li><a rel="nofollow" href="#" class="dropdown-item" routerLink="password">
+                  <i class="fa fa-key" aria-hidden="true"></i>
+                  <span jhiTranslate="global.menu.account.password">Password</span>
+                </a></li>
+              <!-- Log out-->
+              <li class="nav-item"><a href="#" class="nav-link logout" (click)="logout()"> <span
+                    class="d-none d-sm-inline" style="color:#00767b;font-size:10px;"
+                    jhiTranslate="global.menu.account.logout">Logout</span><i class="fa fa-sign-out"
+                    style="color:black"></i>
+                </a></li>
+
+            </ul>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+<header class="header" *ngIf="!isAuthenticated()">
+  <nav class="navbar" style="background-color: #F4F7FA;">
+
+  </nav>
+</header>

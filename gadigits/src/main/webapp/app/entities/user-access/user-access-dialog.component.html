@@ -1,0 +1,73 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myUserAccessLabel" jhiTranslate="auxiliumApp.userAccess.home.createOrEditLabel">Create or edit a User Access</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!userAccess.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="userAccess.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="auxiliumApp.userAccess.label" for="field_label">Label</label>
+            <input type="text" class="form-control" name="label" id="field_label"
+                [(ngModel)]="userAccess.label"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="auxiliumApp.userAccess.code" for="field_code">Code</label>
+            <input type="text" class="form-control" name="code" id="field_code"
+                [(ngModel)]="userAccess.code"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="auxiliumApp.userAccess.url" for="field_url">Url</label>
+            <input type="text" class="form-control" name="url" id="field_url"
+                [(ngModel)]="userAccess.url"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="auxiliumApp.userAccess.leaf" for="field_leaf">Leaf</label>
+            <input type="checkbox" class="form-control" name="leaf" id="field_leaf"
+                [(ngModel)]="userAccess.leaf"  />
+        </div>
+
+        <div class="form-group">
+            <label jhiTranslate="auxiliumApp.userAccess.businessEntity" for="field_businessEntity">Business Entity</label>
+            <select class="form-control" id="field_businessEntity" name="businessEntity" [(ngModel)]="userAccess.businessEntityId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="businessEntityOption.id" *ngFor="let businessEntityOption of businessentities; trackBy: trackBusinessEntityById">{{businessEntityOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="auxiliumApp.userAccess.functionality" for="field_functionality">Functionality</label>
+            <select class="form-control" id="field_functionality" name="functionality" [(ngModel)]="userAccess.functionalityId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="functionalityOption.id" *ngFor="let functionalityOption of functionalities; trackBy: trackFunctionalityById">{{functionalityOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="auxiliumApp.userAccess.elementMenu" for="field_elementMenu">Element Menu</label>
+            <select class="form-control" id="field_elementMenu" name="elementMenu" [(ngModel)]="userAccess.elementMenuId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="elementMenuOption.id" *ngFor="let elementMenuOption of elementmenus; trackBy: trackElementMenuById">{{elementMenuOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="auxiliumApp.userAccess.user" for="field_user">User</label>
+            <select class="form-control" id="field_user" name="user" [(ngModel)]="userAccess.userId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="userOption.id" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

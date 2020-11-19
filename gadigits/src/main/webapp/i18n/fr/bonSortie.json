@@ -1,0 +1,25 @@
+{
+    "auxiliumApp": {
+        "bonSortie" : {
+            "home": {
+                "title": "BonSorties",
+                "createLabel": "Créer un nouveau bon de sortie",
+                "createOrEditLabel": "Créer ou modifier un bon de sortie",
+                "search": "Recherche pour bon de sortie"
+            },
+            "created": "Un nouveau bon de sortie a été créé avec l'identifiant {{ param }}",
+            "updated": "Le bon de sortie avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le bon de sortie avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer le bon de sortie {{ id }} ?"
+            },
+            "detail": {
+                "title": "Bon de sortie"
+            },
+            "numero": "Numéro",
+            "isSigne": "Is Signe",
+            "observation": "Observation",
+            "refEtatBs": "Ref Etat Bs"
+        }
+    }
+}

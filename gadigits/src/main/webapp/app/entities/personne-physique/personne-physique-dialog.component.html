@@ -1,0 +1,141 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+    <div>
+            <jhi-alert-error></jhi-alert-error>
+        <div class="row  top-buffer"> 
+	<div class="col-sm-3">
+            <label class="form-control-label" jhiTranslate="auxiliumApp.personnePhysique.civilite" for="field_civilite">Civilite</label>
+            <select class="form-control form-control-sm" name="civilite" [(ngModel)]="personnePhysique.civilite" id="field_civilite" required>
+                <option value="MONSIEUR" jhiTranslate="auxiliumApp.Civilite.MONSIEUR">MONSIEUR</option>
+                <option value="MADAME" jhiTranslate="auxiliumApp.Civilite.MADAME">MADAME</option>
+            </select>
+        </div>
+        <div class="col-sm-3">
+            <label class="form-control-label" jhiTranslate="auxiliumApp.personnePhysique.prenom" for="field_prenom">Prenom</label>
+            <input type="text" class="form-control form-control-sm" name="prenom" id="field_prenom"
+                [(ngModel)]="personnePhysique.prenom"  maxlength="15" required (change)="verifRequired()"/>
+            <div [hidden]="!(editForm.controls.prenom?.dirty && editForm.controls.prenom?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prenom?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prenom?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 100 }">
+                   This field cannot be longer than 100 characters.
+                </small>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <label class="form-control-label" jhiTranslate="auxiliumApp.personnePhysique.nom" for="field_nom">Nom</label>
+            <input type="text" class="form-control form-control-sm" name="nom" id="field_nom"
+                [(ngModel)]="personnePhysique.nom"  maxlength="15" required (change)="verifRequired()"/>
+            <div [hidden]="!(editForm.controls.nom?.dirty && editForm.controls.nom?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.nom?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.personnePhysique
+                </small>personnePhysique
+                <small class="form-text text-danger"personnePhysique
+                   [hidden]="!editForm.controls.nom?.errors?.maxlength" jhiTranslate="entitypersonnePhysique.validation.maxlength" translateValues="{ max: 100 }">
+                   This field cannot be longer than 100 characters.
+                </small>
+            </div>
+        </div>
+	<div class="col-sm-3">
+            <label class="form-control-label" jhiTranslate="auxiliumApp.personnePhysique.cin" for="field_cin">Cin</label>
+            <input type="number" class="form-control form-control-sm" name="cin" id="field_cin"
+                [(ngModel)]="personnePhysique.cin" max="9" />
+            <div [hidden]="!(editForm.controls.cin?.dirty && editForm.controls.cin?.invalid)"personnePhysique>
+                    <small class="form-text text-danger"personnePhysique
+                    [hidden]="!editForm.controls.cin?.errors?.maxlength" jhiTranslate="entitypersonnePhysique.validation.maxlength" translateValues="{ max: 100 }">
+                    This field cannot be longer than 100 characters.
+                  </small>
+            </div>
+        </div>
+        </div>
+        <div class="row top-buffer" >
+        <div class="col-sm-3">
+            <label class="form-control-label" jhiTranslate="auxiliumApp.personnePhysique.premTelephone" for="field_premTelephone">Prem Telephone</label>
+            <input type="text" class="form-control form-control-sm" name="premTelephone" id="field_premTelephone"
+                [(ngModel)]="personnePhysique.premTelephone"  pattern="([0-9]{8})" required (change)="verifRequired()"/>
+            <div [hidden]="!(editForm.controls.premTelephone?.dirty && editForm.controls.premTelephone?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.premTelephone?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.premTelephone?.errors?.pattern" jhiTranslate="entity.validation.pattern" translateValues="{ pattern: 'Prem Telephone' }">
+                    This field should follow pattern for "Prem Telephone".
+                </small>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <label class="form-control-label" jhiTranslate="auxiliumApp.personnePhysique.deuxTelephone" for="field_deuxTelephone">Deux Telephone</label>
+            <input type="text" class="form-control form-control-sm" name="deuxTelephone" id="field_deuxTelephone"
+                [(ngModel)]="personnePhysique.deuxTelephone" pattern="([0-9]{8})"/>
+            <div [hidden]="!(editForm.controls.deuxTelephone?.dirty && editForm.controls.deuxTelephone?.invalid)">
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.deuxTelephone?.errors?.pattern" jhiTranslate="entity.validation.pattern" translateValues="{ pattern: 'Deux Telephone' }">
+                    This field should follow pattern for "Deux Telephone".
+                </small>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <label class="form-control-label" jhiTranslate="auxiliumApp.personnePhysique.premMail" for="field_premMail">Prem Mail</label>
+            <input type="email" class="form-control form-control-sm" name="premMail" id="field_premMail"
+                [(ngModel)]="personnePhysique.premMail" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" />
+            <div [hidden]="!(editForm.controls.premMail?.dirty && editForm.controls.premMail?.invalid)">
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.premMail?.errors?.pattern" jhiTranslate="entity.validation.pattern" translateValues="{ pattern: 'Prem Mail' }">
+                    This field should follow pattern for "Mail".
+                </small>
+            </div>
+        </div>
+
+        <div class="col-sm-3">
+            <label class="form-control-label" jhiTranslate="auxiliumApp.personnePhysique.deuxMail" for="field_deuxMail">Deux Mail</label>
+            <input type="text" class="form-control form-control-sm" name="deuxMail" id="field_deuxMail"
+                [(ngModel)]="personnePhysique.deuxMail" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"/>
+            <div [hidden]="!(editForm.controls.deuxMail?.dirty && editForm.controls.deuxMail?.invalid)">
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.deuxMail?.errors?.pattern" jhiTranslate="entity.validation.pattern" translateValues="{ pattern: 'Deux Mail' }">
+                    This field should follow pattern for "Deux Mail".
+                </small>
+            </div>
+        </div>
+        </div>
+
+        <div class="row  top-buffer">
+        <div class="col-sm-6">
+            <label class="form-control-label" jhiTranslate="auxiliumApp.personnePhysique.adresse" for="field_adresse">Adresse</label>
+            <input required type="text" class="form-control form-control-sm" name="adresse" id="field_adresse"
+                [(ngModel)]="personnePhysique.adresse" maxlength="256" required (change)="verifRequired()"/>
+            <div [hidden]="!(editForm.controls.adresse?.dirty && editForm.controls.adresse?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.adresse?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 256 }">
+                   This field cannot be longer than 256 characters.
+                </small>
+            </div>
+        </div>
+ 
+        <div class="col-sm-3">
+            <label jhiTranslate="auxiliumApp.assure.gouvernorat">
+                gouvernorat
+            </label>
+            <select class="form-control form-control-sm" id="field_lieu" name="lieu" [(ngModel)]="gouvernoratId"
+                (ngModelChange)="listVillesByGouvernoratLieu(gouvernoratId)" required >
+                <option [ngValue]="gouvernoratOption.id" *ngFor="let gouvernoratOption of sysgouvernorats; trackBy: trackGouvernoratById">
+                    {{gouvernoratOption.libelle}}
+                </option>
+            </select>
+        </div> 
+
+
+        <div class="col-sm-3">
+            <label jhiTranslate="auxiliumApp.personnePhysique.ville" for="field_ville">Ville</label>
+            <select class="form-control form-control-sm" id="field_ville" name="ville" [(ngModel)]="personnePhysique.villeId" required (change)="verifRequired()">
+                <option [ngValue]="sysVilleOption.id" *ngFor="let sysVilleOption of sysvilles; trackBy: trackSysVilleById">{{sysVilleOption.libelle}}</option>
+            </select>
+        </div> 
+        </div>
+    </div>
+    
+</form>

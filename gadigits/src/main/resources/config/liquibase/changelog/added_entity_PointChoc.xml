@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <property name="now" value="now()" dbms="h2"/>
+
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+
+    <property name="floatType" value="float4" dbms="postgresql, h2"/>
+    <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
+
+    <!--
+        Added the entity PointChoc.
+    -->
+    <changeSet id="20170912084541-1" author="jhipster">
+        <createTable tableName="point_choc">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="face_av" type="boolean">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="tiers_av_d" type="boolean">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="tiers_lat_d" type="boolean">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="lat_d" type="boolean">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="tiers_ar_d" type="boolean">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="tiers_lat_g" type="boolean">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="tiers_ar_g" type="boolean">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="lat_g" type="boolean">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="face_ar" type="boolean">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="divers_choc" type="boolean">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="pare_brise" type="boolean">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="triangle_av_d" type="boolean">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="triangle_ar_d" type="boolean">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="triangle_av_g" type="boolean">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="triangle_ar_g" type="boolean">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="vitre_av_d" type="boolean">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="vitre_ar_d" type="boolean">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="vitre_av_g" type="boolean">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="vitre_ar_g" type="boolean">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="lunette_ar" type="boolean">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="tiers_av_g" type="boolean">
+                <constraints nullable="true" />
+            </column>
+
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+        </createTable>
+        
+    </changeSet>
+</databaseChangeLog>

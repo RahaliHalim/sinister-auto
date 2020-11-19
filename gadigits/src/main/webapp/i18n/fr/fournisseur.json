@@ -1,0 +1,26 @@
+{
+    "auxiliumApp": {
+        "fournisseur" : {
+            "home": {
+                "title": "Fournisseurs",
+                "createLabel": "Créer un nouveau fournisseur",
+                "createOrEditLabel": "Créer ou modifier un fournisseur",
+                "search": "Recherche pour fournisseur"
+            },
+            "created": "Un nouveau fournisseur a été créé avec l'identifiant {{ param }}",
+            "updated": "Le fournisseur avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le fournisseur avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer le fournisseur {{ id }} ?"
+            },
+            "detail": {
+                "title": "Fournisseur"
+            },
+            "remise": "Remise",
+            "isBloque": "Is Bloque",
+            "personneMorale": "Personne Morale",
+            "contact": "Contact",
+            "ville": "Ville"
+        }
+    }
+}

@@ -1,0 +1,28 @@
+{
+    "auxiliumApp": {
+        "affectExpert" : {
+            "home": {
+                "title": "AffectExperts",
+                "createLabel": "Créer une nouvelle affectation expert",
+                "createOrEditLabel": "Créer ou modifier une affectation expert",
+                "search": "Recherche pour affectation expert"
+            },
+            "created": "Une nouvelle affectation  expert a été créée avec l'identifiant {{ param }}",
+            "updated": "L'Affectation expert avec l'identifiant {{ param }} a été mise à jour",
+            "deleted": "L'Affectation expert avec l'identifiant {{ param }} a été supprimée",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer l'affectation expert {{ id }} ?"
+            },
+            "detail": {
+                "title": "Affectation expert"
+            },
+            "dateEffet": "Date d'effet",
+            "dateModif": "Date de modification",
+            "commentaire": "Commentaire",
+            "prestation": "Prestation",
+            "validationDevis": "Validation du devis",
+            "natureExpertise": "Nature expertise",
+            "expert": "Expert"
+        }
+    }
+}

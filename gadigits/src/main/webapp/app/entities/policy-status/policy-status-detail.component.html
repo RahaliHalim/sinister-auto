@@ -1,0 +1,33 @@
+
+<div *ngIf="policyStatus">
+    <h2><span jhiTranslate="auxiliumApp.policyStatus.detail.title">Policy Status</span> {{policyStatus.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="auxiliumApp.policyStatus.code">Code</span></dt>
+        <dd>
+            <span>{{policyStatus.code}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.policyStatus.label">Label</span></dt>
+        <dd>
+            <span>{{policyStatus.label}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.policyStatus.active">Active</span></dt>
+        <dd>
+            <span>{{policyStatus.active}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'policy-status/'+ policyStatus.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;&nbsp;&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

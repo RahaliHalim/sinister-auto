@@ -1,0 +1,31 @@
+{
+    "auxiliumApp": {
+        "statement" : {
+            "home": {
+                "title": "Bordereaux",
+                "invoices": "Factures",
+                "createLabel": "Créer une nouvelle déclaration",
+                "createOrEditLabel": "Créer ou modifier une déclaration",
+                "search": "Recherche pour déclaration",
+                "selectMonth": "Sélectionner un mois"
+            },
+            "created": "Une nouvelle déclaration a été créée avec l'identifiant {{ param }}",
+            "updated": "Le bordereau a été mise à jour",
+            "deleted": "La déclaration avec l'identifiant {{ param }} a été supprimée",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer la déclaration {{ id }} ?"
+            },
+            "detail": {
+                "title": "Bordereau"
+            },
+            "name": "Nom",
+            "path": "chemin",
+            "tugId": "Tug Id",
+            "tugLabel": "Raison sociale",
+            "creationDate": "Date de création",
+            "notes": "Notes",
+            "month": "Mois",
+            "action": "Action"
+        }
+    }
+}

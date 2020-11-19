@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <property name="now" value="now()" dbms="h2"/>
+
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+
+    <property name="floatType" value="float4" dbms="postgresql, h2"/>
+    <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
+
+    <!--
+        Added the entity Policy.
+    -->
+    <changeSet id="20190312012313-1" author="jhipster">
+        <createTable tableName="app_policy">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" primaryKeyName="pk_policy"/>
+            </column>
+            <column name="reference" type="varchar(50)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="start_date" type="date">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="end_date" type="date">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="new_vehicle_price" type="decimal(10,6)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="new_vehicle_price_is_amount" type="boolean">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="dc_capital" type="decimal(10,6)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="dc_capital_is_amount" type="boolean">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="bg_capital" type="decimal(10,6)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="bg_capital_is_amount" type="boolean">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="market_value" type="decimal(10,6)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="market_value_is_amount" type="boolean">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="active" type="boolean">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="deleted" type="boolean">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="type_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="nature_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="periodicity_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="pack_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="partner_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="agency_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="policy_holder_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+        </createTable>
+        
+    </changeSet>
+</databaseChangeLog>

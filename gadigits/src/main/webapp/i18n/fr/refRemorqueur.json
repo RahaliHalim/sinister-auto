@@ -1,0 +1,55 @@
+{
+    "auxiliumApp": {
+        "refRemorqueur" : {
+            "home": {
+                "title": "Remorqueurs",
+                "createLabel": "Créer",
+                "createOrEditLabel": "Créer ou modifier un remorqueur",
+                "search": "Recherche pour remorqueur"
+            },
+            "canceled": "Un nouveau remorqueur a été mis à jour ",
+            "created": "Création d'un remorqueur avec sucées ",
+            "updated": "Le remorqueur a été mis à jour",
+            "deleted": "Le remorqueur a été supprimé",
+            "bloqued": "Le remorqueur a été bloqué",
+            "debloqued":"Le remorqueur a été débloqué",
+            "unique": "Le Nom, registre de commerce et la matricule fiscale du remorqueur doivent être uniques",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer ce remorqueur?"
+            },
+            "detail": {
+                "title": "Remorqueur",
+                "details" : "Détails"
+            },
+            "hasHabillage": "Habillage",
+            "isBloque": "Bloqué",
+            "isConventionne": "Conventionné",
+            "companyLabel": "Raison sociale",
+            "ville":"Gouvernorat",
+            "isDelete": "Supprimé",
+            "telephone": "Téléphone",
+            "nombreCamion": "Nombre de camion",
+            "societe": "Socièté",
+            "bloquer": "Bloquer",
+            "debloquer": "Débloquer",
+            "tarif": "Tarif",
+            "reclamation": "Réclamation blocage ",
+            "motifs":"Motifs",
+            "bordereau": "Bordereau",
+            "contact": "Contact",
+            "confirm": "Confirmer",
+            "code": "Code catégorie",
+            "statut": "Statut",
+            "localisation": "Localisation du remorqueur",
+            "dureeestimative": "Durée estimative pour arriver",
+            "bloque": {
+            	"title": "Confirmation du blocage du remorqueur",
+                "question": "Êtes-vous certain de vouloir bloquer ce remorqueur ?"
+            },
+            "debloque": {
+            	"title": "Confirmation du débloage du remorqueur",
+                "question": "Êtes-vous certain de vouloir débloquer ce remorqueur ?"
+            }
+        }
+    }
+}

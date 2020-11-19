@@ -1,0 +1,78 @@
+<div>
+    <h2>
+        <span jhiTranslate="auxiliumApp.sysActionUtilisateur.home.title">Sys Action Utilisateurs</span>
+        <button class="btn btn-primary float-right jh-create-entity create-sys-action-utilisateur" [routerLink]="['/', { outlets: { popup: ['sys-action-utilisateur-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down"  jhiTranslate="auxiliumApp.sysActionUtilisateur.home.createLabel">
+            Create new Sys Action Utilisateur
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'auxiliumApp.sysActionUtilisateur.home.search' | translate }}">
+                    <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-addon btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-sm fa-remove"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="sysActionUtilisateurs">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="nom"><span jhiTranslate="auxiliumApp.sysActionUtilisateur.nom">Nom</span> <span class="fa fa-sort"></span></th>
+             <th jhiSortBy="motif"><span jhiTranslate="auxiliumApp.sysActionUtilisateur.motif">Motif</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let sysActionUtilisateur of sysActionUtilisateurs ;trackBy: trackId">
+                <td><a [routerLink]="['../sys-action-utilisateur', sysActionUtilisateur.id ]">{{sysActionUtilisateur.id}}</a></td>
+                <td>{{sysActionUtilisateur.nom}}</td>
+                <td> <span *ngFor="let motif of sysActionUtilisateur.motifs; let last = last">
+                <a [routerLink]="['/ref-motif', motif?.id ]">{{motif.libelle}}</a>{{last ? '' : ', '}}
+            </span></td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../sys-action-utilisateur', sysActionUtilisateur.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'sys-action-utilisateur/'+ sysActionUtilisateur.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'sys-action-utilisateur/'+ sysActionUtilisateur.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-sm fa-remove"></span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+        <div *ngIf="sysActionUtilisateurs && sysActionUtilisateurs.length">
+            <div class="row justify-content-center">
+                <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+            </div>
+            <div class="row justify-content-center">
+                <ngb-pagination [collectionSize]="totalItems" [(page)]="page" (pageChange)="loadPage(page)"></ngb-pagination>
+            </div>
+        </div>
+</div>

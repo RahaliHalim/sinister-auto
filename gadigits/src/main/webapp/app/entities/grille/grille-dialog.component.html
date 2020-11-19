@@ -1,0 +1,74 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myGrilleLabel" jhiTranslate="auxiliumApp.grille.home.createOrEditLabel">Create or edit a Grille</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!grille.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="grille.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="auxiliumApp.grille.th" for="field_th">Th</label>
+            <input type="number" class="form-control" name="th" id="field_th"
+                [(ngModel)]="grille.th" required max="99999999" />
+            <div [hidden]="!(editForm.controls.th?.dirty && editForm.controls.th?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.th?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.th?.errors?.max" jhiTranslate="entity.validation.max" translateValues="{ max: 99999999 }">
+                    This field cannot be more than 99999999.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.th?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="auxiliumApp.grille.remise" for="field_remise">Remise</label>
+            <input type="number" class="form-control" name="remise" id="field_remise"
+                [(ngModel)]="grille.remise" max="99" />
+            <div [hidden]="!(editForm.controls.remise?.dirty && editForm.controls.remise?.invalid)">
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.remise?.errors?.max" jhiTranslate="entity.validation.max" translateValues="{ max: 99 }">
+                    This field cannot be more than 99.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.remise?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="auxiliumApp.grille.tva" for="field_tva">Tva</label>
+            <input type="number" class="form-control" name="tva" id="field_tva"
+                [(ngModel)]="grille.tva" max="99" />
+            <div [hidden]="!(editForm.controls.tva?.dirty && editForm.controls.tva?.invalid)">
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.tva?.errors?.max" jhiTranslate="entity.validation.max" translateValues="{ max: 99 }">
+                    This field cannot be more than 99.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.tva?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

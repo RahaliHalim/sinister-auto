@@ -1,0 +1,37 @@
+
+<div *ngIf="tarif">
+    <h2><span jhiTranslate="auxiliumApp.tarif.detail.title">Tarif</span> {{tarif.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="auxiliumApp.tarif.majorationFerier">Majoration Ferier</span></dt>
+        <dd>
+            <span>{{tarif.majorationFerier}}</span>
+        </dd>
+         <dt><span jhiTranslate="auxiliumApp.tarif.libelle">Libelle</span></dt>
+        <dd>
+            <span>{{tarif.libelle}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.tarif.majorationNuit">Majoration Nuit</span></dt>
+        <dd>
+            <span>{{tarif.majorationNuit}}</span>
+        </dd>
+        <dt><span jhiTranslate="auxiliumApp.tarif.tauxTarif">Taux Tarif</span></dt>
+        <dd>
+            <span>{{tarif.tauxTarif}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'tarif/'+ tarif.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

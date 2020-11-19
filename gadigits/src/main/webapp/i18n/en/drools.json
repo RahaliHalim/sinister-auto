@@ -1,0 +1,46 @@
+{
+    "auxiliumApp": {
+
+        
+
+        "drools" : {
+
+            "details": {
+          
+            "client": "Client",
+            "ida": "IDA",
+            "hida": "HIDA",
+            "dommage": "DOMMAGE",
+            "connexe": "CONNEXE",
+            "garantie": "Garantie",
+            "typerachat": "Type Rachat",
+            "typeavancefacture": "Type Avance Facture",
+            "plafondavancefacture": "Plafond Avance sur Facture",
+            "montantavancesurfacture": "Montant Avance sur Facture",
+            "rachat": "Rachat",
+            "fixValue": "Montant Fixe",
+            "minrachat": "Montant min Rachat",
+            "mode": "Mode de Gestion",
+            "pourcentage": "Pourcentage",
+            "montant": "Montant",
+            "montantarajouter": "Montant à Rajouter",
+            "typemontantrajouter": "Type Montant a rajouter",
+            "plafond": "Plafond TRTTC", 
+            "isvetuste": "Vetuste",
+            "isfranchise": "Franchise",
+            "formule": "Formule"
+            },
+            "home" : {
+
+                "title" : {
+                "rachat": "Frais de Rachat",
+                "montantarajouter": "Montant à rajouter ",
+                "avancesurfacture": "Avance sur Facture"
+                
+                }
+                
+            }
+           
+        }
+    }
+}

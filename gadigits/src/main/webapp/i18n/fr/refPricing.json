@@ -1,0 +1,31 @@
+{
+    "auxiliumApp": {
+        "refPricing" : {
+            "home": {
+                "title": "Tarifs",
+                "createLabel": "Créer",
+                "createOrEditLabel": "Créer ou modifier un tarif"
+            },
+            "created": "Un nouveau tarif a été créé",
+            "updated": "Le tarif a été mis à jour",
+            "deleted": "Le tarif a été supprimé",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer ce tarif ?"
+            },
+            "detail": {
+                "title": "Tarif"
+            },
+            "label": "Libellé",
+            "priceUrbanPlanService": "Service forfait urbain",
+        	"priceKlmShortDistance": "Prix KLM parcourus courte distance",
+	        "priceKlmLongDistance": "Prix KLM parcourus longue distance",
+	        "priceExtraction": "Extraction",
+	        "priceReparation": "Dépannage",
+	        "priceUrbanMobility": "Déplacement urbain",
+	        "priceIncrease": "Majoration",
+	        "priceUrbanPlanServicePl": "Service forfait urbain PL",
+	        "priceKlmShortDistancePl": "Prix KLM parcourus courte distance PL",
+	        "priceKlmLongDistancePl": "Prix KLM parcourus longue distance PL"
+        }
+    }
+}

@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="bonAffectation" language="groovy" pageWidth="612" pageHeight="792" whenNoDataType="NoPages" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="cc977343-2ee7-4e4e-ad3b-d343c8254f6b">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="logoCampanyPath" class="java.io.InputStream"/>
+	<parameter name="lettreIDA" class="com.gaconnecte.auxilium.service.dto.LettreIDADTO"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<variable name="field2_1" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="660" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="242" width="564" height="26" forecolor="#030302" backcolor="#FFFEFA" uuid="0bc1e16e-48dd-4180-8763-ce6ad128fbb0">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Lettre I.D.A]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="403" y="627" width="27" height="20" uuid="04854300-0e8c-46aa-908e-8ec5c2237e73"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[P/ ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="557" width="157" height="20" uuid="53db1a42-b959-4f72-9f3f-4bd19b0170aa">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Vous trouveriez ci-joint,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="150" y="274" width="280" height="36" uuid="93ec5827-1055-4f4c-91c8-1434a233c32d">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RECOMMENDEE
+ AVEC ACCUSE DE RECEPTION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="194" width="51" height="20" uuid="702f5262-d280-4abe-b8e5-5b33f2edba81">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[N/Réf :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="173" width="51" height="20" uuid="eeafdeeb-f984-449f-b207-f354a391c3d6">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Tiers :]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="380" y="132" width="200" height="20" isRemoveLineWhenBlank="true" uuid="0188d228-5b4b-42cf-9e03-8929f48e78be">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{lettreIDA}.getAssuranceTiersName()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="11" y="151" width="51" height="20" uuid="f425955c-9017-4a74-ab4d-64de70df1c57">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Assuré:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="128" width="113" height="20" uuid="87bab0ff-7df0-43d2-9008-2e688c3761b4">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Accident auto du:]]></text>
+			</staticText>
+			<textField pattern="MMMMM dd, yyyy" isBlankWhenNull="true">
+				<reportElement x="443" y="60" width="100" height="20" uuid="21149a73-d70a-48a5-b80e-657876876748">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + new SimpleDateFormat("dd.MM.yyyy").format(new Date())]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="5" y="60" width="165" height="40" uuid="ef55e154-99d9-45f9-af24-4faa34b7241d">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Direction Automobile Service Sinistre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="214" width="51" height="20" uuid="ae97d371-4da2-4eb1-8bda-7a941733218c">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[V/Réf :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="40" y="582" width="410" height="20" uuid="46f2a8dd-7fb4-433d-bc13-069bebfa1fb3">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[- Une photocopie du constat à l'amiable signé par les deux parties]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="379" y="156" width="201" height="74" isPrintWhenDetailOverflows="true" uuid="06e6976c-d39e-4abc-8043-dcbd49a74259">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{lettreIDA}.getAssuranceTiersAdresse()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="381" y="60" width="59" height="20" uuid="89b5a521-27f4-4c61-bdb3-6fabdaf6d10d">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Tunis le:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="65" y="152" width="305" height="20" uuid="8af60b5d-5fe2-49e2-ab5b-439c60a84928">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{lettreIDA}.getAssureFullName()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" x="66" y="174" width="304" height="20" uuid="e2230bf1-9354-46c7-a373-b6841a096ef0"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{lettreIDA}.getTiersName()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="126" y="129" width="244" height="20" uuid="b1ac87a9-ebc4-4264-84aa-d7e24a3fdf34"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{lettreIDA}.getDateAccident()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="66" y="215" width="304" height="20" uuid="99902b80-1e78-48ad-adb6-bdc49fc40858"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{lettreIDA}.getContratAssuranceNum()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="66" y="195" width="304" height="20" uuid="5537e2cd-5660-420f-bd8c-d3a7c2653436"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{lettreIDA}.getReferenceSinister()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="10" y="310" width="113" height="20" uuid="1bf65b14-4c17-4a9d-bd01-63159d887471">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Messieurs,]]></text>
+			</staticText>
+			<textField isBlankWhenNull="false">
+				<reportElement x="8" y="343" width="556" height="304" uuid="01d9177b-1927-4052-83f5-8668b1f3d1d3">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font size="12"/>
+					<paragraph lineSpacing="Double"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Nous avons l'honneur de vous rappeler l'accident de la circulation survenu le, "+  ( (  $P{lettreIDA}.getDateAccident() != null )? $P{lettreIDA}.getDateAccident(): "  ..........  " )+" à "+ ( (  $P{lettreIDA}.getAdresseSinistre() != null )? $P{lettreIDA}.getAdresseSinistre(): "  ..........  " )  + " opposant le véhicule N° " +  ( (  $P{lettreIDA}.getImmatriculation() != null )? $P{lettreIDA}.getImmatriculation(): "  ..........  " )    + " appartenant à notre assuré  "+  ( (  $P{lettreIDA}.getAssureFullName() != null )? $P{lettreIDA}.getAssureFullName(): "  ..........  " )    +" et celui N°: " + ( (  $P{lettreIDA}.getTiersImmatriculation() != null )? $P{lettreIDA}.getTiersImmatriculation(): "  ..........  " ) + " appartenant à " + ( (  $P{lettreIDA}.getTiersName() != null )? $P{lettreIDA}.getTiersName(): "  ..........  " )   + " assuré(e) par vos soins par le contrat d'assurance N°: "+ ( (  $P{lettreIDA}.getContratAssuranceNum() != null )? $P{lettreIDA}.getContratAssuranceNum(): "  ..........  " )  +"  et vous prions de noter que nous avons l'intention de régler notre assuré  " +  ( (  $P{lettreIDA}.getAssureFullName() != null )? $P{lettreIDA}.getAssureFullName(): "  ..........  " )  + " suivant le cas N°  " +  ( (  $P{lettreIDA}.getCasDeBareme() != null )? $P{lettreIDA}.getCasDeBareme(): "  ..........  " )  +"  du barème de responsabilité de la F.TU.S.A, et ce en  application du protocole d'accord pour l'indemnisation directe de  l'assuré signé entre les compagnies d'assurance le 01/01/1984  ."]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="245" y="10" width="50" height="50" uuid="2c7cd2c3-d511-432a-a8e0-52a647b24a88">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<imageExpression><![CDATA[$P{logoCampanyPath}]]></imageExpression>
+			</image>
+			<textField isBlankWhenNull="true">
+				<reportElement x="420" y="627" width="169" height="33" isRemoveLineWhenBlank="true" uuid="d736760d-fb70-4243-97ce-8332a41b1ada">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{lettreIDA}.getAssuranceAssureName()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+</jasperReport>

@@ -1,0 +1,149 @@
+<!-- Breadcrumb-->
+<div class="breadcrumb-holder">
+	<div class="container-fluid">
+		<ul class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="/"><span class="fa fa-home"></span>&nbsp;&nbsp;<span	jhiTranslate="global.menu.home">Home</span></a></li>
+            <li class="breadcrumb-item"><span jhiTranslate="auxiliumApp.sinisterPrestation.report.title">Reporting</span></li>
+			<li class="breadcrumb-item"><span jhiTranslate="auxiliumApp.reports.home.pecMonitoringPrestationStep">SUIVI PRESTATION</span></a></li>
+		</ul>
+	</div>
+</div>
+<section class="forms">
+	<div class="container-fluid">
+        <!-- Page Header-->
+        <header style="padding-top: 1rem; padding-bottom: 1rem;">
+            <h1 class="h3 display">
+                <jhi-alert-error></jhi-alert-error>
+                <jhi-alert></jhi-alert>
+            </h1>
+        </header>
+        <div class="row">
+            <div class="col-lg-12">
+                <form #cnvForm="ngForm" novalidate>
+                    <div class="card">
+                        <div class="card-header d-flex align-items-center no-padding" >
+                            <div class="notice notice-info"><span class="fa fa-search" style="color: #45ABCD"></span>&nbsp;&nbsp;<strong jhiTranslate="auxiliumApp.sinisterPrestation.report.filter">filter</strong></div>
+                        </div>
+
+                        <div class="card-body">
+
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <label jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.company" for="field_partner">company</label>
+                                    <select class="form-control form-control-sm" id="field_partner" name="partner" [(ngModel)]="search.partnerId" (ngModelChange)="changeMode(search.partnerId)">
+                                        <option [ngValue]="partner.id" *ngFor="let partner of partners;">{{partner?.companyName}}</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label class="form-control-label" jhiTranslate="auxiliumApp.sinisterPrestation.report.startDate" for="field_startDate">startDate</label>
+                                        <div class="input-group">
+                                            <input id="field_startDate" type="text" class="form-control form-control-sm" name="startDate" ngbDatepicker #startDate="ngbDatepicker"
+                                                   [(ngModel)]="search.startDate" [maxDate]="search.endDate" />
+                                                   <span class="input-group-btn">
+                                                <button type="button" class="btn btn-sm btn-default" (click)="startDate.toggle()"><i class="fa fa-sm fa-calendar"></i></button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label class="form-control-label" jhiTranslate="auxiliumApp.sinisterPrestation.report.endDate" for="field_endDate">endDate</label>
+                                        <div class="input-group">
+                                            <input id="field_endDate" type="text" class="form-control form-control-sm" name="endDate" ngbDatepicker  #endDate="ngbDatepicker" [(ngModel)]="search.endDate"
+                                                   [minDate]="search.startDate"/>
+                                                   <span class="input-group-btn">
+                                                <button type="button" class="btn btn-sm btn-default" (click)="endDate.toggle()"><i class="fa fa-sm fa-calendar"></i></button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label class="form-control-label" style="width: 100%">&nbsp;</label>
+                                        <button type="button" (click)="filter()"
+                                            class="btn btn-sm btn-primary margin-right-5">
+                                            <span class="fa fa-search"></span>&nbsp; <span jhiTranslate="auxiliumApp.sinisterPrestation.report.doFilter">Filtrer</span>
+                                        </button>&nbsp;
+                                        <button type="button" (click)="clear()"
+                                            class="btn btn-sm btn-primary margin-right-5">
+                                            <span class="fa fa-minus"></span>&nbsp; <span>Ré-initialiser</span>
+                                        </button>
+
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <label jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.mgrMode" for="field_mgrMode">mgrMode</label>
+                                    <select class="form-control form-control-sm" id="field_mgrMode" name="mgrMode" [(ngModel)]="search.managmentModeId">
+                                            <option >------ Séléctionner un mode de gestion --------</option>
+                                        <option [ngValue]="managmentMode.id" *ngFor="let managmentMode of managmentModes;">{{managmentMode?.libelle}}</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-3">
+                                    <label jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.sinisterStep" for="field_zone">zone</label>
+                                    <select class="form-control form-control-sm" id="field_zone" name="step" [(ngModel)]="search.idEtapePrestation" >
+                                        <option [ngValue]="ref.id" *ngFor="let ref of RefStep;">{{ref?.label}}</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-3">
+                                    <label jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.manager" for="field_cng">Chargé</label>
+                                    <select class="form-control form-control-sm"  name="charge"  [(ngModel)]="search.assignedToId">
+                                        <option [ngValue]="list.id" *ngFor="let list of listCharge;">{{list?.nomCharge}} {{list?.prenomCharge}}</option>
+            
+                                    </select> 
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    </form>
+                <div class="card">
+                    <div class="card-header d-flex align-items-center no-padding" >
+                        <div class="notice notice-info">
+                            <span class="fa fa-area-chart" style="color: #45ABCD"></span>&nbsp;&nbsp;
+                            <strong jhiTranslate="auxiliumApp.sinisterPrestation.report.prestations">prestations</strong>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-sm table-hover table-bordered" style="width:100%">
+                                <thead style="color:white;background-color:#11859b">
+                                <tr>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.gaReference">gaReference</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPec.companyName">companyName</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.agent">agent</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.mgrMode">mgrMode</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPec.reparateur">reparateur</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPec.expert">expert</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPec.natureChoc">natureChoc</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.sinisterStep">sinisterStep</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.refDate">refDate</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.refHour">refHour</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.sinisterManager">sinisterManager</span></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let sinisterPrestation of sinisterPrestations">
+                                        <td>{{sinisterPrestation.referenceGa}}</td>
+                                        <td>{{sinisterPrestation.partnerName}}</td>
+                                        <td>{{sinisterPrestation.agencyName}}</td>
+                                        <td>{{sinisterPrestation.managmentModeLabel}}</td>
+                                        <td>{{sinisterPrestation.reparatorRs}}</td>
+                                        <td>{{sinisterPrestation.expertRs}}</td>
+                                        <td>{{sinisterPrestation.typeShock}}</td>
+                                        <td>{{sinisterPrestation.stepName}}</td>
+                                        <td>{{sinisterPrestation.sendingDate | date:'dd/MM/yyyy'}}</td>
+                                        <td>{{sinisterPrestation.sendingDate | date:'HH:mm'}}</td>
+                                        <td>{{sinisterPrestation.assignedToName}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+</section>

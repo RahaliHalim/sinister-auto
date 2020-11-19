@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity PolicyHolder.
+    -->
+    <changeSet id="20190303060319-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="governorate_id"
+                                 baseTableName="app_policy_holder"
+                                 constraintName="fk_policy_holder_governorate_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ref_governorate"/>
+
+        <addForeignKeyConstraint baseColumnNames="delegation_id"
+                                 baseTableName="app_policy_holder"
+                                 constraintName="fk_policy_holder_delegation_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ref_delegation"/>
+
+        <addForeignKeyConstraint baseColumnNames="creation_user_id"
+                                 baseTableName="app_policy_holder"
+                                 constraintName="fk_policy_holder_creation_user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="update_user_id"
+                                 baseTableName="app_policy_holder"
+                                 constraintName="fk_policy_holder_update_user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
+    </changeSet>
+</databaseChangeLog>

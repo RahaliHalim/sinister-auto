@@ -1,0 +1,23 @@
+{
+    "auxiliumApp": {
+        "vehicleEnergy" : {
+            "home": {
+                "title": "Vehicle Energies",
+                "createLabel": "Create a new Vehicle Energy",
+                "createOrEditLabel": "Create or edit a Vehicle Energy",
+                "search": "Search for Vehicle Energy"
+            },
+            "created": "A new Vehicle Energy is created with identifier {{ param }}",
+            "updated": "A Vehicle Energy is updated with identifier {{ param }}",
+            "deleted": "A Vehicle Energy is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Vehicle Energy {{ id }}?"
+            },
+            "detail": {
+                "title": "Vehicle Energy"
+            },
+            "label": "Label",
+            "active": "Active"
+        }
+    }
+}

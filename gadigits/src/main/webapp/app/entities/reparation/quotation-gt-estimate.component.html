@@ -1,0 +1,38 @@
+<div class="modal-header" style="color:#11859b"> Liste des Cas de barème
+</div>
+<!--table-->
+
+<div class="card-body">
+    <div class="table-responsive">
+        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+            class="table table-sm table-hover table-bordered" style="width: 100%">
+            <thead style="color:white;background-color:#11859b">
+                <tr>
+                    <th><span jhiTranslate="auxiliumApp.refBareme.code">Code</span></th>
+                    <th><span jhiTranslate="auxiliumApp.refBareme.titre">titre</span></th>
+                    <th><span jhiTranslate="auxiliumApp.refBareme.responsabiliteX">ResponsabiliteX</span></th>
+                    <th><span jhiTranslate="auxiliumApp.refBareme.responsabiliteY">ResponsabiliteY</span></th>
+                    <th><span jhiTranslate="auxiliumApp.refBareme.description">Description</span></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let refBareme of refBaremes ;">
+                    <td>{{refBareme.code}}</td>
+                    <td>{{refBareme.titre}}</td>
+                    <td>{{refBareme.responsabiliteX}}</td>
+                    <td>{{refBareme.responsabiliteY}}</td>
+                    <td>{{refBareme.description}}</td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+        <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+    </button>
+    <button type="button" class="btn btn-primary">
+        <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+    </button>
+</div>

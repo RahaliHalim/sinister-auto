@@ -1,0 +1,139 @@
+<!-- Breadcrumb-->
+<div class="breadcrumb-holder">
+	<div class="container-fluid">
+		<ul class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="/"><span class="fa fa-home"></span>&nbsp;&nbsp;<span	jhiTranslate="global.menu.home">Home</span></a></li>
+            <li class="breadcrumb-item"><span jhiTranslate="auxiliumApp.sinisterPrestation.report.title">Reporting</span></li>
+			<li class="breadcrumb-item"><a routerLink="/report-suivi-assistance"><span jhiTranslate="auxiliumApp.sinisterPrestation.report.report1">SUIVIS DU SERVICE ASSISTANCE</span></a></li>
+		</ul>
+	</div>
+</div>
+<section class="forms">
+	<div class="container-fluid">
+        <!-- Page Header-->
+        <header style="padding-top: 1rem; padding-bottom: 1rem;">
+            <h1 class="h3 display">
+                <jhi-alert-error></jhi-alert-error>
+                <jhi-alert></jhi-alert>
+            </h1>
+        </header>
+        <div class="row">
+            <div class="col-lg-12">
+                <form #cnvForm="ngForm" novalidate>
+                    <div class="card">
+                        <div class="card-header d-flex align-items-center no-padding" >
+                            <div class="notice notice-info"><span class="fa fa-search" style="color: #45ABCD"></span>&nbsp;&nbsp;<strong jhiTranslate="auxiliumApp.sinisterPrestation.report.filter">filter</strong></div>
+                        </div>
+
+                        <div class="card-body">
+
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <label jhiTranslate="auxiliumApp.refPartner.detail.title" for="field_partner">company</label>
+                                    <select class="form-control form-control-sm" id="field_partner" name="partner" [(ngModel)]="search.partnerId">
+                                        <option [ngValue]="partner.id" *ngFor="let partner of partners;">{{partner?.companyName}}</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label class="form-control-label" jhiTranslate="auxiliumApp.sinisterPrestation.report.startDate" for="field_startDate">startDate</label>
+                                        <div class="input-group">
+                                            <input id="field_startDate" type="text" class="form-control form-control-sm" name="startDate" ngbDatepicker #startDate="ngbDatepicker"
+                                                   [(ngModel)]="search.startDate" [maxDate]="search.endDate" />
+                                                   <span class="input-group-btn">
+                                                <button type="button" class="btn btn-sm btn-default" (click)="startDate.toggle()"><i class="fa fa-sm fa-calendar"></i></button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label class="form-control-label" jhiTranslate="auxiliumApp.sinisterPrestation.report.endDate" for="field_endDate">endDate</label>
+                                        <div class="input-group">
+                                            <input id="field_endDate" type="text" class="form-control form-control-sm" name="endDate" ngbDatepicker  #endDate="ngbDatepicker" [(ngModel)]="search.endDate"
+                                                   [minDate]="search.startDate"/>
+                                                   <span class="input-group-btn">
+                                                <button type="button" class="btn btn-sm btn-default" (click)="endDate.toggle()"><i class="fa fa-sm fa-calendar"></i></button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label class="form-control-label" style="width: 100%">&nbsp;</label>
+                                        <button type="button" (click)="filter()"
+                                            class="btn btn-sm btn-primary margin-right-5">
+                                            <span class="fa fa-search"></span>&nbsp; <span jhiTranslate="auxiliumApp.sinisterPrestation.report.doFilter">Filtrer</span>
+                                        </button>&nbsp;
+                                        <button type="button" (click)="clear()"
+                                            class="btn btn-sm btn-primary margin-right-5">
+                                            <span class="fa fa-minus"></span>&nbsp; <span>Ré-initialiser</span>
+                                        </button>
+
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    </form>
+                <div class="card">
+                    <div class="card-header d-flex align-items-center no-padding" >
+                        <div class="notice notice-info">
+                            <span class="fa fa-area-chart" style="color: #45ABCD"></span>&nbsp;&nbsp;
+                            <strong jhiTranslate="auxiliumApp.sinisterPrestation.report.services">services</strong>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-sm table-hover table-bordered" style="width: 100%">
+                                <thead style="color:white;background-color:#11859b">
+                                <tr>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.gaReference">gaReference</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.registrationNumber">registrationNumber</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.insured">insured</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.partner">partner</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.pack">pack</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.usage">usage</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.serviceType">serviceType</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.incidentDate">incidentDate</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.incidentNature">incidentNature</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.incidentMonth">incidentMonth</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.dmi">dmi</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.sinisterLocation">sinisterLocation</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.sinisterDestination">sinisterDestination</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.serviceNumber">serviceNumber</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.price">price</span></th>
+                                    <th><span jhiTranslate="auxiliumApp.sinisterPrestation.report.fields.status">status</span></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let sinisterPrestation of sinisterPrestations">
+                                        <td>{{sinisterPrestation.reference}}</td>
+                                        <td>{{sinisterPrestation.registrationNumber}}</td>
+                                        <td>{{sinisterPrestation.fullName}}</td>
+                                        <td>{{sinisterPrestation.partnerName}}</td>
+                                        <td>{{sinisterPrestation.packLabel}}</td>
+                                        <td>{{sinisterPrestation.usageLabel}}</td>
+                                        <td>{{sinisterPrestation.serviceType}}</td>
+                                        <td>{{sinisterPrestation.incidentDate | date:'dd/MM/yyyy'}}</td>
+                                        <td>{{sinisterPrestation.incidentNature}}</td>
+                                        <td>{{sinisterPrestation.incidentMonth}}</td>
+                                        <td>{{sinisterPrestation.interventionTimeAvg}}</td>
+                                        <td>{{sinisterPrestation.incidentLocationLabel}}</td>
+                                        <td>{{sinisterPrestation.destinationLocationLabel}}</td>
+                                        <td>{{sinisterPrestation.prestationCount}}</td>
+                                        <td>{{sinisterPrestation.priceTtc}}</td>
+                                        <td>{{sinisterPrestation.statusLabel}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+</section>

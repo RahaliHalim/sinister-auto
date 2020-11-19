@@ -1,0 +1,29 @@
+{
+    "auxiliumApp": {
+        "profileAccess" : {
+            "home": {
+                "title": "ProfileAccesses",
+                "createLabel": "Créer un nouveau accès au profil",
+                "createOrEditLabel": "Créer ou modifier un accès accès au profil",
+                "search": "Recherche pour accès au profil"
+            },
+            "created": "Un nouveau accès au profil a été créé avec l'identifiant {{ param }}",
+            "updated": "L'accès au profil avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "L'accès au profil avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer l'accès au profil {{ id }} ?"
+            },
+            "detail": {
+                "title": "Accès au profil"
+            },
+            "label": "Label",
+            "code": "Code",
+            "url": "Url",
+            "leaf": "Leaf",
+            "businessEntity": "Business Entity",
+            "functionality": "Functionality",
+            "elementMenu": "Element Menu",
+            "profile": "Profile"
+        }
+    }
+}

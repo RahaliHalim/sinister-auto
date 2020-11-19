@@ -1,0 +1,24 @@
+{
+    "auxiliumApp": {
+        "amendmentType" : {
+            "home": {
+                "title": "Amendment Types",
+                "createLabel": "Create a new Amendment Type",
+                "createOrEditLabel": "Create or edit a Amendment Type",
+                "search": "Search for Amendment Type"
+            },
+            "created": "A new Amendment Type is created with identifier {{ param }}",
+            "updated": "A Amendment Type is updated with identifier {{ param }}",
+            "deleted": "A Amendment Type is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Amendment Type {{ id }}?"
+            },
+            "detail": {
+                "title": "Amendment Type"
+            },
+            "code": "Code",
+            "label": "Label",
+            "active": "Active"
+        }
+    }
+}

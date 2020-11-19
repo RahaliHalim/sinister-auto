@@ -1,0 +1,23 @@
+{
+    "auxiliumApp": {
+        "refZoneGeo" : {
+            "home": {
+                "title": "Ref Zone Geos",
+                "createLabel": "Create a new Ref Zone Geo",
+                "createOrEditLabel": "Create or edit a Ref Zone Geo",
+                "search": "Search for Ref Zone Geo"
+            },
+            "created": "A new Ref Zone Geo is created with identifier {{ param }}",
+            "updated": "A Ref Zone Geo is updated with identifier {{ param }}",
+            "deleted": "A Ref Zone Geo is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Ref Zone Geo {{ id }}?"
+            },
+            "detail": {
+                "title": "Ref Zone Geo"
+            },
+            "libelle": "Libelle",
+            "gouvernorat": "Gouvernorat"
+        }
+    }
+}

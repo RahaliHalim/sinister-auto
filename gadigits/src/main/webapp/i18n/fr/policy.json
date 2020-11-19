@@ -1,0 +1,43 @@
+{
+    "auxiliumApp": {
+        "policy" : {
+            "home": {
+                "title": "Policies",
+                "createLabel": "Créer une nouvelle politique",
+                "createOrEditLabel": "Créer ou modifier une politique",
+                "search": "Recherche pour politique"
+            },
+            "created": "Une nouvelle politique a été créée avec l'identifiant {{ param }}",
+            "updated": "La politique avec l'identifiant {{ param }} a été mise à jour",
+            "deleted": "La politique avec l'identifiant {{ param }} a été supprimée",
+            "delete": {
+                "question": "Êtes-vous certain de vouloir supprimer la politique {{ id }} ?"
+            },
+            "detail": {
+                "title": "Politique"
+            },
+            "reference": "Numéro du contrat",
+            "startDate": "Début de validité",
+            "endDate": "Fin de validité",
+            "newVehiclePrice": "Valeur à neuf",
+            "newVehiclePriceIsAmount": "New véhicule Price Is Amount",
+            "dcCapital": "Dc Capital",
+            "dcCapitalIsAmount": "Dc Capital Is Amount",
+            "bgCapital": "Bg Capital",
+            "bgCapitalIsAmount": "Bg Capital Is Amount",
+            "marketValue": "Market Value",
+            "marketValueIsAmount": "Market Value Is Amount",
+            "active": "Active",
+            "isDeleted": "Deleted",
+            "type": "Type",
+            "nature": "Nature",
+            "periodicity": "Periodicity",
+            "partner": "Partenaire",
+            "agency": "Agence",
+            "policyHolder": "Assuré",
+            "vehicle": "Véhicule",
+            "company": "Compagnie",
+            "pack": "Pack"
+        }
+    }
+}

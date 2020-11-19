@@ -1,0 +1,28 @@
+{
+    "auxiliumApp": {
+        "affectExpert" : {
+            "home": {
+                "title": "Affect Experts",
+                "createLabel": "Create a new Affect Expert",
+                "createOrEditLabel": "Create or edit a Affect Expert",
+                "search": "Search for Affect Expert"
+            },
+            "created": "A new Affect Expert is created with identifier {{ param }}",
+            "updated": "A Affect Expert is updated with identifier {{ param }}",
+            "deleted": "A Affect Expert is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Affect Expert {{ id }}?"
+            },
+            "detail": {
+                "title": "Affect Expert"
+            },
+            "dateEffet": "Date Effet",
+            "dateModif": "Date Modif",
+            "commentaire": "Commentaire",
+            "prestation": "Prestation",
+            "validationDevis": "Validation Devis",
+            "natureExpertise": "Nature Expertise",
+            "expert": "Expert"
+        }
+    }
+}

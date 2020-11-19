@@ -1,0 +1,157 @@
+<section class="forms">
+    <div class="container-fluid">
+        <!-- Page Header-->
+        <header style="padding-top: 1rem; padding-bottom: 1rem;">
+            <h1 class="h3 display">
+                <jhi-alert-error></jhi-alert-error>
+                <jhi-alert></jhi-alert>
+            </h1>
+        </header>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header d-flex align-items-center no-padding">
+                        <div class="notice notice-info">
+                            <span class="fa fa-folder-open" style="color: #45ABCD"></span>&nbsp;&nbsp;
+                            <strong>Localisation Géographique :</strong>
+                            <span class="fa fa-lg fa-close pull-right" style="cursor: pointer"
+                                (click)="activeModal.close()"></span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <label jhiTranslate="auxiliumApp.assure.gouvernorat">
+                                </label>
+                                <select class="form-control form-control-sm" id="field_lieu" name="lieu"
+                                    [(ngModel)]="idGovernorate" required
+                                    (ngModelChange)="listLoueurGouvernoratLieu()">
+                                    <option [ngValue]="gouvernoratOption.id"
+                                        *ngFor="let gouvernoratOption of sysgouvernorats; trackBy: trackGouvernoratById">
+                                        {{gouvernoratOption.label}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" [hidden]="longDuration">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header d-flex align-items-center no-padding">
+                        <div class="notice notice-info">
+                            <span class="fa fa-folder-open" style="color: #45ABCD"></span>&nbsp;&nbsp;
+                            <strong jhiTranslate="auxiliumApp.loueur.home.title">Loueurs</strong>
+
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+                                class="table table-sm table-hover table-bordered" style="width: 100%">
+                                <thead style="color:white;background-color:#11859b">
+                                    <tr>
+                                        <th><span jhiTranslate="auxiliumApp.loueur.raisonSociale">Raison Sociale</span> </th>
+
+                                        <th><span jhiTranslate="auxiliumApp.loueur.telephone">telephone</span> </th>
+
+                                        
+                                      
+                                        <th class="no-sort"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let  loueur of loueurs">
+                                        <td>{{loueur.raisonSociale}}</td>
+                                        <td>{{loueur.telephone}}</td>
+                                        <!-- <td>
+                                            <span *ngIf="loueur.hasHabillage" class="fa fa-lg fa-thumbs-o-up"
+                                                style="color: greenyellow"></span>
+                                            <span *ngIf="!loueur.hasHabillage" class="fa fa-lg fa-thumbs-o-down"
+                                                style="color: red"></span>
+                                        </td> -->
+                                        <!-- <td *ngIf="truck.statusLabel && truck.statusLabel === 'IN_PROGRESS'"><span
+                                                jhiTranslate="auxiliumApp.camion.inProgress">inProgress</span></td>
+                                        <td *ngIf="!truck.statusLabel || truck.statusLabel !== 'IN_PROGRESS'"><span
+                                                jhiTranslate="auxiliumApp.camion.free">free</span></td> -->
+                                        <td class="text-right">
+                                            <div class="btn-group flex-btn-group-container">
+                                                <button type="button" class="btn btn-info btn-sm"
+                                                    (click)="activeModal.close(loueur)">
+                                                    <span class="fa fa-sm fa-check-square-o"></span>
+                                                </button>
+                                            </div>
+                                        </td> 
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" [hidden]="shortDuration">
+            <div class="col-lg-12">
+                <div class="card" >
+                    <div class="card-header d-flex align-items-center no-padding">
+                        <div class="notice notice-info">
+                            <span class="fa fa-folder-open" style="color: #45ABCD"></span>&nbsp;&nbsp;
+                            <strong jhiTranslate="auxiliumApp.vehiculeLoueur.home.title">VehiculeLoueur</strong>
+
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+                                class="table table-sm table-hover table-bordered" style="width: 100%">
+                                <thead style="color:white;background-color:#11859b">
+                                    <tr>
+                                        <th><span jhiTranslate="auxiliumApp.vehiculeLoueur.loueur">loueurLabel</span> </th>
+                                        <th><span jhiTranslate="auxiliumApp.vehiculeLoueur.immatriculation">immatriculation</span> </th>
+                                        <th><span jhiTranslate="auxiliumApp.vehiculeLoueur.marque">marqueLabel</span> </th>
+                                        <th><span jhiTranslate="auxiliumApp.vehiculeLoueur.modele">modeleLabel</span> </th>
+                                        <!-- <th><span jhiTranslate="auxiliumApp.loueur.address">Address</span> </th> -->
+
+                                        
+                                      
+                                        <th class="no-sort"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let  vloueur of vehiculesLoueur">
+                                        <td>{{vloueur.loueurLabel}}</td>
+                                        <td>{{vloueur.immatriculation}}</td>
+                                        <td>{{vloueur.marqueLabel}}</td>
+                                        <td>{{vloueur.modeleLabel}}</td>
+
+                                        <!-- <td>{{loueur.address}}</td> -->
+                                        <!-- <td>
+                                            <span *ngIf="loueur.hasHabillage" class="fa fa-lg fa-thumbs-o-up"
+                                                style="color: greenyellow"></span>
+                                            <span *ngIf="!loueur.hasHabillage" class="fa fa-lg fa-thumbs-o-down"
+                                                style="color: red"></span>
+                                        </td> -->
+                                        <!-- <td *ngIf="truck.statusLabel && truck.statusLabel === 'IN_PROGRESS'"><span
+                                                jhiTranslate="auxiliumApp.camion.inProgress">inProgress</span></td>
+                                        <td *ngIf="!truck.statusLabel || truck.statusLabel !== 'IN_PROGRESS'"><span
+                                                jhiTranslate="auxiliumApp.camion.free">free</span></td> -->
+                                        <td class="text-right">
+                                            <div class="btn-group flex-btn-group-container">
+                                                <button type="button" class="btn btn-info btn-sm"
+                                                    (click)="activeModal.close(vloueur)">
+                                                    <span class="fa fa-sm fa-check-square-o"></span>
+                                                </button>
+                                            </div>
+                                        </td> 
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

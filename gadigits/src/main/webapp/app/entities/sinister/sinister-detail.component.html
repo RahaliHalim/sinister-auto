@@ -1,0 +1,436 @@
+<!-- Breadcrumb-->
+<div class="breadcrumb-holder">
+    <div class="container-fluid">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#"><span class="fa fa-home"></span>&nbsp;&nbsp;<span jhiTranslate="global.menu.home">Home</span></a></li>
+            <li class="breadcrumb-item"><a routerLink="/sinister"><span jhiTranslate="auxiliumApp.dossier.home.title">Dossiers</span></a></li>
+            <li class="breadcrumb-item"><span jhiTranslate="auxiliumApp.dossier.home.details">details dossier</span></li>
+        </ul>
+    </div>
+</div>
+<section class="forms">
+    <div class="container-fluid">
+        <!-- Page Header-->
+        <header style="padding-top: 1rem; padding-bottom: 1rem;">
+            <h1 class="h3 display">
+                <jhi-alert-error></jhi-alert-error>
+                <jhi-alert></jhi-alert>
+            </h1>
+        </header>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="row">
+                    <!-- begin sinister details -->
+                    <div class="col-sm-6">
+                        <div class="card">
+                            <div class="card-header d-flex align-items-center no-padding" >
+                                <div class="notice notice-info">
+                                	<span class="fa fa-folder-open" style="color: #45ABCD"></span>&nbsp;&nbsp;
+                                    <strong jhiTranslate="auxiliumApp.dossier.home.details">Détails dossier</strong> {{sinister.reference}}
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label jhiTranslate="auxiliumApp.dossier.immatriculation" for="currentSearch">Immatriculation</label>
+                                            <div class="input-group">
+                                                <input type="text" [(ngModel)]="sinister.vehicleRegistration" class="form-control form-control-sm" name="currentSearch" id="currentSearch" readonly/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label jhiTranslate="auxiliumApp.dossier.natureIncident" for="field_natureIncident">Nature Incident</label>
+                                            <input type="text" class="form-control form-control-sm" name="natureIncident" [(ngModel)]="sinister.nature" id="field_natureIncident" readonly/>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <label class="form-control-label" jhiTranslate="auxiliumApp.dossier.dateAccident" for="field_incidentDate">Date Accident</label>
+                                        <div class="input-group">
+                                            <input id="field_incidentDate" type="text" class="form-control form-control-sm" name="incidentDate" value="{{sinister.incidentDate | date:'dd/MM/yyyy'}}" readonly/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label class="form-control-label" jhiTranslate="auxiliumApp.dossier.nbrPassagers" for="field_passengerCount">Nbr Passagers</label>
+                                            <input type="number" class="form-control form-control-sm" name="passengerCount" id="field_passengerCount" [(ngModel)]="sinister.passengerCount" readonly/>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label class="form-control-label" jhiTranslate="auxiliumApp.dossier.telephone" for="field_phone">Telephone</label>
+                                            <input type="text" class="form-control form-control-sm" name="phone" id="field_phone" [(ngModel)]="sinister.phone" readonly/>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <label class="form-control-label" jhiTranslate="auxiliumApp.dossier.dateCreation"
+                                            for="field_dateCreation">Date Creation</label>
+                                        <div class="input-group">
+                                            <input id="field_dateCreation" class="form-control form-control-sm"
+                                                name="dateCreation" value="{{sinister.creationDate | date:'dd/MM/yyyy HH:mm:ss'}}"
+                                                readonly />
+            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+
+                                    <div class="col-sm-3">
+                                        <label class="form-control-label" jhiTranslate="auxiliumApp.sinister.assure"
+                                            for="field_isAssure">isAssure</label>
+                                        <input type="checkbox" class="check-input" name="field_isAssure"
+                                            id="field_isAssure" [value]="sinister.isAssure" disabled
+                                            [(ngModel)]="sinister.isAssure" />
+                                    </div>
+                                    <div class="col-sm-4" *ngIf="sinister.isAssure">
+                                        <label class="form-control-label"
+                                            jhiTranslate="auxiliumApp.contratAssurance.assure"
+                                            for="field_prenomAssure">
+                                            nom/prenom assuré </label>
+                                        <input type="text" class="form-control form-control-sm" name="nomAssure"
+                                            id="field_prenomAssure" [(ngModel)]="assure" disabled />
+                                    </div>
+                                    <div class="col-sm-3" *ngIf="!sinister.isAssure">
+                                        <div class="form-group">
+                                            <label class="form-control-label"
+                                                jhiTranslate="auxiliumApp.dossier.prenomConducteur"
+                                                for="field_prenomConducteur">Prenom Conducteur</label>
+                                            <input type="text" class="form-control form-control-sm" disabled
+                                                name="prenomConducteur" id="field_prenomConducteur"
+                                                [(ngModel)]="sinister.conductorFirstName" maxlength="100"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3" *ngIf="!sinister.isAssure">
+                                        <div class="form-group">
+                                            <label class="form-control-label"
+                                                jhiTranslate="auxiliumApp.dossier.nomConducteur"
+                                                for="field_nomConducteur">Nom Conducteur</label>
+                                            <input type="text" class="form-control form-control-sm" disabled
+                                                name="nomConducteur" id="field_nomConducteur"
+                                                [(ngModel)]="sinister.conductorLastName" maxlength="100"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End sinister details -->
+                    <!-- begin contract details -->
+                    <div class="col-sm-6">
+                        <div class="card">
+                            <div class="card-header d-flex align-items-center no-padding" >
+                                <div class="notice notice-info">
+                                	<span class="fa fa-file-text-o" style="color: #45ABCD"></span>&nbsp;&nbsp;
+                                    <strong jhiTranslate="auxiliumApp.contratAssurance.home.details">Détails contrat</strong>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label jhiTranslate="auxiliumApp.contratAssurance.numeroContrat" for="field_immatriculationVehicule">numero Contrat</label>
+                                                    <input type="text" class="form-control form-control-sm" name="numeroContrat" id="field_numeroContrat" [(ngModel)]="contratAssurance.numeroContrat" readonly />
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label jhiTranslate="auxiliumApp.contratAssurance.compagnie" for="field_company">company</label>
+                                                    <input type="text" class="form-control form-control-sm" name="company" id="field_company" [(ngModel)]="contratAssurance.nomCompagnie" readonly />
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label jhiTranslate="auxiliumApp.contratAssurance.agence" for="field_agency">agency</label>
+                                                    <input type="text" class="form-control form-control-sm" name="agency" id="field_agency" [(ngModel)]="contratAssurance.agenceNom" readonly />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label jhiTranslate="auxiliumApp.contratAssurance.assure" for="field_assurePrenom">Assure</label>
+                                                    <input type="text" class="form-control form-control-sm" name="assurePrenom" id="field_assurePrenom" [(ngModel)]="insured.fullName" maxlength="100" readonly />
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label jhiTranslate="auxiliumApp.contratAssurance.debutValidite" for="field_debutValidite">debutValidite</label>
+                                                    <input type="text" class="form-control form-control-sm" name="debutValidite" id="field_debutValidite" value="{{contratAssurance.debutValidite | date:'dd/MM/yyyy'}}" readonly/>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label jhiTranslate="auxiliumApp.contratAssurance.finValidite" for="field_finValidite">finValidite</label>
+                                                    <input type="text" class="form-control form-control-sm" name="finValidite" id="field_finValidite" value="{{contratAssurance.finValidite | date:'dd/MM/yyyy'}}" readonly />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label jhiTranslate="auxiliumApp.contratAssurance.marque" for="field_marqueLibelle">Marque</label>
+                                                    <input type="text" class="form-control form-control-sm" name="marqueLibelle" id="field_marqueLibelle" [(ngModel)]="contratAssurance.marqueLibelle" readonly/>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label jhiTranslate="auxiliumApp.vehiculeAssure.datePCirculation" for="field_datePCirculation">datePCirculation</label>
+                                                    <input type="text" class="form-control form-control-sm" name="datePCirculation" id="field_datePCirculation" value="{{contratAssurance.datePCirculation | date:'dd/MM/yyyy'}}" readonly/>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label jhiTranslate="auxiliumApp.contratAssurance.ville" for="field_ville">Ville</label>
+                                                    <input type="text" class="form-control form-control-sm" name="villeLibelle" id="field_ville" [(ngModel)]="insured.delegationLabel" readonly />
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4" *ngIf="insured.company">
+                                                <div class="form-group">
+                                                    <label class="form-control-label" for="field_isAssujettieTva" style="width: 100%;">&nbsp;</label>
+                                                    <input type="checkbox" class="check-input" name="isAssujettieTva" id="field_isAssujettieTva" [(ngModel)]="insured.isAssujettieTva" readonly/>
+                                                    <label class="form-control-label" jhiTranslate="auxiliumApp.personneMorale.isAssujettieTva" for="field_isAssujettieTva">Is Assujettie Tva</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label jhiTranslate="auxiliumApp.contratAssurance.pack" for="field_pack">Pack</label>
+                                                    <input type="text" class="form-control form-control-sm" name="pack" id="field_pack" [(ngModel)]="vehiculeAssure.packLabel" readonly />
+                                                </div>
+                                            </div>
+                                        </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End contract details -->
+                </div>
+                <div class="row">
+            	    <div class="col-sm-12">
+            		    <div class="card"  *ngIf="sinister.prestations && sinister.prestations.length > 0">
+            			    <span class="anchor" id="formUserEdit"></span>
+                        	<div class="card-header d-flex align-items-center no-padding">
+                        		<div class="notice notice-info">
+                        			<span class="fa fa-list" style="color: #45ABCD"></span>&nbsp;&nbsp;<strong jhiTranslate="auxiliumApp.sinister.home.prestationsHisto">Prestations</strong>
+								</div>
+							</div>
+							<div class="card-body">
+								<div class="table-responsive">
+									<table class="table table-sm table-hover table-bordered" style="width: 100%">
+										<thead style="color:white;background-color:#11859b">
+											<tr>
+                                                <th><span jhiTranslate="auxiliumApp.prestation.typePrestation">typePrestation</span></th>
+                                                <th><span jhiTranslate="auxiliumApp.prestation.dateCreation">Date Creation</span></th>
+												<th><span jhiTranslate="auxiliumApp.prestation.dateCloture">Date Cloture</span></th>
+                                                <th><span jhiTranslate="auxiliumApp.prestation.dateDerniereMaj">Date Derniere Maj</span></th>
+                                                <th><span jhiTranslate="auxiliumApp.prestation.etatPrestation">etatPrestation</span></th>
+                                                <th class="no-sort"></th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr *ngFor="let prestation of sinister.prestations">
+                                                <td>{{prestation.serviceTypeLabel}}</td>
+                                                <td>{{prestation.creationDate | date:'dd/MM/yyyy'}}</td>
+												<td>{{prestation.closureDate | date:'dd/MM/yyyy HH:mm:ss'}}</td>
+                                                <td>{{prestation.updateDate | date:'dd/MM/yyyy'}}</td>
+                                                <td>{{prestation.statusLabel}}</td>
+                                                <td class="text-right">
+                                                    <div class="btn-group flex-btn-group-container">
+                                                        <button type="button" (click)="openPrestationView(prestation.id)" replaceUrl="true" class="btn btn-info btn-sm">
+                                                            <span class="fa fa-sm fa-eye"></span>
+                                                        </button>
+                                                    </div>
+                                                </td>
+    										</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+                </div>
+                <div [hidden]="!(viewsinisterPec && viewsinisterPec.length > 0)"  >
+                    <div class="card-header d-flex align-items-center no-padding">
+                        <div class="notice notice-info">
+                            <span class="fa fa-list" style="color: #45ABCD"></span>&nbsp;&nbsp;<strong
+                                jhiTranslate="auxiliumApp.sinister.home.prestationsHistoPec">PEC</strong>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"  class="table table-sm table-hover table-bordered " style="width: 100%;" >
+                                <thead style="color:white;background-color:#11859b">
+                                    <tr>
+                                        <th><span jhiTranslate="auxiliumApp.prestation.typePrestation">typePrestation</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.prestation.dateCreation">Date Creation</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.prestation.dateDeclaration">Date Declaration</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.prestation.dateCloture">Date Cloture</span></th>
+                                        <th><span jhiTranslate="auxiliumApp.prestation.etapePrestation">etapePrestation</span></th>
+                                        <th class="no-sort"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let prestation of viewsinisterPec">
+                                        <td>Prise en charge</td>
+                                        <td>{{prestation.creationDate | date:'dd/MM/yyyy'}}</td>
+                                        <td>{{prestation.declarationDate | date:'dd/MM/yyyy h:mm a'}}</td>
+                                        <td>{{prestation.clotureDate | date:'dd/MM/yyyy'}}</td>
+                                        <td>{{prestation.stepPec}}</td>
+                                        <td class="text-right">
+                                            <div class="btn-group flex-btn-group-container">
+                                                <button type="button" (click)="openPecView(prestation.id)" replaceUrl="true" class="btn btn-info btn-sm">
+                                                    <span class="fa fa-sm fa-eye"></span>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+			</div>
+        </div>
+        
+  <div class="row"  *ngIf="annulPrestMotif">
+                                            <div class="col-sm-12" >
+                                                <div class="card">
+                                                        <span class="anchor" id="formUserEdit"></span>
+                                                        <div class="card-header d-flex align-items-center no-padding">
+                                                            <div class="notice notice-info">
+                                                                <span class="fa fa-list" style="color: #45ABCD"></span>&nbsp;&nbsp;<strong>Motif d'annulation</strong>
+                                                            </div>
+                                                        </div>
+                                                        <div class="card-body">
+                                                     <div class="form-group">
+                                                           <select class="form-control form-control-sm" id="Motif" name="Motif"
+                                                           [(ngModel)]="reason.id"  required  #Motif="ngModel">
+                                                               <option [ngValue]="reasonOption.id" *ngFor="let reasonOption of reasons">
+                                                                  {{ reasonOption.label}}
+                                                               </option>
+                                                           </select>
+                                                           <div *ngIf="Motif.invalid && (Motif.dirty || Motif.touched)"
+                                                           class="alert alert-danger">
+
+                                                            <div *ngIf="Motif.errors.required">
+                                                             Motif is required.
+                                                                </div>
+                                                                </div>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                         </div>
+                                   </div>
+     <div class="card" *ngIf="annulPrest">
+        <div class="card-footer">
+          <button type="button"  class="btn btn-sm btn-primary float-right" style="background-color:#11859b" (click)="getMotif()">
+                                           <span class="fa fa-close"></span>&nbsp;
+                                           <span >Annuller prestation</span>
+                                       </button>&nbsp;&nbsp;
+                                       <button type="button" *ngIf="annulPrestMotif" class="btn btn-sm btn-primary float-right" style="background-color:#11859b" (click)="save()">
+                                            <span class="fa fa-floppy-o"></span>&nbsp;
+                                            <span >Confirmer</span>
+                                        </button>&nbsp;&nbsp;
+        </div>
+     </div>
+     <div class="row"  *ngIf="refusPrestMotif">
+            <div class="col-sm-12" >
+                <div class="card">
+                        <span class="anchor" id="formUserEdit"></span>
+                        <div class="card-header d-flex align-items-center no-padding">
+                            <div class="notice notice-info">
+                                <span class="fa fa-list" style="color: #45ABCD"></span>&nbsp;&nbsp;<strong>Motif d'annulation</strong>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                     <div class="form-group">
+                           <select class="form-control form-control-sm" id="Motif" name="Motif"
+                           [(ngModel)]="reason.id"  required #Motif="ngModel">
+                               <option [ngValue]="reasonOption.id" 
+                               *ngFor="let reasonOption of reasons">
+                                  {{ reasonOption.label}}
+                               </option>
+                           </select>
+                           <div *ngIf="Motif.invalid && (Motif.dirty || Motif.touched)"
+                           class="alert alert-danger">
+
+                            <div *ngIf="Motif.errors.required">
+                             Motif is required.
+                                </div>
+                                </div>
+                  </div>
+              </div>
+         </div>
+         </div>
+     </div>
+<div class="card" *ngIf="refusPrest" >
+<div class="card-footer">
+        <button type="button" class="btn btn-sm btn-primary float-right" style="background-color:#11859b" (click)="getMotifRefus()">
+                <span class="fa fa-close"></span>&nbsp;
+                <span >Refuser prestation</span>
+            </button>&nbsp;&nbsp;
+        <button type="button" *ngIf="refusPrestMotif" class="btn btn-sm btn-primary float-right"  style="background-color:#11859b" (click)="saveRefus()">
+                <span class="fa fa-floppy-o"></span>&nbsp;
+                <span >Confirmer</span>
+            </button>&nbsp;&nbsp;
+</div>
+</div>
+<div class="card" *ngIf="confirmAnnul">
+<div class="card-footer">
+<button type="button"  class="btn btn-sm btn-primary float-right" style="background-color:#11859b" (click)="confirmerAnnul()">
+   <span class="fa fa-close"></span>&nbsp;
+   <span >Confirmer annulation</span>
+</button>&nbsp;&nbsp;
+<button type="button"  *ngIf="AnnulButton"  class="btn btn-sm btn-primary float-right" style="background-color:#11859b" (click)="NonConfirmer()">
+        <span class="fa fa-floppy-o"></span>&nbsp;
+        <span >Non Confirmer</span>
+    </button>&nbsp;&nbsp;
+    <button type="button"  *ngIf="AnnulButton"  class="btn btn-sm btn-primary float-right" style="background-color:#11859b" (click)="Confirmer()">
+            <span class="fa fa-floppy-o"></span>&nbsp;
+            <span >Confirmer</span>
+        </button>&nbsp;&nbsp;
+</div>
+</div>
+<div class="card" *ngIf="confirmRefus">
+        <div class="card-footer">
+        <button type="button"  class="btn btn-sm btn-primary float-right" style="background-color:#11859b" (click)="confirmerRefus()">
+           <span class="fa fa-close"></span>&nbsp;
+           <span >Confirmer refus</span>
+        </button>&nbsp;&nbsp;
+        <button type="button"  *ngIf="RefusButton"  class="btn btn-sm btn-primary float-right" style="background-color:#11859b" (click)="NonConfirmer()">
+                <span class="fa fa-floppy-o"></span>&nbsp;
+                <span >Non Confirmer</span>
+            </button>&nbsp;&nbsp;
+            <button type="button"  *ngIf="RefusButton"  class="btn btn-sm btn-primary float-right" style="background-color:#11859b" (click)="Confirmer()">
+                    <span class="fa fa-floppy-o"></span>&nbsp;
+                    <span >Confirmer</span>
+                </button>&nbsp;&nbsp;
+        </div>
+        </div>
+    <div class="row">
+            <div class="col-sm-12">
+        <div class="card" *ngIf="confirmation">
+                <span class="anchor" id="formUserEdit"></span>
+                <div class="card-header d-flex align-items-center no-padding">
+                    <div class="notice notice-info">
+                        <span class="fa fa-list" style="color: #45ABCD"></span>&nbsp;&nbsp;<strong>Motif</strong>
+                    </div>
+                </div>
+                <div class="card-body">
+        <input type="text" id="mot" name="mot"  [(ngModel)]="Observ"> &nbsp;&nbsp;
+        <button type="button" aria-required="true"  class="btn btn-sm btn-primary float-right" style="background-color:#11859b" (click)="Confirmation()">
+                <span class="fa fa-floppy-o"></span>&nbsp;
+                <span >Confirmer</span>
+            </button>&nbsp;&nbsp;
+            </div>
+    </div>
+    </div>
+    </div>
+</div> 
+</section>

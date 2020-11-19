@@ -1,0 +1,97 @@
+<div>
+    <h2>
+        <span jhiTranslate="auxiliumApp.userAccess.home.title">User Accesses</span>
+        <button class="btn btn-primary float-right jh-create-entity create-user-access" [routerLink]="['/', { outlets: { popup: ['user-access-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down"  jhiTranslate="auxiliumApp.userAccess.home.createLabel">
+            Create new User Access
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'auxiliumApp.userAccess.home.search' | translate }}">
+                    <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-addon btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-sm fa-remove"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="userAccesses">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="auxiliumApp.userAccess.label">Label</span></th>
+            <th><span jhiTranslate="auxiliumApp.userAccess.code">Code</span></th>
+            <th><span jhiTranslate="auxiliumApp.userAccess.url">Url</span></th>
+            <th><span jhiTranslate="auxiliumApp.userAccess.leaf">Leaf</span></th>
+            <th><span jhiTranslate="auxiliumApp.userAccess.businessEntity">Business Entity</span></th>
+            <th><span jhiTranslate="auxiliumApp.userAccess.functionality">Functionality</span></th>
+            <th><span jhiTranslate="auxiliumApp.userAccess.elementMenu">Element Menu</span></th>
+            <th><span jhiTranslate="auxiliumApp.userAccess.user">User</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let userAccess of userAccesses ;trackBy: trackId">
+                <td><a [routerLink]="['../user-access', userAccess.id ]">{{userAccess.id}}</a></td>
+                <td>{{userAccess.label}}</td>
+                <td>{{userAccess.code}}</td>
+                <td>{{userAccess.url}}</td>
+                <td>{{userAccess.leaf}}</td>
+                <td>
+                    <div *ngIf="userAccess.businessEntityId">
+                        <a [routerLink]="['../business-entity', userAccess.businessEntityId  ]" >{{userAccess.businessEntityId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="userAccess.functionalityId">
+                        <a [routerLink]="['../functionality', userAccess.functionalityId  ]" >{{userAccess.functionalityId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="userAccess.elementMenuId">
+                        <a [routerLink]="['../element-menu', userAccess.elementMenuId  ]" >{{userAccess.elementMenuId}}</a>
+                    </div>
+                </td>
+                <td>
+                    {{userAccess.userLogin}}
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../user-access', userAccess.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'user-access/'+ userAccess.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'user-access/'+ userAccess.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

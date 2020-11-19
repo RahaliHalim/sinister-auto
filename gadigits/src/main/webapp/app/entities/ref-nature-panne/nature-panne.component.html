@@ -1,0 +1,291 @@
+<!-- Breadcrumb-->
+<div class="breadcrumb-holder">
+    <div class="container-fluid">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a routerLink="/"
+                    ><span class="fa fa-home"></span>&nbsp;&nbsp;<span
+                        jhiTranslate="global.menu.home"
+                        >Home</span
+                    ></a
+                >
+            </li>
+            <li class="breadcrumb-item">
+                <a routerLink="/nature-panne"
+                    ><span jhiTranslate="auxiliumApp.naturePanne.home.title"
+                        >Vehicle brand</span
+                    ></a
+                >
+            </li>
+        </ul>
+    </div>
+</div>
+<section class="forms">
+    <div class="container-fluid">
+        <!-- Page Header-->
+        <header style="padding-top: 1rem; padding-bottom: 1rem">
+            <h1 class="h3 display">
+                <jhi-alert-error></jhi-alert-error>
+                <jhi-alert></jhi-alert>
+            </h1>
+        </header>
+
+        <div class="row">
+            <div
+                class="col-lg-12"
+                *ngIf="
+                    permissionToAccess.canCreate || permissionToAccess.canUpdate
+                "
+            >
+                <div class="card">
+                    <div
+                        class="card-header d-flex align-items-center no-padding"
+                    >
+                        <div class="notice notice-info">
+                            <span
+                                class="fa fa-car"
+                                style="color: #45abcd"
+                            ></span
+                            >&nbsp;&nbsp;<strong
+                                jhiTranslate="auxiliumApp.naturePanne.home.createOrEditLabel"
+                                >naturePanne</strong
+                            >
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <div>
+                            <form #myform="ngForm" novalidate>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label
+                                                class="form-control-label"
+                                                jhiTranslate="auxiliumApp.naturePanne.label"
+                                                for="field_label"
+                                                >Label</label
+                                            >
+                                            <input
+                                                type="text"
+                                                class="form-control form-control-sm"
+                                                name="label"
+                                                id="field_label"
+                                                [(ngModel)]="naturePanne.label"
+                                                (blur)="trimLabel()"
+                                                (ngModelChange)="
+                                                    findBrandByLabel(
+                                                        naturePanne.label
+                                                    )
+                                                "
+                                                [pattern]="textPattern"
+                                                required
+                                            />
+                                            <small
+                                                class="form-text text-danger"
+                                                [hidden]="
+                                                    !myform.controls.label
+                                                        ?.errors?.pattern
+                                                "
+                                                jhiTranslate="entity.validation.pattern"
+                                                translateValues="{ pattern: 'label' }"
+                                                >This field should follow
+                                                pattern for "label".</small
+                                            >
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label style="width: 100%"
+                                                >&nbsp;</label
+                                            >
+                                            <button
+                                                *ngIf="
+                                                    !naturePanne.id &&
+                                                    permissionToAccess.canCreate
+                                                "
+                                                type="button"
+                                                [disabled]="
+                                                    myform.invalid || existLabel
+                                                "
+                                                (click)="save()"
+                                                class="btn btn-sm btn-primary margin-right-5"
+                                            >
+                                                <span class="fa fa-save"></span
+                                                >&nbsp;
+                                                <span
+                                                    jhiTranslate="entity.action.save"
+                                                    >Save</span
+                                                >
+                                            </button>
+                                            <button
+                                                *ngIf="
+                                                    naturePanne.id &&
+                                                    permissionToAccess.canUpdate
+                                                "
+                                                type="button"
+                                                [disabled]="
+                                                    myform.invalid || existLabel
+                                                "
+                                                (click)="save()"
+                                                class="btn btn-sm btn-primary margin-right-5"
+                                            >
+                                                <span
+                                                    jhiTranslate="entity.action.aJour"
+                                                    >update</span
+                                                >
+                                            </button>
+                                            <button
+                                                type="button"
+                                                (click)="cancel()"
+                                                class="btn btn-sm btn-default margin-right-5"
+                                            >
+                                                <span
+                                                    jhiTranslate="entity.action.cancel"
+                                                    >cancel</span
+                                                >
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div
+                        class="card-header d-flex align-items-center no-padding"
+                    >
+                        <div class="notice notice-info">
+                            <strong
+                                jhiTranslate="auxiliumApp.naturePanne.home.title"
+                                >Vehicle brand</strong
+                            >
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table
+                                datatable
+                                [dtOptions]="dtOptions"
+                                [dtTrigger]="dtTrigger"
+                                class="table table-sm table-hover table-bordered"
+                                style="width: 100%"
+                            >
+                                <thead
+                                    style="
+                                        color: white;
+                                        background-color: #11859b;
+                                    "
+                                >
+                                    <tr>
+                                        <th>
+                                            <span
+                                                jhiTranslate="auxiliumApp.naturePanne.label"
+                                                >Label</span
+                                            >
+                                        </th>
+                                        <th class="no-sort"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr
+                                        *ngFor="let naturePanne of naturePannes"
+                                    >
+                                        <td>{{ naturePanne.label }}</td>
+                                        <td class="text-right">
+                                            <div
+                                                class="btn-group flex-btn-group-container"
+                                            >
+                                                <button
+                                                    *ngIf="
+                                                        naturePanne.active &&
+                                                        permissionToAccess.canDesactive
+                                                    "
+                                                    type="button"
+                                                    (click)="
+                                                        disable(naturePanne)
+                                                    "
+                                                    class="btn btn-danger btn-sm"
+                                                >
+                                                    <span
+                                                        jhiTranslate="entity.action.disable"
+                                                    ></span>
+                                                </button>
+                                                <button
+                                                    *ngIf="
+                                                        !naturePanne.active &&
+                                                        permissionToAccess.canActive
+                                                    "
+                                                    type="button"
+                                                    (click)="
+                                                        activate(naturePanne)
+                                                    "
+                                                    class="btn btn-success btn-sm"
+                                                >
+                                                    <span
+                                                        jhiTranslate="entity.action.activate"
+                                                    ></span></button
+                                                >&nbsp;&nbsp;
+                                                <button
+                                                    *ngIf="
+                                                        permissionToAccess.canUpdate
+                                                    "
+                                                    type="button"
+                                                    (click)="
+                                                        edit(naturePanne.id)
+                                                    "
+                                                    class="btn btn-primary btn-sm"
+                                                >
+                                                    <span
+                                                        class="fa fa-sm fa-pencil"
+                                                    ></span>
+                                                </button>
+
+                                                &nbsp;&nbsp;
+                                                <button
+                                                    class="btn btn-sm btn-primary float-right"
+                                                    (click)="
+                                                        selectHistory(
+                                                            naturePanne.id,
+                                                            entityName
+                                                        )
+                                                    "
+                                                >
+                                                    <span
+                                                        class="hidden-sm-down"
+                                                        jhiTranslate="auxiliumApp.agency.home.History"
+                                                        >History</span
+                                                    >
+                                                </button>
+                                                &nbsp;&nbsp;
+
+                                                <button
+                                                    type="button"
+                                                    *ngIf="
+                                                        permissionToAccess.canDelete
+                                                    "
+                                                    (click)="
+                                                        delete(naturePanne.id)
+                                                    "
+                                                    class="btn btn-danger btn-sm"
+                                                >
+                                                    <span
+                                                        class="fa fa-sm fa-remove"
+                                                    ></span>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

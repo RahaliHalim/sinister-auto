@@ -1,0 +1,101 @@
+<div>
+    <h2>
+        <span jhiTranslate="auxiliumApp.detailsPieces.home.title">Details Pieces</span>
+        <button class="btn btn-primary float-right jh-create-entity create-details-pieces" [routerLink]="['/', { outlets: { popup: ['details-pieces-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down"  jhiTranslate="auxiliumApp.detailsPieces.home.createLabel">
+            Create new Details Pieces
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'auxiliumApp.detailsPieces.home.search' | translate }}">
+                    <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-addon btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-sm fa-remove"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="detailsPieces">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="quantite"><span jhiTranslate="auxiliumApp.detailsPieces.quantite">Quantite</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="designation"><span jhiTranslate="auxiliumApp.detailsPieces.designation">Designation</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="prixUnit"><span jhiTranslate="auxiliumApp.detailsPieces.prixUnit">Prix Unit</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="tva"><span jhiTranslate="auxiliumApp.detailsPieces.tva">Tva</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="fournisseurId"><span jhiTranslate="auxiliumApp.detailsPieces.fournisseur">Fournisseur</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="devisId"><span jhiTranslate="auxiliumApp.detailsPieces.devis">Devis</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="pieceRef"><span jhiTranslate="auxiliumApp.detailsPieces.piece">Piece</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let detailsPieces of detailsPieces ;trackBy: trackId">
+                <td><a [routerLink]="['../details-pieces', detailsPieces.id ]">{{detailsPieces.id}}</a></td>
+                <td>{{detailsPieces.quantite}}</td>
+                <td>{{detailsPieces.designation}}</td>
+                <td>{{detailsPieces.prixUnit}}</td>
+                <td>{{detailsPieces.tva}}</td>
+                <td>
+                    <div *ngIf="detailsPieces.fournisseurId">
+                        <a [routerLink]="['../fournisseur', detailsPieces.fournisseurId  ]" >{{detailsPieces.fournisseurId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="detailsPieces.devisId">
+                        <a [routerLink]="['../devis', detailsPieces.devisId  ]" >{{detailsPieces.devisId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="detailsPieces.pieceId">
+                        <a [routerLink]="['../piece', detailsPieces.pieceId  ]" >{{detailsPieces.pieceRef}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../details-pieces', detailsPieces.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'details-pieces/'+ detailsPieces.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'details-pieces/'+ detailsPieces.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+        <div *ngIf="detailsPieces && detailsPieces.length">
+            <div class="row justify-content-center">
+                <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+            </div>
+            <div class="row justify-content-center">
+                <ngb-pagination [collectionSize]="totalItems" [(page)]="page" (pageChange)="loadPage(page)"></ngb-pagination>
+            </div>
+        </div>
+</div>

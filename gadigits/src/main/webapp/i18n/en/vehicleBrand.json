@@ -1,0 +1,23 @@
+{
+    "auxiliumApp": {
+        "vehicleBrand" : {
+            "home": {
+                "title": "Vehicle Brands",
+                "createLabel": "Create a new Vehicle Brand",
+                "createOrEditLabel": "Create or edit a Vehicle Brand",
+                "search": "Search for Vehicle Brand"
+            },
+            "created": "A new Vehicle Brand is created with identifier {{ param }}",
+            "updated": "A Vehicle Brand is updated with identifier {{ param }}",
+            "deleted": "A Vehicle Brand is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Vehicle Brand {{ id }}?"
+            },
+            "detail": {
+                "title": "Vehicle Brand"
+            },
+            "label": "Label",
+            "active": "Active"
+        }
+    }
+}

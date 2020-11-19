@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <property name="now" value="now()" dbms="h2"/>
+
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+
+    <property name="floatType" value="float4" dbms="postgresql, h2"/>
+    <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
+
+    <!--
+        Added the entity RaisonAssistance.
+    -->
+    <changeSet id="20190809020100-1" author="jhipster">
+        <createTable tableName="ref_raison_assistance">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" primaryKeyName="pk_ref_raison_assistance"/>
+            </column>
+            <column name="code" type="varchar(30)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="label" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="active" type="boolean">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="creation_date" type="date">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="creation_user_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="operation_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+        </createTable>
+        
+    </changeSet>
+</databaseChangeLog>

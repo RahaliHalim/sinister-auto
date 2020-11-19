@@ -1,0 +1,12 @@
+/* after changing this file run 'yarn run webpack:build' */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import '~font-awesome/css/font-awesome.css';
+@import 'fontastic.css';
+@import 'grasp_mobile_progress_circle-1.0.0.min.css';
+@import '~malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css';
+@import 'style.blue.css';
+@import '~datatables.net-bs4/css/dataTables.bootstrap4.css';
+@import '~datatables.net-buttons-bs4/css/buttons.bootstrap4.css';
+@import 'custom.css';
+@import '~leaflet/dist/leaflet.css';
+

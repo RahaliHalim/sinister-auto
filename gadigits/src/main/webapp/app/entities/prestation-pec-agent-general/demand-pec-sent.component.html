@@ -1,0 +1,63 @@
+<!-- Breadcrumb-->
+<div class="breadcrumb-holder">
+    <div class="container-fluid">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#"><span class="fa fa-home"></span>&nbsp;&nbsp;<span jhiTranslate="global.menu.home">Home</span></a></li>
+            <li class="breadcrumb-item"><a routerLink="/dossier"><span jhiTranslate="auxiliumApp.dossier.demand.home">Demande pec</span></a></li>
+        </ul>
+    </div>
+</div>
+<section>
+    <div class="container-fluid">
+        <!-- Page Header-->
+        <header>
+            <h1 class="h3 display">
+                <jhi-alert-error></jhi-alert-error>
+            </h1>
+        </header>
+        <!-- Page Header-->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header d-flex align-items-center no-padding">
+                        <div class="notice notice-info"><strong>Demandes PEC</strong></div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-sm table-hover table-bordered" style="width: 100%">
+                                <thead>
+                                <tr style="color: white; background-color: #167F92">
+                                    <th><span>Référence Sinistre</span></th>
+                                    <th><span>Numéro Contrat</span></th>
+                                    <th><span>Immatriculation</span></th>
+                                    <th><span>Assuré</span></th>
+                                    <th><span>Date Incident</span></th>
+                                    <th><span>Mode Gestion</span></th>
+                                    <th><span>Date Création</span></th>
+                                    <th class="no-sort"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr *ngFor="let demand of demands">
+                                    <td class="padding-sm">{{demand.referenceSinistre}}</td>
+                                    <td class="padding-sm">{{demand.contractNumber}}</td>
+                                    <td class="padding-sm">{{demand.immatriculation}}</td>
+                                    <td class="padding-sm">{{demand.insuredName}}</td>
+                                    <td class="padding-sm">{{demand.dateAccident | date:'dd/MM/yyyy'}}</td>
+                                    <td class="padding-sm">{{demand.managmentMode}}</td>
+                                    <td class="padding-sm">{{demand.dateCreation | date:'dd/MM/yyyy'}}</td>
+                                    <td>
+                                        <button type="submit" [routerLink]="['/prestation-pec/'+ demand.id + '/edit']" replaceUrl="true" class="btn btn-primary btn-sm">
+                                            <span class="fa fa-sm fa-pencil"></span>
+                                        </button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

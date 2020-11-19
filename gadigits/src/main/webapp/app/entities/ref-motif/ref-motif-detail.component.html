@@ -1,0 +1,26 @@
+
+<div *ngIf="refMotif">
+    <h2><span jhiTranslate="auxiliumApp.refMotif.detail.title">Ref Motif</span> {{refMotif.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="auxiliumApp.refMotif.libelle">Libelle</span></dt>
+        <dd>
+            <span>{{refMotif.libelle}}</span>
+        </dd>
+       
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'ref-motif/'+ refMotif.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;&nbsp;&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>
